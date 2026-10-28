@@ -23,8 +23,12 @@ classdef CamReplicaApp < handle
         SelectedTargetRow = 1
         SelectedNodeRow = 1
         PointButtons
+        SimulationMode = false
+        SimulationReference = []
+        SimulationResult = []
     end
     properties (Access=private)
+        DisplayedParameterFields = {}
         ParameterFields = {'wheelDiameter','gearRatio','lever','rollerRadius','referenceDiameter', ...
             'thickness','driveX','driveY','drivenX','drivenY','sensorX','sensorY','headingDeg', ...
             'startSteeringDeg','returnAngleDeg','maxSteeringDeg','maxPressureDeg','hitTolerance', ...
@@ -40,7 +44,7 @@ classdef CamReplicaApp < handle
         function app=CamReplicaApp(visibility)
             if nargin<1, visibility='on'; end
             app.Project=camdesign.defaultProject();
-            app.Figure=uifigure('Name','工创赛凸轮设计 · MATLAB 复现 v0.1', ...
+            app.Figure=uifigure('Name','工创赛凸轮设计 · MATLAB 复现 v0.2', ...
                 'Position',[70 60 1320 860],'Visible',visibility,'Color',[.95 .96 .98]);
             app.Figure.CloseRequestFcn=@(~,~)app.closeRequested();
             root=uigridlayout(app.Figure,[4 2],'RowHeight',{42,38,'1x',116}, ...
@@ -51,7 +55,7 @@ classdef CamReplicaApp < handle
             title.Layout.Column=[1 2];
             bar=uigridlayout(root,[1 8],'Padding',[0 0 0 0],'ColumnSpacing',8);
             bar.Layout.Row=2; bar.Layout.Column=[1 2];
-            labels={'导入 MAT','保存项目','重建路线','计算凸轮','迭代优化','停止','反推仿真','导出候选'};
+            labels={'导入 MAT','保存项目','重建路线','计算凸轮','迭代优化','停止','固定凸轮反推','导出候选'};
             actions={'import','save','seed','calculate','optimize','stop','simulate','export'};
             app.Buttons=gobjects(1,8);
             for k=1:8
@@ -101,12 +105,17 @@ classdef CamReplicaApp < handle
             app.Status=uilabel(bottom,'Text','准备就绪','FontSize',13,'FontWeight','bold');
             app.Log=uitextarea(bottom,'Editable','off','FontSize',12);
             app.syncInputs(); app.calculate();
-            app.message('v0.1：齿条/平推；独立三次样条与数值优化。未与原版输出或实车对照。');
+            app.message('v0.2：齿条/平推、固定凸轮调参；独立样条与数值优化。尚未完成原版点集或实车对照。');
         end
         function syncInputs(app)
             p=app.Project.params;
-            values=cellfun(@(k)p.(k),app.ParameterFields,'UniformOutput',false);
-            app.ParamsTable.Data=[app.ParameterLabels(:),values(:)];
+            indices=1:numel(app.ParameterFields);
+            if app.SimulationMode, indices=[1 2 3 5 7 8 10 11 12 13]; end
+            app.DisplayedParameterFields=app.ParameterFields(indices);
+            labels=app.ParameterLabels(indices);
+            if app.SimulationMode, labels{2}='实际传动比（轮/凸轮）'; end
+            values=cellfun(@(k)p.(k),app.DisplayedParameterFields,'UniformOutput',false);
+            app.ParamsTable.Data=[labels(:),values(:)];
             app.TargetsTable.Data=app.Project.targets; app.NodesTable.Data=app.Project.nodes;
             app.Mechanism.Value=p.mechanism; app.AutoRatio.Value=p.autoRatio;
             labels={'有序打卡偏差','前轮路线长度','转向变化率','压力角超限','前轮转角超限','包络欠切风险'};
@@ -114,10 +123,10 @@ classdef CamReplicaApp < handle
         end
         function readInputs(app)
             p=app.Project.params;
-            for k=1:numel(app.ParameterFields)
+            for k=1:numel(app.DisplayedParameterFields)
                 value=app.ParamsTable.Data{k,2};
                 if ischar(value) || isstring(value), value=str2double(value); end
-                p.(app.ParameterFields{k})=double(value);
+                p.(app.DisplayedParameterFields{k})=double(value);
             end
             p.mechanism=app.Mechanism.Value; p.autoRatio=app.AutoRatio.Value;
             p.weights=cellfun(@double,app.WeightsTable.Data(:,2))';
@@ -126,6 +135,7 @@ classdef CamReplicaApp < handle
             camdesign.validateProject(candidate); app.Project=candidate;
         end
         function calculate(app)
+            if app.SimulationMode, app.runFixedCamSimulation(); return; end
             app.readInputs(); app.Result=camdesign.evaluate(app.Project,true); app.render();
             app.message(sprintf('完成几何计算；实际传动比 %.6g，工作段 %.1f°。', ...
                 app.Result.cam.effectiveRatio,rad2deg(app.Result.cam.workEnd)));
@@ -167,7 +177,63 @@ classdef CamReplicaApp < handle
             end
         end
         function invalidate(app)
+            if app.SimulationMode
+                app.SimulationResult=[];
+                app.Status.Text='反推参数已修改，凸轮保持固定；点击“更新反推”查看路线变化。';
+                return;
+            end
             app.Result=[]; app.Status.Text='输入已修改，请重新计算；当前图像为上次结果。';
+        end
+        function toggleSimulation(app)
+            if app.SimulationMode
+                ref=app.SimulationReference;
+                app.SimulationMode=false; app.Project=ref.project; app.Result=ref.result;
+                app.SimulationReference=[]; app.SimulationResult=[];
+                app.syncInputs(); app.setSimulationControls(); app.render();
+                app.message('已退出反推并恢复设计参数；试调没有改写原凸轮或设计方案。');
+                return;
+            end
+            app.calculate();
+            app.SimulationReference=struct('project',app.Project,'result',app.Result);
+            app.SimulationMode=true;
+            app.Project.params.gearRatio=app.Result.cam.effectiveRatio;
+            app.syncInputs(); app.setSimulationControls(); app.runFixedCamSimulation();
+            app.message('已固定当前理论凸轮。可修改轮径、传动比、轴距、c、中心距、传感器坐标或发车方向，再点“更新反推”。');
+        end
+        function setSimulationControls(app)
+            if app.SimulationMode, state='off'; else, state='on'; end
+            for k=[1 2 3 5 8], app.Buttons(k).Enable=state; end
+            app.Mechanism.Enable=state; app.AutoRatio.Enable=state;
+            app.TargetsTable.ColumnEditable=[~app.SimulationMode ~app.SimulationMode];
+            app.NodesTable.ColumnEditable=[~app.SimulationMode ~app.SimulationMode];
+            app.WeightsTable.ColumnEditable=[false ~app.SimulationMode];
+            for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=state; end
+            if app.SimulationMode
+                app.Buttons(4).Text='更新反推'; app.Buttons(7).Text='退出反推';
+            else
+                app.Buttons(4).Text='计算凸轮'; app.Buttons(7).Text='固定凸轮反推';
+            end
+        end
+        function runFixedCamSimulation(app)
+            app.readInputs(); ref=app.SimulationReference; p=app.Project.params;
+            assert(strcmp(p.mechanism,ref.project.params.mechanism),'cam:SimulationMechanism','固定凸轮试调期间不能切换转向机构。');
+            sim=camdesign.simulate(ref.result.cam,p,ref.result.route.front(1,:), ...
+                deg2rad(p.headingDeg),GearRatio=p.gearRatio);
+            sim.hits=camdesign.orderedHits(sim.sensor,ref.project.targets);
+            sim.maxPhaseDeviation=max(vecnorm(sim.sensor-ref.result.route.sensor,2,2));
+            app.SimulationResult=sim; app.Result=ref.result; app.render();
+            hold(app.RouteAxes,'on');
+            plot(app.RouteAxes,sim.sensor(:,1),sim.sensor(:,2),'k--','LineWidth',1.5,'DisplayName','固定凸轮试调');
+            hold(app.RouteAxes,'off');
+            a=app.SteeringAxes; cla(a);
+            plot(a,rad2deg(sim.phase),rad2deg(ref.result.route.steering),'b-', ...
+                rad2deg(sim.phase),rad2deg(sim.steering),'r--'); grid(a,'on');
+            xlabel(a,'凸轮相位 / deg'); ylabel(a,'转角 / deg');
+            title(a,'固定凸轮：设计与试调转角'); legend(a,{'设计','试调'},'Location','best');
+            app.Status.Text=sprintf('固定凸轮反推：同相位最大传感器偏差 %.3f mm；最大打卡偏差 %.3f mm', ...
+                sim.maxPhaseDeviation,max(sim.hits.errors));
+            app.Status.FontColor=[.12 .20 .30];
+            app.message(sprintf('固定凸轮反推完成，实际试调传动比 %.6g，主动轮行程 %.3f mm。这是理想运动学预测。',p.gearRatio,sim.driveDistance(end)));
         end
         function selectPoint(app,kind,event)
             if isempty(event.Indices), return; end
@@ -193,6 +259,9 @@ classdef CamReplicaApp < handle
         end
         function action(app,name)
             try
+                if app.SimulationMode && ismember(name,{'import','save','seed','optimize','export'})
+                    app.message('请先退出反推，恢复设计模式。'); return;
+                end
                 switch name
                     case 'calculate', app.calculate();
                     case 'seed'
@@ -219,12 +288,7 @@ classdef CamReplicaApp < handle
                         if ~isequal(f,0), camdesign.saveProject(app.Project,fullfile(d,f)); app.message('项目已保存。'); end
                     case 'optimize', app.runOptimization();
                     case 'stop', app.StopRequested=true; app.message('将在当前梯度轮结束后停止。');
-                    case 'simulate'
-                        app.calculate(); r=app.Result.route;
-                        sim=camdesign.simulate(app.Result.cam,app.Project.params,r.front(1,:),r.heading(1));
-                        hold(app.RouteAxes,'on'); plot(app.RouteAxes,sim.sensor(:,1),sim.sensor(:,2),'k--','DisplayName','理论凸轮反推'); hold(app.RouteAxes,'off');
-                        discrepancy=max(vecnorm(sim.sensor-r.sensor,2,2));
-                        app.message(sprintf('理论凸轮反推：与正算传感器轨迹最大差 %.4f mm；这不是实车误差。',discrepancy));
+                    case 'simulate', app.toggleSimulation();
                     case 'export'
                         app.calculate(); folder=uigetdir(pwd,'选择输出父目录'); if isequal(folder,0), return; end
                         destination=fullfile(folder,['cam_candidate_',char(datetime('now','Format','yyyyMMdd_HHmmss_SSS'))]);
@@ -237,7 +301,7 @@ classdef CamReplicaApp < handle
             end
         end
         function runOptimization(app)
-            if app.Busy, return; end
+            if app.Busy || app.SimulationMode, return; end
             app.readInputs(); app.Busy=true; app.StopRequested=false; app.setBusy(true);
             cleanup=onCleanup(@()app.finishBusy());
             [project,history]=camdesign.optimize(app.Project,@app.optimizationUpdate);

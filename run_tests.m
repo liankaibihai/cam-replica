@@ -2,7 +2,7 @@ function summary = run_tests()
 % Analytical and integration checks for the independent mechanics model.
 root=fileparts(mfilename('fullpath')); addpath(root);
 tests={@testStraight,@testCircle,@testMechanisms,@testClosedCam, ...
-    @testRoundTrip,@testOptimize,@testSaveImport,@testImportTypeSchemes,@testExport,@testReject,@testIntersections};
+    @testRoundTrip,@testFixedCamTuning,@testOptimize,@testSaveImport,@testImportTypeSchemes,@testExport,@testReject,@testIntersections};
 names=cellfun(@func2str,tests,'UniformOutput',false); passed=false(size(tests));
 for i=1:numel(tests)
     tests{i}(); passed(i)=true; fprintf('PASS %s\n',names{i});
@@ -71,6 +71,35 @@ before=camdesign.evaluate(p); [q,h]=camdesign.optimize(p); after=camdesign.evalu
 assert(after.metrics.score<before.metrics.score);
 assert(all(diff([h.score])<=1e-9)); assert(isequal(q.nodes(1,:),p.nodes(1,:)));
 fprintf('  objective %.6f -> %.6f\n',before.metrics.score,after.metrics.score);
+end
+
+function testFixedCamTuning()
+project=camdesign.defaultProject(); p=project.params;
+p.driveX=0; p.driveY=-100; p.drivenY=-100; p.sensorX=0; p.sensorY=0;
+phi=linspace(0,1,401)'; delta=0.2; ratio=10;
+for kind={'rack','flat'}
+    p.mechanism=kind{1};
+    c=struct('workPhi',phi,'workRadius',repmat(p.referenceDiameter/2+camdesign.lift(delta,p),size(phi)), ...
+        'effectiveRatio',ratio);
+    frozen=c;
+    baseline=camdesign.simulate(c,p,[100 0],0);
+    s=phi*p.wheelDiameter*ratio/2; curvature=tan(delta)/100; heading=curvature*s;
+    expected=[sin(heading)/curvature+100*cos(heading), ...
+        (1-cos(heading))/curvature+100*sin(heading)];
+    assert(max(vecnorm(baseline.front-expected,2,2))<1e-6);
+    changed=p; changed.lever=2*p.lever;
+    tuned=camdesign.simulate(c,changed,[100 0],0);
+    if strcmp(p.mechanism,'rack'), expectedAngle=delta/2; else, expectedAngle=atan(tan(delta)/2); end
+    assert(max(abs(tuned.steering-expectedAngle))<1e-12);
+    assert(norm(tuned.front(end,:)-baseline.front(end,:))>20);
+    doubled=camdesign.simulate(c,p,[100 0],0,GearRatio=2*ratio);
+    assert(abs(doubled.driveDistance(end)-2*baseline.driveDistance(end))<1e-10);
+    assert(abs(doubled.heading(end)-2*baseline.heading(end))<1e-10);
+    offset=p; offset.sensorX=10;
+    shifted=camdesign.simulate(c,offset,[100 0],0);
+    assert(max(abs(vecnorm(shifted.sensor-baseline.sensor,2,2)-10))<1e-8);
+    assert(isequaln(c,frozen),'Fixed-cam tuning must not mutate the cam.');
+end
 end
 
 function testSaveImport()

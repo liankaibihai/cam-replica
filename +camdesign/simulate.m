@@ -1,7 +1,22 @@
-function simulation = simulate(c,p,frontStart,headingStart)
+function simulation = simulate(c,p,frontStart,headingStart,options)
 % Independently integrate from THEORETICAL working cam q(phi), not actual contact.
+% GearRatio overrides the physical wheel/cam ratio for fixed-cam tuning.
+arguments
+    c struct
+    p struct
+    frontStart (1,2) double {mustBeFinite,mustBeReal}
+    headingStart (1,1) double {mustBeFinite,mustBeReal}
+    options.GearRatio (1,1) double = NaN
+end
 phi=c.workPhi; q=c.workRadius; L=-p.driveY;
-s=phi*p.wheelDiameter*c.effectiveRatio/2;
+ratio=options.GearRatio;
+if isnan(ratio), ratio=c.effectiveRatio; end
+validateattributes(ratio,{'double'},{'scalar','real','finite','positive'});
+assert(p.wheelDiameter>0 && L>0 && abs(p.driveY-p.drivenY)<1e-6,'cam:SimulationGeometry','反推要求正轮径、正轴距及后轮共轴。');
+steering=camdesign.steeringFromLift(q-p.referenceDiameter/2,p);
+assert(all(isfinite(steering)) && max(abs(steering))<deg2rad(85), ...
+    'cam:SimulationSteering','试调参数导致转向达到或超过 85 度，超出本模型范围。');
+s=phi*p.wheelDiameter*ratio/2;
 pp=pchip(s,q); y=zeros(numel(s),3);
 y(1,:)=[frontStart-L*[cos(headingStart),sin(headingStart)],headingStart];
 for j=1:numel(s)-1
@@ -13,7 +28,9 @@ end
 fw=[cos(y(:,3)),sin(y(:,3))]; right=[sin(y(:,3)),-cos(y(:,3))];
 front=y(:,1:2)+L*fw;
 simulation=struct('front',front,'sensor',front+p.sensorX*right+p.sensorY*fw, ...
-    'heading',y(:,3),'driveDistance',s);
+    'heading',y(:,3),'driveDistance',s,'phase',phi, ...
+    'steering',steering, ...
+    'physicalGearRatio',ratio);
     function out=rhs(distance,state)
         delta=camdesign.steeringFromLift(ppval(pp,distance)-p.referenceDiameter/2,p);
         kappa=tan(delta)/L; denom=1+p.driveX*kappa;
