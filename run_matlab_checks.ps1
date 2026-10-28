@@ -2,12 +2,15 @@ param([string]$MatlabPath = 'D:\Program Files\MATLAB\R2025b\bin\matlab.exe', [st
 $ErrorActionPreference = 'Stop'
 $taskRepo = $PSScriptRoot
 $taskLocal = Join-Path $taskRepo 'local'
-$taskPrefs = Join-Path $taskLocal 'matlab_prefs'
+$taskRunId = [guid]::NewGuid().ToString('N')
+$taskPrefs = Join-Path $taskLocal ('matlab_prefs_' + $taskRunId)
+$taskLog = Join-Path $taskLocal ('matlab_' + $taskRunId + '.log')
 New-Item -ItemType Directory -Force -Path $taskPrefs | Out-Null
 $taskPreviousPrefs = $env:MATLAB_PREFDIR
 try {
     $env:MATLAB_PREFDIR = $taskPrefs
-    & $MatlabPath -batch $Task -sd $taskRepo -logfile (Join-Path $taskLocal 'matlab_checks.log')
+    Write-Output ('MATLAB log: ' + $taskLog)
+    & $MatlabPath -batch $Task -sd $taskRepo -logfile $taskLog
     if ($LASTEXITCODE -ne 0) { throw "MATLAB exited with code $LASTEXITCODE" }
 } finally {
     if ($null -eq $taskPreviousPrefs) { Remove-Item Env:MATLAB_PREFDIR -ErrorAction SilentlyContinue }
