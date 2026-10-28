@@ -200,7 +200,19 @@ classdef CamReplicaApp < handle
                         app.syncInputs(); app.calculate();
                     case 'import'
                         [f,d]=uigetfile('*.mat','导入本项目或原软件 MAT'); if isequal(f,0), return; end
-                        [next,notes]=camdesign.importProject(fullfile(d,f)); app.Project=next;
+                        try
+                            [next,notes]=camdesign.importProject(fullfile(d,f));
+                        catch importError
+                            if ~strcmp(importError.identifier,'cam:UnsupportedMechanism'), rethrow(importError); end
+                            choice=uiconfirm(app.Figure, ...
+                                [importError.message,newline,'是否沿用点位和车体参数另建方案？原文件保持不变。'], ...
+                                '原文件转向机构尚未实现','Options',{'另建齿条方案','另建平推方案','取消'}, ...
+                                'DefaultOption',3,'CancelOption',3);
+                            if strcmp(choice,'取消'), return; end
+                            if strcmp(choice,'另建齿条方案'), mechanism='rack'; else, mechanism='flat'; end
+                            [next,notes]=camdesign.importProject(fullfile(d,f),MechanismOverride=mechanism);
+                        end
+                        app.Project=next;
                         app.syncInputs(); app.calculate(); for k=1:numel(notes), app.message(notes{k}); end
                     case 'save'
                         app.readInputs(); [f,d]=uiputfile('*.mat','保存复现项目','cam_project.mat');

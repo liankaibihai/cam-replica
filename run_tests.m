@@ -2,7 +2,7 @@ function summary = run_tests()
 % Analytical and integration checks for the independent mechanics model.
 root=fileparts(mfilename('fullpath')); addpath(root);
 tests={@testStraight,@testCircle,@testMechanisms,@testClosedCam, ...
-    @testRoundTrip,@testOptimize,@testSaveImport,@testExport,@testReject,@testIntersections};
+    @testRoundTrip,@testOptimize,@testSaveImport,@testImportTypeSchemes,@testExport,@testReject,@testIntersections};
 names=cellfun(@func2str,tests,'UniformOutput',false); passed=false(size(tests));
 for i=1:numel(tests)
     tests{i}(); passed(i)=true; fprintf('PASS %s\n',names{i});
@@ -78,10 +78,30 @@ p=camdesign.defaultProject(); filename=[tempname,'.mat']; cleanup=onCleanup(@()d
 camdesign.saveProject(p,filename); q=camdesign.importProject(filename); assert(isequaln(p,q));
 original=fullfile(fileparts(fileparts(fileparts(mfilename('fullpath')))),'2027生物质能初赛_直播.mat');
 if isfile(original)
-    q=camdesign.importProject(original);
+    rejected=false;
+    try, camdesign.importProject(original); catch ex, rejected=strcmp(ex.identifier,'cam:UnsupportedMechanism'); end
+    assert(rejected,'3.1.2 type 4 must not silently become rack.');
+    q=camdesign.importProject(original,MechanismOverride='rack');
     assert(strcmp(q.params.mechanism,'rack') && q.params.referenceDiameter==100);
+    assert(strcmp(q.legacy.sourceMechanism,'顶球'));
     assert(size(q.targets,1)==13 && ~isfield(q.legacy,'key'));
 end
+end
+
+function testImportTypeSchemes()
+filename=[tempname,'.mat']; cleanup=onCleanup(@()delete(filename));
+pathway_points=[0 0;0 500;100 1000]; car_type=2; version='3.1.2'; key=123;
+save(filename,'pathway_points','car_type','version','key');
+p=camdesign.importProject(filename);
+assert(strcmp(p.params.mechanism,'rack') && ~isfield(p.legacy,'key'));
+car_type=1; save(filename,'pathway_points','car_type','version');
+p=camdesign.importProject(filename); assert(strcmp(p.params.mechanism,'flat'));
+car_type=4; version='unknown'; save(filename,'pathway_points','car_type','version');
+rejected=false;
+try, camdesign.importProject(filename); catch ex, rejected=strcmp(ex.identifier,'cam:TypeScheme'); end
+assert(rejected,'Ambiguous version must not silently select a mechanism.');
+p=camdesign.importProject(filename,TypeScheme='legacy-manual');
+assert(strcmp(p.params.mechanism,'rack'));
 end
 
 function testExport()
