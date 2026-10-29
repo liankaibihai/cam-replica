@@ -26,8 +26,20 @@ classdef CamReplicaApp < handle
         SimulationMode = false
         SimulationReference = []
         SimulationResult = []
+        MapEditMode = false
+        MapEditSelection = 0
+        MapEditButton
+        ConfirmNodeButton
+        CancelNodeButton
+        MapEditHelp
     end
     properties (Access=private)
+        MapEditReference = []
+        MapEditNodes = []
+        NodeLine = []
+        SelectedNodeMarker = []
+        NodeMoveGuide = []
+        RouteLines = []
         DisplayedParameterFields = {}
         ParameterFields = {'wheelDiameter','gearRatio','lever','rollerRadius','referenceDiameter', ...
             'thickness','driveX','driveY','drivenX','drivenY','sensorX','sensorY','headingDeg', ...
@@ -47,6 +59,7 @@ classdef CamReplicaApp < handle
             app.Figure=uifigure('Name','工创赛凸轮设计 · MATLAB 复现 v0.2', ...
                 'Position',[70 60 1320 860],'Visible',visibility,'Color',[.95 .96 .98]);
             app.Figure.CloseRequestFcn=@(~,~)app.closeRequested();
+            app.Figure.WindowKeyPressFcn=@(~,event)app.routeEditorKey(event);
             root=uigridlayout(app.Figure,[4 2],'RowHeight',{42,38,'1x',116}, ...
                 'ColumnWidth',{350,'1x'},'Padding',[14 12 14 12],'RowSpacing',10);
             title=uilabel(root,'Text','工创赛凸轮设计  /  路线、机构与几何校验', ...
@@ -97,7 +110,15 @@ classdef CamReplicaApp < handle
             charts=uigridlayout(root,[2 2],'ColumnWidth',{'1x','1x'},'RowHeight',{'1x','1x'}, ...
                 'Padding',[0 0 0 0],'ColumnSpacing',12,'RowSpacing',14);
             charts.Layout.Row=3; charts.Layout.Column=2;
-            app.RouteAxes=uiaxes(charts); app.RouteAxes.Layout.Row=1; app.RouteAxes.Layout.Column=[1 2];
+            routePanel=uigridlayout(charts,[2 1],'RowHeight',{32,'1x'},'Padding',[0 0 0 0]);
+            routePanel.Layout.Row=1; routePanel.Layout.Column=[1 2];
+            editorBar=uigridlayout(routePanel,[1 4],'ColumnWidth',{90,90,90,'1x'},'Padding',[0 0 0 0]);
+            app.MapEditButton=uibutton(editorBar,'Text','地图编辑','ButtonPushedFcn',@(~,~)app.beginRouteEditing());
+            app.ConfirmNodeButton=uibutton(editorBar,'Text','确认落点','Enable','off','ButtonPushedFcn',@(~,~)app.confirmRouteNode());
+            app.CancelNodeButton=uibutton(editorBar,'Text','取消 / Esc','Enable','off','ButtonPushedFcn',@(~,~)app.cancelRouteEditing());
+            app.MapEditHelp=uilabel(editorBar,'Text','独立三次样条路线节点','FontSize',11);
+            app.RouteAxes=uiaxes(routePanel);
+            app.RouteAxes.ButtonDownFcn=@(source,~)app.routeMapClick(source.CurrentPoint(1,1:2),source,app.Figure.SelectionType);
             app.SteeringAxes=uiaxes(charts); app.SteeringAxes.Layout.Row=2; app.SteeringAxes.Layout.Column=1;
             app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=2; app.CamAxes.Layout.Column=2;
             bottom=uigridlayout(root,[2 1],'RowHeight',{26,'1x'},'Padding',[0 0 0 0]);
@@ -122,6 +143,10 @@ classdef CamReplicaApp < handle
             app.WeightsTable.Data=[labels(:),num2cell(p.weights(:))];
         end
         function readInputs(app)
+            assert(~app.MapEditMode,'cam:MapEditActive','请先确认或取消地图编辑。');
+            app.Project=app.inputProject();
+        end
+        function candidate=inputProject(app)
             p=app.Project.params;
             for k=1:numel(app.DisplayedParameterFields)
                 value=app.ParamsTable.Data{k,2};
@@ -132,11 +157,19 @@ classdef CamReplicaApp < handle
             p.weights=cellfun(@double,app.WeightsTable.Data(:,2))';
             candidate=app.Project; candidate.params=p; candidate.targets=double(app.TargetsTable.Data);
             candidate.nodes=double(app.NodesTable.Data);
-            camdesign.validateProject(candidate); app.Project=candidate;
+            camdesign.validateProject(candidate);
         end
         function calculate(app)
+            if app.MapEditMode, app.message('请先确认或取消地图编辑。'); return; end
             if app.SimulationMode, app.runFixedCamSimulation(); return; end
-            app.readInputs(); app.Result=camdesign.evaluate(app.Project,true); app.render();
+            try
+                candidate=app.inputProject(); result=camdesign.evaluate(candidate,true);
+            catch ex
+                app.Result=[];
+                app.Status.Text='计算未完成；表格输入保留，当前图像为上次结果。';
+                rethrow(ex);
+            end
+            app.Project=candidate; app.Result=result; app.render();
             app.message(sprintf('完成几何计算；实际传动比 %.6g，工作段 %.1f°。', ...
                 app.Result.cam.effectiveRatio,rad2deg(app.Result.cam.workEnd)));
             for k=1:numel(app.Result.warnings), app.message(app.Result.warnings{k}); end
@@ -145,19 +178,26 @@ classdef CamReplicaApp < handle
             if isempty(app.Result), return; end
             r=app.Result.route; c=app.Result.cam; p=app.Project.params; a=app.RouteAxes;
             cla(a); hold(a,'on');
-            plot(a,r.front(:,1),r.front(:,2),'Color',[.15 .40 .70],'LineWidth',1.5);
-            plot(a,r.sensor(:,1),r.sensor(:,2),'Color',[.85 .25 .20],'LineWidth',1.6);
-            plot(a,r.drive(:,1),r.drive(:,2),'--','Color',[.5 .55 .6]);
-            plot(a,app.Project.nodes(:,1),app.Project.nodes(:,2),'.:','Color',[.2 .6 .42]);
-            scatter(a,app.Project.targets(:,1),app.Project.targets(:,2),45,'k','o');
+            lines=gobjects(1,6);
+            lines(1)=plot(a,r.front(:,1),r.front(:,2),'k-','LineWidth',1.5,'Tag','route-front');
+            lines(2)=plot(a,r.sensor(:,1),r.sensor(:,2),'r-','LineWidth',1.6,'Tag','route-sensor');
+            lines(3)=plot(a,r.drive(:,1),r.drive(:,2),'b-','LineWidth',1.1,'Tag','route-drive');
+            lines(4)=plot(a,r.driven(:,1),r.driven(:,2),'b--','LineWidth',1.1,'Tag','route-driven');
+            lines(5)=plot(a,app.Project.nodes(:,1),app.Project.nodes(:,2),'o-','Color',[.2 .6 .42],'MarkerSize',4,'Tag','route-nodes');
+            app.NodeLine=lines(5);
+            lines(6)=scatter(a,app.Project.targets(:,1),app.Project.targets(:,2),45,'k','o');
+            app.RouteLines=lines;
+            set(lines,'HitTest','off','PickableParts','none');
             for k=1:size(app.Project.targets,1)
-                text(a,app.Project.targets(k,1),app.Project.targets(k,2),sprintf('  %d',k),'FontSize',10);
+                text(a,app.Project.targets(k,1),app.Project.targets(k,2),sprintf('  %d',k),'FontSize',10, ...
+                    'HitTest','off','PickableParts','none','Tag','route-target-label');
             end
             hold(a,'off'); axis(a,'equal'); grid(a,'on');
             xlim(a,p.bounds(1:2)); ylim(a,p.bounds(3:4));
             xlabel(a,'场地 X / mm'); ylabel(a,'场地 Y / mm'); title(a,'路线与有序打卡点');
-            legend(a,{'前轮','传感器','主动轮','路线节点','打卡点'},'Location','southoutside','NumColumns',2);
-            a=app.SteeringAxes; cla(a); plot(a,r.frontDistance,rad2deg(r.steering),'Color',[.15 .40 .70],'LineWidth',1.4);
+            legend(a,lines,{'前轮','传感器','主动轮','从动轮','路线节点','打卡点'}, ...
+                'Location','southoutside','NumColumns',3,'AutoUpdate','off');
+            a=app.SteeringAxes; legend(a,'off'); cla(a); plot(a,r.frontDistance,rad2deg(r.steering),'Color',[.15 .40 .70],'LineWidth',1.4);
             yline(a,p.maxSteeringDeg,'--'); yline(a,-p.maxSteeringDeg,'--'); grid(a,'on');
             title(a,'前轮转角（左转为正）'); xlabel(a,'前轮行程 / mm'); ylabel(a,'转角 / deg');
             a=app.CamAxes; cla(a); hold(a,'on');
@@ -177,6 +217,7 @@ classdef CamReplicaApp < handle
             end
         end
         function invalidate(app)
+            if app.MapEditMode, app.message('请先确认或取消地图编辑。'); return; end
             if app.SimulationMode
                 app.SimulationResult=[];
                 app.Status.Text='反推参数已修改，凸轮保持固定；点击“更新反推”查看路线变化。';
@@ -185,6 +226,7 @@ classdef CamReplicaApp < handle
             app.Result=[]; app.Status.Text='输入已修改，请重新计算；当前图像为上次结果。';
         end
         function toggleSimulation(app)
+            if app.Busy || app.MapEditMode, return; end
             if app.SimulationMode
                 ref=app.SimulationReference;
                 app.SimulationMode=false; app.Project=ref.project; app.Result=ref.result;
@@ -201,18 +243,12 @@ classdef CamReplicaApp < handle
             app.message('已固定当前理论凸轮。可修改轮径、传动比、轴距、c、中心距、传感器坐标或发车方向，再点“更新反推”。');
         end
         function setSimulationControls(app)
-            if app.SimulationMode, state='off'; else, state='on'; end
-            for k=[1 2 3 5 8], app.Buttons(k).Enable=state; end
-            app.Mechanism.Enable=state; app.AutoRatio.Enable=state;
-            app.TargetsTable.ColumnEditable=[~app.SimulationMode ~app.SimulationMode];
-            app.NodesTable.ColumnEditable=[~app.SimulationMode ~app.SimulationMode];
-            app.WeightsTable.ColumnEditable=[false ~app.SimulationMode];
-            for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=state; end
             if app.SimulationMode
                 app.Buttons(4).Text='更新反推'; app.Buttons(7).Text='退出反推';
             else
                 app.Buttons(4).Text='计算凸轮'; app.Buttons(7).Text='固定凸轮反推';
             end
+            app.refreshControls();
         end
         function runFixedCamSimulation(app)
             app.readInputs(); ref=app.SimulationReference; p=app.Project.params;
@@ -223,8 +259,10 @@ classdef CamReplicaApp < handle
             sim.maxPhaseDeviation=max(vecnorm(sim.sensor-ref.result.route.sensor,2,2));
             app.SimulationResult=sim; app.Result=ref.result; app.render();
             hold(app.RouteAxes,'on');
-            plot(app.RouteAxes,sim.sensor(:,1),sim.sensor(:,2),'k--','LineWidth',1.5,'DisplayName','固定凸轮试调');
+            trial=plot(app.RouteAxes,sim.sensor(:,1),sim.sensor(:,2),'k--','LineWidth',1.5,'DisplayName','固定凸轮试调');
             hold(app.RouteAxes,'off');
+            legend(app.RouteAxes,[app.RouteLines trial],{'前轮','传感器','主动轮','从动轮','路线节点','打卡点','固定凸轮试调'}, ...
+                'Location','southoutside','NumColumns',3,'AutoUpdate','off');
             a=app.SteeringAxes; cla(a);
             plot(a,rad2deg(sim.phase),rad2deg(ref.result.route.steering),'b-', ...
                 rad2deg(sim.phase),rad2deg(sim.steering),'r--'); grid(a,'on');
@@ -235,13 +273,136 @@ classdef CamReplicaApp < handle
             app.Status.FontColor=[.12 .20 .30];
             app.message(sprintf('固定凸轮反推完成，实际试调传动比 %.6g，主动轮行程 %.3f mm。这是理想运动学预测。',p.gearRatio,sim.driveDistance(end)));
         end
+        function beginRouteEditing(app)
+            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
+            try
+                candidate=app.inputProject();
+                assert(~isempty(app.Result) && isequaln(candidate,app.Project), ...
+                    'cam:StaleRoute','请先计算凸轮，使地图与当前表格输入一致，再进入地图编辑。');
+            catch ex
+                app.message(['无法进入地图编辑：',ex.message]); return;
+            end
+            % End toolbar modes before assigning the temporary motion callback.
+            zoom(app.Figure,'off'); pan(app.Figure,'off');
+            ref=struct('project',app.Project,'result',app.Result, ...
+                'selectedRow',app.SelectedNodeRow,'status',app.Status.Text, ...
+                'statusColor',app.Status.FontColor,'xlim',app.RouteAxes.XLim,'ylim',app.RouteAxes.YLim, ...
+                'pointer',app.Figure.Pointer,'toolbarVisible','off');
+            ref.motionFcn=app.Figure.WindowButtonMotionFcn;
+            if ~isempty(app.RouteAxes.Toolbar)
+                ref.toolbarVisible=app.RouteAxes.Toolbar.Visible;
+                app.RouteAxes.Toolbar.Visible='off';
+            end
+            disableDefaultInteractivity(app.RouteAxes);
+            app.MapEditReference=ref; app.MapEditNodes=app.Project.nodes;
+            app.MapEditMode=true; app.MapEditSelection=0;
+            app.Figure.Pointer='crosshair';
+            app.Figure.WindowButtonMotionFcn=@(~,~)app.routePointerMove();
+            app.refreshControls();
+            app.MapEditHelp.Text='点击地图选最近节点；Esc 取消';
+            app.Status.Text='地图编辑：先点击选择路线节点，再移动预览；确认后重算，取消恢复。';
+            app.message('地图编辑已开启，缩放/平移暂时停用；移动节点不会自动保存 MAT。');
+        end
+        function routeMapClick(app,point,source,selectionType)
+            if nargin<4, selectionType='normal'; end
+            if ~app.MapEditMode || app.Busy || app.SimulationMode || ~strcmp(selectionType,'normal') ...
+                    || ~app.isRoutePoint(point,source), return; end
+            if app.MapEditSelection==0
+                [~,k]=min(sum((app.MapEditNodes-point).^2,2));
+                app.MapEditSelection=k; app.SelectedNodeRow=k;
+                app.refreshControls(); app.drawNodePreview();
+            else
+                app.previewRouteNode(point,source);
+                app.confirmRouteNode();
+            end
+        end
+        function valid=isRoutePoint(app,point,source)
+            valid=false;
+            if ~isnumeric(point) || ~isreal(point) || ~isequal(size(point),[1 2]) || any(~isfinite(point)) ...
+                    || ~isscalar(source) || ~isgraphics(source), return; end
+            if ~isequal(source,app.RouteAxes) && ~isequal(ancestor(source,'axes'),app.RouteAxes), return; end
+            valid=point(1)>=app.RouteAxes.XLim(1) && point(1)<=app.RouteAxes.XLim(2) ...
+                && point(2)>=app.RouteAxes.YLim(1) && point(2)<=app.RouteAxes.YLim(2);
+        end
+        function routePointerMove(app)
+            if ~app.MapEditMode || app.MapEditSelection==0 || app.Busy || app.SimulationMode, return; end
+            source=hittest(app.Figure);
+            app.previewRouteNode(app.RouteAxes.CurrentPoint(1,1:2),source);
+        end
+        function previewRouteNode(app,point,source)
+            if ~app.MapEditMode || app.MapEditSelection==0 || app.Busy || app.SimulationMode ...
+                    || ~app.isRoutePoint(point,source), return; end
+            app.MapEditNodes(app.MapEditSelection,:)=point;
+            app.drawNodePreview();
+        end
+        function drawNodePreview(app)
+            k=app.MapEditSelection; point=app.MapEditNodes(k,:);
+            app.NodesTable.Data=app.MapEditNodes;
+            app.NodeLine.XData=app.MapEditNodes(:,1); app.NodeLine.YData=app.MapEditNodes(:,2);
+            if isempty(app.SelectedNodeMarker) || ~isgraphics(app.SelectedNodeMarker)
+                hold(app.RouteAxes,'on');
+                app.NodeMoveGuide=plot(app.RouteAxes,NaN,NaN,'--','Color',[.85 .45 .05], ...
+                    'HandleVisibility','off','HitTest','off','PickableParts','none','Tag','node-move-guide');
+                app.SelectedNodeMarker=plot(app.RouteAxes,NaN,NaN,'o','MarkerSize',11, ...
+                    'LineWidth',2,'Color',[.85 .45 .05],'HandleVisibility','off','HitTest','off', ...
+                    'PickableParts','none','Tag','node-edit-selection');
+                hold(app.RouteAxes,'off');
+            end
+            start=app.MapEditReference.project.nodes(k,:);
+            app.NodeMoveGuide.XData=[start(1) point(1)]; app.NodeMoveGuide.YData=[start(2) point(2)];
+            app.SelectedNodeMarker.XData=point(1); app.SelectedNodeMarker.YData=point(2);
+            app.MapEditHelp.Text='移动预览 → 再点地图或确认；Esc 取消';
+            app.Status.Text=sprintf('预览节点 %d：(%.3f, %.3f) mm；轨迹与凸轮仍为编辑前结果，确认后重算。',k,point);
+            app.Status.FontColor=[.65 .28 .08];
+        end
+        function confirmRouteNode(app)
+            if ~app.MapEditMode || app.MapEditSelection==0 || app.Busy || app.SimulationMode, return; end
+            candidate=app.MapEditReference.project; candidate.nodes=app.MapEditNodes;
+            try
+                % Never publish a candidate Project before all geometry checks finish.
+                result=camdesign.evaluate(candidate,true);
+            catch ex
+                app.Status.Text=['候选不可用：',ex.message,'  轨迹与凸轮仍为编辑前结果；请移动节点重试或取消。'];
+                app.Status.FontColor=[.65 .15 .10];
+                app.message(['节点未确认：',ex.message]); return;
+            end
+            k=app.MapEditSelection;
+            app.Project=candidate; app.Result=result; app.History=[];
+            app.syncInputs(); app.render(); app.finishRouteEditing();
+            app.message(sprintf('节点 %d 已确认并重算轨迹/凸轮；项目尚未保存。',k));
+        end
+        function cancelRouteEditing(app)
+            if ~app.MapEditMode, return; end
+            ref=app.MapEditReference;
+            app.Project=ref.project; app.Result=ref.result; app.SelectedNodeRow=ref.selectedRow;
+            app.syncInputs(); app.render(); app.finishRouteEditing();
+            app.Status.Text=ref.status; app.Status.FontColor=ref.statusColor;
+            app.message('地图编辑已取消，节点表、轨迹和凸轮已恢复编辑前状态。');
+        end
+        function finishRouteEditing(app)
+            ref=app.MapEditReference;
+            if isgraphics(app.SelectedNodeMarker), delete(app.SelectedNodeMarker); end
+            if isgraphics(app.NodeMoveGuide), delete(app.NodeMoveGuide); end
+            app.SelectedNodeMarker=[]; app.NodeMoveGuide=[];
+            app.Figure.Pointer=ref.pointer; app.Figure.WindowButtonMotionFcn=ref.motionFcn;
+            enableDefaultInteractivity(app.RouteAxes);
+            if ~isempty(app.RouteAxes.Toolbar), app.RouteAxes.Toolbar.Visible=ref.toolbarVisible; end
+            app.RouteAxes.XLim=ref.xlim; app.RouteAxes.YLim=ref.ylim;
+            app.MapEditMode=false; app.MapEditSelection=0; app.MapEditNodes=[]; app.MapEditReference=[];
+            app.MapEditHelp.Text='独立三次样条路线节点'; app.refreshControls();
+        end
+        function routeEditorKey(app,event)
+            if ~app.MapEditMode, return; end
+            if strcmp(event.Key,'escape'), app.cancelRouteEditing();
+            elseif ismember(event.Key,{'return','enter'}), app.confirmRouteNode(); end
+        end
         function selectPoint(app,kind,event)
             if isempty(event.Indices), return; end
             if strcmp(kind,'target'), app.SelectedTargetRow=event.Indices(1,1);
             else, app.SelectedNodeRow=event.Indices(1,1); end
         end
         function modifyPoints(app,kind,operation)
-            if app.Busy, return; end
+            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
             if strcmp(kind,'target'), table=app.TargetsTable; selected=app.SelectedTargetRow;
             else, table=app.NodesTable; selected=app.SelectedNodeRow; end
             data=table.Data; selected=max(1,min(size(data,1),selected));
@@ -259,6 +420,10 @@ classdef CamReplicaApp < handle
         end
         function action(app,name)
             try
+                if app.MapEditMode
+                    app.message('请先确认或取消地图编辑，再执行其它操作。'); return;
+                end
+                if app.Busy && ~strcmp(name,'stop'), return; end
                 if app.SimulationMode && ismember(name,{'import','save','seed','optimize','export'})
                     app.message('请先退出反推，恢复设计模式。'); return;
                 end
@@ -301,7 +466,7 @@ classdef CamReplicaApp < handle
             end
         end
         function runOptimization(app)
-            if app.Busy || app.SimulationMode, return; end
+            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
             app.readInputs(); app.Busy=true; app.StopRequested=false; app.setBusy(true);
             cleanup=onCleanup(@()app.finishBusy());
             [project,history]=camdesign.optimize(app.Project,@app.optimizationUpdate);
@@ -316,13 +481,22 @@ classdef CamReplicaApp < handle
             drawnow; stop=app.StopRequested;
         end
         function setBusy(app,busy)
-            if busy, state='off'; else, state='on'; end
-            for k=[1:5,7:8], app.Buttons(k).Enable=state; end
-            if busy, app.Buttons(6).Enable='on'; else, app.Buttons(6).Enable='off'; end
-            app.Mechanism.Enable=state; app.AutoRatio.Enable=state;
-            for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=state; end
-            app.ParamsTable.ColumnEditable=[false ~busy]; app.TargetsTable.ColumnEditable=[~busy ~busy];
-            app.NodesTable.ColumnEditable=[~busy ~busy]; app.WeightsTable.ColumnEditable=[false ~busy];
+            app.Busy=logical(busy); app.refreshControls();
+        end
+        function refreshControls(app)
+            editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
+            for k=[1 2 3 5 8], app.Buttons(k).Enable=editable; end
+            app.Buttons(4).Enable=~app.Busy && ~app.MapEditMode;
+            app.Buttons(6).Enable=app.Busy;
+            app.Buttons(7).Enable=~app.Busy && ~app.MapEditMode;
+            app.Mechanism.Enable=editable; app.AutoRatio.Enable=editable;
+            for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=editable; end
+            app.ParamsTable.ColumnEditable=[false ~app.Busy && ~app.MapEditMode];
+            app.TargetsTable.ColumnEditable=[editable editable];
+            app.NodesTable.ColumnEditable=[editable editable]; app.WeightsTable.ColumnEditable=[false editable];
+            app.MapEditButton.Enable=editable;
+            app.ConfirmNodeButton.Enable=app.MapEditMode && app.MapEditSelection>0 && ~app.Busy && ~app.SimulationMode;
+            app.CancelNodeButton.Enable=app.MapEditMode && ~app.Busy && ~app.SimulationMode;
         end
         function finishBusy(app)
             app.Busy=false;
@@ -331,7 +505,10 @@ classdef CamReplicaApp < handle
         end
         function closeRequested(app)
             if app.Busy, app.StopRequested=true; app.CloseAfterStop=true;
-            else, delete(app.Figure); end
+            else
+                if app.MapEditMode, app.cancelRouteEditing(); end
+                delete(app.Figure);
+            end
         end
         function message(app,text)
             old=app.Log.Value; if ischar(old), old={old}; end
