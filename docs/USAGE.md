@@ -135,6 +135,18 @@ simulation = camdesign.simulate(result.cam, actual, ...
   '.\local\video_research\user_ai_video\frames' --seconds 600 1500 1620 1860 2160
 ```
 
-输出 PNG 和 `frames.json`，同时保留请求时间与实际解码帧时间。选择时间点只代表抽样阅读，不代表全片讲解已核验。`--transcribe --model <已缓存模型路径>` 可选择本地 ASR；该分支强制 `local_files_only=True`，不联网下载模型，不调用付费 API。本次模型尚未下载完成，因此 ASR 未验收；术语和公式即使转写成功也需要对照画面。
+输出 PNG 和 `frames.json`，同时保留请求时间与实际解码帧时间。选择时间点只代表抽样阅读，不代表全片讲解已核验。`--transcribe --model <已缓存模型路径>` 可选择本地 ASR；该分支强制 `local_files_only=True`，不联网下载模型，不调用付费 API。2026-10-29 已补齐并校验公开 Whisper base 模型，并完成新增 4 段本地视频的机器转写；转写含有“推程/推成”“包络/包裸”等识别错误，公式以画面为准，未人工逐字校对。
+
+批量转写入口为 `tools/transcribe_local_videos.py`，输入清单含 `name/file/sha256`，参考本地 `local/video_research/batch_20261029/inputs.json`：
+
+```powershell
+& '.\local\bilibili_env\Scripts\python.exe' '.\tools\transcribe_local_videos.py' `
+  '.\local\video_research\batch_20261029\inputs.json' `
+  --model '.\local\bilibili_models\base_local' --workers 2
+```
+
+输出各视频的 `asr/transcript.json`、`transcript.txt` 和总清单 `asr_summary.json`。工具先用当前 PyAV API 解码为单声道 16 kHz 浮点音频，以避开 faster-whisper 1.2.1 向 PyAV 19 传入已移除 `metadata_errors` 参数的兼容问题；未修改第三方包。只有全部视频成功才返回成功状态，失败时保留已转写的分段。
+
+`check_video_principles` 检查坐标旋转、圆的法线偏移、非圆曲线的离散收敛和两次偏移示例，并量化本版本同一理论轮廓上的两种法线算法差异，输出 `outputs/video_principles/verification.json`。这不是原版应用输出对照。
 
 `tools/requirements-video.txt` 记录研究环境版本；这些依赖不参与 MATLAB 凸轮计算。原始视频、模型、页面元数据、弹幕及抽帧均放在 Git 忽略的 `local/` 中，Git 只记录工具和核对结论。

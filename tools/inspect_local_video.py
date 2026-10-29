@@ -56,8 +56,9 @@ def main() -> None:
     # Independent local processing: do not import or invoke the disabled skill.
     # A cached model must already exist; this command performs no model download.
     from faster_whisper import WhisperModel
+    from local_video_audio import decode_audio
     model = WhisperModel(args.model, device="cpu", compute_type="int8", local_files_only=True)
-    segments, info = model.transcribe(str(args.media), language="zh", vad_filter=True, beam_size=5)
+    segments, info = model.transcribe(decode_audio(args.media), language="zh", vad_filter=True, beam_size=5)
     rows = []
     partial = args.output / "transcript.partial.jsonl"
     with partial.open("w", encoding="utf-8") as log:

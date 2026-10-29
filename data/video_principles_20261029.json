@@ -1,0 +1,201 @@
+{
+  "schema": "local-video-evidence-1",
+  "date": "2026-10-29",
+  "videos": [
+    {
+      "name": "790980181-1-208.mp4",
+      "file": "F:\\许昊阳\\竞赛\\2027工创\\代码原理视频\\790980181-1-208.mp4",
+      "bytes": 39464736,
+      "duration_seconds": 1054.228833,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "h264",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "audio",
+          "codec": "aac",
+          "width": null,
+          "height": null
+        }
+      ],
+      "sha256": "8d2fec08aa90b85a387bff46aad17cd6c59a371740ca432432a92bc7fdf55f8b",
+      "topic": "发车姿态、坐标变换及前置曲线拼接",
+      "reviewed_key_seconds": [
+        5,
+        300,
+        780,
+        900,
+        990,
+        1005
+      ],
+      "audio_transcription": {
+        "completed": true,
+        "machine_generated": true,
+        "segment_count": 867,
+        "audio_duration_seconds": 1054.229
+      },
+      "survey_frame_count": 11,
+      "local_artifact_directory": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\video_research\\batch_20261029\\790980181-1-208"
+    },
+    {
+      "name": "1180796602-1-192.mp4",
+      "file": "F:\\许昊阳\\竞赛\\2027工创\\代码原理视频\\1180796602-1-192.mp4",
+      "bytes": 87015336,
+      "duration_seconds": 3066.4,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "h264",
+          "width": 1280,
+          "height": 720
+        },
+        {
+          "type": "audio",
+          "codec": "aac",
+          "width": null,
+          "height": null
+        }
+      ],
+      "sha256": "092677cff1ae1445bd99b8d5573c7c3d1e95f4f3b8b67e6fd7d32b7ad161f9ab",
+      "topic": "正反向运动学、贝塞尔融合与理论凸轮",
+      "reviewed_key_seconds": [
+        180,
+        660,
+        1140,
+        1260,
+        1500,
+        1860,
+        2340,
+        2820
+      ],
+      "audio_transcription": {
+        "completed": true,
+        "machine_generated": true,
+        "segment_count": 1418,
+        "audio_duration_seconds": 3066.4
+      },
+      "survey_frame_count": 28,
+      "local_artifact_directory": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\video_research\\batch_20261029\\1180796602-1-192"
+    },
+    {
+      "name": "1047980951-1-208.mp4",
+      "file": "F:\\许昊阳\\竞赛\\2027工创\\代码原理视频\\1047980951-1-208.mp4",
+      "bytes": 55215737,
+      "duration_seconds": 977.752,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "h264",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "audio",
+          "codec": "aac",
+          "width": null,
+          "height": null
+        }
+      ],
+      "sha256": "b4b86ddefa4f29751db55e2f2a0acbe09de16bc476073986c6b68c49d5be57ac",
+      "topic": "CAD/Creo/SolidWorks/UG点集导入",
+      "reviewed_key_seconds": [
+        5,
+        180,
+        540,
+        660,
+        900,
+        972
+      ],
+      "audio_transcription": {
+        "completed": true,
+        "machine_generated": true,
+        "segment_count": 647,
+        "audio_duration_seconds": 977.685
+      },
+      "survey_frame_count": 10,
+      "local_artifact_directory": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\video_research\\batch_20261029\\1047980951-1-208"
+    },
+    {
+      "name": "1058835426-1-208.mp4",
+      "file": "F:\\许昊阳\\竞赛\\2027工创\\代码原理视频\\1058835426-1-208.mp4",
+      "bytes": 56760775,
+      "duration_seconds": 1237.656,
+      "streams": [
+        {
+          "type": "video",
+          "codec": "h264",
+          "width": 1920,
+          "height": 1080
+        },
+        {
+          "type": "audio",
+          "codec": "aac",
+          "width": null,
+          "height": null
+        }
+      ],
+      "sha256": "97f0cc87500264b93af60e80d309c71d9690b98e8cca6adfe159fc3420b16bc4",
+      "topic": "凸轮圆形包络与MATLAB有限差分实现",
+      "reviewed_key_seconds": [
+        180,
+        420,
+        780,
+        1020,
+        1140,
+        1232
+      ],
+      "audio_transcription": {
+        "completed": true,
+        "machine_generated": true,
+        "segment_count": 770,
+        "audio_duration_seconds": 1237.589
+      },
+      "survey_frame_count": 12,
+      "local_artifact_directory": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\video_research\\batch_20261029\\1058835426-1-208"
+    }
+  ],
+  "asr_model": {
+    "repo": "Systran/faster-whisper-base",
+    "revision": "ebe41f70d5b6dfa9166e2c581c45c9c0cfc57b66",
+    "sha256": "d01c3014881c9c6f3133c182f3d2887eb6ca1c789a7538c5c007196857a0a6a9",
+    "bytes": 145217532
+  },
+  "asr_settings": {
+    "language": "zh",
+    "compute": "CPU int8",
+    "beam_size": 3,
+    "vad_filter": true
+  },
+  "reading_scope": "Complete audio machine transcription plus sampled visual formula/code review, not verbatim verified captions or original EXE equivalence.",
+  "disabled_skill_used": false,
+  "formula_validation": {
+    "scope": "Visible tutorial formulas and synthetic curves; not original EXE output equivalence.",
+    "sampleCounts": [
+      73,
+      361,
+      1441
+    ],
+    "circleMaxRadiusErrorsMM": [
+      7.105427357601002e-15,
+      7.105427357601002e-15,
+      7.105427357601002e-15
+    ],
+    "noncircularMaxPairedErrorsMM": [
+      0.05915634411823176,
+      0.0023900542353155686,
+      0.00014949162503027672
+    ],
+    "rotationExampleXY": [
+      0.042912370002577416,
+      0.011494552045862813
+    ],
+    "wheelDistancePerCamTurnExampleMM": 21676.98930976957,
+    "candidateEnvelopeMaxPairedDifferenceMM": 0.05327191095354827,
+    "candidateEnvelopeRMSPairedDifferenceMM": 0.0037440622698279393,
+    "two5MMVersusOne10MMOffsetMaxDifferenceMM": 6.621389885738604e-05,
+    "positiveLeftOffsetRequiresCounterclockwiseForInward": true
+  }
+}
