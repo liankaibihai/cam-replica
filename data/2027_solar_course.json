@@ -1,0 +1,282 @@
+{
+  "schema": "cam-course-1",
+  "event": "2027年第十届中国大学生工程实践与创新能力大赛",
+  "category": "太阳能电动车",
+  "teamCategoryConfirmed": true,
+  "source": {
+    "file": "01-2027年第十届 工程实践赛道命题与运行.pdf",
+    "sha256": "390bde4a2c6d47601fa92bb47cafbe24b309820314d74da09bcaaf40f2a7c42b",
+    "coordinatePages": [
+      6
+    ],
+    "orderPage": 6,
+    "fieldPage": 5,
+    "launchPage": 8,
+    "verification": "User-provided PDF; text and rendered pages 5, 6, 8 visually checked. No claim about later notices."
+  },
+  "units": "mm",
+  "referenceOnly": true,
+  "fieldSizeMM": [
+    6000,
+    2000
+  ],
+  "softwareBoundsMM": [
+    0,
+    6000,
+    0,
+    2000
+  ],
+  "coordinateMapping": "softwareX = officialX; softwareY = officialY. Preserve positive-X orientation of solar map; do not apply the biomass sign change.",
+  "preliminaryIDs": [
+    1,
+    3,
+    4,
+    6,
+    8,
+    10,
+    12,
+    14,
+    15,
+    16
+  ],
+  "finalRouteKnown": false,
+  "points": [
+    {
+      "id": 1,
+      "name": "地球",
+      "officialMM": [
+        410,
+        420
+      ],
+      "softwareMM": [
+        410,
+        420
+      ],
+      "preliminaryOrder": 1
+    },
+    {
+      "id": 2,
+      "name": "月球",
+      "officialMM": [
+        365,
+        670
+      ],
+      "softwareMM": [
+        365,
+        670
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 3,
+      "name": "金星",
+      "officialMM": [
+        700,
+        1580
+      ],
+      "softwareMM": [
+        700,
+        1580
+      ],
+      "preliminaryOrder": 2
+    },
+    {
+      "id": 4,
+      "name": "太阳",
+      "officialMM": [
+        1440,
+        1100
+      ],
+      "softwareMM": [
+        1440,
+        1100
+      ],
+      "preliminaryOrder": 3
+    },
+    {
+      "id": 5,
+      "name": "火星",
+      "officialMM": [
+        3090,
+        1410
+      ],
+      "softwareMM": [
+        3090,
+        1410
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 6,
+      "name": "谷神星",
+      "officialMM": [
+        3170,
+        1560
+      ],
+      "softwareMM": [
+        3170,
+        1560
+      ],
+      "preliminaryOrder": 4
+    },
+    {
+      "id": 7,
+      "name": "土星",
+      "officialMM": [
+        3790,
+        800
+      ],
+      "softwareMM": [
+        3790,
+        800
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 8,
+      "name": "天王星",
+      "officialMM": [
+        4160,
+        1440
+      ],
+      "softwareMM": [
+        4160,
+        1440
+      ],
+      "preliminaryOrder": 5
+    },
+    {
+      "id": 9,
+      "name": "海王星",
+      "officialMM": [
+        4660,
+        1120
+      ],
+      "softwareMM": [
+        4660,
+        1120
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 10,
+      "name": "冥王星",
+      "officialMM": [
+        5110,
+        1630
+      ],
+      "softwareMM": [
+        5110,
+        1630
+      ],
+      "preliminaryOrder": 6
+    },
+    {
+      "id": 11,
+      "name": "阋神星",
+      "officialMM": [
+        5560,
+        1320
+      ],
+      "softwareMM": [
+        5560,
+        1320
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 12,
+      "name": "鸟神星",
+      "officialMM": [
+        5450,
+        440
+      ],
+      "softwareMM": [
+        5450,
+        440
+      ],
+      "preliminaryOrder": 7
+    },
+    {
+      "id": 13,
+      "name": "妊神星",
+      "officialMM": [
+        4750,
+        700
+      ],
+      "softwareMM": [
+        4750,
+        700
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 14,
+      "name": "木星",
+      "officialMM": [
+        3250,
+        350
+      ],
+      "softwareMM": [
+        3250,
+        350
+      ],
+      "preliminaryOrder": 8
+    },
+    {
+      "id": 15,
+      "name": "水星",
+      "officialMM": [
+        2500,
+        750
+      ],
+      "softwareMM": [
+        2500,
+        750
+      ],
+      "preliminaryOrder": 9
+    },
+    {
+      "id": 16,
+      "name": "地球",
+      "officialMM": [
+        410,
+        420
+      ],
+      "softwareMM": [
+        410,
+        420
+      ],
+      "preliminaryOrder": 10
+    }
+  ],
+  "routeClosure": {
+    "startAndFinishSameLocation": true,
+    "startID": 1,
+    "finishID": 16,
+    "orderedVisitCount": 10,
+    "uniquePreliminaryLocationCount": 9,
+    "note": "Earth is visited first and last; retain both ordered records. This is not a repeated checkpoint error or an instruction to make vehicle heading periodic."
+  },
+  "recognition": {
+    "printedCircleDiameterMM": 40,
+    "tagDiameterRangeMM": [
+      17,
+      30
+    ],
+    "measuredReaderToleranceMM": null,
+    "note": "Neither printed circle nor tag diameter is a guaranteed sensor-center hit tolerance."
+  },
+  "launch": {
+    "region": "Behind Earth inside the field",
+    "fixedCoordinateSpecified": false,
+    "inheritBiomassLeadIn": false
+  },
+  "cautions": [
+    "现场喷绘布有弹性，坐标以现场场地为准。",
+    "表 2 的 16 行含起终点重复的地球，为 15 处不同位置。",
+    "初赛按指定 10 次访问顺序经过，含首尾地球，为 9 处不同位置。",
+    "不得去重删除末尾地球，不得把生物质能的 (-290,260) 作为太阳能发车点。",
+    "决赛点位、数量及情景点在创新实践环节发布。"
+  ]
+}

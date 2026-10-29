@@ -1,0 +1,477 @@
+{
+  "schema": "cam-course-1",
+  "event": "2027年第十届中国大学生工程实践与创新能力大赛",
+  "category": "生物质能电动车",
+  "source": {
+    "file": "01-2027年第十届 工程实践赛道命题与运行.pdf",
+    "sha256": "390bde4a2c6d47601fa92bb47cafbe24b309820314d74da09bcaaf40f2a7c42b",
+    "coordinatePages": [
+      15,
+      16
+    ],
+    "orderPage": 16,
+    "fieldPage": 14,
+    "launchPage": 17,
+    "verification": "User-provided PDF; text and rendered table visually checked. No claim about later notices."
+  },
+  "units": "mm",
+  "referenceOnly": true,
+  "fieldSizeMM": [
+    6000,
+    2000
+  ],
+  "softwareBoundsMM": [
+    -6000,
+    0,
+    0,
+    2000
+  ],
+  "coordinateMapping": "softwareX = -officialX; softwareY = officialY. Matches existing MAT numerically; does not change vehicle-local axes.",
+  "preliminaryIDs": [
+    1,
+    4,
+    6,
+    9,
+    11,
+    13,
+    16,
+    18,
+    21,
+    23,
+    26,
+    31
+  ],
+  "finalRouteKnown": false,
+  "points": [
+    {
+      "id": 1,
+      "name": "西安（古长安）",
+      "officialMM": [
+        300,
+        460
+      ],
+      "softwareMM": [
+        -300,
+        460
+      ],
+      "preliminaryOrder": 1
+    },
+    {
+      "id": 2,
+      "name": "兰州",
+      "officialMM": [
+        580,
+        650
+      ],
+      "softwareMM": [
+        -580,
+        650
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 3,
+      "name": "武威（古凉州）",
+      "officialMM": [
+        640,
+        840
+      ],
+      "softwareMM": [
+        -640,
+        840
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 4,
+      "name": "张掖（古甘州）",
+      "officialMM": [
+        760,
+        950
+      ],
+      "softwareMM": [
+        -760,
+        950
+      ],
+      "preliminaryOrder": 2
+    },
+    {
+      "id": 5,
+      "name": "酒泉（古肃州）",
+      "officialMM": [
+        870,
+        1040
+      ],
+      "softwareMM": [
+        -870,
+        1040
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 6,
+      "name": "敦煌（古沙洲）",
+      "officialMM": [
+        1070,
+        1080
+      ],
+      "softwareMM": [
+        -1070,
+        1080
+      ],
+      "preliminaryOrder": 3
+    },
+    {
+      "id": 7,
+      "name": "玉门关",
+      "officialMM": [
+        1120,
+        1110
+      ],
+      "softwareMM": [
+        -1120,
+        1110
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 8,
+      "name": "哈密（古伊州）",
+      "officialMM": [
+        1140,
+        1390
+      ],
+      "softwareMM": [
+        -1140,
+        1390
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 9,
+      "name": "吐鲁番（古高昌）",
+      "officialMM": [
+        1370,
+        1396
+      ],
+      "softwareMM": [
+        -1370,
+        1396
+      ],
+      "preliminaryOrder": 4
+    },
+    {
+      "id": 10,
+      "name": "库尔勒（古焉耆）",
+      "officialMM": [
+        1540,
+        1260
+      ],
+      "softwareMM": [
+        -1540,
+        1260
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 11,
+      "name": "库车（古龟兹）",
+      "officialMM": [
+        1710,
+        1260
+      ],
+      "softwareMM": [
+        -1710,
+        1260
+      ],
+      "preliminaryOrder": 5
+    },
+    {
+      "id": 12,
+      "name": "阿克苏（古姑墨）",
+      "officialMM": [
+        1850,
+        1200
+      ],
+      "softwareMM": [
+        -1850,
+        1200
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 13,
+      "name": "喀什（古疏勒）",
+      "officialMM": [
+        2080,
+        1010
+      ],
+      "softwareMM": [
+        -2080,
+        1010
+      ],
+      "preliminaryOrder": 6
+    },
+    {
+      "id": 14,
+      "name": "费尔干纳（古宁远国）[乌兹别克斯坦]",
+      "officialMM": [
+        2310,
+        1110
+      ],
+      "softwareMM": [
+        -2310,
+        1110
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 15,
+      "name": "塔什干（古石国）[乌兹别克斯坦]",
+      "officialMM": [
+        2450,
+        1210
+      ],
+      "softwareMM": [
+        -2450,
+        1210
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 16,
+      "name": "撒马尔罕（古飒秣建）[乌兹别克斯坦]",
+      "officialMM": [
+        2570,
+        1030
+      ],
+      "softwareMM": [
+        -2570,
+        1030
+      ],
+      "preliminaryOrder": 7
+    },
+    {
+      "id": 17,
+      "name": "布哈拉（古安国）[乌兹别克斯坦]",
+      "officialMM": [
+        2710,
+        1040
+      ],
+      "softwareMM": [
+        -2710,
+        1040
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 18,
+      "name": "马雷（古末禄国）[土库曼斯坦]",
+      "officialMM": [
+        2850,
+        810
+      ],
+      "softwareMM": [
+        -2850,
+        810
+      ],
+      "preliminaryOrder": 8
+    },
+    {
+      "id": 19,
+      "name": "马什哈德（古萨那巴德）[伊朗]",
+      "officialMM": [
+        2970,
+        670
+      ],
+      "softwareMM": [
+        -2970,
+        670
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 20,
+      "name": "德黑兰（古拉伊）[伊朗]",
+      "officialMM": [
+        3410,
+        610
+      ],
+      "softwareMM": [
+        -3410,
+        610
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 21,
+      "name": "伊斯法罕[伊朗]",
+      "officialMM": [
+        3400,
+        300
+      ],
+      "softwareMM": [
+        -3400,
+        300
+      ],
+      "preliminaryOrder": 9
+    },
+    {
+      "id": 22,
+      "name": "哈马丹（古埃克巴塔纳）[伊朗]",
+      "officialMM": [
+        3570,
+        520
+      ],
+      "softwareMM": [
+        -3570,
+        520
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 23,
+      "name": "巴格达[伊拉克]",
+      "officialMM": [
+        3790,
+        360
+      ],
+      "softwareMM": [
+        -3790,
+        360
+      ],
+      "preliminaryOrder": 10
+    },
+    {
+      "id": 24,
+      "name": "安塔基亚（古安条克）[土耳其]",
+      "officialMM": [
+        4240,
+        660
+      ],
+      "softwareMM": [
+        -4240,
+        660
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 25,
+      "name": "安卡拉（古安基拉）[土耳其]",
+      "officialMM": [
+        4420,
+        1060
+      ],
+      "softwareMM": [
+        -4420,
+        1060
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 26,
+      "name": "伊斯坦布尔（古君士坦丁堡）[土耳其]",
+      "officialMM": [
+        4630,
+        1190
+      ],
+      "softwareMM": [
+        -4630,
+        1190
+      ],
+      "preliminaryOrder": 11
+    },
+    {
+      "id": 27,
+      "name": "阿德里安堡（古埃迪尔内）[土耳其]",
+      "officialMM": [
+        4750,
+        1180
+      ],
+      "softwareMM": [
+        -4750,
+        1180
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 28,
+      "name": "索菲亚[保加利亚]",
+      "officialMM": [
+        4930,
+        1370
+      ],
+      "softwareMM": [
+        -4930,
+        1370
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 29,
+      "name": "斯科普里[马其顿]",
+      "officialMM": [
+        5030,
+        1290
+      ],
+      "softwareMM": [
+        -5030,
+        1290
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 30,
+      "name": "米兰[意大利]",
+      "officialMM": [
+        5700,
+        1700
+      ],
+      "softwareMM": [
+        -5700,
+        1700
+      ],
+      "preliminaryOrder": 0
+    },
+    {
+      "id": 31,
+      "name": "罗马[意大利]",
+      "officialMM": [
+        5517,
+        1280
+      ],
+      "softwareMM": [
+        -5517,
+        1280
+      ],
+      "preliminaryOrder": 12
+    }
+  ],
+  "legacyLeadIn": {
+    "sensorMM": [
+      -290,
+      260
+    ],
+    "officialCheckpoint": false,
+    "meaning": "Extra first point in legacy MAT; not in PDF checkpoint table. Launch usage inferred, not a mandated coordinate."
+  },
+  "recognition": {
+    "printedCircleDiameterMM": 40,
+    "tagDiameterRangeMM": [
+      17,
+      30
+    ],
+    "measuredReaderToleranceMM": null,
+    "note": "Neither printed circle nor tag diameter is a guaranteed sensor-center hit tolerance."
+  },
+  "launch": {
+    "region": "Behind Xian inside the field",
+    "fixedCoordinateSpecified": false
+  },
+  "cautions": [
+    "现场喷绘布有弹性，坐标以现场场地为准。",
+    "31 个备选地点不等于初赛都要经过。",
+    "初赛按指定 12 点顺序标记且一次。",
+    "决赛点位、数量及情景点在创新实践环节发布。"
+  ]
+}
