@@ -29,7 +29,7 @@ launch_cam_app
 3. 在“打卡点”编辑顺序点位，可选中一行后插入或删除。本版把表中全部点列入几何误差表。只有历史 13 点样例的第 1 行是发车辅助点；太阳能第 1 行为正式起点地球，最后一行为终点地球，不应把辅助点规则套用于其他点集。正式方案的发车位置需与计分点分别设置，当前界面尚无独立发车位置输入。
 4. 点击“重建路线”，随后可在“路线节点”调整前轮轨迹的插值节点。这里不是原版贝塞尔控制点。
 5. “计算凸轮”显示路线、转角与轮廓。参数修改后旧图仍保留，状态栏提示重新计算，导出会强制重算。
-6. 顶部选择“峰值梯度（独立算法）”或“四方向加权 + 平滑（视频启发实验）”，再点击“迭代优化”。第一点固定，其余节点允许移动；“停止”在下一次优化回调检查时生效。结束后显示实际/请求轮数、终止原因和未满足的约束，达到轮数不表示工程达标。
+6. 顶部选择“峰值梯度（独立算法）”、“四方向加权 + 平滑（视频启发实验）”或“内点法非线性约束（实验）”，再点击“迭代优化”。内点法需要 Optimization Toolbox，原默认选项保持不变。第一点固定，其余节点允许移动；“停止”在下一次优化回调检查时生效。结束后显示实际/请求轮数、终止原因和未满足的约束，达到轮数不表示工程达标。
 7. “固定凸轮反推”进入试调模式：固定当前理论凸轮，修改左侧车体参数，再点“更新反推”查看路线变化。“退出反推”恢复原设计参数。
 8. “导出候选”会在所选父目录内建立新子目录，保存项目、CSV、无表头 XYZ 点集和报告，不覆盖原软件资料。
 
@@ -110,6 +110,49 @@ launch_cam_app
 ## 研究检查：采样加密与视频特征
 
 `check_route_resolution` 使用默认齿条/平推固定节点检查四档采样；也可传入项目cell数组与对应标签，例如 `check_route_resolution({project},{'my_fixed_nodes'})`。它不迭代优化，报告最终加密是否稳定与工程压力角是否超限，二者分别判断；高密度自交检查未执行。历史诊断输入与数值保存在 `data/route_resolution_20261029.json`。
+
+### 原生非线性约束后端
+
+该选项把打卡误差、转角、整圈压力角和欠切余量作为固定维度非线性约束，使用MATLAB `fmincon` 的内点法。SQP保留为程序接口对照。当前节点必须位于项目 `bounds` 内，超界会明确拒绝，不静默裁剪。第一节点、所有车辆尺寸和阈值不变，自动传动比仍按原规则计算；实际传动比可随路线长度改变。
+
+```matlab
+[candidate,history,info] = camdesign.optimize(project,[],'fmincon-interior-point-experimental-v1');
+% 需要明确控制研究预算时，直接调用后端：
+[candidate,history,info] = camdesign.optimizeFmincon(project,[], ...
+    Algorithm='interior-point',MaxSeconds=90,RefinementFactor=4);
+% 单独的数值敏感性试验：仅示例配置，不是已验证的工程推荐值。
+study=project; study.params.iterations=300;
+[candidate,history,info] = camdesign.optimizeFmincon(study,[], ...
+    DifferenceStepMM=0.05,DifferenceType='forward', ...
+    MaxFunctionEvaluations=30000,MaxSeconds=180);
+% SQP作为同模型对照，当前逐点约束较多时单轮可能很慢：
+[candidate,history,info] = camdesign.optimize(project,[],'fmincon-sqp-experimental-v1');
+```
+
+未显式指定函数预算时，按 `max(2000,4×(自由变量数+1)×(请求迭代数+1))` 配置，避免把300轮请求截在固定2000次评价。显式传入的 `MaxFunctionEvaluations` 按原值执行；`info.maxFunctionEvaluations`、`functionBudgetSource` 记录实际预算与来源。默认90秒软时间预算，迭代上限仍取表格中的项目参数。时间在迭代回调检查，单轮计算及最后几何复核可能使总时间超过预算。`info.evaluations` 是实际模型计算尝试次数，包含最终复核，与求解器的函数调用数不是同一口径。
+
+默认13节点有24个自由变量，请求300轮时自动预算为30100次。生产默认仍取项目梯度探针，默认名义0.5 mm前向差分；`DifferenceStepMM`/`DifferenceType` 仅提供显式研究选项。节点变量按1000 mm归一化，名义步长在归一化位移绝对值≤1时对应所示毫米数，更大位移按fmincon的TypicalX规则放大。较小探针或中心差分没有跨两种机构的可靠工程通过证据，本轮未自动替用户改值。
+
+做充分迭代诊断时，应同时给足轮数、函数调用和时间预算，并查看实际停止原因。只提高“请求轮数”不能防止求解器因小步长或局部不可行提前停止；这种情形需要分析数值设置与收敛过程，不能称为已经完成请求轮数，也不能直接归结为算法不可用。
+
+新目标使用权重表中的路线长度及转角变化两项，加小的节点位移正则；另外四项由约束承担，不参与这个目标。日志另存历史峰值分数，不能将两种目标互相比较。新算法不要求每轮历史分数下降；优先保留严格满足约束的候选，其次比较违反程度和目标。
+
+`history.score` 为历史峰值评分，`history.objective` 为保留候选的新目标；`history.solverObjective/solverMetrics/solverMaxViolation` 另记实际求解迭代。`info.returnedObjective` 和 `solverTerminalObjective` 可能不同，因返回的是按可行性优先保留的候选。结束状态显示加密网格实际工作/回程压力角、打卡、转角、欠切、自交和未通过原因，不能只看粗网格图或exitflag。
+
+最终对原网格和默认4倍区间加密网格分别做完整几何检查。只有两档均通过且确实能加密时，`info.verifiedFeasible` 才为真。达到采样上限而不能独立加密、压力角超限、自交、求解不可行等结果都保持明确状态。通过仍只代表离散理想模型，没有证明连续曲线处处满足、原版3.1.2等价或实车精度。目标公式、方法来源、实测对照及局限见[约束优化说明](CONSTRAINED_OPTIMIZATION.md)。
+
+本轮默认工程案例均未通过加密验收。已记录实际300轮和552/1000轮等充分预算诊断，部分粗网格可行点加密后仍超35°/30 mm或存在欠切、自交；这不证明算法不可用或固定尺寸全局无解。最终7组契约、UI及加密拒绝回归通过，仅说明实现和验收门禁可复核；[汇总JSON](../data/constrained_optimizer_20261029.json)另保留旧12项回归的实际测试时序。
+
+研究检查命令如下，均应在独立batch运行。300轮及敏感性脚本拒绝覆盖已有 `verification.json`；复跑请使用新的工作副本，保留既有 `outputs` 历史。30轮报告与各长预算目录分开，不把相同文件名当作相同预算。
+
+```powershell
+./run_matlab_checks.ps1 -Task "check_constrained_optimizer('contracts'); check_constrained_app;"
+./run_matlab_checks.ps1 -Task 'check_constrained_refinement;'
+./run_matlab_checks.ps1 -Task 'check_constrained_convergence(300);'
+./run_matlab_checks.ps1 -Task 'check_constrained_sensitivity;'
+```
+
+`outputs/constrained_optimizer/` 中的 `sqp_history/` 保留SQP试验；`all.json` 为当时30轮对照/6组检查；`contracts.json` 为最终7组；`interior_point/convergence_300/` 和 `interior_point/sensitivity_300/` 含实际迭代、MAT、JSON和收敛PNG，1000轮请求的552轮结果另名保存。汇总生成器只读取这些文件，未改写历史all结果。
 
 `camdesign.video251Features(controlPoints,frontPath,frontWheelAngles)` 根据长教程中可读2.5.1源码返回原始特征：路径折线总长、控制折线段长、无符号转折角及两级相邻差分、给定前轮有符号转角及两级差分。输入长度用mm，前轮角用rad；角差没有除以弧长。只复现已读前端，不计算未知聚合器或总分，也不会改变界面默认优化器。检查入口为 `check_video251_features`，源码位置及范围见 [源码审计](BEZIER_SOURCE_AUDIT.md)。
 

@@ -70,8 +70,8 @@ classdef CamReplicaApp < handle
             uilabel(titleBar,'Text','工创赛凸轮设计  /  路线、机构与几何校验', ...
                 'FontSize',20,'FontWeight','bold','FontColor',[.12 .20 .30]);
             app.AlgorithmSelector=uidropdown(titleBar, ...
-                'Items',{'峰值梯度（独立算法）','四方向加权 + 平滑（视频启发实验）'}, ...
-                'ItemsData',{'peak-gradient-v2','video-four-direction-v1'},'Value','peak-gradient-v2');
+                'Items',{'峰值梯度（独立算法）','四方向加权 + 平滑（视频启发实验）','内点法非线性约束（实验）'}, ...
+                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1'},'Value','peak-gradient-v2');
             bar=uigridlayout(root,[1 8],'Padding',[0 0 0 0],'ColumnSpacing',8);
             bar.Layout.Row=2; bar.Layout.Column=[1 2];
             labels={'导入 MAT','保存项目','重建路线','计算凸轮','迭代优化','停止','固定凸轮反推','导出候选'};
@@ -482,7 +482,7 @@ classdef CamReplicaApp < handle
                         app.readInputs(); [f,d]=uiputfile('*.mat','保存复现项目','cam_project.mat');
                         if ~isequal(f,0), camdesign.saveProject(app.Project,fullfile(d,f)); app.message('项目已保存。'); end
                     case 'optimize', app.runOptimization();
-                    case 'stop', app.StopRequested=true; app.message('将在当前梯度轮结束后停止。');
+                    case 'stop', app.StopRequested=true; app.message('已请求停止，将在求解器下次回调时停止。');
                     case 'simulate', app.toggleSimulation();
                     case 'export'
                         app.calculate(); folder=uigetdir(pwd,'选择输出父目录'); if isequal(folder,0), return; end
@@ -504,17 +504,43 @@ classdef CamReplicaApp < handle
             app.Project=project; app.History=history; app.OptimizationDirection=[]; app.OptimizationInfo=info;
             app.syncInputs(); app.calculate();
             reasons=struct('iteration_limit','达到请求轮数','user_stop','用户停止', ...
-                'gradient_tolerance','梯度与候选均无改善','no_improving_step','多尺度搜索无改善');
-            text=reasons.(info.reason);
+                'gradient_tolerance','梯度与候选均无改善','no_improving_step','多尺度搜索无改善', ...
+                'constrained_converged','约束求解器一阶停止条件满足','constrained_step_tolerance','约束求解器步长停止', ...
+                'constrained_infeasible','约束求解器未找到可行点','function_evaluation_limit','达到函数调用预算', ...
+                'time_limit','达到求解时间预算','solver_stopped','求解器停止');
+            if isfield(reasons,info.reason), text=reasons.(info.reason); else, text=info.reason; end
             m=app.Result.metrics; p=app.Project.params;
             verdict='本模型检查通过，仍待外部验证';
             if m.maxHitError>p.hitTolerance || m.maxPressureDeg>p.maxPressureDeg || m.maxSteeringDeg>p.maxSteeringDeg ...
                     || m.minUndercutMargin<=0 || m.intersectionCount>0, verdict='未达标候选'; end
+            if isfield(info,'verifiedFeasible')
+                if info.verifiedFeasible, verdict='加密离散模型检查通过，仍待外部验证';
+                else, verdict='加密验收未通过或未完成；未达标候选'; end
+            end
             app.Status.Text=sprintf('优化结束 %d/%d 轮：%s · %s\n工作/回程压力角 %.1f°/%.1f°，阈值 %.1f°；最大打卡偏差 %.2f mm', ...
                 info.iterations,info.requestedIterations,text,verdict,app.Result.metrics.maxWorkPressureDeg, ...
                 app.Result.metrics.maxReturnPressureDeg,app.Project.params.maxPressureDeg,app.Result.metrics.maxHitError);
             app.message(sprintf('%s，%d/%d 轮，原因：%s；%.3f 秒，%d 次评价；目标 %.6g → %.6g。', ...
                 info.algorithm,info.iterations,info.requestedIterations,text,info.elapsedSeconds,info.evaluations,history(1).score,history(end).score));
+            if isfield(info,'returnedObjective')
+                app.message(sprintf('函数调用预算 %d，软时间限 %.1f 秒；最终加密验收另计。', ...
+                    info.maxFunctionEvaluations,info.maxSeconds));
+                app.message(sprintf('实验约束目标 %.6g → %.6g；以上历史评分仅供对照。最大归一化违规 %.6g；加密可行=%d。', ...
+                    history(1).objective,info.returnedObjective,info.returnedMaxViolation,info.verifiedFeasible));
+                fine=info.verification.refinedGrid;
+                if fine.valid
+                    fm=fine.metrics;
+                    detail=sprintf('加密工作/回程压力角 %.3f°/%.3f°（阈值 %.1f°）；打卡 %.3f mm；转角 %.3f°；欠切余量 %.6g；自交 %d。', ...
+                        fm.maxWorkPressureDeg,fm.maxReturnPressureDeg,p.maxPressureDeg, ...
+                        fm.maxHitError,fm.maxSteeringDeg,fm.minUndercutMargin,fm.intersectionCount);
+                else
+                    detail=['加密计算未完成：',fine.errorIdentifier,' ',fine.errorMessage];
+                end
+                app.Status.Text=sprintf('实验约束结束 %d/%d 轮：%s · %s\n%s', ...
+                    info.iterations,info.requestedIterations,text,verdict,detail);
+                app.message(detail);
+                for k=1:numel(info.remainingConstraints), app.message(['约束验收：',info.remainingConstraints{k}]); end
+            end
             for k=1:numel(app.Result.warnings), app.message(['结束时仍需处理：',app.Result.warnings{k}]); end
         end
         function stop=optimizationUpdate(app,iteration,project,history)
@@ -527,6 +553,10 @@ classdef CamReplicaApp < handle
             else
                 app.Status.Text=sprintf('已完成 %d/%d 轮    当前目标 %.5f    最大偏差 %.2f mm', ...
                     iteration,project.params.iterations,history(end).score,history(end).maxHitError);
+            end
+            if isfield(history,'objective')
+                app.Status.Text=sprintf('实验约束 %d/%d 轮    求解目标 %.5g    最大归一化违规 %.5g；尚待加密验收', ...
+                    iteration,project.params.iterations,history(end).objective,history(end).maxConstraintViolation);
             end
             drawnow; stop=app.StopRequested;
         end

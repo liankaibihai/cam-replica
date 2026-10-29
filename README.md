@@ -12,7 +12,9 @@
 
 ## 运行
 
-在 MATLAB 中切换到本目录，运行 `launch_cam_app`。核心只使用基础 MATLAB，无需 Optimization、Curve Fitting 或 Parallel Computing Toolbox。
+在 MATLAB 中切换到本目录，运行 `launch_cam_app`。原有计算核心和优化选项只使用基础 MATLAB；新增可选“内点法非线性约束（实验）”需要 Optimization Toolbox，本机R2025b已确认可用。无需 Curve Fitting 或 Parallel Computing Toolbox。
+
+该实验后端已实现，原默认选择与路线/物理模型保留。最终7组针对性检查、UI及加密拒绝回归通过；默认齿条/平推工程算例均未通过独立加密验收。充分预算诊断包括实际300轮及552/1000轮延伸，不能把粗网格可行或求解器退出码当工程合格。方法、数值及检查时序见[约束优化说明](docs/CONSTRAINED_OPTIMIZATION.md)，证据见[数值汇总](data/constrained_optimizer_20261029.json)；本项不包含后续原版UI对照。
 
 命令行验证：`run_tests`。演示与输出：`run_demo`。默认演示使用 2027 文件中的点位，但其余参数及模型约定须结合实车核对。
 

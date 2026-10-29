@@ -20,6 +20,7 @@
 | [使用说明](USAGE.md) | 启动、参数、导入导出、固定凸轮试调、本地视频工具 | R2025b、运行、参数、反推、ASR |
 | [拆解说明](REVERSE_ENGINEERING.md) | 独立模型、字段映射、公式、复现边界 | 平推、齿条、坐标、传动比、包络 |
 | [视频算法实现映射](ALGORITHM_IMPLEMENTATION_MAP.md) | 视频步骤、实际代码、独立补充及尚未恢复部分逐项对应 | 候选整套加权、邻点平滑、Bezier、十二项评分 |
+| [成熟约束优化适配](CONSTRAINED_OPTIMIZATION.md) | 公开方法选型、原生fmincon实现与同输入验证边界 | SQP、B样条、约束、压力角、可行性 |
 | [长教程源码审计](BEZIER_SOURCE_AUDIT.md) | 可读函数片段、接口、原始特征及未知聚合依赖 | Simulation_cal、Squares_standard_sum、570–588秒 |
 | [第一代源码与兼容模块](FIRST_GENERATION_SOURCE.md) | 原r2数值链、9路线零差、版本差异及复跑方式 | firstGenerationCam、c+f、两遍推进、后轴弦长 |
 | [五份新增算法包](ADDITIONAL_SOURCE_PACKAGES.md) | 单Bezier源码恢复、阿克曼/共轭/通用凸轮资料分类 | BV1obN9enEtd、杨辉三角、de Casteljau |
