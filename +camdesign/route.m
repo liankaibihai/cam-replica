@@ -1,10 +1,6 @@
 function r = route(nodes,p)
 % Front-wheel path -> rigid-body heading via the rear no-slip constraint.
-knots=[0;cumsum(vecnorm(diff(nodes),2,2))];
-endDirection=nodes(end,:)-nodes(end-1,:); endDirection=endDirection/norm(endDirection);
-startDirection=[cosd(p.headingDeg+p.startSteeringDeg),sind(p.headingDeg+p.startSteeringDeg)];
-px=spline(knots,[startDirection(1);nodes(:,1);endDirection(1)]);
-py=spline(knots,[startDirection(2);nodes(:,2);endDirection(2)]);
+[px,py,knots]=camdesign.routeSpline(nodes,p);
 dx=camdesign.ppDerivative(px,1); dy=camdesign.ppDerivative(py,1);
 u=linspace(0,knots(end),p.samples)'; um=(u(1:end-1)+u(2:end))/2;
 vx=ppval(dx,u); vy=ppval(dy,u); mx=ppval(dx,um); my=ppval(dy,um);

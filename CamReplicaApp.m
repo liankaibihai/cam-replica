@@ -24,6 +24,8 @@ classdef CamReplicaApp < handle
         SelectedTargetRow = 1
         SelectedNodeRow = 1
         PointButtons
+        RefineRouteButton
+        NodeInfo
         SimulationMode = false
         SimulationReference = []
         SimulationResult = []
@@ -105,12 +107,14 @@ classdef CamReplicaApp < handle
             app.TargetsTable=uitable(g,'ColumnName',{'X / mm','Y / mm'},'ColumnEditable',[true true], ...
                 'ColumnWidth',{120,120},'CellEditCallback',@(~,~)app.invalidate(), ...
                 'CellSelectionCallback',@(~,event)app.selectPoint('target',event));
-            t=uitab(tabs,'Title','节点'); g=uigridlayout(t,[2 1],'RowHeight',{30,'1x'},'Padding',[0 0 0 0]);
-            controls=uigridlayout(g,[1 2],'Padding',[0 0 0 0]);
-            app.PointButtons(3)=uibutton(controls,'Text','选中行后插入','ButtonPushedFcn',@(~,~)app.modifyPoints('node',1));
-            app.PointButtons(4)=uibutton(controls,'Text','删除选中行','ButtonPushedFcn',@(~,~)app.modifyPoints('node',-1));
+            t=uitab(tabs,'Title','节点'); g=uigridlayout(t,[3 1],'RowHeight',{30,44,'1x'},'Padding',[0 0 0 0]);
+            controls=uigridlayout(g,[1 3],'Padding',[0 0 0 0],'ColumnSpacing',4);
+            app.PointButtons(3)=uibutton(controls,'Text','段中插点','FontSize',11,'ButtonPushedFcn',@(~,~)app.modifyPoints('node',1));
+            app.PointButtons(4)=uibutton(controls,'Text','删除节点','FontSize',11,'ButtonPushedFcn',@(~,~)app.modifyPoints('node',-1));
+            app.RefineRouteButton=uibutton(controls,'Text','全段细化','FontSize',11,'ButtonPushedFcn',@(~,~)app.refineRoute());
+            app.NodeInfo=uilabel(g,'Text','','FontSize',11,'WordWrap','on');
             app.NodesTable=uitable(g,'ColumnName',{'前轮 X / mm','前轮 Y / mm'},'ColumnEditable',[true true], ...
-                'ColumnWidth',{120,120},'CellEditCallback',@(~,~)app.invalidate(), ...
+                'ColumnWidth',{105,105},'CellEditCallback',@(~,~)app.invalidate(), ...
                 'CellSelectionCallback',@(~,event)app.selectPoint('node',event));
             t=uitab(tabs,'Title','权重'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
             app.WeightsTable=uitable(g,'ColumnName',{'独立目标项','权重'},'ColumnEditable',[false true], ...
@@ -150,6 +154,7 @@ classdef CamReplicaApp < handle
             values=cellfun(@(k)p.(k),app.DisplayedParameterFields,'UniformOutput',false);
             app.ParamsTable.Data=[labels(:),values(:)];
             app.TargetsTable.Data=app.Project.targets; app.NodesTable.Data=app.Project.nodes;
+            app.updateNodeInfo();
             app.Mechanism.Value=p.mechanism; app.AutoRatio.Value=p.autoRatio;
             labels={'有序打卡偏差','前轮路线长度','转向变化率','压力角超限','前轮转角超限','包络欠切风险'};
             app.WeightsTable.Data=[labels(:),num2cell(p.weights(:))];
@@ -465,6 +470,24 @@ classdef CamReplicaApp < handle
             if strcmp(kind,'target'), table=app.TargetsTable; selected=app.SelectedTargetRow;
             else, table=app.NodesTable; selected=app.SelectedNodeRow; end
             data=table.Data; selected=max(1,min(size(data,1),selected));
+            if strcmp(kind,'node')
+                if operation>0
+                    app.refineRoute(min(selected,size(data,1)-1)); return;
+                elseif size(data,1)>2
+                    candidate=app.inputProject(); candidate.nodes(selected,:)=[];
+                    if isfield(candidate.params,'routeSpline')
+                        stations=candidate.params.routeSpline.stations;
+                        stations(selected)=[]; stations=stations-stations(1);
+                        candidate.params.routeSpline.stations=stations;
+                    end
+                    camdesign.validateProject(candidate);
+                    app.Project=candidate; app.History=[]; app.SelectedNodeRow=min(selected,size(candidate.nodes,1));
+                    app.syncInputs(); app.invalidate();
+                    app.message('路线节点已删除；此操作可能改变路线，请重新计算。'); return;
+                else
+                    app.message('至少保留两个路线节点。'); return;
+                end
+            end
             if operation>0
                 if selected<size(data,1), point=(data(selected,:)+data(selected+1,:))/2;
                 else, point=data(end,:)+(data(end,:)-data(end-1,:))/2; end
@@ -475,7 +498,34 @@ classdef CamReplicaApp < handle
                 app.message('至少保留两个点。'); return;
             end
             app.invalidate();
+            app.updateNodeInfo();
             if strcmp(kind,'target'), app.message('打卡点已修改；点击“重建路线”可重新生成路线节点。'); end
+        end
+        function applied=refineRoute(app,segments)
+            applied=false;
+            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
+            try
+                candidate=app.inputProject();
+                assert(~isempty(app.Result) && isequaln(candidate,app.Project), ...
+                    'cam:StaleRoute','请先计算凸轮，使当前路线与表格输入一致，再保形插点。');
+                if nargin<2, segments=(1:size(candidate.nodes,1)-1)'; end
+                [candidate,info]=camdesign.refineRoute(candidate,segments);
+                result=camdesign.evaluate(candidate,true);
+            catch ex
+                app.Status.Text=['路线未细化：',ex.message]; app.message(app.Status.Text); return;
+            end
+            app.Project=candidate; app.Result=result; app.History=[];
+            app.OptimizationDirection=[]; app.OptimizationInfo=[];
+            if ~isempty(info.insertedIndices), app.SelectedNodeRow=info.insertedIndices(1); end
+            app.syncInputs(); app.render(); applied=true;
+            app.message(sprintf('保形细化：%d → %d 个前轮插值节点，新增 %d 个坐标自由度；场外拟插点跳过 %d 个。目标访问顺序不变。', ...
+                info.originalNodeCount,info.newNodeCount,info.addedCoordinateDOF,numel(info.skippedSegments)));
+        end
+        function updateNodeInfo(app)
+            mode='弦长站位';
+            if isfield(app.Project.params,'routeSpline'), mode='固定站位'; end
+            app.NodeInfo.Text=sprintf('路线节点 %d · 目标访问 %d · %s\n插点保留曲线；移动节点后改变路线。', ...
+                size(app.NodesTable.Data,1),size(app.TargetsTable.Data,1),mode);
         end
         function action(app,name)
             try
@@ -489,7 +539,9 @@ classdef CamReplicaApp < handle
                 switch name
                     case 'calculate', app.calculate();
                     case 'seed'
-                        app.readInputs(); app.Project.nodes=camdesign.seedNodes(app.Project.targets,app.Project.params);
+                        app.readInputs();
+                        if isfield(app.Project.params,'routeSpline'), app.Project.params=rmfield(app.Project.params,'routeSpline'); end
+                        app.Project.nodes=camdesign.seedNodes(app.Project.targets,app.Project.params);
                         app.syncInputs(); app.calculate();
                     case 'import'
                         [f,d]=uigetfile('*.mat','导入本项目或原软件 MAT'); if isequal(f,0), return; end
@@ -601,6 +653,7 @@ classdef CamReplicaApp < handle
             app.Mechanism.Enable=editable; app.AutoRatio.Enable=editable;
             app.AlgorithmSelector.Enable=editable;
             for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=editable; end
+            app.RefineRouteButton.Enable=editable;
             app.ParamsTable.ColumnEditable=[false ~app.Busy && ~app.MapEditMode];
             app.TargetsTable.ColumnEditable=[editable editable];
             app.NodesTable.ColumnEditable=[editable editable]; app.WeightsTable.ColumnEditable=[false editable];

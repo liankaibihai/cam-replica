@@ -1,0 +1,95 @@
+{
+  "date": "2026-10-29",
+  "softwareVersion": "3.1.2",
+  "evidence": "Read-only accessibility and screenshot observation of the user's already-completed solar run. No training or parameter edits performed by this turn.",
+  "source": "local/route_refinement_20261029/original_solar_rack_observed.png",
+  "projectName": "初赛",
+  "parameters": {
+    "carType": 2,
+    "mechanism": "rack",
+    "wheelDiameterMM": 135,
+    "gearRatio": 35,
+    "leverMM": 20,
+    "rollerRadiusMM": 2,
+    "referenceDiameterMM": 150,
+    "thicknessMM": 3,
+    "driveXY": [
+      60,
+      -110
+    ],
+    "drivenXY": [
+      -105,
+      -110
+    ],
+    "sensorXY": [
+      20,
+      0
+    ],
+    "headingVector": [
+      0,
+      1
+    ],
+    "boundsMM": [
+      0,
+      6000,
+      0,
+      2000
+    ],
+    "controlPoints": 50,
+    "bezierOrder": 49,
+    "interpolationCount": 17
+  },
+  "targets": [
+    [
+      410,
+      420
+    ],
+    [
+      700,
+      1580
+    ],
+    [
+      1440,
+      1100
+    ],
+    [
+      3170,
+      1560
+    ],
+    [
+      4160,
+      1440
+    ],
+    [
+      5110,
+      1630
+    ],
+    [
+      5450,
+      440
+    ],
+    [
+      3250,
+      350
+    ],
+    [
+      2500,
+      750
+    ],
+    [
+      410,
+      420
+    ]
+  ],
+  "visibleReadouts": {
+    "iterations": 300,
+    "timeReadoutUnitUnspecified": 700.4533,
+    "driveLengthMM": 12928.7313,
+    "maximumLeftSteeringDeg": 12.1567,
+    "maximumRightSteeringDeg": 28.3875,
+    "maximumPressureDeg": 55.288,
+    "appStatusTimestamp": "2026-10-29 22:13:43"
+  },
+  "comparisonLimit": "Same solar target order, but rack mechanism and different dimensions/ratio from the current flat test. The 55.288 degree readout cannot be directly compared with the replica's approximately 87 degree flat baseline as formula accuracy or equal-input quality evidence. The user has confirmed the team vehicle is flat.",
+  "sourceSHA256": "BEAECE733C7004BA88970D4E308E9527335D71D9C4F14FAFB7BD6F600024A201"
+}

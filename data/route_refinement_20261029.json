@@ -1,0 +1,1320 @@
+{
+  "date": "2026-10-29",
+  "baselineGit": "1343879",
+  "release": "2025b",
+  "core": {
+    "release": "2025b",
+    "checks": [
+      "legacy solar/default spline coefficients unchanged",
+      "analytic cubic position and first/second/third derivatives preserved",
+      "solar freeze/one-pass/two-pass preserve the same parameterized cubic",
+      "target order and repeated Earth retained; no sample-count or physical-parameter changes",
+      "last-segment insertion retains explicit endpoint derivative",
+      "moving an inserted node changes the curve and preserves other interpolation constraints",
+      "outside insertion skipped and reported without clipping or changing bounds",
+      "invalid station count/order and endpoint metadata rejected",
+      "current heading and initial steering still control the start derivative",
+      "MAT project round trip retains stations, endpoint derivative and ordered targets",
+      "same-grid kinematics/cam preserved at baseline and four-times denser sampling",
+      "one-iteration integration exposes every added node to existing optimizer without parameter mutation"
+    ],
+    "analyticDerivativeErrors": [
+      8.881784197001252E-16,
+      6.661338147750939E-16,
+      2.2412627309620348E-15,
+      8.104628079763643E-15
+    ],
+    "freezeErrors": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "onceErrors": [
+      1.1937117960769683E-12,
+      1.1102230246251565E-15,
+      6.179952383167375E-18,
+      2.0964065444543933E-20
+    ],
+    "twiceErrors": [
+      9.094947017729282E-13,
+      1.9984014443252818E-15,
+      2.5261910618912253E-17,
+      2.0169972056493027E-19
+    ],
+    "once": {
+      "originalNodeCount": 10,
+      "newNodeCount": 18,
+      "requestedSegments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "insertedSegments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9
+      ],
+      "insertedIndices": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        15,
+        17
+      ],
+      "insertedStations": [
+        595.5888171562895,
+        1636.6455224536523,
+        2977.435437398435,
+        4371.557384535314,
+        5351.479212065713,
+        6446.729079051938,
+        9690.27234627776,
+        11173.054215898756
+      ],
+      "skippedSegments": 7,
+      "skippedPoints": [
+        4509.488712020882,
+        -16.281795796679603
+      ],
+      "existingOutsideNodeIndices": [],
+      "oldToNewIndices": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        14,
+        16,
+        18
+      ],
+      "addedCoordinateDOF": 16,
+      "parameterizationInitialized": true,
+      "preservation": "Same C2 clamped cubic in the same parameter; no point clamping or physical-model changes."
+    },
+    "twice": {
+      "originalNodeCount": 18,
+      "newNodeCount": 34,
+      "requestedSegments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "insertedSegments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17
+      ],
+      "insertedIndices": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        27,
+        29,
+        31,
+        33
+      ],
+      "insertedStations": [
+        297.7944085781447,
+        893.3832257344342,
+        1413.9115783831157,
+        1859.379466524189,
+        2529.7744239965805,
+        3425.09645080029,
+        4122.157424368729,
+        4620.957344701899,
+        5110.918258467098,
+        5592.040165664327,
+        6139.66509915744,
+        6753.793058946437,
+        9477.937140445745,
+        9902.607552109774,
+        10643.99848692027,
+        11702.10994487724
+      ],
+      "skippedSegments": 13,
+      "skippedPoints": [
+        4509.488712020883,
+        -16.281795796679887
+      ],
+      "existingOutsideNodeIndices": [],
+      "oldToNewIndices": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        26,
+        28,
+        30,
+        32,
+        34
+      ],
+      "addedCoordinateDOF": 32,
+      "parameterizationInitialized": false,
+      "preservation": "Same C2 clamped cubic in the same parameter; no point clamping or physical-model changes."
+    },
+    "outsideSkip": {
+      "originalNodeCount": 2,
+      "newNodeCount": 2,
+      "requestedSegments": 1,
+      "insertedSegments": [],
+      "insertedIndices": [],
+      "insertedStations": [],
+      "skippedSegments": 1,
+      "skippedPoints": [
+        3.7500000000000004,
+        1.2499999999999996
+      ],
+      "existingOutsideNodeIndices": [],
+      "oldToNewIndices": [
+        1,
+        2
+      ],
+      "addedCoordinateDOF": 0,
+      "parameterizationInitialized": true,
+      "preservation": "Same C2 clamped cubic in the same parameter; no point clamping or physical-model changes."
+    },
+    "numerical": [
+      {
+        "samples": 601,
+        "camSamples": 721,
+        "maxFrontDifferenceMM": 9.374856803373542E-13,
+        "maxHeadingDifferenceRad": 8.881784197001252E-16,
+        "maxSteeringDifferenceRad": 1.775489477662262E-15,
+        "maxCamDifferenceMM": 2.383750501448516E-11,
+        "pressureDifferenceDeg": 1.4210854715202004E-14,
+        "scoreRelativeDifference": 6.3310568003206204E-15
+      },
+      {
+        "samples": 2401,
+        "camSamples": 2881,
+        "maxFrontDifferenceMM": 9.927276321703277E-13,
+        "maxHeadingDifferenceRad": 8.881784197001252E-16,
+        "maxSteeringDifferenceRad": 1.7832957333041577E-15,
+        "maxCamDifferenceMM": 1.69386626141415E-11,
+        "pressureDifferenceDeg": 1.9895196601282805E-13,
+        "scoreRelativeDifference": 1.297128937167454E-15
+      }
+    ],
+    "optimizerGradientShape": [
+      18,
+      2
+    ],
+    "optimizerIntegrationIterations": 1,
+    "optimizerIntegrationReason": "iteration_limit",
+    "scope": "Independent clamped-cubic refinement, not original Bezier_superposition. Geometry/DOF/UI integration only; no optimizer-quality or engineering-feasibility claim."
+  },
+  "ui": {
+    "release": "2025b",
+    "method": "Owned hidden app callbacks and methods; no native input",
+    "checks": [
+      "historical default constructor retains legacy parameterization",
+      "whole-route button inserts exact transition nodes without changing targets or computed curve",
+      "second refinement synchronizes node table and fixed stations",
+      "selected last-row insertion subdivides the final interval without extrapolating",
+      "deleting an untouched inserted node restores stations and curve",
+      "first/last deletion maintains station length, origin and explicit terminal derivative",
+      "moving an added node changes the curve while retaining stations and target order",
+      "map-edit cancel restores the complete refined project",
+      "busy and fixed-cam modes block refinement and restore controls",
+      "pending parameter/node edits are preserved and require calculation before shape-preserving insertion",
+      "UI project read/save/import retains all refinement metadata",
+      "explicit rebuild clears fixed stations and regenerates the original ten seed nodes"
+    ],
+    "nodeCounts": [
+      10,
+      18,
+      34
+    ],
+    "movedTransitionMaxFrontDeltaMM": 1.003949753218933,
+    "orderedVisits": 10,
+    "screenshots": [
+      "solar_before_nodes.png",
+      "solar_refined_once.png",
+      "solar_refined_twice.png",
+      "solar_transition_moved.png",
+      "solar_rebuilt_legacy.png"
+    ]
+  },
+  "pressureDiagnostic": {
+    "release": "2025b",
+    "cases": [
+      {
+        "routeSamples": 601,
+        "camSamples": 721,
+        "maxWorkPressureDeg": 87.10522712030229,
+        "maxReturnPressureDeg": 35.85166979008187,
+        "peakPhaseDeg": 28.5,
+        "peakFrontXY": [
+          717.0855191591052,
+          1590.9029957803211
+        ],
+        "fractionalRouteIndex": 59.46195013458636,
+        "steeringAtPeakDeg": -34.718099152757915,
+        "rollerCenterRadiusAtPeakMM": 32.65500653514619,
+        "chainRulePressureAtPeakDeg": 86.92277786037883,
+        "maxChainRulePressureDeg": 86.94875925521173,
+        "effectiveRatio": 36.0080066710294,
+        "routeLengthMM": 12724.045762315038
+      },
+      {
+        "routeSamples": 2401,
+        "camSamples": 2881,
+        "maxWorkPressureDeg": 87.13165863057397,
+        "maxReturnPressureDeg": 36.33351855645475,
+        "peakPhaseDeg": 28.5,
+        "peakFrontXY": [
+          716.7581991931404,
+          1591.0187866690662
+        ],
+        "fractionalRouteIndex": 234.75412347398742,
+        "steeringAtPeakDeg": -34.72074250168997,
+        "rollerCenterRadiusAtPeakMM": 32.674978093581764,
+        "chainRulePressureAtPeakDeg": 87.10776248371187,
+        "maxChainRulePressureDeg": 87.11260769434217,
+        "effectiveRatio": 36.00814278580838,
+        "routeLengthMM": 12724.096713907298
+      },
+      {
+        "routeSamples": 4801,
+        "camSamples": 5761,
+        "maxWorkPressureDeg": 87.13920592035815,
+        "maxReturnPressureDeg": 36.359904493176764,
+        "peakPhaseDeg": 28.5,
+        "peakFrontXY": [
+          716.74434314275,
+          1591.0222121233244
+        ],
+        "fractionalRouteIndex": 468.5000812178952,
+        "steeringAtPeakDeg": -34.71952899335527,
+        "rollerCenterRadiusAtPeakMM": 32.67625577425909,
+        "chainRulePressureAtPeakDeg": 87.12555865030585,
+        "maxChainRulePressureDeg": 87.1260061372367,
+        "effectiveRatio": 36.0081496919199,
+        "routeLengthMM": 12724.099273175238
+      }
+    ],
+    "scope": "Fixed original 10-node solar flat input. Central finite-difference chain rule is independent of the cam-radius spline derivative. No optimizer or physical parameter changes."
+  },
+  "refinementInfo": [
+    {
+      "originalNodeCount": 10,
+      "newNodeCount": 10,
+      "requestedSegments": [],
+      "insertedSegments": [],
+      "insertedIndices": [],
+      "insertedStations": [],
+      "skippedSegments": [],
+      "skippedPoints": [],
+      "existingOutsideNodeIndices": [],
+      "oldToNewIndices": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10
+      ],
+      "addedCoordinateDOF": 0,
+      "parameterizationInitialized": true,
+      "preservation": "Same C2 clamped cubic in the same parameter; no point clamping or physical-model changes."
+    },
+    {
+      "originalNodeCount": 10,
+      "newNodeCount": 18,
+      "requestedSegments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "insertedSegments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        8,
+        9
+      ],
+      "insertedIndices": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        15,
+        17
+      ],
+      "insertedStations": [
+        595.5888171562895,
+        1636.6455224536523,
+        2977.435437398435,
+        4371.557384535314,
+        5351.479212065713,
+        6446.729079051938,
+        9690.27234627776,
+        11173.054215898756
+      ],
+      "skippedSegments": 7,
+      "skippedPoints": [
+        4509.488712020882,
+        -16.281795796679603
+      ],
+      "existingOutsideNodeIndices": [],
+      "oldToNewIndices": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        14,
+        16,
+        18
+      ],
+      "addedCoordinateDOF": 16,
+      "parameterizationInitialized": true,
+      "preservation": "Same C2 clamped cubic in the same parameter; no point clamping or physical-model changes."
+    },
+    {
+      "originalNodeCount": 18,
+      "newNodeCount": 34,
+      "requestedSegments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17
+      ],
+      "insertedSegments": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        15,
+        16,
+        17
+      ],
+      "insertedIndices": [
+        2,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        16,
+        18,
+        20,
+        22,
+        24,
+        27,
+        29,
+        31,
+        33
+      ],
+      "insertedStations": [
+        297.7944085781447,
+        893.3832257344342,
+        1413.9115783831157,
+        1859.379466524189,
+        2529.7744239965805,
+        3425.09645080029,
+        4122.157424368729,
+        4620.957344701899,
+        5110.918258467098,
+        5592.040165664327,
+        6139.66509915744,
+        6753.793058946437,
+        9477.937140445745,
+        9902.607552109774,
+        10643.99848692027,
+        11702.10994487724
+      ],
+      "skippedSegments": 13,
+      "skippedPoints": [
+        4509.488712020883,
+        -16.281795796679887
+      ],
+      "existingOutsideNodeIndices": [],
+      "oldToNewIndices": [
+        1,
+        3,
+        5,
+        7,
+        9,
+        11,
+        13,
+        15,
+        17,
+        19,
+        21,
+        23,
+        25,
+        26,
+        28,
+        30,
+        32,
+        34
+      ],
+      "addedCoordinateDOF": 32,
+      "parameterizationInitialized": false,
+      "preservation": "Same C2 clamped cubic in the same parameter; no point clamping or physical-model changes."
+    }
+  ],
+  "cases": [
+    {
+      "label": "legacy_chord_10",
+      "algorithm": "peak-gradient-v2",
+      "nodeCount": 10,
+      "iterations": 276,
+      "requestedIterations": 300,
+      "reason": "no_improving_step",
+      "evaluations": 13247,
+      "elapsedSeconds": 15.5940157,
+      "verificationBeforeTrajectoryBoundsGate": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.046946875246379,
+          "metrics": {
+            "maxHitError": 7.523991272428493,
+            "rmsHitError": 5.044467145900442,
+            "routeLength": 12746.921020638385,
+            "driveLength": 12278.30156868955,
+            "maxSteeringDeg": 38.67758981391145,
+            "maxPressureDeg": 86.06689213731848,
+            "maxWorkPressureDeg": 86.06689213731848,
+            "maxReturnPressureDeg": 36.18074688152491,
+            "minUndercutMargin": 0.5459601135907057,
+            "intersectionCount": 0,
+            "score": 82.12384738590784,
+            "terms": [
+              0.09117454828183233,
+              1.041477534433448,
+              0.14393954687387533,
+              26.566798726114882,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.8111975486213274,
+            "legacyTerms": [
+              0.02827405420674329,
+              1.041477534433448,
+              0.0033421291224264003,
+              0.4745823684873691,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.07665949632124,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.077。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.168647686463802,
+          "metrics": {
+            "maxHitError": 7.466274822573718,
+            "rmsHitError": 5.000693230542409,
+            "routeLength": 12746.971936875654,
+            "driveLength": 12278.349075368309,
+            "maxSteeringDeg": 38.70091914981412,
+            "maxPressureDeg": 86.92866855024387,
+            "maxWorkPressureDeg": 86.92866855024387,
+            "maxReturnPressureDeg": 36.66325155480244,
+            "minUndercutMargin": 0.4358825578699831,
+            "intersectionCount": 0,
+            "score": 84.78622930860593,
+            "terms": [
+              0.08972465834687876,
+              1.0414816945060779,
+              0.14608540078964577,
+              27.458626970786003,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.776902824212078,
+            "legacyTerms": [
+              0.027785480873325198,
+              1.0414816945060779,
+              0.0033525704686545484,
+              0.4650967394295962,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.07679908258761,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.077。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+      },
+      "maxModeledPointOutsideMM": 97.16562923794245,
+      "reusedPreviousRun": true,
+      "extendRecommended": false,
+      "engineeringAccepted": false
+    },
+    {
+      "label": "legacy_chord_10",
+      "algorithm": "fmincon-interior-point-experimental-v1",
+      "nodeCount": 10,
+      "iterations": 300,
+      "requestedIterations": 300,
+      "reason": "iteration_limit",
+      "evaluations": 7378,
+      "elapsedSeconds": 16.886212,
+      "verificationBeforeTrajectoryBoundsGate": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.086382578810646,
+          "metrics": {
+            "maxHitError": 24.234008206397306,
+            "rmsHitError": 13.47896445045765,
+            "routeLength": 12802.88129528053,
+            "driveLength": 12338.301180317587,
+            "maxSteeringDeg": 37.25089755706387,
+            "maxPressureDeg": 86.34708251610496,
+            "maxWorkPressureDeg": 86.34708251610496,
+            "maxReturnPressureDeg": 35.80887727456642,
+            "minUndercutMargin": 0.5726127998128427,
+            "intersectionCount": 0,
+            "score": 91.9950974494847,
+            "terms": [
+              0.8544107071160368,
+              1.0460497263193282,
+              0.12739685198519546,
+              26.81377517793418,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 4.800506832257945,
+            "legacyTerms": [
+              0.2018694251741123,
+              1.0460497263193282,
+              0.003006715438396568,
+              0.4420035243241587,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.252953061559616,
+          "autoRatio": true,
+          "workEndDeg": 299.99999969999993,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.253。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.095034776444461,
+          "metrics": {
+            "maxHitError": 24.207871516973483,
+            "rmsHitError": 13.464134517893909,
+            "routeLength": 12802.930912150061,
+            "driveLength": 12338.345576351481,
+            "maxSteeringDeg": 37.27279800808724,
+            "maxPressureDeg": 86.40843478008651,
+            "maxWorkPressureDeg": 86.40843478008651,
+            "maxReturnPressureDeg": 36.27459029110221,
+            "minUndercutMargin": 0.5005908135011605,
+            "intersectionCount": 0,
+            "score": 92.23645438760218,
+            "terms": [
+              0.852559957442487,
+              1.0460537802281007,
+              0.12804548353365905,
+              26.901196716998975,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 4.83922828431259,
+            "legacyTerms": [
+              0.2014254647954914,
+              1.0460537802281007,
+              0.0030155919995394375,
+              0.4566792475131714,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.25308350798893,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.253。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+      },
+      "maxModeledPointOutsideMM": 111.93857955901176,
+      "reusedPreviousRun": true,
+      "extendRecommended": false,
+      "engineeringAccepted": false
+    },
+    {
+      "label": "fixed_station_10",
+      "algorithm": "peak-gradient-v2",
+      "nodeCount": 10,
+      "iterations": 300,
+      "requestedIterations": 300,
+      "reason": "iteration_limit",
+      "evaluations": 14487,
+      "elapsedSeconds": 26.4630651,
+      "verificationBeforeTrajectoryBoundsGate": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.013804087529323,
+          "metrics": {
+            "maxHitError": 6.020168934860774,
+            "rmsHitError": 4.3310754101937725,
+            "routeLength": 12746.807512938482,
+            "driveLength": 12277.463904208164,
+            "maxSteeringDeg": 38.10680572955034,
+            "maxPressureDeg": 85.83070550347013,
+            "maxWorkPressureDeg": 85.83070550347013,
+            "maxReturnPressureDeg": 31.622567878618767,
+            "minUndercutMargin": 0.5785628559623612,
+            "intersectionCount": 0,
+            "score": 81.02090568311769,
+            "terms": [
+              0.06111183134783096,
+              1.041468260372736,
+              0.13006101194363784,
+              26.32865780756124,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.7711441222718647,
+            "legacyTerms": [
+              0.020842460231983516,
+              1.041468260372736,
+              0.0032057879234441864,
+              0.49105158775614605,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.074198232758185,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.074。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.135661126793917,
+          "metrics": {
+            "maxHitError": 6.000919749583715,
+            "rmsHitError": 4.280083489586939,
+            "routeLength": 12746.858139553953,
+            "driveLength": 12277.510720528086,
+            "maxSteeringDeg": 38.13067368862247,
+            "maxPressureDeg": 86.69593347050684,
+            "maxWorkPressureDeg": 86.69593347050684,
+            "maxReturnPressureDeg": 32.05495547545915,
+            "minUndercutMargin": 0.576344508300196,
+            "intersectionCount": 0,
+            "score": 83.65214107997626,
+            "terms": [
+              0.0603668361319762,
+              1.0414723967820363,
+              0.13181457326774393,
+              27.207545834358342,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.7407094105341403,
+            "legacyTerms": [
+              0.020354571864260786,
+              1.0414723967820363,
+              0.0032153849590288407,
+              0.482850460487639,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.07433579058109,
+          "autoRatio": true,
+          "workEndDeg": 299.9999997,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.074。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+      },
+      "maxModeledPointOutsideMM": 93.41017025169423,
+      "reusedPreviousRun": false,
+      "extendRecommended": false,
+      "engineeringAccepted": false
+    },
+    {
+      "label": "fixed_station_10",
+      "algorithm": "fmincon-interior-point-experimental-v1",
+      "nodeCount": 10,
+      "iterations": 300,
+      "requestedIterations": 300,
+      "reason": "iteration_limit",
+      "evaluations": 6920,
+      "elapsedSeconds": 21.4227146,
+      "verificationBeforeTrajectoryBoundsGate": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.02740489445562,
+          "metrics": {
+            "maxHitError": 39.66391091064501,
+            "rmsHitError": 32.444568188905734,
+            "routeLength": 13123.24347608531,
+            "driveLength": 12659.959819273809,
+            "maxSteeringDeg": 36.08096242249193,
+            "maxPressureDeg": 85.92770796261317,
+            "maxWorkPressureDeg": 85.92770796261317,
+            "maxReturnPressureDeg": 37.40490451358078,
+            "minUndercutMargin": 0.5223736228670952,
+            "intersectionCount": 0,
+            "score": 115.53067173444698,
+            "terms": [
+              2.9176398152134864,
+              1.0722246758345937,
+              0.10514548858254923,
+              26.412159432961822,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 16.367071281063943,
+            "legacyTerms": [
+              1.169611116627282,
+              1.0722246758345937,
+              0.0027425140780697006,
+              0.41800939251527525,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 37.19806498333108,
+          "autoRatio": true,
+          "workEndDeg": 299.99999969999993,
+          "warnings": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 37.198。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.033123347543969,
+          "metrics": {
+            "maxHitError": 39.63004275179017,
+            "rmsHitError": 32.445781426225494,
+            "routeLength": 13123.303720703894,
+            "driveLength": 12660.017040453387,
+            "maxSteeringDeg": 36.08101718668802,
+            "maxPressureDeg": 85.96845991839892,
+            "maxWorkPressureDeg": 85.96845991839892,
+            "maxReturnPressureDeg": 37.94078589243135,
+            "minUndercutMargin": 0.5226176669749091,
+            "intersectionCount": 0,
+            "score": 115.76353086685734,
+            "terms": [
+              2.914743356519018,
+              1.0722295980755587,
+              0.1058804722671281,
+              26.500873348673107,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 16.423769029913075,
+            "legacyTerms": [
+              1.1696985915093325,
+              1.0722295980755587,
+              0.002750065631509726,
+              0.43655206748750236,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 37.19823311318194,
+          "autoRatio": true,
+          "workEndDeg": 299.9999997,
+          "warnings": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 37.198。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+      },
+      "maxModeledPointOutsideMM": 99.49835948039535,
+      "reusedPreviousRun": false,
+      "extendRecommended": false,
+      "engineeringAccepted": false
+    },
+    {
+      "label": "refined_twice",
+      "algorithm": "peak-gradient-v2",
+      "nodeCount": 34,
+      "iterations": 300,
+      "requestedIterations": 300,
+      "reason": "iteration_limit",
+      "evaluations": 41903,
+      "elapsedSeconds": 61.6645236,
+      "verificationBeforeTrajectoryBoundsGate": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 2.9013360706503137,
+          "metrics": {
+            "maxHitError": 9.565043248836941,
+            "rmsHitError": 4.654201760569122,
+            "routeLength": 12745.497454618648,
+            "driveLength": 12280.267055424276,
+            "maxSteeringDeg": 28.01964986342387,
+            "maxPressureDeg": 69.13130033889594,
+            "maxWorkPressureDeg": 69.13130033889594,
+            "maxReturnPressureDeg": 26.592876119745775,
+            "minUndercutMargin": 0.46330666061564796,
+            "intersectionCount": 0,
+            "score": 38.63813342739004,
+            "terms": [
+              0.12572405153356206,
+              1.041361223049237,
+              0.02667847777158517,
+              12.01157554346496,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.4193348648116046,
+            "legacyTerms": [
+              0.02406843780898302,
+              1.041361223049237,
+              0.0013978211886144791,
+              0.3621189152257807,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.082434578100795,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.082。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 2.9367944057591804,
+          "metrics": {
+            "maxHitError": 9.546605492818076,
+            "rmsHitError": 4.639865775851722,
+            "routeLength": 12745.53936421615,
+            "driveLength": 12280.307088672133,
+            "maxSteeringDeg": 28.01966372620408,
+            "maxPressureDeg": 69.44474888035089,
+            "maxWorkPressureDeg": 69.44474888035089,
+            "maxReturnPressureDeg": 26.811334693528508,
+            "minUndercutMargin": 0.4779295007217176,
+            "intersectionCount": 0,
+            "score": 39.28427332150035,
+            "terms": [
+              0.12518447872602706,
+              1.0413646472411815,
+              0.02813127911478676,
+              12.228144123772424,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.4224184550802175,
+            "legacyTerms": [
+              0.023920393797688996,
+              1.0413646472411815,
+              0.0013992369312510623,
+              0.3637368694680886,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.08255220559539,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.083。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+      },
+      "maxModeledPointOutsideMM": 76.39593316088786,
+      "reusedPreviousRun": false,
+      "extendRecommended": false,
+      "engineeringAccepted": false
+    },
+    {
+      "label": "refined_twice",
+      "algorithm": "fmincon-interior-point-experimental-v1",
+      "nodeCount": 34,
+      "iterations": 18,
+      "requestedIterations": 300,
+      "reason": "constrained_step_tolerance",
+      "evaluations": 1280,
+      "elapsedSeconds": 4.0065132,
+      "verificationBeforeTrajectoryBoundsGate": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": true,
+          "maxScaledViolation": 0,
+          "metrics": {
+            "maxHitError": 29.544703011224538,
+            "rmsHitError": 22.377232030172372,
+            "routeLength": 13523.539493927652,
+            "driveLength": 13061.49364179386,
+            "maxSteeringDeg": 18.027204555861164,
+            "maxPressureDeg": 34.895028888737,
+            "maxWorkPressureDeg": 34.895028888737,
+            "maxReturnPressureDeg": 3.0954334403862966,
+            "minUndercutMargin": 0.630163403620241,
+            "intersectionCount": 0,
+            "score": 19.42735726588768,
+            "terms": [
+              1.5262555437262584,
+              1.104930559006771,
+              0.0036800910829045065,
+              0,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 7.782528964413101,
+            "legacyTerms": [
+              0.556378348146858,
+              1.104930559006771,
+              0.000529113822016626,
+              0,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": true,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 38.377869772313645,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "实际传动比已从 20 增大至 38.378。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": true,
+          "maxScaledViolation": 0,
+          "metrics": {
+            "maxHitError": 29.482793602445902,
+            "rmsHitError": 22.360494759456564,
+            "routeLength": 13523.931367165822,
+            "driveLength": 13061.882736673559,
+            "maxSteeringDeg": 18.030163353357363,
+            "maxPressureDeg": 34.98845528458962,
+            "maxWorkPressureDeg": 34.98845528458962,
+            "maxReturnPressureDeg": 2.499963346867833,
+            "minUndercutMargin": 0.3988636224902008,
+            "intersectionCount": 0,
+            "score": 19.36869134561557,
+            "terms": [
+              1.5213631605467883,
+              1.1049625767131048,
+              0.003685421170501085,
+              0,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 7.77257791915591,
+            "legacyTerms": [
+              0.5555463620974272,
+              1.1049625767131048,
+              0.0005294986368392176,
+              0,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": true,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 38.37901302843976,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "实际传动比已从 20 增大至 38.379。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "verifiedFeasible": true,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+      },
+      "maxModeledPointOutsideMM": 112.98947386473975,
+      "reusedPreviousRun": false,
+      "extendRecommended": false,
+      "engineeringAccepted": false
+    }
+  ],
+  "scope": "CHG014 pre-trajectory-boundary-gate comparison. One candidate passes former sampled cam/hit/steering/node gates, but all fail modeled-point field bounds. No engineering acceptance.",
+  "logs": [
+    "local/matlab_bd3aa68a407f4e1fa561ea68128c7ed0.log",
+    "local/matlab_901921af068342fd867996e5bf03519c.log",
+    "local/matlab_aeeda80a82024a3da21cda17a2e80526.log",
+    "local/matlab_ae0cbf899b4247a4abca4f5ec38d6853.log",
+    "local/matlab_0806599dae4c4a3380091c825f30c151.log"
+  ]
+}
