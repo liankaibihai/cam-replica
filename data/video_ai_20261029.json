@@ -1,0 +1,48 @@
+{
+  "date": "2026-10-29",
+  "source_file": "F:/许昊阳/竞赛/2027工创/代码原理视频/956935594-1-208.mp4",
+  "source_sha256": "810e44ea84f7d8d917e51b180c24fc54661c0fc8524f81ce1b3f38052cf12424",
+  "duration_seconds": 2246.762625,
+  "segment_count": 870,
+  "machine_generated": true,
+  "quality_check": {
+    "passed": true,
+    "repeat_runs": [],
+    "timestamp_overrun_seconds": 0,
+    "scope": "Obvious repetition and timestamp failures only; not caption accuracy certification."
+  },
+  "settings": {
+    "beam_size": 3,
+    "cpu_threads": 2,
+    "condition_on_previous_text": false,
+    "initial_prompt": null
+  },
+  "visually_rechecked_seconds": [
+    1620,
+    2160
+  ],
+  "supported_steps": [
+    {
+      "seconds": [
+        1498,
+        1682
+      ],
+      "step": "Improving candidate point sets are weighted by score improvement and divided by the sum of their weights. Full point-set combination, not independently normalized per point.",
+      "frame_seconds": 1620
+    },
+    {
+      "seconds": [
+        2033,
+        2166
+      ],
+      "step": "Neighbor smoothing illustration: B_new=0.1*(A+C)/2+0.9*B.",
+      "frame_seconds": 2160
+    }
+  ],
+  "limits": [
+    "Machine transcript is not verbatim verified.",
+    "Illustrated early version is not proof of all 3.1.2 details.",
+    "Exact Bezier blend weights, full 12-term score and scheduling are not recovered."
+  ],
+  "local_transcript": "local/video_research/user_ai_video/956935594-1-208/asr/transcript.json"
+}

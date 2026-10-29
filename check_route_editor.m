@@ -12,7 +12,7 @@ assert(isequal(driven.YData(:),baselineResult.route.driven(:,2)) && strcmp(drive
 front=findobj(axesHandle,'Tag','route-front'); drive=findobj(axesHandle,'Tag','route-drive');
 assert(isequal(front.Color,[0 0 0]) && strcmp(front.LineStyle,'-'));
 assert(isequal(drive.Color,[0 0 1]) && strcmp(drive.LineStyle,'-'));
-assert(numel(axesHandle.Legend.String)==6);
+assert(numel(axesHandle.Legend.String)==7);
 checks{end+1}='four component trajectories and explicit legend';
 
 % Enter through the actual button callback, then test the state-machine inputs.
@@ -44,7 +44,7 @@ nodeLine=findobj(axesHandle,'Tag','route-nodes'); marker=findall(axesHandle,'Tag
 assert(isequal([nodeLine.XData(k) nodeLine.YData(k)],point+[5 2]));
 assert(isequal([marker.XData marker.YData],point+[5 2]));
 assert(isequaln(app.Project,baseline) && isequaln(app.Result,baselineResult));
-assert(contains(app.Status.Text,'编辑前结果') && numel(axesHandle.Legend.String)==6);
+assert(contains(app.Status.Text,'编辑前结果') && numel(axesHandle.Legend.String)==7);
 app.previewRouteNode(point+[10 10],app.SteeringAxes);
 app.routeMapClick([1 2001],axesHandle);
 assert(isequal(app.NodesTable.Data(k,:),point+[5 2]) && app.MapEditMode);

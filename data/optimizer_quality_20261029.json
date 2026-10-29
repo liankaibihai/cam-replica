@@ -1,0 +1,976 @@
+{
+  "date": "2026-10-29",
+  "release": "R2025b",
+  "baselineCommit": "a91d5e2214b3974f539b4d6c5d50585b82ab32d9",
+  "scope": "Historical default inputs, independent model diagnostics only. All cases fail the unchanged 35-degree pressure limit; not original-software or vehicle equivalence.",
+  "cases": [
+    {
+      "run": "baseline",
+      "mechanism": "rack",
+      "algorithm": "baseline-a91d5e2",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 62.99056700244632,
+        "maxWorkPressureDeg": 62.99056700244632,
+        "maxReturnPressureDeg": 28.263942700411928,
+        "minUndercutMargin": 0.34314663161411907,
+        "intersectionCount": 0,
+        "score": 1.815307956076287,
+        "terms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.17783961305053658,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 4.207790538147995,
+        "rmsHitError": 1.7269176412268763,
+        "routeLength": 6645.770503463955,
+        "driveLength": 6664.792348301309,
+        "maxSteeringDeg": 32.53507077101462,
+        "maxPressureDeg": 63.365301984462256,
+        "maxWorkPressureDeg": 63.365301984462256,
+        "maxReturnPressureDeg": 36.736904069376024,
+        "minUndercutMargin": 0.2962063309922869,
+        "intersectionCount": 0,
+        "score": 1.5659720871066163,
+        "terms": [
+          0.0033136050439784414,
+          1.0192046479227865,
+          0.0077911525042915755,
+          0.1638072912158351,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 30,
+      "requestedIterations": 30,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 2.7089549,
+      "peakLocations": null,
+      "stepSummary": null
+    },
+    {
+      "run": "baseline",
+      "mechanism": "flat",
+      "algorithm": "baseline-a91d5e2",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 65.93869409347428,
+        "maxWorkPressureDeg": 65.93869409347428,
+        "maxReturnPressureDeg": 28.26937925052193,
+        "minUndercutMargin": 0.17417448506049737,
+        "intersectionCount": 0,
+        "score": 1.9316952543363357,
+        "terms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.21663537913721947,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 5.124969299900727,
+        "rmsHitError": 2.1004688315728486,
+        "routeLength": 6642.675792071982,
+        "driveLength": 6662.598587746103,
+        "maxSteeringDeg": 31.979631942234032,
+        "maxPressureDeg": 66.08786078442073,
+        "maxWorkPressureDeg": 66.08786078442073,
+        "maxReturnPressureDeg": 36.839481241427144,
+        "minUndercutMargin": 0.14648992859537546,
+        "intersectionCount": 0,
+        "score": 1.698410343435721,
+        "terms": [
+          0.004902188124898897,
+          1.018730038660695,
+          0.0076141781043587275,
+          0.2018752303558406,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 30,
+      "requestedIterations": 30,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 2.6865909,
+      "peakLocations": null,
+      "stepSummary": null
+    },
+    {
+      "run": "current",
+      "mechanism": "rack",
+      "algorithm": "legacy-v1",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 62.99056700244632,
+        "maxWorkPressureDeg": 62.99056700244632,
+        "maxReturnPressureDeg": 28.263942700411928,
+        "minUndercutMargin": 0.34314663161411907,
+        "intersectionCount": 0,
+        "score": 26.882197475873266,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          8.012558024234906,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.815307956076287,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.17783961305053658,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 4.207790538147995,
+        "rmsHitError": 1.7269176412268763,
+        "routeLength": 6645.770503463955,
+        "driveLength": 6664.792348301309,
+        "maxSteeringDeg": 32.53507077101462,
+        "maxPressureDeg": 63.365301984462256,
+        "maxWorkPressureDeg": 63.365301984462256,
+        "maxReturnPressureDeg": 36.736904069376024,
+        "minUndercutMargin": 0.2962063309922869,
+        "intersectionCount": 0,
+        "score": 26.399724293891442,
+        "terms": [
+          0.022986384169453762,
+          1.0192046479227865,
+          0.19252269490455023,
+          8.23987921537537,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.5659720871066163,
+        "legacyTerms": [
+          0.0033136050439784414,
+          1.0192046479227865,
+          0.0077911525042915755,
+          0.1638072912158351,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 30,
+      "requestedIterations": 30,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 2.4326957,
+      "peakLocations": {
+        "workPressurePhaseDeg": 76.5,
+        "returnPressurePhaseDeg": 351.49999999999994,
+        "minUndercutPhaseDeg": 80
+      },
+      "stepSummary": {
+        "available": false
+      }
+    },
+    {
+      "run": "current",
+      "mechanism": "rack",
+      "algorithm": "peak-gradient-v2",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 62.99056700244632,
+        "maxWorkPressureDeg": 62.99056700244632,
+        "maxReturnPressureDeg": 28.263942700411928,
+        "minUndercutMargin": 0.34314663161411907,
+        "intersectionCount": 0,
+        "score": 26.882197475873266,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          8.012558024234906,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.815307956076287,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.17783961305053658,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 15.999425371806113,
+        "rmsHitError": 7.912225716208005,
+        "routeLength": 6615.672859317968,
+        "driveLength": 6642.59546402813,
+        "maxSteeringDeg": 26.721907298243934,
+        "maxPressureDeg": 55.319700711966505,
+        "maxWorkPressureDeg": 55.319700711966505,
+        "maxReturnPressureDeg": 34.88207682639533,
+        "minUndercutMargin": 0.49830351420221897,
+        "intersectionCount": 0,
+        "score": 18.23287527132525,
+        "terms": [
+          0.3539832533469071,
+          1.0145888311730016,
+          0.09594334561536287,
+          4.259533569586213,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 2.2534528883102714,
+        "legacyTerms": [
+          0.06955923976024808,
+          1.0145888311730016,
+          0.006129790986211114,
+          0.13063119934729023,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 30,
+      "requestedIterations": 30,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 2.6719211,
+      "peakLocations": {
+        "workPressurePhaseDeg": 75,
+        "returnPressurePhaseDeg": 351.49999999999994,
+        "minUndercutPhaseDeg": 79
+      },
+      "stepSummary": {
+        "available": true,
+        "accepted": 30,
+        "smoothingAccepted": 0,
+        "coordinateRescues": 12,
+        "probeRefinements": 0,
+        "lastStepMM": 0.5,
+        "maxStepMM": 15
+      }
+    },
+    {
+      "run": "current",
+      "mechanism": "rack",
+      "algorithm": "video-four-direction-v1",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 62.99056700244632,
+        "maxWorkPressureDeg": 62.99056700244632,
+        "maxReturnPressureDeg": 28.263942700411928,
+        "minUndercutMargin": 0.34314663161411907,
+        "intersectionCount": 0,
+        "score": 26.882197475873266,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          8.012558024234906,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.815307956076287,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.17783961305053658,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 17.37681591268998,
+        "rmsHitError": 11.646300268191084,
+        "routeLength": 6572.563546169258,
+        "driveLength": 6603.720999635008,
+        "maxSteeringDeg": 25.859539309635263,
+        "maxPressureDeg": 53.674204963429425,
+        "maxWorkPressureDeg": 53.674204963429425,
+        "maxReturnPressureDeg": 14.083165951469029,
+        "minUndercutMargin": 0.5227798213241047,
+        "intersectionCount": 0,
+        "score": 17.780321012863435,
+        "terms": [
+          0.486211156889315,
+          1.0079775266888906,
+          0.0838330953904397,
+          3.5900478042406285,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.1359668066857096,
+        "legacyTerms": [
+          0.15070701104096412,
+          1.0079775266888906,
+          0.005569832634263375,
+          0.10278849407890765,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 30,
+      "requestedIterations": 30,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 2.1242466,
+      "peakLocations": {
+        "workPressurePhaseDeg": 74.5,
+        "returnPressurePhaseDeg": 360,
+        "minUndercutPhaseDeg": 78.49999999999999
+      },
+      "stepSummary": {
+        "available": true,
+        "accepted": 30,
+        "smoothingAccepted": 1,
+        "coordinateRescues": 0,
+        "probeRefinements": 0,
+        "lastStepMM": 0.43893262762966667,
+        "maxStepMM": 21.60242549436865
+      }
+    },
+    {
+      "run": "current",
+      "mechanism": "flat",
+      "algorithm": "legacy-v1",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 65.93869409347428,
+        "maxWorkPressureDeg": 65.93869409347428,
+        "maxReturnPressureDeg": 28.26937925052193,
+        "minUndercutMargin": 0.17417448506049737,
+        "intersectionCount": 0,
+        "score": 32.210513306867625,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          9.788663301233026,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.9316952543363357,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.21663537913721947,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 5.124969299900727,
+        "rmsHitError": 2.1004688315728486,
+        "routeLength": 6642.675792071982,
+        "driveLength": 6662.598587746103,
+        "maxSteeringDeg": 31.979631942234032,
+        "maxPressureDeg": 66.08786078442073,
+        "maxWorkPressureDeg": 66.08786078442073,
+        "maxReturnPressureDeg": 36.839481241427144,
+        "minUndercutMargin": 0.14648992859537546,
+        "intersectionCount": 0,
+        "score": 31.493307001299723,
+        "terms": [
+          0.03408586626370439,
+          1.018730038660695,
+          0.18237874736723492,
+          9.900263024246701,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.698410343435721,
+        "legacyTerms": [
+          0.004902188124898897,
+          1.018730038660695,
+          0.0076141781043587275,
+          0.2018752303558406,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 30,
+      "requestedIterations": 30,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 2.2454852,
+      "peakLocations": {
+        "workPressurePhaseDeg": 76.5,
+        "returnPressurePhaseDeg": 351.49999999999994,
+        "minUndercutPhaseDeg": 80
+      },
+      "stepSummary": {
+        "available": false
+      }
+    },
+    {
+      "run": "current",
+      "mechanism": "flat",
+      "algorithm": "peak-gradient-v2",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 65.93869409347428,
+        "maxWorkPressureDeg": 65.93869409347428,
+        "maxReturnPressureDeg": 28.26937925052193,
+        "minUndercutMargin": 0.17417448506049737,
+        "intersectionCount": 0,
+        "score": 32.210513306867625,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          9.788663301233026,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.9316952543363357,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.21663537913721947,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 17.93142780761079,
+        "rmsHitError": 8.875129257299914,
+        "routeLength": 6602.194028024647,
+        "driveLength": 6631.0067258794,
+        "maxSteeringDeg": 26.160543877506942,
+        "maxPressureDeg": 57.18139017807754,
+        "maxWorkPressureDeg": 57.18139017807754,
+        "maxReturnPressureDeg": 21.38244732507,
+        "minUndercutMargin": 0.44830072033956225,
+        "intersectionCount": 0,
+        "score": 21.730773391747682,
+        "terms": [
+          0.44478224728148696,
+          1.012521698777208,
+          0.0905255015199806,
+          5.066604574184224,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 2.513972047383207,
+        "legacyTerms": [
+          0.08751991037086768,
+          1.012521698777208,
+          0.005909904283184608,
+          0.14646387186307264,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 30,
+      "requestedIterations": 30,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 1.9927976,
+      "peakLocations": {
+        "workPressurePhaseDeg": 75,
+        "returnPressurePhaseDeg": 319.5,
+        "minUndercutPhaseDeg": 79
+      },
+      "stepSummary": {
+        "available": true,
+        "accepted": 30,
+        "smoothingAccepted": 0,
+        "coordinateRescues": 7,
+        "probeRefinements": 0,
+        "lastStepMM": 0.0234375,
+        "maxStepMM": 15
+      }
+    },
+    {
+      "run": "current",
+      "mechanism": "flat",
+      "algorithm": "video-four-direction-v1",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 65.93869409347428,
+        "maxWorkPressureDeg": 65.93869409347428,
+        "maxReturnPressureDeg": 28.26937925052193,
+        "minUndercutMargin": 0.17417448506049737,
+        "intersectionCount": 0,
+        "score": 32.210513306867625,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          9.788663301233026,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.9316952543363357,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.21663537913721947,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 19.228676898989647,
+        "rmsHitError": 12.12003593982816,
+        "routeLength": 6574.865833453127,
+        "driveLength": 6607.841051426012,
+        "maxSteeringDeg": 25.051280529060087,
+        "maxPressureDeg": 54.989833416816616,
+        "maxWorkPressureDeg": 54.989833416816616,
+        "maxReturnPressureDeg": 20.17096756443997,
+        "minUndercutMargin": 0.4946592368823307,
+        "intersectionCount": 0,
+        "score": 20.360505272388863,
+        "terms": [
+          0.574041429409405,
+          1.0083306086828219,
+          0.07631004204534551,
+          4.103685808900831,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.3008004331023644,
+        "legacyTerms": [
+          0.163216967980807,
+          1.0083306086828219,
+          0.005305991454858961,
+          0.10775140858004668,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 30,
+      "requestedIterations": 30,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 2.0616045,
+      "peakLocations": {
+        "workPressurePhaseDeg": 75,
+        "returnPressurePhaseDeg": 319.5,
+        "minUndercutPhaseDeg": 79
+      },
+      "stepSummary": {
+        "available": true,
+        "accepted": 30,
+        "smoothingAccepted": 2,
+        "coordinateRescues": 0,
+        "probeRefinements": 0,
+        "lastStepMM": 0.6788294221534938,
+        "maxStepMM": 11.395137020999615
+      }
+    },
+    {
+      "run": "convergence",
+      "mechanism": "rack",
+      "algorithm": "peak-gradient-v2",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 62.99056700244632,
+        "maxWorkPressureDeg": 62.99056700244632,
+        "maxReturnPressureDeg": 28.263942700411928,
+        "minUndercutMargin": 0.34314663161411907,
+        "intersectionCount": 0,
+        "score": 26.882197475873266,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          8.012558024234906,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.815307956076287,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.17783961305053658,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 15.403085355754147,
+        "rmsHitError": 8.307986678583442,
+        "routeLength": 6624.8415881765495,
+        "driveLength": 6651.5260096020675,
+        "maxSteeringDeg": 26.756657286486213,
+        "maxPressureDeg": 55.027084430395405,
+        "maxWorkPressureDeg": 55.027084430395405,
+        "maxReturnPressureDeg": 35.10574111478536,
+        "minUndercutMargin": 0.49878205331393766,
+        "intersectionCount": 0,
+        "score": 17.704761252825328,
+        "terms": [
+          0.34030853458685306,
+          1.015994960238599,
+          0.09449264446916505,
+          4.13869286286872,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 2.3317893881301353,
+        "legacyTerms": [
+          0.07669182516835546,
+          1.015994960238599,
+          0.006136348115686176,
+          0.12773994321329948,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 300,
+      "requestedIterations": 300,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 18.856466,
+      "peakLocations": {
+        "workPressurePhaseDeg": 75,
+        "returnPressurePhaseDeg": 351.49999999999994,
+        "minUndercutPhaseDeg": 79
+      },
+      "stepSummary": {
+        "available": true,
+        "accepted": 296,
+        "smoothingAccepted": 0,
+        "coordinateRescues": 235,
+        "probeRefinements": 4,
+        "lastStepMM": 0.03125,
+        "maxStepMM": 15
+      }
+    },
+    {
+      "run": "convergence",
+      "mechanism": "rack",
+      "algorithm": "video-four-direction-v1",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 62.99056700244632,
+        "maxWorkPressureDeg": 62.99056700244632,
+        "maxReturnPressureDeg": 28.263942700411928,
+        "minUndercutMargin": 0.34314663161411907,
+        "intersectionCount": 0,
+        "score": 26.882197475873266,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          8.012558024234906,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.815307956076287,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.17783961305053658,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 17.373636694469017,
+        "rmsHitError": 9.874970293823212,
+        "routeLength": 6625.704797381615,
+        "driveLength": 6653.894402882464,
+        "maxSteeringDeg": 25.79798105038738,
+        "maxPressureDeg": 53.441541309857065,
+        "maxWorkPressureDeg": 53.441541309857065,
+        "maxReturnPressureDeg": 35.10036384857182,
+        "minUndercutMargin": 0.5268072558371177,
+        "intersectionCount": 0,
+        "score": 17.022795496406054,
+        "terms": [
+          0.44373143366143464,
+          1.0161273432081093,
+          0.0833523160550802,
+          3.5050621057168563,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 2.6402090283389974,
+        "legacyTerms": [
+          0.10835004255987878,
+          1.0161273432081093,
+          0.005855210409857682,
+          0.10405691786420915,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 300,
+      "requestedIterations": 300,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 16.8796074,
+      "peakLocations": {
+        "workPressurePhaseDeg": 75.5,
+        "returnPressurePhaseDeg": 351.49999999999994,
+        "minUndercutPhaseDeg": 79
+      },
+      "stepSummary": {
+        "available": true,
+        "accepted": 295,
+        "smoothingAccepted": 1,
+        "coordinateRescues": 0,
+        "probeRefinements": 5,
+        "lastStepMM": 0.03762081842664852,
+        "maxStepMM": 21.60242549436865
+      }
+    },
+    {
+      "run": "convergence",
+      "mechanism": "flat",
+      "algorithm": "peak-gradient-v2",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 65.93869409347428,
+        "maxWorkPressureDeg": 65.93869409347428,
+        "maxReturnPressureDeg": 28.26937925052193,
+        "minUndercutMargin": 0.17417448506049737,
+        "intersectionCount": 0,
+        "score": 32.210513306867625,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          9.788663301233026,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.9316952543363357,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.21663537913721947,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 17.63273190939927,
+        "rmsHitError": 9.46142788289986,
+        "routeLength": 6606.97847031385,
+        "driveLength": 6635.949251447154,
+        "maxSteeringDeg": 26.026186042292984,
+        "maxPressureDeg": 56.49793023161856,
+        "maxWorkPressureDeg": 56.49793023161856,
+        "maxReturnPressureDeg": 30.774758817571026,
+        "minUndercutMargin": 0.45520852300204595,
+        "intersectionCount": 0,
+        "score": 20.807442229024236,
+        "terms": [
+          0.44492428019118,
+          1.0132554475300926,
+          0.08582920723366208,
+          4.76114566824422,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 2.6371418608342863,
+        "legacyTerms": [
+          0.0994651306481277,
+          1.0132554475300926,
+          0.005848984050093733,
+          0.13953562580882456,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 208,
+      "requestedIterations": 300,
+      "reason": "no_improving_step",
+      "elapsedSeconds": 12.6869391,
+      "peakLocations": {
+        "workPressurePhaseDeg": 114,
+        "returnPressurePhaseDeg": 351,
+        "minUndercutPhaseDeg": 79
+      },
+      "stepSummary": {
+        "available": true,
+        "accepted": 180,
+        "smoothingAccepted": 0,
+        "coordinateRescues": 114,
+        "probeRefinements": 28,
+        "lastStepMM": 0,
+        "maxStepMM": 15
+      }
+    },
+    {
+      "run": "convergence",
+      "mechanism": "flat",
+      "algorithm": "video-four-direction-v1",
+      "before": {
+        "maxHitError": 9.521841954068297,
+        "rmsHitError": 4.337720887925248,
+        "routeLength": 6623.073968909474,
+        "driveLength": 6644.175498985509,
+        "maxSteeringDeg": 31.495512034111172,
+        "maxPressureDeg": 65.93869409347428,
+        "maxWorkPressureDeg": 65.93869409347428,
+        "maxReturnPressureDeg": 28.26937925052193,
+        "minUndercutMargin": 0.17417448506049737,
+        "intersectionCount": 0,
+        "score": 32.210513306867625,
+        "terms": [
+          0.12164588522199796,
+          1.0157238756786036,
+          0.18452445241298487,
+          9.788663301233026,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.9316952543363357,
+        "legacyTerms": [
+          0.020906469446158888,
+          1.0157238756786036,
+          0.0075938039460835575,
+          0.21663537913721947,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "after": {
+        "maxHitError": 19.186399213538387,
+        "rmsHitError": 11.184949198375191,
+        "routeLength": 6599.439403665995,
+        "driveLength": 6629.673024942161,
+        "maxSteeringDeg": 24.98537775013062,
+        "maxPressureDeg": 54.77153457710013,
+        "maxWorkPressureDeg": 54.77153457710013,
+        "maxReturnPressureDeg": 35.24648754570263,
+        "minUndercutMargin": 0.49535681016303423,
+        "intersectionCount": 0,
+        "score": 19.804329693723552,
+        "terms": [
+          0.5480233370572225,
+          1.012099245737616,
+          0.07568926280252042,
+          4.021523959231408,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.0267005656843127,
+        "legacyTerms": [
+          0.13900343174470428,
+          1.012099245737616,
+          0.005609165312797216,
+          0.1117806027948836,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "iterations": 300,
+      "requestedIterations": 300,
+      "reason": "iteration_limit",
+      "elapsedSeconds": 16.88827,
+      "peakLocations": {
+        "workPressurePhaseDeg": 114.49999999999999,
+        "returnPressurePhaseDeg": 351.49999999999994,
+        "minUndercutPhaseDeg": 79
+      },
+      "stepSummary": {
+        "available": true,
+        "accepted": 288,
+        "smoothingAccepted": 2,
+        "coordinateRescues": 4,
+        "probeRefinements": 12,
+        "lastStepMM": 0.0001220703125,
+        "maxStepMM": 11.395137020999615
+      }
+    }
+  ]
+}

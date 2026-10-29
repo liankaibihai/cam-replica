@@ -32,6 +32,9 @@ classdef CamReplicaApp < handle
         ConfirmNodeButton
         CancelNodeButton
         MapEditHelp
+        AlgorithmSelector
+        OptimizationInfo = []
+        OptimizationDirection = []
     end
     properties (Access=private)
         MapEditReference = []
@@ -60,12 +63,15 @@ classdef CamReplicaApp < handle
                 'Position',[70 60 1320 860],'Visible',visibility,'Color',[.95 .96 .98]);
             app.Figure.CloseRequestFcn=@(~,~)app.closeRequested();
             app.Figure.WindowKeyPressFcn=@(~,event)app.routeEditorKey(event);
-            root=uigridlayout(app.Figure,[4 2],'RowHeight',{42,38,'1x',116}, ...
-                'ColumnWidth',{350,'1x'},'Padding',[14 12 14 12],'RowSpacing',10);
-            title=uilabel(root,'Text','工创赛凸轮设计  /  路线、机构与几何校验', ...
+            root=uigridlayout(app.Figure,[5 2],'RowHeight',{34,36,'1x',235,76}, ...
+                'ColumnWidth',{350,'1x'},'Padding',[14 8 14 8],'RowSpacing',6);
+            titleBar=uigridlayout(root,[1 2],'ColumnWidth',{'1x',270},'Padding',[0 0 0 0]);
+            titleBar.Layout.Row=1; titleBar.Layout.Column=[1 2];
+            uilabel(titleBar,'Text','工创赛凸轮设计  /  路线、机构与几何校验', ...
                 'FontSize',20,'FontWeight','bold','FontColor',[.12 .20 .30]);
-            title.Layout.Row=1; title.Layout.Column=1;
-            title.Layout.Column=[1 2];
+            app.AlgorithmSelector=uidropdown(titleBar, ...
+                'Items',{'峰值梯度（独立算法）','四方向加权 + 平滑（视频启发实验）'}, ...
+                'ItemsData',{'peak-gradient-v2','video-four-direction-v1'},'Value','peak-gradient-v2');
             bar=uigridlayout(root,[1 8],'Padding',[0 0 0 0],'ColumnSpacing',8);
             bar.Layout.Row=2; bar.Layout.Column=[1 2];
             labels={'导入 MAT','保存项目','重建路线','计算凸轮','迭代优化','停止','固定凸轮反推','导出候选'};
@@ -80,7 +86,7 @@ classdef CamReplicaApp < handle
             app.Buttons(5).BackgroundColor=[.14 .48 .39]; app.Buttons(5).FontColor=[1 1 1];
             app.Buttons(6).Enable='off';
             side=uigridlayout(root,[3 1],'RowHeight',{30,28,'1x'},'Padding',[0 0 0 0]);
-            side.Layout.Row=3; side.Layout.Column=1;
+            side.Layout.Row=4; side.Layout.Column=1;
             app.Mechanism=uidropdown(side,'Items',{'齿条：h = cδ','平推：h = c tanδ'}, ...
                 'ItemsData',{'rack','flat'},'Value','rack','ValueChangedFcn',@(~,~)app.invalidate());
             app.AutoRatio=uicheckbox(side,'Text','工作段过长时自动增大传动比','Value',true, ...
@@ -107,11 +113,11 @@ classdef CamReplicaApp < handle
             t=uitab(tabs,'Title','评价权重'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
             app.WeightsTable=uitable(g,'ColumnName',{'独立目标项','权重'},'ColumnEditable',[false true], ...
                 'ColumnWidth',{220,85},'ColumnFormat',{'char','numeric'},'RowName',{},'CellEditCallback',@(~,~)app.invalidate());
-            charts=uigridlayout(root,[2 2],'ColumnWidth',{'1x','1x'},'RowHeight',{'1x','1x'}, ...
+            charts=uigridlayout(root,[1 2],'ColumnWidth',{'1x','1x'},'RowHeight',{'1x'}, ...
                 'Padding',[0 0 0 0],'ColumnSpacing',12,'RowSpacing',14);
-            charts.Layout.Row=3; charts.Layout.Column=2;
-            routePanel=uigridlayout(charts,[2 1],'RowHeight',{32,'1x'},'Padding',[0 0 0 0]);
-            routePanel.Layout.Row=1; routePanel.Layout.Column=[1 2];
+            charts.Layout.Row=4; charts.Layout.Column=2;
+            routePanel=uigridlayout(root,[2 1],'RowHeight',{32,'1x'},'Padding',[0 0 0 0]);
+            routePanel.Layout.Row=3; routePanel.Layout.Column=[1 2];
             editorBar=uigridlayout(routePanel,[1 4],'ColumnWidth',{90,90,90,'1x'},'Padding',[0 0 0 0]);
             app.MapEditButton=uibutton(editorBar,'Text','地图编辑','ButtonPushedFcn',@(~,~)app.beginRouteEditing());
             app.ConfirmNodeButton=uibutton(editorBar,'Text','确认落点','Enable','off','ButtonPushedFcn',@(~,~)app.confirmRouteNode());
@@ -119,11 +125,11 @@ classdef CamReplicaApp < handle
             app.MapEditHelp=uilabel(editorBar,'Text','独立三次样条路线节点','FontSize',11);
             app.RouteAxes=uiaxes(routePanel);
             app.RouteAxes.ButtonDownFcn=@(source,~)app.routeMapClick(source.CurrentPoint(1,1:2),source,app.Figure.SelectionType);
-            app.SteeringAxes=uiaxes(charts); app.SteeringAxes.Layout.Row=2; app.SteeringAxes.Layout.Column=1;
-            app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=2; app.CamAxes.Layout.Column=2;
-            bottom=uigridlayout(root,[2 1],'RowHeight',{26,'1x'},'Padding',[0 0 0 0]);
-            bottom.Layout.Row=4; bottom.Layout.Column=[1 2];
-            app.Status=uilabel(bottom,'Text','准备就绪','FontSize',13,'FontWeight','bold');
+            app.SteeringAxes=uiaxes(charts); app.SteeringAxes.Layout.Row=1; app.SteeringAxes.Layout.Column=1;
+            app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=1; app.CamAxes.Layout.Column=2;
+            bottom=uigridlayout(root,[2 1],'RowHeight',{36,'1x'},'Padding',[0 0 0 0]);
+            bottom.Layout.Row=5; bottom.Layout.Column=[1 2];
+            app.Status=uilabel(bottom,'Text','准备就绪','FontSize',12,'FontWeight','bold','WordWrap','on');
             app.Log=uitextarea(bottom,'Editable','off','FontSize',12);
             app.syncInputs(); app.calculate();
             app.message('v0.2：齿条/平推、固定凸轮调参；独立样条与数值优化。尚未完成原版点集或实车对照。');
@@ -178,7 +184,7 @@ classdef CamReplicaApp < handle
             if isempty(app.Result), return; end
             r=app.Result.route; c=app.Result.cam; p=app.Project.params; a=app.RouteAxes;
             cla(a); hold(a,'on');
-            lines=gobjects(1,6);
+            lines=gobjects(1,7);
             lines(1)=plot(a,r.front(:,1),r.front(:,2),'k-','LineWidth',1.5,'Tag','route-front');
             lines(2)=plot(a,r.sensor(:,1),r.sensor(:,2),'r-','LineWidth',1.6,'Tag','route-sensor');
             lines(3)=plot(a,r.drive(:,1),r.drive(:,2),'b-','LineWidth',1.1,'Tag','route-drive');
@@ -186,7 +192,10 @@ classdef CamReplicaApp < handle
             lines(5)=plot(a,app.Project.nodes(:,1),app.Project.nodes(:,2),'o-','Color',[.2 .6 .42],'MarkerSize',4,'Tag','route-nodes');
             app.NodeLine=lines(5);
             lines(6)=scatter(a,app.Project.targets(:,1),app.Project.targets(:,2),45,'k','o');
-            app.RouteLines=lines;
+            lines(7)=quiver(a,NaN,NaN,NaN,NaN,0,'Color',[.85 .15 .65],'LineWidth',1.4,'Tag','optimization-direction');
+            directionLegend=plot(a,NaN,NaN,'->','Color',[.85 .15 .65], ...
+                'HitTest','off','PickableParts','none','Tag','optimization-direction-legend');
+            app.RouteLines=[lines(1:6) directionLegend];
             set(lines,'HitTest','off','PickableParts','none');
             for k=1:size(app.Project.targets,1)
                 text(a,app.Project.targets(k,1),app.Project.targets(k,2),sprintf('  %d',k),'FontSize',10, ...
@@ -194,18 +203,38 @@ classdef CamReplicaApp < handle
             end
             hold(a,'off'); axis(a,'equal'); grid(a,'on');
             xlim(a,p.bounds(1:2)); ylim(a,p.bounds(3:4));
-            xlabel(a,'场地 X / mm'); ylabel(a,'场地 Y / mm'); title(a,'路线与有序打卡点');
-            legend(a,lines,{'前轮','传感器','主动轮','从动轮','路线节点','打卡点'}, ...
-                'Location','southoutside','NumColumns',3,'AutoUpdate','off');
+            xlabel(a,'场地 X / mm'); ylabel(a,'场地 Y / mm');
+            direction=app.OptimizationDirection;
+            if app.Busy && ~app.SimulationMode && ~isempty(direction) && strcmp(direction.event,'searching') ...
+                    && isequaln(direction.directionBaseNodes,app.Project.nodes) && any(direction.descentDirection(:))
+                vectors=direction.descentDirection; origins=direction.directionBaseNodes;
+                visible=vecnorm(vectors,2,2)>1e-12;
+                scale=.035*hypot(diff(p.bounds(1:2)),diff(p.bounds(3:4)))/max(vecnorm(vectors,2,2));
+                set(lines(7),'XData',origins(visible,1),'YData',origins(visible,2), ...
+                    'UData',scale*vectors(visible,1),'VData',scale*vectors(visible,2));
+                title(a,sprintf('路线与打卡点 · 第 %d 轮本版搜索方向（统一显示放大，非位移）',direction.directionIteration));
+            else
+                title(a,'路线与有序打卡点 · AI方向：无有效数据');
+            end
+            legend(a,app.RouteLines,{'前轮','传感器','主动轮','从动轮','路线节点','打卡点','AI梯度方向（本版搜索）'}, ...
+                'Location','southoutside','NumColumns',4,'AutoUpdate','off');
             a=app.SteeringAxes; legend(a,'off'); cla(a); plot(a,r.frontDistance,rad2deg(r.steering),'Color',[.15 .40 .70],'LineWidth',1.4);
             yline(a,p.maxSteeringDeg,'--'); yline(a,-p.maxSteeringDeg,'--'); grid(a,'on');
             title(a,'前轮转角（左转为正）'); xlabel(a,'前轮行程 / mm'); ylabel(a,'转角 / deg');
             a=app.CamAxes; cla(a); hold(a,'on');
-            plot(a,c.pitch(:,1),c.pitch(:,2),'Color',[.2 .4 .75],'LineWidth',1.2);
-            plot(a,c.actual(:,1),c.actual(:,2),'Color',[.85 .25 .20],'LineWidth',1.5);
-            plot(a,c.actual(~c.workingMask,1),c.actual(~c.workingMask,2),'--','Color',[.5 .5 .5],'LineWidth',1.5);
+            camLines=gobjects(1,4);
+            camLines(1)=plot(a,c.pitch(:,1),c.pitch(:,2),'Color',[.2 .4 .75],'LineWidth',1.2);
+            camLines(2)=plot(a,c.actual(:,1),c.actual(:,2),'Color',[.85 .25 .20],'LineWidth',1.5);
+            camLines(3)=plot(a,c.actual(~c.workingMask,1),c.actual(~c.workingMask,2),'--','Color',[.5 .5 .5],'LineWidth',1.5);
+            reference=p.referenceDiameter/2;
+            if app.SimulationMode, reference=app.SimulationReference.project.params.referenceDiameter/2; end
+            angle=linspace(0,2*pi,257);
+            camLines(4)=plot(a,reference*cos(angle),reference*sin(angle),':','Color',[.2 .2 .2],'LineWidth',1.1,'Tag','zero-reference-circle');
+            plot(a,0,0,'k+','MarkerSize',7,'Tag','cam-center');
             hold(a,'off'); axis(a,'equal'); grid(a,'on'); xlabel(a,'X / mm'); ylabel(a,'Y / mm');
-            title(a,'理论与实际凸轮（含回程）'); legend(a,{'理论','实际候选','回程'},'Location','southoutside','NumColumns',3);
+            title(a,'凸轮（设计零位参考，含回程）');
+            legend(a,camLines,{'理论','实际候选','回程','零位参考圆 d/2（原版称基圆）'}, ...
+                'Location','southoutside','NumColumns',2,'FontSize',8,'AutoUpdate','off');
             m=app.Result.metrics;
             app.Status.Text=sprintf('最大打卡偏差 %.2f mm    最大压力角 %.1f°    目标函数 %.4f    轮廓交叉 %g', ...
                 m.maxHitError,m.maxPressureDeg,m.score,m.intersectionCount);
@@ -223,6 +252,7 @@ classdef CamReplicaApp < handle
                 app.Status.Text='反推参数已修改，凸轮保持固定；点击“更新反推”查看路线变化。';
                 return;
             end
+            app.OptimizationDirection=[]; app.OptimizationInfo=[];
             app.Result=[]; app.Status.Text='输入已修改，请重新计算；当前图像为上次结果。';
         end
         function toggleSimulation(app)
@@ -261,8 +291,8 @@ classdef CamReplicaApp < handle
             hold(app.RouteAxes,'on');
             trial=plot(app.RouteAxes,sim.sensor(:,1),sim.sensor(:,2),'k--','LineWidth',1.5,'DisplayName','固定凸轮试调');
             hold(app.RouteAxes,'off');
-            legend(app.RouteAxes,[app.RouteLines trial],{'前轮','传感器','主动轮','从动轮','路线节点','打卡点','固定凸轮试调'}, ...
-                'Location','southoutside','NumColumns',3,'AutoUpdate','off');
+            legend(app.RouteAxes,[app.RouteLines trial],{'前轮','传感器','主动轮','从动轮','路线节点','打卡点','AI梯度方向（无数据）','固定凸轮试调'}, ...
+                'Location','southoutside','NumColumns',4,'AutoUpdate','off');
             a=app.SteeringAxes; cla(a);
             plot(a,rad2deg(sim.phase),rad2deg(ref.result.route.steering),'b-', ...
                 rad2deg(sim.phase),rad2deg(sim.steering),'r--'); grid(a,'on');
@@ -469,15 +499,35 @@ classdef CamReplicaApp < handle
             if app.Busy || app.SimulationMode || app.MapEditMode, return; end
             app.readInputs(); app.Busy=true; app.StopRequested=false; app.setBusy(true);
             cleanup=onCleanup(@()app.finishBusy());
-            [project,history]=camdesign.optimize(app.Project,@app.optimizationUpdate);
-            app.Project=project; app.History=history; app.syncInputs(); app.calculate();
-            app.message(sprintf('优化结束：目标 %.5f → %.5f；共 %d 次评价。',history(1).score,history(end).score,history(end).evaluations));
+            app.OptimizationDirection=[]; app.OptimizationInfo=[];
+            [project,history,info]=camdesign.optimize(app.Project,@app.optimizationUpdate,app.AlgorithmSelector.Value);
+            app.Project=project; app.History=history; app.OptimizationDirection=[]; app.OptimizationInfo=info;
+            app.syncInputs(); app.calculate();
+            reasons=struct('iteration_limit','达到请求轮数','user_stop','用户停止', ...
+                'gradient_tolerance','梯度与候选均无改善','no_improving_step','多尺度搜索无改善');
+            text=reasons.(info.reason);
+            m=app.Result.metrics; p=app.Project.params;
+            verdict='本模型检查通过，仍待外部验证';
+            if m.maxHitError>p.hitTolerance || m.maxPressureDeg>p.maxPressureDeg || m.maxSteeringDeg>p.maxSteeringDeg ...
+                    || m.minUndercutMargin<=0 || m.intersectionCount>0, verdict='未达标候选'; end
+            app.Status.Text=sprintf('优化结束 %d/%d 轮：%s · %s\n工作/回程压力角 %.1f°/%.1f°，阈值 %.1f°；最大打卡偏差 %.2f mm', ...
+                info.iterations,info.requestedIterations,text,verdict,app.Result.metrics.maxWorkPressureDeg, ...
+                app.Result.metrics.maxReturnPressureDeg,app.Project.params.maxPressureDeg,app.Result.metrics.maxHitError);
+            app.message(sprintf('%s，%d/%d 轮，原因：%s；%.3f 秒，%d 次评价；目标 %.6g → %.6g。', ...
+                info.algorithm,info.iterations,info.requestedIterations,text,info.elapsedSeconds,info.evaluations,history(1).score,history(end).score));
+            for k=1:numel(app.Result.warnings), app.message(['结束时仍需处理：',app.Result.warnings{k}]); end
         end
         function stop=optimizationUpdate(app,iteration,project,history)
             app.Project=project; app.NodesTable.Data=project.nodes;
+            app.OptimizationDirection=history(end);
             app.Result=camdesign.evaluate(project,false); app.render();
-            app.Status.Text=sprintf('优化第 %d 轮 / %d    当前目标 %.5f    最大偏差 %.2f mm', ...
-                iteration,project.params.iterations,history(end).score,history(end).maxHitError);
+            if strcmp(history(end).event,'searching')
+                app.Status.Text=sprintf('搜索第 %d/%d 轮（已完成 %d 轮）    当前目标 %.5f    最大偏差 %.2f mm', ...
+                    history(end).directionIteration,project.params.iterations,iteration,history(end).score,history(end).maxHitError);
+            else
+                app.Status.Text=sprintf('已完成 %d/%d 轮    当前目标 %.5f    最大偏差 %.2f mm', ...
+                    iteration,project.params.iterations,history(end).score,history(end).maxHitError);
+            end
             drawnow; stop=app.StopRequested;
         end
         function setBusy(app,busy)
@@ -490,6 +540,7 @@ classdef CamReplicaApp < handle
             app.Buttons(6).Enable=app.Busy;
             app.Buttons(7).Enable=~app.Busy && ~app.MapEditMode;
             app.Mechanism.Enable=editable; app.AutoRatio.Enable=editable;
+            app.AlgorithmSelector.Enable=editable;
             for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=editable; end
             app.ParamsTable.ColumnEditable=[false ~app.Busy && ~app.MapEditMode];
             app.TargetsTable.ColumnEditable=[editable editable];
