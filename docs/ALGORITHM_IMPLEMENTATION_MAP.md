@@ -44,6 +44,8 @@
 
 ## 对照与尚未完成
 
+新增第一代 `r2.m` 的逐点对照单独见[第一代源码核对](FIRST_GENERATION_SOURCE.md)。该脚本输入现成路线，未提供本表缺少的Bezier、评分和优化调度；其厚度补偿、相位和符号不同，兼容入口与默认模型分开。
+
 基线同输入 rack/flat 各请求并执行 30 轮，核心耗时约 2.7 秒；实际达到预算，不是未执行训练。旧分数下降但工作压力角由 62.99°/65.94°升到 63.37°/66.09°，回程升到约 36.7°/36.8°，均不能称为合格优化。
 
 本轮检查入口为 `check_optimizer_quality`（各路径 30 轮）、`check_optimizer_quality('convergence')`（新路径 300 轮）、`check_plot_layout`、`run_tests` 及既有界面回归。JSON、MAT、前后图保存在 `outputs/optimizer_quality/`，具体实际结果见 [验证记录](VALIDATION.md)。首轮错误地逐节点归一化的试验保存在 `attempt1_per_node.json` 与 `.attempt1` 产物，只作未采用的实验记录，不作为视频算法实现证据。

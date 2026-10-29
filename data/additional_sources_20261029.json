@@ -1,0 +1,210 @@
+{
+  "date": "2026-10-29",
+  "archives": [
+    {
+      "name": "【B站野生机设小佬】阿克曼车辆路径规划算法.zip",
+      "sha256": "c7d1c5563f1d93d285239b80925a380a980ec4ac7c961c6701586cce4e56a078",
+      "bytes": 75865,
+      "entries": [
+        {
+          "name": "main.m",
+          "bytes": 20712,
+          "compressed": 4494
+        },
+        {
+          "name": "使用手册_技术交流.txt",
+          "bytes": 718,
+          "compressed": 550
+        },
+        {
+          "name": "参考图像.jpg",
+          "bytes": 76973,
+          "compressed": 70259
+        }
+      ],
+      "local_readable_files": [
+        {
+          "path": "local/additional_sources_20261029/1/main.m",
+          "sha256": "3c702c3e501cc267024f470a99aa15618dc0e8d0fa75aa8f9996fb3da06681f9",
+          "bytes": 20712
+        },
+        {
+          "path": "local/additional_sources_20261029/1/使用手册_技术交流.txt",
+          "sha256": "aab4422542d9262d214563856314f3c0f8bd321f4e801c41e5635f8792bc8e16",
+          "bytes": 718
+        }
+      ]
+    },
+    {
+      "name": "【B站野生机设小佬】任意阶贝塞尔曲线.zip",
+      "sha256": "fbe8cb4251516e8dbd7c7ba7523a0fe5dd0a82f60561b755626c9d4521dc6724",
+      "bytes": 1601,
+      "entries": [
+        {
+          "name": "Bezier_Curve.m",
+          "bytes": 1077,
+          "compressed": 570
+        },
+        {
+          "name": "使用手册_技术交流.txt",
+          "bytes": 852,
+          "compressed": 639
+        }
+      ],
+      "local_readable_files": [
+        {
+          "path": "local/additional_sources_20261029/2/Bezier_Curve.m",
+          "sha256": "36664c57c112e408d9ce059c5ee153d7c8a561e45df3a8e0e5924904fece1477",
+          "bytes": 1077
+        },
+        {
+          "path": "local/additional_sources_20261029/2/使用手册_技术交流.txt",
+          "sha256": "a717a3f9dd8c6f251bbbc0271c3004619018b1ac24722472ff8b5427ea7da05a",
+          "bytes": 852
+        }
+      ]
+    },
+    {
+      "name": "【B站野生机设小佬】摇臂共轭凸轮设计APP 1.1.1.zip",
+      "sha256": "21ae974696936e03e9c966fea4397adc4309532e6167ed88e4e4d36c49810ccd",
+      "bytes": 1126332,
+      "entries": [
+        {
+          "name": "凸轮.mat",
+          "bytes": 913,
+          "compressed": 592
+        },
+        {
+          "name": "参数示意图.png",
+          "bytes": 209277,
+          "compressed": 196998
+        },
+        {
+          "name": "摇臂共轭凸轮设计APP 1.1.1.exe",
+          "bytes": 7268409,
+          "compressed": 918806
+        },
+        {
+          "name": "软件更新日志.xlsx",
+          "bytes": 10449,
+          "compressed": 9080
+        }
+      ],
+      "local_readable_files": [
+        {
+          "path": "local/additional_sources_20261029/3/凸轮.mat",
+          "sha256": "dda9928d8b2079cbec1ea43ce7c957884aa26d571ca5856abbd6e77256b6504b",
+          "bytes": 913
+        },
+        {
+          "path": "local/additional_sources_20261029/3/参数示意图.png",
+          "sha256": "da7163566f30d1d127bab084a7b1d6a191d4f382fab580d2e473e585618eade9",
+          "bytes": 209277
+        },
+        {
+          "path": "local/additional_sources_20261029/3/软件更新日志.xlsx",
+          "sha256": "9d59c2a88a9ff5bd37df2e04ee768a87d55d45970d46129fb947eab1cd577a3e",
+          "bytes": 10449
+        }
+      ]
+    },
+    {
+      "name": "常用运动规律凸轮设计.zip",
+      "sha256": "14c1467112e64ef22ed574864ecad5d5ef66a36b31d2226b0280be439fad36cc",
+      "bytes": 2410,
+      "entries": [
+        {
+          "name": "常用运动规律凸轮设计/",
+          "bytes": 0,
+          "compressed": 2
+        },
+        {
+          "name": "常用运动规律凸轮设计/main_traditional.m",
+          "bytes": 7311,
+          "compressed": 2042
+        }
+      ],
+      "local_readable_files": [
+        {
+          "path": "local/additional_sources_20261029/4/main_traditional.m",
+          "sha256": "0d5f902a8ecf2d1a6956924b00a18989f869b53c4bdcbd694cd49c6b72660326",
+          "bytes": 7311
+        }
+      ]
+    },
+    {
+      "name": "简单的凸轮设计.zip",
+      "sha256": "0f1745212787c22ec46e019fa3c840f7a00270dd5e7fee34544cace5f37e38cf",
+      "bytes": 1462,
+      "entries": [
+        {
+          "name": "main.m",
+          "bytes": 3322,
+          "compressed": 1316
+        }
+      ],
+      "local_readable_files": [
+        {
+          "path": "local/additional_sources_20261029/5/main.m",
+          "sha256": "06d2785c0fdc55e45ad336b5161596fbab17aa28660959bf50fd520c139ef6ab",
+          "bytes": 3322
+        }
+      ]
+    }
+  ],
+  "unavailable_video_recovered_source": {
+    "archive": "【B站野生机设小佬】任意阶贝塞尔曲线.zip",
+    "reference_in_manual": "https://www.bilibili.com/video/BV1obN9enEtd",
+    "actual_script": "Bezier_Curve.m",
+    "scope": "Single Bernstein curve with Pascal coefficients; no overlapping superposition or score."
+  },
+  "scope": "Source audit; original files unchanged; no app/executable launch. Runtime Bezier validation recorded separately.",
+  "bezier_validation": {
+    "date": "2026-10-29",
+    "release": "2025b",
+    "sourceSHA256": "36664c57c112e408d9ce059c5ee153d7c8a561e45df3a8e0e5924904fece1477",
+    "sourceMaxAbsError": 0,
+    "sourceBitExact": true,
+    "sourceControlPoints": [
+      [
+        0.7283389573173962,
+        0.81505426474056
+      ],
+      [
+        0.7353563504356312,
+        0.7198429729561326
+      ],
+      [
+        0.6283819633893215,
+        0.8561385570166057
+      ],
+      [
+        0.26241016134384165,
+        0.8323368157916449
+      ],
+      [
+        0.8616965750184952,
+        0.9904886734101035
+      ],
+      [
+        0.9300703619997961,
+        0.19424284342689013
+      ]
+    ],
+    "sourceSegments": 1000,
+    "deCasteljauCases": 12,
+    "maxIndependentError": 5.684341886080802e-14,
+    "passedGroups": 4,
+    "checks": [
+      "unmodified SHA256-locked source: same controls, coefficients and 1001 points are bit exact",
+      "independent de Casteljau, degrees 0/1/2/5/12/30 in 2D and 3D, endpoints and sample count",
+      "hand-computed linear and quadratic curves with midpoint and Pascal coefficients",
+      "affine rigid transform and control-order reversal"
+    ],
+    "scope": "Single Bernstein curve only; not overlapping superposition or 3.1.2 equivalence.",
+    "log": "local/matlab_2076782f3cb949bf9946dae94dcf4945.log",
+    "log_sha256": "0a52b5f17575068160d6d07792499127b3b74cc2dfd710e1faedfab7c87b4f2a",
+    "command": "./run_matlab_checks.ps1 -Task 'check_bezier_source;'",
+    "exit_code": 0
+  }
+}

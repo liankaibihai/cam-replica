@@ -19,6 +19,8 @@
 | [拆解说明](REVERSE_ENGINEERING.md) | 独立模型、字段映射、公式、复现边界 | 平推、齿条、坐标、传动比、包络 |
 | [视频算法实现映射](ALGORITHM_IMPLEMENTATION_MAP.md) | 视频步骤、实际代码、独立补充及尚未恢复部分逐项对应 | 候选整套加权、邻点平滑、Bezier、十二项评分 |
 | [长教程源码审计](BEZIER_SOURCE_AUDIT.md) | 可读函数片段、接口、原始特征及未知聚合依赖 | Simulation_cal、Squares_standard_sum、570–588秒 |
+| [第一代源码与兼容模块](FIRST_GENERATION_SOURCE.md) | 原r2数值链、9路线零差、版本差异及复跑方式 | firstGenerationCam、c+f、两遍推进、后轴弦长 |
+| [五份新增算法包](ADDITIONAL_SOURCE_PACKAGES.md) | 单Bezier源码恢复、阿克曼/共轭/通用凸轮资料分类 | BV1obN9enEtd、杨辉三角、de Casteljau |
 | [原版实操与对照](REFERENCE_COMPARISON.md) | 原版窗口功能、资料/视频证据、同输入比较进展 | 3.1.2、2.5.1、Bezier、评分、截图、时间戳 |
 | [验证记录](VALIDATION.md) | 实际执行的检查与结果、尚未验证事项 | run_tests、check_app、误差、收敛 |
 | [功能证据与复现进展](FEATURE_STATUS.md) | 原版实操、视频、更新日志对应的功能状态与实施次序 | F01～F13、地图编辑、太阳能、Bezier、局部最优 |
@@ -36,6 +38,8 @@
 | [固定节点采样诊断](../data/route_resolution_20261029.json) / [检查入口](../check_route_resolution.m) | 四档网格的压力角、轮廓与传感器轨迹稳定性；不重新优化 |
 | [视频源码证据](../data/bezier_source_audit_20261029.json) / [特征检查](../check_video251_features.m) | 2.5.1可见原始特征、7组验证；不含完整评分 |
 | [补充资料审计](../data/algorithm_materials_audit_20261029.json) | 下架教程、重叠曲线板书、另一份凸轮代码压缩包的覆盖边界 |
+| [第一代数值证据](../data/first_generation_20261029.json) / [对照检查](../check_first_generation.m) | 源文件指纹、九路线逐点结果及5组手算/边界检查 |
+| [五包来源与Bezier验证](../data/additional_sources_20261029.json) / [对照检查](../check_bezier_source.m) | 包内文件清单、原曲线零差及独立递推验证 |
 | [计算模块](../+camdesign) / [界面](../CamReplicaApp.m) | 生产实现；具体行为以源码和相关验证为准 |
 | [本地工具](../tools) | 视频解码、转写及质量检查等辅助处理 |
 

@@ -1,5 +1,14 @@
 # 验证记录
 
+## 新取得的原始脚本对照（2026-10-29）
+
+MATLAB R2025b独立batch，原文件只读，运行哈希核对后的副本：
+
+- `check_first_generation`：Untitled1～9共9条路线，后轴/左右轮轨迹、u/alpha/p/all、后轴段长/累计长度九类数组全部逐点一致，最大差0；5组手算、f分支敏感性和退化边界检查通过。日志 `local/matlab_e0fe32812f5d42338a129afbdd9007f0.log`，退出码0。图及原r2实现均已主审；详见[第一代证据](FIRST_GENERATION_SOURCE.md)。
+- `check_bezier_source`：原脚本默认5阶/1001点及系数逐项相同；12个不同阶数/维度案与独立de Casteljau的最大差5.6843e-14（阈值1e-10），手算线性/二次和变换检查通过，共4组。日志 `local/matlab_2076782f3cb949bf9946dae94dcf4945.log`，退出码0；[证据摘要](../data/additional_sources_20261029.json)记录输入控制点。
+
+第一代兼容和单曲线数值验证已完成。3.1.2整套算法、重叠融合、评分调度、实车精度未因此通过；当前默认UI/计算没有替换。其余新资料的交互脚本、动画和共轭APP本轮仅阅读而未运行。
+
 ## 2.5.1可见原始特征（2026-10-29）
 
 `check_video251_features` 在R2025b通过7组检查，日志 `local/matlab_9f3146a35fd642f3bf4af8d6a0173b93.log`，退出码0。覆盖手算长度、无符号夹角、有符号前轮角的一/二阶原始差分、刚体变换及缩放不变量、输入边界，绝对误差阈值1e-12。`camdesign.video251Features` 没有聚合算子或评分输出，生产评估未调用它；不能解读为完整评分已恢复。代码画面和具体断言见[源码审计](BEZIER_SOURCE_AUDIT.md)，逐次记录见[CHG-005](changes/2026/2026-10-29-005-source-audit.md)。

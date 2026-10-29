@@ -1,0 +1,1005 @@
+{
+  "schema": "first-generation-source-benchmark-1",
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "work_start_baseline_git": "541cae8",
+  "final_validation_baseline_git": "34c4e5b",
+  "source_label": "User-provided first-generation MATLAB cam simulation code",
+  "source_version_status": "First-generation label supplied by user; no 3.1.2 or 2.5.1 equivalence claim",
+  "source_directory": "F:/许昊阳/竞赛/2027工创/第一代MATLAB凸轮仿真代码",
+  "source_files": [
+    {
+      "name": "r1.m",
+      "source": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\r1.m",
+      "bytes": 53,
+      "sha256": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+      "fixture": "local/first_generation_source/run_fixture/r1.m",
+      "fixture_sha256": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+      "source_sha256_after_execution": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+      "fixture_sha256_after_execution": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8"
+    },
+    {
+      "name": "r2.m",
+      "source": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\r2.m",
+      "bytes": 4233,
+      "sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+      "fixture": "local/first_generation_source/run_fixture/r2.m",
+      "fixture_sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+      "source_sha256_after_execution": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+      "fixture_sha256_after_execution": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e"
+    },
+    {
+      "name": "routes.mat",
+      "source": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\routes.mat",
+      "bytes": 127256,
+      "sha256": "a99b9e626d716eed786bbe19750163857b366b3a8019dbe32196acf1d32cc1e2",
+      "fixture": "local/first_generation_source/run_fixture/routes.mat",
+      "fixture_sha256": "a99b9e626d716eed786bbe19750163857b366b3a8019dbe32196acf1d32cc1e2",
+      "source_sha256_after_execution": "a99b9e626d716eed786bbe19750163857b366b3a8019dbe32196acf1d32cc1e2",
+      "fixture_sha256_after_execution": "a99b9e626d716eed786bbe19750163857b366b3a8019dbe32196acf1d32cc1e2"
+    },
+    {
+      "name": "代码运行示范.docx",
+      "source": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\代码运行示范.docx",
+      "bytes": 996549,
+      "sha256": "7bbd674abadd48d2d2ad45240fd6c4467d2d420e6391fff8bc2e47d46a4d0f96",
+      "fixture": "local/first_generation_source/run_fixture/代码运行示范.docx",
+      "fixture_sha256": "7bbd674abadd48d2d2ad45240fd6c4467d2d420e6391fff8bc2e47d46a4d0f96",
+      "source_sha256_after_execution": "7bbd674abadd48d2d2ad45240fd6c4467d2d420e6391fff8bc2e47d46a4d0f96",
+      "fixture_sha256_after_execution": "7bbd674abadd48d2d2ad45240fd6c4467d2d420e6391fff8bc2e47d46a4d0f96"
+    },
+    {
+      "name": "说明.txt",
+      "source": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\说明.txt",
+      "bytes": 2971,
+      "sha256": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+      "fixture": "local/first_generation_source/run_fixture/说明.txt",
+      "fixture_sha256": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+      "source_sha256_after_execution": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+      "fixture_sha256_after_execution": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe"
+    }
+  ],
+  "all_sources_and_fixtures_hash_unchanged_after_execution": true,
+  "fixture_directory": "local/first_generation_source/run_fixture",
+  "fixture_manifest": {
+    "path": "local/first_generation_source/source_manifest.json",
+    "bytes": 3454,
+    "sha256": "5733bd4cdaac3a5ba3eaeb8afb1d9f4048dfdabb1ff5abfa8ec7ff884d7e40d9"
+  },
+  "source_roles": {
+    "r1.m": "Initialization only: clear workspace, load routes, reset x00/y00 to empty; not executed for this benchmark.",
+    "r2.m": "Complete supplied discrete-route numeric chain plus plotting and all array construction; executed unmodified.",
+    "routes.mat": "9 tables Untitled1..Untitled9 (1000/2000 rows, 3 columns) plus empty x00/y00; first two table columns used in original order.",
+    "代码运行示范.docx": "Commander inspected demonstration; Untitled1 first two columns selected consistently with that workflow.",
+    "说明.txt": "Video index; not a replacement for numeric source."
+  },
+  "mat_file_header": "MATLAB 5.0 MAT-file, Platform: PCWIN64, Created on: Tue Dec  1 23:37:39 2020",
+  "original_defaults_mm": {
+    "a": 150,
+    "b": 81.5,
+    "c": 23.5,
+    "d": 200,
+    "f": 3,
+    "initialRear": [
+      -1900,
+      150
+    ]
+  },
+  "source_algorithm": {
+    "route_generation_or_scoring_present": false,
+    "rear_update": "Original exact-X branch and atan(dy/dx) plus X-sign branch; next front point at distance a from new rear midpoint.",
+    "passes": 2,
+    "pass_transition": "End rear/left/right from pass one initialize pass two; reprocess front points 2..N.",
+    "steering": "acos(dot(v1,v2)/(norm(v1)*norm(v2))) without clamp, v1=front(i)-rear(i), v2=front(i+1)-front(i)",
+    "positive_cross_z": "negate steering angle; m=c+f",
+    "nonpositive_cross_z": "keep positive acos angle; m=c",
+    "lift": "u=m*tan(t); append first displacement at N",
+    "phase": "alpha=sequential cumulative rear-midpoint chord length / sum(rear chords) * 2*pi",
+    "radius": "p=u+d/2",
+    "all": "(N-1)-by-4 [index,p*cos(alpha),p*sin(alpha),0]; omit repeated endpoint",
+    "length_unit": "mm",
+    "angle_unit": "rad",
+    "ordinary_left_turn_sign": "negative"
+  },
+  "compatibility_module": {
+    "implementation": {
+      "path": "+camdesign/firstGenerationCam.m",
+      "bytes": 4189,
+      "sha256": "2733f5f4dc091f4d2ce29194309f86c25a88226d7493ecc465716abe58cd7f87"
+    },
+    "check": {
+      "path": "check_first_generation.m",
+      "bytes": 9311,
+      "sha256": "73c833820901e0857d1fb9264fb9ca65369bf35d6c7302bfe026646c69ec8aee"
+    },
+    "documentation": {
+      "path": "docs/FIRST_GENERATION_SOURCE.md",
+      "bytes": 10953,
+      "sha256": "d1f9eb4b5e4fee22d3288ace63e45c76ee5d6e4d7a1c4ca6407c2a06c49cab33"
+    },
+    "interface": "result=camdesign.firstGenerationCam(frontPath,a=150,b=81.5,c=23.5,d=200,f=3,initialRear=[-1900,a])",
+    "added_input_guards_not_source_claims": [
+      "N-by-2 finite real double front path, N>=2",
+      "a,b,c,d finite positive scalar",
+      "f finite nonnegative scalar",
+      "optional finite real 1-by-2 initialRear"
+    ],
+    "default_production_algorithm_called_or_changed": false,
+    "existing_evaluate_route_lift_ui_optimizer_changed_by_this_work": false
+  },
+  "validation": {
+    "runtime": "MATLAB R2025b",
+    "command": "./run_matlab_checks.ps1 -Task 'check_first_generation;'",
+    "independent_batch_required": true,
+    "initial_figure_count_required": 0,
+    "r2_and_routes_fixed_sha256_checked_before_and_after": true,
+    "source_script_modified": false,
+    "user_windows_operated": false,
+    "original_script_batch_figures_visible": false,
+    "report": {
+      "path": "outputs/first_generation/verification.json",
+      "bytes": 16716,
+      "sha256": "901b71fae47a0d9df96a0fc839a933dea22909dc87cf2e8c06b399e910b62a66"
+    },
+    "routes_passed": 9,
+    "input_points_compared": 15000,
+    "array_comparisons": 81,
+    "numeric_elements_compared": 224955,
+    "absolute_tolerance": 1e-12,
+    "max_absolute_error": 0,
+    "all_arrays_bit_exact": true,
+    "arrays_compared": [
+      "rear",
+      "leftTrack",
+      "rightTrack",
+      "u",
+      "alpha",
+      "p",
+      "all",
+      "rearStepLengthsMM",
+      "rearDistanceMM"
+    ],
+    "routes": [
+      {
+        "name": "Untitled1",
+        "rows": 2000,
+        "columns": 3,
+        "allRows": 1999,
+        "metrics": {
+          "rear": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 7996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 1999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          -2292.93,
+          0
+        ],
+        "inputLastXY": [
+          -2292.85,
+          6.50424
+        ],
+        "inputEndpointGapMM": 6.504731968159795,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 12606.192162905087,
+        "liftRangeMM": [
+          -14.918478187947494,
+          13.215422240422487
+        ],
+        "radiusRangeMM": [
+          85.0815218120525,
+          113.21542224042248
+        ],
+        "negativeSteeringSteps": 999,
+        "positiveSteeringSteps": 1000,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled1.mat"
+      },
+      {
+        "name": "Untitled2",
+        "rows": 2000,
+        "columns": 3,
+        "allRows": 1999,
+        "metrics": {
+          "rear": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 7996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 1999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          -1926.48,
+          2.7482e-14
+        ],
+        "inputLastXY": [
+          -1926.47,
+          5.36812
+        ],
+        "inputEndpointGapMM": 5.36812931423971,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 10462.914177670913,
+        "liftRangeMM": [
+          -12.939497570385278,
+          11.474645103048205
+        ],
+        "radiusRangeMM": [
+          87.06050242961473,
+          111.4746451030482
+        ],
+        "negativeSteeringSteps": 999,
+        "positiveSteeringSteps": 1000,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled2.mat"
+      },
+      {
+        "name": "Untitled3",
+        "rows": 1000,
+        "columns": 3,
+        "allRows": 999,
+        "metrics": {
+          "rear": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 3996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          -1936.28,
+          -1.73695e-14
+        ],
+        "inputLastXY": [
+          -1936.28,
+          10.9364
+        ],
+        "inputEndpointGapMM": 10.936400000000019,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 10625.184432947479,
+        "liftRangeMM": [
+          -16.299152553683687,
+          7.312489579025144
+        ],
+        "radiusRangeMM": [
+          83.70084744631632,
+          107.31248957902514
+        ],
+        "negativeSteeringSteps": 629,
+        "positiveSteeringSteps": 370,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled3.mat"
+      },
+      {
+        "name": "Untitled4",
+        "rows": 2000,
+        "columns": 3,
+        "allRows": 1999,
+        "metrics": {
+          "rear": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 7996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 1999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          -2287.51,
+          0
+        ],
+        "inputLastXY": [
+          -2287.4,
+          6.38919
+        ],
+        "inputEndpointGapMM": 6.3901368417350835,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 12308.572271048934,
+        "liftRangeMM": [
+          -17.35407838508624,
+          15.373180354937368
+        ],
+        "radiusRangeMM": [
+          82.64592161491376,
+          115.37318035493738
+        ],
+        "negativeSteeringSteps": 999,
+        "positiveSteeringSteps": 1000,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled4.mat"
+      },
+      {
+        "name": "Untitled5",
+        "rows": 2000,
+        "columns": 3,
+        "allRows": 1999,
+        "metrics": {
+          "rear": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 7996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 1999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          0,
+          -275
+        ],
+        "inputLastXY": [
+          -11.2585,
+          -275.366
+        ],
+        "inputEndpointGapMM": 11.264447534166955,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 21608.725256935,
+        "liftRangeMM": [
+          -21.479357370892735,
+          16.216805064244326
+        ],
+        "radiusRangeMM": [
+          78.52064262910727,
+          116.21680506424433
+        ],
+        "negativeSteeringSteps": 1256,
+        "positiveSteeringSteps": 743,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled5.mat"
+      },
+      {
+        "name": "Untitled6",
+        "rows": 1000,
+        "columns": 3,
+        "allRows": 999,
+        "metrics": {
+          "rear": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 3996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          -2271.8,
+          1.4011e-13
+        ],
+        "inputLastXY": [
+          -2271.55,
+          11.4365
+        ],
+        "inputEndpointGapMM": 11.43923215298985,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 10866.407961385183,
+        "liftRangeMM": [
+          -16.571807575386675,
+          20.65833209915856
+        ],
+        "radiusRangeMM": [
+          83.42819242461333,
+          120.65833209915856
+        ],
+        "negativeSteeringSteps": 601,
+        "positiveSteeringSteps": 398,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled6.mat"
+      },
+      {
+        "name": "Untitled7",
+        "rows": 1000,
+        "columns": 3,
+        "allRows": 999,
+        "metrics": {
+          "rear": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 3996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 1000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          -1919.83,
+          -1.14026e-14
+        ],
+        "inputLastXY": [
+          -1919.8,
+          11.5277
+        ],
+        "inputEndpointGapMM": 11.527739036341872,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 10970.770297071718,
+        "liftRangeMM": [
+          -22.12986550735013,
+          15.50465141987921
+        ],
+        "radiusRangeMM": [
+          77.87013449264987,
+          115.50465141987921
+        ],
+        "negativeSteeringSteps": 667,
+        "positiveSteeringSteps": 332,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled7.mat"
+      },
+      {
+        "name": "Untitled8",
+        "rows": 2000,
+        "columns": 3,
+        "allRows": 1999,
+        "metrics": {
+          "rear": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 7996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 1999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          -2285.46,
+          -2.5392e-14
+        ],
+        "inputLastXY": [
+          -2285.4,
+          6.23555
+        ],
+        "inputEndpointGapMM": 6.2358386607176035,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 11994.098251014162,
+        "liftRangeMM": [
+          -18.44931804571794,
+          16.360716002806477
+        ],
+        "radiusRangeMM": [
+          81.55068195428206,
+          116.36071600280647
+        ],
+        "negativeSteeringSteps": 999,
+        "positiveSteeringSteps": 1000,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled8.mat"
+      },
+      {
+        "name": "Untitled9",
+        "rows": 2000,
+        "columns": 3,
+        "allRows": 1999,
+        "metrics": {
+          "rear": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "leftTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rightTrack": {
+            "elements": 4000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "u": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "alpha": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "p": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "all": {
+            "elements": 7996,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearStepLengthsMM": {
+            "elements": 1999,
+            "maxAbs": 0,
+            "bitExact": true
+          },
+          "rearDistanceMM": {
+            "elements": 2000,
+            "maxAbs": 0,
+            "bitExact": true
+          }
+        },
+        "inputFirstXY": [
+          -1957.03,
+          2.77547e-14
+        ],
+        "inputLastXY": [
+          -1957.02,
+          8.47753
+        ],
+        "inputEndpointGapMM": 8.47753589794225,
+        "rearEndpointGapMM": 0,
+        "totalRearDistanceMM": 16096.83965261809,
+        "liftRangeMM": [
+          -22.941705442233122,
+          20.34453119103943
+        ],
+        "radiusRangeMM": [
+          77.05829455776689,
+          120.34453119103944
+        ],
+        "negativeSteeringSteps": 999,
+        "positiveSteeringSteps": 1000,
+        "realFiniteOutput": true,
+        "referenceMat": "outputs\\first_generation\\original\\Untitled9.mat"
+      }
+    ],
+    "analytic_check_groups_passed": 5,
+    "analytic_checks": [
+      "hand-computed straight and vertical-turn first-pass rear/left/right displacement",
+      "hand-computed two-pass straight path, zero lift and midpoint-chord phase",
+      "hand-computed signed 45-degree lift uses c+f/c; zero-travel phase remains NaN",
+      "f changes only positive-cross signed-lift branch, leaving tracks and phase unchanged",
+      "minimum input guard and source nonfinite behavior for repeated front points"
+    ],
+    "raw_original_outputs": [
+      {
+        "path": "outputs/first_generation/original/Untitled1.mat",
+        "bytes": 230916,
+        "sha256": "e107f46077f3807cff659c5b7da6deb2ad10643957e2ca1a3ab7590f9b3b79ea"
+      },
+      {
+        "path": "outputs/first_generation/original/Untitled2.mat",
+        "bytes": 229457,
+        "sha256": "ff557f1423fe4944f359740392694aa08ed6f5244d905c38e6a2672859d986e5"
+      },
+      {
+        "path": "outputs/first_generation/original/Untitled3.mat",
+        "bytes": 115447,
+        "sha256": "f3e81ad1e107c018d6275eb6294ced3f817bc911c0aff869a520f604398965fb"
+      },
+      {
+        "path": "outputs/first_generation/original/Untitled4.mat",
+        "bytes": 237155,
+        "sha256": "e06d204406ad067c68b0082e0e4cf3db656063111e9f8ec831595c457278892e"
+      },
+      {
+        "path": "outputs/first_generation/original/Untitled5.mat",
+        "bytes": 235735,
+        "sha256": "8828ceeed99b942ef57f8376a012a95bcb3408fa704af37c4f724d0bef04568b"
+      },
+      {
+        "path": "outputs/first_generation/original/Untitled6.mat",
+        "bytes": 102579,
+        "sha256": "2e2dd937642c6775679dba23a82d1aa45b46a4bd534cbe062ff88e0a1a2e6546"
+      },
+      {
+        "path": "outputs/first_generation/original/Untitled7.mat",
+        "bytes": 101247,
+        "sha256": "7d27054e39f71f78504a7e6c4e06ba59703e35f7dbf539c6edce9244e5a15614"
+      },
+      {
+        "path": "outputs/first_generation/original/Untitled8.mat",
+        "bytes": 229954,
+        "sha256": "e800aca6276361d75a1edb81ca16ea8bb31829faa751be87b52d5066a8b526e2"
+      },
+      {
+        "path": "outputs/first_generation/original/Untitled9.mat",
+        "bytes": 235824,
+        "sha256": "62545f99a6091f170a6c24f4a8c856cd40241ea4875e8eb4b3a310b01f2ce3c8"
+      }
+    ],
+    "run_history": [
+      {
+        "task": "Inspect copied routes.mat tables",
+        "result": "pass",
+        "log": {
+          "path": "local/matlab_9db285f234c743cab2dcbb640533474d.log",
+          "bytes": 2966,
+          "sha256": "e37eefe5df83e0e77dabc36c6bf41c8fa55cb279d674f24f7365f5a19de371c2"
+        }
+      },
+      {
+        "task": "check_first_generation",
+        "result": "fail_before_original_execution",
+        "log": {
+          "path": "local/matlab_6cb6742216ed4d9baa99b12d911d92b3.log",
+          "bytes": 238,
+          "sha256": "fa552aba1c0c1eb0043476667e433ca6c112879366458341bd2e2b65e2e30486"
+        },
+        "reason": "Check-wrapper alpha(:) was parsed as built-in function syntax before the script output variable was declared. Fixed by predeclaring script outputs in the local wrapper workspace; original source and numerical port unchanged."
+      },
+      {
+        "task": "check_first_generation",
+        "result": "fail_in_report_collection_after_Untitled1_comparison",
+        "log": {
+          "path": "local/matlab_e4e81245d7e747238e3b8a527888858a.log",
+          "bytes": 190,
+          "sha256": "1f948476003c1136ed3cc954ee022531b74ec0a1f25eb515ee6420665c4c8e0b"
+        },
+        "reason": "Check-wrapper subscript assignment to an empty fieldless struct failed. Replaced report collection with cells then concatenation; source and numerical port unchanged."
+      },
+      {
+        "task": "check_first_generation",
+        "result": "pass_9_routes_5_analytic_groups",
+        "log": {
+          "path": "local/matlab_9f104b0ecdeb429181ce37e4587eeb5c.log",
+          "bytes": 1128,
+          "sha256": "a5cd3f7e9c152af14296cfabe68ab9e69a1f262f04d95bf17b73f8f8a7c454b3"
+        }
+      },
+      {
+        "task": "addpath('local/first_generation_source'); render_first_generation_comparison;",
+        "result": "pass_png_export",
+        "log": {
+          "path": "local/matlab_92c7ed6a44094e4bb408238fdbef030c.log",
+          "bytes": 132,
+          "sha256": "a0aed07db429e38465b881c88a8331b1fb4c5585c4248b480eda39d5de8338a7"
+        }
+      },
+      {
+        "task": "check_first_generation",
+        "result": "pass_after_hash_and_batch_guards",
+        "log": {
+          "path": "local/matlab_e0fe32812f5d42338a129afbdd9007f0.log",
+          "bytes": 1128,
+          "sha256": "a5cd3f7e9c152af14296cfabe68ab9e69a1f262f04d95bf17b73f8f8a7c454b3"
+        }
+      }
+    ],
+    "modern_full_suite_rerun": false
+  },
+  "visual_review": {
+    "png": {
+      "path": "outputs/first_generation/Untitled1_comparison.png",
+      "bytes": 356841,
+      "sha256": "df43b68def8bf8e974632d4775f81456a481314c4dbae08c98a93e1529d1f9db",
+      "pixels": [
+        2514,
+        1917
+      ]
+    },
+    "plot_source": {
+      "path": "local/first_generation_source/render_first_generation_comparison.m",
+      "bytes": 3646,
+      "sha256": "81595736dca14386622b08c4981e4ce482220e8e1723daadb5f56212b96afccc"
+    },
+    "ported_snapshot": {
+      "path": "outputs/first_generation/Untitled1_ported.mat",
+      "bytes": 338778,
+      "sha256": "4708289da698944babf805d7a9b552f3bdfa3f00f2f07c8b6e07a2827d882751"
+    },
+    "panels": [
+      "front route and original/ported rear-midpoint tracks",
+      "displacement over rear-midpoint chord length",
+      "original/ported theoretical cam XY",
+      "pointwise errors plus zero alpha error"
+    ],
+    "inspected_at_original_resolution": true,
+    "numeric_comparison_is_primary_evidence": true
+  },
+  "preserved_limitations": [
+    "acos argument not clamped",
+    "zero-length vectors not repaired",
+    "fixed default rear initializer",
+    "only two passes, no convergence iteration",
+    "phase forced to one full revolution from rear-midpoint chord lengths",
+    "u endpoint forced to first value even for open routes",
+    "all omits endpoint",
+    "zero rear travel yields NaN phase; repeated front points can yield NaN lift",
+    "roundoff outside acos domain may yield complex values",
+    "no current-model steering sign conversion, smoothing, deduplication, reparameterization or contact-envelope generation"
+  ],
+  "evidence_boundary": "Pointwise compatibility with these supplied first-generation files/routes under valid default parameters. Does not establish 3.1.2, later unknown scoring/fusion, physical contact, actual vehicle or manufacturing equivalence."
+}

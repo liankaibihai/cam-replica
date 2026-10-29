@@ -13,6 +13,17 @@ launch_cam_app
 
 ## 第一次使用
 
+研究用源码兼容入口与当前界面分开：`camdesign.firstGenerationCam(frontXY)` 复现用户提供的第一代r2；`camdesign.bezierCurve(controlPoints,segments)` 生成单条Bezier。具体字段、准备本地原脚本副本和参数含义分别见[第一代说明](FIRST_GENERATION_SOURCE.md)、[新增资料说明](ADDITIONAL_SOURCE_PACKAGES.md)。它们尚未接入UI默认优化器，不能将单Bezier控制点当成原版完整融合路线。
+
+两个原脚本对照检查请在独立MATLAB批处理中运行，避免原脚本的clear/figure影响当前会话：
+
+```powershell
+./run_matlab_checks.ps1 -Task 'check_first_generation;'
+./run_matlab_checks.ps1 -Task 'check_bezier_source;'
+```
+
+两个检查各自要求启动时无图形，须分别运行，不放入同一个MATLAB实例连续调用。
+
 1. 默认沿用 2027 点位和尺寸另建齿条方案。也可“导入 MAT”，选择原文件或本项目 MAT。原 `2027生物质能初赛_直播.mat` 的 3.1.2 类型 4 是顶球，界面会提示该机构尚未实现，可取消或明确选择另建齿条/平推方案。
 2. 核对机构、轮径、传动比、轮子与传感器位置。所有车体坐标是前轮轴为原点、X 右/Y 前，不能直接填写世界坐标。
 3. 在“打卡点”编辑顺序点位，可选中一行后插入或删除。本版把表中全部点列入几何误差表。只有历史 13 点样例的第 1 行是发车辅助点；太阳能第 1 行为正式起点地球，最后一行为终点地球，不应把辅助点规则套用于其他点集。正式方案的发车位置需与计分点分别设置，当前界面尚无独立发车位置输入。
