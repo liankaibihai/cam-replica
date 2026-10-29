@@ -13,6 +13,8 @@
 
 ## 功能、算法与验收
 
+全部可用材料先查[资料总目录](MATERIALS_CATALOG.md)，包括18包去重、读取覆盖和与本项目的关系；相关源码详读见[专项复核](FULL_COLLECTION_SOURCE_REVIEW.md)。
+
 | 文档 | 负责记录什么 | 常用搜索词 |
 |---|---|---|
 | [使用说明](USAGE.md) | 启动、参数、导入导出、固定凸轮试调、本地视频工具 | R2025b、运行、参数、反推、ASR |
@@ -40,6 +42,8 @@
 | [补充资料审计](../data/algorithm_materials_audit_20261029.json) | 下架教程、重叠曲线板书、另一份凸轮代码压缩包的覆盖边界 |
 | [第一代数值证据](../data/first_generation_20261029.json) / [对照检查](../check_first_generation.m) | 源文件指纹、九路线逐点结果及5组手算/边界检查 |
 | [五包来源与Bezier验证](../data/additional_sources_20261029.json) / [对照检查](../check_bezier_source.m) | 包内文件清单、原曲线零差及独立递推验证 |
+| [18包完整库存](../data/full_collection_inventory_20261029.json) / [源码复核](../data/full_collection_review_20261029.json) | 读取覆盖、重复来源、农机点集、加密边界及核心缺口 |
+| [资料扫描工具](../tools/audit_matlab_collection.py) | 只读ZIP/嵌套ZIP清点、来源哈希与关键字行定位 |
 | [计算模块](../+camdesign) / [界面](../CamReplicaApp.m) | 生产实现；具体行为以源码和相关验证为准 |
 | [本地工具](../tools) | 视频解码、转写及质量检查等辅助处理 |
 

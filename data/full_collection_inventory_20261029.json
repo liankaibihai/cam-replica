@@ -1,0 +1,3319 @@
+{
+  "sourceDirectory": "F:\\许昊阳\\竞赛\\2027工创\\41 MATLAB代码及软件",
+  "archiveCount": 18,
+  "exactPriorArchiveCount": 5,
+  "coverageCounts": {
+    "text-scanned": 56,
+    "binary-listed-not-analyzed": 293,
+    "directory": 30,
+    "nested-archive-inspected": 1,
+    "encrypted-not-read": 7
+  },
+  "exactTokens": [
+    "Bezier_superposition",
+    "Squares_standard_sum",
+    "score_cal",
+    "Simulation_cal",
+    "all_routes_cal",
+    "gradient_power",
+    "learning_efficiency",
+    "perturbation_frequency",
+    "Scored_index"
+  ],
+  "relatedTokens": [
+    "Bezier",
+    "梯度",
+    "平滑",
+    "融合",
+    "叠加",
+    "评分",
+    "learning",
+    "gradient"
+  ],
+  "archives": [
+    {
+      "name": "8皇后问题.zip",
+      "bytes": 1259,
+      "sha256": "ad3ec2ee9f701b7e22463eac6f788ce68f8e50dd863ee5654b553a2f4e18d455",
+      "entries": [
+        {
+          "name": "m0.m",
+          "bytes": 5102,
+          "compressedBytes": 1117,
+          "encrypted": false,
+          "sha256": "0a8569d3ad94143b4b124e7af7e044e685c8e4b9edf4e7ef0906828dd8427e5f",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 144,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "text-scanned": 1
+      }
+    },
+    {
+      "name": "FAST主动反射面的形状调节.zip",
+      "bytes": 1125254,
+      "sha256": "e73e9c5db16045d561def4193d9ec8eddaa8dac94aabce43b7bf49a636fca66f",
+      "entries": [
+        {
+          "name": "0.png",
+          "bytes": 120845,
+          "compressedBytes": 117999,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "1.png",
+          "bytes": 136444,
+          "compressedBytes": 132646,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "2.png",
+          "bytes": 11156,
+          "compressedBytes": 10926,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "3.png",
+          "bytes": 48317,
+          "compressedBytes": 45002,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "CUMCM2021-A.pdf",
+          "bytes": 481705,
+          "compressedBytes": 449815,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "m0.m",
+          "bytes": 407,
+          "compressedBytes": 266,
+          "encrypted": false,
+          "sha256": "ef5e29a3c28a548298d2aa594d2d24e27ce042514d1057e073407730e716656d",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 21,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "m1.m",
+          "bytes": 2006,
+          "compressedBytes": 782,
+          "encrypted": false,
+          "sha256": "479f1986caf1abc1dc908e22bcba468bc35c1904d21a4d55591fcc3a7a687ebd",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 62,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "m2.m",
+          "bytes": 1388,
+          "compressedBytes": 712,
+          "encrypted": false,
+          "sha256": "ea2f9a071c9024d65bec6670e6450ccf1206c04593adf9b7c347af9c26d05101",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 34,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "m3.m",
+          "bytes": 1402,
+          "compressedBytes": 689,
+          "encrypted": false,
+          "sha256": "412fd85c21eaf236e93ad27c326e44a8aaa61cde91eb1728442d6b8a2c567d32",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 35,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "m4.m",
+          "bytes": 12260,
+          "compressedBytes": 2365,
+          "encrypted": false,
+          "sha256": "f7c5330e19ef1691b056c52f595da59ec77afdba2e7750de374fd7490071cc22",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 222,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "rawData.mat",
+          "bytes": 281285,
+          "compressedBytes": 257208,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件1.csv",
+          "bytes": 75107,
+          "compressedBytes": 20870,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件2.csv",
+          "bytes": 137593,
+          "compressedBytes": 58732,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件3.csv",
+          "bytes": 65581,
+          "compressedBytes": 16382,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件4.xlsx",
+          "bytes": 10110,
+          "compressedBytes": 8790,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "binary-listed-not-analyzed": 10,
+        "text-scanned": 5
+      }
+    },
+    {
+      "name": "【B站野生机设小佬】6轴机械臂MATLAB学习代码.zip",
+      "bytes": 3598,
+      "sha256": "2a09a5de5400ce9437a59f0c37396f244197d0dfdfd283619c08f958306d485c",
+      "entries": [
+        {
+          "name": "main.m",
+          "bytes": 5314,
+          "compressedBytes": 1748,
+          "encrypted": false,
+          "sha256": "a1e287d3fe77dbc3d26ee7e7a1367f3cf82f2601613b7c09d87019cb5931e016",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 149,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "叠加": [
+              83,
+              90
+            ]
+          }
+        },
+        {
+          "name": "SpaceCylinder.m",
+          "bytes": 1336,
+          "compressedBytes": 685,
+          "encrypted": false,
+          "sha256": "dab501b71399c679bb2ab82de0ca53d1ac948cf89a7bc9c2e8ec9b2d3dba11dc",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 31,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "叠加": [
+              24
+            ]
+          }
+        },
+        {
+          "name": "使用手册_技术交流.txt",
+          "bytes": 876,
+          "compressedBytes": 647,
+          "encrypted": false,
+          "sha256": "9f01b90f17cf7966febf41f20523c360a1d75508fe385e835e03f03438b7147c",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 19,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "text-scanned": 3
+      }
+    },
+    {
+      "name": "【B站野生机设小佬】任意阶贝塞尔曲线.zip",
+      "bytes": 1601,
+      "sha256": "fbe8cb4251516e8dbd7c7ba7523a0fe5dd0a82f60561b755626c9d4521dc6724",
+      "entries": [
+        {
+          "name": "Bezier_Curve.m",
+          "bytes": 1077,
+          "compressedBytes": 570,
+          "encrypted": false,
+          "sha256": "36664c57c112e408d9ce059c5ee153d7c8a561e45df3a8e0e5924904fece1477",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 28,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "Bezier": [
+              4,
+              7,
+              10,
+              11,
+              18,
+              19,
+              20,
+              28
+            ]
+          }
+        },
+        {
+          "name": "使用手册_技术交流.txt",
+          "bytes": 852,
+          "compressedBytes": 639,
+          "encrypted": false,
+          "sha256": "a717a3f9dd8c6f251bbbc0271c3004619018b1ac24722472ff8b5427ea7da05a",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 22,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": "【B站野生机设小佬】任意阶贝塞尔曲线.zip",
+      "coverageCounts": {
+        "text-scanned": 2
+      }
+    },
+    {
+      "name": "【B站野生机设小佬】摇臂共轭凸轮设计APP 1.1.1.zip",
+      "bytes": 1126332,
+      "sha256": "21ae974696936e03e9c966fea4397adc4309532e6167ed88e4e4d36c49810ccd",
+      "entries": [
+        {
+          "name": "凸轮.mat",
+          "bytes": 913,
+          "compressedBytes": 592,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "参数示意图.png",
+          "bytes": 209277,
+          "compressedBytes": 196998,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "摇臂共轭凸轮设计APP 1.1.1.exe",
+          "bytes": 7268409,
+          "compressedBytes": 918806,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "软件更新日志.xlsx",
+          "bytes": 10449,
+          "compressedBytes": 9080,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        }
+      ],
+      "exactPriorArchive": "【B站野生机设小佬】摇臂共轭凸轮设计APP 1.1.1.zip",
+      "coverageCounts": {
+        "binary-listed-not-analyzed": 4
+      }
+    },
+    {
+      "name": "【B站野生机设小佬】阿克曼车辆路径规划算法.zip",
+      "bytes": 75865,
+      "sha256": "c7d1c5563f1d93d285239b80925a380a980ec4ac7c961c6701586cce4e56a078",
+      "entries": [
+        {
+          "name": "main.m",
+          "bytes": 20712,
+          "compressedBytes": 4494,
+          "encrypted": false,
+          "sha256": "3c702c3e501cc267024f470a99aa15618dc0e8d0fa75aa8f9996fb3da06681f9",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 312,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "叠加": [
+              192
+            ]
+          }
+        },
+        {
+          "name": "使用手册_技术交流.txt",
+          "bytes": 718,
+          "compressedBytes": 550,
+          "encrypted": false,
+          "sha256": "aab4422542d9262d214563856314f3c0f8bd321f4e801c41e5635f8792bc8e16",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 16,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "参考图像.jpg",
+          "bytes": 76973,
+          "compressedBytes": 70259,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        }
+      ],
+      "exactPriorArchive": "【B站野生机设小佬】阿克曼车辆路径规划算法.zip",
+      "coverageCounts": {
+        "text-scanned": 2,
+        "binary-listed-not-analyzed": 1
+      }
+    },
+    {
+      "name": "【B站野生机设小佬】高教社杯24A题板凳龙闹元宵.zip",
+      "bytes": 3521558,
+      "sha256": "7136d78b5021abf652853050e139ba3b29685731d8a1c59911fc410a6304d15f",
+      "entries": [
+        {
+          "name": "A题.pdf",
+          "bytes": 878143,
+          "compressedBytes": 723284,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "附件/main01.m",
+          "bytes": 15958,
+          "compressedBytes": 4109,
+          "encrypted": false,
+          "sha256": "5bc91e416458d57ec64babec4c4f657b6dccaf7fc4035a73f1ecca801df19592",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 291,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "附件/main02.m",
+          "bytes": 14105,
+          "compressedBytes": 3984,
+          "encrypted": false,
+          "sha256": "29ab2d4d3693e68639e8dd177a903ed72a078f65937f59da70de9a0e295009c6",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 262,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "附件/main03.m",
+          "bytes": 16728,
+          "compressedBytes": 4616,
+          "encrypted": false,
+          "sha256": "5fb4e6ee9d2b0c74ed3092deef508aa8cdfa87de3e4ef86e793feb76f2418c3d",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 299,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "附件/main04.m",
+          "bytes": 17744,
+          "compressedBytes": 5036,
+          "encrypted": false,
+          "sha256": "3a78e8a7fa797cd5ee00701da852987a4cbc19619b7da8b23f9fddbdd15dfa25",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 312,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "附件/result1.xlsx",
+          "bytes": 1652708,
+          "compressedBytes": 1602860,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件/result2.xlsx",
+          "bytes": 19158,
+          "compressedBytes": 17336,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件/result4.xlsx",
+          "bytes": 1177177,
+          "compressedBytes": 1158414,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件/~$result4.xlsx",
+          "bytes": 165,
+          "compressedBytes": 23,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "binary-listed-not-analyzed": 5,
+        "directory": 1,
+        "text-scanned": 4
+      }
+    },
+    {
+      "name": "【B站野生机设小佬】高教社杯25A题烟幕弹投掷策略.zip",
+      "bytes": 350593,
+      "sha256": "3c28660f0462144f2799922501762bc21cac4180a54c88eb38d5f695cf78eb68",
+      "entries": [
+        {
+          "name": "A题.pdf",
+          "bytes": 363537,
+          "compressedBytes": 279159,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "main_01.m",
+          "bytes": 11700,
+          "compressedBytes": 3335,
+          "encrypted": false,
+          "sha256": "4e108d474d948c43d7fa4ed8c23b7ff3a62399720f4c72c05e94a811671850c8",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 245,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "main_02.m",
+          "bytes": 15464,
+          "compressedBytes": 4626,
+          "encrypted": false,
+          "sha256": "3ee1c69e8b60d7a45b77af53feda02579a7e02b25545b4643e43b04979ae8650",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 285,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "梯度": [
+              71,
+              104
+            ]
+          }
+        },
+        {
+          "name": "main_03.m",
+          "bytes": 18936,
+          "compressedBytes": 5301,
+          "encrypted": false,
+          "sha256": "4de2f08c385000605c350ec22e9b332b6d840c7603c9c7be55ee1f216f2454d0",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 360,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "梯度": [
+              56,
+              126
+            ]
+          }
+        },
+        {
+          "name": "main_04.m",
+          "bytes": 19775,
+          "compressedBytes": 5428,
+          "encrypted": false,
+          "sha256": "3ce0ec31cb8761f61e11e8433a442369a764d7732d09a83d15d25430c7d39c65",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 370,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "梯度": [
+              52,
+              122
+            ]
+          }
+        },
+        {
+          "name": "main_05.m",
+          "bytes": 20063,
+          "compressedBytes": 5535,
+          "encrypted": false,
+          "sha256": "dc6f783430128ca47fbbdc3021493eeda9a61947585aedc9a4eee6b196a08bb4",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 390,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "梯度": [
+              72,
+              142
+            ]
+          }
+        },
+        {
+          "name": "show_01.m",
+          "bytes": 9714,
+          "compressedBytes": 3061,
+          "encrypted": false,
+          "sha256": "4e25db9e90f6c89482b23b3c2fef18e83ebc4f4bd48f775b609ab9c905e07120",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 215,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "show_02.m",
+          "bytes": 9731,
+          "compressedBytes": 3078,
+          "encrypted": false,
+          "sha256": "c98ceaf0928d851d71ff9d24e0b8405c95658379ad7a9789c1ee3f9894e3aac1",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 215,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "show_03.m",
+          "bytes": 11707,
+          "compressedBytes": 3512,
+          "encrypted": false,
+          "sha256": "c9be3ab6f1f17628d3e9f21778f923d76ebba354b063b29bac0755cb5226374d",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 219,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "show_04.m",
+          "bytes": 11790,
+          "compressedBytes": 3531,
+          "encrypted": false,
+          "sha256": "b33a01c96f7d29066fcd5fdfd1b17441394ae801e6467f635433d4a2a8098f88",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 248,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "show_05.m",
+          "bytes": 12035,
+          "compressedBytes": 3629,
+          "encrypted": false,
+          "sha256": "87467e02af761fda7deeace4902ca32db149aefa88bd8e1ae24e653ed17f4795",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 264,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "Test.m",
+          "bytes": 89,
+          "compressedBytes": 66,
+          "encrypted": false,
+          "sha256": "c014e69dd955d5a82d9c033c64d8970acf0f573d27ac91d030af860a6a051645",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 8,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "使用手册_技术交流.txt",
+          "bytes": 694,
+          "compressedBytes": 525,
+          "encrypted": false,
+          "sha256": "9c36a7a56dde0a9d0011dc6c82ca618a4c8ff743e0bc002831a32c392290205e",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 15,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "附件/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "附件/result1.xlsx",
+          "bytes": 9812,
+          "compressedBytes": 8631,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件/result2.xlsx",
+          "bytes": 9776,
+          "compressedBytes": 8613,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "附件/result3.xlsx",
+          "bytes": 11143,
+          "compressedBytes": 9967,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "binary-listed-not-analyzed": 4,
+        "text-scanned": 12,
+        "directory": 1
+      }
+    },
+    {
+      "name": "农机插秧凸轮.zip",
+      "bytes": 12387,
+      "sha256": "9e2e8d2672940cab23615cb6392d4706f2461bda46aa22e1543099a49164c592",
+      "entries": [
+        {
+          "name": "main.m",
+          "bytes": 4417,
+          "compressedBytes": 1903,
+          "encrypted": false,
+          "sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 150,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "tulun2.txt",
+          "bytes": 22789,
+          "compressedBytes": 10206,
+          "encrypted": false,
+          "sha256": "dd355854872b23910135f308f012ca4668ff6e78eb9e29deba6724863298abaa",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 1001,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "text-scanned": 2
+      }
+    },
+    {
+      "name": "四杆机构.zip",
+      "bytes": 665,
+      "sha256": "7507d187e71e625d3cf9399237f265f90f651c5cc975e77004f2bb68843add24",
+      "entries": [
+        {
+          "name": "main.m",
+          "bytes": 1376,
+          "compressedBytes": 519,
+          "encrypted": false,
+          "sha256": "f79b741da26308eee6dc8718dfad1b717ee8b3833a0c138496fae2e2608aecdc",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 47,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "text-scanned": 1
+      }
+    },
+    {
+      "name": "多星体运动.zip",
+      "bytes": 6671,
+      "sha256": "026a00ac25c841e6f025dddc0bfaeb0ad58bf69fd35a7580b66da192af526df9",
+      "entries": [
+        {
+          "name": "多星体运动/",
+          "bytes": 0,
+          "compressedBytes": 2,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "多星体运动/main.m",
+          "bytes": 3540,
+          "compressedBytes": 1373,
+          "encrypted": false,
+          "sha256": "1b3d74da22f5c3d58c7c586cf210776c95be5d231129a6e03b6262d4faa9f8e1",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 105,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "多星体运动/data.m",
+          "bytes": 4644,
+          "compressedBytes": 1053,
+          "encrypted": false,
+          "sha256": "2a5751483b98baf008c3b6038cb38ee7e0369ad3d71dd88b5e7a5e9f669231b2",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 167,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "多星体运动/solve_f.m",
+          "bytes": 610,
+          "compressedBytes": 400,
+          "encrypted": false,
+          "sha256": "2e48e3b4f2d1012ae8cda20236cac4848ab956522769474a4e3cef47dc499b5e",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 14,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "叠加": [
+              10,
+              11
+            ]
+          }
+        },
+        {
+          "name": "多星体运动/solve_elastic_collision_v.m",
+          "bytes": 1286,
+          "compressedBytes": 570,
+          "encrypted": false,
+          "sha256": "fe49fa0ad28374c0a9a85aa0e73124ab37fd34588f54edc1be691a3c7ebea398",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 37,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "多星体运动/solve_location.m",
+          "bytes": 164,
+          "compressedBytes": 123,
+          "encrypted": false,
+          "sha256": "fa4ba97f18c6ca6cbd13ea0fc3755a4488ad0e6c7e4321ced4746e3adc79c26b",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 4,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "多星体运动/print.m",
+          "bytes": 5154,
+          "compressedBytes": 1728,
+          "encrypted": false,
+          "sha256": "fbc2df177f30ed2e38312bfb789e8803959f791ad867599ae1c65f612e009870",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 137,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "多星体运动/solve_v.m",
+          "bytes": 389,
+          "compressedBytes": 248,
+          "encrypted": false,
+          "sha256": "a9fc696c5551bdea21223e65550cdab3aa1ca002764f9c3adf768f79608c7ea0",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 10,
+          "exactTokenHits": {},
+          "relatedTokenHits": {
+            "叠加": [
+              5
+            ]
+          }
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "directory": 1,
+        "text-scanned": 7
+      }
+    },
+    {
+      "name": "工程训练大赛_第一代MATLAB凸轮仿真代码.zip",
+      "bytes": 1123442,
+      "sha256": "afaf46b757b4869f4448a5f8556900a730507ada556cafd8eca914dc62bf1a73",
+      "entries": [
+        {
+          "name": "r1.m",
+          "bytes": 53,
+          "compressedBytes": 45,
+          "encrypted": false,
+          "sha256": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+          "status": "text-scanned",
+          "encoding": "gb18030",
+          "lineCount": 6,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "r2.m",
+          "bytes": 4233,
+          "compressedBytes": 1161,
+          "encrypted": false,
+          "sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 176,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "routes.mat",
+          "bytes": 127256,
+          "compressedBytes": 125234,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "代码运行示范.docx",
+          "bytes": 996549,
+          "compressedBytes": 995057,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "说明.txt",
+          "bytes": 2971,
+          "compressedBytes": 1175,
+          "encrypted": false,
+          "sha256": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 63,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "text-scanned": 3,
+        "binary-listed-not-analyzed": 2
+      }
+    },
+    {
+      "name": "常用运动规律凸轮设计.zip",
+      "bytes": 2410,
+      "sha256": "14c1467112e64ef22ed574864ecad5d5ef66a36b31d2226b0280be439fad36cc",
+      "entries": [
+        {
+          "name": "常用运动规律凸轮设计/",
+          "bytes": 0,
+          "compressedBytes": 2,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "常用运动规律凸轮设计/main_traditional.m",
+          "bytes": 7311,
+          "compressedBytes": 2042,
+          "encrypted": false,
+          "sha256": "0d5f902a8ecf2d1a6956924b00a18989f869b53c4bdcbd694cd49c6b72660326",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 211,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": "常用运动规律凸轮设计.zip",
+      "coverageCounts": {
+        "directory": 1,
+        "text-scanned": 1
+      }
+    },
+    {
+      "name": "新冠放开传播数学模型.zip",
+      "bytes": 701309,
+      "sha256": "8516f77736be733c1337f472e277b0a5b1dce467610e47e88c7435161743a329",
+      "entries": [
+        {
+          "name": "MATLAB代码.zip",
+          "bytes": 700763,
+          "compressedBytes": 700756,
+          "encrypted": false,
+          "sha256": "04af1319a9917bc1b9d02ae69604a92709738b3630d20f209ac4b7431b9b0d00",
+          "status": "nested-archive-inspected"
+        },
+        {
+          "name": "MATLAB代码.zip!/CreateLocation.m",
+          "bytes": 1094,
+          "compressedBytes": 469,
+          "encrypted": true,
+          "status": "encrypted-not-read"
+        },
+        {
+          "name": "MATLAB代码.zip!/CutSpace.m",
+          "bytes": 409,
+          "compressedBytes": 270,
+          "encrypted": true,
+          "status": "encrypted-not-read"
+        },
+        {
+          "name": "MATLAB代码.zip!/ImmuneProcesses.m",
+          "bytes": 1860,
+          "compressedBytes": 737,
+          "encrypted": true,
+          "status": "encrypted-not-read"
+        },
+        {
+          "name": "MATLAB代码.zip!/main.m",
+          "bytes": 4663,
+          "compressedBytes": 1867,
+          "encrypted": true,
+          "status": "encrypted-not-read"
+        },
+        {
+          "name": "MATLAB代码.zip!/MapDiffusion.m",
+          "bytes": 846,
+          "compressedBytes": 390,
+          "encrypted": true,
+          "status": "encrypted-not-read"
+        },
+        {
+          "name": "MATLAB代码.zip!/感染_恢复_免疫_再次感染_理论模型.png",
+          "bytes": 47362,
+          "compressedBytes": 40809,
+          "encrypted": true,
+          "status": "encrypted-not-read"
+        },
+        {
+          "name": "MATLAB代码.zip!/新冠传染模型要素.png",
+          "bytes": 820978,
+          "compressedBytes": 654985,
+          "encrypted": true,
+          "status": "encrypted-not-read"
+        },
+        {
+          "name": "说明文件.txt",
+          "bytes": 155,
+          "compressedBytes": 155,
+          "encrypted": false,
+          "sha256": "23d3e5f9100eee23127d97929326a56c7ba4bf58b293f0c81b50bf1cfa7885c7",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 3,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "nested-archive-inspected": 1,
+        "encrypted-not-read": 7,
+        "text-scanned": 1
+      }
+    },
+    {
+      "name": "桌宠_Bongo_cat.zip",
+      "bytes": 14800387,
+      "sha256": "3c4026ea699a1e599726122c8e6689c96d84f6e1ffef18a843f63b849a8a9c46",
+      "entries": [
+        {
+          "name": "_对软件有疑问请右键托盘图标进ui查看教程!.txt",
+          "bytes": 649,
+          "compressedBytes": 75,
+          "encrypted": false,
+          "sha256": "0130cba9a1e9a6fade1d8a16a8143d958a30af2bbcd992efc4fa21806770d585",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 11,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "Bongo Cat Mver.exe",
+          "bytes": 1523200,
+          "compressedBytes": 356283,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "BongoCatMverUI.dll",
+          "bytes": 4368896,
+          "compressedBytes": 3823388,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "BongoCatUI.exe",
+          "bytes": 274944,
+          "compressedBytes": 108217,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "config.json",
+          "bytes": 7107,
+          "compressedBytes": 1014,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "d3dx10_43.dll",
+          "bytes": 470880,
+          "compressedBytes": 189969,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/arm_L.png",
+          "bytes": 3421,
+          "compressedBytes": 2905,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/arm_R.png",
+          "bytes": 3421,
+          "compressedBytes": 2905,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/bg.png",
+          "bytes": 43188,
+          "compressedBytes": 40401,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat.png",
+          "bytes": 27263,
+          "compressedBytes": 26248,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/cat_model/cat.model3.json",
+          "bytes": 1310,
+          "compressedBytes": 353,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/demomodel3.1024/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/cat_model/demomodel3.1024/texture_00.png",
+          "bytes": 97038,
+          "compressedBytes": 94147,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/demomodel3.1024/texture_01.png",
+          "bytes": 193034,
+          "compressedBytes": 187847,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/demomodel3.1024/texture_02.png",
+          "bytes": 98548,
+          "compressedBytes": 95038,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/demomodel3.cdi3.json",
+          "bytes": 4564,
+          "compressedBytes": 836,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/demomodel3.moc3",
+          "bytes": 58368,
+          "compressedBytes": 16744,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/exp_1.exp3.json",
+          "bytes": 206,
+          "compressedBytes": 119,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/exp_2.exp3.json",
+          "bytes": 121,
+          "compressedBytes": 100,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/live2d_expression0.exp3.json",
+          "bytes": 51,
+          "compressedBytes": 51,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/live2d_expression1.exp3.json",
+          "bytes": 133,
+          "compressedBytes": 108,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/live2d_expression2.exp3.json",
+          "bytes": 133,
+          "compressedBytes": 108,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/live2d_motion1.flac",
+          "bytes": 474729,
+          "compressedBytes": 464596,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/live2d_motion1.motion3.json",
+          "bytes": 811,
+          "compressedBytes": 299,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/cat_model/live2d_motion2.motion3.json",
+          "bytes": 833,
+          "compressedBytes": 306,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/face/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/face/0.png",
+          "bytes": 48046,
+          "compressedBytes": 32685,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/face/1.png",
+          "bytes": 55337,
+          "compressedBytes": 40426,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/face/2.png",
+          "bytes": 37209,
+          "compressedBytes": 22314,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/face/3.png",
+          "bytes": 26588,
+          "compressedBytes": 12388,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/keyboard/0.png",
+          "bytes": 4132,
+          "compressedBytes": 2860,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/1.png",
+          "bytes": 3144,
+          "compressedBytes": 1689,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/10.png",
+          "bytes": 3224,
+          "compressedBytes": 1770,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/11.png",
+          "bytes": 3230,
+          "compressedBytes": 1765,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/2.png",
+          "bytes": 3461,
+          "compressedBytes": 2070,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/3.png",
+          "bytes": 3159,
+          "compressedBytes": 1722,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/4.png",
+          "bytes": 3454,
+          "compressedBytes": 2039,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/5.png",
+          "bytes": 3286,
+          "compressedBytes": 1893,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/6.png",
+          "bytes": 2950,
+          "compressedBytes": 1476,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/7.png",
+          "bytes": 2964,
+          "compressedBytes": 1499,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/8.png",
+          "bytes": 2960,
+          "compressedBytes": 1493,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/keyboard/9.png",
+          "bytes": 3141,
+          "compressedBytes": 1725,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/left_stick.png",
+          "bytes": 1198,
+          "compressedBytes": 1203,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/left_stick_down.png",
+          "bytes": 15653,
+          "compressedBytes": 1958,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/lefthand/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/lefthand/0.png",
+          "bytes": 6565,
+          "compressedBytes": 5240,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/lefthand/1.png",
+          "bytes": 7713,
+          "compressedBytes": 6360,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/lefthand/2.png",
+          "bytes": 8442,
+          "compressedBytes": 7095,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/lefthand/3.png",
+          "bytes": 7173,
+          "compressedBytes": 5847,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/lefthand/4.png",
+          "bytes": 9680,
+          "compressedBytes": 8416,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/lefthand/5.png",
+          "bytes": 11431,
+          "compressedBytes": 10098,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/lefthand/leftup.png",
+          "bytes": 24759,
+          "compressedBytes": 7913,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/right_stick.png",
+          "bytes": 1083,
+          "compressedBytes": 1088,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/right_stick_down.png",
+          "bytes": 15678,
+          "compressedBytes": 1982,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/righthand/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/righthand/0.png",
+          "bytes": 6621,
+          "compressedBytes": 5303,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/righthand/1.png",
+          "bytes": 6477,
+          "compressedBytes": 5130,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/righthand/2.png",
+          "bytes": 7977,
+          "compressedBytes": 6687,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/righthand/3.png",
+          "bytes": 8696,
+          "compressedBytes": 7473,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/righthand/4.png",
+          "bytes": 10720,
+          "compressedBytes": 9506,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/righthand/5.png",
+          "bytes": 8917,
+          "compressedBytes": 7715,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/righthand/rightup.png",
+          "bytes": 21713,
+          "compressedBytes": 7302,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/sounds/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/gamepad/sounds/0.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/sounds/1.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/sounds/2.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/sounds/3.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/sounds/4.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/gamepad/sounds/5.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/keyboard/bg.png",
+          "bytes": 70742,
+          "compressedBytes": 70270,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat.png",
+          "bytes": 27341,
+          "compressedBytes": 26394,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/keyboard/cat_model/cat.model3.json",
+          "bytes": 1310,
+          "compressedBytes": 351,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/demomodel2.1024/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/keyboard/cat_model/demomodel2.1024/texture_00.png",
+          "bytes": 84914,
+          "compressedBytes": 81659,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/demomodel2.1024/texture_01.png",
+          "bytes": 193034,
+          "compressedBytes": 187847,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/demomodel2.1024/texture_02.png",
+          "bytes": 98548,
+          "compressedBytes": 95038,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/demomodel2.cdi3.json",
+          "bytes": 3667,
+          "compressedBytes": 718,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/demomodel2.moc3",
+          "bytes": 32128,
+          "compressedBytes": 10173,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/exp_1.exp3.json",
+          "bytes": 206,
+          "compressedBytes": 119,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/exp_2.exp3.json",
+          "bytes": 121,
+          "compressedBytes": 100,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/live2d_expression0.exp3.json",
+          "bytes": 51,
+          "compressedBytes": 51,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/live2d_expression1.exp3.json",
+          "bytes": 133,
+          "compressedBytes": 108,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/live2d_expression2.exp3.json",
+          "bytes": 133,
+          "compressedBytes": 108,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/live2d_motion1.flac",
+          "bytes": 474729,
+          "compressedBytes": 464596,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/live2d_motion1.motion3.json",
+          "bytes": 811,
+          "compressedBytes": 299,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/cat_model/live2d_motion2.motion3.json",
+          "bytes": 833,
+          "compressedBytes": 306,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/face/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/keyboard/keyboard/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/keyboard/keyboard/0.png",
+          "bytes": 22544,
+          "compressedBytes": 4465,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/1.png",
+          "bytes": 23405,
+          "compressedBytes": 5395,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/10.png",
+          "bytes": 22586,
+          "compressedBytes": 4544,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/11.png",
+          "bytes": 22362,
+          "compressedBytes": 4312,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/12.png",
+          "bytes": 22148,
+          "compressedBytes": 4040,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/13.png",
+          "bytes": 22617,
+          "compressedBytes": 4564,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/14.png",
+          "bytes": 22607,
+          "compressedBytes": 4555,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/15.png",
+          "bytes": 22684,
+          "compressedBytes": 4672,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/16.png",
+          "bytes": 22794,
+          "compressedBytes": 4817,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/17.png",
+          "bytes": 22587,
+          "compressedBytes": 4564,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/18.png",
+          "bytes": 22522,
+          "compressedBytes": 4461,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/19.png",
+          "bytes": 22451,
+          "compressedBytes": 4401,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/2.png",
+          "bytes": 22848,
+          "compressedBytes": 4902,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/20.png",
+          "bytes": 22446,
+          "compressedBytes": 4395,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/21.png",
+          "bytes": 22521,
+          "compressedBytes": 4479,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/22.png",
+          "bytes": 22285,
+          "compressedBytes": 4209,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/23.png",
+          "bytes": 22513,
+          "compressedBytes": 4460,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/24.png",
+          "bytes": 22574,
+          "compressedBytes": 4568,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/25.png",
+          "bytes": 22503,
+          "compressedBytes": 4517,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/26.png",
+          "bytes": 22677,
+          "compressedBytes": 4651,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/27.png",
+          "bytes": 22852,
+          "compressedBytes": 4866,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/28.png",
+          "bytes": 22496,
+          "compressedBytes": 4442,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/29.png",
+          "bytes": 22886,
+          "compressedBytes": 4853,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/3.png",
+          "bytes": 22428,
+          "compressedBytes": 4349,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/30.png",
+          "bytes": 22593,
+          "compressedBytes": 4598,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/31.png",
+          "bytes": 22323,
+          "compressedBytes": 4224,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/32.png",
+          "bytes": 22577,
+          "compressedBytes": 4535,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/33.png",
+          "bytes": 22440,
+          "compressedBytes": 4424,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/34.png",
+          "bytes": 22784,
+          "compressedBytes": 4849,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/35.png",
+          "bytes": 22535,
+          "compressedBytes": 4500,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/36.png",
+          "bytes": 22568,
+          "compressedBytes": 4545,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/37.png",
+          "bytes": 4516,
+          "compressedBytes": 3793,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/38.png",
+          "bytes": 23420,
+          "compressedBytes": 5479,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/39.png",
+          "bytes": 22544,
+          "compressedBytes": 4465,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/4.png",
+          "bytes": 22711,
+          "compressedBytes": 4705,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/40.png",
+          "bytes": 23405,
+          "compressedBytes": 5395,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/41.png",
+          "bytes": 22848,
+          "compressedBytes": 4902,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/42.png",
+          "bytes": 22428,
+          "compressedBytes": 4349,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/43.png",
+          "bytes": 22711,
+          "compressedBytes": 4705,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/44.png",
+          "bytes": 22359,
+          "compressedBytes": 4270,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/45.png",
+          "bytes": 22515,
+          "compressedBytes": 4446,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/46.png",
+          "bytes": 22644,
+          "compressedBytes": 4569,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/47.png",
+          "bytes": 22312,
+          "compressedBytes": 4206,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/48.png",
+          "bytes": 22412,
+          "compressedBytes": 4307,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/5.png",
+          "bytes": 22359,
+          "compressedBytes": 4270,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/6.png",
+          "bytes": 22515,
+          "compressedBytes": 4446,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/7.png",
+          "bytes": 22644,
+          "compressedBytes": 4569,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/8.png",
+          "bytes": 22312,
+          "compressedBytes": 4206,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/keyboard/9.png",
+          "bytes": 22412,
+          "compressedBytes": 4307,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/keyboard/lefthand/0.png",
+          "bytes": 25826,
+          "compressedBytes": 7699,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/1.png",
+          "bytes": 28270,
+          "compressedBytes": 9868,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/10.png",
+          "bytes": 27874,
+          "compressedBytes": 9248,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/11.png",
+          "bytes": 28424,
+          "compressedBytes": 9840,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/12.png",
+          "bytes": 25262,
+          "compressedBytes": 7105,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/13.png",
+          "bytes": 29493,
+          "compressedBytes": 10953,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/14.png",
+          "bytes": 25677,
+          "compressedBytes": 7483,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/15.png",
+          "bytes": 31186,
+          "compressedBytes": 12617,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/16.png",
+          "bytes": 25853,
+          "compressedBytes": 7517,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/17.png",
+          "bytes": 26437,
+          "compressedBytes": 8285,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/18.png",
+          "bytes": 24253,
+          "compressedBytes": 5995,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/19.png",
+          "bytes": 24221,
+          "compressedBytes": 6028,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/2.png",
+          "bytes": 27929,
+          "compressedBytes": 9486,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/20.png",
+          "bytes": 37639,
+          "compressedBytes": 19023,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/21.png",
+          "bytes": 25826,
+          "compressedBytes": 7699,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/22.png",
+          "bytes": 28270,
+          "compressedBytes": 9868,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/23.png",
+          "bytes": 27929,
+          "compressedBytes": 9486,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/24.png",
+          "bytes": 28445,
+          "compressedBytes": 9957,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/25.png",
+          "bytes": 29608,
+          "compressedBytes": 11085,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/26.png",
+          "bytes": 32712,
+          "compressedBytes": 14045,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/3.png",
+          "bytes": 28445,
+          "compressedBytes": 9957,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/4.png",
+          "bytes": 29608,
+          "compressedBytes": 11085,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/5.png",
+          "bytes": 32712,
+          "compressedBytes": 14045,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/6.png",
+          "bytes": 25036,
+          "compressedBytes": 6852,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/7.png",
+          "bytes": 27179,
+          "compressedBytes": 8800,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/8.png",
+          "bytes": 26174,
+          "compressedBytes": 7900,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/9.png",
+          "bytes": 29611,
+          "compressedBytes": 11145,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/lefthand/leftup.png",
+          "bytes": 24759,
+          "compressedBytes": 7913,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/keyboard/righthand/0.png",
+          "bytes": 29710,
+          "compressedBytes": 11218,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/1.png",
+          "bytes": 28322,
+          "compressedBytes": 9897,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/10.png",
+          "bytes": 24656,
+          "compressedBytes": 6503,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/11.png",
+          "bytes": 24478,
+          "compressedBytes": 6327,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/12.png",
+          "bytes": 29695,
+          "compressedBytes": 11161,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/13.png",
+          "bytes": 28938,
+          "compressedBytes": 10536,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/14.png",
+          "bytes": 26347,
+          "compressedBytes": 8229,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/15.png",
+          "bytes": 28112,
+          "compressedBytes": 9713,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/16.png",
+          "bytes": 28113,
+          "compressedBytes": 9601,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/17.png",
+          "bytes": 37639,
+          "compressedBytes": 19023,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/18.png",
+          "bytes": 30592,
+          "compressedBytes": 11842,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/19.png",
+          "bytes": 29710,
+          "compressedBytes": 11218,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/2.png",
+          "bytes": 31460,
+          "compressedBytes": 13109,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/20.png",
+          "bytes": 28322,
+          "compressedBytes": 9897,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/21.png",
+          "bytes": 31460,
+          "compressedBytes": 13109,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/22.png",
+          "bytes": 28716,
+          "compressedBytes": 10385,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/3.png",
+          "bytes": 28716,
+          "compressedBytes": 10385,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/4.png",
+          "bytes": 25359,
+          "compressedBytes": 7178,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/5.png",
+          "bytes": 27193,
+          "compressedBytes": 8758,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/6.png",
+          "bytes": 27092,
+          "compressedBytes": 8726,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/7.png",
+          "bytes": 25832,
+          "compressedBytes": 7652,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/8.png",
+          "bytes": 26366,
+          "compressedBytes": 8205,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/9.png",
+          "bytes": 26451,
+          "compressedBytes": 8245,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/righthand/rightup.png",
+          "bytes": 26322,
+          "compressedBytes": 8251,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/sounds/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/keyboard/sounds/0.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/sounds/1.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/sounds/2.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/sounds/3.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/sounds/4.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/keyboard/sounds/5.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/standard/arm.png",
+          "bytes": 3421,
+          "compressedBytes": 2905,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/arm副本.png",
+          "bytes": 185887,
+          "compressedBytes": 185947,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat.png",
+          "bytes": 26209,
+          "compressedBytes": 25259,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/standard/cat_model/cat.model3.json",
+          "bytes": 1322,
+          "compressedBytes": 358,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/demomodel.1024/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/standard/cat_model/demomodel.1024/texture_00.png",
+          "bytes": 76556,
+          "compressedBytes": 73095,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/demomodel.1024/texture_01.png",
+          "bytes": 193034,
+          "compressedBytes": 187847,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/demomodel.1024/texture_02.png",
+          "bytes": 98548,
+          "compressedBytes": 95038,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/demomodel.cdi3.json",
+          "bytes": 3845,
+          "compressedBytes": 729,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/demomodel.moc3",
+          "bytes": 41216,
+          "compressedBytes": 14542,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/exp_1.exp3.json",
+          "bytes": 206,
+          "compressedBytes": 119,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/exp_2.exp3.json",
+          "bytes": 121,
+          "compressedBytes": 100,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/live2d_expression0.exp3.json",
+          "bytes": 51,
+          "compressedBytes": 51,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/live2d_expression1.exp3.json",
+          "bytes": 133,
+          "compressedBytes": 108,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/live2d_expression2.exp3.json",
+          "bytes": 133,
+          "compressedBytes": 108,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/live2d_motion1.flac",
+          "bytes": 474729,
+          "compressedBytes": 464596,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/live2d_motion1.motion3.json",
+          "bytes": 811,
+          "compressedBytes": 299,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/cat_model/live2d_motion2.motion3.json",
+          "bytes": 833,
+          "compressedBytes": 306,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/face/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/standard/face/0.png",
+          "bytes": 48046,
+          "compressedBytes": 32685,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/face/1.png",
+          "bytes": 55337,
+          "compressedBytes": 40426,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/face/2.png",
+          "bytes": 37209,
+          "compressedBytes": 22314,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/face/3.png",
+          "bytes": 26588,
+          "compressedBytes": 12388,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/standard/hand/0.png",
+          "bytes": 10128,
+          "compressedBytes": 9126,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/1.png",
+          "bytes": 10212,
+          "compressedBytes": 9198,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/10.png",
+          "bytes": 8999,
+          "compressedBytes": 7917,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/11.png",
+          "bytes": 23051,
+          "compressedBytes": 8322,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/12.png",
+          "bytes": 8535,
+          "compressedBytes": 7458,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/13.png",
+          "bytes": 22481,
+          "compressedBytes": 7701,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/14.png",
+          "bytes": 6553,
+          "compressedBytes": 5579,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/2.png",
+          "bytes": 10079,
+          "compressedBytes": 9053,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/3.png",
+          "bytes": 10551,
+          "compressedBytes": 9268,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/4.png",
+          "bytes": 11019,
+          "compressedBytes": 9692,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/5.png",
+          "bytes": 11825,
+          "compressedBytes": 10519,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/6.png",
+          "bytes": 12723,
+          "compressedBytes": 11326,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/7.png",
+          "bytes": 8552,
+          "compressedBytes": 7530,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/8.png",
+          "bytes": 8525,
+          "compressedBytes": 7493,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/hand/9.png",
+          "bytes": 9681,
+          "compressedBytes": 8598,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/standard/keyboard/0.png",
+          "bytes": 4998,
+          "compressedBytes": 3881,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/1.png",
+          "bytes": 5038,
+          "compressedBytes": 3914,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/10.png",
+          "bytes": 20385,
+          "compressedBytes": 5180,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/11.png",
+          "bytes": 20559,
+          "compressedBytes": 5740,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/12.png",
+          "bytes": 5625,
+          "compressedBytes": 4517,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/13.png",
+          "bytes": 20658,
+          "compressedBytes": 5845,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/14.png",
+          "bytes": 6220,
+          "compressedBytes": 5137,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/2.png",
+          "bytes": 5046,
+          "compressedBytes": 3920,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/3.png",
+          "bytes": 4967,
+          "compressedBytes": 3839,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/4.png",
+          "bytes": 5036,
+          "compressedBytes": 3905,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/5.png",
+          "bytes": 5058,
+          "compressedBytes": 3937,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/6.png",
+          "bytes": 4941,
+          "compressedBytes": 3807,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/7.png",
+          "bytes": 5782,
+          "compressedBytes": 4700,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/8.png",
+          "bytes": 5758,
+          "compressedBytes": 4648,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/keyboard/9.png",
+          "bytes": 5844,
+          "compressedBytes": 4747,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/mouse.png",
+          "bytes": 19252,
+          "compressedBytes": 5900,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/mouse_left.png",
+          "bytes": 17153,
+          "compressedBytes": 3429,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/mouse_right.png",
+          "bytes": 16648,
+          "compressedBytes": 2923,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/mouse_side.png",
+          "bytes": 3734,
+          "compressedBytes": 3710,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/mousebg.png",
+          "bytes": 72471,
+          "compressedBytes": 69070,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/sounds/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "img/standard/sounds/0.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/sounds/1.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/sounds/2.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/sounds/3.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/sounds/4.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/sounds/5.flac",
+          "bytes": 28467,
+          "compressedBytes": 19753,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/tablet.png",
+          "bytes": 8041,
+          "compressedBytes": 7875,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/tablet_left.png",
+          "bytes": 8609,
+          "compressedBytes": 8547,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/tablet_right.png",
+          "bytes": 7433,
+          "compressedBytes": 7342,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/tabletbg.png",
+          "bytes": 51943,
+          "compressedBytes": 48744,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "img/standard/up.png",
+          "bytes": 24878,
+          "compressedBytes": 10253,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "MaterialDesignColors.dll",
+          "bytes": 299520,
+          "compressedBytes": 37554,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "MaterialDesignThemes.Wpf.dll",
+          "bytes": 6969344,
+          "compressedBytes": 2481455,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "msvcp140.dll",
+          "bytes": 450320,
+          "compressedBytes": 157936,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "openal32.dll",
+          "bytes": 669696,
+          "compressedBytes": 370336,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "Resources/",
+          "bytes": 0,
+          "compressedBytes": 0,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "Resources/cat.ttf",
+          "bytes": 2484256,
+          "compressedBytes": 1561384,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "Resources/l2dlogo.png",
+          "bytes": 24589,
+          "compressedBytes": 10015,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "sfml-audio-2.dll",
+          "bytes": 1012224,
+          "compressedBytes": 331698,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "sfml-graphics-2.dll",
+          "bytes": 811520,
+          "compressedBytes": 405749,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "sfml-network-2.dll",
+          "bytes": 132096,
+          "compressedBytes": 54857,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "sfml-system-2.dll",
+          "bytes": 50176,
+          "compressedBytes": 20379,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "sfml-window-2.dll",
+          "bytes": 123392,
+          "compressedBytes": 54519,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "vcruntime140.dll",
+          "bytes": 83224,
+          "compressedBytes": 44687,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        },
+        {
+          "name": "vcruntime140_1.dll",
+          "bytes": 44312,
+          "compressedBytes": 22239,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "text-scanned": 1,
+        "binary-listed-not-analyzed": 266,
+        "directory": 25
+      }
+    },
+    {
+      "name": "简单的凸轮设计.zip",
+      "bytes": 1462,
+      "sha256": "0f1745212787c22ec46e019fa3c840f7a00270dd5e7fee34544cace5f37e38cf",
+      "entries": [
+        {
+          "name": "main.m",
+          "bytes": 3322,
+          "compressedBytes": 1316,
+          "encrypted": false,
+          "sha256": "06d2785c0fdc55e45ad336b5161596fbab17aa28660959bf50fd520c139ef6ab",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 115,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": "简单的凸轮设计.zip",
+      "coverageCounts": {
+        "text-scanned": 1
+      }
+    },
+    {
+      "name": "纯方位无源定位.zip",
+      "bytes": 3878,
+      "sha256": "a29f601aa64686e0dc1bf99375f676b58e2927c7f52b15c069c898ac53f066ed",
+      "entries": [
+        {
+          "name": "纯方位无源定位/",
+          "bytes": 0,
+          "compressedBytes": 2,
+          "encrypted": false,
+          "status": "directory"
+        },
+        {
+          "name": "纯方位无源定位/find_circle.m",
+          "bytes": 441,
+          "compressedBytes": 288,
+          "encrypted": false,
+          "sha256": "2413fd2c22171018c4cc004d9ea13c338bb11ce61a08ea00fa6dc994c6c0d172",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 17,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "纯方位无源定位/find_angle.m",
+          "bytes": 342,
+          "compressedBytes": 249,
+          "encrypted": false,
+          "sha256": "1ed2504a411169f77de3fec544b62598f224d1c9dcbac22568503d97e3b20988",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 9,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "纯方位无源定位/find_location.m",
+          "bytes": 756,
+          "compressedBytes": 358,
+          "encrypted": false,
+          "sha256": "7a4ee63486bb81f1d08d8c277286a6cb40dcf8df94f818b3fd50eb5182af9998",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 16,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "纯方位无源定位/get_circle.m",
+          "bytes": 202,
+          "compressedBytes": 169,
+          "encrypted": false,
+          "sha256": "e6bb80e5ff07ec2096ddc13197fdb8f2eaf672cfcc820b624a7f01ec3dea604f",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 5,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "纯方位无源定位/test01.m",
+          "bytes": 1103,
+          "compressedBytes": 415,
+          "encrypted": false,
+          "sha256": "02bf9ead43725292df8619c76c434a43e14d91ef61c8a2e2e6b3050884b1862b",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 29,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "纯方位无源定位/find_location_show.m",
+          "bytes": 1848,
+          "compressedBytes": 681,
+          "encrypted": false,
+          "sha256": "942c2c334843ccd0632bd67f63f5cf517b2fe65d6f11171da6ddc5fd344838b7",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 47,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "纯方位无源定位/test02.m",
+          "bytes": 113,
+          "compressedBytes": 93,
+          "encrypted": false,
+          "sha256": "574e2cd4dc0844f276c8d1c32683d3b7266e090c8afe80e5a77d2ce7412ced99",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 6,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "纯方位无源定位/polar2cartesian.m",
+          "bytes": 214,
+          "compressedBytes": 167,
+          "encrypted": false,
+          "sha256": "cede26627fc4fd8ca0dd07ed8b576bb5a55216f0944fa6da772490c36ccd071c",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 5,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "directory": 1,
+        "text-scanned": 8
+      }
+    },
+    {
+      "name": "视频边缘检测.zip",
+      "bytes": 28829771,
+      "sha256": "a32e213f8f9162570aa2cc6e26d355ce92eaf5f2754a8744121d3fccd0ccf453",
+      "entries": [
+        {
+          "name": "main.asv",
+          "bytes": 1136,
+          "compressedBytes": 394,
+          "encrypted": false,
+          "sha256": "e4cd8d065006e4d54762794c2f42308322e1f72ff63cdc30d87e9ed15997c6f6",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 35,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "main.m",
+          "bytes": 1165,
+          "compressedBytes": 365,
+          "encrypted": false,
+          "sha256": "2e1565fa0519933e85c826934c6c08009da2000743a610201ac56d5439d536d2",
+          "status": "text-scanned",
+          "encoding": "utf-8-sig",
+          "lineCount": 29,
+          "exactTokenHits": {},
+          "relatedTokenHits": {}
+        },
+        {
+          "name": "Only My Railgun.mp4",
+          "bytes": 28950339,
+          "compressedBytes": 28828588,
+          "encrypted": false,
+          "status": "binary-listed-not-analyzed"
+        }
+      ],
+      "exactPriorArchive": null,
+      "coverageCounts": {
+        "text-scanned": 2,
+        "binary-listed-not-analyzed": 1
+      }
+    }
+  ],
+  "scope": "Inventory and decoded-text token scan only. Absence of names does not prove absence of equivalent logic; encrypted and binary contents remain unreviewed.",
+  "firstGenerationDuplicateEntries": [
+    {
+      "entry": "r1.m",
+      "sha256": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+      "sameAsEarlierOriginal": true
+    },
+    {
+      "entry": "r2.m",
+      "sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+      "sameAsEarlierOriginal": true
+    },
+    {
+      "entry": "routes.mat",
+      "sha256": "a99b9e626d716eed786bbe19750163857b366b3a8019dbe32196acf1d32cc1e2",
+      "sameAsEarlierOriginal": true
+    },
+    {
+      "entry": "代码运行示范.docx",
+      "sha256": "7bbd674abadd48d2d2ad45240fd6c4467d2d420e6391fff8bc2e47d46a4d0f96",
+      "sameAsEarlierOriginal": true
+    },
+    {
+      "entry": "说明.txt",
+      "sha256": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+      "sameAsEarlierOriginal": true
+    }
+  ]
+}

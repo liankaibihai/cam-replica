@@ -1,0 +1,2547 @@
+{
+  "schema": "full-collection-cam-source-review-1",
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "baseline_git": "51234e7",
+  "source_directory": "F:\\许昊阳\\竞赛\\2027工创\\41 MATLAB代码及软件",
+  "source_directory_read_only": true,
+  "input_inventory": {
+    "path": "local/full_collection_20261029/inventory.json",
+    "bytes": 64557,
+    "sha256": "3522e53c5a009a6773588b3a5f3a81c51ac9347c8e1a59324490ee39c41c53a2"
+  },
+  "commander_inventory": {
+    "path": "data/full_collection_inventory_20261029.json",
+    "coverage_counts_crosschecked": {
+      "text-scanned": 56,
+      "binary-listed-not-analyzed": 293,
+      "directory": 30,
+      "nested-archive-inspected": 1,
+      "encrypted-not-read": 7
+    }
+  },
+  "scope": {
+    "archives_listed": 18,
+    "decoded_text_files": 56,
+    "decoded_text_lines": 7548,
+    "extensions": {
+      ".m": 47,
+      ".asv": 1,
+      ".txt": 8
+    },
+    "initial_manifest_candidates": 55,
+    "extra_asv_included": "local/full_collection_20261029/18/main.asv",
+    "all_candidate_hashes_verified": true,
+    "source_or_extracted_files_modified": false,
+    "matlab_or_script_execution": false,
+    "executables_run": false,
+    "animation_or_interactive_execution": false,
+    "unrelated_strategy_model_interpreted_or_improved": false,
+    "allowed_deliverables": [
+      "docs/FULL_COLLECTION_SOURCE_REVIEW.md",
+      "data/full_collection_review_20261029.json"
+    ]
+  },
+  "search_patterns": {
+    "core_exact_names": "Bezier_superposition|Squares_standard_sum|score_cal",
+    "core_loose_names": "bezier[\\s_]*superposition|squares?[\\s_]*standard[\\s_]*sum|score[\\s_]*cal",
+    "bezier_and_blend": "bezier|bernstein|casteljau|Yang_Hui|nchoosek|贝塞尔|貝塞爾|叠加|疊加|融合",
+    "aggregation_score_candidates": "score|fitness|objective|评分|得分|适应度|目标函数|平方和|均方|归一|标准|方差|权重|加权|weight|\\bstd\\s*\\(|\\bvar\\s*\\(|\\bsum\\s*\\([^;\\n]*\\.\\^\\s*2|\\bnorm\\s*\\([^;\\n]*\\)\\s*(?:\\.\\^|\\^)\\s*2",
+    "nine_named_identifiers": "Bezier_superposition|Squares_standard_sum|score_cal|Simulation_cal|all_routes_cal|gradient_power|learning_efficiency|perturbation_frequency|Scored_index"
+  },
+  "file_scan": [
+    {
+      "archive_id": 1,
+      "path": "local/full_collection_20261029/1/m0.m",
+      "bytes": 5102,
+      "sha256": "0a8569d3ad94143b4b124e7af7e044e685c8e4b9edf4e7ef0906828dd8427e5f",
+      "encoding": "utf-8-sig",
+      "line_count": 144,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated eight-queens example; target-token screening only."
+    },
+    {
+      "archive_id": 10,
+      "path": "local/full_collection_20261029/10/main.m",
+      "bytes": 1376,
+      "sha256": "f79b741da26308eee6dc8718dfad1b717ee8b3833a0c138496fae2e2608aecdc",
+      "encoding": "utf-8-sig",
+      "line_count": 47,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated four-bar geometric projection; does not supply missing route/score bodies."
+    },
+    {
+      "archive_id": 11,
+      "path": "local/full_collection_20261029/11/data.m",
+      "bytes": 4644,
+      "sha256": "2a5751483b98baf008c3b6038cb38ee7e0369ad3d71dd88b5e7a5e9f669231b2",
+      "encoding": "utf-8-sig",
+      "line_count": 167,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated N-body motion/display; centered distance standard deviation is visible but has no established equivalence to missing helper."
+    },
+    {
+      "archive_id": 11,
+      "path": "local/full_collection_20261029/11/main.m",
+      "bytes": 3540,
+      "sha256": "1b3d74da22f5c3d58c7c586cf210776c95be5d231129a6e03b6262d4faa9f8e1",
+      "encoding": "utf-8-sig",
+      "line_count": 105,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated N-body motion/display; centered distance standard deviation is visible but has no established equivalence to missing helper."
+    },
+    {
+      "archive_id": 11,
+      "path": "local/full_collection_20261029/11/print.m",
+      "bytes": 5154,
+      "sha256": "fbc2df177f30ed2e38312bfb789e8803959f791ad867599ae1c65f612e009870",
+      "encoding": "utf-8-sig",
+      "line_count": 137,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 2,
+          "lines": [
+            31,
+            96
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated N-body motion/display; centered distance standard deviation is visible but has no established equivalence to missing helper."
+    },
+    {
+      "archive_id": 11,
+      "path": "local/full_collection_20261029/11/solve_elastic_collision_v.m",
+      "bytes": 1286,
+      "sha256": "fe49fa0ad28374c0a9a85aa0e73124ab37fd34588f54edc1be691a3c7ebea398",
+      "encoding": "utf-8-sig",
+      "line_count": 37,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated N-body motion/display; centered distance standard deviation is visible but has no established equivalence to missing helper."
+    },
+    {
+      "archive_id": 11,
+      "path": "local/full_collection_20261029/11/solve_f.m",
+      "bytes": 610,
+      "sha256": "2e48e3b4f2d1012ae8cda20236cac4848ab956522769474a4e3cef47dc499b5e",
+      "encoding": "utf-8-sig",
+      "line_count": 14,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 2,
+          "lines": [
+            10,
+            11
+          ]
+        },
+        "aggregation_score_candidates": {
+          "count": 1,
+          "lines": [
+            8
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated N-body motion/display; centered distance standard deviation is visible but has no established equivalence to missing helper."
+    },
+    {
+      "archive_id": 11,
+      "path": "local/full_collection_20261029/11/solve_location.m",
+      "bytes": 164,
+      "sha256": "fa4ba97f18c6ca6cbd13ea0fc3755a4488ad0e6c7e4321ced4746e3adc79c26b",
+      "encoding": "utf-8-sig",
+      "line_count": 4,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated N-body motion/display; centered distance standard deviation is visible but has no established equivalence to missing helper."
+    },
+    {
+      "archive_id": 11,
+      "path": "local/full_collection_20261029/11/solve_v.m",
+      "bytes": 389,
+      "sha256": "a9fc696c5551bdea21223e65550cdab3aa1ca002764f9c3adf768f79608c7ea0",
+      "encoding": "utf-8-sig",
+      "line_count": 10,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 1,
+          "lines": [
+            5
+          ]
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated N-body motion/display; centered distance standard deviation is visible but has no established equivalence to missing helper."
+    },
+    {
+      "archive_id": 12,
+      "path": "local/full_collection_20261029/12/r1.m",
+      "bytes": 53,
+      "sha256": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+      "encoding": "gb18030",
+      "line_count": 6,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "All five archive members duplicate previous first-generation originals; reuse prior validated benchmark through exact hashes."
+    },
+    {
+      "archive_id": 12,
+      "path": "local/full_collection_20261029/12/r2.m",
+      "bytes": 4233,
+      "sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+      "encoding": "utf-8-sig",
+      "line_count": 176,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "All five archive members duplicate previous first-generation originals; reuse prior validated benchmark through exact hashes."
+    },
+    {
+      "archive_id": 12,
+      "path": "local/full_collection_20261029/12/说明.txt",
+      "bytes": 2971,
+      "sha256": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+      "encoding": "utf-8-sig",
+      "line_count": 63,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "All five archive members duplicate previous first-generation originals; reuse prior validated benchmark through exact hashes."
+    },
+    {
+      "archive_id": 13,
+      "path": "local/full_collection_20261029/13/main_traditional.m",
+      "bytes": 7311,
+      "sha256": "0d5f902a8ecf2d1a6956924b00a18989f869b53c4bdcbd694cd49c6b72660326",
+      "encoding": "utf-8-sig",
+      "line_count": 211,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Byte-identical prior traditional-motion cam package; normal-offset reference, no missing route/score bodies."
+    },
+    {
+      "archive_id": 14,
+      "path": "local/full_collection_20261029/14/说明文件.txt",
+      "bytes": 155,
+      "sha256": "23d3e5f9100eee23127d97929326a56c7ba4bf58b293f0c81b50bf1cfa7885c7",
+      "encoding": "utf-8-sig",
+      "line_count": 3,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outer note only; nested five .m and two PNG encrypted and not read."
+    },
+    {
+      "archive_id": 15,
+      "path": "local/full_collection_20261029/15/_对软件有疑问请右键托盘图标进ui查看教程!.txt",
+      "bytes": 649,
+      "sha256": "0130cba9a1e9a6fade1d8a16a8143d958a30af2bbcd992efc4fa21806770d585",
+      "encoding": "utf-8-sig",
+      "line_count": 11,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Desktop pet application note only; unrelated binaries not analyzed or run."
+    },
+    {
+      "archive_id": 16,
+      "path": "local/full_collection_20261029/16/main.m",
+      "bytes": 3322,
+      "sha256": "06d2785c0fdc55e45ad336b5161596fbab17aa28660959bf50fd520c139ef6ab",
+      "encoding": "utf-8-sig",
+      "line_count": 115,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Byte-identical prior simple-cam example; no new version/source."
+    },
+    {
+      "archive_id": 17,
+      "path": "local/full_collection_20261029/17/find_angle.m",
+      "bytes": 342,
+      "sha256": "1ed2504a411169f77de3fec544b62598f224d1c9dcbac22568503d97e3b20988",
+      "encoding": "utf-8-sig",
+      "line_count": 9,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "archive_id": 17,
+      "path": "local/full_collection_20261029/17/find_circle.m",
+      "bytes": 441,
+      "sha256": "2413fd2c22171018c4cc004d9ea13c338bb11ce61a08ea00fa6dc994c6c0d172",
+      "encoding": "utf-8-sig",
+      "line_count": 17,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "archive_id": 17,
+      "path": "local/full_collection_20261029/17/find_location.m",
+      "bytes": 756,
+      "sha256": "7a4ee63486bb81f1d08d8c277286a6cb40dcf8df94f818b3fd50eb5182af9998",
+      "encoding": "utf-8-sig",
+      "line_count": 16,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "archive_id": 17,
+      "path": "local/full_collection_20261029/17/find_location_show.m",
+      "bytes": 1848,
+      "sha256": "942c2c334843ccd0632bd67f63f5cf517b2fe65d6f11171da6ddc5fd344838b7",
+      "encoding": "utf-8-sig",
+      "line_count": 47,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "archive_id": 17,
+      "path": "local/full_collection_20261029/17/get_circle.m",
+      "bytes": 202,
+      "sha256": "e6bb80e5ff07ec2096ddc13197fdb8f2eaf672cfcc820b624a7f01ec3dea604f",
+      "encoding": "utf-8-sig",
+      "line_count": 5,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "archive_id": 17,
+      "path": "local/full_collection_20261029/17/polar2cartesian.m",
+      "bytes": 214,
+      "sha256": "cede26627fc4fd8ca0dd07ed8b576bb5a55216f0944fa6da772490c36ccd071c",
+      "encoding": "utf-8-sig",
+      "line_count": 5,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "archive_id": 17,
+      "path": "local/full_collection_20261029/17/test01.m",
+      "bytes": 1103,
+      "sha256": "02bf9ead43725292df8619c76c434a43e14d91ef61c8a2e2e6b3050884b1862b",
+      "encoding": "utf-8-sig",
+      "line_count": 29,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "archive_id": 17,
+      "path": "local/full_collection_20261029/17/test02.m",
+      "bytes": 113,
+      "sha256": "574e2cd4dc0844f276c8d1c32683d3b7266e090c8afe80e5a77d2ce7412ced99",
+      "encoding": "utf-8-sig",
+      "line_count": 6,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "archive_id": 18,
+      "path": "local/full_collection_20261029/18/main.asv",
+      "bytes": 1136,
+      "sha256": "e4cd8d065006e4d54762794c2f42308322e1f72ff63cdc30d87e9ed15997c6f6",
+      "encoding": "utf-8-sig",
+      "line_count": 35,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Video image-gradient example, including .asv backup; unrelated to missing cam algorithms."
+    },
+    {
+      "archive_id": 18,
+      "path": "local/full_collection_20261029/18/main.m",
+      "bytes": 1165,
+      "sha256": "2e1565fa0519933e85c826934c6c08009da2000743a610201ac56d5439d536d2",
+      "encoding": "utf-8-sig",
+      "line_count": 29,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Video image-gradient example, including .asv backup; unrelated to missing cam algorithms."
+    },
+    {
+      "archive_id": 2,
+      "path": "local/full_collection_20261029/2/m0.m",
+      "bytes": 407,
+      "sha256": "ef5e29a3c28a548298d2aa594d2d24e27ce042514d1057e073407730e716656d",
+      "encoding": "utf-8-sig",
+      "line_count": 21,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "FAST reflector geometry/local scoring; score variables and squared norms reviewed, no source/equivalence link to missing cam helpers."
+    },
+    {
+      "archive_id": 2,
+      "path": "local/full_collection_20261029/2/m1.m",
+      "bytes": 2006,
+      "sha256": "479f1986caf1abc1dc908e22bcba468bc35c1904d21a4d55591fcc3a7a687ebd",
+      "encoding": "utf-8-sig",
+      "line_count": 62,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "FAST reflector geometry/local scoring; score variables and squared norms reviewed, no source/equivalence link to missing cam helpers."
+    },
+    {
+      "archive_id": 2,
+      "path": "local/full_collection_20261029/2/m2.m",
+      "bytes": 1388,
+      "sha256": "ea2f9a071c9024d65bec6670e6450ccf1206c04593adf9b7c347af9c26d05101",
+      "encoding": "utf-8-sig",
+      "line_count": 34,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "FAST reflector geometry/local scoring; score variables and squared norms reviewed, no source/equivalence link to missing cam helpers."
+    },
+    {
+      "archive_id": 2,
+      "path": "local/full_collection_20261029/2/m3.m",
+      "bytes": 1402,
+      "sha256": "412fd85c21eaf236e93ad27c326e44a8aaa61cde91eb1728442d6b8a2c567d32",
+      "encoding": "utf-8-sig",
+      "line_count": 35,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 6,
+          "lines": [
+            3,
+            25,
+            26,
+            29,
+            33,
+            35
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "FAST reflector geometry/local scoring; score variables and squared norms reviewed, no source/equivalence link to missing cam helpers."
+    },
+    {
+      "archive_id": 2,
+      "path": "local/full_collection_20261029/2/m4.m",
+      "bytes": 12260,
+      "sha256": "f7c5330e19ef1691b056c52f595da59ec77afdba2e7750de374fd7490071cc22",
+      "encoding": "utf-8-sig",
+      "line_count": 222,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 18,
+          "lines": [
+            4,
+            5,
+            6,
+            49,
+            53,
+            62,
+            66,
+            120,
+            121,
+            123,
+            144,
+            145,
+            147,
+            177,
+            208,
+            209,
+            214,
+            218
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "FAST reflector geometry/local scoring; score variables and squared norms reviewed, no source/equivalence link to missing cam helpers."
+    },
+    {
+      "archive_id": 3,
+      "path": "local/full_collection_20261029/3/main.m",
+      "bytes": 5314,
+      "sha256": "a1e287d3fe77dbc3d26ee7e7a1367f3cf82f2601613b7c09d87019cb5931e016",
+      "encoding": "utf-8-sig",
+      "line_count": 149,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 2,
+          "lines": [
+            83,
+            90
+          ]
+        },
+        "aggregation_score_candidates": {
+          "count": 1,
+          "lines": [
+            59
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Arm coordinate transformations/cylinder drawing; vector additions are not Bezier blending; header training wording does not establish a training implementation."
+    },
+    {
+      "archive_id": 3,
+      "path": "local/full_collection_20261029/3/SpaceCylinder.m",
+      "bytes": 1336,
+      "sha256": "dab501b71399c679bb2ab82de0ca53d1ac948cf89a7bc9c2e8ec9b2d3dba11dc",
+      "encoding": "utf-8-sig",
+      "line_count": 31,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 1,
+          "lines": [
+            24
+          ]
+        },
+        "aggregation_score_candidates": {
+          "count": 1,
+          "lines": [
+            7
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Arm coordinate transformations/cylinder drawing; vector additions are not Bezier blending; header training wording does not establish a training implementation."
+    },
+    {
+      "archive_id": 3,
+      "path": "local/full_collection_20261029/3/使用手册_技术交流.txt",
+      "bytes": 876,
+      "sha256": "9f01b90f17cf7966febf41f20523c360a1d75508fe385e835e03f03438b7147c",
+      "encoding": "utf-8-sig",
+      "line_count": 19,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Arm coordinate transformations/cylinder drawing; vector additions are not Bezier blending; header training wording does not establish a training implementation."
+    },
+    {
+      "archive_id": 4,
+      "path": "local/full_collection_20261029/4/Bezier_Curve.m",
+      "bytes": 1077,
+      "sha256": "36664c57c112e408d9ce059c5ee153d7c8a561e45df3a8e0e5924904fece1477",
+      "encoding": "utf-8-sig",
+      "line_count": 28,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 11,
+          "lines": [
+            4,
+            5,
+            7,
+            10,
+            11,
+            12,
+            15,
+            18,
+            19,
+            20,
+            28
+          ]
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Byte-identical prior Bernstein single-curve package; not overlapping blending."
+    },
+    {
+      "archive_id": 4,
+      "path": "local/full_collection_20261029/4/使用手册_技术交流.txt",
+      "bytes": 852,
+      "sha256": "a717a3f9dd8c6f251bbbc0271c3004619018b1ac24722472ff8b5427ea7da05a",
+      "encoding": "utf-8-sig",
+      "line_count": 22,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Byte-identical prior Bernstein single-curve package; not overlapping blending."
+    },
+    {
+      "archive_id": 6,
+      "path": "local/full_collection_20261029/6/main.m",
+      "bytes": 20712,
+      "sha256": "3c702c3e501cc267024f470a99aa15618dc0e8d0fa75aa8f9996fb3da06681f9",
+      "encoding": "utf-8-sig",
+      "line_count": 312,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 1,
+          "lines": [
+            192
+          ]
+        },
+        "aggregation_score_candidates": {
+          "count": 1,
+          "lines": [
+            23
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Byte-identical prior Ackermann geometry/animation package; center-vector addition is not curve blending."
+    },
+    {
+      "archive_id": 6,
+      "path": "local/full_collection_20261029/6/使用手册_技术交流.txt",
+      "bytes": 718,
+      "sha256": "aab4422542d9262d214563856314f3c0f8bd321f4e801c41e5635f8792bc8e16",
+      "encoding": "utf-8-sig",
+      "line_count": 16,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Byte-identical prior Ackermann geometry/animation package; center-vector addition is not curve blending."
+    },
+    {
+      "archive_id": 7,
+      "path": "local/full_collection_20261029/7/main01.m",
+      "bytes": 15958,
+      "sha256": "5bc91e416458d57ec64babec4c4f657b6dccaf7fc4035a73f1ecca801df19592",
+      "encoding": "utf-8-sig",
+      "line_count": 291,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 2,
+          "lines": [
+            279,
+            282
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated spiral/circular-arc concatenation and linked-point geometry; velocity normalization is not cam score aggregation."
+    },
+    {
+      "archive_id": 7,
+      "path": "local/full_collection_20261029/7/main02.m",
+      "bytes": 14105,
+      "sha256": "29ab2d4d3693e68639e8dd177a903ed72a078f65937f59da70de9a0e295009c6",
+      "encoding": "utf-8-sig",
+      "line_count": 262,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated spiral/circular-arc concatenation and linked-point geometry; velocity normalization is not cam score aggregation."
+    },
+    {
+      "archive_id": 7,
+      "path": "local/full_collection_20261029/7/main03.m",
+      "bytes": 16728,
+      "sha256": "5fb4e6ee9d2b0c74ed3092deef508aa8cdfa87de3e4ef86e793feb76f2418c3d",
+      "encoding": "utf-8-sig",
+      "line_count": 299,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 1,
+          "lines": [
+            291
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated spiral/circular-arc concatenation and linked-point geometry; velocity normalization is not cam score aggregation."
+    },
+    {
+      "archive_id": 7,
+      "path": "local/full_collection_20261029/7/main04.m",
+      "bytes": 17744,
+      "sha256": "3a78e8a7fa797cd5ee00701da852987a4cbc19619b7da8b23f9fddbdd15dfa25",
+      "encoding": "utf-8-sig",
+      "line_count": 312,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 1,
+          "lines": [
+            304
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Unrelated spiral/circular-arc concatenation and linked-point geometry; velocity normalization is not cam score aggregation."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/main_01.m",
+      "bytes": 11700,
+      "sha256": "4e108d474d948c43d7fa4ed8c23b7ff3a62399720f4c72c05e94a811671850c8",
+      "encoding": "utf-8-sig",
+      "line_count": 245,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/main_02.m",
+      "bytes": 15464,
+      "sha256": "3ee1c69e8b60d7a45b77af53feda02579a7e02b25545b4643e43b04979ae8650",
+      "encoding": "utf-8-sig",
+      "line_count": 285,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 13,
+          "lines": [
+            40,
+            41,
+            86,
+            97,
+            230,
+            234,
+            235,
+            236,
+            237,
+            239,
+            240,
+            241,
+            272
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/main_03.m",
+      "bytes": 18936,
+      "sha256": "4de2f08c385000605c350ec22e9b332b6d840c7603c9c7be55ee1f216f2454d0",
+      "encoding": "utf-8-sig",
+      "line_count": 360,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 16,
+          "lines": [
+            57,
+            58,
+            101,
+            112,
+            296,
+            297,
+            302,
+            304,
+            306,
+            308,
+            309,
+            310,
+            313,
+            326,
+            327,
+            328
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/main_04.m",
+      "bytes": 19775,
+      "sha256": "3ce0ec31cb8761f61e11e8433a442369a764d7732d09a83d15d25430c7d39c65",
+      "encoding": "utf-8-sig",
+      "line_count": 370,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 17,
+          "lines": [
+            53,
+            54,
+            97,
+            108,
+            292,
+            293,
+            298,
+            300,
+            302,
+            304,
+            305,
+            306,
+            309,
+            322,
+            323,
+            324,
+            357
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/main_05.m",
+      "bytes": 20063,
+      "sha256": "dc6f783430128ca47fbbdc3021493eeda9a61947585aedc9a4eee6b196a08bb4",
+      "encoding": "utf-8-sig",
+      "line_count": 390,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 17,
+          "lines": [
+            73,
+            74,
+            117,
+            128,
+            312,
+            313,
+            318,
+            320,
+            322,
+            324,
+            325,
+            326,
+            329,
+            342,
+            343,
+            344,
+            377
+          ]
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/show_01.m",
+      "bytes": 9714,
+      "sha256": "4e25db9e90f6c89482b23b3c2fef18e83ebc4f4bd48f775b609ab9c905e07120",
+      "encoding": "utf-8-sig",
+      "line_count": 215,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/show_02.m",
+      "bytes": 9731,
+      "sha256": "c98ceaf0928d851d71ff9d24e0b8405c95658379ad7a9789c1ee3f9894e3aac1",
+      "encoding": "utf-8-sig",
+      "line_count": 215,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/show_03.m",
+      "bytes": 11707,
+      "sha256": "c9be3ab6f1f17628d3e9f21778f923d76ebba354b063b29bac0755cb5226374d",
+      "encoding": "utf-8-sig",
+      "line_count": 219,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/show_04.m",
+      "bytes": 11790,
+      "sha256": "b33a01c96f7d29066fcd5fdfd1b17441394ae801e6467f635433d4a2a8098f88",
+      "encoding": "utf-8-sig",
+      "line_count": 248,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/show_05.m",
+      "bytes": 12035,
+      "sha256": "87467e02af761fda7deeace4902ca32db149aefa88bd8e1ae24e653ed17f4795",
+      "encoding": "utf-8-sig",
+      "line_count": 264,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/Test.m",
+      "bytes": 89,
+      "sha256": "c014e69dd955d5a82d9c033c64d8970acf0f573d27ac91d030af860a6a051645",
+      "encoding": "utf-8-sig",
+      "line_count": 8,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 8,
+      "path": "local/full_collection_20261029/8/使用手册_技术交流.txt",
+      "bytes": 694,
+      "sha256": "9c36a7a56dde0a9d0011dc6c82ca618a4c8ff743e0bc002831a32c392290205e",
+      "encoding": "utf-8-sig",
+      "line_count": 15,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "archive_id": 9,
+      "path": "local/full_collection_20261029/9/main.m",
+      "bytes": 4417,
+      "sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "encoding": "utf-8-sig",
+      "line_count": 150,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "New relevant transplanter linkage, prescribed cycle displacement, roller normal-offset code and closed XYZ data; not vehicle-route optimization."
+    },
+    {
+      "archive_id": 9,
+      "path": "local/full_collection_20261029/9/tulun2.txt",
+      "bytes": 22789,
+      "sha256": "dd355854872b23910135f308f012ca4668ff6e78eb9e29deba6724863298abaa",
+      "encoding": "utf-8-sig",
+      "line_count": 1001,
+      "queries": {
+        "core_exact_names": {
+          "count": 0,
+          "lines": []
+        },
+        "core_loose_names": {
+          "count": 0,
+          "lines": []
+        },
+        "bezier_and_blend": {
+          "count": 0,
+          "lines": []
+        },
+        "aggregation_score_candidates": {
+          "count": 0,
+          "lines": []
+        },
+        "nine_named_identifiers": {
+          "count": 0,
+          "lines": []
+        }
+      },
+      "triage": "New relevant transplanter linkage, prescribed cycle displacement, roller normal-offset code and closed XYZ data; not vehicle-route optimization."
+    }
+  ],
+  "exact_name_findings": {
+    "core_exact_total_hits": 0,
+    "core_loose_total_hits": 0,
+    "extended_nine_names": [
+      "Bezier_superposition",
+      "Squares_standard_sum",
+      "score_cal",
+      "Simulation_cal",
+      "all_routes_cal",
+      "gradient_power",
+      "learning_efficiency",
+      "perturbation_frequency",
+      "Scored_index"
+    ],
+    "extended_nine_total_hits": 0,
+    "equivalent_missing_implementation_established": false,
+    "absence_scope": "Only these decoded texts. No absence/equivalence claim about encrypted, binary or unread content; generic similar math does not identify unknown source."
+  },
+  "package_relevance": [
+    {
+      "id": 1,
+      "archive": "8皇后问题.zip",
+      "archive_sha256_from_inventory": "ad3ec2ee9f701b7e22463eac6f788ce68f8e50dd863ee5654b553a2f4e18d455",
+      "readable_texts": 1,
+      "assessment": "Unrelated eight-queens example; target-token screening only."
+    },
+    {
+      "id": 2,
+      "archive": "FAST主动反射面的形状调节.zip",
+      "archive_sha256_from_inventory": "e73e9c5db16045d561def4193d9ec8eddaa8dac94aabce43b7bf49a636fca66f",
+      "readable_texts": 5,
+      "assessment": "FAST reflector geometry/local scoring; score variables and squared norms reviewed, no source/equivalence link to missing cam helpers."
+    },
+    {
+      "id": 3,
+      "archive": "【B站野生机设小佬】6轴机械臂MATLAB学习代码.zip",
+      "archive_sha256_from_inventory": "2a09a5de5400ce9437a59f0c37396f244197d0dfdfd283619c08f958306d485c",
+      "readable_texts": 3,
+      "assessment": "Arm coordinate transformations/cylinder drawing; vector additions are not Bezier blending; header training wording does not establish a training implementation."
+    },
+    {
+      "id": 4,
+      "archive": "【B站野生机设小佬】任意阶贝塞尔曲线.zip",
+      "archive_sha256_from_inventory": "fbe8cb4251516e8dbd7c7ba7523a0fe5dd0a82f60561b755626c9d4521dc6724",
+      "readable_texts": 2,
+      "assessment": "Byte-identical prior Bernstein single-curve package; not overlapping blending."
+    },
+    {
+      "id": 5,
+      "archive": "【B站野生机设小佬】摇臂共轭凸轮设计APP 1.1.1.zip",
+      "archive_sha256_from_inventory": "21ae974696936e03e9c966fea4397adc4309532e6167ed88e4e4d36c49810ccd",
+      "readable_texts": 0,
+      "assessment": "Byte-identical prior conjugate-cam APP archive; no decoded source body; executable not analyzed or run."
+    },
+    {
+      "id": 6,
+      "archive": "【B站野生机设小佬】阿克曼车辆路径规划算法.zip",
+      "archive_sha256_from_inventory": "c7d1c5563f1d93d285239b80925a380a980ec4ac7c961c6701586cce4e56a078",
+      "readable_texts": 2,
+      "assessment": "Byte-identical prior Ackermann geometry/animation package; center-vector addition is not curve blending."
+    },
+    {
+      "id": 7,
+      "archive": "【B站野生机设小佬】高教社杯24A题板凳龙闹元宵.zip",
+      "archive_sha256_from_inventory": "7136d78b5021abf652853050e139ba3b29685731d8a1c59911fc410a6304d15f",
+      "readable_texts": 4,
+      "assessment": "Unrelated spiral/circular-arc concatenation and linked-point geometry; velocity normalization is not cam score aggregation."
+    },
+    {
+      "id": 8,
+      "archive": "【B站野生机设小佬】高教社杯25A题烟幕弹投掷策略.zip",
+      "archive_sha256_from_inventory": "3c28660f0462144f2799922501762bc21cac4180a54c88eb38d5f695cf78eb68",
+      "readable_texts": 12,
+      "assessment": "Outside cam scope; named-identifier/generic-word scan only; no strategy model interpretation, reproduction, optimization or execution."
+    },
+    {
+      "id": 9,
+      "archive": "农机插秧凸轮.zip",
+      "archive_sha256_from_inventory": "9e2e8d2672940cab23615cb6392d4706f2461bda46aa22e1543099a49164c592",
+      "readable_texts": 2,
+      "assessment": "New relevant transplanter linkage, prescribed cycle displacement, roller normal-offset code and closed XYZ data; not vehicle-route optimization."
+    },
+    {
+      "id": 10,
+      "archive": "四杆机构.zip",
+      "archive_sha256_from_inventory": "7507d187e71e625d3cf9399237f265f90f651c5cc975e77004f2bb68843add24",
+      "readable_texts": 1,
+      "assessment": "Unrelated four-bar geometric projection; does not supply missing route/score bodies."
+    },
+    {
+      "id": 11,
+      "archive": "多星体运动.zip",
+      "archive_sha256_from_inventory": "026a00ac25c841e6f025dddc0bfaeb0ad58bf69fd35a7580b66da192af526df9",
+      "readable_texts": 7,
+      "assessment": "Unrelated N-body motion/display; centered distance standard deviation is visible but has no established equivalence to missing helper."
+    },
+    {
+      "id": 12,
+      "archive": "工程训练大赛_第一代MATLAB凸轮仿真代码.zip",
+      "archive_sha256_from_inventory": "afaf46b757b4869f4448a5f8556900a730507ada556cafd8eca914dc62bf1a73",
+      "readable_texts": 3,
+      "assessment": "All five archive members duplicate previous first-generation originals; reuse prior validated benchmark through exact hashes."
+    },
+    {
+      "id": 13,
+      "archive": "常用运动规律凸轮设计.zip",
+      "archive_sha256_from_inventory": "14c1467112e64ef22ed574864ecad5d5ef66a36b31d2226b0280be439fad36cc",
+      "readable_texts": 1,
+      "assessment": "Byte-identical prior traditional-motion cam package; normal-offset reference, no missing route/score bodies."
+    },
+    {
+      "id": 14,
+      "archive": "新冠放开传播数学模型.zip",
+      "archive_sha256_from_inventory": "8516f77736be733c1337f472e277b0a5b1dce467610e47e88c7435161743a329",
+      "readable_texts": 1,
+      "assessment": "Outer note only; nested five .m and two PNG encrypted and not read."
+    },
+    {
+      "id": 15,
+      "archive": "桌宠_Bongo_cat.zip",
+      "archive_sha256_from_inventory": "3c4026ea699a1e599726122c8e6689c96d84f6e1ffef18a843f63b849a8a9c46",
+      "readable_texts": 1,
+      "assessment": "Desktop pet application note only; unrelated binaries not analyzed or run."
+    },
+    {
+      "id": 16,
+      "archive": "简单的凸轮设计.zip",
+      "archive_sha256_from_inventory": "0f1745212787c22ec46e019fa3c840f7a00270dd5e7fee34544cace5f37e38cf",
+      "readable_texts": 1,
+      "assessment": "Byte-identical prior simple-cam example; no new version/source."
+    },
+    {
+      "id": 17,
+      "archive": "纯方位无源定位.zip",
+      "archive_sha256_from_inventory": "a29f601aa64686e0dc1bf99375f676b58e2927c7f52b15c069c898ac53f066ed",
+      "readable_texts": 8,
+      "assessment": "Planar angle/circle localization geometry; not the missing route generator or score."
+    },
+    {
+      "id": 18,
+      "archive": "视频边缘检测.zip",
+      "archive_sha256_from_inventory": "a32e213f8f9162570aa2cc6e26d355ce92eaf5f2754a8744121d3fccd0ccf453",
+      "readable_texts": 2,
+      "assessment": "Video image-gradient example, including .asv backup; unrelated to missing cam algorithms."
+    }
+  ],
+  "evidence": [
+    {
+      "id": "FARM-PARAMETERS",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        12,
+        24
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "Export selection and default geometric/cycle parameters; source does not explicitly declare all units as mm."
+    },
+    {
+      "id": "FARM-CRANK",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        28,
+        31
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "Circular crank endpoint samples."
+    },
+    {
+      "id": "FARM-PRESCRIBED-MOTION",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        34,
+        39
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "Dwell/cosine prescribed world longitudinal motion minus uniform translation gives relative horizontal displacement."
+    },
+    {
+      "id": "FARM-LINK-PROJECTION",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        42,
+        56
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "Alternating circle and X-coordinate projection for rod endpoint, then vertical rod offset; no maximum iteration bound."
+    },
+    {
+      "id": "FARM-POLAR",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        59,
+        67
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "rho=d/2+x_T-x_v, uniform-index phase and theoretical cam points."
+    },
+    {
+      "id": "FARM-NORMAL-OFFSET",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        70,
+        75
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "Periodic central chord and fixed left-normal roller-radius offset."
+    },
+    {
+      "id": "FARM-CLOSURE",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        80,
+        81
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "Append first theoretical/offset point."
+    },
+    {
+      "id": "FARM-LINKAGE-DRAW",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        109,
+        117
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "Connected origin/l1/l2/l3 plot supports mechanism interpretation; not executed."
+    },
+    {
+      "id": "FARM-EXPORT",
+      "path": "local/full_collection_20261029/9/main.m",
+      "lines": [
+        123,
+        150
+      ],
+      "file_sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1",
+      "meaning": "w+ write of selected theoretical or offset points into .ibl/.txt/.scr; not executed."
+    },
+    {
+      "id": "SINGLE-BERNSTEIN",
+      "path": "local/full_collection_20261029/4/Bezier_Curve.m",
+      "lines": [
+        10,
+        20
+      ],
+      "file_sha256": "36664c57c112e408d9ce059c5ee153d7c8a561e45df3a8e0e5924904fece1477",
+      "meaning": "Pascal coefficients and one Bernstein polynomial, no local overlap weights."
+    },
+    {
+      "id": "FAST-SCORE",
+      "path": "local/full_collection_20261029/2/m3.m",
+      "lines": [
+        25,
+        29
+      ],
+      "file_sha256": "412fd85c21eaf236e93ad27c326e44a8aaa61cde91eb1728442d6b8a2c567d32",
+      "meaning": "Reflector ray/triangle geometric score; not cam score evidence."
+    },
+    {
+      "id": "FAST-SQUARED-NORM",
+      "path": "local/full_collection_20261029/2/m4.m",
+      "lines": [
+        120,
+        147
+      ],
+      "file_sha256": "f7c5330e19ef1691b056c52f595da59ec77afdba2e7750de374fd7490071cc22",
+      "meaning": "Squared spatial residual and reflector penalties; no missing helper definition."
+    },
+    {
+      "id": "FAST-LOCAL-SEARCH",
+      "path": "local/full_collection_20261029/2/m4.m",
+      "lines": [
+        154,
+        171
+      ],
+      "file_sha256": "f7c5330e19ef1691b056c52f595da59ec77afdba2e7750de374fd7490071cc22",
+      "meaning": "General accept/reject node search and step halving; no original cam optimizer identity established."
+    },
+    {
+      "id": "NBODY-CENTERED-STD",
+      "path": "local/full_collection_20261029/11/print.m",
+      "lines": [
+        89,
+        97
+      ],
+      "file_sha256": "fbc2df177f30ed2e38312bfb789e8803959f791ad867599ae1c65f612e009870",
+      "meaning": "Distance mean, centered population standard deviation and z normalization for display; not established missing helper equivalent."
+    },
+    {
+      "id": "ARM-VECTOR-ADD",
+      "path": "local/full_collection_20261029/3/main.m",
+      "lines": [
+        59,
+        107
+      ],
+      "file_sha256": "a1e287d3fe77dbc3d26ee7e7a1367f3cf82f2601613b7c09d87019cb5931e016",
+      "meaning": "Coordinate rotation/translation and cylinder drawing; not blend or training loop."
+    },
+    {
+      "id": "ACKERMANN-VECTOR-ADD",
+      "path": "local/full_collection_20261029/6/main.m",
+      "lines": [
+        192,
+        192
+      ],
+      "file_sha256": "3c702c3e501cc267024f470a99aa15618dc0e8d0fa75aa8f9996fb3da06681f9",
+      "meaning": "Add turning-center vector to rotated vehicle point."
+    },
+    {
+      "id": "BENCH-PIECEWISE",
+      "path": "local/full_collection_20261029/7/main03.m",
+      "lines": [
+        35,
+        55
+      ],
+      "file_sha256": "5fb4e6ee9d2b0c74ed3092deef508aa8cdfa87de3e4ef86e793feb76f2418c3d",
+      "meaning": "Concatenated spiral/circular-arc geometry, not Bernstein overlap blending."
+    },
+    {
+      "id": "BENCH-SPEED-SCALE",
+      "path": "local/full_collection_20261029/7/main03.m",
+      "lines": [
+        291,
+        291
+      ],
+      "file_sha256": "5fb4e6ee9d2b0c74ed3092deef508aa8cdfa87de3e4ef86e793feb76f2418c3d",
+      "meaning": "Speed ratio/unit normalization, not cam feature aggregation."
+    },
+    {
+      "id": "FIRST-GEN-LIFT-PHASE",
+      "path": "local/full_collection_20261029/12/r2.m",
+      "lines": [
+        113,
+        131
+      ],
+      "file_sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+      "meaning": "Previously known signed lift and rear-midpoint distance phase; duplicate source."
+    },
+    {
+      "id": "TRADITIONAL-NORMAL-OFFSET",
+      "path": "local/full_collection_20261029/13/main_traditional.m",
+      "lines": [
+        100,
+        108
+      ],
+      "file_sha256": "0d5f902a8ecf2d1a6956924b00a18989f869b53c4bdcbd694cd49c6b72660326",
+      "meaning": "Previously known central-chord normal offset with opposite chord direction convention."
+    }
+  ],
+  "farm_cam": {
+    "archive_id": 9,
+    "main": {
+      "path": "local/full_collection_20261029/9/main.m",
+      "bytes": 4417,
+      "sha256": "5421955945b531720d5d7d70b941609e04fb44870b9c4b550403a897b7888be1"
+    },
+    "points": {
+      "path": "local/full_collection_20261029/9/tulun2.txt",
+      "bytes": 22789,
+      "sha256": "dd355854872b23910135f308f012ca4668ff6e78eb9e29deba6724863298abaa"
+    },
+    "mechanism": "Rotating crank l1, constant-length link l2 with prescribed horizontal endpoint, and vertical link l3; longitudinal compensation converted to a rotating cam with roller normal offset.",
+    "default_parameters": {
+      "d": 130,
+      "r": 5,
+      "l1": 70,
+      "l2": 200,
+      "l3": 620,
+      "T": 200,
+      "ratio": 0.2,
+      "num": 1000,
+      "data": 2,
+      "format": ".txt",
+      "name": "tulun2"
+    },
+    "formulas": {
+      "longitudinal_motion": "x_T = [zero dwell, T/2*(cos(xi)+1), T dwell]; x_v=j*T/num; compensation=x_T-x_v",
+      "linkage": "||p2-p1||=l2 and p2.x=compensation by alternating projection; p3=p2-[0,l3]",
+      "theoretical_cam": "rho=d/2+compensation; phi=j*2*pi/num; q=rho*[cos(phi),sin(phi)]",
+      "roller_offset": "Delta=q_next-q_previous with cyclic neighbors; q_actual=q+r*[-Delta_y,Delta_x]/norm(Delta)",
+      "closure_export": "Append first point; default writes actual/offset 1001-by-3 XYZ text with Z=0 using w+."
+    },
+    "source_limitations": [
+      "unbounded linkage projection loop",
+      "no reachability or zero-norm guards",
+      "fixed normal direction without automatic point-order/orientation switch",
+      "fixed sample-index phase, no car-wheel travel"
+    ],
+    "static_point_checks": {
+      "rows": 1001,
+      "columns": 3,
+      "all_finite": true,
+      "all_z_zero": true,
+      "unique_xy_points": 1000,
+      "first_point": [
+        60.509518,
+        -2.198994,
+        0.0
+      ],
+      "last_point": [
+        60.509518,
+        -2.198994,
+        0.0
+      ],
+      "exact_first_last_closure": true,
+      "xyz_bounds": [
+        [
+          -65.990433,
+          66.600977
+        ],
+        [
+          -93.178381,
+          27.654247
+        ],
+        [
+          0.0,
+          0.0
+        ]
+      ],
+      "radius_from_origin_range": [
+        26.725797745944647,
+        93.27420306324359
+      ],
+      "signed_polygon_area": 12888.550797984424,
+      "first_point_distance_from_default_theoretical_65_0": 5.00000032043599,
+      "first_point_offset_agrees_with_r5_within_1e_6": true,
+      "units": "Source coordinate length unit; main.m does not explicitly declare mm.",
+      "whole_file_regenerated_from_script": false,
+      "linkage_solver_or_animation_run": false,
+      "value": "Independent closed XYZ/text-import and offset-data reference; not a vehicle-route/same-input software benchmark.",
+      "limits": "Row count, closure and one offset-distance condition do not prove full output correspondence to every current default parameter, physical contact or manufacturability."
+    },
+    "fills_missing_bezier_blend_or_score": false
+  },
+  "first_generation_duplicate": {
+    "archive_id": 12,
+    "all_five_members_identical_to_prior_actual_files": true,
+    "members": [
+      {
+        "member": "r1.m",
+        "bytes": 53,
+        "zip_member_sha256": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+        "prior_original": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\r1.m",
+        "prior_original_current_sha256": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+        "prior_recorded_sha256": "5eb448d71f0d92f9e1f41c4515fb52f4a9d0a7072e0d607f2e814cb5696242b8",
+        "identical": true
+      },
+      {
+        "member": "r2.m",
+        "bytes": 4233,
+        "zip_member_sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+        "prior_original": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\r2.m",
+        "prior_original_current_sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+        "prior_recorded_sha256": "538cc0310e89432879c77ee2eb420dde8d62cec3008c4cec8746efdc8c42e17e",
+        "identical": true
+      },
+      {
+        "member": "routes.mat",
+        "bytes": 127256,
+        "zip_member_sha256": "a99b9e626d716eed786bbe19750163857b366b3a8019dbe32196acf1d32cc1e2",
+        "prior_original": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\routes.mat",
+        "prior_original_current_sha256": "a99b9e626d716eed786bbe19750163857b366b3a8019dbe32196acf1d32cc1e2",
+        "prior_recorded_sha256": "a99b9e626d716eed786bbe19750163857b366b3a8019dbe32196acf1d32cc1e2",
+        "identical": true
+      },
+      {
+        "member": "代码运行示范.docx",
+        "bytes": 996549,
+        "zip_member_sha256": "7bbd674abadd48d2d2ad45240fd6c4467d2d420e6391fff8bc2e47d46a4d0f96",
+        "prior_original": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\代码运行示范.docx",
+        "prior_original_current_sha256": "7bbd674abadd48d2d2ad45240fd6c4467d2d420e6391fff8bc2e47d46a4d0f96",
+        "prior_recorded_sha256": "7bbd674abadd48d2d2ad45240fd6c4467d2d420e6391fff8bc2e47d46a4d0f96",
+        "identical": true
+      },
+      {
+        "member": "说明.txt",
+        "bytes": 2971,
+        "zip_member_sha256": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+        "prior_original": "F:\\许昊阳\\竞赛\\2027工创\\第一代MATLAB凸轮仿真代码\\说明.txt",
+        "prior_original_current_sha256": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+        "prior_recorded_sha256": "1dc5234aafc5d89a71b29fe8e7bcdb7a4b023a66a37175dbbbc8bbe4506ffbfe",
+        "identical": true
+      }
+    ],
+    "prior_evidence": "data/first_generation_20261029.json",
+    "prior_9_route_benchmark_reusable_by_hash": true,
+    "rerun_this_turn": false
+  },
+  "unread_boundaries": {
+    "compiled_programs": "EXE/DLL and other binary algorithm internals not analyzed or executed.",
+    "nested_encrypted": {
+      "archive_id": 14,
+      "nested_member": "MATLAB代码.zip",
+      "nested_zip_sha256": "04af1319a9917bc1b9d02ae69604a92709738b3630d20f209ac4b7431b9b0d00",
+      "members": [
+        {
+          "name": "CreateLocation.m",
+          "bytes": 1094,
+          "encrypted": true,
+          "content_read": false
+        },
+        {
+          "name": "CutSpace.m",
+          "bytes": 409,
+          "encrypted": true,
+          "content_read": false
+        },
+        {
+          "name": "ImmuneProcesses.m",
+          "bytes": 1860,
+          "encrypted": true,
+          "content_read": false
+        },
+        {
+          "name": "main.m",
+          "bytes": 4663,
+          "encrypted": true,
+          "content_read": false
+        },
+        {
+          "name": "MapDiffusion.m",
+          "bytes": 846,
+          "encrypted": true,
+          "content_read": false
+        },
+        {
+          "name": "感染_恢复_免疫_再次感染_理论模型.png",
+          "bytes": 47362,
+          "encrypted": true,
+          "content_read": false
+        },
+        {
+          "name": "新冠传染模型要素.png",
+          "bytes": 820978,
+          "encrypted": true,
+          "content_read": false
+        }
+      ],
+      "password_sought": false
+    },
+    "unparsed_materials": "Images, Office documents, MAT data and binaries were not decoded as source in this review. Prior first-generation materials were compared by raw member hash only.",
+    "archive_8": "Named-identifier and generic-word scan only; no unrelated model derivation or execution."
+  },
+  "conclusions": {
+    "new_relevant_material": [
+      "Farm transplanter mechanism/prescribed displacement source and closed 1001-row XYZ file. Central-chord normal offset concept was already known from the prior traditional cam example."
+    ],
+    "duplicates": [
+      "id4/id5/id6/id13/id16 whole ZIP files match previous five packages.",
+      "id12 all five source/data/document members match prior first-generation originals."
+    ],
+    "still_missing": [
+      "Bezier_superposition local control windows, parameter maps, weights and endpoint behavior.",
+      "Squares_standard_sum exact aggregation and score_cal twelve-term scaling/sign/exponent/combination.",
+      "Version-matched full all_routes_cal/distance_calculate dependencies and 3.1.2 implementation correspondence."
+    ],
+    "implementation_changed": false,
+    "request_more_materials": false,
+    "evidence_boundary": "No claim that every source is available/read. Decoded-text absence and semantic triage do not recover hidden original code."
+  },
+  "archive_hash_checks": [
+    {
+      "id": 4,
+      "archive": "【B站野生机设小佬】任意阶贝塞尔曲线.zip",
+      "sha256": "fbe8cb4251516e8dbd7c7ba7523a0fe5dd0a82f60561b755626c9d4521dc6724",
+      "independently_rehashed_original": true,
+      "same_as_prior_whole_zip": true,
+      "prior_archive": "【B站野生机设小佬】任意阶贝塞尔曲线.zip"
+    },
+    {
+      "id": 5,
+      "archive": "【B站野生机设小佬】摇臂共轭凸轮设计APP 1.1.1.zip",
+      "sha256": "21ae974696936e03e9c966fea4397adc4309532e6167ed88e4e4d36c49810ccd",
+      "independently_rehashed_original": true,
+      "same_as_prior_whole_zip": true,
+      "prior_archive": "【B站野生机设小佬】摇臂共轭凸轮设计APP 1.1.1.zip"
+    },
+    {
+      "id": 6,
+      "archive": "【B站野生机设小佬】阿克曼车辆路径规划算法.zip",
+      "sha256": "c7d1c5563f1d93d285239b80925a380a980ec4ac7c961c6701586cce4e56a078",
+      "independently_rehashed_original": true,
+      "same_as_prior_whole_zip": true,
+      "prior_archive": "【B站野生机设小佬】阿克曼车辆路径规划算法.zip"
+    },
+    {
+      "id": 9,
+      "archive": "农机插秧凸轮.zip",
+      "sha256": "9e2e8d2672940cab23615cb6392d4706f2461bda46aa22e1543099a49164c592",
+      "independently_rehashed_original": true,
+      "same_as_prior_whole_zip": false,
+      "prior_archive": null
+    },
+    {
+      "id": 12,
+      "archive": "工程训练大赛_第一代MATLAB凸轮仿真代码.zip",
+      "sha256": "afaf46b757b4869f4448a5f8556900a730507ada556cafd8eca914dc62bf1a73",
+      "independently_rehashed_original": true,
+      "same_as_prior_whole_zip": false,
+      "prior_archive": null
+    },
+    {
+      "id": 13,
+      "archive": "常用运动规律凸轮设计.zip",
+      "sha256": "14c1467112e64ef22ed574864ecad5d5ef66a36b31d2226b0280be439fad36cc",
+      "independently_rehashed_original": true,
+      "same_as_prior_whole_zip": true,
+      "prior_archive": "常用运动规律凸轮设计.zip"
+    },
+    {
+      "id": 16,
+      "archive": "简单的凸轮设计.zip",
+      "sha256": "0f1745212787c22ec46e019fa3c840f7a00270dd5e7fee34544cace5f37e38cf",
+      "independently_rehashed_original": true,
+      "same_as_prior_whole_zip": true,
+      "prior_archive": "简单的凸轮设计.zip"
+    }
+  ],
+  "documentation": {
+    "path": "docs/FULL_COLLECTION_SOURCE_REVIEW.md",
+    "bytes": 12537,
+    "sha256": "db37e72acddd7b1b6a46fcda22b2ef49654c734c21d83516cd4b622c6b07eabd"
+  }
+}
