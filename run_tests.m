@@ -37,6 +37,24 @@ r=camdesign.route(front,p);
 use=r.u<0.97*r.u(end);
 assert(max(abs(r.steering(use)-atan2(L,R)))<3e-4);
 assert(abs(r.driveDistance(end)-(R+p.driveX)*1.2)<0.1);
+% User's three reference images: 120 mm wheelbase, asymmetric rear wheels,
+% sensor 20 mm behind the steering axis. Check all tracks against an
+% independently parameterized circle, not against the forward/inverse pair.
+expectedSensor=[R*sin(theta)+(L-20)*cos(theta), ...
+    R*(1-cos(theta))+(L-20)*sin(theta)];
+expectedDrive=[(R+79.5)*sin(theta),R-(R+79.5)*cos(theta)];
+expectedDriven=[(R-79.85)*sin(theta),R-(R-79.85)*cos(theta)];
+% Evaluate the computed tracks at the known front-path spline knots.
+knots=[0;cumsum(vecnorm(diff(front),2,2))]; keep=theta<1.16;
+for item={{'sensor',expectedSensor},{'drive',expectedDrive},{'driven',expectedDriven}}
+    name=item{1}{1}; expected=item{1}{2};
+    actual=interp1(r.u,r.(name),knots(keep),'pchip');
+    assert(max(vecnorm(actual-expected(keep,:),2,2))<0.05, ...
+        'cam:BodyCoordinates','Body-fixed offsets disagree with the analytic circle.');
+end
+assert(max(abs(vecnorm(r.sensor-r.front,2,2)-20))<1e-9);
+assert(max(abs(vecnorm(r.drive-r.driven,2,2)-159.35))<1e-9);
+fprintf('  body offsets: sensor 20 mm, rear track 159.35 mm; analytic circle tracks verified\n');
 end
 
 function testMechanisms()
