@@ -38,6 +38,7 @@
 | [两段反推视频证据](../data/video_inverse_lectures_20261029.json) / [反推检查](../check_video_inverse.m) | 相位/行程/积分线索、转写质量与覆盖范围 |
 | [AI 入门视频完整音轨证据](../data/video_ai_20261029.json) | 整套候选点集改善量加权、邻点平滑、画面复核位置及版本边界 |
 | [优化质量数值摘要](../data/optimizer_quality_20261029.json) | 旧算法、新算法 30/300 轮同输入指标、终止原因及未达标证据 |
+| [原版300次与图读数证据](../data/original_comparison_20261029.json) / [CHG-011](changes/2026/2026-10-29-011-original-comparison.md) | 相同目标/尺寸、固定传动比20，原版两机构各300次、五站位路线差异；非逐点凸轮精度 |
 | [固定节点采样诊断](../data/route_resolution_20261029.json) / [检查入口](../check_route_resolution.m) | 四档网格的压力角、轮廓与传感器轨迹稳定性；不重新优化 |
 | [视频源码证据](../data/bezier_source_audit_20261029.json) / [特征检查](../check_video251_features.m) | 2.5.1可见原始特征、7组验证；不含完整评分 |
 | [补充资料审计](../data/algorithm_materials_audit_20261029.json) | 下架教程、重叠曲线板书、另一份凸轮代码压缩包的覆盖边界 |
