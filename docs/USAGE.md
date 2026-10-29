@@ -147,6 +147,12 @@ simulation = camdesign.simulate(result.cam, actual, ...
 
 输出各视频的 `asr/transcript.json`、`transcript.txt` 和总清单 `asr_summary.json`。工具先用当前 PyAV API 解码为单声道 16 kHz 浮点音频，以避开 faster-whisper 1.2.1 向 PyAV 19 传入已移除 `metadata_errors` 参数的兼容问题；未修改第三方包。只有全部视频成功才返回成功状态，失败时保留已转写的分段。
 
+长视频可用 `--cpu-threads 8`，`--workers 2` 对应两个并行识别任务；线程和并行数应结合本机资源调整。默认不将上一片段的文本反馈给下一片段，若需旧行为可显式加 `--condition-on-previous-text`。`--initial-prompt` 可给出专业词提示，但不能保证变量名识别正确。输出记录这些设置。
+
+连续重复片段或超出音轨的时间会写入 `quality_check`，总清单同时区分“处理完成”和 `qa_passed`；即便处理完整个音轨，筛查失败仍返回非零，不可直接当成可靠字幕。`inputs.json` 的总清单仍名为 `asr_summary.json`；其他命名的清单使用 `<清单名>_asr_summary.json`，避免单片重试覆盖整批记录。首轮无质量字段的历史输出需单独筛查，不能仅看旧版退出码。
+
 `check_video_principles` 检查坐标旋转、圆的法线偏移、非圆曲线的离散收敛和两次偏移示例，并量化本版本同一理论轮廓上的两种法线算法差异，输出 `outputs/video_principles/verification.json`。这不是原版应用输出对照。
+
+`check_video_inverse` 检查理论轮廓极坐标恢复、平推反算、行程相位关系，以及直行/左右恒转角和变转角的圆弧步进，输出 `outputs/video_inverse/verification.json`。诊断沿用本项目符号约定，不改变生产反推算法，不宣称恢复了完整旧教程源文件。
 
 `tools/requirements-video.txt` 记录研究环境版本；这些依赖不参与 MATLAB 凸轮计算。原始视频、模型、页面元数据、弹幕及抽帧均放在 Git 忽略的 `local/` 中，Git 只记录工具和核对结论。
