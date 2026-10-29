@@ -33,6 +33,8 @@
 | 入口 | 用途 |
 |---|---|
 | [太阳能点库](../data/2027_solar_course.json) / [太阳能检查](../check_2027_solar_course.m) | 队伍正式赛项点位、顺序访问及重复起终点 |
+| [太阳能平推测试入口](../+camdesign/solarTestProject.m) / [数值与规则结果](../data/solar_flat_validation_20261029.json) / [CHG-013](changes/2026/2026-10-29-013-solar-flat-test-case.md) | 同赛道充分预算、加密复核、部件出界与识别半径敏感性；非实车标定 |
+| [三图布局变更](changes/2026/2026-10-29-012-chart-layout.md) | 左路线、右转角/凸轮、图内图例、真实场地边界与多窗口验证 |
 | [生物质能点库](../data/2027_biomass_course.json) / [点库检查](../check_2027_course.m) | 另一赛项资料及历史算法测试 |
 | [四段原理视频证据](../data/video_principles_20261029.json) / [公式检查](../check_video_principles.m) | 来源、抽帧及独立解析验证 |
 | [两段反推视频证据](../data/video_inverse_lectures_20261029.json) / [反推检查](../check_video_inverse.m) | 相位/行程/积分线索、转写质量与覆盖范围 |

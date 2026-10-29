@@ -1,0 +1,1523 @@
+{
+  "date": "2026-10-29",
+  "release": "2025b",
+  "coordinateImageSHA256": "47BDF97C6030ADA13C2275C62E4E7DF64C94C528AB41B06D0C913BE400CAC4F8",
+  "fieldRuleImageSHA256": "3153FF0C11900EFDC1ADF5B52BD3435DAAA389442F1BC56F0B4524A42A8B374E",
+  "project": {
+    "schema": "cam-replica-1",
+    "name": "2027太阳能初赛 · 平推测试（尺寸待实测）",
+    "params": {
+      "mechanism": "flat",
+      "wheelDiameter": 130,
+      "gearRatio": 20,
+      "lever": 25,
+      "rollerRadius": 2,
+      "referenceDiameter": 100,
+      "thickness": 5,
+      "driveX": 79.5,
+      "driveY": -120,
+      "drivenX": -79.85,
+      "drivenY": -120,
+      "sensorX": 0,
+      "sensorY": -20,
+      "headingDeg": 90,
+      "startSteeringDeg": 0,
+      "samples": 601,
+      "camSamples": 721,
+      "autoRatio": true,
+      "returnAngleDeg": 60,
+      "maxSteeringDeg": 65,
+      "maxPressureDeg": 35,
+      "hitTolerance": 30,
+      "iterations": 300,
+      "stepMM": 10,
+      "gradientProbeMM": 0.5,
+      "bounds": [
+        0,
+        6000,
+        0,
+        2000
+      ],
+      "weights": [
+        12,
+        1,
+        2,
+        3,
+        10,
+        10
+      ]
+    },
+    "targets": [
+      [
+        410,
+        420
+      ],
+      [
+        700,
+        1580
+      ],
+      [
+        1440,
+        1100
+      ],
+      [
+        3170,
+        1560
+      ],
+      [
+        4160,
+        1440
+      ],
+      [
+        5110,
+        1630
+      ],
+      [
+        5450,
+        440
+      ],
+      [
+        3250,
+        350
+      ],
+      [
+        2500,
+        750
+      ],
+      [
+        410,
+        420
+      ]
+    ],
+    "nodes": [
+      [
+        410,
+        440
+      ],
+      [
+        716.6906980077788,
+        1591.0191015973685
+      ],
+      [
+        1459.9993443912672,
+        1099.8380619887346
+      ],
+      [
+        3189.845557534273,
+        1562.4806946917843
+      ],
+      [
+        4179.986993249714,
+        1440.721180168804
+      ],
+      [
+        5125.806817703295,
+        1617.7466529431827
+      ],
+      [
+        5433.524332289094,
+        428.66190609141927
+      ],
+      [
+        3230.109521797271,
+        352.0901858450325
+      ],
+      [
+        2480.006072416807,
+        750.4928080742336
+      ],
+      [
+        390.24474069341863,
+        416.8807485305398
+      ]
+    ],
+    "provenance": "太阳能规则表2初赛10次顺序访问，保留首尾地球；用户确认平推。机械尺寸、90度初始航向、零初始转角、传动比及阈值沿用历史测试配置，未实测。计算从传感器位于首个地球中心开始，不含实际发车引入段；末点为再次经过地球，不要求航向周期闭合。",
+    "testContext": {
+      "category": "solar",
+      "stage": "preliminary",
+      "courseSourceSHA256": "390bde4a2c6d47601fa92bb47cafbe24b309820314d74da09bcaaf40f2a7c42b",
+      "orderedIDs": [
+        1,
+        3,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        15,
+        16
+      ],
+      "teamMechanismConfirmed": true,
+      "vehicleDimensionsMeasured": false,
+      "launchLeadInIncluded": false,
+      "initialHeadingMeasured": false,
+      "coordinateReferenceOnly": true
+    }
+  },
+  "baseline": {
+    "optimizationGrid": {
+      "routeSamples": 601,
+      "camSamples": 721,
+      "valid": true,
+      "feasible": false,
+      "maxScaledViolation": 5.193731095248528,
+      "metrics": {
+        "maxHitError": 14.016797945424248,
+        "rmsHitError": 7.3664334626364605,
+        "routeLength": 12724.045762315038,
+        "driveLength": 12254.936320791203,
+        "maxSteeringDeg": 38.98361948885244,
+        "maxPressureDeg": 87.10522712030229,
+        "maxWorkPressureDeg": 87.10522712030229,
+        "maxReturnPressureDeg": 35.85166979008187,
+        "minUndercutMargin": 0.5653956600374629,
+        "intersectionCount": 0,
+        "score": 87.54041408455076,
+        "terms": [
+          0.2785944073358884,
+          1.0396085287653691,
+          0.14840603181198112,
+          27.62028686804359,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.1604107665552075,
+        "legacyTerms": [
+          0.06029371328827797,
+          1.0396085287653691,
+          0.0034090574442259634,
+          0.4634865211473503,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "nodeBoundsSatisfied": true,
+      "thresholdsSatisfied": false,
+      "intersectionFree": true,
+      "requestedRatio": 20,
+      "effectiveRatio": 36.0080066710294,
+      "autoRatio": true,
+      "workEndDeg": 299.9999997,
+      "warnings": [
+        "凸轮压力角超过设定上限（含回程）。",
+        "实际传动比已从 20 增大至 36.008。"
+      ],
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    "refinedGrid": {
+      "routeSamples": 2401,
+      "camSamples": 2881,
+      "valid": true,
+      "feasible": false,
+      "maxScaledViolation": 5.197490559767244,
+      "metrics": {
+        "maxHitError": 13.946109936790519,
+        "rmsHitError": 7.332622190299473,
+        "routeLength": 12724.096713907298,
+        "driveLength": 12254.982645986709,
+        "maxSteeringDeg": 38.983669680911134,
+        "maxPressureDeg": 87.13165863057397,
+        "maxWorkPressureDeg": 87.13165863057397,
+        "maxReturnPressureDeg": 36.33351855645475,
+        "minUndercutMargin": 0.5097543239562492,
+        "intersectionCount": 0,
+        "score": 87.64497843203966,
+        "terms": [
+          0.2758459228385772,
+          1.0396126917266517,
+          0.14941927249170683,
+          27.66545870708889,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.1750831331332003,
+        "legacyTerms": [
+          0.05974149798408024,
+          1.0396126917266517,
+          0.003419721892046089,
+          0.4705776739378311,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "nodeBoundsSatisfied": true,
+      "thresholdsSatisfied": false,
+      "intersectionFree": true,
+      "requestedRatio": 20,
+      "effectiveRatio": 36.00814278580838,
+      "autoRatio": true,
+      "workEndDeg": 299.9999997,
+      "warnings": [
+        "凸轮压力角超过设定上限（含回程）。",
+        "实际传动比已从 20 增大至 36.008。"
+      ],
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    "refinementFactor": 4,
+    "independentRefinement": true,
+    "verifiedFeasible": false,
+    "physicalEvaluationAttempts": 2,
+    "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+  },
+  "cases": [
+    {
+      "algorithm": "peak-gradient-v2",
+      "requestedIterations": 300,
+      "actualIterations": 276,
+      "reason": "no_improving_step",
+      "evaluations": 13247,
+      "seconds": 15.5940157,
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.046946875246379,
+          "metrics": {
+            "maxHitError": 7.523991272428493,
+            "rmsHitError": 5.044467145900442,
+            "routeLength": 12746.921020638385,
+            "driveLength": 12278.30156868955,
+            "maxSteeringDeg": 38.67758981391145,
+            "maxPressureDeg": 86.06689213731848,
+            "maxWorkPressureDeg": 86.06689213731848,
+            "maxReturnPressureDeg": 36.18074688152491,
+            "minUndercutMargin": 0.5459601135907057,
+            "intersectionCount": 0,
+            "score": 82.12384738590784,
+            "terms": [
+              0.09117454828183233,
+              1.041477534433448,
+              0.14393954687387533,
+              26.566798726114882,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.8111975486213274,
+            "legacyTerms": [
+              0.02827405420674329,
+              1.041477534433448,
+              0.0033421291224264003,
+              0.4745823684873691,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.07665949632124,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.077。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.168647686463802,
+          "metrics": {
+            "maxHitError": 7.466274822573718,
+            "rmsHitError": 5.000693230542409,
+            "routeLength": 12746.971936875654,
+            "driveLength": 12278.349075368309,
+            "maxSteeringDeg": 38.70091914981412,
+            "maxPressureDeg": 86.92866855024387,
+            "maxWorkPressureDeg": 86.92866855024387,
+            "maxReturnPressureDeg": 36.66325155480244,
+            "minUndercutMargin": 0.4358825578699831,
+            "intersectionCount": 0,
+            "score": 84.78622930860593,
+            "terms": [
+              0.08972465834687876,
+              1.0414816945060779,
+              0.14608540078964577,
+              27.458626970786003,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.776902824212078,
+            "legacyTerms": [
+              0.027785480873325198,
+              1.0414816945060779,
+              0.0033525704686545484,
+              0.4650967394295962,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.07679908258761,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.077。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+      },
+      "lastTenEntryReductionFraction": 6.973466801421322E-10,
+      "extendBudgetRecommended": false
+    },
+    {
+      "algorithm": "fmincon-interior-point-experimental-v1",
+      "requestedIterations": 300,
+      "actualIterations": 300,
+      "reason": "iteration_limit",
+      "evaluations": 7378,
+      "seconds": 16.886212,
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.086382578810646,
+          "metrics": {
+            "maxHitError": 24.234008206397306,
+            "rmsHitError": 13.47896445045765,
+            "routeLength": 12802.88129528053,
+            "driveLength": 12338.301180317587,
+            "maxSteeringDeg": 37.25089755706387,
+            "maxPressureDeg": 86.34708251610496,
+            "maxWorkPressureDeg": 86.34708251610496,
+            "maxReturnPressureDeg": 35.80887727456642,
+            "minUndercutMargin": 0.5726127998128427,
+            "intersectionCount": 0,
+            "score": 91.9950974494847,
+            "terms": [
+              0.8544107071160368,
+              1.0460497263193282,
+              0.12739685198519546,
+              26.81377517793418,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 4.800506832257945,
+            "legacyTerms": [
+              0.2018694251741123,
+              1.0460497263193282,
+              0.003006715438396568,
+              0.4420035243241587,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.252953061559616,
+          "autoRatio": true,
+          "workEndDeg": 299.99999969999993,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.253。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.095034776444461,
+          "metrics": {
+            "maxHitError": 24.207871516973483,
+            "rmsHitError": 13.464134517893909,
+            "routeLength": 12802.930912150061,
+            "driveLength": 12338.345576351481,
+            "maxSteeringDeg": 37.27279800808724,
+            "maxPressureDeg": 86.40843478008651,
+            "maxWorkPressureDeg": 86.40843478008651,
+            "maxReturnPressureDeg": 36.27459029110221,
+            "minUndercutMargin": 0.5005908135011605,
+            "intersectionCount": 0,
+            "score": 92.23645438760218,
+            "terms": [
+              0.852559957442487,
+              1.0460537802281007,
+              0.12804548353365905,
+              26.901196716998975,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 4.83922828431259,
+            "legacyTerms": [
+              0.2014254647954914,
+              1.0460537802281007,
+              0.0030155919995394375,
+              0.4566792475131714,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "requestedRatio": 20,
+          "effectiveRatio": 36.25308350798893,
+          "autoRatio": true,
+          "workEndDeg": 299.99999970000005,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.253。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model/grid verification only; no original software, continuous-curve or vehicle equivalence."
+      },
+      "lastTenEntryReductionFraction": -2.7380995376228856E-06,
+      "extendBudgetRecommended": false
+    }
+  ],
+  "ruleAudit": {
+    "release": "2025b",
+    "analyticChecksPassed": 3,
+    "cases": [
+      {
+        "source": "initial_project.mat",
+        "routeSamples": 2401,
+        "audit": {
+          "modeledPointBounds": {
+            "front": {
+              "minXY": [
+                390.24474069341886,
+                -18.319246791419516
+              ],
+              "maxXY": [
+                5493.669309551501,
+                1641.278637351832
+              ],
+              "minimumBoundaryClearanceMM": -18.319246791419516,
+              "maximumOutsideMM": 18.319246791419516
+            },
+            "rear": {
+              "minXY": [
+                410,
+                -13.793920320606796
+              ],
+              "maxXY": [
+                5488.365739740479,
+                1630.8757136863283
+              ],
+              "minimumBoundaryClearanceMM": -13.793920320606796,
+              "maximumOutsideMM": 13.793920320606796
+            },
+            "drive": {
+              "minXY": [
+                489.5,
+                65.70604964326748
+              ],
+              "maxXY": [
+                5408.865857621297,
+                1551.3758355470575
+              ],
+              "minimumBoundaryClearanceMM": 65.70604964326748,
+              "maximumOutsideMM": 0
+            },
+            "driven": {
+              "minXY": [
+                330.15,
+                -93.64389015224656
+              ],
+              "maxXY": [
+                5568.215621340688,
+                1710.7255912891053
+              ],
+              "minimumBoundaryClearanceMM": -93.64389015224656,
+              "maximumOutsideMM": 93.64389015224656
+            },
+            "sensor": {
+              "minXY": [
+                409.8671661911933,
+                -16.867795087420653
+              ],
+              "maxXY": [
+                5492.069355352684,
+                1638.4626126402334
+              ],
+              "minimumBoundaryClearanceMM": -16.867795087420653,
+              "maximumOutsideMM": 16.867795087420653
+            }
+          },
+          "recognitionScenarios": [
+            {
+              "geometricRadiusMM": 8.5,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                4,
+                5,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  8.500001394202677
+                ],
+                [
+                  1232.4009372836158,
+                  1248.6346663325498
+                ],
+                [
+                  3965.839640181943,
+                  3982.6080957014105
+                ],
+                [
+                  4966.904763415623,
+                  4983.809039845238
+                ],
+                [
+                  9696.993000057095,
+                  9707.62013034309
+                ],
+                [
+                  10548.1388005658,
+                  10556.992235383355
+                ],
+                [
+                  12682.968088668797,
+                  12691.441311031294
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 15,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  15.000006746056542
+                ],
+                [
+                  1225.8178751725345,
+                  1255.217991169386
+                ],
+                [
+                  2123.7264654446194,
+                  2144.6756422042636
+                ],
+                [
+                  3959.2975405951343,
+                  3989.1504128019483
+                ],
+                [
+                  4960.388841082945,
+                  4990.325072500956
+                ],
+                [
+                  5940.116881424447,
+                  5959.821180459904
+                ],
+                [
+                  7261.266974650828,
+                  7272.207574078722
+                ],
+                [
+                  9688.84194232414,
+                  9715.772082106841
+                ],
+                [
+                  10539.47849763968,
+                  10565.65291935328
+                ],
+                [
+                  12676.454100386836,
+                  12691.441311031294
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 20,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  20.00001668376281
+                ],
+                [
+                  1220.8076096038492,
+                  1260.2293565165464
+                ],
+                [
+                  2117.403116327828,
+                  2150.9995176821812
+                ],
+                [
+                  3954.2860789833912,
+                  3994.1618594822144
+                ],
+                [
+                  4955.384784624007,
+                  4995.329179421172
+                ],
+                [
+                  5933.653137200675,
+                  5966.279970160035
+                ],
+                [
+                  7252.541622463348,
+                  7280.938140381935
+                ],
+                [
+                  9683.420623941738,
+                  9721.193065337848
+                ],
+                [
+                  10533.989613031168,
+                  10571.142162495475
+                ],
+                [
+                  12671.44993389981,
+                  12691.441311031294
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 30,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  30.000057374169756
+                ],
+                [
+                  1210.8046827275716,
+                  1270.2314427992844
+                ],
+                [
+                  2106.357859387509,
+                  2162.037308132549
+                ],
+                [
+                  3944.277843711777,
+                  4004.1700411913275
+                ],
+                [
+                  4945.382400830473,
+                  5005.331681671018
+                ],
+                [
+                  5922.584227751168,
+                  5977.348641682975
+                ],
+                [
+                  7240.42597730358,
+                  7293.043507279103
+                ],
+                [
+                  9673.018844143233,
+                  9731.594355500281
+                ],
+                [
+                  10523.554137863623,
+                  10581.576755701366
+                ],
+                [
+                  12661.44636389484,
+                  12691.441311031294
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            }
+          ],
+          "boundaryScope": "Dense sampled reference-point trajectories and their straight segments, not complete wheel/body footprint or a continuous spline bound.",
+          "recognitionScope": "Continuous polyline/disk entries; contiguous dwell counts once, exit then re-entry counts again. Radii are sensitivity scenarios, not guaranteed RFID ranges."
+        }
+      },
+      {
+        "source": "peak-gradient-v2.mat",
+        "routeSamples": 2401,
+        "audit": {
+          "modeledPointBounds": {
+            "front": {
+              "minXY": [
+                390.0181814401885,
+                -21.849880333846215
+              ],
+              "maxXY": [
+                5503.099454895474,
+                1644.6787205356425
+              ],
+              "minimumBoundaryClearanceMM": -21.849880333846215,
+              "maximumOutsideMM": 21.849880333846215
+            },
+            "rear": {
+              "minXY": [
+                410,
+                -17.31573312777217
+              ],
+              "maxXY": [
+                5497.821144443206,
+                1634.166978331022
+              ],
+              "minimumBoundaryClearanceMM": -17.31573312777217,
+              "maximumOutsideMM": 17.31573312777217
+            },
+            "drive": {
+              "minXY": [
+                489.5,
+                62.18416343776996
+              ],
+              "maxXY": [
+                5418.321258786636,
+                1554.6669783321108
+              ],
+              "minimumBoundaryClearanceMM": 62.18416343776996,
+              "maximumOutsideMM": 0
+            },
+            "driven": {
+              "minXY": [
+                330.15,
+                -97.16562923794245
+              ],
+              "maxXY": [
+                5577.6710295963785,
+                1714.0169783299282
+              ],
+              "minimumBoundaryClearanceMM": -97.16562923794245,
+              "maximumOutsideMM": 97.16562923794245
+            },
+            "sensor": {
+              "minXY": [
+                409.6372713727434,
+                -20.395276182284263
+              ],
+              "maxXY": [
+                5501.50877196724,
+                1641.837747655317
+              ],
+              "minimumBoundaryClearanceMM": -20.395276182284263,
+              "maximumOutsideMM": 20.395276182284263
+            }
+          },
+          "recognitionScenarios": [
+            {
+              "geometricRadiusMM": 8.5,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  8.500001426669934
+                ],
+                [
+                  1232.2861784319318,
+                  1240.1934590304886
+                ],
+                [
+                  2122.6662751304166,
+                  2130.741343677667
+                ],
+                [
+                  3964.7647383725575,
+                  3978.15491803587
+                ],
+                [
+                  4963.751040165359,
+                  4980.518957830155
+                ],
+                [
+                  5943.408628358748,
+                  5954.302872462402
+                ],
+                [
+                  7269.408502272902,
+                  7285.263266631348
+                ],
+                [
+                  9717.221646474009,
+                  9730.494211808418
+                ],
+                [
+                  10567.919543920329,
+                  10580.91620626057
+                ],
+                [
+                  12705.673047670765,
+                  12714.425876456931
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 15,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  15.000006902329893
+                ],
+                [
+                  1223.5988480348176,
+                  1248.8823791090604
+                ],
+                [
+                  2113.758774120177,
+                  2139.6480991231588
+                ],
+                [
+                  3957.4352344275426,
+                  3985.481118070537
+                ],
+                [
+                  4957.208394791802,
+                  4987.061557021924
+                ],
+                [
+                  5935.462611027561,
+                  5962.249345053212
+                ],
+                [
+                  7262.674276141563,
+                  7291.99699994127
+                ],
+                [
+                  9709.820019165532,
+                  9737.89566123743
+                ],
+                [
+                  10560.484245771218,
+                  10588.35259668878
+                ],
+                [
+                  12699.165373864576,
+                  12714.425876456931
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 20,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  20.000017060947872
+                ],
+                [
+                  1218.2051746063823,
+                  1254.2823761737573
+                ],
+                [
+                  2108.2391600477363,
+                  2145.165309988324
+                ],
+                [
+                  3952.2074577348094,
+                  3990.708625589518
+                ],
+                [
+                  4952.19651634539,
+                  4992.073495606749
+                ],
+                [
+                  5930.119779893601,
+                  5967.591667636244
+                ],
+                [
+                  7257.606301483609,
+                  7297.064625782331
+                ],
+                [
+                  9704.561191766445,
+                  9743.154442840552
+                ],
+                [
+                  10555.228264195288,
+                  10593.608185983356
+                ],
+                [
+                  12694.16316261381,
+                  12714.425876456931
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 30,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  30.00005863306599
+                ],
+                [
+                  1207.957781799145,
+                  1264.5460227618282
+                ],
+                [
+                  2097.782793641608,
+                  2155.615733475229
+                ],
+                [
+                  3942.0021028156457,
+                  4000.912421078529
+                ],
+                [
+                  4942.187749645427,
+                  5002.082362080323
+                ],
+                [
+                  5919.845134636058,
+                  5977.865906174498
+                ],
+                [
+                  7247.548130442921,
+                  7307.121717492886
+                ],
+                [
+                  9694.30763942257,
+                  9753.407874793935
+                ],
+                [
+                  10544.994960236434,
+                  10603.840728263087
+                ],
+                [
+                  12684.16137716212,
+                  12714.425876456931
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            }
+          ],
+          "boundaryScope": "Dense sampled reference-point trajectories and their straight segments, not complete wheel/body footprint or a continuous spline bound.",
+          "recognitionScope": "Continuous polyline/disk entries; contiguous dwell counts once, exit then re-entry counts again. Radii are sensitivity scenarios, not guaranteed RFID ranges."
+        }
+      },
+      {
+        "source": "fmincon-interior-point-experimental-v1.mat",
+        "routeSamples": 2401,
+        "audit": {
+          "modeledPointBounds": {
+            "front": {
+              "minXY": [
+                365.323599031899,
+                -36.727202740848895
+              ],
+              "maxXY": [
+                5509.26177228451,
+                1632.2920610587398
+              ],
+              "minimumBoundaryClearanceMM": -36.727202740848895,
+              "maximumOutsideMM": 36.727202740848895
+            },
+            "rear": {
+              "minXY": [
+                410,
+                -32.08861735162826
+              ],
+              "maxXY": [
+                5504.044559144285,
+                1622.719860535075
+              ],
+              "minimumBoundaryClearanceMM": -32.08861735162826,
+              "maximumOutsideMM": 32.08861735162826
+            },
+            "drive": {
+              "minXY": [
+                466.5967882521405,
+                47.41134502140855
+              ],
+              "maxXY": [
+                5424.5445697332925,
+                1543.2199420507036
+              ],
+              "minimumBoundaryClearanceMM": 47.41134502140855,
+              "maximumOutsideMM": 0
+            },
+            "driven": {
+              "minXY": [
+                330.15,
+                -111.93857955901176
+              ],
+              "maxXY": [
+                5583.894548508659,
+                1702.5697786605726
+              ],
+              "minimumBoundaryClearanceMM": -111.93857955901176,
+              "maximumOutsideMM": 111.93857955901176
+            },
+            "sensor": {
+              "minXY": [
+                384.90360217256693,
+                -35.23812686931303
+              ],
+              "maxXY": [
+                5507.67579746445,
+                1629.7008531217266
+              ],
+              "minimumBoundaryClearanceMM": -35.23812686931303,
+              "maximumOutsideMM": 35.23812686931303
+            }
+          },
+          "recognitionScenarios": [
+            {
+              "geometricRadiusMM": 8.5,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                5,
+                7
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  8.500001403325452
+                ],
+                [
+                  1232.751033743221,
+                  1249.481820140122
+                ],
+                [
+                  4977.97379336863,
+                  4986.999355321796
+                ],
+                [
+                  7280.3161703702635,
+                  7297.02184976985
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 15,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  15.000006790340723
+                ],
+                [
+                  1226.1130869648,
+                  1256.1214791611933
+                ],
+                [
+                  4969.373368038661,
+                  4995.604008451479
+                ],
+                [
+                  5945.445304429281,
+                  5960.078387377159
+                ],
+                [
+                  7273.7412280862445,
+                  7303.5970038970645
+                ],
+                [
+                  9746.027227722323,
+                  9761.312523015597
+                ],
+                [
+                  10592.993490239416,
+                  10613.727656901372
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 20,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  20.00001676377402
+                ],
+                [
+                  1221.0391909759028,
+                  1261.1941213056052
+                ],
+                [
+                  3976.218056552587,
+                  3996.8680580042014
+                ],
+                [
+                  4963.893582415855,
+                  5001.083000912158
+                ],
+                [
+                  5937.852201969866,
+                  5967.670781363255
+                ],
+                [
+                  7268.7136537131355,
+                  7308.624953243338
+                ],
+                [
+                  9738.367520135846,
+                  9768.969722914042
+                ],
+                [
+                  10586.608627424608,
+                  10620.114669642766
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 30,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  30.000057553744174
+                ],
+                [
+                  1210.8999332276576,
+                  1271.3311199520722
+                ],
+                [
+                  2123.551894024099,
+                  2158.5826991157633
+                ],
+                [
+                  3962.1167300532375,
+                  4010.9647489243935
+                ],
+                [
+                  4953.466369142501,
+                  5011.508803898424
+                ],
+                [
+                  5926.211702511253,
+                  5979.296904432885
+                ],
+                [
+                  7258.680254614065,
+                  7318.659496479746
+                ],
+                [
+                  9726.536771780913,
+                  9780.80078210971
+                ],
+                [
+                  10575.511075027556,
+                  10631.209406756416
+                ],
+                [
+                  12720.047368221169,
+                  12763.782112060431
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            }
+          ],
+          "boundaryScope": "Dense sampled reference-point trajectories and their straight segments, not complete wheel/body footprint or a continuous spline bound.",
+          "recognitionScope": "Continuous polyline/disk entries; contiguous dwell counts once, exit then re-entry counts again. Radii are sensitivity scenarios, not guaranteed RFID ranges."
+        }
+      }
+    ],
+    "scope": "Boundary and geometric recognition diagnostics only; no full body clearance, RFID latency, physical tracking or original-app equivalence."
+  },
+  "logs": [
+    "local/matlab_464f7757304748999642376bf132e4da.log",
+    "local/matlab_9a7cbcb16b3c4fc09bcab6f698872a8e.log"
+  ],
+  "scope": "Same solar preliminary flat input; placeholder dimensions/heading. Both candidates fail pressure and sampled point bounds. Disk events are recognition sensitivity only. Original 3.1.2 same-input solar comparison and real-car validation not completed."
+}

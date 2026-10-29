@@ -1,7 +1,8 @@
 function check_route_editor()
 % Callback/method regression; this does not simulate native mouse hit testing.
 root=fileparts(mfilename('fullpath')); addpath(root);
-folder=fullfile(root,'outputs','route_editor'); if ~isfolder(folder), mkdir(folder); end
+assert(batchStartupOptionUsed,'cam:RouteEditorCheckBatchOnly','请使用独立 batch 运行界面检查。');
+folder=fullfile(root,'outputs','chart_layout_20261029','route_editor'); if ~isfolder(folder), mkdir(folder); end
 fprintf('ROUTE_EDITOR_CHECK_START\n');
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeFigure(app));
 checks={}; baseline=app.Project; baselineResult=app.Result;
@@ -13,6 +14,7 @@ front=findobj(axesHandle,'Tag','route-front'); drive=findobj(axesHandle,'Tag','r
 assert(isequal(front.Color,[0 0 0]) && strcmp(front.LineStyle,'-'));
 assert(isequal(drive.Color,[0 0 1]) && strcmp(drive.LineStyle,'-'));
 assert(numel(axesHandle.Legend.String)==7);
+assert(strcmp(axesHandle.Legend.Location,'northwest') && contains(app.DirectionStatus.Text,'无有效数据'));
 checks{end+1}='four component trajectories and explicit legend';
 
 % Enter through the actual button callback, then test the state-machine inputs.
@@ -131,6 +133,7 @@ app.previewRouteNode(app.Project.nodes(5,:)+[3 1],axesHandle); app.cancelRouteEd
 assert(isequal([axesHandle.XLim axesHandle.YLim],viewLimits));
 axesHandle.XLim=app.Project.params.bounds(1:2); axesHandle.YLim=app.Project.params.bounds(3:4);
 checks{end+1}='Cancel preserves the pre-edit map view';
+app.render(); drawnow;
 exportapp(app.Figure,fullfile(folder,'confirmed_routes.png'));
 
 app.beginRouteEditing(); app.routeMapClick(app.Project.nodes(5,:),axesHandle);

@@ -1,5 +1,7 @@
 function check_app()
 root=fileparts(mfilename('fullpath')); addpath(root);
+assert(batchStartupOptionUsed,'cam:AppCheckBatchOnly','请使用独立 batch 运行界面检查。');
+folder=fullfile(root,'outputs','chart_layout_20261029'); if ~isfolder(folder), mkdir(folder); end
 fprintf('APP_CHECK_START\n');
 app=CamReplicaApp('off'); cleaner=onCleanup(@()delete(app.Figure));
 fprintf('APP_CONSTRUCTED\n');
@@ -21,7 +23,7 @@ assert(max(vecnorm(app.SimulationResult.sensor-baseline,2,2))>1);
 assert(isequaln(fixedCam,app.SimulationReference.result.cam));
 assert(strcmp(app.Buttons(8).Enable,'off') && size(app.ParamsTable.Data,1)==10);
 app.Figure.Visible='on'; drawnow;
-exportapp(app.Figure,fullfile(root,'outputs','fixed_cam_preview.png'));
+exportapp(app.Figure,fullfile(folder,'fixed_cam_preview.png'));
 app.action('simulate');
 assert(~app.SimulationMode && isequaln(app.Project,originalProject));
 assert(strcmp(app.Buttons(8).Enable,'on') && size(app.ParamsTable.Data,1)==23);
@@ -31,7 +33,14 @@ assert(app.OptimizationInfo.iterations==2 && app.OptimizationInfo.requestedItera
 assert(contains(app.Status.Text,'2/2') && contains(app.Status.Text,'阈值'));
 arrow=findobj(app.RouteAxes,'Tag','optimization-direction');
 assert(all(isnan(arrow.XData)) && numel(findobj(app.CamAxes,'Tag','cam-center'))==1);
+assert(strcmp(app.RouteAxes.Legend.Location,'northwest') && strcmp(app.CamAxes.Legend.Location,'northeast'));
+assert(strcmp(app.RouteAxes.Title.String,'路线与有序打卡点') && contains(app.DirectionStatus.Text,'无有效数据'));
 app.Figure.Visible='on'; drawnow;
-exportapp(app.Figure,fullfile(root,'outputs','app_preview.png'));
+exportapp(app.Figure,fullfile(folder,'app_preview.png'));
+entry=launch_cam_app(); entryCleaner=onCleanup(@()delete(entry.Figure));
+assert(isequaln(entry.Project,camdesign.solarTestProject()) && strcmp(entry.Project.params.mechanism,'flat'));
+assert(~isempty(entry.Result) && isfinite(entry.Result.metrics.score));
+drawnow; exportapp(entry.Figure,fullfile(folder,'launch_solar_flat.png'));
+fprintf('SOLAR_LAUNCH_PASS flat=true visits=10 computed=true\n');
 fprintf('APP_CHECK_PASS\n');
 end
