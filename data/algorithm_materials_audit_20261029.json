@@ -1,0 +1,54 @@
+{
+  "date": "2026-10-29",
+  "archive": "F:\\许昊阳\\竞赛\\2027工创\\工创\\工创ly\\工创ly\\资料\\凸轮代码.zip",
+  "archive_sha256": "87b79fe0e50d11c2973ad87e6d18fbe87eb81e9b608737701393d9422f21e510",
+  "matlab_files": [
+    {
+      "name": "chazhao.m",
+      "bytes": 41,
+      "sha256": "091bb823e0b8bdefd0406b63b901a4753601e842351db60ecc86956464bb825e"
+    },
+    {
+      "name": "PJcurvature.m",
+      "bytes": 414,
+      "sha256": "427b31d90d9d50b581620a346c3bf83a486ce9080b278344dac6cd07840a237b"
+    },
+    {
+      "name": "TLFZ.m",
+      "bytes": 4512,
+      "sha256": "58fc3bf28f6fc3582cde4398518bb8e0272da7ae3b9d7d6df48a09b3396be899"
+    },
+    {
+      "name": "TuLun.m",
+      "bytes": 4520,
+      "sha256": "aa63f34bbac2e3eb0aa00fda36ded7987d530a96aa3b07b90a6bd1efc1deb0d2"
+    }
+  ],
+  "finding": "Existing input trajectory to curvature/steering/cam scripts, not Bezier generation or AI iteration; authorship/version unconfirmed. No source archive code was executed or copied into production.",
+  "missing_tutorial": {
+    "catalog_row": 23,
+    "title": "高阶贝塞尔路线编程带写",
+    "url": "https://www.bilibili.com/video/BV1obN9enEtd",
+    "status": "User confirmed page removed on 2026-10-29; not in seven supplied local videos."
+  },
+  "theory_video": {
+    "file": "1180796602-1-192.mp4",
+    "sha256": "092677cff1ae1445bd99b8d5573c7c3d1e95f4f3b8b67e6fd7d32b7ad161f9ab",
+    "reviewed_transcript_seconds": [
+      1071,
+      1587
+    ],
+    "frames_seconds": [
+      1128,
+      1154,
+      1178,
+      1206,
+      1268,
+      1314,
+      1462,
+      1538
+    ],
+    "finding": "Consecutive n+1 control points define overlapping degree-n Beziers. Illustrative variable weights and .1/.75/.15 example; no exact weighting function or index formula visible.",
+    "frames_directory": "local/video_research/bezier_audit_theory"
+  }
+}

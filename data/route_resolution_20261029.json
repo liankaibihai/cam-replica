@@ -1,0 +1,1375 @@
+{
+  "release": "2025b",
+  "levels": [
+    [
+      601,
+      721
+    ],
+    [
+      1201,
+      1441
+    ],
+    [
+      2401,
+      2881
+    ],
+    [
+      4801,
+      5761
+    ]
+  ],
+  "cases": [
+    {
+      "label": "default_rack",
+      "mechanism": "rack",
+      "nodes": [
+        [
+          -290,
+          280
+        ],
+        [
+          -311.2593019092438,
+          476.52961344123025
+        ],
+        [
+          -775.5778232333944,
+          962.5431823437722
+        ],
+        [
+          -1086.1449123632476,
+          1091.8043129737844
+        ],
+        [
+          -1389.253018803078,
+          1401.4149115383657
+        ],
+        [
+          -1727.571135687226,
+          1250.447241724973
+        ],
+        [
+          -2099.3209648967795,
+          1004.8327652020241
+        ],
+        [
+          -2589.3576740584144,
+          1024.9720327121001
+        ],
+        [
+          -2865.0178591778963,
+          796.7915214459468
+        ],
+        [
+          -3418.039435465966,
+          291.3641000428885
+        ],
+        [
+          -3806.203157079694,
+          371.72423561051033
+        ],
+        [
+          -4647.651583708964,
+          1199.403275629558
+        ],
+        [
+          -5536.897835476139,
+          1282.0189461024268
+        ]
+      ],
+      "targets": [
+        [
+          -290,
+          260
+        ],
+        [
+          -300,
+          460
+        ],
+        [
+          -760,
+          950
+        ],
+        [
+          -1070,
+          1080
+        ],
+        [
+          -1370,
+          1396
+        ],
+        [
+          -1710,
+          1260
+        ],
+        [
+          -2080,
+          1010
+        ],
+        [
+          -2570,
+          1030
+        ],
+        [
+          -2850,
+          810
+        ],
+        [
+          -3400,
+          300
+        ],
+        [
+          -3790,
+          360
+        ],
+        [
+          -4630,
+          1190
+        ],
+        [
+          -5517,
+          1280
+        ]
+      ],
+      "physicalParams": {
+        "mechanism": "rack",
+        "wheelDiameter": 130,
+        "gearRatio": 20,
+        "lever": 25,
+        "rollerRadius": 2,
+        "referenceDiameter": 100,
+        "thickness": 5,
+        "driveX": 79.5,
+        "driveY": -120,
+        "drivenX": -79.85,
+        "drivenY": -120,
+        "sensorX": 0,
+        "sensorY": -20,
+        "headingDeg": 90,
+        "startSteeringDeg": 0,
+        "samples": 601,
+        "camSamples": 721,
+        "autoRatio": true,
+        "returnAngleDeg": 60,
+        "maxSteeringDeg": 65,
+        "maxPressureDeg": 35,
+        "hitTolerance": 30,
+        "iterations": 30,
+        "stepMM": 10,
+        "gradientProbeMM": 0.5,
+        "bounds": [
+          -6000,
+          0,
+          0,
+          2000
+        ],
+        "weights": [
+          12,
+          1,
+          2,
+          3,
+          10,
+          10
+        ]
+      },
+      "samples": [
+        {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "elapsedSeconds": 0.1800243,
+          "metrics": {
+            "maxHitError": 9.521841954068297,
+            "rmsHitError": 4.337720887925248,
+            "routeLength": 6623.073968909474,
+            "driveLength": 6644.175498985509,
+            "maxSteeringDeg": 31.495512034111172,
+            "maxPressureDeg": 62.99056700244632,
+            "maxWorkPressureDeg": 62.99056700244632,
+            "maxReturnPressureDeg": 28.263942700411928,
+            "minUndercutMargin": 0.34314663161411907,
+            "intersectionCount": null,
+            "score": 26.882197475873266,
+            "terms": [
+              0.12164588522199796,
+              1.0157238756786036,
+              0.18452445241298487,
+              8.012558024234906,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.815307956076287,
+            "legacyTerms": [
+              0.020906469446158888,
+              1.0157238756786036,
+              0.0075938039460835575,
+              0.17783961305053658,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 1201,
+          "camSamples": 1441,
+          "elapsedSeconds": 0.0225678,
+          "metrics": {
+            "maxHitError": 9.506914191104185,
+            "rmsHitError": 4.3267097554132885,
+            "routeLength": 6623.0770559185075,
+            "driveLength": 6644.183887373615,
+            "maxSteeringDeg": 31.495498668619256,
+            "maxPressureDeg": 62.97363561496055,
+            "maxWorkPressureDeg": 62.97363561496055,
+            "maxReturnPressureDeg": 28.275770430797778,
+            "minUndercutMargin": 0.3343471719712626,
+            "intersectionCount": null,
+            "score": 26.84948192149381,
+            "terms": [
+              0.12122426082734074,
+              1.0157243491066212,
+              0.18464312515216236,
+              8.003260064051592,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.8145819407362929,
+            "legacyTerms": [
+              0.020800463675098354,
+              1.0157243491066212,
+              0.007600260465701121,
+              0.17801716886569638,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "elapsedSeconds": 0.0116711,
+          "metrics": {
+            "maxHitError": 9.501577640722005,
+            "rmsHitError": 4.322772392238199,
+            "routeLength": 6623.077847635987,
+            "driveLength": 6644.186005521043,
+            "maxSteeringDeg": 31.499094139044004,
+            "maxPressureDeg": 62.96991198921469,
+            "maxWorkPressureDeg": 62.96991198921469,
+            "maxReturnPressureDeg": 28.27759147253006,
+            "minUndercutMargin": 0.33434172520420447,
+            "intersectionCount": null,
+            "score": 26.844481594664867,
+            "terms": [
+              0.12107370979751676,
+              1.01572447052552,
+              0.18609399288888492,
+              8.001228206930458,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.8142850300952709,
+            "legacyTerms": [
+              0.020762623505663064,
+              1.01572447052552,
+              0.00760187862144447,
+              0.17806844008630174,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 4801,
+          "camSamples": 5761,
+          "elapsedSeconds": 0.0123278,
+          "metrics": {
+            "maxHitError": 9.501044544499052,
+            "rmsHitError": 4.322135856625665,
+            "routeLength": 6623.078046136717,
+            "driveLength": 6644.186525118398,
+            "maxSteeringDeg": 31.499094597983788,
+            "maxPressureDeg": 62.97087366949123,
+            "maxWorkPressureDeg": 62.97087366949123,
+            "maxReturnPressureDeg": 28.278019336772005,
+            "minUndercutMargin": 0.3343384665974405,
+            "intersectionCount": null,
+            "score": 26.846260061813112,
+            "terms": [
+              0.12105633977742719,
+              1.015724500967869,
+              0.18623202297674948,
+              8.00179847918754,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.8143094097407644,
+            "legacyTerms": [
+              0.020756509292365853,
+              1.015724500967869,
+              0.007602287370511165,
+              0.17810074084116093,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        }
+      ],
+      "versusFinest": [
+        {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "maxSensorDifferenceMM": 1.0568206060800326e-05,
+          "maxSteeringDifferenceDeg": 3.0275680500148247e-05,
+          "maxRadiusDifferenceMM": 0.0038930203656306617,
+          "maxPressureDifferenceDeg": 0.3801829112467872,
+          "workPeakDifferenceDeg": 0.019693332955085907,
+          "returnPeakDifferenceDeg": 0.014076636360076833
+        },
+        {
+          "routeSamples": 1201,
+          "camSamples": 1441,
+          "maxSensorDifferenceMM": 2.3844874592503856e-06,
+          "maxSteeringDifferenceDeg": 6.8310531867752985e-06,
+          "maxRadiusDifferenceMM": 0.0008454487461051485,
+          "maxPressureDifferenceDeg": 0.21759138942901995,
+          "workPeakDifferenceDeg": 0.002761945469316629,
+          "returnPeakDifferenceDeg": 0.002248905974227
+        },
+        {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "maxSensorDifferenceMM": 2.710339242038669e-07,
+          "maxSteeringDifferenceDeg": 7.764553033894014e-07,
+          "maxRadiusDifferenceMM": 0.00018140148960554825,
+          "maxPressureDifferenceDeg": 0.0664379529301075,
+          "workPeakDifferenceDeg": 0.0009616802765464172,
+          "returnPeakDifferenceDeg": 0.00042786424194574124
+        }
+      ],
+      "lastRefinementStable": true,
+      "finestPressureLimitExceeded": true
+    },
+    {
+      "label": "default_flat",
+      "mechanism": "flat",
+      "nodes": [
+        [
+          -290,
+          280
+        ],
+        [
+          -311.2593019092438,
+          476.52961344123025
+        ],
+        [
+          -775.5778232333944,
+          962.5431823437722
+        ],
+        [
+          -1086.1449123632476,
+          1091.8043129737844
+        ],
+        [
+          -1389.253018803078,
+          1401.4149115383657
+        ],
+        [
+          -1727.571135687226,
+          1250.447241724973
+        ],
+        [
+          -2099.3209648967795,
+          1004.8327652020241
+        ],
+        [
+          -2589.3576740584144,
+          1024.9720327121001
+        ],
+        [
+          -2865.0178591778963,
+          796.7915214459468
+        ],
+        [
+          -3418.039435465966,
+          291.3641000428885
+        ],
+        [
+          -3806.203157079694,
+          371.72423561051033
+        ],
+        [
+          -4647.651583708964,
+          1199.403275629558
+        ],
+        [
+          -5536.897835476139,
+          1282.0189461024268
+        ]
+      ],
+      "targets": [
+        [
+          -290,
+          260
+        ],
+        [
+          -300,
+          460
+        ],
+        [
+          -760,
+          950
+        ],
+        [
+          -1070,
+          1080
+        ],
+        [
+          -1370,
+          1396
+        ],
+        [
+          -1710,
+          1260
+        ],
+        [
+          -2080,
+          1010
+        ],
+        [
+          -2570,
+          1030
+        ],
+        [
+          -2850,
+          810
+        ],
+        [
+          -3400,
+          300
+        ],
+        [
+          -3790,
+          360
+        ],
+        [
+          -4630,
+          1190
+        ],
+        [
+          -5517,
+          1280
+        ]
+      ],
+      "physicalParams": {
+        "mechanism": "flat",
+        "wheelDiameter": 130,
+        "gearRatio": 20,
+        "lever": 25,
+        "rollerRadius": 2,
+        "referenceDiameter": 100,
+        "thickness": 5,
+        "driveX": 79.5,
+        "driveY": -120,
+        "drivenX": -79.85,
+        "drivenY": -120,
+        "sensorX": 0,
+        "sensorY": -20,
+        "headingDeg": 90,
+        "startSteeringDeg": 0,
+        "samples": 601,
+        "camSamples": 721,
+        "autoRatio": true,
+        "returnAngleDeg": 60,
+        "maxSteeringDeg": 65,
+        "maxPressureDeg": 35,
+        "hitTolerance": 30,
+        "iterations": 30,
+        "stepMM": 10,
+        "gradientProbeMM": 0.5,
+        "bounds": [
+          -6000,
+          0,
+          0,
+          2000
+        ],
+        "weights": [
+          12,
+          1,
+          2,
+          3,
+          10,
+          10
+        ]
+      },
+      "samples": [
+        {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "elapsedSeconds": 0.023343,
+          "metrics": {
+            "maxHitError": 9.521841954068297,
+            "rmsHitError": 4.337720887925248,
+            "routeLength": 6623.073968909474,
+            "driveLength": 6644.175498985509,
+            "maxSteeringDeg": 31.495512034111172,
+            "maxPressureDeg": 65.93869409347428,
+            "maxWorkPressureDeg": 65.93869409347428,
+            "maxReturnPressureDeg": 28.26937925052193,
+            "minUndercutMargin": 0.17417448506049737,
+            "intersectionCount": null,
+            "score": 32.210513306867625,
+            "terms": [
+              0.12164588522199796,
+              1.0157238756786036,
+              0.18452445241298487,
+              9.788663301233026,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.9316952543363357,
+            "legacyTerms": [
+              0.020906469446158888,
+              1.0157238756786036,
+              0.0075938039460835575,
+              0.21663537913721947,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 1201,
+          "camSamples": 1441,
+          "elapsedSeconds": 0.0026821,
+          "metrics": {
+            "maxHitError": 9.506914191104185,
+            "rmsHitError": 4.3267097554132885,
+            "routeLength": 6623.0770559185075,
+            "driveLength": 6644.183887373615,
+            "maxSteeringDeg": 31.495498668619256,
+            "maxPressureDeg": 66.14329584487984,
+            "maxWorkPressureDeg": 66.14329584487984,
+            "maxReturnPressureDeg": 28.2828240367321,
+            "minUndercutMargin": 0.17470477415435748,
+            "intersectionCount": null,
+            "score": 32.5873472136746,
+            "terms": [
+              0.12122426082734074,
+              1.0157243491066212,
+              0.18464312515216236,
+              9.915881828111853,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.9310296360234493,
+            "legacyTerms": [
+              0.020800463675098354,
+              1.0157243491066212,
+              0.007600260465701121,
+              0.2168330672947485,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "elapsedSeconds": 0.0033255,
+          "metrics": {
+            "maxHitError": 9.501577640722005,
+            "rmsHitError": 4.322772392238199,
+            "routeLength": 6623.077847635987,
+            "driveLength": 6644.186005521043,
+            "maxSteeringDeg": 31.499094139044004,
+            "maxPressureDeg": 66.16725746660087,
+            "maxWorkPressureDeg": 66.16725746660087,
+            "maxReturnPressureDeg": 28.284958630991397,
+            "minUndercutMargin": 0.17479757488218317,
+            "intersectionCount": null,
+            "score": 32.633411788801695,
+            "terms": [
+              0.12107370979751676,
+              1.01572447052552,
+              0.18609399288888492,
+              9.930871604976069,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.9307563850829403,
+            "legacyTerms": [
+              0.020762623505663064,
+              1.01572447052552,
+              0.00760187862144447,
+              0.21689222508219158,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 4801,
+          "camSamples": 5761,
+          "elapsedSeconds": 0.0057405,
+          "metrics": {
+            "maxHitError": 9.501044544499052,
+            "rmsHitError": 4.322135856625665,
+            "routeLength": 6623.078046136717,
+            "driveLength": 6644.186525118398,
+            "maxSteeringDeg": 31.499094597983788,
+            "maxPressureDeg": 66.2145874671397,
+            "maxWorkPressureDeg": 66.2145874671397,
+            "maxReturnPressureDeg": 28.285469098275673,
+            "minUndercutMargin": 0.174656171083579,
+            "intersectionCount": null,
+            "score": 32.72217238250929,
+            "terms": [
+              0.12105633977742719,
+              1.015724500967869,
+              0.18623202297674948,
+              9.960435919419599,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.93080082316464,
+            "legacyTerms": [
+              0.020756509292365853,
+              1.015724500967869,
+              0.007602287370511165,
+              0.21693121198245285,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        }
+      ],
+      "versusFinest": [
+        {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "maxSensorDifferenceMM": 1.0568206060800326e-05,
+          "maxSteeringDifferenceDeg": 3.0275680500148247e-05,
+          "maxRadiusDifferenceMM": 0.004479636713703883,
+          "maxPressureDifferenceDeg": 0.3809089945008929,
+          "workPeakDifferenceDeg": 0.27589337366541145,
+          "returnPeakDifferenceDeg": 0.01608984775374367
+        },
+        {
+          "routeSamples": 1201,
+          "camSamples": 1441,
+          "maxSensorDifferenceMM": 2.3844874592503856e-06,
+          "maxSteeringDifferenceDeg": 6.8310531867752985e-06,
+          "maxRadiusDifferenceMM": 0.0009981817922621872,
+          "maxPressureDifferenceDeg": 0.21683234989477115,
+          "workPeakDifferenceDeg": 0.07129162225984942,
+          "returnPeakDifferenceDeg": 0.0026450615435713587
+        },
+        {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "maxSensorDifferenceMM": 2.710339242038669e-07,
+          "maxSteeringDifferenceDeg": 7.764553033894014e-07,
+          "maxRadiusDifferenceMM": 0.00019306304798050178,
+          "maxPressureDifferenceDeg": 0.06805217257012217,
+          "workPeakDifferenceDeg": 0.04733000053882108,
+          "returnPeakDifferenceDeg": 0.0005104672842755065
+        }
+      ],
+      "lastRefinementStable": true,
+      "finestPressureLimitExceeded": true
+    },
+    {
+      "label": "video300_rack",
+      "mechanism": "rack",
+      "nodes": [
+        [
+          -290,
+          280
+        ],
+        [
+          -306.48800948244065,
+          493.079796031799
+        ],
+        [
+          -776.9330583229826,
+          940.5565951496508
+        ],
+        [
+          -1072.1501319895974,
+          1100.944243061071
+        ],
+        [
+          -1393.858653989126,
+          1391.2913803564998
+        ],
+        [
+          -1738.7625941082972,
+          1264.3584325051647
+        ],
+        [
+          -2099.731931822936,
+          1007.895762867726
+        ],
+        [
+          -2624.8987136569144,
+          1019.7360469841669
+        ],
+        [
+          -2870.397867490378,
+          784.2471410506438
+        ],
+        [
+          -3413.0628010387127,
+          291.7088584116718
+        ],
+        [
+          -3827.315164638007,
+          375.30635098486005
+        ],
+        [
+          -4638.450845112292,
+          1198.758594809284
+        ],
+        [
+          -5544.013583878286,
+          1281.3780784414303
+        ]
+      ],
+      "targets": [
+        [
+          -290,
+          260
+        ],
+        [
+          -300,
+          460
+        ],
+        [
+          -760,
+          950
+        ],
+        [
+          -1070,
+          1080
+        ],
+        [
+          -1370,
+          1396
+        ],
+        [
+          -1710,
+          1260
+        ],
+        [
+          -2080,
+          1010
+        ],
+        [
+          -2570,
+          1030
+        ],
+        [
+          -2850,
+          810
+        ],
+        [
+          -3400,
+          300
+        ],
+        [
+          -3790,
+          360
+        ],
+        [
+          -4630,
+          1190
+        ],
+        [
+          -5517,
+          1280
+        ]
+      ],
+      "physicalParams": {
+        "mechanism": "rack",
+        "wheelDiameter": 130,
+        "gearRatio": 20,
+        "lever": 25,
+        "rollerRadius": 2,
+        "referenceDiameter": 100,
+        "thickness": 5,
+        "driveX": 79.5,
+        "driveY": -120,
+        "drivenX": -79.85,
+        "drivenY": -120,
+        "sensorX": 0,
+        "sensorY": -20,
+        "headingDeg": 90,
+        "startSteeringDeg": 0,
+        "samples": 601,
+        "camSamples": 721,
+        "autoRatio": true,
+        "returnAngleDeg": 60,
+        "maxSteeringDeg": 65,
+        "maxPressureDeg": 35,
+        "hitTolerance": 30,
+        "iterations": 300,
+        "stepMM": 10,
+        "gradientProbeMM": 0.5,
+        "bounds": [
+          -6000,
+          0,
+          0,
+          2000
+        ],
+        "weights": [
+          12,
+          1,
+          2,
+          3,
+          10,
+          10
+        ]
+      },
+      "samples": [
+        {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "elapsedSeconds": 0.0023644,
+          "metrics": {
+            "maxHitError": 17.373636694469017,
+            "rmsHitError": 9.874970293823212,
+            "routeLength": 6625.704797381615,
+            "driveLength": 6653.894402882464,
+            "maxSteeringDeg": 25.79798105038738,
+            "maxPressureDeg": 53.441541309857065,
+            "maxWorkPressureDeg": 53.441541309857065,
+            "maxReturnPressureDeg": 35.10036384857182,
+            "minUndercutMargin": 0.5268072558371177,
+            "intersectionCount": null,
+            "score": 17.022795496406054,
+            "terms": [
+              0.44373143366143464,
+              1.0161273432081093,
+              0.0833523160550802,
+              3.5050621057168563,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.6402090283389974,
+            "legacyTerms": [
+              0.10835004255987878,
+              1.0161273432081093,
+              0.005855210409857682,
+              0.10405691786420915,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 1201,
+          "camSamples": 1441,
+          "elapsedSeconds": 0.0020226,
+          "metrics": {
+            "maxHitError": 17.370707204675814,
+            "rmsHitError": 9.867772443254529,
+            "routeLength": 6625.710138922358,
+            "driveLength": 6653.900367520832,
+            "maxSteeringDeg": 25.79798446838711,
+            "maxPressureDeg": 53.4910084449561,
+            "maxWorkPressureDeg": 53.4910084449561,
+            "maxReturnPressureDeg": 35.28164178259569,
+            "minUndercutMargin": 0.5254512999310879,
+            "intersectionCount": null,
+            "score": 17.07703036663608,
+            "terms": [
+              0.4434604464249218,
+              1.016128162394259,
+              0.08340395156402175,
+              3.524189648004906,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.638819460141736,
+            "legacyTerms": [
+              0.10819214776872602,
+              1.016128162394259,
+              0.005859021331150018,
+              0.10422249395348819,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "elapsedSeconds": 0.0043694,
+          "metrics": {
+            "maxHitError": 17.370021738032523,
+            "rmsHitError": 9.866071667701686,
+            "routeLength": 6625.71144069352,
+            "driveLength": 6653.90194763077,
+            "maxSteeringDeg": 25.800202109760352,
+            "maxPressureDeg": 53.49256297107421,
+            "maxWorkPressureDeg": 53.49256297107421,
+            "maxReturnPressureDeg": 35.3273733229148,
+            "minUndercutMargin": 0.5252314700257893,
+            "intersectionCount": null,
+            "score": 17.079060773604784,
+            "terms": [
+              0.4433966948132759,
+              1.016128362035703,
+              0.08348222570085354,
+              3.5250692074693544,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.638452458517775,
+            "legacyTerms": [
+              0.10815485572469549,
+              1.016128362035703,
+              0.005859980664349396,
+              0.10424862215234243,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 4801,
+          "camSamples": 5761,
+          "elapsedSeconds": 0.0050115,
+          "metrics": {
+            "maxHitError": 17.36966971307035,
+            "rmsHitError": 9.865671896630168,
+            "routeLength": 6625.71176117886,
+            "driveLength": 6653.902346051176,
+            "maxSteeringDeg": 25.800210993561116,
+            "maxPressureDeg": 53.4930640683304,
+            "maxWorkPressureDeg": 53.4930640683304,
+            "maxReturnPressureDeg": 35.33973108347399,
+            "minUndercutMargin": 0.525115333800163,
+            "intersectionCount": null,
+            "score": 17.0796942879893,
+            "terms": [
+              0.44337434212567983,
+              1.0161284111857825,
+              0.08349991048556547,
+              3.52535798344141,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.638410821269124,
+            "legacyTerms": [
+              0.10814609107995368,
+              1.0161284111857825,
+              0.0058602210666036875,
+              0.10426962499689675,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        }
+      ],
+      "versusFinest": [
+        {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "maxSensorDifferenceMM": 9.967871934187678e-06,
+          "maxSteeringDifferenceDeg": 2.8555849727354184e-05,
+          "maxRadiusDifferenceMM": 0.10933684734023075,
+          "maxPressureDifferenceDeg": 0.276309775812828,
+          "workPeakDifferenceDeg": 0.05152275847333243,
+          "returnPeakDifferenceDeg": 0.2393672349021756
+        },
+        {
+          "routeSamples": 1201,
+          "camSamples": 1441,
+          "maxSensorDifferenceMM": 1.8321430124887634e-06,
+          "maxSteeringDifferenceDeg": 5.248702500753996e-06,
+          "maxRadiusDifferenceMM": 0.02627140876376899,
+          "maxPressureDifferenceDeg": 0.12865773453026166,
+          "workPeakDifferenceDeg": 0.0020556233742965446,
+          "returnPeakDifferenceDeg": 0.058089300878300776
+        },
+        {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "maxSensorDifferenceMM": 2.0983613816822786e-07,
+          "maxSteeringDifferenceDeg": 6.01136154390716e-07,
+          "maxRadiusDifferenceMM": 0.0052704597868142855,
+          "maxPressureDifferenceDeg": 0.08241576500024538,
+          "workPeakDifferenceDeg": 0.0005010972561905191,
+          "returnPeakDifferenceDeg": 0.012357760559190467
+        }
+      ],
+      "lastRefinementStable": true,
+      "finestPressureLimitExceeded": true
+    },
+    {
+      "label": "video300_flat",
+      "mechanism": "flat",
+      "nodes": [
+        [
+          -290,
+          280
+        ],
+        [
+          -307.0719554206129,
+          495.5588957719288
+        ],
+        [
+          -777.2568685656928,
+          938.67797460018
+        ],
+        [
+          -1071.1068471556412,
+          1102.6895462405776
+        ],
+        [
+          -1390.083307435943,
+          1388.2024643660286
+        ],
+        [
+          -1739.8991452196824,
+          1266.1765580720787
+        ],
+        [
+          -2100.7170602001097,
+          1010.5443097450276
+        ],
+        [
+          -2630.41361954262,
+          1015.7253482986205
+        ],
+        [
+          -2875.637449539302,
+          778.9496797252576
+        ],
+        [
+          -3419.1826508221634,
+          294.90317819916385
+        ],
+        [
+          -3824.8585833234256,
+          377.7676416699333
+        ],
+        [
+          -4640.706145330789,
+          1196.1451021551634
+        ],
+        [
+          -5533.673665062153,
+          1280.1424915332457
+        ]
+      ],
+      "targets": [
+        [
+          -290,
+          260
+        ],
+        [
+          -300,
+          460
+        ],
+        [
+          -760,
+          950
+        ],
+        [
+          -1070,
+          1080
+        ],
+        [
+          -1370,
+          1396
+        ],
+        [
+          -1710,
+          1260
+        ],
+        [
+          -2080,
+          1010
+        ],
+        [
+          -2570,
+          1030
+        ],
+        [
+          -2850,
+          810
+        ],
+        [
+          -3400,
+          300
+        ],
+        [
+          -3790,
+          360
+        ],
+        [
+          -4630,
+          1190
+        ],
+        [
+          -5517,
+          1280
+        ]
+      ],
+      "physicalParams": {
+        "mechanism": "flat",
+        "wheelDiameter": 130,
+        "gearRatio": 20,
+        "lever": 25,
+        "rollerRadius": 2,
+        "referenceDiameter": 100,
+        "thickness": 5,
+        "driveX": 79.5,
+        "driveY": -120,
+        "drivenX": -79.85,
+        "drivenY": -120,
+        "sensorX": 0,
+        "sensorY": -20,
+        "headingDeg": 90,
+        "startSteeringDeg": 0,
+        "samples": 601,
+        "camSamples": 721,
+        "autoRatio": true,
+        "returnAngleDeg": 60,
+        "maxSteeringDeg": 65,
+        "maxPressureDeg": 35,
+        "hitTolerance": 30,
+        "iterations": 300,
+        "stepMM": 10,
+        "gradientProbeMM": 0.5,
+        "bounds": [
+          -6000,
+          0,
+          0,
+          2000
+        ],
+        "weights": [
+          12,
+          1,
+          2,
+          3,
+          10,
+          10
+        ]
+      },
+      "samples": [
+        {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "elapsedSeconds": 0.0021544,
+          "metrics": {
+            "maxHitError": 19.186399213538387,
+            "rmsHitError": 11.184949198375191,
+            "routeLength": 6599.439403665995,
+            "driveLength": 6629.673024942161,
+            "maxSteeringDeg": 24.98537775013062,
+            "maxPressureDeg": 54.77153457710013,
+            "maxWorkPressureDeg": 54.77153457710013,
+            "maxReturnPressureDeg": 35.24648754570263,
+            "minUndercutMargin": 0.49535681016303423,
+            "intersectionCount": null,
+            "score": 19.804329693723552,
+            "terms": [
+              0.5480233370572225,
+              1.012099245737616,
+              0.07568926280252042,
+              4.021523959231408,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 3.0267005656843127,
+            "legacyTerms": [
+              0.13900343174470428,
+              1.012099245737616,
+              0.005609165312797216,
+              0.1117806027948836,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 1201,
+          "camSamples": 1441,
+          "elapsedSeconds": 0.0018548,
+          "metrics": {
+            "maxHitError": 19.192734623809415,
+            "rmsHitError": 11.179080289419037,
+            "routeLength": 6599.4446028333305,
+            "driveLength": 6629.679425618114,
+            "maxSteeringDeg": 24.99708208125009,
+            "maxPressureDeg": 54.7798846597235,
+            "maxWorkPressureDeg": 54.7798846597235,
+            "maxReturnPressureDeg": 35.44054137868471,
+            "minUndercutMargin": 0.49527284957872086,
+            "intersectionCount": null,
+            "score": 19.82005209652823,
+            "terms": [
+              0.5481476649524999,
+              1.0121000430891813,
+              0.07574390814075588,
+              4.026230752575845,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 3.0251714128812655,
+            "legacyTerms": [
+              0.13885759568586356,
+              1.0121000430891813,
+              0.005612689791573343,
+              0.11185161399285821,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "elapsedSeconds": 0.0044357,
+          "metrics": {
+            "maxHitError": 19.19602050681727,
+            "rmsHitError": 11.177613771305028,
+            "routeLength": 6599.445929127893,
+            "driveLength": 6629.68100455891,
+            "maxSteeringDeg": 24.997083156705447,
+            "maxPressureDeg": 54.77270280478377,
+            "maxWorkPressureDeg": 54.77270280478377,
+            "maxReturnPressureDeg": 35.487432803916164,
+            "minUndercutMargin": 0.49459801367061984,
+            "intersectionCount": null,
+            "score": 19.81438136016643,
+            "terms": [
+              0.5482513921317966,
+              1.012100246491568,
+              0.07580582351263679,
+              4.023884253689343,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 3.0249131449946893,
+            "legacyTerms": [
+              0.13882116624496427,
+              1.012100246491568,
+              0.005613575417326497,
+              0.11191058424296563,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        },
+        {
+          "routeSamples": 4801,
+          "camSamples": 5761,
+          "elapsedSeconds": 0.005263,
+          "metrics": {
+            "maxHitError": 19.196893850674375,
+            "rmsHitError": 11.177367410836503,
+            "routeLength": 6599.446259242199,
+            "driveLength": 6629.681401278628,
+            "maxSteeringDeg": 24.997278781950932,
+            "maxPressureDeg": 54.77251157956932,
+            "maxWorkPressureDeg": 54.77251157956932,
+            "maxReturnPressureDeg": 35.499856365365815,
+            "minUndercutMargin": 0.494613452517611,
+            "intersectionCount": null,
+            "score": 19.81497325551661,
+            "terms": [
+              0.5482825286120995,
+              1.012100297118359,
+              0.07581733819415797,
+              4.023949312888247,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 3.024894275652288,
+            "legacyTerms": [
+              0.13881504692981103,
+              1.012100297118359,
+              0.005613796608722803,
+              0.11192860738625031,
+              0,
+              0
+            ],
+            "geometryChecked": false
+          }
+        }
+      ],
+      "versusFinest": [
+        {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "maxSensorDifferenceMM": 1.0426272207995827e-05,
+          "maxSteeringDifferenceDeg": 2.9869069479346008e-05,
+          "maxRadiusDifferenceMM": 0.11466220808235761,
+          "maxPressureDifferenceDeg": 0.4654694067277613,
+          "workPeakDifferenceDeg": 0.0009770024691917456,
+          "returnPeakDifferenceDeg": 0.25336881966318714
+        },
+        {
+          "routeSamples": 1201,
+          "camSamples": 1441,
+          "maxSensorDifferenceMM": 1.0491672051822478e-06,
+          "maxSteeringDifferenceDeg": 3.0056430028667375e-06,
+          "maxRadiusDifferenceMM": 0.027596208639330655,
+          "maxPressureDifferenceDeg": 0.3766503345866489,
+          "workPeakDifferenceDeg": 0.007373080154181366,
+          "returnPeakDifferenceDeg": 0.0593149866811018
+        },
+        {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "maxSensorDifferenceMM": 2.6812217779181323e-07,
+          "maxSteeringDifferenceDeg": 7.681138025707331e-07,
+          "maxRadiusDifferenceMM": 0.005542074755588544,
+          "maxPressureDifferenceDeg": 0.10094622152867447,
+          "workPeakDifferenceDeg": 0.0001912252144506965,
+          "returnPeakDifferenceDeg": 0.012423561449651288
+        }
+      ],
+      "lastRefinementStable": true,
+      "finestPressureLimitExceeded": true
+    }
+  ],
+  "scope": "Fixed-node refinement within the independent model; no original-output equivalence. Self-intersections are not reevaluated in this sampling study.",
+  "date": "2026-10-29",
+  "baselineCommit": "541cae8",
+  "matlabLog": "local/matlab_8338f0f2419e4072b637837af60d9067.log"
+}

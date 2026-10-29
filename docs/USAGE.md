@@ -96,6 +96,12 @@ launch_cam_app
 
 当前代码拒绝 `check_optimizer_quality('baseline')`，在任何输出写入前报 `cam:HistoricalBaselineOnly`；历史基线只能在 a91d5e2 计算实现的工作树中采集。已有 `baseline.json` 仅供对照读取，不能用当前优化器重新生成后沿用历史标签。
 
+## 研究检查：采样加密与视频特征
+
+`check_route_resolution` 使用默认齿条/平推固定节点检查四档采样；也可传入项目cell数组与对应标签，例如 `check_route_resolution({project},{'my_fixed_nodes'})`。它不迭代优化，报告最终加密是否稳定与工程压力角是否超限，二者分别判断；高密度自交检查未执行。历史诊断输入与数值保存在 `data/route_resolution_20261029.json`。
+
+`camdesign.video251Features(controlPoints,frontPath,frontWheelAngles)` 根据长教程中可读2.5.1源码返回原始特征：路径折线总长、控制折线段长、无符号转折角及两级相邻差分、给定前轮有符号转角及两级差分。输入长度用mm，前轮角用rad；角差没有除以弧长。只复现已读前端，不计算未知聚合器或总分，也不会改变界面默认优化器。检查入口为 `check_video251_features`，源码位置及范围见 [源码审计](BEZIER_SOURCE_AUDIT.md)。
+
 ## 输出含义
 
 - `project.mat`：本项目独立 schema，不能承诺原软件可直接读取。

@@ -1,0 +1,1471 @@
+{
+  "schema": "readable-source-audit-1",
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "baseline_git": "541cae8",
+  "scope": "Bounded ASR full-text search, existing-frame overview, and targeted continuous clear-frame audit of the two long programming tutorials; not every video frame. Independently implements and checks only the readable raw-feature formulas using supplied paths/steering.",
+  "sources": [
+    {
+      "id": "861804050",
+      "name": "861804050-1-208.mp4",
+      "path": "F:\\许昊阳\\竞赛\\2027工创\\代码原理视频\\861804050-1-208.mp4",
+      "bytes": 733358999,
+      "sha256": "d450613e09a743db7072032f4988c6f62b3fece7dd55b133ae39f12ecf07195d",
+      "duration_seconds": 8329.514333,
+      "visible_source_version": "第八届工训赛 2.5.1",
+      "matlab_version_visible": "R2020b",
+      "asr_file": "local/video_research/batch_remaining_20261029/861804050-1-208/asr/transcript.json",
+      "asr_sha256": "8343241c20b748453a166d0ece7962547b87924d18783788a655c1cb2ee0eb9c",
+      "segments_scanned": 3916,
+      "search_patterns": {
+        "exact_names": "bezier|superposition|score_cal|simulation_cal",
+        "bezier_phonetic": "贝|貝|塞尔|賽爾|赛尔|贝兹|叠加|疊加|融合|合成",
+        "function_call": "函数|函數|寒树|寒樹|含书|含書|含数|含數|寒数|寒數|调出|調出|调用|調用|參數|参数",
+        "score": "评分|評分|得分|分数|分數|指数|指數",
+        "open_file": "打开|打開|切换|切換|文件|新建|代码|代碼|带码|帶碼|程序",
+        "aggregation_and_score": "square|standard|score|sum|平方|标准|標準|方差|求和|加和|均值|平均|归一|歸一|指数|指數|幂|冪|二次|次方|含数|含數|寒数|寒數"
+      },
+      "hits_by_pattern": {
+        "exact_names": [],
+        "bezier_phonetic": [],
+        "function_call": [
+          {
+            "start": 381.0,
+            "end": 409.7,
+            "text": "这个的话,现在这个车辆转角大小,其实不是转角大小,而是,突轮的推成,推成是什么东西呢,就是,就是这个长度,就是这个长度,这个是推成,这个是推成,推成和转角大小是有一定含书关系的,转角大小通过一定的含书关系,呃,会根据不同的小车,是配,最后才能变成这个推成,突轮推成,那这个是突轮推成我找一个转角大小的来,"
+          },
+          {
+            "start": 499.6,
+            "end": 528.96,
+            "text": "里面这个图像,这个是图像1,左边这个路线图像是图像1,上面这个转角是图像2,下面那个图轮是图像3,我去看一下在代码里生成的图像2是什么,什么参数啊,什么参数到时候,那这个T就是角度,这个前面的车轮,角度前面的车轮啊,没问题呢,就是这个参数是我们需要的,这个参数就是我们需要的,我直接在里面找吧,"
+          },
+          {
+            "start": 530.08,
+            "end": 550.92,
+            "text": "呃,这个代码,叫Kenture Inter,Kenture Inter,就是执行一节,执行当前节,那这个参数都有了,我看一下T前转的转角,前转的转角,我看一下,嗯,在哪里,在哪里,"
+          },
+          {
+            "start": 550.92,
+            "end": 587.12,
+            "text": "哎,有回放,有回放,有回放,有回放,我看一下前转转角,哎,没有吗,呃,我看一下这个寒树里面哪一项是前转转角的,前转转角,前转转角,哇塞,这个参数好多啊,啊,前转转角在这,一个两个三个,四个,五个,六个,"
+          },
+          {
+            "start": 956.02,
+            "end": 985.92,
+            "text": "反推回去,而且还要限学,限卖啊,这个参数,这个视频里都有录播的我就把这些丢掉了,反正有视频,视频为正哈,我来看一下平推结构,平推结构是什么样的呢,对于突轮那一边来说,它是这样的,它是这样的,那么起伏数据我是有的是吧,就是这个起伏的数据我是有的,"
+          },
+          {
+            "start": 1311.53,
+            "end": 1313.53,
+            "text": "得到这个参数"
+          },
+          {
+            "start": 1313.53,
+            "end": 1316.53,
+            "text": "现在我们要由这个参数得到路线"
+          },
+          {
+            "start": 1384.53,
+            "end": 1387.53,
+            "text": "我们来找到这样的一个参数"
+          },
+          {
+            "start": 1477.82,
+            "end": 1480.82,
+            "text": "我尽量地把参数统一会好一些"
+          },
+          {
+            "start": 1727.38,
+            "end": 1729.38,
+            "text": "设置的参数一样"
+          },
+          {
+            "start": 1733.38,
+            "end": 1735.38,
+            "text": "参数规范的都在这里"
+          },
+          {
+            "start": 1735.38,
+            "end": 1737.38,
+            "text": "参数规范都在这里"
+          },
+          {
+            "start": 1737.38,
+            "end": 1739.38,
+            "text": "这个就是所有的小车参数"
+          },
+          {
+            "start": 1799.4,
+            "end": 1801.4,
+            "text": "这个参数就出来了"
+          },
+          {
+            "start": 1801.4,
+            "end": 1803.4,
+            "text": "这个参数就出来了"
+          },
+          {
+            "start": 1987.04,
+            "end": 1990.6,
+            "text": "能不能改成小车基本参数重新展示一下"
+          },
+          {
+            "start": 1990.6,
+            "end": 1991.72,
+            "text": "小车基本参数"
+          },
+          {
+            "start": 3119.04,
+            "end": 3120.44,
+            "text": "我用了另外一个参数"
+          },
+          {
+            "start": 3151.44,
+            "end": 3153.44,
+            "text": "我们就用来当作参数"
+          },
+          {
+            "start": 4185.75,
+            "end": 4188.75,
+            "text": "参数是理论图乱"
+          },
+          {
+            "start": 4614.06,
+            "end": 4619.1,
+            "text": "参数"
+          },
+          {
+            "start": 4620.1,
+            "end": 4622.1,
+            "text": "参数就在这里"
+          },
+          {
+            "start": 5958.75,
+            "end": 5960.75,
+            "text": "构造一个这么含书"
+          },
+          {
+            "start": 6270.57,
+            "end": 6273.57,
+            "text": "第二个参数"
+          },
+          {
+            "start": 6274.57,
+            "end": 6275.57,
+            "text": "第二个参数"
+          },
+          {
+            "start": 6920.38,
+            "end": 6923.38,
+            "text": "它的参数的样子是什么样的"
+          }
+        ],
+        "score": [],
+        "open_file": [
+          {
+            "start": 93.18,
+            "end": 122.18,
+            "text": "这个图轮反推访真的一个程序,图轮访真的程序,从头写,从头写,有录制的,全都有录制,好,那我看一下,这个是这样的吧,那会从原理什么的都会全部讲一遍,全部讲一遍,好,那我现在要干的是什么呢,就是说我把那个,我打开一个物,"
+          },
+          {
+            "start": 123.18,
+            "end": 151.53,
+            "text": "打开个物,我看一下,我新建一个啥,新建一个流程图还是思维导图来着,这样会好一点吧,流程图或者思维导图,要流程图,流程图,新建一个,那第一步是什么,我把这个拖过来,这个自体大小要大一点点,对不对,比如说64,"
+          },
+          {
+            "start": 269.02,
+            "end": 300.3,
+            "text": "Math Lab,Math Lab,Math Lab,呃,路线绑针带码,对吧,我要写的是一个这个玩意儿,对吧,那么这个玩意儿写出来有什么用的,就是比如说各位,呃,各位参赛对员们,呃,要去呃,要去实际跑车的时候,假如说我们的装,"
+          },
+          {
+            "start": 300.3,
+            "end": 330.2,
+            "text": "是在这几个位置,是在这几个位置,对吧,是在这几个位置,我们带码里实际跑车的路线,哎,很圆潤很光滑,但是,真实的情况下,它可能是在这边,哎,整体左转了,哎,整体左转了,然后又转又没多少,然后又又是这样子,就呃,偏离了既定的路线那么怎么办,那就需要在一个领导访真带码里快速的,对这个过程进行回推,"
+          },
+          {
+            "start": 360.1,
+            "end": 380.0,
+            "text": "那最后的这个路线结果,我们都不知道是什么,那么这次带码就是要通过这个前轮转向的大小,前轮转向的大小就是这个车轮转角大小,回推那个路线,好,那在这个的话,我看一下AI带码算出来的是个什么结果,"
+          },
+          {
+            "start": 469.6,
+            "end": 499.6,
+            "text": "8.0,那么前转转角就是11度,对吧,这个代码出来的之后发现,哎,前转转角最大只有11度,最大只有11度,怎么路客,怎么路客啊,请教一下,这个现在就在路了,现在就在路了,没关系,那到时候我会发出来都是公开资料,大家都可以呃,全程看我变成,全程看我变成,那么这个就是前转转角,我去看一下代码"
+          },
+          {
+            "start": 499.6,
+            "end": 528.96,
+            "text": "里面这个图像,这个是图像1,左边这个路线图像是图像1,上面这个转角是图像2,下面那个图轮是图像3,我去看一下在代码里生成的图像2是什么,什么参数啊,什么参数到时候,那这个T就是角度,这个前面的车轮,角度前面的车轮啊,没问题呢,就是这个参数是我们需要的,这个参数就是我们需要的,我直接在里面找吧,"
+          },
+          {
+            "start": 530.08,
+            "end": 550.92,
+            "text": "呃,这个代码,叫Kenture Inter,Kenture Inter,就是执行一节,执行当前节,那这个参数都有了,我看一下T前转的转角,前转的转角,我看一下,嗯,在哪里,在哪里,"
+          },
+          {
+            "start": 692.24,
+            "end": 708.84,
+            "text": "就是说前转转角确实是这些,前转转角确实是这些,我看一下,这个AI代码再跑一下,这个我怎么解释呢,为什么会发现前转转角少了那么多,而这个,"
+          },
+          {
+            "start": 719.84,
+            "end": 731.68,
+            "text": "啊,就是我拿画土来试一下吧,为什么会出现这种情况,我知道我代码里为什么会出现这种情况了,"
+          },
+          {
+            "start": 778.12,
+            "end": 798.27,
+            "text": "但是,代码里有预设传动比,预设传动比,预设传动比,比如说我设了25对吧,那么我就会按照这个比例,按照这个比例区域进行差值,比如说我在最后的这个方向,"
+          },
+          {
+            "start": 823.27,
+            "end": 852.27,
+            "text": "这样子补出了一段,最后我们就可以让代码,哎,让小车以25的传动比去完成这条路线,那么后面补出来的这条,推成,后面补出来的这条推成,我并不知道它路线长什么样的,可能啊,可能啊,先,比如说突出去是左转,熬进来是右转,那么它可能就是先,先进行一个左转,然后再进行个右转,可能后面自动补出来,"
+          },
+          {
+            "start": 853.27,
+            "end": 887.32,
+            "text": "它的路线是这样的,我并不知道,我根本就不知道是长什么样,但是没关系,前面这一段突轮就足够完成这个路线了,对不对,那么我就不需要管它那个了,但是我现在又需要拿到这个数据怎么办,我现在又需要拿到这个数据怎么办,我想想看啊,哎呀,这个好方啊,我看一下这个实际突轮代码能不能给它找到点灵感来,看一下它现在在运动对不对,"
+          },
+          {
+            "start": 888.32,
+            "end": 910.32,
+            "text": "现在在运动,可以明显看到后面这一段应该是补出来的,应该是带码自动补出来的,有回放,有回放,都有回放,可以看到这个路线是一直在往前走的,小车一直在往前走,然后呢,每一个这个位置对应的就是小车的一个位置,这样子,"
+          },
+          {
+            "start": 1302.53,
+            "end": 1306.53,
+            "text": "因为以前的代码为什么要重新写呢"
+          },
+          {
+            "start": 1306.53,
+            "end": 1311.53,
+            "text": "以前的代码是由这个路线得到"
+          },
+          {
+            "start": 1334.53,
+            "end": 1337.53,
+            "text": "我新代码当中C是一个复制了"
+          },
+          {
+            "start": 1431.54,
+            "end": 1433.54,
+            "text": "因为我们代码里直接生成了"
+          },
+          {
+            "start": 1703.91,
+            "end": 1705.91,
+            "text": "然后我们把这个AI带码"
+          },
+          {
+            "start": 1896.88,
+            "end": 1900.6,
+            "text": "在这边ps是我带码当中的前转位置"
+          },
+          {
+            "start": 1991.72,
+            "end": 1993.48,
+            "text": "我现在是在写这个代码"
+          },
+          {
+            "start": 2286.56,
+            "end": 2288.4,
+            "text": "那这个写代码的"
+          },
+          {
+            "start": 2288.68,
+            "end": 2291.4,
+            "text": "写代码的难度又进一步增加了呀"
+          },
+          {
+            "start": 3019.13,
+            "end": 3020.33,
+            "text": "代码卡了一下"
+          },
+          {
+            "start": 3326.45,
+            "end": 3327.25,
+            "text": "切换一下"
+          },
+          {
+            "start": 4097.46,
+            "end": 4098.46,
+            "text": "代码鞋出来了"
+          },
+          {
+            "start": 4879.16,
+            "end": 4883.02,
+            "text": "这个代码可真难写啊"
+          },
+          {
+            "start": 4915.46,
+            "end": 4916.46,
+            "text": "写代码"
+          },
+          {
+            "start": 4927.81,
+            "end": 4928.81,
+            "text": "像我平日的写代码"
+          },
+          {
+            "start": 7648.54,
+            "end": 7650.54,
+            "text": "我来写代码了"
+          },
+          {
+            "start": 7650.54,
+            "end": 7652.54,
+            "text": "写完这个代码"
+          },
+          {
+            "start": 7663.54,
+            "end": 7664.54,
+            "text": "我也就把代码写完了"
+          },
+          {
+            "start": 7668.54,
+            "end": 7670.54,
+            "text": "那么在这里我把代码也手小一点点"
+          },
+          {
+            "start": 7904.3,
+            "end": 7906.3,
+            "text": "这个就是增广举阵的求解代码"
+          }
+        ],
+        "aggregation_and_score": [
+          {
+            "start": 2733.23,
+            "end": 2734.95,
+            "text": "就是X平方加Y平方"
+          },
+          {
+            "start": 2749.39,
+            "end": 2750.99,
+            "text": "那么就是D列的平方"
+          },
+          {
+            "start": 2750.99,
+            "end": 2752.59,
+            "text": "加上第二列的平方"
+          },
+          {
+            "start": 2759.11,
+            "end": 2760.15,
+            "text": "点平方"
+          },
+          {
+            "start": 2760.99,
+            "end": 2763.31,
+            "text": "他的平方加上"
+          },
+          {
+            "start": 4158.75,
+            "end": 4161.75,
+            "text": "那我们就取一个平均值"
+          },
+          {
+            "start": 4254.75,
+            "end": 4256.75,
+            "text": "那我们就取平均值"
+          },
+          {
+            "start": 4266.75,
+            "end": 4270.75,
+            "text": "它的一个Cita值应该是取平均"
+          },
+          {
+            "start": 4270.75,
+            "end": 4272.75,
+            "text": "Cita均值"
+          },
+          {
+            "start": 4272.75,
+            "end": 4273.75,
+            "text": "Cita均值"
+          },
+          {
+            "start": 4280.75,
+            "end": 4282.75,
+            "text": "就是这样的一个均值"
+          },
+          {
+            "start": 4306.75,
+            "end": 4307.75,
+            "text": "这个Cita1均值"
+          },
+          {
+            "start": 4310.75,
+            "end": 4311.75,
+            "text": "这个均值"
+          },
+          {
+            "start": 6727.58,
+            "end": 6730.83,
+            "text": "cult它的均值"
+          },
+          {
+            "start": 6730.83,
+            "end": 6733.83,
+            "text": "cult它的均值啊"
+          },
+          {
+            "start": 6733.83,
+            "end": 6735.83,
+            "text": "cult它均值是一个"
+          },
+          {
+            "start": 6742.83,
+            "end": 6744.83,
+            "text": "cult它的均值"
+          },
+          {
+            "start": 6754.83,
+            "end": 6755.83,
+            "text": "cult它的均值好吧"
+          },
+          {
+            "start": 6755.83,
+            "end": 6756.83,
+            "text": "先求cult它的均值"
+          },
+          {
+            "start": 6813.03,
+            "end": 6814.03,
+            "text": "均值"
+          },
+          {
+            "start": 6825.86,
+            "end": 6827.86,
+            "text": "两个的均值"
+          },
+          {
+            "start": 6832.86,
+            "end": 6833.86,
+            "text": "salt它2的平均"
+          },
+          {
+            "start": 6834.86,
+            "end": 6836.86,
+            "text": "和salt它2的平均是多少呢"
+          },
+          {
+            "start": 6938.38,
+            "end": 6940.38,
+            "text": "两个值的平均"
+          },
+          {
+            "start": 7138.49,
+            "end": 7141.49,
+            "text": "就是它加上这个Celtar的一个均值"
+          }
+        ]
+      },
+      "hit_counts": {
+        "exact_names": 0,
+        "bezier_phonetic": 0,
+        "function_call": 26,
+        "score": 0,
+        "open_file": 34,
+        "aggregation_and_score": 25
+      },
+      "asr_technical_exclusions_seconds": [],
+      "quality_scope": "Machine text locates candidates only; unreadable/incorrect words are not source-code transcriptions."
+    },
+    {
+      "id": "865568585",
+      "name": "865568585-1-208.mp4",
+      "path": "F:\\许昊阳\\竞赛\\2027工创\\代码原理视频\\865568585-1-208.mp4",
+      "bytes": 409307680,
+      "sha256": "6f23c5468619497f0332019742149c95d411cabd5a33da8ddaa92d6eaaa09b99",
+      "duration_seconds": 4609.108833,
+      "visible_source_version": "第八届工训赛 2.5.1",
+      "matlab_version_visible": "R2020b",
+      "asr_file": "local/video_research/batch_remaining_20261029/865568585-1-208/asr/transcript.json",
+      "asr_sha256": "6f21201eb8065bd191e21cbf629805506b564c81697f8b571ee89a843c326c4b",
+      "segments_scanned": 1395,
+      "search_patterns": {
+        "exact_names": "bezier|superposition|score_cal|simulation_cal",
+        "bezier_phonetic": "贝|貝|塞尔|賽爾|赛尔|贝兹|叠加|疊加|融合|合成",
+        "function_call": "函数|函數|寒树|寒樹|含书|含書|含数|含數|寒数|寒數|调出|調出|调用|調用|參數|参数",
+        "score": "评分|評分|得分|分数|分數|指数|指數",
+        "open_file": "打开|打開|切换|切換|文件|新建|代码|代碼|带码|帶碼|程序",
+        "aggregation_and_score": "square|standard|score|sum|平方|标准|標準|方差|求和|加和|均值|平均|归一|歸一|指数|指數|幂|冪|二次|次方|含数|含數|寒数|寒數"
+      },
+      "hits_by_pattern": {
+        "exact_names": [],
+        "bezier_phonetic": [],
+        "function_call": [
+          {
+            "start": 4196.03,
+            "end": 4201.03,
+            "text": "把转一下就是一个新的寒树"
+          },
+          {
+            "start": 4330.81,
+            "end": 4332.81,
+            "text": "寒树放到这里来"
+          }
+        ],
+        "score": [
+          {
+            "start": 2957.67,
+            "end": 2963.86,
+            "text": "然後要打得分套"
+          }
+        ],
+        "open_file": [],
+        "aggregation_and_score": [
+          {
+            "start": 950.96,
+            "end": 953.16,
+            "text": "三次方7000"
+          },
+          {
+            "start": 2138.72,
+            "end": 2140.72,
+            "text": "平均的高中的那么一笔"
+          }
+        ]
+      },
+      "hit_counts": {
+        "exact_names": 0,
+        "bezier_phonetic": 0,
+        "function_call": 2,
+        "score": 1,
+        "open_file": 0,
+        "aggregation_and_score": 2
+      },
+      "asr_technical_exclusions_seconds": [
+        [
+          0,
+          100
+        ]
+      ],
+      "quality_scope": "Machine text locates candidates only; unreadable/incorrect words are not source-code transcriptions."
+    }
+  ],
+  "asr_segments_scanned": 5311,
+  "visual_overview": {
+    "existing_frames": 60,
+    "note": "38 upper + 22 follow-up survey frames reviewed as overview contact sheets; not all code characters legible at overview scale."
+  },
+  "frame_collections": [
+    {
+      "directory": "local/bezier_source_audit_20261029/861_calls",
+      "purpose": "ASR-targeted introductory call context",
+      "manifest": "local/bezier_source_audit_20261029/861_calls/frames.json",
+      "manifest_sha256": "643e1370d8ac9abfb2465ea1fdb0b9fab5c48364b7b1ff3c48dc87e4d5a4fc60",
+      "count": 18,
+      "frames": [
+        {
+          "requested_seconds": 0.0,
+          "actual_seconds": 0.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000000000ms.png",
+          "sha256": "5828468b53869cf47e654a1faf9b5dea1fa9fab4f06a06d4d603415654dee484"
+        },
+        {
+          "requested_seconds": 30.0,
+          "actual_seconds": 30.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000030000ms.png",
+          "sha256": "54e78f663ca154a145a2a7422ffc3ef2301d5fd92ec32c59a8caab0227984def"
+        },
+        {
+          "requested_seconds": 60.0,
+          "actual_seconds": 60.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000060000ms.png",
+          "sha256": "c0b8c00bddb8c061b60c6f90502bd9750a63c9a653db303dfe7dda483f4bf3f8"
+        },
+        {
+          "requested_seconds": 90.0,
+          "actual_seconds": 90.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000090000ms.png",
+          "sha256": "16e41282d79f02ea713f4e3f421c3491a46b8be7f1430f985a152edaa7672d75"
+        },
+        {
+          "requested_seconds": 110.0,
+          "actual_seconds": 110.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000110000ms.png",
+          "sha256": "b0d3ff8af5652345a8952cb121066abe1f27fc55e2061f2f918183d0d96eee27"
+        },
+        {
+          "requested_seconds": 480.0,
+          "actual_seconds": 480.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000480000ms.png",
+          "sha256": "b1fa742ce4a047593cbed7da4a63e648c5d91364471fc1122b48081f3228f964"
+        },
+        {
+          "requested_seconds": 500.0,
+          "actual_seconds": 500.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000500000ms.png",
+          "sha256": "eaeba0a046935b31c57d4b646e590480db21d3a945cf38cb2313c9945e35b75e"
+        },
+        {
+          "requested_seconds": 520.0,
+          "actual_seconds": 520.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000520000ms.png",
+          "sha256": "6435ebb7d83ac84fe0ac461583b1bda5a9210ab260e92346e0a7c46b3b57a80a"
+        },
+        {
+          "requested_seconds": 550.0,
+          "actual_seconds": 550.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000550000ms.png",
+          "sha256": "c53a43d5268e8b0b0727f0d3422419ac4b0f52a3deef8804f1f8ad343d5d3258"
+        },
+        {
+          "requested_seconds": 570.0,
+          "actual_seconds": 570.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000570000ms.png",
+          "sha256": "2e99f4013b24e5af6ed3c8303c41939bb514c466478d91d94baae310f3a260c7"
+        },
+        {
+          "requested_seconds": 580.0,
+          "actual_seconds": 580.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000580000ms.png",
+          "sha256": "712011d78ae634224ae698d494e759639be18cb035dfadd4d8ebe617589b233c"
+        },
+        {
+          "requested_seconds": 590.0,
+          "actual_seconds": 590.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000590000ms.png",
+          "sha256": "6d032883aadd92537dbadafc113d729186e3f9106ef4137a7c80b37d9c8536f7"
+        },
+        {
+          "requested_seconds": 600.0,
+          "actual_seconds": 600.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000600000ms.png",
+          "sha256": "969f122d87a11d41e781a683aebcc40d57b072728091f48e08223382ccbd73cd"
+        },
+        {
+          "requested_seconds": 620.0,
+          "actual_seconds": 620.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000620000ms.png",
+          "sha256": "abba0458b4fb25117d0527569bca31c97ed3d1d3cc2cf052709289342f3b5777"
+        },
+        {
+          "requested_seconds": 640.0,
+          "actual_seconds": 640.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000640000ms.png",
+          "sha256": "af380f6c4303608c86fa46daa274839c554a265e387b232efc37a762241b96ea"
+        },
+        {
+          "requested_seconds": 665.0,
+          "actual_seconds": 665.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000665000ms.png",
+          "sha256": "2a448538e9b2a07395dfd5ab186d9cc5e9279fb76d236bfafa52fb9c202501ac"
+        },
+        {
+          "requested_seconds": 685.0,
+          "actual_seconds": 685.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000685000ms.png",
+          "sha256": "e17f4ceced97b98fc354b39d5da4067c6bdf7a294279dfeb84d5fea78371d893"
+        },
+        {
+          "requested_seconds": 700.0,
+          "actual_seconds": 700.0,
+          "path": "local/bezier_source_audit_20261029/861_calls/frame_000700000ms.png",
+          "sha256": "f12981f4d55563cb0dddbf93b5643a4524dfb19d4064fe787664620dfeec7dbe"
+        }
+      ]
+    },
+    {
+      "directory": "local/bezier_source_audit_20261029/861_simulation_continuous",
+      "purpose": "Continuous 2-second source-function navigation context",
+      "manifest": "local/bezier_source_audit_20261029/861_simulation_continuous/frames.json",
+      "manifest_sha256": "66d313acc8df684270ddd2c7b008ce24e74f23baeb309c09f90a5b70b5fe52bf",
+      "count": 22,
+      "frames": [
+        {
+          "requested_seconds": 560.0,
+          "actual_seconds": 560.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000560000ms.png",
+          "sha256": "5f95086aafd460e86f0eea5e849741c13c6cefaeac1e6a55836dd7c6424d6a6d"
+        },
+        {
+          "requested_seconds": 562.0,
+          "actual_seconds": 562.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000562000ms.png",
+          "sha256": "9ff932f1abd71a84b6a9af5a2a65a04134cd88a442cf49cbc168b4016667a2a8"
+        },
+        {
+          "requested_seconds": 564.0,
+          "actual_seconds": 564.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000564000ms.png",
+          "sha256": "7067ed337a4238bdf2ebb1bdc62eef8dd1ad7731aed914563488663fbbe8eff5"
+        },
+        {
+          "requested_seconds": 566.0,
+          "actual_seconds": 566.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000566000ms.png",
+          "sha256": "7d6e63834806a108768b1d7474e24399eadcda291c7ac70fb4256774d277f676"
+        },
+        {
+          "requested_seconds": 568.0,
+          "actual_seconds": 568.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000568000ms.png",
+          "sha256": "ac3c22419dfae932a4e767ce699c78d0d7a9355361f63029c29d47b6693f949a"
+        },
+        {
+          "requested_seconds": 570.0,
+          "actual_seconds": 570.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000570000ms.png",
+          "sha256": "2e99f4013b24e5af6ed3c8303c41939bb514c466478d91d94baae310f3a260c7"
+        },
+        {
+          "requested_seconds": 572.0,
+          "actual_seconds": 572.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000572000ms.png",
+          "sha256": "683ea48d6c96c819215b1f8189384f6cf171bcb845cb6aa788cb44612dded435"
+        },
+        {
+          "requested_seconds": 574.0,
+          "actual_seconds": 574.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000574000ms.png",
+          "sha256": "1ef4fb0c9ff371f7bda3baa8d23563c095aad57b412f09c1d2eee5b58056b7d9"
+        },
+        {
+          "requested_seconds": 576.0,
+          "actual_seconds": 576.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000576000ms.png",
+          "sha256": "35f1f5aefd4788ab2ed75efa40a7fc76e1ca913009b32f648da4384fc9618999"
+        },
+        {
+          "requested_seconds": 578.0,
+          "actual_seconds": 578.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000578000ms.png",
+          "sha256": "04d69068cc6693197c38311a7631d3bb46678a966d4f09a7be344ad2e27f5605"
+        },
+        {
+          "requested_seconds": 580.0,
+          "actual_seconds": 580.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000580000ms.png",
+          "sha256": "712011d78ae634224ae698d494e759639be18cb035dfadd4d8ebe617589b233c"
+        },
+        {
+          "requested_seconds": 582.0,
+          "actual_seconds": 582.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000582000ms.png",
+          "sha256": "d0324e66579afda8af9ff04eb58a828382697f5708c42ec695da611233f68662"
+        },
+        {
+          "requested_seconds": 584.0,
+          "actual_seconds": 584.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000584000ms.png",
+          "sha256": "e861e3d67a09e401e4b83c892d2a1218c18518da512fae255df03e2564134af9"
+        },
+        {
+          "requested_seconds": 586.0,
+          "actual_seconds": 586.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000586000ms.png",
+          "sha256": "96e2c847618eeda64c21a9c31e1465649dd18910fa81268743df533023379a8a"
+        },
+        {
+          "requested_seconds": 588.0,
+          "actual_seconds": 588.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000588000ms.png",
+          "sha256": "274622db5acbef6c5aabef2223dc5d10512b5084299cf008defc5fa266c3dd3f"
+        },
+        {
+          "requested_seconds": 590.0,
+          "actual_seconds": 590.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000590000ms.png",
+          "sha256": "6d032883aadd92537dbadafc113d729186e3f9106ef4137a7c80b37d9c8536f7"
+        },
+        {
+          "requested_seconds": 592.0,
+          "actual_seconds": 592.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000592000ms.png",
+          "sha256": "58e0b5f7d9619a64bca50e463b4207536f7e10f07081024777c037476de2eac3"
+        },
+        {
+          "requested_seconds": 594.0,
+          "actual_seconds": 594.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000594000ms.png",
+          "sha256": "4668bb171812c611d5fbdc228bbd94e3f4aece44bee24355ce7a4d4d2dbbfb0f"
+        },
+        {
+          "requested_seconds": 596.0,
+          "actual_seconds": 596.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000596000ms.png",
+          "sha256": "aa02c85c1892086774fc229702196b4ada15c559ee40763b3fdab10346d7ffcd"
+        },
+        {
+          "requested_seconds": 598.0,
+          "actual_seconds": 598.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000598000ms.png",
+          "sha256": "750f040159c277262d7a0181464f6070883124b5e53f22aca602b603716adb17"
+        },
+        {
+          "requested_seconds": 600.0,
+          "actual_seconds": 600.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000600000ms.png",
+          "sha256": "969f122d87a11d41e781a683aebcc40d57b072728091f48e08223382ccbd73cd"
+        },
+        {
+          "requested_seconds": 602.0,
+          "actual_seconds": 602.0,
+          "path": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000602000ms.png",
+          "sha256": "a4e28f529e2af88097369bdbb8a870352a302f4894145e319663819414940b8b"
+        }
+      ]
+    },
+    {
+      "directory": "local/bezier_source_audit_20261029/861_signature",
+      "purpose": "Quarter-second horizontal-scroll/function-signature context",
+      "manifest": "local/bezier_source_audit_20261029/861_signature/frames.json",
+      "manifest_sha256": "b3e8c5db22f0aff3b88dcdd60917686a02345a3c086b3333c74be5a6d89661bd",
+      "count": 25,
+      "frames": [
+        {
+          "requested_seconds": 575.0,
+          "actual_seconds": 575.0,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000575000ms.png",
+          "sha256": "919bc55566b3ca22a300c96bd991b2aa710b083524ac020e848a11d49e3f47cf"
+        },
+        {
+          "requested_seconds": 575.25,
+          "actual_seconds": 575.267,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000575250ms.png",
+          "sha256": "57263b1adefe55cb83883c0746cadb9dc715b07441e5a3308e8a76bb4c7d65c4"
+        },
+        {
+          "requested_seconds": 575.5,
+          "actual_seconds": 575.5,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000575500ms.png",
+          "sha256": "10ce638b3c288f0fcfb5cd6623d0885f1055d14941324752cbcce0689e392d01"
+        },
+        {
+          "requested_seconds": 575.75,
+          "actual_seconds": 575.767,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000575750ms.png",
+          "sha256": "9face716ba462da3f8f957c95e8e1cfd6644b8bf80f702893a0276cef19f6c4d"
+        },
+        {
+          "requested_seconds": 576.25,
+          "actual_seconds": 576.267,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000576250ms.png",
+          "sha256": "0e0b42da0095445b47b2b718693b13657fbaca6af19c1b74d590fcc8b1197680"
+        },
+        {
+          "requested_seconds": 576.5,
+          "actual_seconds": 576.5,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000576500ms.png",
+          "sha256": "44773a875bfc1db83f9c7a5e1016cc38293e419e312ad8422053ae4558a6fe8d"
+        },
+        {
+          "requested_seconds": 576.75,
+          "actual_seconds": 576.767,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000576750ms.png",
+          "sha256": "3cab1d8aa9f869e10619aa3a8e09ec138a4c164ddb5a476eed2bb43930f9e1e6"
+        },
+        {
+          "requested_seconds": 577.0,
+          "actual_seconds": 577.0,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000577000ms.png",
+          "sha256": "c0bd90369099efe2a4d8364ec6a644157cade16d4591e61fc0293372da99d98a"
+        },
+        {
+          "requested_seconds": 577.25,
+          "actual_seconds": 577.267,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000577250ms.png",
+          "sha256": "2e02acbe0a214bd05f9bb009e446ab736e6c0e1e4b93775f6c987cf5992ec95f"
+        },
+        {
+          "requested_seconds": 577.5,
+          "actual_seconds": 577.5,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000577500ms.png",
+          "sha256": "fd237056a4550a52cfc94744a8cda9b090fb6e24b3b30e1901c47abe9c8fb18c"
+        },
+        {
+          "requested_seconds": 577.75,
+          "actual_seconds": 577.767,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000577750ms.png",
+          "sha256": "f1e92e328370f299c3c5437de96de3950ff270205d8878c7412ccecc5bfc2790"
+        },
+        {
+          "requested_seconds": 578.25,
+          "actual_seconds": 578.267,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000578250ms.png",
+          "sha256": "17af58dd78d68346544669e558d18e616139f956c393a502ac2540f3b40cda81"
+        },
+        {
+          "requested_seconds": 578.5,
+          "actual_seconds": 578.5,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000578500ms.png",
+          "sha256": "03ddf5110484e229db1bebd255e0ef012783595fbd57c00fdae67ce22d999338"
+        },
+        {
+          "requested_seconds": 578.75,
+          "actual_seconds": 578.767,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000578750ms.png",
+          "sha256": "dfa3bd7557dcdca070911f3691fb416f5fb022c7517eefdbb494e84f39024b9f"
+        },
+        {
+          "requested_seconds": 579.0,
+          "actual_seconds": 579.0,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000579000ms.png",
+          "sha256": "3cea1ef8238c987a467e0f94269a3eaef61ce393d2f94614eecf24320230ddff"
+        },
+        {
+          "requested_seconds": 579.25,
+          "actual_seconds": 579.267,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000579250ms.png",
+          "sha256": "9f7ef4a88361e989e4cf7294fafd2f22453e4b66257947a0d4d93066b46d6f37"
+        },
+        {
+          "requested_seconds": 579.5,
+          "actual_seconds": 579.5,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000579500ms.png",
+          "sha256": "370b013238f054f513c0d9a6644ff72b4bcab214f3d86a0da23bb0cf886330b8"
+        },
+        {
+          "requested_seconds": 579.75,
+          "actual_seconds": 579.767,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000579750ms.png",
+          "sha256": "e816832b9c81363ca0b5b4454fed6ca16b9da156d2855f26f6e5063cfe5b3695"
+        },
+        {
+          "requested_seconds": 589.0,
+          "actual_seconds": 589.0,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000589000ms.png",
+          "sha256": "4303b04e48c2b4330fe58c33a5de87a39b72cf763e55706253655db4fa64282a"
+        },
+        {
+          "requested_seconds": 589.25,
+          "actual_seconds": 589.267,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000589250ms.png",
+          "sha256": "347436767c96857b7687c5cb3e23138f88fc4281cc5df6247af0bd05d685d04b"
+        },
+        {
+          "requested_seconds": 589.5,
+          "actual_seconds": 589.5,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000589500ms.png",
+          "sha256": "469dfe23642710034626d4dce018aeaf04e4df72d3d358b88cfc7fdf41b83337"
+        },
+        {
+          "requested_seconds": 589.75,
+          "actual_seconds": 589.767,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000589750ms.png",
+          "sha256": "2ad8545f77e0394a8443ad78e132a639ada69550f26b35d7dea6af7a76fda873"
+        },
+        {
+          "requested_seconds": 590.25,
+          "actual_seconds": 590.267,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000590250ms.png",
+          "sha256": "711a9ba1018a63d263f4e67bbe7d35286faf8b6e4dd5ad3b4eb67e19ac80cc5e"
+        },
+        {
+          "requested_seconds": 590.5,
+          "actual_seconds": 590.5,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000590500ms.png",
+          "sha256": "1543c5701d143316448b4abc84e18d5cc192c7eba97428261556d26d4d4484be"
+        },
+        {
+          "requested_seconds": 590.75,
+          "actual_seconds": 590.767,
+          "path": "local/bezier_source_audit_20261029/861_signature/frame_000590750ms.png",
+          "sha256": "707b1e9bdef3c9d42d8119506a0dd9a758068d1ce639f4aa5718d49cc30d8177"
+        }
+      ]
+    },
+    {
+      "directory": "local/bezier_source_audit_20261029/861_main_context",
+      "purpose": "ASR-targeted main-parameter/run context",
+      "manifest": "local/bezier_source_audit_20261029/861_main_context/frames.json",
+      "manifest_sha256": "471455466b8e3dde576b0bcdf117dd8a1ed38eea4e1f4c3961afc7b881028cb8",
+      "count": 15,
+      "frames": [
+        {
+          "requested_seconds": 1670.0,
+          "actual_seconds": 1670.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001670000ms.png",
+          "sha256": "04f989b1ddde211c8ef208157f7d155ed6ae8b3b93e31ea4091d0245c5b43d44"
+        },
+        {
+          "requested_seconds": 1680.0,
+          "actual_seconds": 1680.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001680000ms.png",
+          "sha256": "36691107df40532b5ecb52c4e14bde14b48ff3e1bc0363c3b420c6388bcc1f43"
+        },
+        {
+          "requested_seconds": 1690.0,
+          "actual_seconds": 1690.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001690000ms.png",
+          "sha256": "ab18261f2233c36243a2a168f28b33a5c1d54d3ccc6669ca35d14aee0aafbe6b"
+        },
+        {
+          "requested_seconds": 1700.0,
+          "actual_seconds": 1700.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001700000ms.png",
+          "sha256": "9c84b2f6e05780358bb52b61ace88f45ea5ee39444c00f840267a586bbc26c95"
+        },
+        {
+          "requested_seconds": 1705.0,
+          "actual_seconds": 1705.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001705000ms.png",
+          "sha256": "ef4618c5a59fabc0c39524bf8accc9927df9395c1df4e65c3f4d3ab173d13707"
+        },
+        {
+          "requested_seconds": 1710.0,
+          "actual_seconds": 1710.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001710000ms.png",
+          "sha256": "48f53cb79f794f9385bfc7f01a57414f32ed0e810960dbc8a3e1027a1ba02e2d"
+        },
+        {
+          "requested_seconds": 1720.0,
+          "actual_seconds": 1720.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001720000ms.png",
+          "sha256": "3a960ca8c3f478a1b81a5022f069d2b3af0f4944442059e723e668d931496501"
+        },
+        {
+          "requested_seconds": 1730.0,
+          "actual_seconds": 1730.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001730000ms.png",
+          "sha256": "e2c44b6bfb686cf2b4cb6a84bccec36567f869b345324850dc93ce4801f44b15"
+        },
+        {
+          "requested_seconds": 1740.0,
+          "actual_seconds": 1740.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001740000ms.png",
+          "sha256": "b287eb13fcb95c65685059087bfe07a84b7bbaec20b415d028db0b825f7af6b3"
+        },
+        {
+          "requested_seconds": 1750.0,
+          "actual_seconds": 1750.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001750000ms.png",
+          "sha256": "31e920640417108dd853a5ba4a25f3eaa67f0ea8b55bf6b7934c0e7dc14aac3f"
+        },
+        {
+          "requested_seconds": 1760.0,
+          "actual_seconds": 1760.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001760000ms.png",
+          "sha256": "5b5bb48fda8e6f9c03901cef9281e7f07a54e71828dbf049caaa6aa445998fe5"
+        },
+        {
+          "requested_seconds": 1770.0,
+          "actual_seconds": 1770.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001770000ms.png",
+          "sha256": "de7b8726aa7d655e75baebacccad9982d6bfcf6ffe100d472d8f86ab064438e9"
+        },
+        {
+          "requested_seconds": 1780.0,
+          "actual_seconds": 1780.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001780000ms.png",
+          "sha256": "096707b6a165ddf7ea1b07788cd728db4e2d260f8aabaed37c7f04518fc770b3"
+        },
+        {
+          "requested_seconds": 1800.0,
+          "actual_seconds": 1800.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001800000ms.png",
+          "sha256": "6afd30a04c621d7c9bd78b3b763a98c004d9233753ef29491fcab82f51fa32fe"
+        },
+        {
+          "requested_seconds": 1810.0,
+          "actual_seconds": 1810.0,
+          "path": "local/bezier_source_audit_20261029/861_main_context/frame_001810000ms.png",
+          "sha256": "661088770167cafd335962a02ae5a72e82372594ffbfee1bb29eea505b8f164f"
+        }
+      ]
+    },
+    {
+      "directory": "local/bezier_source_audit_20261029/865_head",
+      "purpose": "Follow-up inverse-script context; ASR first 100 seconds excluded",
+      "manifest": "local/bezier_source_audit_20261029/865_head/frames.json",
+      "manifest_sha256": "0e13edd5af2fae3583498bef80bd394528fdc5b902ca1ebd7f2837fba83a65a3",
+      "count": 13,
+      "frames": [
+        {
+          "requested_seconds": 100.0,
+          "actual_seconds": 100.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000100000ms.png",
+          "sha256": "bc53cd774bba85d7c148a4fc9c7ccdd13f5f6f9c78c89272a18f6f21e1d1f187"
+        },
+        {
+          "requested_seconds": 110.0,
+          "actual_seconds": 110.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000110000ms.png",
+          "sha256": "9bd3f678a38cdb36b50247ec3a99e495178e8e2b362e3c99c1adc7838fa34038"
+        },
+        {
+          "requested_seconds": 120.0,
+          "actual_seconds": 120.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000120000ms.png",
+          "sha256": "82af41d7ac17663708e6f56fb1197f926b66cf3e6bd125dacdef365040a96116"
+        },
+        {
+          "requested_seconds": 130.0,
+          "actual_seconds": 130.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000130000ms.png",
+          "sha256": "51635e6a72a8ed29f8167cb163ee6a3e503576964404b3199559172a02fee49a"
+        },
+        {
+          "requested_seconds": 140.0,
+          "actual_seconds": 140.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000140000ms.png",
+          "sha256": "b5829dd355460248de8f08998439bde33de382c2ce5e8b0f69df6845cccf91ac"
+        },
+        {
+          "requested_seconds": 150.0,
+          "actual_seconds": 150.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000150000ms.png",
+          "sha256": "da2cb778aac11f26c1657e32950f5fc36ef48fb903903766a5dec2e72777a28a"
+        },
+        {
+          "requested_seconds": 160.0,
+          "actual_seconds": 160.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000160000ms.png",
+          "sha256": "ab93bc594a8edd99442c8b9bcafeaacfb9ecb7e895c6789a5dbf66b763d1181e"
+        },
+        {
+          "requested_seconds": 170.0,
+          "actual_seconds": 170.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000170000ms.png",
+          "sha256": "49164b07ba5724d6ff31d11b061e45cef45916d2f6711379aa1c7f28871aed79"
+        },
+        {
+          "requested_seconds": 180.0,
+          "actual_seconds": 180.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000180000ms.png",
+          "sha256": "b963f3e9b669c5d00e579d6f6161f0d19016c5be545bf1d0299654a9f2bc68b3"
+        },
+        {
+          "requested_seconds": 190.0,
+          "actual_seconds": 190.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000190000ms.png",
+          "sha256": "131273a2765344290f0f4daa64be62bc3fe07afd8dc3b713a22989e2aa35cc15"
+        },
+        {
+          "requested_seconds": 200.0,
+          "actual_seconds": 200.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000200000ms.png",
+          "sha256": "fd3377d278be90380f842593c90a0bc1e8758f4ae454832b2fb77ec6dc62f337"
+        },
+        {
+          "requested_seconds": 210.0,
+          "actual_seconds": 210.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000210000ms.png",
+          "sha256": "dbe23da47d13607bc708f491ae8969fe1f7ca26fe633cff47cdefb9959f41a35"
+        },
+        {
+          "requested_seconds": 220.0,
+          "actual_seconds": 220.021,
+          "path": "local/bezier_source_audit_20261029/865_head/frame_000220000ms.png",
+          "sha256": "a7362bd133f7dd67ca7973acd05aff6ef4999e6bab7c6efc1d8a12d5b3debb54"
+        }
+      ]
+    }
+  ],
+  "new_frames_extracted_including_overlaps": 93,
+  "source_transcriptions": [
+    {
+      "id": "SRC-SIM-001",
+      "function": "Simulation_cal",
+      "video": "861804050",
+      "visible_seconds": [
+        570,
+        588
+      ],
+      "source_lines": [
+        3,
+        36
+      ],
+      "function_header_visible_but_truncated": true,
+      "output_header_readable_prefix": [
+        "ps",
+        "ps_body",
+        "ps_driving",
+        "ps_driven",
+        "ps_sensor",
+        "t_front_wheel",
+        "length",
+        "length_cp",
+        "P_distance_sum",
+        "t_cp_sum",
+        "dt_cp_sum",
+        "ddt_cp_sum",
+        "t_sum",
+        "dt_sum",
+        "ddt_sum",
+        "cam_theoretic",
+        "cam_virtual",
+        "displacement",
+        "fluctation",
+        "Problem_location",
+        "rho_max"
+      ],
+      "output_header_next_token_fragment": "pressure_ang... (right-cropped; not a complete identifier)",
+      "caller_function": "cam_calculat.m",
+      "caller_line": 15,
+      "caller_seconds": [
+        589.7666666666667,
+        590.5
+      ],
+      "caller_input_prefix": [
+        "P0",
+        "route_index",
+        "num_route",
+        "V_0",
+        "driving_wheel",
+        "driven_wheel",
+        "Z_sensor",
+        "index",
+        "P",
+        "car_type",
+        "c",
+        "thickness"
+      ],
+      "caller_remaining_inputs": "not visible; do not append guessed arguments",
+      "code": "% Simulation_cal.m, visible line 3\nps=Bezier_superposition(control_points,route_index,num);\n\n% lines 6-8: sampled front-path polyline length\nVs=ps(2:end,:)-ps(1:end-1,:);\nVs_norm=(Vs(:,1).^2+Vs(:,2).^2).^0.5;\nlength=sum(Vs_norm);\n\n% lines 11-25: control-polygon features\nVs=control_points(2:end,:)-control_points(1:end-1,:);\nVs_norm=(Vs(:,1).^2+Vs(:,2).^2).^0.5;\nlength_cp=Squares_standard_sum(Vs_norm);\nVs=Vs./[Vs_norm,Vs_norm];\ndot=Vs(2:end,1).*Vs(1:end-1,1)+Vs(2:end,2).*Vs(1:end-1,2);\nsymbol=dot>1;\ndot(symbol)=1;\nsymbol=dot<-1;\ndot(symbol)=-1;\nt_cp=acos(dot);\nt_cp_sum=Squares_standard_sum(t_cp);\ndt_cp=t_cp(2:end)-t_cp(1:end-1);\ndt_cp_sum=Squares_standard_sum(dt_cp);\nddt_cp=dt_cp(2:end)-dt_cp(1:end-1);\nddt_cp_sum=Squares_standard_sum(ddt_cp);\n\n% lines 28-33: wheel/body tracks and steering features\n[ps_body,ps_driving,ps_driven,ps_sensor,t_front_wheel]=all_routes_cal(ps,V_0,driving_wheel,driven_wheel,Z_sensor,index);\nt_sum=Squares_standard_sum(t_front_wheel);\ndt=t_front_wheel(2:end)-t_front_wheel(1:end-1);\ndt_sum=Squares_standard_sum(dt);\nddt=dt(2:end)-dt(1:end-1);\nddt_sum=Squares_standard_sum(ddt);\n\n% line 36\n[P_distance_sum,~]=distance_calculate(P,ps_sensor);",
+      "whitespace_normalized": true,
+      "comments_in_transcription": "Audit line annotations replace omitted source comments; executable lines transcribed from frames.",
+      "frames": [
+        "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000574000ms.png",
+        "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000580000ms.png",
+        "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000586000ms.png"
+      ],
+      "crop": {
+        "path": "local/bezier_source_audit_20261029/crops/861_574_editor.png",
+        "source_frame": "local/bezier_source_audit_20261029/861_simulation_continuous/frame_000574000ms.png",
+        "box_xyxy": [
+          380,
+          125,
+          1280,
+          740
+        ],
+        "output_pixels": [
+          1350,
+          922
+        ]
+      },
+      "is_complete_function": false,
+      "matlab_executed": false
+    }
+  ],
+  "targets": [
+    {
+      "name": "Simulation_cal",
+      "evidence_level": "partial_function_body",
+      "new_evidence": "Source lines 3-36 plus readable output-header prefix and caller-prefix; first 37 lines visible overall.",
+      "missing": [
+        "full header tail/input list",
+        "source line 39 onward",
+        "called dependency implementations"
+      ]
+    },
+    {
+      "name": "Bezier_superposition",
+      "evidence_level": "exact_call_only",
+      "exact_call": "ps=Bezier_superposition(control_points,route_index,num);",
+      "source": "SRC-SIM-001 line 3",
+      "missing": [
+        "function body",
+        "weight definition",
+        "window/endpoint rules"
+      ]
+    },
+    {
+      "name": "Bezier_curve",
+      "evidence_level": "file_list_only",
+      "frame": "local/bezier_source_audit_20261029/865_head/frame_000150000ms.png",
+      "actual_seconds": 150.021,
+      "missing": [
+        "function body",
+        "readable call and parameter list"
+      ]
+    },
+    {
+      "name": "score_cal",
+      "evidence_level": "file_list_only",
+      "frame": "local/video_research/batch_remaining_20261029/861804050-1-208/survey/frame_00540s.png",
+      "actual_seconds": 540,
+      "missing": [
+        "function body",
+        "readable call",
+        "12-term aggregation/scaling/exponent application"
+      ]
+    },
+    {
+      "name": "Squares_standard_sum",
+      "evidence_level": "exact_calls_only",
+      "source": "SRC-SIM-001 lines 13,21,23,25,29,31,33",
+      "missing": [
+        "aggregation implementation; cannot assert sum-of-squares, mean-square, RMS, norm, or integral"
+      ]
+    }
+  ],
+  "feature_input_shapes": {
+    "symbols": {
+      "N": "number of control-point rows",
+      "M": "number of ps rows",
+      "K": "number of t_front_wheel elements"
+    },
+    "length": {
+      "operation": "sum of consecutive ps Euclidean segment lengths",
+      "elements": "M-1"
+    },
+    "length_cp": {
+      "aggregation": "Squares_standard_sum",
+      "input": "control-edge Euclidean lengths",
+      "elements": "N-1"
+    },
+    "t_cp_sum": {
+      "aggregation": "Squares_standard_sum",
+      "input": "acos of dot products of adjacent unit control edges, clamped to [-1,1]",
+      "elements": "N-2"
+    },
+    "dt_cp_sum": {
+      "aggregation": "Squares_standard_sum",
+      "input": "first raw difference of t_cp",
+      "elements": "N-3"
+    },
+    "ddt_cp_sum": {
+      "aggregation": "Squares_standard_sum",
+      "input": "second raw difference of t_cp",
+      "elements": "N-4"
+    },
+    "t_sum": {
+      "aggregation": "Squares_standard_sum",
+      "input": "t_front_wheel",
+      "elements": "K"
+    },
+    "dt_sum": {
+      "aggregation": "Squares_standard_sum",
+      "input": "first raw difference of t_front_wheel",
+      "elements": "K-1"
+    },
+    "ddt_sum": {
+      "aggregation": "Squares_standard_sum",
+      "input": "second raw difference of t_front_wheel",
+      "elements": "K-2"
+    },
+    "visible_differences_divided_by_step": false,
+    "condition": "Sufficient point count; do not assume K=M for all unobserved boundary rules."
+  },
+  "false_positive_triage": [
+    {
+      "video": "861804050",
+      "seconds": [
+        2733,
+        2767
+      ],
+      "term": "square/root",
+      "actual_topic": "polar radius from X/Y, not Squares_standard_sum"
+    },
+    {
+      "video": "861804050",
+      "seconds": [
+        4158,
+        4313
+      ],
+      "term": "mean",
+      "actual_topic": "mean steering for inverse stepping, not score aggregation"
+    },
+    {
+      "video": "861804050",
+      "seconds": [
+        6727,
+        6940
+      ],
+      "term": "mean",
+      "actual_topic": "turn/instantaneous-center stepping, not score aggregation"
+    },
+    {
+      "video": "865568585",
+      "seconds": [
+        2957.67,
+        2963.86
+      ],
+      "term": "ASR 得分套",
+      "actual_topic": "matrix input discussion, not score_cal"
+    }
+  ],
+  "boundaries": {
+    "production_code_changed": false,
+    "matlab_run": true,
+    "user_windows_operated": false,
+    "bilibili_reader_used": false,
+    "original_312_equivalence_established": false,
+    "source_absence_claim": "No whole-video/all-materials absence claim; unseen status is coverage-bounded.",
+    "diagnostic_module_added": true,
+    "existing_production_evaluator_route_ui_optimizer_changed": false,
+    "matlab_run_scope": "Only check_video251_features; filmed original functions were not executed."
+  },
+  "implementation_readiness": {
+    "raw_feature_front_end": "Implemented as independent camdesign.video251Features; 7 hand-computed/geometric-invariance check groups passed in MATLAB R2025b.",
+    "full_score_module": "Blocked by unobserved Squares_standard_sum, distance_calculate body and score_cal expression; do not invent defaults.",
+    "bezier_route_generator": "Insufficient: true call is known, body/weights unavailable in audited frames."
+  },
+  "diagnostic_module": {
+    "implementation": {
+      "path": "+camdesign/video251Features.m",
+      "sha256": "98f8dc93c8d3d611febbb9541b2a7e7bb6f39501ceef6262ac4e8f0da8430e1d"
+    },
+    "check": {
+      "path": "check_video251_features.m",
+      "sha256": "a346aa91687211ad15856333af751b5ecc1ba087542aa43ddb8c6d5b43ff01b9"
+    },
+    "interface": "features=camdesign.video251Features(controlPoints,frontPath,frontWheelAngles)",
+    "input_contract": {
+      "controlPoints": "finite real double N-by-2, N>=2; mm",
+      "frontPath": "finite real double M-by-2, M>=2; mm",
+      "frontWheelAngles": "finite nonempty real double vector; signed rad; K need not equal M"
+    },
+    "outputs": [
+      "frontSegmentLengthsMM",
+      "frontPolylineLengthMM",
+      "controlSegmentLengthsMM",
+      "controlTurnAnglesRad",
+      "controlTurnFirstDifferenceRad",
+      "controlTurnSecondDifferenceRad",
+      "frontWheelAnglesRad",
+      "frontWheelFirstDifferenceRad",
+      "frontWheelSecondDifferenceRad"
+    ],
+    "source_reference": "SRC-SIM-001; lengths, clamped acos and raw adjacent differences",
+    "diagnostic_api_guards_not_source_claims": [
+      "minimum two control/path points",
+      "reject zero-length control/path segments"
+    ],
+    "minimal_input_behavior": "Two control/path points and one supplied angle are valid; unavailable turns/differences are empty column vectors.",
+    "not_implemented": [
+      "Squares_standard_sum",
+      "score_cal",
+      "distance_calculate",
+      "Bezier generator",
+      "total score"
+    ],
+    "angle_unit": "rad",
+    "length_unit": "mm (diagnostic API convention)",
+    "aggregation_implemented": false,
+    "score_implemented": false,
+    "validation": {
+      "release": "2025b",
+      "passed_groups": 7,
+      "absolute_tolerance": 1e-12,
+      "checks": [
+        "hand-computed 3-4-5 triangle segment lengths and perimeter",
+        "straight control polygon and first/second differences",
+        "unsigned right angles and reversal with known difference orders",
+        "signed radians preserved; no degree conversion, normalization or invented score",
+        "translation/rotation invariance of lengths, unsigned turns and supplied steering",
+        "uniform scaling changes lengths only; raw angle differences are not per-mm derivatives",
+        "zero-length/one-point inputs rejected and minimal inputs return empty differences"
+      ],
+      "report": {
+        "path": "outputs/video251_features/verification.json",
+        "sha256": "f15916c7f8826a1d2a8730b3ed79f7f315683715a4b8e5e88752f5ad858e20c2"
+      },
+      "log": {
+        "path": "local/matlab_9f3146a35fd642f3bf4af8d6a0173b93.log",
+        "sha256": "8ccdc76f44b990173f049afe4377770b0db97225ece40c1a421235e7b0db439c"
+      },
+      "command": "./run_matlab_checks.ps1 -Task 'check_video251_features;'",
+      "exit_code": 0,
+      "equivalence_scope": "Hand-computed raw formulas and invariance only; no complete original score, 3.1.2 or actual-vehicle equivalence."
+    }
+  },
+  "additional_materials_pending": {
+    "path": "F:/许昊阳/竞赛/2027工创/第一代MATLAB凸轮仿真代码",
+    "status": "Newly supplied source folder; commander is inspecting it. This audit does not claim absence from those newly supplied files."
+  }
+}
