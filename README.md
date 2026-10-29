@@ -27,6 +27,8 @@
 
 详细拆解、字段映射、公式和验证边界见 [拆解说明](docs/REVERSE_ENGINEERING.md)，具体操作见 [使用说明](docs/USAGE.md)，测试结果见 [验证记录](docs/VALIDATION.md)，原版实操和对照进度见 [对照记录](docs/REFERENCE_COMPARISON.md)。
 
+没有原版导出授权时，可以先做图片与可见数值对照。`measure_supplied_reference_image` 演示按刻度提取用户场地图的红色轨迹像素，`prepare_visual_reference_case` 生成独立直行解析基准；目前只完成取点方法与本版解析检查，未取得该基准的原版有效输出，详见对照记录。
+
 ## 当前版本 v0.2
 
 已实现中文界面、齿条/平推、点表增删改、按版本识别的 MAT 参数与点位导入、路线/凸轮计算、可停止的独立优化器、固定理论凸轮的参数试调、MAT 保存与候选点集导出。
