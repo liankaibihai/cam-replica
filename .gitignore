@@ -3,6 +3,8 @@
 outputs/*
 !outputs/.gitkeep
 local/
+__pycache__/
+*.pyc
 *.log
 *.slxc
 *.mlappinstall

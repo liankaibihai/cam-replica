@@ -122,3 +122,19 @@ simulation = camdesign.simulate(result.cam, actual, ...
 未知版本不会自动猜测编号；只有确认文件采用旧手册编号后，才使用 `TypeScheme='legacy-manual'`。上述转换保留原机构记录，不沿用原版控制曲线，不表示两种机构凸轮相同。
 
 运行 `run_tests` 做核心检查，`check_app` 做界面与操作检查，`run_demo` 做 15 轮示例。PowerShell 脚本 `run_matlab_checks.ps1` 提供批处理入口，临时偏好目录与日志只写到被 Git 忽略的 `local/`。
+
+## 本地视频研究
+
+用户已要求停用 Bilibili Video Reader。该技能的安装文件保留在用户技能目录，但 `~/.codex/config.toml` 中对应 `SKILL.md` 的 `enabled` 为 `false`。在线读取脚本 `tools/read_bilibili_checked.py` 会检查此配置并拒绝加载停用的技能；`tools/fetch_bilibili_media.py` 是先前的公开媒体续传辅助脚本，目前不再调用。技能安装时固定上游提交 `43587db5a9f65261db0095bbfd960e5c0ca409aa`。
+
+独立工具 `tools/inspect_local_video.py` 通过 PyAV 解码用户本地文件，不加载上述技能，不修改视频。已有隔离 Python 环境位于 `local/bilibili_env`。在本仓库目录运行：
+
+```powershell
+& '.\local\bilibili_env\Scripts\python.exe' '.\tools\inspect_local_video.py' `
+  'C:\Users\22416\Downloads\956935594-1-208.mp4' `
+  '.\local\video_research\user_ai_video\frames' --seconds 600 1500 1620 1860 2160
+```
+
+输出 PNG 和 `frames.json`，同时保留请求时间与实际解码帧时间。选择时间点只代表抽样阅读，不代表全片讲解已核验。`--transcribe --model <已缓存模型路径>` 可选择本地 ASR；该分支强制 `local_files_only=True`，不联网下载模型，不调用付费 API。本次模型尚未下载完成，因此 ASR 未验收；术语和公式即使转写成功也需要对照画面。
+
+`tools/requirements-video.txt` 记录研究环境版本；这些依赖不参与 MATLAB 凸轮计算。原始视频、模型、页面元数据、弹幕及抽帧均放在 Git 忽略的 `local/` 中，Git 只记录工具和核对结论。

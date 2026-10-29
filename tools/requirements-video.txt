@@ -1,0 +1,7 @@
+# Isolated optional research environment; MATLAB calculations do not need these.
+# Bilibili Video Reader was disabled at the user's request on 2026-10-29.
+av==19.0.2
+faster-whisper==1.2.1
+# Retained for the inactive online adapters; do not invoke without reauthorization.
+yt-dlp==2026.10.26
+curl_cffi==0.17.0
