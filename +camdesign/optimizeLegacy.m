@@ -1,4 +1,5 @@
 function [best,history,info]=optimizeLegacy(project,callback)
+assert(~strcmp(camdesign.routeModel(project.params),'bspline-v1'),'cam:BSplineBackend','B样条目前仅支持内点法。');
 % a91d5e2 mean-only descent retained as a comparison path. Added reporting only.
 if nargin<2 || isempty(callback), callback=@(~,~,~)false; end
 timer=tic; camdesign.validateProject(project); best=project;

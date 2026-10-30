@@ -4,9 +4,34 @@ assert(strcmp(project.schema,'cam-replica-1'),'cam:Schema','不支持的项目�
 validateattributes(project.targets,{'double'},{'2d','ncols',2,'real','finite'});
 validateattributes(project.nodes,{'double'},{'2d','ncols',2,'real','finite'});
 assert(size(project.targets,1)>=2 && size(project.nodes,1)>=2,'cam:Points','至少需要两个点。');
-assert(all(vecnorm(diff(project.nodes),2,2)>1e-5),'cam:Duplicate','相邻路线节点不能重合。');
 mode=camdesign.routeModel(p);
-assert(ismember(mode,{'cubic','bezier-blend-independent-v1'}),'cam:RouteModel','未知路线模型。');
+assert(ismember(mode,{'cubic','bezier-blend-independent-v1','bspline-v1'}),'cam:RouteModel','未知路线模型。');
+if ~strcmp(mode,'bspline-v1')
+    assert(all(vecnorm(diff(project.nodes),2,2)>1e-5),'cam:Duplicate','相邻路线节点不能重合。');
+else
+    assert(isfield(p,'bspline') && isstruct(p.bspline) && isscalar(p.bspline) ...
+        && all(isfield(p.bspline,{'type','degree','knots','parameterLength','endDerivative'})) ...
+        && strcmp(p.bspline.type,'fixed-clamped-bspline-v1'),'cam:BSplineModel','B样条记录不完整。');
+    b=p.bspline; n=size(project.nodes,1);
+    assert(ismember(b.degree,[3 5]) && n>b.degree,'cam:BSplineDegree','B样条须为三次或五次且控制点数量大于次数。');
+    validateattributes(b.parameterLength,{'double'},{'scalar','finite','positive'});
+    validateattributes(b.knots,{'double'},{'vector','numel',n+b.degree+1,'real','finite'});
+    k=b.knots(:); d=b.degree;
+    assert(all(diff(k)>=0) && all(k(1:d+1)==0) && all(k(end-d:end)==b.parameterLength) ...
+        && all(k(d+2:end-d-1)>0 & k(d+2:end-d-1)<b.parameterLength), ...
+        'cam:BSplineKnots','须使用从0到parameterLength的固定clamped节点向量。');
+    validateattributes(b.endDerivative,{'double'},{'size',[1 2],'real','finite'});
+    assert(norm(b.endDerivative)>1e-12,'cam:EndDerivative','末端导数不能为零。');
+    assert(~isfield(p,'routeSpline') && ~isfield(p,'bezier'),'cam:RouteModel','B样条不能沿用其他模型的元数据。');
+    [~,D]=camdesign.bsplineBasis(b.knots,b.degree,[0;b.parameterLength]);
+    desired=[cosd(p.headingDeg+p.startSteeringDeg),sind(p.headingDeg+p.startSteeringDeg);b.endDerivative];
+    assert(max(abs(D*project.nodes-desired),[],'all')<1e-7,'cam:EndpointConstraint', ...
+        'B样条首末参数导数受约束；请调整自由控制点或重新受约束拟合，不能独立移动首两点/末两点。');
+end
+if isfield(p,'controlBoundsPolicy')
+    assert(ismember(p.controlBoundsPolicy,{'legacy-node-bounds-v1','trajectory-only-v1'}), ...
+        'cam:ControlBoundsPolicy','未知节点/系数场界策略。');
+end
 if strcmp(mode,'bezier-blend-independent-v1')
     assert(isfield(p,'bezier') && isstruct(p.bezier) && isscalar(p.bezier) ...
         && all(isfield(p.bezier,{'type','degree','parameterLength'})) ...

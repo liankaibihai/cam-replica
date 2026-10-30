@@ -1,5 +1,6 @@
 function [best,history,info]=optimizeAuto(project,callback)
 % Bounded independent portfolio. Search weights never decide acceptance gates.
+assert(~strcmp(camdesign.routeModel(project.params),'bspline-v1'),'cam:BSplineBackend','B样条目前仅支持内点法，不支持全自动组合。');
 if nargin<2 || isempty(callback), callback=@(~,~,~)false; end
 camdesign.validateProject(project); cfg=camdesign.autoTuneSettings(project.params);
 timer=tic; stream=RandStream('mt19937ar','Seed',cfg.seed);

@@ -1,6 +1,7 @@
-function model=fminconModel(project,referenceNodes,result)
+function model=fminconModel(project,referenceNodes,result,regularizationWeight)
 % Fixed-size constraints over the existing route/cam model; no geometry tuning.
 % score remains the historical peak-v2 score, NOT the constrained objective.
+if nargin<4, regularizationWeight=1e-4; end
 p=project.params; count=size(project.targets,1)+5*p.samples+2*p.camSamples+1;
 model=struct('valid',false,'objective',1e6,'objectiveParts',[NaN NaN NaN], ...
     'constraints',1e3*ones(count,1),'maxViolation',1e3,'result',[], ...
@@ -8,16 +9,15 @@ model=struct('valid',false,'objective',1e6,'objectiveParts',[NaN NaN NaN], ...
     'maxTrajectoryBoundViolation',1e3,'maxTrajectoryOutsideMM',Inf, ...
     'trajectoryBoundsSatisfied',false,'trajectoryBounds',[], ...
     'errorIdentifier','','errorMessage','');
-low=[p.bounds(1),p.bounds(3)]; high=[p.bounds(2),p.bounds(4)];
-boundResiduals=[(low-project.nodes)./(high-low);(project.nodes-high)./(high-low)];
-model.maxNodeBoundViolation=max([0;boundResiduals(:)]);
+control=camdesign.controlBounds(project); model.controlBounds=control;
+model.maxNodeBoundViolation=double(control.enforced)*control.maxScaledViolation;
 try
-    if nargin<3, result=camdesign.evaluate(project,false); end
+    if nargin<3 || isempty(result), result=camdesign.evaluate(project,false); end
     rate=diff(result.route.steering)./max(diff(result.route.frontDistance),1e-9);
     directLength=max(1,sum(vecnorm(diff(project.targets),2,2)));
     parts=[result.route.frontDistance(end)/directLength,mean((100*rate).^2), ...
         mean(((project.nodes-referenceNodes)/1000).^2,'all')];
-    objective=[p.weights(2),p.weights(3),1e-4]*parts';
+    objective=[p.weights(2),p.weights(3),regularizationWeight]*parts';
     [trajectoryConstraints,trajectory]=camdesign.trajectoryBounds(result.route,p.bounds);
     % Every sample is retained. The number of work/return samples may change.
     constraints=[(result.hits.errors/p.hitTolerance).^2-1; ...
@@ -37,7 +37,7 @@ try
     model.maxViolation=max(model.maxNonlinearViolation,model.maxNodeBoundViolation); model.result=result;
 catch ex
     expected={'cam:Duplicate','cam:RouteSingularity','cam:ReverseWheel', ...
-        'cam:ExtremeSteering','cam:GearRatio','cam:NegativeRadius','cam:ConstraintNonfinite'};
+        'cam:ExtremeSteering','cam:GearRatio','cam:NegativeRadius','cam:ConstraintNonfinite','cam:EndpointConstraint'};
     if ismember(ex.identifier,expected)
         % Invalid candidates never appear feasible and never change dimension.
         model.errorIdentifier=ex.identifier; model.errorMessage=ex.message;

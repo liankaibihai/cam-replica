@@ -9,18 +9,28 @@ arguments
     options.MaxSeconds (1,1) double {mustBeFinite,mustBePositive}=90
     options.MaxFunctionEvaluations (1,1) double {mustBeReal}=NaN
     options.RefinementFactor (1,1) double {mustBeInteger,mustBeFinite}=4
+    options.RegularizationWeight (1,1) double {mustBeFinite,mustBeNonnegative}=1e-4
+    options.EndDerivative double=[]
 end
 validateattributes(options.RefinementFactor,{'double'},{'scalar','integer','>=',2,'<=',8});
 assert(exist('fmincon','file')==2 && license('test','Optimization_Toolbox'), ...
     'cam:FminconUnavailable','实验约束后端需要 Optimization Toolbox 的 fmincon。');
 if isempty(callback), callback=@(~,~,~)false; end
 timer=tic; camdesign.validateProject(project); best=project; n=size(project.nodes,1);
+if ~isempty(options.EndDerivative)
+    validateattributes(options.EndDerivative,{'double'},{'size',[1 2],'finite','real'});
+end
+isBSpline=strcmp(camdesign.routeModel(project.params),'bspline-v1');
+controlBounds=camdesign.controlBounds(project);
+assert(~isBSpline || strcmp(options.Algorithm,'interior-point'),'cam:BSplineBackend','B样条目前仅支持内点法。');
 weightSettings=camdesign.dynamicWeightSettings(project.params);
 assert(~weightSettings.enabled,'cam:DynamicWeightsBackend', ...
     '动态权重目前支持梯度/四方向搜索。内点法单次求解须保持目标不变；请关闭动态权重或切换搜索方法。');
-free=[(2:n)';(n+2:2*n)']; scale=1000; x0=zeros(numel(free),1);
+mapping=camdesign.optimizationVariables(project,options.EndDerivative);
+Z=mapping.basis; variables=2*size(Z,2); scale=1000; x0=zeros(variables,1);
+M=blkdiag(Z,Z);
 if isnan(options.MaxFunctionEvaluations)
-    maxFunctions=max(2000,4*(numel(free)+1)*(project.params.iterations+1));
+    maxFunctions=max(2000,4*(variables+1)*(project.params.iterations+1));
     functionBudgetSource='derived_from_variables_and_iterations';
 else
     validateattributes(options.MaxFunctionEvaluations,{'double'},{'scalar','finite','integer','positive'});
@@ -35,10 +45,22 @@ else
 end
 lowerNodes=repmat([project.params.bounds(1),project.params.bounds(3)],n,1);
 upperNodes=repmat([project.params.bounds(2),project.params.bounds(4)],n,1);
-assert(all(project.nodes>=lowerNodes & project.nodes<=upperNodes,'all'), ...
+assert(controlBounds.gatePassed, ...
     'cam:FminconInitialBounds','初始节点超出场地边界；约束后端不会移动固定起点或静默裁剪输入。');
-lb=(lowerNodes(free)-project.nodes(free))/scale;
-ub=(upperNodes(free)-project.nodes(free))/scale;
+lb=[]; ub=[]; linearA=[]; linearB=[];
+if controlBounds.enforced
+    % Full row-rank displacement coordinates can couple the final controls.
+    % Bounds on physical interpolation points / legacy Bezier polygon stay
+    % exactly as before; spline coefficient bounds are not physical bounds.
+    if size(mapping.constraintMatrix,1)==1
+        free=[(2:n)';(n+2:2*n)'];
+        lb=(lowerNodes(free)-project.nodes(free))/scale;
+        ub=(upperNodes(free)-project.nodes(free))/scale;
+    else
+        linearA=[M;-M];
+        linearB=[upperNodes(:)-project.nodes(:);project.nodes(:)-lowerNodes(:)]/scale;
+    end
+end
 evaluations=0; objectiveCalls=0; constraintCalls=0; invalidEvaluations=0; cacheHits=0;
 cache=containers.Map('KeyType','char','ValueType','any');
 initial=modelAt(x0);
@@ -57,7 +79,7 @@ else
         'FiniteDifferenceType',options.DifferenceType,'FiniteDifferenceStepSize',fdStep, ...
         'TypicalX',ones(size(x0)),'OutputFcn',@progress);
     solverTimer=tic;
-    [x,solverObjective,exitflag,output]=fmincon(@objective,x0,[],[],[],[],lb,ub,@constraints,settings);
+    [x,solverObjective,exitflag,output]=fmincon(@objective,x0,linearA,linearB,[],[],lb,ub,@constraints,settings);
     maxIteration=max(maxIteration,output.iterations);
     solverElapsed=toc(solverTimer); terminal=modelAt(x); solverViolation=terminal.maxViolation;
     consider(x,terminal);
@@ -96,9 +118,15 @@ info=struct('algorithm',['fmincon-',options.Algorithm,'-experimental-v1'], ...
     'solverTerminalViolation',solverViolation,'returnedObjective',incumbent.objective, ...
     'solverTerminalValid',terminal.valid,'solverTerminalError',terminal.errorIdentifier, ...
     'returnedMaxViolation',incumbent.maxViolation,'constraintCount',numel(initial.constraints), ...
-    'constraintTolerance',1e-6,'objectiveWeights',[project.params.weights(2:3),1e-4], ...
+    'constraintTolerance',1e-6,'objectiveWeights',[project.params.weights(2:3),options.RegularizationWeight], ...
+    'regularizationWeight',options.RegularizationWeight, ...
     'maxSeconds',options.MaxSeconds,'maxFunctionEvaluations',maxFunctions, ...
-    'functionBudgetSource',functionBudgetSource,'freeVariables',numel(free), ...
+    'functionBudgetSource',functionBudgetSource,'freeVariables',variables, ...
+    'effectiveDOF',mapping.effectiveDOF,'coordinateVariables',mapping.coordinateVariables, ...
+    'endpointConstraintRank',mapping.constraintRank,'endpointConstraints',{mapping.endpointConstraints}, ...
+    'endDerivative',mapping.endDerivative,'endpointMapping','orthonormal-nullspace-v1', ...
+    'controlBoundsEnforced',controlBounds.enforced,'controlBoundsPolicy',controlBounds.policy, ...
+    'initialControlBounds',controlBounds,'finalControlBounds',camdesign.controlBounds(best), ...
     'differenceType',options.DifferenceType,'nominalDifferenceStepMM',fdStep*scale, ...
     'relativeDifferenceStep',fdStep,'differenceStepSource',differenceStepSource, ...
     'differenceStepScope','Nominal mm step at abs(normalized displacement)<=1; fmincon scales larger displacements by max(abs(x),TypicalX).', ...
@@ -118,12 +146,12 @@ info=struct('algorithm',['fmincon-',options.Algorithm,'-experimental-v1'], ...
 callback(maxIteration,best,history);
 
     function trial=unpack(x)
-        trial=project; trial.nodes(free)=project.nodes(free)+scale*x;
+        trial=project; trial.nodes=project.nodes+reshape(scale*(M*x),n,2);
     end
     function model=modelAt(x)
         key=sprintf('%.17g,',x);
         if isKey(cache,key), model=cache(key); cacheHits=cacheHits+1; return; end
-        model=camdesign.fminconModel(unpack(x),project.nodes); evaluations=evaluations+1;
+        model=camdesign.fminconModel(unpack(x),project.nodes,[],options.RegularizationWeight); evaluations=evaluations+1;
         invalidEvaluations=invalidEvaluations+~model.valid;
         if cache.Count>=2*numel(x0)+16, remove(cache,keys(cache)); end
         cache(key)=model;

@@ -6,6 +6,10 @@
 
 ## 选型与难度
 
+**2026-10-31表示扩展**：内点法可优化 `bspline-v1` 的真实系数控制点。`optimizationVariables`用零空间基消去端点线性等式，`info.effectiveDOF/freeVariables`为独立变量数，`endpointConstraintRank`为显式系数约束秩。新增 `EndDerivative=[dx dy]` 可把旧Bezier末导数也固定；cubic需先用`refineRoute(project,[])`冻结相同末导数。默认空值保留旧模型行为。
+
+`RegularizationWeight`默认1e-4保留历史目标；本轮表示比较显式设0，避免系数移动与插值节点移动的正则不等价。`params.controlBoundsPolicy`缺省时旧模型仍约束节点，B样条采用`trajectory-only-v1`；显式设置该策略时仅取消节点／系数多边形门禁，同一五参考中心物理场界始终执行。`controlBounds`保留实际多边形出界诊断和是否执行此门禁，不能仅看`nodeBoundsSatisfied`判定新候选。正式四方法实验统一显式策略，详见[赛道比较](PATH_METHOD_COMPARISON.md)。B样条当前仅内点法，其他后端拒绝。
+
 **2026-10-30规则更新**：用户确定比值35且禁止程序自行改比值。当前核心移除自动增比，增加一个回程角约束，维度为`目标数 + 5×路线采样数 + 2×凸轮采样数 + 1`；计算、原/加密门禁与导出均固定用户输入。下文autoRatio随路线变化的描述仅属于CHG-010～015历史实现，不是当前行为。最新变化见[CHG-2026-10-30-001](changes/2026/2026-10-30-001-fixed-ratio-results.md)。
 
 有成熟方法可以利用。困难集中在把本车的运动学、凸轮接触几何、顺序打卡和可制造性约束正确接到求解器，而不是重新发明通用优化算法。公开赛车路线算法通常没有本项目的凸轮传动与回程，不能直接把其输出当作凸轮加工数据。
@@ -19,7 +23,7 @@
 | [MathWorks fmincon](https://www.mathworks.com/help/optim/ug/fmincon.html)；[非线性约束](https://www.mathworks.com/help/optim/ug/nonlinear-constraints.html) | 有界非线性约束局部优化，支持SQP等算法 | 依赖目标与约束的数值性质；退出状态不替代独立可行性复核，不能保证全局最优 |
 | [CasADi官方文档](https://web.casadi.org/docs/) | 自动微分、非线性规划和最优控制建模 | 若以后重构成可微计算链可考虑；不能直接对当前MATLAB含离散选择的代码无改动加速 |
 
-本机选择原生 `fmincon`，减少环境依赖。本轮保持已有路线插值与物理模型，先隔离求解策略的效果。B样条控制点参数化和多起点搜索是后续候选，不能在未经对照时同时改变路线、运动学、目标和求解器。
+最初实现选择本机原生 `fmincon`，保持已有路线插值与物理模型，先隔离求解策略的效果。后续已加入标准B样条控制点参数化，并用固定物理模型、求解器、有效自由度和成对初值做[四方法比较](PATH_METHOD_COMPARISON.md)；下述历史试验保持原记录，不借新方法改写历史结论。
 
 ## 本机可用性证据
 

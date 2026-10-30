@@ -1,15 +1,17 @@
 function r = route(nodes,p)
 % Front-wheel path -> rigid-body heading via the rear no-slip constraint.
-bezier=strcmp(camdesign.routeModel(p),'bezier-blend-independent-v1');
-if bezier
+mode=camdesign.routeModel(p); parametric=~strcmp(mode,'cubic');
+if strcmp(mode,'bspline-v1')
+    knots=[0;p.bspline.parameterLength];
+elseif parametric
     knots=[0;p.bezier.parameterLength];
 else
     [px,py,knots]=camdesign.routeSpline(nodes,p);
 end
-if ~bezier, dx=camdesign.ppDerivative(px,1); dy=camdesign.ppDerivative(py,1); end
+if ~parametric, dx=camdesign.ppDerivative(px,1); dy=camdesign.ppDerivative(py,1); end
 u=linspace(0,knots(end),p.samples)'; um=(u(1:end-1)+u(2:end))/2;
-if bezier
-    [F,v]=camdesign.bezierRoute(nodes,p,u); [~,middle]=camdesign.bezierRoute(nodes,p,um);
+if parametric
+    [F,v]=camdesign.routeGeometry(nodes,p,u); [~,middle]=camdesign.routeGeometry(nodes,p,um);
     vx=v(:,1); vy=v(:,2); mx=middle(:,1); my=middle(:,2);
 else
     vx=ppval(dx,u); vy=ppval(dy,u); mx=ppval(dx,um); my=ppval(dy,um);
@@ -22,7 +24,7 @@ for j=1:numel(u)-1
     k3=f(a+step*k2/2,mx(j),my(j)); k4=f(a+step*k3,vx(j+1),vy(j+1));
     heading(j+1)=a+step*(k1+2*k2+2*k3+k4)/6;
 end
-if ~bezier, F=[ppval(px,u),ppval(py,u)]; end
+if ~parametric, F=[ppval(px,u),ppval(py,u)]; end
 fw=[cos(heading),sin(heading)]; right=[sin(heading),-cos(heading)];
 delta=atan2(sin(atan2(vy,vx)-heading),cos(atan2(vy,vx)-heading));
 headingRate=(-vx.*sin(heading)+vy.*cos(heading))/L;

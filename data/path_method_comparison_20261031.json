@@ -1,0 +1,4148 @@
+{
+  "date": "2026-10-31",
+  "release": "R2025b",
+  "baselineGit": "7c6d4e0e58ceac958210a849ead87107f8cdad67",
+  "scope": "Independent representation comparison on the solar preliminary flat-car model. Not original-software or physical vehicle equivalence.",
+  "protocol": {
+    "version": "paired-path-representation-v1",
+    "course": "2027 solar preliminary ordered 10 visits",
+    "mechanism": "flat",
+    "gearRatio": 35,
+    "commonGrid": [
+      601,
+      721
+    ],
+    "refinedGrids": [
+      [
+        2401,
+        2881
+      ],
+      [
+        4801,
+        5761
+      ]
+    ],
+    "methods": [
+      "cubic",
+      "bezier5",
+      "bspline3",
+      "bspline5"
+    ],
+    "pairedSeeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "effectiveDOF": 66,
+    "requestedIterations": 600,
+    "maxFunctionEvaluations": 50000,
+    "maxSeconds": 3600,
+    "solver": "fmincon-interior-point",
+    "differenceStepMM": 0.1,
+    "regularizationWeight": 0,
+    "weights": [
+      12,
+      1,
+      2,
+      3,
+      10,
+      10
+    ],
+    "endDerivative": [
+      -0.987495842715075,
+      -0.157645046292118
+    ],
+    "startPose": [
+      410,
+      440,
+      90,
+      0
+    ],
+    "initialization": "Seed1 original; seeds2-5 paired smooth 20mm sine perturbations before representation fitting.",
+    "scope": "Same discrete physics and constraints; unmeasured hardware defaults; no original software or vehicle equivalence."
+  },
+  "referenceInput": {
+    "schema": "cam-replica-1",
+    "name": "2027太阳能初赛 · 平推测试（尺寸待实测）",
+    "params": {
+      "mechanism": "flat",
+      "wheelDiameter": 130,
+      "gearRatio": 35,
+      "lever": 25,
+      "rollerRadius": 2,
+      "referenceDiameter": 100,
+      "thickness": 5,
+      "driveX": 79.5,
+      "driveY": -120,
+      "drivenX": -79.85,
+      "drivenY": -120,
+      "sensorX": 0,
+      "sensorY": -20,
+      "headingDeg": 90,
+      "startSteeringDeg": 0,
+      "samples": 601,
+      "camSamples": 721,
+      "autoRatio": false,
+      "returnAngleDeg": 60,
+      "maxSteeringDeg": 65,
+      "maxPressureDeg": 35,
+      "hitTolerance": 30,
+      "iterations": 600,
+      "stepMM": 10,
+      "gradientProbeMM": 0.5,
+      "bounds": [
+        0,
+        6000,
+        0,
+        2000
+      ],
+      "weights": [
+        12,
+        1,
+        2,
+        3,
+        10,
+        10
+      ],
+      "routeSpline": {
+        "type": "fixed-clamped-cubic-v1",
+        "stations": [
+          0,
+          297.7944085781447,
+          595.5888171562895,
+          893.3832257344342,
+          1191.177634312579,
+          1413.9115783831157,
+          1636.6455224536523,
+          1859.379466524189,
+          2082.113410594726,
+          2529.7744239965805,
+          2977.435437398435,
+          3425.09645080029,
+          3872.7574642021445,
+          4122.157424368729,
+          4371.557384535314,
+          4620.957344701899,
+          4870.357304868484,
+          5110.918258467098,
+          5351.479212065713,
+          5592.040165664327,
+          5832.601119262941,
+          6139.66509915744,
+          6446.729079051938,
+          6753.793058946437,
+          7060.857038840935,
+          9265.601934613733,
+          9477.937140445745,
+          9690.27234627776,
+          9902.607552109774,
+          10114.942757941786,
+          10643.99848692027,
+          11173.054215898756,
+          11702.10994487724,
+          12231.165673855725
+        ],
+        "endDerivative": [
+          -0.987495842715075,
+          -0.157645046292118
+        ]
+      },
+      "controlBoundsPolicy": "trajectory-only-v1"
+    },
+    "targets": [
+      [
+        410,
+        420
+      ],
+      [
+        700,
+        1580
+      ],
+      [
+        1440,
+        1100
+      ],
+      [
+        3170,
+        1560
+      ],
+      [
+        4160,
+        1440
+      ],
+      [
+        5110,
+        1630
+      ],
+      [
+        5450,
+        440
+      ],
+      [
+        3250,
+        350
+      ],
+      [
+        2500,
+        750
+      ],
+      [
+        410,
+        420
+      ]
+    ],
+    "nodes": [
+      [
+        410,
+        440
+      ],
+      [
+        423.93880976193594,
+        783.8098470291325
+      ],
+      [
+        472.7277175324774,
+        1154.9501086326557
+      ],
+      [
+        566.8254410387249,
+        1456.3700913191933
+      ],
+      [
+        716.6906980077788,
+        1591.0191015973685
+      ],
+      [
+        869.2800032432747,
+        1541.2609842057964
+      ],
+      [
+        1049.9838264346126,
+        1403.2529257087476
+      ],
+      [
+        1249.8682470084057,
+        1236.332695253851
+      ],
+      [
+        1459.9993443912672,
+        1099.8380619887346
+      ],
+      [
+        1888.9946511766511,
+        1051.7866301648432
+      ],
+      [
+        2321.4975989043082,
+        1214.2590537222475
+      ],
+      [
+        2755.712972661196,
+        1435.1816395886576
+      ],
+      [
+        3189.845557534273,
+        1562.4806946917843
+      ],
+      [
+        3431.5103568676495,
+        1547.543278875874
+      ],
+      [
+        3675.290221852135,
+        1495.9010422244128
+      ],
+      [
+        3923.88311360655,
+        1447.1087531758922
+      ],
+      [
+        4179.986993249714,
+        1440.721180168804
+      ],
+      [
+        4434.124531743763,
+        1497.4014719932993
+      ],
+      [
+        4684.988293125236,
+        1579.6133801189274
+      ],
+      [
+        4919.806360682342,
+        1636.635556463088
+      ],
+      [
+        5125.806817703295,
+        1617.7466529431827
+      ],
+      [
+        5329.3815543370965,
+        1433.5388269695586
+      ],
+      [
+        5455.193020503674,
+        1121.575551084194
+      ],
+      [
+        5493.240763916512,
+        760.426639415383
+      ],
+      [
+        5433.524332289094,
+        428.66190609141927
+      ],
+      [
+        3230.109521797271,
+        352.0901858450325
+      ],
+      [
+        3026.927202252864,
+        466.74831051839647
+      ],
+      [
+        2840.072654653307,
+        578.8750705490495
+      ],
+      [
+        2660.710678280616,
+        677.2100437849942
+      ],
+      [
+        2480.006072416807,
+        750.4928080742336
+      ],
+      [
+        1993.107305247934,
+        793.8955798509867
+      ],
+      [
+        1466.7179094546452,
+        696.4030331136547
+      ],
+      [
+        924.5322622115904,
+        542.5523589706887
+      ],
+      [
+        390.24474069341863,
+        416.8807485305398
+      ]
+    ],
+    "provenance": "太阳能规则表2初赛10次顺序访问，保留首尾地球；用户确认平推。用户确认传动比35且程序不得自动修改；其余机械尺寸、90度初始航向、零初始转角及阈值沿用历史测试配置，未实测。计算从传感器位于首个地球中心开始，不含实际发车引入段；末点为再次经过地球，不要求航向周期闭合。",
+    "testContext": {
+      "category": "solar",
+      "stage": "preliminary",
+      "courseSourceSHA256": "390bde4a2c6d47601fa92bb47cafbe24b309820314d74da09bcaaf40f2a7c42b",
+      "orderedIDs": [
+        1,
+        3,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        15,
+        16
+      ],
+      "teamMechanismConfirmed": true,
+      "teamGearRatioConfirmed": true,
+      "vehicleDimensionsMeasured": false,
+      "launchLeadInIncluded": false,
+      "initialHeadingMeasured": false,
+      "coordinateReferenceOnly": true
+    }
+  },
+  "groups": [
+    {
+      "method": "cubic",
+      "runs": 5,
+      "feasible": 0,
+      "stable": 4,
+      "iterations": 2106,
+      "modelAttempts": 145768,
+      "pressureMedianDeg": 36.78064534299115,
+      "hitMedianMM": 40.11690628450238,
+      "returnMedianDeg": 58.09494535996203,
+      "routeMedianMM": 12455.886182335424,
+      "intersectionMinMax": [
+        1,
+        11
+      ]
+    },
+    {
+      "method": "bezier5",
+      "runs": 5,
+      "feasible": 0,
+      "stable": 3,
+      "iterations": 2553,
+      "modelAttempts": 179550,
+      "pressureMedianDeg": 36.98203576074439,
+      "hitMedianMM": 31.991985398102788,
+      "returnMedianDeg": 58.45987807888743,
+      "routeMedianMM": 12445.617823327571,
+      "intersectionMinMax": [
+        0,
+        8
+      ]
+    },
+    {
+      "method": "bspline3",
+      "runs": 5,
+      "feasible": 0,
+      "stable": 5,
+      "iterations": 3000,
+      "modelAttempts": 210769,
+      "pressureMedianDeg": 38.07633005239919,
+      "hitMedianMM": 34.08447179717692,
+      "returnMedianDeg": 56.52587047476038,
+      "routeMedianMM": 12528.200070227822,
+      "intersectionMinMax": [
+        0,
+        10
+      ]
+    },
+    {
+      "method": "bspline5",
+      "runs": 5,
+      "feasible": 0,
+      "stable": 0,
+      "iterations": 2475,
+      "modelAttempts": 178148,
+      "pressureMedianDeg": 39.3535715795794,
+      "hitMedianMM": 33.14214199029006,
+      "returnMedianDeg": 52.23915910160978,
+      "routeMedianMM": 12681.100780725481,
+      "intersectionMinMax": [
+        0,
+        8
+      ]
+    }
+  ],
+  "representatives": [
+    "seed5_cubic",
+    "seed5_bezier5",
+    "seed1_bspline3",
+    "seed5_bspline5"
+  ],
+  "selectionPolicy": "Within each method: verified feasible first, stable next, then minimum common-grid worst scaled violation including polynomial pressure peak.",
+  "timingCaution": "Seed5, seed4 B5, and the diagnostic continuation ran in additional independent MATLAB processes while primary runs continued; elapsed time includes mixed CPU load and is not an isolated speed benchmark.",
+  "runs": [
+    {
+      "label": "seed1_cubic",
+      "seed": 1,
+      "method": "cubic",
+      "iterations": 398,
+      "requestedIterations": 600,
+      "reason": "constrained_infeasible",
+      "modelAttempts": 27619,
+      "solverFunctionCount": 27440,
+      "solverSeconds": 131.2222487,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.10868739103718483,
+      "convergenceDelta": {
+        "pressureDeg": 0.018551127097303777,
+        "hitMM": 9.890186447591987e-10,
+        "steeringDeg": 8.55579845193688e-07,
+        "returnDeg": 0.00020596178831056022,
+        "lengthMM": 0.007815184850187507
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.014895400913964204,
+        "inverseFrontMaxErrorMM": 0.03969258106578083,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.86428420755563,
+        "phaseDeg": 235.2861212516318,
+        "minimumRadiusMM": 41.31497090054984,
+        "checkedPolynomialPoints": 9688,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0,
+        "positionMaxMM": 0,
+        "startDerivativeError": 0,
+        "endDerivativeError": 0,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 0,
+        "sensorMaxDifferenceMM": 0
+      },
+      "initialMetrics": {
+        "maxHitError": 14.016797945424248,
+        "rmsHitError": 7.36643346263641,
+        "routeLength": 12724.045762315038,
+        "driveLength": 12254.936320791197,
+        "maxSteeringDeg": 38.98361948885247,
+        "maxPressureDeg": 86.17120557390432,
+        "maxWorkPressureDeg": 86.17120557390432,
+        "maxReturnPressureDeg": 32.28437092412687,
+        "minUndercutMargin": 0.5673744701758384,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.35994312838822,
+        "returnAngleSatisfied": false,
+        "score": 84.66187924295485,
+        "terms": [
+          0.27859440733588764,
+          1.0396085287653691,
+          0.1484060318119889,
+          26.660775254178283,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.1975085690447207,
+        "legacyTerms": [
+          0.06029371328827717,
+          1.0396085287653691,
+          0.0034090574442259785,
+          0.47585245531052456,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 40.51259405919614,
+        "rmsHitError": 30.492439503320714,
+        "routeLength": 12455.886182335424,
+        "driveLength": 11987.514702531655,
+        "maxSteeringDeg": 19.157264039022817,
+        "maxPressureDeg": 36.84525444287213,
+        "maxWorkPressureDeg": 36.84525444287213,
+        "maxReturnPressureDeg": 33.16250313788429,
+        "minUndercutMargin": -0.05108649825985223,
+        "intersectionCount": 2,
+        "actualReturnDeg": 58.09494535996203,
+        "returnAngleSatisfied": false,
+        "score": 35.64309480509886,
+        "terms": [
+          2.8567323825209865,
+          1.017698753240778,
+          0.006719715397586387,
+          0.03422312828004459,
+          0,
+          0.022849864597093594
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.418638140970383,
+        "legacyTerms": [
+          1.0330987409596373,
+          1.017698753240778,
+          0.0015033418676564955,
+          0.00017348869065120516,
+          0,
+          2.2734640669261362e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.823633641561349,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed2_cubic",
+      "seed": 2,
+      "method": "cubic",
+      "iterations": 139,
+      "requestedIterations": 600,
+      "reason": "constrained_infeasible",
+      "modelAttempts": 9948,
+      "solverFunctionCount": 9882,
+      "solverSeconds": 51.5929961,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.030663995983057468,
+      "convergenceDelta": {
+        "pressureDeg": 5.311034923236704,
+        "hitMM": 3.47455397786689e-12,
+        "steeringDeg": 1.7444029865032462e-07,
+        "returnDeg": 0.00010779986450870638,
+        "lengthMM": 0.003958722241804935
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.01879946829914905,
+        "inverseFrontMaxErrorMM": 0.015274413070327682,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 72.09826097769135,
+        "phaseDeg": 242.327872336277,
+        "minimumRadiusMM": 41.46520883388565,
+        "checkedPolynomialPoints": 9692,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0,
+        "positionMaxMM": 0,
+        "startDerivativeError": 0,
+        "endDerivativeError": 0,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 0,
+        "sensorMaxDifferenceMM": 0
+      },
+      "initialMetrics": {
+        "maxHitError": 24.656344116096722,
+        "rmsHitError": 12.794150193776634,
+        "routeLength": 12705.958208331595,
+        "driveLength": 12236.456174353396,
+        "maxSteeringDeg": 39.25649774317839,
+        "maxPressureDeg": 87.03712360932751,
+        "maxWorkPressureDeg": 87.03712360932751,
+        "maxReturnPressureDeg": 25.687015094104705,
+        "minUndercutMargin": 0.5513760729497521,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.82536484077054,
+        "returnAngleSatisfied": false,
+        "score": 94.28603610711775,
+        "terms": [
+          0.8573617603914359,
+          1.0381306988567889,
+          0.15403559464561187,
+          27.550497698090837,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 4.643266719963858,
+        "legacyTerms": [
+          0.18187808797879418,
+          1.0381306988567889,
+          0.0034864385309668474,
+          0.47187536276653524,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 58.4979756198878,
+        "rmsHitError": 32.052026476812884,
+        "routeLength": 12549.27255561099,
+        "driveLength": 12094.220790806192,
+        "maxSteeringDeg": 18.849383000955704,
+        "maxPressureDeg": 71.44648363034172,
+        "maxWorkPressureDeg": 71.44648363034172,
+        "maxReturnPressureDeg": 18.345537142122648,
+        "minUndercutMargin": -24.759348321980372,
+        "intersectionCount": 1,
+        "actualReturnDeg": 55.40755700546475,
+        "returnAngleSatisfied": false,
+        "score": 6282.107821434133,
+        "terms": [
+          4.943717280994779,
+          1.0253288161894107,
+          0.06628016904702543,
+          13.288080095031306,
+          0,
+          618.1761084622818
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 16.628034098690797,
+        "legacyTerms": [
+          1.1414804458559045,
+          1.0253288161894107,
+          0.0009950151528857502,
+          0.004618404863642261,
+          0,
+          0.1889094687333835
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 24.759349321980373,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed3_cubic",
+      "seed": 3,
+      "method": "cubic",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41157,
+      "solverFunctionCount": 40893,
+      "solverSeconds": 185.5138169,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.11563364183062674,
+      "convergenceDelta": {
+        "pressureDeg": 0.0018060269273050267,
+        "hitMM": 7.145501967897872e-10,
+        "steeringDeg": 9.207156033141928e-07,
+        "returnDeg": 0.00019761413540209105,
+        "lengthMM": 0.007390616490738466
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.016916828705205198,
+        "inverseFrontMaxErrorMM": 0.0282054298048719,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.44419992568748,
+        "phaseDeg": 234.74340644774142,
+        "minimumRadiusMM": 41.32515833378016,
+        "checkedPolynomialPoints": 9684,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0,
+        "positionMaxMM": 0,
+        "startDerivativeError": 0,
+        "endDerivativeError": 0,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 0,
+        "sensorMaxDifferenceMM": 0
+      },
+      "initialMetrics": {
+        "maxHitError": 13.993896776507677,
+        "rmsHitError": 7.776994860373665,
+        "routeLength": 12716.117125242074,
+        "driveLength": 12247.560378073995,
+        "maxSteeringDeg": 38.539379695920736,
+        "maxPressureDeg": 86.18663436513411,
+        "maxWorkPressureDeg": 86.18663436513411,
+        "maxReturnPressureDeg": 41.51370544124071,
+        "minUndercutMargin": 0.5532435115540586,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.5457059361359,
+        "returnAngleSatisfied": false,
+        "score": 86.05830419119688,
+        "terms": [
+          0.2847897733887004,
+          1.038960725474143,
+          0.14030665390306843,
+          27.107084292417397,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.2982453130534837,
+        "legacyTerms": [
+          0.067201832286976,
+          1.038960725474143,
+          0.0033033045193719512,
+          0.48208533036562823,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 39.035410750883464,
+        "rmsHitError": 30.639342193378226,
+        "routeLength": 12455.545130091416,
+        "driveLength": 11986.567161462566,
+        "maxSteeringDeg": 19.13623324853662,
+        "maxPressureDeg": 36.443326279629204,
+        "maxWorkPressureDeg": 36.443326279629204,
+        "maxReturnPressureDeg": 33.323966030747535,
+        "minUndercutMargin": -0.1639916962743253,
+        "intersectionCount": 11,
+        "actualReturnDeg": 58.118809142016595,
+        "returnAngleSatisfied": false,
+        "score": 34.62591546070713,
+        "terms": [
+          2.736147313925684,
+          1.017670887825308,
+          0.006881176502120756,
+          0.02094559846115575,
+          0,
+          0.06978776573858989
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.539065467930175,
+        "legacyTerms": [
+          1.0430769889365858,
+          1.017670887825308,
+          0.0015840697992382917,
+          0.00011369096647293826,
+          0,
+          9.615003679428082e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.6930703249890982,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed4_cubic",
+      "seed": 4,
+      "method": "cubic",
+      "iterations": 369,
+      "requestedIterations": 600,
+      "reason": "constrained_infeasible",
+      "modelAttempts": 25699,
+      "solverFunctionCount": 25533,
+      "solverSeconds": 111.7275244,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.1016146043378483,
+      "convergenceDelta": {
+        "pressureDeg": 0.12847651932263915,
+        "hitMM": 1.3563621337198128e-09,
+        "steeringDeg": 9.077501736953764e-07,
+        "returnDeg": 0.0002090509501044835,
+        "lengthMM": 0.007929470668386784
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.013477912513411449,
+        "inverseFrontMaxErrorMM": 0.04015610192073636,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.16622025386835,
+        "phaseDeg": 71.63412505881452,
+        "minimumRadiusMM": 41.3412585303186,
+        "checkedPolynomialPoints": 9684,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0,
+        "positionMaxMM": 0,
+        "startDerivativeError": 0,
+        "endDerivativeError": 0,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 0,
+        "sensorMaxDifferenceMM": 0
+      },
+      "initialMetrics": {
+        "maxHitError": 24.05712285172893,
+        "rmsHitError": 9.295615690057847,
+        "routeLength": 12705.754616342037,
+        "driveLength": 12236.094290317067,
+        "maxSteeringDeg": 39.25939298056027,
+        "maxPressureDeg": 86.83761318208407,
+        "maxWorkPressureDeg": 86.83761318208407,
+        "maxReturnPressureDeg": 27.540200975999028,
+        "minUndercutMargin": 0.5546134730099178,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.83447887503637,
+        "returnAngleSatisfied": false,
+        "score": 92.23771771746767,
+        "terms": [
+          0.739059589956031,
+          1.0381140645273716,
+          0.15182984884707545,
+          27.342409625257925,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.610277916722325,
+        "legacyTerms": [
+          0.0960094122858329,
+          1.0381140645273716,
+          0.003483120726227303,
+          0.471028221104168,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 40.11690628450238,
+        "rmsHitError": 29.991843374982867,
+        "routeLength": 12460.603071819954,
+        "driveLength": 11992.21573960156,
+        "maxSteeringDeg": 19.103502430374167,
+        "maxPressureDeg": 36.155523028252325,
+        "maxWorkPressureDeg": 36.155523028252325,
+        "maxReturnPressureDeg": 29.110107196419186,
+        "minUndercutMargin": -0.08291503440511727,
+        "intersectionCount": 3,
+        "actualReturnDeg": 57.9765499386697,
+        "returnAngleSatisfied": false,
+        "score": 34.8581939832894,
+        "terms": [
+          2.7876409320767217,
+          1.0180841431261152,
+          0.006630686374496226,
+          0.013462984760079988,
+          0,
+          0.03347683282133842
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.015132669696404,
+        "legacyTerms": [
+          0.9994562989216705,
+          1.0180841431261152,
+          0.0015258795977564478,
+          0.00011065007186574669,
+          0,
+          1.892300991317951e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.7881846331550513,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed5_cubic",
+      "seed": 5,
+      "method": "cubic",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41345,
+      "solverFunctionCount": 41075,
+      "solverSeconds": 215.6264476,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.04662973064879328,
+      "convergenceDelta": {
+        "pressureDeg": 0.04844201013918337,
+        "hitMM": 1.0135821071344253e-09,
+        "steeringDeg": 0.0004332387954484318,
+        "returnDeg": 0.00020682087193790721,
+        "lengthMM": 0.00774212308897404
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.019107960566164765,
+        "inverseFrontMaxErrorMM": 0.026904939709334504,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.78064534299115,
+        "phaseDeg": 107.28504095865648,
+        "minimumRadiusMM": 41.32490191670458,
+        "checkedPolynomialPoints": 9680,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0,
+        "positionMaxMM": 0,
+        "startDerivativeError": 0,
+        "endDerivativeError": 0,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 0,
+        "sensorMaxDifferenceMM": 0
+      },
+      "initialMetrics": {
+        "maxHitError": 27.683815052857152,
+        "rmsHitError": 13.78446407518887,
+        "routeLength": 12688.702443365293,
+        "driveLength": 12218.294082884802,
+        "maxSteeringDeg": 39.606520994483105,
+        "maxPressureDeg": 86.93608465972466,
+        "maxWorkPressureDeg": 86.93608465972466,
+        "maxReturnPressureDeg": 22.370552857919545,
+        "minUndercutMargin": 0.5730300024301828,
+        "intersectionCount": 0,
+        "actualReturnDeg": 52.282776352102864,
+        "returnAngleSatisfied": false,
+        "score": 96.43181542836255,
+        "terms": [
+          1.0626722952455252,
+          1.0367208296403114,
+          0.15813942055661973,
+          27.442249404887566,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 4.983390449442927,
+        "legacyTerms": [
+          0.21112383315574723,
+          1.0367208296403114,
+          0.0035710503667819625,
+          0.4686805070666949,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 38.28538013386984,
+        "rmsHitError": 30.207469113205146,
+        "routeLength": 12453.883344155389,
+        "driveLength": 11984.801829879714,
+        "maxSteeringDeg": 19.136864849373925,
+        "maxPressureDeg": 36.63500438866974,
+        "maxWorkPressureDeg": 36.63500438866974,
+        "maxReturnPressureDeg": 34.16891156950649,
+        "minUndercutMargin": -0.23272655189119007,
+        "intersectionCount": 9,
+        "actualReturnDeg": 58.16326894383575,
+        "returnAngleSatisfied": false,
+        "score": 33.92984061749461,
+        "terms": [
+          2.6425128024668427,
+          1.0175351128631343,
+          0.006831149216507998,
+          0.026885822493627323,
+          0,
+          0.11078321091154622
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.188423659367078,
+        "legacyTerms": [
+          1.0138791002502698,
+          1.0175351128631343,
+          0.001558265383724919,
+          0.0001534289839340311,
+          0,
+          7.62525781454374e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.6286337022165729,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed1_bezier5",
+      "seed": 1,
+      "method": "bezier5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41954,
+      "solverFunctionCount": 41683,
+      "solverSeconds": 140.9750063,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.008396037392587763,
+      "convergenceDelta": {
+        "pressureDeg": 1.5044941991696845,
+        "hitMM": 2.5853097440631245e-11,
+        "steeringDeg": 0.00018118407884415433,
+        "returnDeg": 0.00048282733484938944,
+        "lengthMM": 0.019066512253630208
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.9984607020129713,
+        "inverseFrontMaxErrorMM": 0.033160270457967406,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 49.40304889982028,
+        "phaseDeg": 309.7680998475849,
+        "minimumRadiusMM": 41.806854454462375,
+        "checkedPolynomialPoints": 9682,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6486001953406403,
+        "positionMaxMM": 2.3418746977589695,
+        "startDerivativeError": 0,
+        "endDerivativeError": 1.4432899320127035e-15,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.0234058248068163,
+        "sensorMaxDifferenceMM": 2.101886119284583
+      },
+      "initialMetrics": {
+        "maxHitError": 14.69792876208081,
+        "rmsHitError": 7.916879269619126,
+        "routeLength": 12723.505162120644,
+        "driveLength": 12254.582012510356,
+        "maxSteeringDeg": 38.47528592091044,
+        "maxPressureDeg": 85.85993979409558,
+        "maxWorkPressureDeg": 85.85993979409558,
+        "maxReturnPressureDeg": 35.1465865292808,
+        "minUndercutMargin": 0.587704853452217,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.36886636757009,
+        "returnAngleSatisfied": false,
+        "score": 84.0035292598512,
+        "terms": [
+          0.3096734302943637,
+          1.0395643594356416,
+          0.13395338439376966,
+          26.32665898936522,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.259055050834742,
+        "legacyTerms": [
+          0.06964108596636116,
+          1.0395643594356416,
+          0.0032347978974578877,
+          0.4591093546692835,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 31.663031542614426,
+        "rmsHitError": 29.3245733285174,
+        "routeLength": 12441.154230581646,
+        "driveLength": 11973.024596233936,
+        "maxSteeringDeg": 18.145250240679815,
+        "maxPressureDeg": 49.4029684613846,
+        "maxWorkPressureDeg": 35.947465358973474,
+        "maxReturnPressureDeg": 49.4029684613846,
+        "minUndercutMargin": -0.9835117778571891,
+        "intersectionCount": 6,
+        "actualReturnDeg": 58.45987807888743,
+        "returnAngleSatisfied": false,
+        "score": 44.03511835813461,
+        "terms": [
+          2.0694201859646557,
+          1.016495090272672,
+          0.006927160371554319,
+          2.1410038984407267,
+          0,
+          1.174871502022079
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 12.66668838961459,
+        "legacyTerms": [
+          0.9554784454439934,
+          1.016495090272672,
+          0.0014993496031623166,
+          0.05757198737978397,
+          0,
+          0.0008737292668322226
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.9923700349359688,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": false,
+        "gatePassed": true,
+        "maxScaledViolation": 1.3227069092150596,
+        "maximumOutsideMM": 2645.413818430119
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed2_bezier5",
+      "seed": 2,
+      "method": "bezier5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 42831,
+      "solverFunctionCount": 42558,
+      "solverSeconds": 171.0289059,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.008380033226211614,
+      "convergenceDelta": {
+        "pressureDeg": 0.00158425217932745,
+        "hitMM": 2.85265855382022e-09,
+        "steeringDeg": 0.00027212203778859134,
+        "returnDeg": 8.161532423400786e-05,
+        "lengthMM": 0.003253257777032559
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.00890013809149066,
+        "inverseFrontMaxErrorMM": 0.027294703933872663,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.213533490310134,
+        "phaseDeg": 271.7480337651547,
+        "minimumRadiusMM": 42.01009614460535,
+        "checkedPolynomialPoints": 9690,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6531407446898031,
+        "positionMaxMM": 2.3284502608402455,
+        "startDerivativeError": 0,
+        "endDerivativeError": 1.4432899320127035e-15,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.0208095055036577,
+        "sensorMaxDifferenceMM": 2.0889167054435327
+      },
+      "initialMetrics": {
+        "maxHitError": 25.390870939929776,
+        "rmsHitError": 13.22204261299426,
+        "routeLength": 12705.363992604458,
+        "driveLength": 12236.046455713355,
+        "maxSteeringDeg": 38.77411554649478,
+        "maxPressureDeg": 86.52252808347167,
+        "maxWorkPressureDeg": 86.52252808347167,
+        "maxReturnPressureDeg": 28.44084519505804,
+        "minUndercutMargin": 0.5830592967354542,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.83568358752319,
+        "returnAngleSatisfied": false,
+        "score": 93.21638278765279,
+        "terms": [
+          0.910576375497785,
+          1.0380821489105378,
+          0.13897934791383076,
+          26.991141812313725,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 4.711985237775663,
+        "legacyTerms": [
+          0.19424712317759563,
+          1.0380821489105378,
+          0.0033195885783033605,
+          0.44543281119245703,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 34.16550220037124,
+        "rmsHitError": 29.525210010289765,
+        "routeLength": 12454.472647202989,
+        "driveLength": 11980.231872948954,
+        "maxSteeringDeg": 17.723677880233026,
+        "maxPressureDeg": 36.213515855470526,
+        "maxWorkPressureDeg": 36.213515855470526,
+        "maxReturnPressureDeg": 34.854424781291165,
+        "minUndercutMargin": -3.0600682710817013,
+        "intersectionCount": 3,
+        "actualReturnDeg": 58.278363117325476,
+        "returnAngleSatisfied": false,
+        "score": 128.1716891961307,
+        "terms": [
+          2.2655772963947634,
+          1.0175832614226221,
+          0.006736676679040704,
+          0.014812848749472562,
+          0,
+          9.990926647836442
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 12.692791799130434,
+        "legacyTerms": [
+          0.9685978068352388,
+          1.0175832614226221,
+          0.001411615994694986,
+          8.664143468884423e-05,
+          0,
+          0.004895169939148908
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 3.0600692710817015,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": false,
+        "gatePassed": true,
+        "maxScaledViolation": 0.17117570653133435,
+        "maximumOutsideMM": 620.5443074573695
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed3_bezier5",
+      "seed": 3,
+      "method": "bezier5",
+      "iterations": 432,
+      "requestedIterations": 600,
+      "reason": "constrained_infeasible",
+      "modelAttempts": 30842,
+      "solverFunctionCount": 30645,
+      "solverSeconds": 116.6862723,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.023772389134649075,
+      "convergenceDelta": {
+        "pressureDeg": 2.02169333700612,
+        "hitMM": 9.105605158765684e-11,
+        "steeringDeg": 5.6932570657863835e-08,
+        "returnDeg": 0.0005825773186529659,
+        "lengthMM": 0.022802981697168434
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 1.7348444831480274,
+        "inverseFrontMaxErrorMM": 0.04111335369910812,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 54.76012104838,
+        "phaseDeg": 308.3353850562889,
+        "minimumRadiusMM": 41.616981434947704,
+        "checkedPolynomialPoints": 9694,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6444406070646574,
+        "positionMaxMM": 2.3555844796415553,
+        "startDerivativeError": 0,
+        "endDerivativeError": 1.4812222630807097e-15,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.0314793260676036,
+        "sensorMaxDifferenceMM": 2.114047525135468
+      },
+      "initialMetrics": {
+        "maxHitError": 14.605782661940973,
+        "rmsHitError": 8.287790382104047,
+        "routeLength": 12715.620191507769,
+        "driveLength": 12247.275664287576,
+        "maxSteeringDeg": 38.01147085697861,
+        "maxPressureDeg": 85.85787030451596,
+        "maxWorkPressureDeg": 85.85787030451596,
+        "maxReturnPressureDeg": 44.07565643846585,
+        "minUndercutMargin": 0.5907861421973895,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.55287644089681,
+        "returnAngleSatisfied": false,
+        "score": 86.53909342911092,
+        "terms": [
+          0.31335150731727984,
+          1.0389201238794878,
+          0.12627846724549288,
+          27.16246609431103,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.381680605335374,
+        "legacyTerms": [
+          0.07631941046410708,
+          1.0389201238794878,
+          0.0031223119772468906,
+          0.4735609773107025,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 37.13227880919376,
+        "rmsHitError": 29.939370401723053,
+        "routeLength": 12435.188140111788,
+        "driveLength": 11967.322519122,
+        "maxSteeringDeg": 18.53730348925675,
+        "maxPressureDeg": 54.75995034777072,
+        "maxWorkPressureDeg": 37.5715583241695,
+        "maxReturnPressureDeg": 54.75995034777072,
+        "minUndercutMargin": -10.546747086080872,
+        "intersectionCount": 7,
+        "actualReturnDeg": 58.60348465162238,
+        "returnAngleSatisfied": false,
+        "score": 1177.6093880795138,
+        "terms": [
+          2.527968921794745,
+          1.0160076353662915,
+          0.00677866101601047,
+          4.10821788078777,
+          0,
+          113.39195424182154
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.770302214021417,
+        "legacyTerms": [
+          0.9959621111684116,
+          1.0160076353662915,
+          0.0014224162999441922,
+          0.1375323811780733,
+          0,
+          0.038730726850007835
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 10.546748086080871,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": false,
+        "gatePassed": true,
+        "maxScaledViolation": 1.5178319330780297,
+        "maximumOutsideMM": 3035.663866156059
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed4_bezier5",
+      "seed": 4,
+      "method": "bezier5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41200,
+      "solverFunctionCount": 40928,
+      "solverSeconds": 127.6550263,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 0.0006881514989842685,
+        "hitMM": 4.762629401966478e-09,
+        "steeringDeg": 5.361155075433999e-09,
+        "returnDeg": 0.00016196170548710143,
+        "lengthMM": 0.005747585353674367
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.03831829049988218,
+        "inverseFrontMaxErrorMM": 0.03091117877848941,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.98203576074439,
+        "phaseDeg": 260.238324076008,
+        "minimumRadiusMM": 41.7532584376791,
+        "checkedPolynomialPoints": 9694,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6461550522373452,
+        "positionMaxMM": 2.3635417915491432,
+        "startDerivativeError": 0,
+        "endDerivativeError": 1.4432899320127035e-15,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.0271619144742619,
+        "sensorMaxDifferenceMM": 2.1229050817309862
+      },
+      "initialMetrics": {
+        "maxHitError": 24.716114961104285,
+        "rmsHitError": 9.767752408453184,
+        "routeLength": 12705.162110911535,
+        "driveLength": 12235.722989902748,
+        "maxSteeringDeg": 38.72070988619423,
+        "maxPressureDeg": 86.43278034085988,
+        "maxWorkPressureDeg": 86.43278034085988,
+        "maxReturnPressureDeg": 30.202772595894036,
+        "minUndercutMargin": 0.5805297176061857,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.843830060386686,
+        "returnAngleSatisfied": false,
+        "score": 91.47471991469345,
+        "terms": [
+          0.7847725843148512,
+          1.0380656543196125,
+          0.13789624129456615,
+          26.914530255335496,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.7004480794400543,
+        "legacyTerms": [
+          0.10600998568093664,
+          1.0380656543196125,
+          0.003299319338509739,
+          0.4612213194240607,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 31.991985398102788,
+        "rmsHitError": 29.290783277593178,
+        "routeLength": 12445.617823327571,
+        "driveLength": 11971.595374959017,
+        "maxSteeringDeg": 18.25615157339098,
+        "maxPressureDeg": 36.979045755338085,
+        "maxWorkPressureDeg": 36.979045755338085,
+        "maxReturnPressureDeg": 35.37181798318208,
+        "minUndercutMargin": -0.12249966864293871,
+        "intersectionCount": 8,
+        "actualReturnDeg": 58.495872956708595,
+        "returnAngleSatisfied": false,
+        "score": 26.73465713043898,
+        "terms": [
+          2.0904856830303937,
+          1.0168597847396899,
+          0.006940217752178717,
+          0.04064800310895906,
+          0,
+          0.04961447045033306
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 12.460819148385808,
+        "legacyTerms": [
+          0.9532777611277025,
+          1.0168597847396899,
+          0.0016223315879173828,
+          9.929596556609608e-05,
+          0,
+          0.00010836790411554009
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.13720792190269115,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": false,
+        "gatePassed": true,
+        "maxScaledViolation": 1.4619682409135513,
+        "maximumOutsideMM": 2923.9364818271024
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed5_bezier5",
+      "seed": 5,
+      "method": "bezier5",
+      "iterations": 321,
+      "requestedIterations": 600,
+      "reason": "constrained_infeasible",
+      "modelAttempts": 22723,
+      "solverFunctionCount": 22577,
+      "solverSeconds": 88.125247,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.0028835096651949055,
+      "convergenceDelta": {
+        "pressureDeg": 0.00404373763623056,
+        "hitMM": 1.5836008060432505e-09,
+        "steeringDeg": 2.3656433256746823e-08,
+        "returnDeg": 0.0001362956984394259,
+        "lengthMM": 0.0049926291594601935
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.016192572112574303,
+        "inverseFrontMaxErrorMM": 0.02831154913191112,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 35.79155981347693,
+        "phaseDeg": 33.20934482661178,
+        "minimumRadiusMM": 41.96071453328344,
+        "checkedPolynomialPoints": 9698,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6482228926228508,
+        "positionMaxMM": 2.3629917853267477,
+        "startDerivativeError": 0,
+        "endDerivativeError": 1.4432899320127035e-15,
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.0272192829311997,
+        "sensorMaxDifferenceMM": 2.1224469191752537
+      },
+      "initialMetrics": {
+        "maxHitError": 29.09509114349411,
+        "rmsHitError": 14.198047432593032,
+        "routeLength": 12688.154453803278,
+        "driveLength": 12217.963988946614,
+        "maxSteeringDeg": 39.07661604895882,
+        "maxPressureDeg": 86.56944116339304,
+        "maxWorkPressureDeg": 86.56944116339304,
+        "maxReturnPressureDeg": 25.29472268862245,
+        "minUndercutMargin": 0.5775740595293091,
+        "intersectionCount": 0,
+        "actualReturnDeg": 52.291089754081334,
+        "returnAngleSatisfied": false,
+        "score": 96.45904534758894,
+        "terms": [
+          1.164565421718212,
+          1.0366760565678952,
+          0.14395098155063454,
+          27.053227422433743,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 5.108714123316878,
+        "legacyTerms": [
+          0.22398283433129063,
+          1.0366760565678952,
+          0.003389822305974075,
+          0.45915480338718234,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 31.827274090681918,
+        "rmsHitError": 29.138429254182775,
+        "routeLength": 12455.864354706518,
+        "driveLength": 11981.11177504173,
+        "maxSteeringDeg": 17.826306492620027,
+        "maxPressureDeg": 35.789928784256404,
+        "maxWorkPressureDeg": 35.789928784256404,
+        "maxReturnPressureDeg": 31.032384383347054,
+        "minUndercutMargin": 0.016034530490349752,
+        "intersectionCount": 0,
+        "actualReturnDeg": 58.25620282005039,
+        "returnAngleSatisfied": false,
+        "score": 25.947438778493787,
+        "terms": [
+          2.068914928271563,
+          1.0176969698308787,
+          0.006715798731850551,
+          0.00625805935633466,
+          0,
+          0.00705568938714459
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 12.341513950106975,
+        "legacyTerms": [
+          0.9433867326677937,
+          1.0176969698308787,
+          0.001533370773893121,
+          1.818451436662708e-05,
+          0,
+          5.4893171685843466e-06
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.12552819560376927,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": false,
+        "gatePassed": true,
+        "maxScaledViolation": 0.9486744938753977,
+        "maximumOutsideMM": 1897.3489877507955
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed1_bspline3",
+      "seed": 1,
+      "method": "bspline3",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41424,
+      "solverFunctionCount": 41153,
+      "solverSeconds": 145.4151834,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.0378360414354586,
+      "convergenceDelta": {
+        "pressureDeg": 0.020540776026066965,
+        "hitMM": 1.6839862837514374e-09,
+        "steeringDeg": 3.195257498589399e-07,
+        "returnDeg": 0.00014194812871437534,
+        "lengthMM": 0.005632921629512566
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.024660808184908508,
+        "inverseFrontMaxErrorMM": 0.034490621290705493,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.81469525548131,
+        "phaseDeg": 19.603267957932932,
+        "minimumRadiusMM": 41.85489497075763,
+        "checkedPolynomialPoints": 9682,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6194978743393742,
+        "positionMaxMM": 2.1874984864302016,
+        "startDerivativeError": 1.2560739669470201e-15,
+        "endDerivativeError": 2.5201084469941663e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 3,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6194978896725328,
+          "positionMaxMM": 2.1864759313976294,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.02568371195470076
+          ],
+          "endpointDerivativeError": [
+            1.2560739669470201e-15,
+            2.5201084469941663e-15
+          ],
+          "endpointTangentErrorDeg": [
+            5.088887490341631e-14,
+            1.3835412864366307e-13
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.6873307270722928,
+        "sensorMaxDifferenceMM": 2.057967097900055
+      },
+      "initialMetrics": {
+        "maxHitError": 13.991283842953818,
+        "rmsHitError": 7.922653106639115,
+        "routeLength": 12723.427414322974,
+        "driveLength": 12254.765482118508,
+        "maxSteeringDeg": 37.89829111432312,
+        "maxPressureDeg": 86.27312741609632,
+        "maxWorkPressureDeg": 86.27312741609632,
+        "maxReturnPressureDeg": 31.87803022219708,
+        "minUndercutMargin": 0.5642015157941185,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.36424569318945,
+        "returnAngleSatisfied": false,
+        "score": 85.06719157754014,
+        "terms": [
+          0.2872493953580433,
+          1.0395580071106767,
+          0.1647132520812318,
+          26.750404773990162,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.2661484550233855,
+        "legacyTerms": [
+          0.0697427024979316,
+          1.0395580071106767,
+          0.0032357733922306307,
+          0.4610688237176894,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 34.08447179717692,
+        "rmsHitError": 30.1578038915661,
+        "routeLength": 12477.422489358809,
+        "driveLength": 11999.31596946394,
+        "maxSteeringDeg": 18.04582707077543,
+        "maxPressureDeg": 36.797655176107355,
+        "maxWorkPressureDeg": 36.797655176107355,
+        "maxReturnPressureDeg": 36.23208975180364,
+        "minUndercutMargin": -0.28363970592818144,
+        "intersectionCount": 10,
+        "actualReturnDeg": 57.79773094759843,
+        "returnAngleSatisfied": false,
+        "score": 30.26646783867801,
+        "terms": [
+          2.301382614727453,
+          1.0194583609062842,
+          0.007201725080056673,
+          0.04782932275764576,
+          0,
+          0.1472526682609239
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.151469196351952,
+        "legacyTerms": [
+          1.0105479284023995,
+          1.0194583609062842,
+          0.0018517810209323204,
+          0.0003332298707944895,
+          0,
+          7.324429626237591e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.29083468632505394,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed2_bspline3",
+      "seed": 2,
+      "method": "bspline3",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 43326,
+      "solverFunctionCount": 43053,
+      "solverSeconds": 148.1951447,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 0.13507922008740536,
+        "hitMM": 3.4489033851059503e-09,
+        "steeringDeg": 0.0013282701378791728,
+        "returnDeg": 2.4957054733931727e-05,
+        "lengthMM": 0.0011006373297277605
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.004173889565325697,
+        "inverseFrontMaxErrorMM": 0.013565089842987701,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 53.027058953142465,
+        "phaseDeg": 29.065673889096253,
+        "minimumRadiusMM": 41.044064168570294,
+        "checkedPolynomialPoints": 9686,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6164130988114195,
+        "positionMaxMM": 2.1914228680954366,
+        "startDerivativeError": 1.2560739669470201e-15,
+        "endDerivativeError": 2.616101039786973e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 3,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6164131140761075,
+          "positionMaxMM": 2.1905320523492624,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.041277942444822906
+          ],
+          "endpointDerivativeError": [
+            1.2560739669470201e-15,
+            2.616101039786973e-15
+          ],
+          "endpointTangentErrorDeg": [
+            5.088887490341631e-14,
+            1.3358329662146786e-13
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.7011833776513101,
+        "sensorMaxDifferenceMM": 2.0615441749678207
+      },
+      "initialMetrics": {
+        "maxHitError": 24.618325757116363,
+        "rmsHitError": 13.130673706515552,
+        "routeLength": 12705.306549505722,
+        "driveLength": 12236.255898647509,
+        "maxSteeringDeg": 38.19076610967007,
+        "maxPressureDeg": 86.15104751418639,
+        "maxWorkPressureDeg": 86.15104751418639,
+        "maxReturnPressureDeg": 26.476647390441507,
+        "minUndercutMargin": 0.5589324430015181,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.83040877601729,
+        "returnAngleSatisfied": false,
+        "score": 91.63467556717549,
+        "terms": [
+          0.8649739500783086,
+          1.0380774555656316,
+          0.16968094751786036,
+          26.625849605211478,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 4.728223124149997,
+        "legacyTerms": [
+          0.19157176887442093,
+          1.0380774555656316,
+          0.0033127402067416336,
+          0.4615529872259437,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 48.11165130919195,
+        "rmsHitError": 28.209248146236682,
+        "routeLength": 12828.69277593561,
+        "driveLength": 12368.482563652773,
+        "maxSteeringDeg": 19.7094204326433,
+        "maxPressureDeg": 53.02459918110696,
+        "maxWorkPressureDeg": 53.02459918110696,
+        "maxReturnPressureDeg": 10.415798793011016,
+        "minUndercutMargin": 0.4526209536379169,
+        "intersectionCount": 0,
+        "actualReturnDeg": 48.5002857677132,
+        "returnAngleSatisfied": false,
+        "score": 52.337230886985104,
+        "terms": [
+          3.4561029696369214,
+          1.0481586338107298,
+          0.005039457442402224,
+          3.26858590088217,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 11.719087533282067,
+        "legacyTerms": [
+          0.8841796455288418,
+          1.0481586338107298,
+          0.0008003598327873593,
+          0.019724144486553796,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 1.5719233241080794,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed3_bspline3",
+      "seed": 3,
+      "method": "bspline3",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41832,
+      "solverFunctionCount": 41559,
+      "solverSeconds": 139.8881447,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.0037734300558780465,
+      "convergenceDelta": {
+        "pressureDeg": 0.07172758795505274,
+        "hitMM": 1.123872550579108e-09,
+        "steeringDeg": 0.00013718544013485712,
+        "returnDeg": 0.0002643682246343815,
+        "lengthMM": 0.009846011509580421
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.02143024737891851,
+        "inverseFrontMaxErrorMM": 0.04908413478794238,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.19929673409854,
+        "phaseDeg": 19.565176528601693,
+        "minimumRadiusMM": 41.59838078364134,
+        "checkedPolynomialPoints": 9700,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6229985261009605,
+        "positionMaxMM": 2.1843147030755525,
+        "startDerivativeError": 1.2560739669470201e-15,
+        "endDerivativeError": 2.196025632989205e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 3,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6229985415359132,
+          "positionMaxMM": 2.1831879341196707,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.060656948074533326
+          ],
+          "endpointDerivativeError": [
+            1.2560739669470201e-15,
+            2.196025632989205e-15
+          ],
+          "endpointTangentErrorDeg": [
+            5.088887490341631e-14,
+            1.0813885916975968e-13
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.6580330097454874,
+        "sensorMaxDifferenceMM": 2.0553444131407854
+      },
+      "initialMetrics": {
+        "maxHitError": 13.98017842847624,
+        "rmsHitError": 8.368814768656957,
+        "routeLength": 12715.53867996111,
+        "driveLength": 12247.442406665568,
+        "maxSteeringDeg": 37.43793275422982,
+        "maxPressureDeg": 86.12384246764105,
+        "maxWorkPressureDeg": 86.12384246764105,
+        "maxReturnPressureDeg": 39.734273501904795,
+        "minUndercutMargin": 0.5669532405972151,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.54867704110563,
+        "returnAngleSatisfied": false,
+        "score": 85.35659533749231,
+        "terms": [
+          0.294980499471248,
+          1.0389134640402604,
+          0.1567018880648605,
+          26.821504034555783,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.361693239477116,
+        "legacyTerms": [
+          0.07781895625787869,
+          1.0389134640402604,
+          0.0031293120427366137,
+          0.46089789208561294,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 32.568869123043115,
+        "rmsHitError": 29.508349772951174,
+        "routeLength": 12483.789600651031,
+        "driveLength": 12004.838190350581,
+        "maxSteeringDeg": 18.575600030447127,
+        "maxPressureDeg": 36.19906907845582,
+        "maxWorkPressureDeg": 36.19906907845582,
+        "maxReturnPressureDeg": 33.53030965027179,
+        "minUndercutMargin": -1.1026741354554548,
+        "intersectionCount": 6,
+        "actualReturnDeg": 57.658654046348516,
+        "returnAngleSatisfied": false,
+        "score": 41.302609499724724,
+        "terms": [
+          2.1460821580852647,
+          1.0199785809154418,
+          0.007159952464088588,
+          0.01444577243252352,
+          0,
+          1.4471987799560362
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 12.641223566419704,
+        "legacyTerms": [
+          0.9674918959142527,
+          1.0199785809154418,
+          0.00170043912891039,
+          6.810588343460223e-05,
+          0,
+          0.0007737038625104563
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 1.1026751354554547,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed4_bspline3",
+      "seed": 4,
+      "method": "bspline3",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 43113,
+      "solverFunctionCount": 42842,
+      "solverSeconds": 119.8709205,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 0.10980804963313773,
+        "hitMM": 0.0004680703897861349,
+        "steeringDeg": 0.00042518828124116226,
+        "returnDeg": 3.4625098578544566e-05,
+        "lengthMM": 0.0013116423397150356
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.00488350467886648,
+        "inverseFrontMaxErrorMM": 0.016475765189860374,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 59.006646062120495,
+        "phaseDeg": 28.63294434841982,
+        "minimumRadiusMM": 40.29042571852357,
+        "checkedPolynomialPoints": 9686,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6231230497859314,
+        "positionMaxMM": 2.183599681929438,
+        "startDerivativeError": 1.2560739669470201e-15,
+        "endDerivativeError": 2.616101039786973e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 3,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6231230652165711,
+          "positionMaxMM": 2.182448397937083,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.04150620690698512
+          ],
+          "endpointDerivativeError": [
+            1.2560739669470201e-15,
+            2.616101039786973e-15
+          ],
+          "endpointTangentErrorDeg": [
+            5.088887490341631e-14,
+            1.3358329662146786e-13
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.7113401933796024,
+        "sensorMaxDifferenceMM": 2.0547300652798755
+      },
+      "initialMetrics": {
+        "maxHitError": 24.038002597251598,
+        "rmsHitError": 9.694399149239972,
+        "routeLength": 12705.08019906281,
+        "driveLength": 12235.883748361339,
+        "maxSteeringDeg": 38.1563410719818,
+        "maxPressureDeg": 86.36119727314207,
+        "maxWorkPressureDeg": 86.36119727314207,
+        "maxReturnPressureDeg": 27.969280264508345,
+        "minUndercutMargin": 0.557408733046035,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.8397813653545,
+        "returnAngleSatisfied": false,
+        "score": 90.78156393179022,
+        "terms": [
+          0.746452159700288,
+          1.0380589617740077,
+          0.16990495020277627,
+          26.815423051069068,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.6048574713009103,
+        "legacyTerms": [
+          0.10442374984976074,
+          1.0380589617740077,
+          0.0033109590205265033,
+          0.4356971977629071,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 33.527789380801046,
+        "rmsHitError": 24.35942801652488,
+        "routeLength": 12997.393002003562,
+        "driveLength": 12544.368970420313,
+        "maxSteeringDeg": 21.224985659617115,
+        "maxPressureDeg": 59.00072024548228,
+        "maxWorkPressureDeg": 59.00072024548228,
+        "maxReturnPressureDeg": 28.055781922756058,
+        "minUndercutMargin": 0.16983260845004167,
+        "intersectionCount": 0,
+        "actualReturnDeg": 44.07059399562469,
+        "returnAngleSatisfied": false,
+        "score": 41.432553673261054,
+        "terms": [
+          1.908327104506236,
+          1.0619421581001758,
+          0.00657698816127231,
+          5.8191774282545,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 9.151668895302375,
+        "legacyTerms": [
+          0.6593130369913969,
+          1.0619421581001758,
+          0.000737588799511369,
+          0.058831705235471446,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 1.8417020322331936,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed5_bspline3",
+      "seed": 5,
+      "method": "bspline3",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41074,
+      "solverFunctionCount": 40802,
+      "solverSeconds": 138.9403576,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.06646452453460139,
+      "convergenceDelta": {
+        "pressureDeg": 0.12033066784094615,
+        "hitMM": 4.1607250977904187e-10,
+        "steeringDeg": 0.00021753972825777623,
+        "returnDeg": 3.764630361047239e-05,
+        "lengthMM": 0.0016961940964392852
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.017590134051499354,
+        "inverseFrontMaxErrorMM": 0.03738729193779878,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 38.07633005239919,
+        "phaseDeg": 232.98147584164775,
+        "minimumRadiusMM": 41.955952287341134,
+        "checkedPolynomialPoints": 9684,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6221406194837982,
+        "positionMaxMM": 2.184669738863618,
+        "startDerivativeError": 1.2560739669470201e-15,
+        "endDerivativeError": 2.5201084469941663e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 3,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6221406348850296,
+          "positionMaxMM": 2.183556193778748,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.04015207409073732
+          ],
+          "endpointDerivativeError": [
+            1.2560739669470201e-15,
+            2.5476231888929307e-15
+          ],
+          "endpointTangentErrorDeg": [
+            5.088887490341631e-14,
+            1.3994440598439483e-13
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.7302268079619771,
+        "sensorMaxDifferenceMM": 2.0561587235008205
+      },
+      "initialMetrics": {
+        "maxHitError": 28.675908381277804,
+        "rmsHitError": 14.126565675549621,
+        "routeLength": 12688.054266343774,
+        "driveLength": 12218.107212501924,
+        "maxSteeringDeg": 38.50809370472742,
+        "maxPressureDeg": 86.53544009840026,
+        "maxWorkPressureDeg": 86.53544009840026,
+        "maxReturnPressureDeg": 23.784205567230572,
+        "minUndercutMargin": 0.5550002431747284,
+        "intersectionCount": 0,
+        "actualReturnDeg": 52.28748267485225,
+        "returnAngleSatisfied": false,
+        "score": 95.98793036230516,
+        "terms": [
+          1.1354084214189504,
+          1.0366678708273436,
+          0.17633236186822346,
+          26.991232236904658,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 5.000912022458944,
+        "legacyTerms": [
+          0.22173317531735198,
+          1.0366678708273436,
+          0.0033984605917297297,
+          0.43221637554663883,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 40.43658066597789,
+        "rmsHitError": 30.72057545711213,
+        "routeLength": 12528.200070227822,
+        "driveLength": 12049.816767259106,
+        "maxSteeringDeg": 17.836197549173473,
+        "maxPressureDeg": 37.84097880095507,
+        "maxWorkPressureDeg": 37.84097880095507,
+        "maxReturnPressureDeg": 36.188923921090556,
+        "minUndercutMargin": -0.24530281117449126,
+        "intersectionCount": 8,
+        "actualReturnDeg": 56.52587047476038,
+        "returnAngleSatisfied": false,
+        "score": 36.90302110234225,
+        "terms": [
+          2.865412013746952,
+          1.023607104719973,
+          0.007121575045704551,
+          0.095200043597186,
+          0,
+          0.11946265517758799
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.613556554246681,
+        "legacyTerms": [
+          1.0486152849068002,
+          1.023607104719973,
+          0.0016103406281281012,
+          0.00035303722101134535,
+          0,
+          0.00022862377258163293
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.8167967288401521,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed1_bspline5",
+      "seed": 1,
+      "method": "bspline5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 43411,
+      "solverFunctionCount": 43138,
+      "solverSeconds": 166.74402,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 0.00018497906931713715,
+        "hitMM": 0.0013887399342813467,
+        "steeringDeg": 1.4319216035119098e-08,
+        "returnDeg": 0.0002333596450512232,
+        "lengthMM": 0.010103651917233947
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 1.1720716368977417,
+        "inverseFrontMaxErrorMM": 0.02878517950762906,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 42.45523764065536,
+        "phaseDeg": 27.977849501749564,
+        "minimumRadiusMM": 41.46081426821023,
+        "checkedPolynomialPoints": 9658,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6599715588743025,
+        "positionMaxMM": 1.933517794225437,
+        "startDerivativeError": 1.7763568394002505e-15,
+        "endDerivativeError": 2.780549076845816e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 5,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6599715750614951,
+          "positionMaxMM": 1.9334928874644386,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.07152191470527922
+          ],
+          "endpointDerivativeError": [
+            1.7763568394002505e-15,
+            2.780549076845816e-15
+          ],
+          "endpointTangentErrorDeg": [
+            1.0177774980683254e-13,
+            1.304027419400044e-13
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.4088012398815748,
+        "sensorMaxDifferenceMM": 1.8162456202682349
+      },
+      "initialMetrics": {
+        "maxHitError": 14.231011832459592,
+        "rmsHitError": 7.928269565145969,
+        "routeLength": 12723.057212524793,
+        "driveLength": 12254.602803135394,
+        "maxSteeringDeg": 37.64544785210805,
+        "maxPressureDeg": 85.68373845935065,
+        "maxWorkPressureDeg": 85.68373845935065,
+        "maxReturnPressureDeg": 32.69059433929024,
+        "minUndercutMargin": 0.5669773464211367,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.36834275655113,
+        "returnAngleSatisfied": false,
+        "score": 83.27823765909027,
+        "terms": [
+          0.29486572897024976,
+          1.039527760052945,
+          0.12198474664455813,
+          26.1521172193684,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.2748152018063856,
+        "legacyTerms": [
+          0.06984162033068872,
+          1.039527760052945,
+          0.00303833307789933,
+          0.4637037772097924,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 29.748433560106516,
+        "rmsHitError": 24.072068580214864,
+        "routeLength": 12774.451812844947,
+        "driveLength": 12316.294399757042,
+        "maxSteeringDeg": 18.85838719065868,
+        "maxPressureDeg": 42.45314412572882,
+        "maxWorkPressureDeg": 42.45314412572882,
+        "maxReturnPressureDeg": 37.364311308773665,
+        "minUndercutMargin": -0.16576864070157438,
+        "intersectionCount": 2,
+        "actualReturnDeg": 49.81464248497137,
+        "returnAngleSatisfied": false,
+        "score": 23.137678213688833,
+        "terms": [
+          1.6271486500118215,
+          1.0437269169738956,
+          0.006116226540460977,
+          0.6162075722130996,
+          0,
+          0.07073123268528571
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 8.787132434012152,
+        "legacyTerms": [
+          0.6438494285895195,
+          1.0437269169738956,
+          0.0008933969929617715,
+          0.004814318976288391,
+          0,
+          9.826230492317929e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.4712403642121663,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed2_bspline5",
+      "seed": 2,
+      "method": "bspline5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 43477,
+      "solverFunctionCount": 43201,
+      "solverSeconds": 142.8142375,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 0.0002779925028093544,
+        "hitMM": 0.00021809924252025326,
+        "steeringDeg": 9.263033114947916e-05,
+        "returnDeg": 0.0001480205855841632,
+        "lengthMM": 0.005414979546912946
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.16351957693755453,
+        "inverseFrontMaxErrorMM": 0.033174613109323334,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.8853691025996,
+        "phaseDeg": 145.7821892138338,
+        "minimumRadiusMM": 41.805258218870584,
+        "checkedPolynomialPoints": 9658,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6603240892276375,
+        "positionMaxMM": 1.9391389189387735,
+        "startDerivativeError": 1.7763568394002505e-15,
+        "endDerivativeError": 2.0206364052201327e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 5,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6603241054924349,
+          "positionMaxMM": 1.9391425058722542,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.07492589106379582
+          ],
+          "endpointDerivativeError": [
+            1.7763568394002505e-15,
+            2.0206364052201327e-15
+          ],
+          "endpointTangentErrorDeg": [
+            1.0177774980683254e-13,
+            8.11041443773198e-14
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.4112204105204302,
+        "sensorMaxDifferenceMM": 1.8220208272003757
+      },
+      "initialMetrics": {
+        "maxHitError": 24.87996123825454,
+        "rmsHitError": 13.137190364432112,
+        "routeLength": 12704.980746790743,
+        "driveLength": 12236.130450828734,
+        "maxSteeringDeg": 37.91602006525612,
+        "maxPressureDeg": 85.78258836891787,
+        "maxWorkPressureDeg": 85.78258836891787,
+        "maxReturnPressureDeg": 21.955006439014788,
+        "minUndercutMargin": 0.5649849869449777,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.833568174067786,
+        "returnAngleSatisfied": false,
+        "score": 90.57505222395652,
+        "terms": [
+          0.8795536020981959,
+          1.0380508361013894,
+          0.12637540858783053,
+          26.243202448500373,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 4.708880889666408,
+        "legacyTerms": [
+          0.19176196741258653,
+          1.0380508361013894,
+          0.0031087712607147143,
+          0.45448963403085013,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 30.763735009602964,
+        "rmsHitError": 27.06303304612536,
+        "routeLength": 12610.11093681507,
+        "driveLength": 12148.208718985525,
+        "maxSteeringDeg": 18.14859884307135,
+        "maxPressureDeg": 36.88449764977414,
+        "maxWorkPressureDeg": 36.88449764977414,
+        "maxReturnPressureDeg": 32.00467585296739,
+        "minUndercutMargin": -3.3155619429684116,
+        "intersectionCount": 2,
+        "actualReturnDeg": 54.047873300264214,
+        "returnAngleSatisfied": false,
+        "score": 140.26571357390242,
+        "terms": [
+          1.8653501659963825,
+          1.0302995700799196,
+          0.0044694200307054234,
+          0.035703291678206586,
+          0,
+          11.673516329676987
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 10.872368794362712,
+        "legacyTerms": [
+          0.8137863973951924,
+          1.0302995700799196,
+          0.0007665440188148355,
+          0.00018997775816399152,
+          0,
+          0.007452943422836402
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 3.3155629429684117,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed3_bspline5",
+      "seed": 3,
+      "method": "bspline5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 42980,
+      "solverFunctionCount": 42709,
+      "solverSeconds": 153.4160308,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.017543443356248023,
+      "convergenceDelta": {
+        "pressureDeg": 0.0007962153717500087,
+        "hitMM": 1.410569439030951e-10,
+        "steeringDeg": 2.378999397478765e-08,
+        "returnDeg": 0.0006567709675664446,
+        "lengthMM": 0.02635081811422424
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.22949450592251647,
+        "inverseFrontMaxErrorMM": 0.036131039688431434,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 35.68728311090943,
+        "phaseDeg": 40.437571458976784,
+        "minimumRadiusMM": 41.661824873139295,
+        "checkedPolynomialPoints": 9658,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6600296232082606,
+        "positionMaxMM": 1.9289917705533355,
+        "startDerivativeError": 1.7763568394002505e-15,
+        "endDerivativeError": 1.6439175459749098e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 5,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6600296396399559,
+          "positionMaxMM": 1.928944389598328,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.08868763155077752
+          ],
+          "endpointDerivativeError": [
+            1.7763568394002505e-15,
+            1.6439175459749098e-15
+          ],
+          "endpointTangentErrorDeg": [
+            1.0177774980683254e-13,
+            8.905553108097852e-14
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.405275868714882,
+        "sensorMaxDifferenceMM": 1.8115285685433966
+      },
+      "initialMetrics": {
+        "maxHitError": 14.194462723650773,
+        "rmsHitError": 8.385138018576004,
+        "routeLength": 12715.12621953213,
+        "driveLength": 12247.21291076379,
+        "maxSteeringDeg": 37.20535658482618,
+        "maxPressureDeg": 85.62527990336721,
+        "maxWorkPressureDeg": 85.62527990336721,
+        "maxReturnPressureDeg": 46.149351944096594,
+        "minUndercutMargin": 0.5694743916345698,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.55445688575945,
+        "returnAngleSatisfied": false,
+        "score": 86.97018946385282,
+        "terms": [
+          0.3019925684485334,
+          1.038879764273083,
+          0.11533872595823157,
+          27.358907142093624,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.442148539718155,
+        "legacyTerms": [
+          0.0781228217672986,
+          1.038879764273083,
+          0.0029419549924111716,
+          0.48663700141755567,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 35.35742696766224,
+        "rmsHitError": 29.503478519838428,
+        "routeLength": 12456.926678820188,
+        "driveLength": 11990.456913197886,
+        "maxSteeringDeg": 18.4448810791251,
+        "maxPressureDeg": 35.68728310991276,
+        "maxWorkPressureDeg": 35.68728310991276,
+        "maxReturnPressureDeg": 11.73441005014627,
+        "minUndercutMargin": 0.20781225599863307,
+        "intersectionCount": 0,
+        "actualReturnDeg": 58.02084590782431,
+        "returnAngleSatisfied": false,
+        "score": 29.318757990095175,
+        "terms": [
+          2.356225429493485,
+          1.0177837662185618,
+          0.0060086945793417085,
+          0.004750560265370625,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 12.626449283061158,
+        "legacyTerms": [
+          0.9671724941895192,
+          1.0177837662185618,
+          0.0012573239836962207,
+          2.6979533657003513e-05,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.3890529353039658,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed4_bspline5",
+      "seed": 4,
+      "method": "bspline5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 42904,
+      "solverFunctionCount": 42633,
+      "solverSeconds": 151.963247,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.011257432445845872,
+      "convergenceDelta": {
+        "pressureDeg": 0.0048660075334083785,
+        "hitMM": 0.001204003167515566,
+        "steeringDeg": 7.399133750141118e-09,
+        "returnDeg": 0.0011278843002742178,
+        "lengthMM": 0.04488529957961873
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 1.0234146900812822,
+        "inverseFrontMaxErrorMM": 0.04183366911044263,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 45.70217099192941,
+        "phaseDeg": 32.28537740377519,
+        "minimumRadiusMM": 41.32819705045912,
+        "checkedPolynomialPoints": 9658,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.6598766690912343,
+        "positionMaxMM": 1.9281204793458886,
+        "startDerivativeError": 1.7763568394002505e-15,
+        "endDerivativeError": 1.6439175459749098e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 5,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6598766853074212,
+          "positionMaxMM": 1.9280653074416347,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.07481194497131502
+          ],
+          "endpointDerivativeError": [
+            1.7763568394002505e-15,
+            1.6439175459749098e-15
+          ],
+          "endpointTangentErrorDeg": [
+            1.0177774980683254e-13,
+            8.905553108097852e-14
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.4099545882609836,
+        "sensorMaxDifferenceMM": 1.8116800829172617
+      },
+      "initialMetrics": {
+        "maxHitError": 24.264286806902128,
+        "rmsHitError": 9.723691619458938,
+        "routeLength": 12704.770093594849,
+        "driveLength": 12235.766248378788,
+        "maxSteeringDeg": 37.919560706103915,
+        "maxPressureDeg": 86.08490385269533,
+        "maxWorkPressureDeg": 86.08490385269533,
+        "maxReturnPressureDeg": 25.22154303681319,
+        "minUndercutMargin": 0.5627704790455672,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.842740597483306,
+        "returnAngleSatisfied": false,
+        "score": 90.0738017651919,
+        "terms": [
+          0.7592286588421562,
+          1.0380336248414526,
+          0.12549532052325774,
+          26.558011197732686,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 3.688928456098622,
+        "legacyTerms": [
+          0.10505575412259552,
+          1.0380336248414526,
+          0.003107118880898829,
+          0.46133718134140844,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 53.534636268162565,
+        "rmsHitError": 32.82402973619814,
+        "routeLength": 12681.100780725481,
+        "driveLength": 12220.02595992208,
+        "maxSteeringDeg": 19.130173749773302,
+        "maxPressureDeg": 45.69575393910879,
+        "maxWorkPressureDeg": 45.69575393910879,
+        "maxReturnPressureDeg": 34.379947743812785,
+        "minUndercutMargin": -0.6431100095379554,
+        "intersectionCount": 8,
+        "actualReturnDeg": 52.23915910160978,
+        "returnAngleSatisfied": false,
+        "score": 62.62521436481108,
+        "terms": [
+          4.3815268983192075,
+          1.0360997415476743,
+          0.010151836057798213,
+          1.1533355859197105,
+          0,
+          0.5530481413558195
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 15.43983969193696,
+        "legacyTerms": [
+          1.1971299201364667,
+          1.0360997415476743,
+          0.0008960849840981198,
+          0.009344062660098741,
+          0,
+          0.0008356550803193552
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 2.1843969781827406,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    },
+    {
+      "label": "seed5_bspline5",
+      "seed": 5,
+      "method": "bspline5",
+      "iterations": 75,
+      "requestedIterations": 600,
+      "reason": "constrained_infeasible",
+      "modelAttempts": 5376,
+      "solverFunctionCount": 5339,
+      "solverSeconds": 20.2466716,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0.18018934866128733,
+      "convergenceDelta": {
+        "pressureDeg": 0.006555291006669961,
+        "hitMM": 0.0005730760861766271,
+        "steeringDeg": 7.181963468383401e-09,
+        "returnDeg": 0.00035792730847106213,
+        "lengthMM": 0.013754542371316347
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.20783568575820935,
+        "inverseFrontMaxErrorMM": 0.02886711567022227,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 39.3535715795794,
+        "phaseDeg": 28.164295278639898,
+        "minimumRadiusMM": 41.71984843788968,
+        "checkedPolynomialPoints": 9656,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "fit": {
+        "positionRMSMM": 0.659980907229263,
+        "positionMaxMM": 1.9297486042990308,
+        "startDerivativeError": 1.7763568394002505e-15,
+        "endDerivativeError": 7.947987303456224e-16,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 5,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6599809235179144,
+          "positionMaxMM": 1.9297004974141108,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.0796231615690894
+          ],
+          "endpointDerivativeError": [
+            1.7763568394002505e-15,
+            8.200821523359857e-16
+          ],
+          "endpointTangentErrorDeg": [
+            1.0177774980683254e-13,
+            3.9756933518293974e-14
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66,
+        "steeringMaxDifferenceDeg": 1.4140894290233792,
+        "sensorMaxDifferenceMM": 1.813985975931451
+      },
+      "initialMetrics": {
+        "maxHitError": 28.791861142215094,
+        "rmsHitError": 14.10678449903169,
+        "routeLength": 12687.695180825367,
+        "driveLength": 12217.947327076265,
+        "maxSteeringDeg": 38.26275023239346,
+        "maxPressureDeg": 86.24551250939305,
+        "maxWorkPressureDeg": 86.24551250939305,
+        "maxReturnPressureDeg": 16.503476241443167,
+        "minUndercutMargin": 0.5605479686977699,
+        "intersectionCount": 0,
+        "actualReturnDeg": 52.291509382586725,
+        "returnAngleSatisfied": false,
+        "score": 95.16517708754746,
+        "terms": [
+          1.1421918188163513,
+          1.0366385320168374,
+          0.13074993040615646,
+          26.720245622974033,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 5.07402559590218,
+        "legacyTerms": [
+          0.22111263211346746,
+          1.0366385320168374,
+          0.003187590056212319,
+          0.45922009947043585,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 33.14214199029006,
+        "rmsHitError": 25.28701311243767,
+        "routeLength": 12694.243968860306,
+        "driveLength": 12237.01258205777,
+        "maxSteeringDeg": 18.32518356610642,
+        "maxPressureDeg": 39.350137682678245,
+        "maxWorkPressureDeg": 39.350137682678245,
+        "maxReturnPressureDeg": 26.788989367579372,
+        "minUndercutMargin": 0.4657111969057739,
+        "intersectionCount": 0,
+        "actualReturnDeg": 51.81135173608957,
+        "returnAngleSatisfied": false,
+        "score": 24.784934731870962,
+        "terms": [
+          1.930927342059047,
+          1.037173595786756,
+          0.0036844148326200805,
+          0.18975473390346784,
+          0,
+          0
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 9.56581377455113,
+        "legacyTerms": [
+          0.7104811468317719,
+          1.037173595786756,
+          0.0006565754102130509,
+          0.0005177553208949392,
+          0,
+          0
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.26402721277202845,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35
+    }
+  ],
+  "continuationProtocol": {
+    "version": "paired-path-representation-v1",
+    "course": "2027 solar preliminary ordered 10 visits",
+    "mechanism": "flat",
+    "gearRatio": 35,
+    "commonGrid": [
+      1201,
+      1441
+    ],
+    "refinedGrids": [
+      [
+        2401,
+        2881
+      ],
+      [
+        4801,
+        5761
+      ]
+    ],
+    "methods": [
+      "cubic",
+      "bezier5",
+      "bspline3",
+      "bspline5"
+    ],
+    "pairedSeeds": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "effectiveDOF": 66,
+    "requestedIterations": 600,
+    "maxFunctionEvaluations": 50000,
+    "maxSeconds": 3600,
+    "solver": "fmincon-interior-point",
+    "differenceStepMM": 0.1,
+    "regularizationWeight": 0,
+    "weights": [
+      12,
+      1,
+      2,
+      3,
+      10,
+      10
+    ],
+    "endDerivative": [
+      -0.987495842715075,
+      -0.157645046292118
+    ],
+    "startPose": [
+      410,
+      440,
+      90,
+      0
+    ],
+    "initialization": "Continue saved primary candidates with 2x training density, same physical thresholds and common 4x/8x verification. Not a new paired initialization experiment.",
+    "scope": "Same discrete physics and constraints; unmeasured hardware defaults; no original software or vehicle equivalence.",
+    "stage": "diagnostic-2x-continuation"
+  },
+  "continuation": [
+    {
+      "label": "seed1_cubic",
+      "seed": 1,
+      "method": "cubic",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41040,
+      "solverFunctionCount": 40769,
+      "solverSeconds": 382.3005088,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 0.018551127097303777,
+        "hitMM": 9.890186447591987e-10,
+        "steeringDeg": 8.55579845193688e-07,
+        "returnDeg": 0.00020596178831056022,
+        "lengthMM": 0.007815184850187507
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.014895400913964204,
+        "inverseFrontMaxErrorMM": 0.03969258106578083,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.86428420755563,
+        "phaseDeg": 235.2861212516318,
+        "minimumRadiusMM": 41.31497090054984,
+        "checkedPolynomialPoints": 9688,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "initialMetrics": {
+        "maxHitError": 40.51259408006129,
+        "rmsHitError": 30.495152730657377,
+        "routeLength": 12455.924449084521,
+        "driveLength": 11987.55505589568,
+        "maxSteeringDeg": 19.153621525905667,
+        "maxPressureDeg": 36.81426449677902,
+        "maxWorkPressureDeg": 36.81426449677902,
+        "maxReturnPressureDeg": 32.99818228898948,
+        "minUndercutMargin": 0.01949372437025232,
+        "intersectionCount": 0,
+        "actualReturnDeg": 58.09392906218278,
+        "returnAngleSatisfied": false,
+        "score": 35.47834359008596,
+        "terms": [
+          2.856916243513264,
+          1.0177018797965507,
+          0.006716893776879418,
+          0.033086346584323606,
+          0,
+          0.006495396082352626
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.420752175233313,
+        "legacyTerms": [
+          1.033282600073467,
+          1.0177018797965507,
+          0.0015026840322883927,
+          0.00017078994159527494,
+          0,
+          1.4135666579719725e-05
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 40.51259405919614,
+        "rmsHitError": 30.492439503320714,
+        "routeLength": 12455.886182335424,
+        "driveLength": 11987.514702531655,
+        "maxSteeringDeg": 19.157264039022817,
+        "maxPressureDeg": 36.84525444287213,
+        "maxWorkPressureDeg": 36.84525444287213,
+        "maxReturnPressureDeg": 33.16250313788429,
+        "minUndercutMargin": -0.05108649825985223,
+        "intersectionCount": 2,
+        "actualReturnDeg": 58.09494535996203,
+        "returnAngleSatisfied": false,
+        "score": 35.64309480509886,
+        "terms": [
+          2.8567323825209865,
+          1.017698753240778,
+          0.006719715397586387,
+          0.03422312828004459,
+          0,
+          0.022849864597093594
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.418638140970383,
+        "legacyTerms": [
+          1.0330987409596373,
+          1.017698753240778,
+          0.0015033418676564955,
+          0.00017348869065120516,
+          0,
+          2.2734640669261362e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.823633641561349,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35,
+      "primaryRepresentationFit": {
+        "positionRMSMM": 0,
+        "positionMaxMM": 0,
+        "startDerivativeError": 0,
+        "endDerivativeError": 0,
+        "effectiveDOF": 66
+      },
+      "continuationStartVersusOriginalGeometry": {
+        "sensorMaxDifferenceMM": 450.72971986986187,
+        "steeringMaxDifferenceDeg": 20.04346778616415
+      }
+    },
+    {
+      "label": "seed1_bezier5",
+      "seed": 1,
+      "method": "bezier5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41078,
+      "solverFunctionCount": 40807,
+      "solverSeconds": 278.3954031,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 1.6111330678654525,
+        "hitMM": 0.0008507064731340108,
+        "steeringDeg": 0.0001861039822834698,
+        "returnDeg": 0.0005103203187672989,
+        "lengthMM": 0.020098725593925337
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.677004546488801,
+        "inverseFrontMaxErrorMM": 0.027676551784494147,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 38.951074358571006,
+        "phaseDeg": 311.79558647552943,
+        "minimumRadiusMM": 42.072548887547555,
+        "checkedPolynomialPoints": 9676,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "initialMetrics": {
+        "maxHitError": 31.663031542183987,
+        "rmsHitError": 29.32915071440534,
+        "routeLength": 12441.058901510747,
+        "driveLength": 11972.928716667204,
+        "maxSteeringDeg": 18.145068702551367,
+        "maxPressureDeg": 43.751843583819955,
+        "maxWorkPressureDeg": 35.716172475835236,
+        "maxReturnPressureDeg": 43.751843583819955,
+        "minUndercutMargin": -0.9790173250075771,
+        "intersectionCount": 2,
+        "actualReturnDeg": 58.4622928017513,
+        "returnAngleSatisfied": false,
+        "score": 39.877559733365956,
+        "terms": [
+          2.069718497855157,
+          1.0164873014830842,
+          0.00692034675003443,
+          0.7861202828145881,
+          0,
+          1.1652248915677157
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 12.543401734026345,
+        "legacyTerms": [
+          0.9557767573647814,
+          1.0164873014830842,
+          0.0014987653169366377,
+          0.015043591506642468,
+          0,
+          0.0009465039012082978
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 31.772154055339318,
+        "rmsHitError": 27.821753130091874,
+        "routeLength": 12510.112766553922,
+        "driveLength": 12048.014562288707,
+        "maxSteeringDeg": 17.59371018708776,
+        "maxPressureDeg": 38.95100434186084,
+        "maxWorkPressureDeg": 34.00322609685955,
+        "maxReturnPressureDeg": 38.95100434186084,
+        "minUndercutMargin": -0.06086384594496019,
+        "intersectionCount": 1,
+        "actualReturnDeg": 56.57125893129723,
+        "returnAngleSatisfied": false,
+        "score": 25.545102071925044,
+        "terms": [
+          1.9816885783866574,
+          1.0221292952627448,
+          0.004996544362777177,
+          0.15795343292142072,
+          0,
+          0.0258856448532597
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 11.350674854223005,
+        "legacyTerms": [
+          0.8600554969241967,
+          1.0221292952627448,
+          0.0011238385885886098,
+          0.0018490798273885362,
+          0,
+          8.46792105580822e-06
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.23851488917523422,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": false,
+        "gatePassed": true,
+        "maxScaledViolation": 1.3682111604336702,
+        "maximumOutsideMM": 2736.42232086734
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35,
+      "primaryRepresentationFit": {
+        "positionRMSMM": 0.6486001953406403,
+        "positionMaxMM": 2.3418746977589695,
+        "startDerivativeError": 0,
+        "endDerivativeError": 1.4432899320127035e-15,
+        "effectiveDOF": 66
+      },
+      "continuationStartVersusOriginalGeometry": {
+        "sensorMaxDifferenceMM": 756.9534314935419,
+        "steeringMaxDifferenceDeg": 22.390262379761968
+      }
+    },
+    {
+      "label": "seed1_bspline3",
+      "seed": 1,
+      "method": "bspline3",
+      "iterations": 492,
+      "requestedIterations": 600,
+      "reason": "constrained_infeasible",
+      "modelAttempts": 33988,
+      "solverFunctionCount": 33766,
+      "solverSeconds": 212.7906652,
+      "effectiveDOF": 66,
+      "stable": true,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 0.020540776026066965,
+        "hitMM": 1.6839862837514374e-09,
+        "steeringDeg": 3.195257498589399e-07,
+        "returnDeg": 0.00014194812871437534,
+        "lengthMM": 0.005632921629512566
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 0.024660808184908508,
+        "inverseFrontMaxErrorMM": 0.034490621290705493,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": true,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 36.81469525548131,
+        "phaseDeg": 19.603267957932932,
+        "minimumRadiusMM": 41.85489497075763,
+        "checkedPolynomialPoints": 9682,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "initialMetrics": {
+        "maxHitError": 34.084471937363,
+        "rmsHitError": 30.160856029930958,
+        "routeLength": 12477.450759934682,
+        "driveLength": 11999.344204867988,
+        "maxSteeringDeg": 18.045825707013442,
+        "maxPressureDeg": 36.517210720090866,
+        "maxWorkPressureDeg": 36.517210720090866,
+        "maxReturnPressureDeg": 35.9899384207654,
+        "minUndercutMargin": -0.012150511201976633,
+        "intersectionCount": 3,
+        "actualReturnDeg": 57.79701984013259,
+        "returnAngleSatisfied": false,
+        "score": 28.878286822921297,
+        "terms": [
+          2.301587181896787,
+          1.0194606707322893,
+          0.0071947802458204885,
+          0.03305599561145208,
+          0,
+          0.012622242210156471
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.153348639215832,
+        "legacyTerms": [
+          1.0107524849535807,
+          1.0194606707322893,
+          0.0018511525576414456,
+          0.0002369311507906653,
+          0,
+          4.450504729178371e-05
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 34.08447179717692,
+        "rmsHitError": 30.1578038915661,
+        "routeLength": 12477.422489358809,
+        "driveLength": 11999.31596946394,
+        "maxSteeringDeg": 18.04582707077543,
+        "maxPressureDeg": 36.797655176107355,
+        "maxWorkPressureDeg": 36.797655176107355,
+        "maxReturnPressureDeg": 36.23208975180364,
+        "minUndercutMargin": -0.28363970592818144,
+        "intersectionCount": 10,
+        "actualReturnDeg": 57.79773094759843,
+        "returnAngleSatisfied": false,
+        "score": 30.26646783867801,
+        "terms": [
+          2.301382614727453,
+          1.0194583609062842,
+          0.007201725080056673,
+          0.04782932275764576,
+          0,
+          0.1472526682609239
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 13.151469196351952,
+        "legacyTerms": [
+          1.0105479284023995,
+          1.0194583609062842,
+          0.0018517810209323204,
+          0.0003332298707944895,
+          0,
+          7.324429626237591e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.29083468632505394,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35,
+      "primaryRepresentationFit": {
+        "positionRMSMM": 0.6194978743393742,
+        "positionMaxMM": 2.1874984864302016,
+        "startDerivativeError": 1.2560739669470201e-15,
+        "endDerivativeError": 2.5201084469941663e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 3,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6194978896725328,
+          "positionMaxMM": 2.1864759313976294,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.02568371195470076
+          ],
+          "endpointDerivativeError": [
+            1.2560739669470201e-15,
+            2.5201084469941663e-15
+          ],
+          "endpointTangentErrorDeg": [
+            5.088887490341631e-14,
+            1.3835412864366307e-13
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66
+      },
+      "continuationStartVersusOriginalGeometry": {
+        "sensorMaxDifferenceMM": 673.0039371477366,
+        "steeringMaxDifferenceDeg": 21.760255447314908
+      }
+    },
+    {
+      "label": "seed1_bspline5",
+      "seed": 1,
+      "method": "bspline5",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 42927,
+      "solverFunctionCount": 42652,
+      "solverSeconds": 277.8387719,
+      "effectiveDOF": 66,
+      "stable": false,
+      "discreteFeasible": false,
+      "verifiedFeasible": false,
+      "last50ViolationImprovement": 0,
+      "convergenceDelta": {
+        "pressureDeg": 0.00018497906931713715,
+        "hitMM": 0.0013887399342813467,
+        "steeringDeg": 1.4319216035119098e-08,
+        "returnDeg": 0.0002333596450512232,
+        "lengthMM": 0.010103651917233947
+      },
+      "numericalChecks": {
+        "camMaxDifferenceMM": 1.1720716368977417,
+        "inverseFrontMaxErrorMM": 0.02878517950762906,
+        "camToleranceMM": 0.05,
+        "inverseToleranceMM": 2,
+        "passed": false,
+        "physicalEvaluationAttempts": 2,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+      },
+      "pressureAudit": {
+        "maxPressureDeg": 42.45523764065536,
+        "phaseDeg": 27.977849501749564,
+        "minimumRadiusMM": 41.46081426821023,
+        "checkedPolynomialPoints": 9658,
+        "passed": false,
+        "scope": "Polynomial stationary roots and piece boundaries on 8x reconstructed cam law; does not certify exact continuous vehicle path or contact."
+      },
+      "initialMetrics": {
+        "maxHitError": 29.752439995091965,
+        "rmsHitError": 24.078707415324015,
+        "routeLength": 12774.401287514305,
+        "driveLength": 12316.248083740173,
+        "maxSteeringDeg": 18.857226474170066,
+        "maxPressureDeg": 42.452400843808135,
+        "maxWorkPressureDeg": 42.452400843808135,
+        "maxReturnPressureDeg": 25.26094761491044,
+        "minUndercutMargin": -0.16605893080512812,
+        "intersectionCount": 1,
+        "actualReturnDeg": 49.81580895191225,
+        "returnAngleSatisfied": false,
+        "score": 22.977082904395658,
+        "terms": [
+          1.6277687071714753,
+          1.043722788839996,
+          0.006108145460100269,
+          0.5596863105521089,
+          0,
+          0.07088604069214295
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 8.789861670448508,
+        "legacyTerms": [
+          0.6442046119919774,
+          1.043722788839996,
+          0.000893047921235501,
+          0.004303527184186913,
+          0,
+          9.868603097501088e-05
+        ],
+        "geometryChecked": true
+      },
+      "finalMetrics": {
+        "maxHitError": 29.748433560106516,
+        "rmsHitError": 24.072068580214864,
+        "routeLength": 12774.451812844947,
+        "driveLength": 12316.294399757042,
+        "maxSteeringDeg": 18.85838719065868,
+        "maxPressureDeg": 42.45314412572882,
+        "maxWorkPressureDeg": 42.45314412572882,
+        "maxReturnPressureDeg": 37.364311308773665,
+        "minUndercutMargin": -0.16576864070157438,
+        "intersectionCount": 2,
+        "actualReturnDeg": 49.81464248497137,
+        "returnAngleSatisfied": false,
+        "score": 23.137678213688833,
+        "terms": [
+          1.6271486500118215,
+          1.0437269169738956,
+          0.006116226540460977,
+          0.6162075722130996,
+          0,
+          0.07073123268528571
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 8.787132434012152,
+        "legacyTerms": [
+          0.6438494285895195,
+          1.0437269169738956,
+          0.0008933969929617715,
+          0.004814318976288391,
+          0,
+          9.826230492317929e-05
+        ],
+        "geometryChecked": true
+      },
+      "maxScaledViolation": 0.4712403642121663,
+      "maximumCenterOutsideMM": 0,
+      "finalValid": true,
+      "controlBounds": {
+        "policy": "trajectory-only-v1",
+        "enforced": false,
+        "satisfied": true,
+        "gatePassed": true,
+        "maxScaledViolation": 0,
+        "maximumOutsideMM": 0
+      },
+      "requestedRatio": 35,
+      "effectiveRatio": 35,
+      "primaryRepresentationFit": {
+        "positionRMSMM": 0.6599715588743025,
+        "positionMaxMM": 1.933517794225437,
+        "startDerivativeError": 1.7763568394002505e-15,
+        "endDerivativeError": 2.780549076845816e-15,
+        "conversion": {
+          "sourceModel": "cubic",
+          "degree": 5,
+          "controlPointCount": 36,
+          "positionRMSMM": 0.6599715750614951,
+          "positionMaxMM": 1.9334928874644386,
+          "endpointPositionErrorMM": [
+            5.684341886080802e-14,
+            0.07152191470527922
+          ],
+          "endpointDerivativeError": [
+            1.7763568394002505e-15,
+            2.780549076845816e-15
+          ],
+          "endpointTangentErrorDeg": [
+            1.0177774980683254e-13,
+            1.304027419400044e-13
+          ],
+          "constraintRank": 6,
+          "effectiveDOF": 66,
+          "shapePreservationGuaranteed": false,
+          "parameterLength": 12231.165673855725,
+          "endpointPolicy": "Fixed initial position and full initial/final parameter derivatives; final position fitted.",
+          "controlBoundsPolicy": "Coefficients are not clipped; physical trajectory bounds are checked downstream."
+        },
+        "effectiveDOF": 66
+      },
+      "continuationStartVersusOriginalGeometry": {
+        "sensorMaxDifferenceMM": 935.4060514892811,
+        "steeringMaxDifferenceDeg": 22.69239269642649
+      }
+    }
+  ],
+  "sourceSha256": {
+    "+camdesign/route.m": "d562eb2f2a905ed8a67bc91816a8a38e3b5c542312b430f61213e7af60746066",
+    "+camdesign/camProfile.m": "20058f1e493cfd321ddd767f2b842a491a62ee8f6d115f1ee85ed8015908db6c",
+    "+camdesign/routeSpline.m": "f5c93eff263f218d6709d6a86cfcd8880f1c0e9d8aa5551e3fcdfd8f0290eb49",
+    "+camdesign/bezierRoute.m": "a440b89852a397cc86bfa3cd61c8dc422c9aab604796b04d375af868c402aa76",
+    "+camdesign/independentBezierBasis.m": "c1f70468832bc588871240d9d72198082c3fcae283f0d5e1f81255e48d0bb0d6",
+    "+camdesign/bsplineBasis.m": "89318435ab6b4a2a34f6f07e0620d839186e39a581363ff8dabadc25539f5dbc",
+    "+camdesign/bsplineRoute.m": "d0862a47159f4fb7715b6c39893997386e9946e6b61650474381107a75a83c38",
+    "+camdesign/toBSpline.m": "b5446d2c7b5e9294ac8a1835b045b1c0d8782eab621fd17a5c0d05d0e01647ab",
+    "+camdesign/routeGeometry.m": "5d39c077b99428fd562911562b1e8063954c51827b464aa86fc9231ac9047b8c",
+    "+camdesign/optimizationVariables.m": "12823e9feec7f8528c2678181e2b331e0b0336a0b0b0818547c7d298fe2436d9",
+    "+camdesign/controlBounds.m": "12b888e628e93a0e56a64896f0748771ce804325b43502afd7da27f1fe860ed0",
+    "+camdesign/fminconModel.m": "0f328e7783f5b3218730e0e4b81044aa91dd9d4a8f1e81799e6500dff8a499d9",
+    "+camdesign/optimizeFmincon.m": "fa43ab0b863d263a9a88420e245b7c0e8faeca6bb9468314af9cb3e919e3afd1",
+    "+camdesign/verifyConstrained.m": "68e542772a4e9209f19b03081fa1865753f3876cd036c5d926f81178dd29465b",
+    "+camdesign/autoTuneAssessment.m": "63c2db60263c273ad69a65080437955ce22e3f9b6dfab0ec05570c6efc997e2a",
+    "+camdesign/autoTuneNumericalChecks.m": "e2ba8e834647779b3e6c7e6dae5df73ccd147235e2302bde362853aebc60897c",
+    "+camdesign/validateProject.m": "f77cfdcc9cc2c9f3cc63be37c50be4d9eefbfc5dfd09ed6ef1985e96d7a0a4cc",
+    "+camdesign/evaluate.m": "f7b0ff7fd05f33583baf6a212d50f7c12f2ee1b696c62b0c14ec7ee8c20db39d",
+    "check_path_method_comparison.m": "04f3db5b5962ee275ddbf0bd3e9fc6407859f4ad25ce8934b681abdfac77ce8a",
+    "report_path_method_comparison.m": "2163964c8bc8f0db56d5af04f4a0f5c20be595643d358cdf05ffc2604fcb1258",
+    "scripts/build_path_evidence.py": "db1765d33edd5f4630b21864488aeeeb0058ee33c6910f9489b8ba53633c26a1"
+  },
+  "sourceHashScope": "Delivered source files. Numerical core frozen throughout formal runs; report/recovery fixes made during execution did not change numerical objectives, constraints or candidates.",
+  "coreContracts": [
+    "partition of unity, analytic D1-D3, scalar/endpoints, Bernstein oracle and knot joins",
+    "exact quadratic/cubic polynomial conversion, derivatives, route integration and explicit count refit",
+    "formal solar geometry converts with measured fit error and 66 effective variables",
+    "legacy objective/bounds default retained; explicit regularizer and trajectory-only policy keep physical constraints",
+    "real short inner-point solves and callbacks preserve B3/B5/Bezier endpoint equalities and effective DOF",
+    "unsupported backends rejected, old peak-search path retained and B-spline MAT roundtrip exact"
+  ],
+  "uiContracts": [
+    "real model/apply/calculate callbacks convert B3, select inner-point and display actual coefficient controls",
+    "B5 model callback and actual optimize button run the endpoint-constrained backend without changing ratio or parameters",
+    "actual add/delete controls refit, synchronize density and preserve derivatives; map editing accepts free controls and rejects endpoint violations",
+    "unsupported peak/four-direction/auto modes disable optimize and explicit action rejects them without model replacement",
+    "same save/import action branches as toolbar preserve knots, controls, constraints, settings and route model",
+    "fixed-cam simulation accepts trial heading and restores the complete constrained B-spline design on exit",
+    "rebuild retains explicit B5/count and switching back to cubic samples the real curve",
+    "legacy independent Bezier model/apply path remains functional after B-spline integration",
+    "visible out-of-field B-spline coefficient can be clicked, dragged and confirmed; finite/visible/source guards remain and physical bounds still fail",
+    "legacy-bound B-spline, cubic and independent Bezier retain field-limited map editing"
+  ],
+  "regression": {
+    "passed": 12,
+    "total": 12,
+    "log": "local/matlab_1fb1ae80a8c74dd8b65c7d8d8eb79991.log"
+  },
+  "rawEvidence": "outputs/path_comparison_20261031",
+  "extensionScope": "Seed1 of each method received another 600 iterations / 50000 solver calls on 1201/1441 training samples. A separate diagnostic, not mixed into the 5-start primary comparison.",
+  "seed1GridDiagnostic": [
+    {
+      "method": "cubic",
+      "grid": 4.0,
+      "minFrontSpeed": 0.390830003,
+      "minDriveSpeed": 0.384640882,
+      "pressure": 36.826703316,
+      "undercut": -0.015243181,
+      "camDiff": null,
+      "phase": null
+    },
+    {
+      "method": "cubic",
+      "grid": 8.0,
+      "minFrontSpeed": 0.390830003,
+      "minDriveSpeed": 0.384640881,
+      "pressure": 36.845254443,
+      "undercut": -0.051086498,
+      "camDiff": 0.014895401,
+      "phase": 335.0
+    },
+    {
+      "method": "cubic",
+      "grid": 16.0,
+      "minFrontSpeed": 0.390827403,
+      "minDriveSpeed": 0.38463712,
+      "pressure": 36.864191506,
+      "undercut": -0.073435814,
+      "camDiff": 0.003983418,
+      "phase": 97.25
+    },
+    {
+      "method": "bezier5",
+      "grid": 4.0,
+      "minFrontSpeed": 0.151301329,
+      "minDriveSpeed": 0.151130474,
+      "pressure": 47.898474262,
+      "undercut": -0.984143379,
+      "camDiff": null,
+      "phase": null
+    },
+    {
+      "method": "bezier5",
+      "grid": 8.0,
+      "minFrontSpeed": 0.151301329,
+      "minDriveSpeed": 0.151130474,
+      "pressure": 49.402968461,
+      "undercut": -0.983511778,
+      "camDiff": 0.998460702,
+      "phase": 324.75
+    },
+    {
+      "method": "bezier5",
+      "grid": 16.0,
+      "minFrontSpeed": 0.151299514,
+      "minDriveSpeed": 0.15112834,
+      "pressure": 49.872173806,
+      "undercut": -0.99587042,
+      "camDiff": 0.326204908,
+      "phase": 324.75
+    },
+    {
+      "method": "bspline3",
+      "grid": 4.0,
+      "minFrontSpeed": 0.413239738,
+      "minDriveSpeed": 0.443529832,
+      "pressure": 36.818195952,
+      "undercut": -0.095553734,
+      "camDiff": null,
+      "phase": null
+    },
+    {
+      "method": "bspline3",
+      "grid": 8.0,
+      "minFrontSpeed": 0.413239738,
+      "minDriveSpeed": 0.443505577,
+      "pressure": 36.797655176,
+      "undercut": -0.283639706,
+      "camDiff": 0.024660808,
+      "phase": 337.5
+    },
+    {
+      "method": "bspline3",
+      "grid": 16.0,
+      "minFrontSpeed": 0.413239531,
+      "minDriveSpeed": 0.443505577,
+      "pressure": 36.885372413,
+      "undercut": -0.262163787,
+      "camDiff": 0.005928717,
+      "phase": 337.5
+    },
+    {
+      "method": "bspline5",
+      "grid": 4.0,
+      "minFrontSpeed": 0.278251614,
+      "minDriveSpeed": 0.296687666,
+      "pressure": 42.452959147,
+      "undercut": -0.165686208,
+      "camDiff": null,
+      "phase": null
+    },
+    {
+      "method": "bspline5",
+      "grid": 8.0,
+      "minFrontSpeed": 0.27824996,
+      "minDriveSpeed": 0.296687433,
+      "pressure": 42.453144126,
+      "undercut": -0.165768641,
+      "camDiff": 1.172071637,
+      "phase": 331.0
+    },
+    {
+      "method": "bspline5",
+      "grid": 16.0,
+      "minFrontSpeed": 0.278248969,
+      "minDriveSpeed": 0.296685669,
+      "pressure": 42.454948955,
+      "undercut": -0.167048878,
+      "camDiff": 0.384480546,
+      "phase": 330.625
+    }
+  ],
+  "seed1GridDiagnosticSource": "local/matlab_4ba9ded010e24658b179fe20e1ae9909.log"
+}

@@ -4,7 +4,12 @@ camdesign.validateProject(project);
 validateattributes(count,{'double'},{'scalar','integer','finite','>=',2,'<=',250});
 oldCount=size(project.nodes,1); mode=camdesign.routeModel(project.params);
 preserved=true; skipped=0;
-if strcmp(mode,'bezier-blend-independent-v1')
+if strcmp(mode,'bspline-v1')
+    if count~=oldCount
+        [project,fitInfo]=camdesign.toBSpline(project,count,project.params.bspline.degree);
+        preserved=false;
+    end
+elseif strcmp(mode,'bezier-blend-independent-v1')
     assert(count>=project.params.bezier.degree+1,'cam:BezierCount','控制点数量须大于贝塞尔阶数。');
     if count~=oldCount
         project.nodes=interp1(linspace(0,1,oldCount)',project.nodes,linspace(0,1,count)','linear');
@@ -30,4 +35,5 @@ end
 camdesign.validateProject(project);
 info=struct('oldCount',oldCount,'actualCount',size(project.nodes,1), ...
     'shapePreservationGuaranteed',preserved,'outsideSegmentsSkipped',skipped,'targetOrderUnchanged',true);
+if exist('fitInfo','var'), info.fitInfo=fitInfo; end
 end

@@ -1,4 +1,5 @@
 function [best,history,info]=optimizeSearch(project,callback,algorithm)
+assert(~strcmp(camdesign.routeModel(project.params),'bspline-v1'),'cam:BSplineBackend','B样条目前仅支持内点法。');
 % Video-inspired mode implements visible structures with explicit independent rules.
 if isempty(callback), callback=@(~,~,~)false; end
 assert(ismember(algorithm,{'peak-gradient-v2','video-four-direction-v1'}),'cam:Optimizer','未知优化路径。');
