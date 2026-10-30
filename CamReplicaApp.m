@@ -54,6 +54,7 @@ classdef CamReplicaApp < handle
         MethodSummary
         ResultsTabs
         ScoreSummary
+        LengthSummary
         ScoreTable
         ScoreTrendAxes
         ObjectiveTrendAxes
@@ -114,7 +115,7 @@ classdef CamReplicaApp < handle
                 'Position',[70 60 1320 860],'Visible',visibility,'Color',[.95 .96 .98],'AutoResizeChildren','off');
             app.Figure.CloseRequestFcn=@(~,~)app.closeRequested();
             app.Figure.WindowKeyPressFcn=@(~,event)app.routeEditorKey(event);
-            root=uigridlayout(app.Figure,[5 2],'RowHeight',{34,36,52,'1x',230}, ...
+            root=uigridlayout(app.Figure,[5 2],'RowHeight',{34,36,52,'1x',262}, ...
                 'ColumnWidth',{320,'1x'},'Padding',[12 8 12 8], ...
                 'RowSpacing',6,'ColumnSpacing',10);
             app.RootLayout=root;
@@ -234,13 +235,16 @@ classdef CamReplicaApp < handle
             app.RouteAxes.ButtonDownFcn=@(source,~)app.routeMapClick(source.CurrentPoint(1,1:2),source,app.Figure.SelectionType);
             app.SteeringAxes=uiaxes(charts); app.SteeringAxes.Layout.Row=1; app.SteeringAxes.Layout.Column=1;
             app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=[1 2]; app.CamAxes.Layout.Column=2;
-            bottom=uigridlayout(root,[2 1],'RowHeight',{38,'1x'},'Padding',[0 0 0 0],'RowSpacing',3);
+            bottom=uigridlayout(root,[3 1],'RowHeight',{38,28,'1x'},'Padding',[0 0 0 0],'RowSpacing',3);
             bottom.Layout.Row=5; bottom.Layout.Column=[1 2];
             statusRow=uigridlayout(bottom,[1 4],'ColumnWidth',{'1x',220,90,90},'Padding',[0 0 0 0],'ColumnSpacing',5);
             app.Status=uilabel(statusRow,'Text','准备就绪','FontSize',11,'FontWeight','bold','WordWrap','on');
             app.ScoreSummary=uilabel(statusRow,'Text','通用评分：待计算','FontSize',11,'FontWeight','bold','WordWrap','on');
             app.ScoreDetailsButton=uibutton(statusRow,'Text','评分详情','ButtonPushedFcn',@(~,~)app.openDiagnostics('score'));
             app.LogDetailsButton=uibutton(statusRow,'Text','日志大窗','ButtonPushedFcn',@(~,~)app.openDiagnostics('log'));
+            app.LengthSummary=uilabel(bottom,'Text','总路程（前轮轨迹）：待计算    主动轮行程：待计算', ...
+                'FontSize',12,'FontWeight','bold','FontColor',[.12 .25 .38],'BackgroundColor',[.9 .94 .98], ...
+                'WordWrap','on','Tooltip','真实长度取自当前显示结果的 routeLength / driveLength，单位 mm；m=mm/1000。不是评分表中归一化的路线长度项。');
             app.ResultsTabs=uitabgroup(bottom);
             app.ScoreTab=uitab(app.ResultsTabs,'Title','评分与趋势'); view=app.createScoreView(app.ScoreTab);
             app.ScoreViews={view}; app.ScoreTable=view.table; app.ScoreTrendAxes=view.scoreAxes; app.ObjectiveTrendAxes=view.objectiveAxes;
@@ -917,7 +921,7 @@ classdef CamReplicaApp < handle
         end
         function resizeLayout(app)
             if isempty(app.RootLayout) || ~isvalid(app.RootLayout), return; end
-            dimensions=app.Figure.Position(3:4); width=320; footer=230;
+            dimensions=app.Figure.Position(3:4); width=320; footer=262;
             if dimensions(1)<1220, width=260; end
             app.RootLayout.ColumnWidth={width,'1x'};
             app.RootLayout.RowHeight={34,36,52,'1x',footer};
@@ -998,6 +1002,12 @@ classdef CamReplicaApp < handle
             end
             data=camdesign.resultDisplayData(project,result,app.History,app.OptimizationInfo,state,historyState);
             app.ScoreDisplayData=data;
+            lengths={'待计算','待计算'}; values=[data.routeLengthMM,data.driveLengthMM];
+            for k=1:2
+                if isfinite(values(k)), lengths{k}=sprintf('%.3f m（%.2f mm）',values(k)/1000,values(k)); end
+            end
+            lengthState=strrep(data.state,'设计参考分','设计参考');
+            app.LengthSummary.Text=sprintf('%s · 总路程（前轮轨迹）：%s    主动轮行程：%s',lengthState,lengths{:});
             if isfinite(data.total)
                 app.ScoreSummary.Text=sprintf('通用总分 %.6g（越低越好）\n%s · %d/%d',data.total,data.state,data.grid);
             else, app.ScoreSummary.Text=sprintf('通用总分：暂无\n请先计算'); end

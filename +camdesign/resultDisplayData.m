@@ -6,9 +6,19 @@ if nargin<4, info=[]; end
 if nargin<5, state='当前计算'; end
 if nargin<6, historyState='本次训练'; end
 display=struct('total',NaN,'rows',{cell(0,4)},'state',state,'consistent',false, ...
+    'routeLengthMM',NaN,'driveLengthMM',NaN, ...
     'scoreVersion','未记录','grid',[NaN NaN],'historyState',historyState, ...
     'scoreX',[],'scoreY',[],'objectiveX',[],'objectiveY',[], ...
     'objectiveValue',NaN,'xLabel','迭代','description','本版六项加权通用评分，越低越好；不是原版十二项评分。');
+if ~isempty(result) && isfield(result,'metrics')
+    m=result.metrics;
+    if isfield(m,'routeLength') && isnumeric(m.routeLength) && isscalar(m.routeLength) && isfinite(m.routeLength)
+        display.routeLengthMM=m.routeLength;
+    end
+    if isfield(m,'driveLength') && isnumeric(m.driveLength) && isscalar(m.driveLength) && isfinite(m.driveLength)
+        display.driveLengthMM=m.driveLength;
+    end
+end
 if ~isempty(result) && isfield(result,'metrics') && isfield(result.metrics,'terms')
     m=result.metrics; terms=m.terms(:); weights=project.params.weights(:);
     assert(numel(terms)==6 && numel(weights)==6,'cam:DisplayScore','评分必须含六项。');
