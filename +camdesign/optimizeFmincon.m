@@ -15,6 +15,9 @@ assert(exist('fmincon','file')==2 && license('test','Optimization_Toolbox'), ...
     'cam:FminconUnavailable','实验约束后端需要 Optimization Toolbox 的 fmincon。');
 if isempty(callback), callback=@(~,~,~)false; end
 timer=tic; camdesign.validateProject(project); best=project; n=size(project.nodes,1);
+weightSettings=camdesign.dynamicWeightSettings(project.params);
+assert(~weightSettings.enabled,'cam:DynamicWeightsBackend', ...
+    '动态权重目前支持梯度/四方向搜索。内点法单次求解须保持目标不变；请关闭动态权重或切换搜索方法。');
 free=[(2:n)';(n+2:2*n)']; scale=1000; x0=zeros(numel(free),1);
 if isnan(options.MaxFunctionEvaluations)
     maxFunctions=max(2000,4*(numel(free)+1)*(project.params.iterations+1));

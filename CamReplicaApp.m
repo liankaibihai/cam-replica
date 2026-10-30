@@ -12,6 +12,12 @@ classdef CamReplicaApp < handle
         TargetsTable
         NodesTable
         WeightsTable
+        WeightsTab
+        DynamicWeightsEnabled
+        DynamicWeightFields
+        DynamicWeightInfo
+        DynamicWeightSource
+        ScoreBasis
         Mechanism
         AutoRatio
         RatioNotice
@@ -189,9 +195,32 @@ classdef CamReplicaApp < handle
             app.NodesTable=uitable(g,'ColumnName',{'前轮 X / mm','前轮 Y / mm'},'ColumnEditable',[true true], ...
                 'ColumnWidth',{105,105},'CellEditCallback',@(~,~)app.invalidate(), ...
                 'CellSelectionCallback',@(~,event)app.selectPoint('node',event));
-            t=uitab(tabs,'Title','权重'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
-            app.WeightsTable=uitable(g,'ColumnName',{'独立目标项','权重'},'ColumnEditable',[false true], ...
-                'ColumnWidth',{180,65},'ColumnFormat',{'char','numeric'},'RowName',{},'CellEditCallback',@(~,~)app.invalidate());
+            t=uitab(tabs,'Title','权重'); app.WeightsTab=t;
+            g=uigridlayout(t,[3 1],'RowHeight',{104,156,58},'Padding',[0 0 0 0],'RowSpacing',3,'Scrollable','on');
+            settings=uigridlayout(g,[4 4],'RowHeight',{26,16,26,26},'ColumnWidth',{'1x',48,'1x',48}, ...
+                'Padding',[2 0 2 0],'ColumnSpacing',3,'RowSpacing',2);
+            app.DynamicWeightsEnabled=uicheckbox(settings,'Text','按违规自动调权重','Value',false, ...
+                'ValueChangedFcn',@(~,~)app.dynamicWeightsChanged(), ...
+                'Tooltip','基础权重不变；在轮次边界根据物理违规调整搜索权重。只支持梯度搜索和四方向试探。');
+            app.DynamicWeightsEnabled.Layout.Row=1; app.DynamicWeightsEnabled.Layout.Column=[1 4];
+            app.DynamicWeightSource=uilabel(settings,'Text','实际权重未记录','FontSize',10);
+            app.DynamicWeightSource.Layout.Row=2; app.DynamicWeightSource.Layout.Column=[1 4];
+            names={'更新间隔','调节增益','倍率上限','响应率'};
+            tips={'每隔多少轮更新一次实际权重，正整数。','违规对权重倍率的影响强度。', ...
+                '实际权重相对基础权重的倍率上限。','实际倍率向目标倍率靠近的比例。'};
+            app.DynamicWeightFields=gobjects(1,4);
+            for k=1:4
+                row=3+floor((k-1)/2); column=1+2*mod(k-1,2);
+                label=uilabel(settings,'Text',names{k},'FontSize',10,'Tooltip',tips{k});
+                label.Layout.Row=row; label.Layout.Column=column;
+                app.DynamicWeightFields(k)=uieditfield(settings,'numeric','Value',1,'FontSize',10, ...
+                    'Tooltip',tips{k},'ValueChangedFcn',@(~,~)app.dynamicWeightsChanged());
+                app.DynamicWeightFields(k).Layout.Row=row; app.DynamicWeightFields(k).Layout.Column=column+1;
+            end
+            app.WeightsTable=uitable(g,'ColumnName',{'评分项','基础','实际'},'ColumnEditable',[false true false], ...
+                'ColumnWidth',{130,60,60},'ColumnFormat',{'char','numeric','char'},'RowName',{},'FontSize',11, ...
+                'CellEditCallback',@(~,~)app.invalidate());
+            app.DynamicWeightInfo=uilabel(g,'Text','','FontSize',10,'WordWrap','on','VerticalAlignment','top');
             t=uitab(tabs,'Title','训练'); app.TrainingTab=t;
             trainingRoot=uigridlayout(t,[3 1],'RowHeight',{64,'1x',32},'Padding',[0 0 0 0],'RowSpacing',3);
             app.TrainingRuntime=uilabel(trainingRoot,'Text','本轮有效参数：尚无训练记录','FontSize',10,'WordWrap','on','VerticalAlignment','top');
@@ -237,9 +266,12 @@ classdef CamReplicaApp < handle
             app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=[1 2]; app.CamAxes.Layout.Column=2;
             bottom=uigridlayout(root,[3 1],'RowHeight',{38,28,'1x'},'Padding',[0 0 0 0],'RowSpacing',3);
             bottom.Layout.Row=5; bottom.Layout.Column=[1 2];
-            statusRow=uigridlayout(bottom,[1 4],'ColumnWidth',{'1x',220,90,90},'Padding',[0 0 0 0],'ColumnSpacing',5);
+            statusRow=uigridlayout(bottom,[1 5],'ColumnWidth',{'1x',220,165,90,90},'Padding',[0 0 0 0],'ColumnSpacing',5);
             app.Status=uilabel(statusRow,'Text','准备就绪','FontSize',11,'FontWeight','bold','WordWrap','on');
             app.ScoreSummary=uilabel(statusRow,'Text','通用评分：待计算','FontSize',11,'FontWeight','bold','WordWrap','on');
+            app.ScoreBasis=uidropdown(statusRow,'Items',{'固定参照评分','本轮动态评分'},'ItemsData',{'reference','dynamic'}, ...
+                'Value','reference','ValueChangedFcn',@(~,~)app.updateDiagnostics(), ...
+                'Tooltip','切换下方六项表的权重和贡献口径；固定参照趋势不随动态权重变化。');
             app.ScoreDetailsButton=uibutton(statusRow,'Text','评分详情','ButtonPushedFcn',@(~,~)app.openDiagnostics('score'));
             app.LogDetailsButton=uibutton(statusRow,'Text','日志大窗','ButtonPushedFcn',@(~,~)app.openDiagnostics('log'));
             app.LengthSummary=uilabel(bottom,'Text','总路程（前轮轨迹）：待计算    主动轮行程：待计算', ...
@@ -275,7 +307,10 @@ classdef CamReplicaApp < handle
                 if ~strcmp(app.LegacyRatioNotice,notice), app.LegacyRatioNotice=notice; app.message(notice); end
             end
             labels={'有序打卡偏差','前轮路线长度','转向变化率','压力角超限','前轮转角超限','包络欠切风险'};
-            app.WeightsTable.Data=[labels(:),num2cell(p.weights(:))];
+            app.WeightsTable.Data=[labels(:),num2cell(p.weights(:)),repmat({'未记录'},6,1)];
+            settings=camdesign.dynamicWeightSettings(p); app.DynamicWeightsEnabled.Value=settings.enabled;
+            names={'interval','gain','maxMultiplier','response'};
+            for k=1:4, app.DynamicWeightFields(k).Value=settings.(names{k}); end
             app.syncTrainingInputs();
         end
         function readInputs(app)
@@ -293,6 +328,11 @@ classdef CamReplicaApp < handle
             end
             p.mechanism=app.Mechanism.Value; p.autoRatio=false;
             p.weights=cellfun(@double,app.WeightsTable.Data(:,2))';
+            settings=struct('enabled',logical(app.DynamicWeightsEnabled.Value),'interval',app.DynamicWeightFields(1).Value, ...
+                'gain',app.DynamicWeightFields(2).Value,'maxMultiplier',app.DynamicWeightFields(3).Value,'response',app.DynamicWeightFields(4).Value);
+            if ~isequaln(settings,camdesign.dynamicWeightSettings(p))
+                p.dynamicWeights=settings; camdesign.dynamicWeightSettings(p);
+            end
             candidate=app.Project; candidate.params=p; candidate.targets=double(app.TargetsTable.Data);
             candidate.nodes=double(app.NodesTable.Data);
             camdesign.validateProject(candidate);
@@ -735,6 +775,26 @@ classdef CamReplicaApp < handle
         function markTrainingDirty(app)
             app.TrainingDirty=true; app.refreshTrainingControls();
         end
+        function dynamicWeightsChanged(app)
+            app.refreshDynamicWeightControls(); app.invalidate();
+        end
+        function refreshDynamicWeightControls(app)
+            if isempty(app.DynamicWeightsEnabled), return; end
+            editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
+            constrained=startsWith(app.AlgorithmSelector.Value,'fmincon'); enabled=app.DynamicWeightsEnabled.Value;
+            app.DynamicWeightsEnabled.Enable=editable && (~constrained || enabled);
+            for k=1:4, app.DynamicWeightFields(k).Enable=editable && enabled && ~constrained; end
+            app.Buttons(5).Enable=editable && ~(constrained && enabled);
+            app.Buttons(5).Tooltip='使用当前画法和优化方法训练';
+            if constrained
+                app.DynamicWeightInfo.Text='内点法本次目标必须固定，暂不支持动态权重。已开启时请先取消勾选；基础权重仍可在训练前修改。';
+                if enabled, app.Buttons(5).Tooltip='内点法暂不支持动态权重；请先在权重页关闭动态开关。'; end
+            elseif enabled
+                app.DynamicWeightInfo.Text='只调打卡、压力角、转角及欠切惩罚；长度与转向变化保留基础。实际值只读，跨轮改善请看固定参照分。小窗口可滚动。';
+            else
+                app.DynamicWeightInfo.Text='静态评分：使用基础权重。训练实际权重有记录后才显示；缺记录不从当前输入推测。';
+            end
+        end
         function refreshTrainingControls(app)
             if isempty(app.TrainingFields), return; end
             editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
@@ -760,6 +820,7 @@ classdef CamReplicaApp < handle
                 app.MethodSummary.Text=sprintf('画法决定连线，优化方法负责改点；传动比 %.6g 固定执行，只能用户手改。',app.Project.params.gearRatio);
             end
             app.refreshTrainingRuntime();
+            app.refreshDynamicWeightControls();
         end
         function applied=applyTraining(app)
             applied=false;
@@ -817,7 +878,7 @@ classdef CamReplicaApp < handle
                             if strcmp(choice,'另建齿条方案'), mechanism='rack'; else, mechanism='flat'; end
                             [next,notes]=camdesign.importProject(fullfile(d,f),MechanismOverride=mechanism);
                         end
-                        app.Project=next;
+                        app.Project=next; app.History=[]; app.HistoryProject=[]; app.OptimizationInfo=[]; app.OptimizationDirection=[];
                         app.syncInputs(); app.calculate(); for k=1:numel(notes), app.message(notes{k}); end
                     case 'save'
                         app.readInputs(); [f,d]=uiputfile('*.mat','保存复现项目','cam_project.mat');
@@ -868,8 +929,11 @@ classdef CamReplicaApp < handle
                 info.iterations,info.requestedIterations,text,verdict,app.Result.metrics.maxWorkPressureDeg, ...
                 app.Result.metrics.maxReturnPressureDeg,app.Project.params.maxPressureDeg,app.Result.metrics.maxHitError,trajectory.maximumOutsideMM);
             app.message('场界检查覆盖前轮、后轴中点、主从动轮中心和传感器的采样位置，不含车宽与整车外廓。');
-            app.message(sprintf('%s，%d/%d 轮，原因：%s；%.3f 秒，%d 次评价；目标 %.6g → %.6g。', ...
+            app.message(sprintf('%s，%d/%d 轮，原因：%s；%.3f 秒，%d 次评价；固定参照评分 %.6g → %.6g。', ...
                 info.algorithm,info.iterations,info.requestedIterations,text,info.elapsedSeconds,info.evaluations,history(1).score,history(end).score));
+            if isfield(info,'dynamicWeights') && info.dynamicWeights.enabled
+                app.message(sprintf('结束时动态搜索分 %.6g；该值使用末轮实际权重，不作为固定尺度的跨轮下降比较。',info.finalDynamicScore));
+            end
             if isfield(info,'returnedObjective')
                 app.message(sprintf('函数调用预算 %d，软时间限 %.1f 秒；最终加密验收另计。', ...
                     info.maxFunctionEvaluations,info.maxSeconds));
@@ -903,15 +967,18 @@ classdef CamReplicaApp < handle
             app.OptimizationDirection=history(end);
             app.Result=camdesign.evaluate(project,false); app.render();
             if strcmp(history(end).event,'searching')
-                app.Status.Text=sprintf('搜索第 %d/%d 轮（已完成 %d 轮）    当前目标 %.5f    最大偏差 %.2f mm', ...
+                app.Status.Text=sprintf('搜索第 %d/%d 轮（已完成 %d 轮）    固定参照 %.5f    最大偏差 %.2f mm', ...
                     history(end).directionIteration,project.params.iterations,iteration,history(end).score,history(end).maxHitError);
             else
-                app.Status.Text=sprintf('已完成 %d/%d 轮    当前目标 %.5f    最大偏差 %.2f mm', ...
+                app.Status.Text=sprintf('已完成 %d/%d 轮    固定参照 %.5f    最大偏差 %.2f mm', ...
                     iteration,project.params.iterations,history(end).score,history(end).maxHitError);
             end
             if isfield(history,'objective')
                 app.Status.Text=sprintf('实验约束 %d/%d 轮    求解目标 %.5g    最大归一化违规 %.5g；尚待加密验收', ...
                     iteration,project.params.iterations,history(end).objective,history(end).maxConstraintViolation);
+            end
+            if isfield(history,'weightMode') && strcmp(history(end).weightMode,'violation-adaptive-v1')
+                app.Status.Text=[app.Status.Text,sprintf('；本轮动态 %.5f（权重会变）',history(end).dynamicScore)];
             end
             drawnow; stop=app.StopRequested;
         end
@@ -928,7 +995,7 @@ classdef CamReplicaApp < handle
             app.ParamsTable.ColumnWidth={width-100,75};
             sideColumn=floor((width-65)/2);
             app.TargetsTable.ColumnWidth={sideColumn,sideColumn}; app.NodesTable.ColumnWidth={sideColumn,sideColumn};
-            app.WeightsTable.ColumnWidth={width-95,65};
+            app.WeightsTable.ColumnWidth={width-168,60,60};
         end
         function view=createScoreView(app,parent)
             grid=uigridlayout(parent,[1 3],'ColumnWidth',{370,'1x','1x'},'Padding',[2 0 2 0],'ColumnSpacing',8);
@@ -1000,7 +1067,8 @@ classdef CamReplicaApp < handle
             if ~current || isempty(app.HistoryProject) || ~isequaln(app.HistoryProject,app.CamBaseProject)
                 historyState='历史记录（非当前输入）';
             end
-            data=camdesign.resultDisplayData(project,result,app.History,app.OptimizationInfo,state,historyState);
+            weightsMatch=~isempty(app.HistoryProject) && isequaln(app.HistoryProject,app.CamBaseProject);
+            data=camdesign.resultDisplayData(project,result,app.History,app.OptimizationInfo,state,historyState,weightsMatch);
             app.ScoreDisplayData=data;
             lengths={'待计算','待计算'}; values=[data.routeLengthMM,data.driveLengthMM];
             for k=1:2
@@ -1009,18 +1077,52 @@ classdef CamReplicaApp < handle
             lengthState=strrep(data.state,'设计参考分','设计参考');
             app.LengthSummary.Text=sprintf('%s · 总路程（前轮轨迹）：%s    主动轮行程：%s',lengthState,lengths{:});
             if isfinite(data.total)
-                app.ScoreSummary.Text=sprintf('通用总分 %.6g（越低越好）\n%s · %d/%d',data.total,data.state,data.grid);
-            else, app.ScoreSummary.Text=sprintf('通用总分：暂无\n请先计算'); end
+                dynamicText='未记录';
+                if data.dynamicAvailable, dynamicText=sprintf('%.5g',data.dynamicTotal);
+                elseif strcmp(data.weightMode,'fixed'), dynamicText='未启用'; end
+                app.ScoreSummary.Text=sprintf('固定参照 %.5g · 动态 %s\n%s · %d/%d',data.total,dynamicText,data.state,data.grid);
+            else, app.ScoreSummary.Text=sprintf('固定参照：暂无\n请先计算'); end
+            app.ScoreSummary.Tooltip=['固定参照分使用基础权重；动态分使用匹配记录的实际权重。',data.weightSource,'。动态分不可按固定尺度判断跨轮改善。'];
+            app.ScoreBasis.Enable=data.dynamicAvailable;
+            if ~data.dynamicAvailable, app.ScoreBasis.Value='reference'; end
+            app.ScoreBasis.Tooltip=[data.state,' · ',data.weightSource,'；固定参照趋势不随动态权重改变。'];
+            actual=repmat({'未记录'},6,1);
+            if ~isempty(data.activeWeights), actual=arrayfun(@(value)sprintf('%.5g',value),data.activeWeights(:),'UniformOutput',false); end
+            app.WeightsTable.Data(:,3)=actual; app.WeightsTable.Tooltip=[data.state,' · ',data.weightSource];
+            weightState='当前'; actualHeading='实际';
+            if startsWith(data.state,'历史'), weightState='历史'; actualHeading='历史';
+            elseif startsWith(data.state,'加密'), weightState='加密重评';
+            elseif startsWith(data.state,'设计参考'), weightState='设计参考'; actualHeading='参考'; end
+            source='实际权重未记录';
+            if ~isempty(data.activeWeights)
+                source='固定权重记录';
+                if data.dynamicAvailable
+                    source='已记录实际权重，更新轮次未记录';
+                    if data.weightUpdateIteration>0, source=sprintf('使用第%d轮起的搜索权重',data.weightUpdateIteration);
+                    elseif data.weightUpdateIteration==0, source='初始搜索权重，尚未更新'; end
+                end
+            end
+            app.DynamicWeightSource.Text=[weightState,' · ',source];
+            app.WeightsTable.ColumnName={'评分项','基础',actualHeading};
             for k=1:numel(app.ScoreViews)
                 view=app.ScoreViews{k}; if ~isvalid(view.table), continue; end
                 view.table.Data=data.rows;
+                view.table.ColumnName={'本版评分项','基础项','权重','固定贡献'};
+                if strcmp(app.ScoreBasis.Value,'dynamic') && data.dynamicAvailable
+                    view.table.Data=data.activeRows; view.table.ColumnName={'本版评分项','基础项','权重','动态贡献'};
+                end
                 view.table.Tooltip=sprintf('%s 来源：%s，网格%d/%d，版本%s。',data.description,data.state,data.grid,data.scoreVersion);
                 app.plotDiagnosticSeries(view.scoreAxes,data.scoreX,data.scoreY, ...
-                    ['通用总分 · ',data.historyState],data.xLabel,'通用评分','尚无迭代记录');
+                    ['固定参照分 · ',data.historyState],data.xLabel,'固定参照分','尚无迭代记录');
                 objectiveTitle='内点目标（独立尺度）';
                 if startsWith(data.historyState,'历史'), objectiveTitle=['历史 · ',objectiveTitle]; end
-                app.plotDiagnosticSeries(view.objectiveAxes,data.objectiveX,data.objectiveY, ...
-                    objectiveTitle,data.xLabel,'独立目标值','此方法无内点目标 / 尚无记录');
+                if ~isempty(data.objectiveY)
+                    app.plotDiagnosticSeries(view.objectiveAxes,data.objectiveX,data.objectiveY, ...
+                        objectiveTitle,data.xLabel,'独立目标值','尚无记录');
+                else
+                    app.plotDiagnosticSeries(view.objectiveAxes,data.dynamicX,data.dynamicY, ...
+                        ['动态搜索分（权重会变）· ',data.historyState],data.xLabel,'动态分（非固定尺度）','未启用动态搜索 / 缺少记录');
+                end
             end
             app.updateCrossingViews(); app.refreshTrainingRuntime();
         end
@@ -1154,7 +1256,7 @@ classdef CamReplicaApp < handle
             app.RefineRouteButton.Enable=editable;
             app.ParamsTable.ColumnEditable=[false ~app.Busy && ~app.MapEditMode];
             app.TargetsTable.ColumnEditable=[editable editable];
-            app.NodesTable.ColumnEditable=[editable editable]; app.WeightsTable.ColumnEditable=[false editable];
+            app.NodesTable.ColumnEditable=[editable editable]; app.WeightsTable.ColumnEditable=[false editable false];
             app.MapEditButton.Enable=editable;
             app.ConfirmNodeButton.Enable=app.MapEditMode && app.MapEditSelection>0 && ~app.Busy && ~app.SimulationMode;
             app.CancelNodeButton.Enable=app.MapEditMode && ~app.Busy && ~app.SimulationMode;

@@ -2,6 +2,8 @@ function [best,history,info]=optimizeLegacy(project,callback)
 % a91d5e2 mean-only descent retained as a comparison path. Added reporting only.
 if nargin<2 || isempty(callback), callback=@(~,~,~)false; end
 timer=tic; camdesign.validateProject(project); best=project;
+weightSettings=camdesign.dynamicWeightSettings(project.params);
+assert(~weightSettings.enabled,'cam:DynamicWeightsBackend','历史算法不支持动态权重，请使用梯度或四方向搜索。');
 current=camdesign.evaluate(best,false); value=current.metrics.legacyScore;
 history=struct('iteration',0,'score',value,'maxHitError',current.metrics.maxHitError, ...
     'evaluations',1,'stopped',false); evals=1; reason='iteration_limit';

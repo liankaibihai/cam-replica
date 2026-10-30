@@ -59,6 +59,7 @@ validateattributes(p.samples,{'double'},{'scalar','integer','>=',101,'<=',20001}
 validateattributes(p.camSamples,{'double'},{'scalar','integer','>=',181,'<=',20001});
 validateattributes(p.iterations,{'double'},{'scalar','integer','>=',1,'<=',10000});
 validateattributes(p.weights,{'double'},{'vector','numel',6,'finite','nonnegative'});
+camdesign.dynamicWeightSettings(p);
 validateattributes(p.bounds,{'double'},{'vector','numel',4,'finite'});
 assert(p.bounds(1)<p.bounds(2) && p.bounds(3)<p.bounds(4),'cam:Bounds','场地坐标范围错误。');
 assert(isscalar(p.autoRatio) && ismember(p.autoRatio,[0 1]),'cam:AutoRatio','自动传动比必须为开或关。');

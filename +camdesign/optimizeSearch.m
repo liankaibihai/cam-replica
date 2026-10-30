@@ -4,6 +4,10 @@ if isempty(callback), callback=@(~,~,~)false; end
 assert(ismember(algorithm,{'peak-gradient-v2','video-four-direction-v1'}),'cam:Optimizer','未知优化路径。');
 timer=tic; camdesign.validateProject(project); best=project;
 current=camdesign.evaluate(best,false); value=current.metrics.score; evals=1;
+weightSettings=camdesign.dynamicWeightSettings(project.params);
+referenceWeights=project.params.weights(:)'; activeWeights=referenceWeights;
+weightUpdateIteration=0; weightMode='fixed';
+if weightSettings.enabled, weightMode='violation-adaptive-v1'; end
 controls=camdesign.searchSchedule(project.params,1);
 step=project.params.stepMM; probe=project.params.gradientProbeMM;
 history=entry(0,false,'initial',0,[],[]);
@@ -12,6 +16,14 @@ reason='iteration_limit'; refinements=0;
 for iteration=1:project.params.iterations
     controls=camdesign.searchSchedule(project.params,iteration);
     if callback(iteration-1,best,history), reason='user_stop'; break; end
+    if weightSettings.enabled && mod(iteration-1,weightSettings.interval)==0
+        activeWeights=camdesign.updateDynamicWeights(project.params,current.metrics,activeWeights);
+        weightUpdateIteration=iteration;
+        value=sum(activeWeights.*current.metrics.terms);
+        % Keep old fixed/dynamic score records: a changed scale is a new event.
+        history(end+1)=entry(iteration-1,false,'weights_updated',0,[],[]); %#ok<AGROW>
+        history(end).weightChanged=true; % Retain update provenance when event becomes searching.
+    end
     baseNodes=best.nodes; grad=zeros(size(baseNodes));
     probeScores=inf(size(baseNodes,1),4); bestProbe=best; bestProbeScore=value;
     % Per-node +X, -X, +Y, -Y probes. Launch node remains fixed.
@@ -106,6 +118,10 @@ info=struct('algorithm',algorithm,'objectiveVersion','peak-v2','reason',reason, 
     'evaluations',evals,'elapsedSeconds',toc(timer),'remainingConstraints',{current.warnings}, ...
     'finalMetrics',current.metrics);
 info.trainingSemantics='Legacy when settings absent; probe=gradientForce mm; step=adaptiveStep*learningRate*decay; smoothing=rate*decay*[1 .5 .25]; decay=(1+floor((k-1)/interval))^(-exponent).';
+info.dynamicWeights=weightSettings; info.referenceWeights=referenceWeights;
+info.finalActiveWeights=activeWeights;
+info.finalDynamicScore=sum(activeWeights.*current.metrics.terms);
+info.weightSemantics='Weights freeze within each search round; incumbent and every probe share them. History score uses fixed input weights. Dynamic scores across updates have different scales. Physical acceptance is unchanged.';
 callback(history(end).iteration,best,history);
     function yes=improves(v)
         yes=isfinite(v) && v<value-1e-10*max(1,abs(value));
@@ -114,6 +130,7 @@ callback(history(end).iteration,best,history);
         evals=evals+1;
         try
             rr=camdesign.evaluate(t,false); v=rr.metrics.score;
+            if weightSettings.enabled, v=sum(activeWeights.*rr.metrics.terms); end
         catch ex
             if startsWith(ex.identifier,'cam:') || startsWith(ex.identifier,'MATLAB:expected'), v=inf;
             else, rethrow(ex); end
@@ -125,7 +142,10 @@ callback(history(end).iteration,best,history);
             'directionIteration',iteration,'directionBaseNodes',base,'descentDirection',directionUsed, ...
             'gradient',[],'probeScores',[],'metrics',current.metrics,'smoothingAttempts',0,'smoothingAlpha',0, ...
             'probeMM',probe,'learningScale',controls.learningScale,'scheduleScale',controls.decay, ...
-            'scheduledStepMM',step*controls.learningScale,'plannedSmoothingRates',smoothingPlan());
+            'scheduledStepMM',step*controls.learningScale,'plannedSmoothingRates',smoothingPlan(), ...
+            'referenceWeights',referenceWeights,'activeWeights',activeWeights, ...
+            'dynamicScore',sum(activeWeights.*current.metrics.terms), ...
+            'weightUpdateIteration',weightUpdateIteration,'weightMode',weightMode,'weightChanged',false);
     end
     function rates=smoothingPlan()
         rates=[];

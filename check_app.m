@@ -1,7 +1,8 @@
-function check_app()
+function check_app(folder)
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:AppCheckBatchOnly','请使用独立 batch 运行界面检查。');
-folder=fullfile(root,'outputs','results_panel_20261030','app_regression'); if ~isfolder(folder), mkdir(folder); end
+if nargin<1, folder=fullfile(root,'outputs','results_panel_20261030','app_regression'); end
+if ~isfolder(folder), mkdir(folder); end
 fprintf('APP_CHECK_START\n');
 app=CamReplicaApp('off'); cleaner=onCleanup(@()delete(app.Figure));
 fprintf('APP_CONSTRUCTED\n');

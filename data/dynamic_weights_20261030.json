@@ -1,0 +1,177 @@
+{
+  "schema": "dynamic-weights-validation-1",
+  "date": "2026-10-30",
+  "baseline": "2fa531f0a9bc4f99daf07f7308eaaf1d7c4697ec",
+  "contractChecks": 7,
+  "comparisons": [
+    {
+      "budget": 300,
+      "source": "outputs/dynamic_weights_20261030/comparison_300/verification.json",
+      "sourceSHA256": "d912069e363282fd47d3db9b12dca332173344f9370580bdfe59bb5aa86c6368",
+      "cases": [
+        {
+          "mode": "static",
+          "requestedIterations": 300,
+          "actualIterations": 300,
+          "reason": "iteration_limit",
+          "evaluations": 42478,
+          "elapsedSeconds": 44.0398713,
+          "finalReferenceScore": 38.10464512384391,
+          "finalDynamicScore": 38.10464512384391,
+          "finalActiveWeights": [
+            12,
+            1,
+            2,
+            3,
+            10,
+            10
+          ],
+          "verifiedFeasible": false,
+          "refined": {
+            "maxPressureDeg": 69.15907337614806,
+            "maxHitError": 9.115436016207125,
+            "actualReturnDeg": 49.94581699738876,
+            "intersectionCount": 0,
+            "minUndercutMargin": 0.5032969625763423,
+            "score": 38.42709148960423,
+            "routeLength": 12776.6857480759,
+            "effectiveRatio": 35,
+            "routeSamples": 4801,
+            "camSamples": 5761,
+            "maxTrajectoryOutsideMM": 85.32047130335513
+          }
+        },
+        {
+          "mode": "dynamic",
+          "requestedIterations": 300,
+          "actualIterations": 300,
+          "reason": "iteration_limit",
+          "evaluations": 42174,
+          "elapsedSeconds": 43.3044352,
+          "finalReferenceScore": 39.395815080274794,
+          "finalDynamicScore": 107.29316836337489,
+          "finalActiveWeights": [
+            12,
+            1,
+            2,
+            8.785869113806509,
+            10,
+            10
+          ],
+          "verifiedFeasible": false,
+          "refined": {
+            "maxPressureDeg": 68.84922144888888,
+            "maxHitError": 14.020080404654362,
+            "actualReturnDeg": 50.427363310700244,
+            "intersectionCount": 0,
+            "minUndercutMargin": 0.5073162006810381,
+            "score": 39.57162262078343,
+            "routeLength": 12756.602459254364,
+            "effectiveRatio": 35,
+            "routeSamples": 4801,
+            "camSamples": 5761,
+            "maxTrajectoryOutsideMM": 84.71082765852638
+          }
+        }
+      ]
+    },
+    {
+      "budget": 600,
+      "source": "outputs/dynamic_weights_20261030/comparison_600/verification.json",
+      "sourceSHA256": "ff076646f5dbbc3df44d78b4fecd25646d096ce8f9c931cfcdd3eb1c0e1ac8c9",
+      "cases": [
+        {
+          "mode": "static",
+          "requestedIterations": 600,
+          "actualIterations": 600,
+          "reason": "iteration_limit",
+          "evaluations": 85978,
+          "elapsedSeconds": 94.980831,
+          "finalReferenceScore": 38.08645227595942,
+          "finalDynamicScore": 38.08645227595942,
+          "finalActiveWeights": [
+            12,
+            1,
+            2,
+            3,
+            10,
+            10
+          ],
+          "verifiedFeasible": false,
+          "refined": {
+            "maxPressureDeg": 69.154405768314,
+            "maxHitError": 9.114564899327517,
+            "actualReturnDeg": 51.64683626312124,
+            "intersectionCount": 0,
+            "minUndercutMargin": 0.5266478252851335,
+            "score": 38.409189550878985,
+            "routeLength": 12710.682865817469,
+            "effectiveRatio": 35,
+            "routeSamples": 4801,
+            "camSamples": 5761,
+            "maxTrajectoryOutsideMM": 5.607807705277423
+          }
+        },
+        {
+          "mode": "dynamic",
+          "requestedIterations": 600,
+          "actualIterations": 600,
+          "reason": "iteration_limit",
+          "evaluations": 85674,
+          "elapsedSeconds": 94.0479052,
+          "finalReferenceScore": 39.344662088774264,
+          "finalDynamicScore": 107.22764006484935,
+          "finalActiveWeights": [
+            12,
+            1,
+            2,
+            8.78585012020416,
+            10,
+            10
+          ],
+          "verifiedFeasible": false,
+          "refined": {
+            "maxPressureDeg": 68.84898155247913,
+            "maxHitError": 14.020052941731505,
+            "actualReturnDeg": 51.76292426473756,
+            "intersectionCount": 0,
+            "minUndercutMargin": 0.5630285776401484,
+            "score": 39.520463390223014,
+            "routeLength": 12705.04663646834,
+            "effectiveRatio": 35,
+            "routeSamples": 4801,
+            "camSamples": 5761,
+            "maxTrajectoryOutsideMM": 15.77967626844601
+          }
+        }
+      ]
+    }
+  ],
+  "scope": "Independent bounded violation weighting, one deterministic 34-node solar flat-car seed; gear ratio 35. All candidates fail engineering gates. No original-software equivalence or physical validation.",
+  "uiChecks": [
+    "legacy projects keep static defaults without field injection or invented active weights",
+    "four settings/open switch validate and round-trip; base weights are preserved",
+    "busy, map editing and fixed-cam simulation disable dynamic setting edits",
+    "real short search records feed separate score curves, real active weights and matching contribution-table selection",
+    "edited inputs retain historical weights; new unmatched results hide them; dense results re-score matching recorded weights",
+    "missing old history is never reconstructed from input settings; matched final info is an explicit fallback",
+    "interior-point disables enabling dynamic mode, explains conflicts, permits switching it off and backend rejects unsupported configuration"
+  ],
+  "appRegression": "passed; local/matlab_455df258650b447ea5d8e97dfed7cf80.log",
+  "uiReplay": "passed; local/matlab_860327492f3248e08b383f636b6fbe98.log",
+  "uiArtifacts": [
+    {
+      "path": "outputs/dynamic_weights_20261030/ui_verification.json",
+      "sha256": "985146967271595d77c7990c9d7ffa2cf0bc2a9026ba4e6dbb92343f5978d34d"
+    },
+    {
+      "path": "outputs/dynamic_weights_20261030/dynamic_weights_1120x760.png",
+      "sha256": "d2544a7dfdfb6af6162c69f45e3dd736625d7b046ec6ba994c37c7c3ab89ea78"
+    },
+    {
+      "path": "outputs/dynamic_weights_20261030/dynamic_weights_1320x860.png",
+      "sha256": "72d07035429ebf006c42b42952ece49d4450bf2b5746d13bf734557fca7beff2"
+    }
+  ],
+  "nativeObservation": "New window opened with saved 600-round candidate. Later observation showed a new live search, actual pressure weight 7.3394 from round 11 with base weight 3. No input or stop was sent to that live search."
+}
