@@ -7,7 +7,7 @@ app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
 solar=camdesign.solarTestProject(); solar.params.samples=101; solar.params.camSamples=181; solar.params.iterations=2;
 app.Project=solar; app.syncInputs(); app.calculate();
 assert(~isfield(app.inputProject().params,'dynamicWeights') && ~app.DynamicWeightsEnabled.Value);
-assert(strcmp(app.ScoreBasis.Enable,'off') && all(strcmp(app.WeightsTable.Data(:,3),'未记录')));
+assert(strcmp(app.ScoreBasis.Value,'auto') && all(strcmp(app.WeightsTable.Data(:,3),'未记录')));
 assert(~app.ScoreDisplayData.dynamicAvailable && isempty(app.ScoreDisplayData.dynamicY));
 checks{end+1}='legacy projects keep static defaults without field injection or invented active weights';
 
@@ -42,7 +42,8 @@ assert(app.ScoreDisplayData.dynamicAvailable && isequal(app.ScoreDisplayData.act
 assert(isequal(app.ScoreDisplayData.scoreY,[h.score]) && isequal(app.ScoreDisplayData.dynamicY,[h.dynamicScore]));
 assert(contains(app.ScoreTrendAxes.Title.String,'固定参照') && contains(app.ObjectiveTrendAxes.Title.String,'权重会变'));
 assert(all(abs(str2double(app.WeightsTable.Data(:,3))-h(end).activeWeights(:))<1e-4*max(1,h(end).activeWeights(:))));
-assertTable(app,false); app.ScoreBasis.Value='dynamic'; call(app.ScoreBasis,'ValueChangedFcn'); assertTable(app,true);
+app.ScoreBasis.Value='reference'; call(app.ScoreBasis,'ValueChangedFcn'); assertTable(app,false);
+app.ScoreBasis.Value='dynamic'; call(app.ScoreBasis,'ValueChangedFcn'); assertTable(app,true);
 assert(contains(app.ScoreSummary.Text,'固定参照') && contains(app.ScoreSummary.Text,'动态'));
 checks{end+1}='real short search records feed separate score curves, real active weights and matching contribution-table selection';
 
@@ -52,7 +53,7 @@ assert(contains(app.ScoreSummary.Text,'历史') && app.ScoreDisplayData.dynamicT
 assert(strcmp(app.WeightsTable.ColumnName{3},'历史') && contains(app.DynamicWeightSource.Text,'历史'));
 assert(isequal(app.ScoreDisplayData.activeWeights,oldWeights));
 app.calculate(); assert(~app.ScoreDisplayData.dynamicAvailable && isempty(app.ScoreDisplayData.activeWeights));
-assert(strcmp(app.ScoreBasis.Value,'reference') && contains(app.ScoreDisplayData.historyState,'历史'));
+assert(strcmp(app.ScoreBasis.Value,'dynamic') && isempty(app.ScoreTable.Data) && contains(app.ScoreDisplayData.historyState,'历史'));
 restore(app,project,h,info);
 app.CrossSource.Value='refined'; call(app.CrossSource,'ValueChangedFcn');
 assert(contains(app.ScoreSummary.Text,'加密复查') && isequal(app.ScoreDisplayData.activeWeights,oldWeights));

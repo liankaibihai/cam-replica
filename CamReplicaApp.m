@@ -18,6 +18,7 @@ classdef CamReplicaApp < handle
         DynamicWeightInfo
         DynamicWeightSource
         ScoreBasis
+        ScoreViewStatus
         Mechanism
         AutoRatio
         RatioNotice
@@ -269,9 +270,11 @@ classdef CamReplicaApp < handle
             statusRow=uigridlayout(bottom,[1 5],'ColumnWidth',{'1x',220,165,90,90},'Padding',[0 0 0 0],'ColumnSpacing',5);
             app.Status=uilabel(statusRow,'Text','准备就绪','FontSize',11,'FontWeight','bold','WordWrap','on');
             app.ScoreSummary=uilabel(statusRow,'Text','通用评分：待计算','FontSize',11,'FontWeight','bold','WordWrap','on');
-            app.ScoreBasis=uidropdown(statusRow,'Items',{'固定参照评分','本轮动态评分'},'ItemsData',{'reference','dynamic'}, ...
-                'Value','reference','ValueChangedFcn',@(~,~)app.updateDiagnostics(), ...
-                'Tooltip','切换下方六项表的权重和贡献口径；固定参照趋势不随动态权重变化。');
+            scoreChoice=uigridlayout(statusRow,[2 1],'RowHeight',{22,16},'Padding',[0 0 0 0],'RowSpacing',0);
+            app.ScoreBasis=uidropdown(scoreChoice,'Items',{'自动显示实际','固定参照评分','本轮动态评分'},'ItemsData',{'auto','reference','dynamic'}, ...
+                'Value','auto','ValueChangedFcn',@(~,~)app.updateDiagnostics(), ...
+                'Tooltip','自动模式优先显示匹配记录的实际权重；手动选择会保留。固定参照趋势不变。');
+            app.ScoreViewStatus=uilabel(scoreChoice,'Text','固定参照 / 待记录','FontSize',10);
             app.ScoreDetailsButton=uibutton(statusRow,'Text','评分详情','ButtonPushedFcn',@(~,~)app.openDiagnostics('score'));
             app.LogDetailsButton=uibutton(statusRow,'Text','日志大窗','ButtonPushedFcn',@(~,~)app.openDiagnostics('log'));
             app.LengthSummary=uilabel(bottom,'Text','总路程（前轮轨迹）：待计算    主动轮行程：待计算', ...
@@ -1083,8 +1086,7 @@ classdef CamReplicaApp < handle
                 app.ScoreSummary.Text=sprintf('固定参照 %.5g · 动态 %s\n%s · %d/%d',data.total,dynamicText,data.state,data.grid);
             else, app.ScoreSummary.Text=sprintf('固定参照：暂无\n请先计算'); end
             app.ScoreSummary.Tooltip=['固定参照分使用基础权重；动态分使用匹配记录的实际权重。',data.weightSource,'。动态分不可按固定尺度判断跨轮改善。'];
-            app.ScoreBasis.Enable=data.dynamicAvailable;
-            if ~data.dynamicAvailable, app.ScoreBasis.Value='reference'; end
+            app.ScoreBasis.Enable='on';
             app.ScoreBasis.Tooltip=[data.state,' · ',data.weightSource,'；固定参照趋势不随动态权重改变。'];
             actual=repmat({'未记录'},6,1);
             if ~isempty(data.activeWeights), actual=arrayfun(@(value)sprintf('%.5g',value),data.activeWeights(:),'UniformOutput',false); end
@@ -1104,14 +1106,29 @@ classdef CamReplicaApp < handle
             end
             app.DynamicWeightSource.Text=[weightState,' · ',source];
             app.WeightsTable.ColumnName={'评分项','基础',actualHeading};
+            tableRows=data.rows; weightHeading='基础'; contributionHeading='固定贡献'; viewStatus='固定参照';
+            if strcmp(app.ScoreBasis.Value,'auto')
+                if ~isempty(data.activeRows)
+                    tableRows=data.activeRows; weightHeading='实际'; viewStatus='实际固定权重';
+                    if data.dynamicAvailable, contributionHeading='动态贡献'; viewStatus='实际动态权重'; end
+                else
+                    viewStatus='固定参照 / 待记录';
+                end
+            elseif strcmp(app.ScoreBasis.Value,'dynamic')
+                tableRows=data.activeRows; weightHeading='实际'; contributionHeading='动态贡献'; viewStatus='实际动态权重';
+                if ~data.dynamicAvailable
+                    tableRows=cell(0,4); contributionHeading='待记录'; viewStatus='动态待记录';
+                    if strcmp(data.weightMode,'fixed'), viewStatus='动态未启用'; end
+                end
+            end
+            if ~isfinite(data.total), viewStatus='待计算 / 未记录'; end
+            app.ScoreViewStatus.Text=[weightState,' · ',viewStatus];
             for k=1:numel(app.ScoreViews)
                 view=app.ScoreViews{k}; if ~isvalid(view.table), continue; end
-                view.table.Data=data.rows;
-                view.table.ColumnName={'本版评分项','基础项','权重','固定贡献'};
-                if strcmp(app.ScoreBasis.Value,'dynamic') && data.dynamicAvailable
-                    view.table.Data=data.activeRows; view.table.ColumnName={'本版评分项','基础项','权重','动态贡献'};
-                end
-                view.table.Tooltip=sprintf('%s 来源：%s，网格%d/%d，版本%s。',data.description,data.state,data.grid,data.scoreVersion);
+                view.table.Data=tableRows;
+                view.table.ColumnName={'本版评分项','基础项',weightHeading,contributionHeading};
+                view.table.Tooltip=sprintf('%s 视图：%s；来源：%s，网格%d/%d，版本%s。%s。', ...
+                    data.description,viewStatus,data.state,data.grid,data.scoreVersion,data.weightSource);
                 app.plotDiagnosticSeries(view.scoreAxes,data.scoreX,data.scoreY, ...
                     ['固定参照分 · ',data.historyState],data.xLabel,'固定参照分','尚无迭代记录');
                 objectiveTitle='内点目标（独立尺度）';

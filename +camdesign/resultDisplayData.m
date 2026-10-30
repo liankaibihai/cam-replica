@@ -11,7 +11,7 @@ display=struct('total',NaN,'rows',{cell(0,4)},'state',state,'consistent',false, 
     'scoreVersion','未记录','grid',[NaN NaN],'historyState',historyState, ...
     'scoreX',[],'scoreY',[],'objectiveX',[],'objectiveY',[], ...
     'objectiveValue',NaN,'xLabel','迭代','description','本版六项加权通用评分，越低越好；不是原版十二项评分。');
-display.referenceWeights=[]; display.activeWeights=[]; display.activeRows=cell(0,4);
+display.referenceWeights=[]; display.activeWeights=[]; display.activeRows=cell(0,4); display.activeTotal=NaN;
 display.dynamicTotal=NaN; display.dynamicAvailable=false; display.dynamicX=[]; display.dynamicY=[];
 display.weightMode='未记录'; display.weightUpdateIteration=NaN; display.weightSource='实际权重未记录或与显示项目不匹配';
 if ~isempty(result) && isfield(result,'metrics')
@@ -47,13 +47,15 @@ if ~isempty(result) && isfield(result,'metrics') && isfield(result.metrics,'term
     if ~isempty(record) && validWeights(record.referenceWeights) && validWeights(record.activeWeights) ...
             && isequal(record.referenceWeights(:),weights) && ismember(string(record.weightMode),["fixed","violation-adaptive-v1"])
         display.activeWeights=record.activeWeights(:)'; display.weightMode=char(record.weightMode);
+        activeContributions=terms.*display.activeWeights(:);
+        display.activeRows=[labels(:),num2cell(terms),num2cell(display.activeWeights(:)),num2cell(activeContributions)];
+        display.activeTotal=sum(activeContributions);
         display.weightSource='已记录的固定权重';
         if isfield(record,'weightUpdateIteration') && isscalar(record.weightUpdateIteration) && isfinite(record.weightUpdateIteration)
             display.weightUpdateIteration=record.weightUpdateIteration;
         end
         if strcmp(display.weightMode,'violation-adaptive-v1')
-            display.dynamicAvailable=true; display.dynamicTotal=sum(terms.*display.activeWeights(:));
-            display.activeRows=[labels(:),num2cell(terms),num2cell(display.activeWeights(:)),num2cell(terms.*display.activeWeights(:))];
+            display.dynamicAvailable=true; display.dynamicTotal=display.activeTotal;
             display.weightSource='已记录的动态权重，按当前显示网格重评';
             if isfinite(display.weightUpdateIteration) && display.weightUpdateIteration>0
                 display.weightSource=sprintf('更新用于第%d轮的实际权重，按当前显示网格重评',display.weightUpdateIteration);
