@@ -14,6 +14,7 @@ display=struct('total',NaN,'rows',{cell(0,4)},'state',state,'consistent',false, 
 display.referenceWeights=[]; display.activeWeights=[]; display.activeRows=cell(0,4); display.activeTotal=NaN;
 display.dynamicTotal=NaN; display.dynamicAvailable=false; display.dynamicX=[]; display.dynamicY=[];
 display.weightMode='未记录'; display.weightUpdateIteration=NaN; display.weightSource='实际权重未记录或与显示项目不匹配';
+display.autoTrial=NaN; display.autoStage=''; display.unifiedHistory=~isempty(history) && isfield(history,'autoStage');
 if ~isempty(result) && isfield(result,'metrics')
     m=result.metrics;
     if isfield(m,'routeLength') && isnumeric(m.routeLength) && isscalar(m.routeLength) && isfinite(m.routeLength)
@@ -39,13 +40,15 @@ if ~isempty(result) && isfield(result,'metrics') && isfield(result.metrics,'term
     record=[];
     if weightsMatchProject && ~isempty(history) && all(isfield(history,{'referenceWeights','activeWeights','weightMode'}))
         record=history(end);
-    elseif weightsMatchProject && isstruct(info) && all(isfield(info,{'referenceWeights','finalActiveWeights','dynamicWeights'}))
+    elseif weightsMatchProject && isstruct(info) && all(isfield(info,{'referenceWeights','finalActiveWeights'}))
         record=struct('referenceWeights',info.referenceWeights,'activeWeights',info.finalActiveWeights,'weightMode','fixed');
-        if info.dynamicWeights.enabled, record.weightMode='violation-adaptive-v1'; end
+        if isfield(info,'weightMode'), record.weightMode=info.weightMode;
+        elseif isfield(info,'dynamicWeights') && info.dynamicWeights.enabled, record.weightMode='violation-adaptive-v1'; end
+        if isfield(info,'selectedTrial'), record.autoTrial=info.selectedTrial; record.autoStage='complete'; end
     end
     if ~isempty(history) && isfield(history,'objective'), record=[]; end
     if ~isempty(record) && validWeights(record.referenceWeights) && validWeights(record.activeWeights) ...
-            && isequal(record.referenceWeights(:),weights) && ismember(string(record.weightMode),["fixed","violation-adaptive-v1"])
+            && isequal(record.referenceWeights(:),weights) && ismember(string(record.weightMode),["fixed","violation-adaptive-v1","auto-tuned-v1"])
         display.activeWeights=record.activeWeights(:)'; display.weightMode=char(record.weightMode);
         activeContributions=terms.*display.activeWeights(:);
         display.activeRows=[labels(:),num2cell(terms),num2cell(display.activeWeights(:)),num2cell(activeContributions)];
@@ -54,13 +57,21 @@ if ~isempty(result) && isfield(result,'metrics') && isfield(result.metrics,'term
         if isfield(record,'weightUpdateIteration') && isscalar(record.weightUpdateIteration) && isfinite(record.weightUpdateIteration)
             display.weightUpdateIteration=record.weightUpdateIteration;
         end
-        if strcmp(display.weightMode,'violation-adaptive-v1')
+        if ismember(display.weightMode,{'violation-adaptive-v1','auto-tuned-v1'})
             display.dynamicAvailable=true; display.dynamicTotal=display.activeTotal;
             display.weightSource='已记录的动态权重，按当前显示网格重评';
             if isfinite(display.weightUpdateIteration) && display.weightUpdateIteration>0
                 display.weightSource=sprintf('更新用于第%d轮的实际权重，按当前显示网格重评',display.weightUpdateIteration);
             elseif display.weightUpdateIteration==0
                 display.weightSource='已记录的初始实际权重，尚未进行轮次更新';
+            end
+            if strcmp(display.weightMode,'auto-tuned-v1')
+                display.unifiedHistory=true; display.weightSource='全自动实际权重，按当前显示网格重评';
+                if isfield(record,'autoTrial'), display.autoTrial=record.autoTrial; end
+                if isfield(record,'autoStage'), display.autoStage=record.autoStage; end
+                if isfinite(display.autoTrial) && display.autoTrial>0
+                    display.weightSource=sprintf('全自动配置组%d的实际权重，按当前显示网格重评',display.autoTrial);
+                end
             end
         end
     end
@@ -75,7 +86,7 @@ for k=1:numel(history)
     if isfield(history,'objective') && isscalar(history(k).objective) && isfinite(history(k).objective)
         display.objectiveX(end+1)=x; display.objectiveY(end+1)=history(k).objective;
     end
-    if all(isfield(history,{'weightMode','dynamicScore'})) && strcmp(history(k).weightMode,'violation-adaptive-v1') ...
+    if all(isfield(history,{'weightMode','dynamicScore'})) && ismember(history(k).weightMode,{'violation-adaptive-v1','auto-tuned-v1'}) ...
             && isscalar(history(k).dynamicScore) && isfinite(history(k).dynamicScore)
         display.dynamicX(end+1)=x; display.dynamicY(end+1)=history(k).dynamicScore;
     end

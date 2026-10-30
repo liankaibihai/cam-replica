@@ -57,6 +57,12 @@ classdef CamReplicaApp < handle
         RootLayout
         ControlsTabs
         TrainingTab
+        AutoTuneTab
+        AutoTuneFields
+        AutoTuneSeed
+        AutoTuneProgress
+        AutoTuneVerdict
+        AutoTuneParameters
         TrainingShortcut
         MethodSummary
         ResultsTabs
@@ -153,10 +159,10 @@ classdef CamReplicaApp < handle
             app.TrainingModel.Layout.Row=1; app.TrainingModel.Layout.Column=2;
             label=uilabel(methods,'Text','优化方法','FontWeight','bold'); label.Layout.Row=1; label.Layout.Column=3;
             app.AlgorithmSelector=uidropdown(methods, ...
-                'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）'}, ...
-                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1'}, ...
-                'Value','peak-gradient-v2','ValueChangedFcn',@(~,~)app.refreshTrainingControls(), ...
-                'Tooltip','优化方法只决定怎样移动控制点，不决定路线画法。前两种按评分搜索；内点法使用独立目标和约束。');
+                'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）','全自动调优（权重＋训练）'}, ...
+                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1','auto-tune-v1'}, ...
+                'Value','peak-gradient-v2','ValueChangedFcn',@(~,~)app.algorithmChanged(), ...
+                'Tooltip','普通搜索及约束方法调整当前路线控制点；全自动还会比较路线模型、权重和训练设置。物理参数和阈值不自动改变。');
             app.AlgorithmSelector.Layout.Row=1; app.AlgorithmSelector.Layout.Column=4;
             app.MethodSummary=uilabel(methods,'Text','','FontSize',11);
             app.MethodSummary.Layout.Row=2; app.MethodSummary.Layout.Column=[1 3];
@@ -250,6 +256,25 @@ classdef CamReplicaApp < handle
             trainingActions.Layout.Row=3;
             app.TrainingApplyButton=uibutton(trainingActions,'Text','应用训练设置','FontSize',11,'ButtonPushedFcn',@(~,~)app.applyTraining());
             app.TrainingResetButton=uibutton(trainingActions,'Text','还原','FontSize',11,'ButtonPushedFcn',@(~,~)app.syncTrainingInputs());
+            t=uitab(tabs,'Title','全自动'); app.AutoTuneTab=t;
+            autoRoot=uigridlayout(t,[5 1],'RowHeight',{78,62,60,240,90},'Padding',[2 0 2 0],'RowSpacing',3,'Scrollable','on');
+            budget=uigridlayout(autoRoot,[3 2],'RowHeight',{24,24,24},'ColumnWidth',{'1x',80},'Padding',[0 0 0 0],'RowSpacing',2);
+            labels={'搜索配置组数','单组最大轮数'}; app.AutoTuneFields=gobjects(1,2);
+            for k=1:2
+                uilabel(budget,'Text',labels{k},'FontSize',11);
+                app.AutoTuneFields(k)=uieditfield(budget,'numeric','Value',1,'FontSize',11, ...
+                    'ValueChangedFcn',@(~,~)app.invalidate());
+            end
+            app.AutoTuneFields(1).Tooltip='搜索配置数量；另有约束精修组，合计以运行记录为准。';
+            app.AutoTuneFields(2).Tooltip='每组轮数上限；实际轮数可因收敛、无改善或停止而减少。';
+            app.AutoTuneSeed=uilabel(budget,'Text','','FontSize',10); app.AutoTuneSeed.Layout.Row=3; app.AutoTuneSeed.Layout.Column=[1 2];
+            app.AutoTuneProgress=uilabel(autoRoot,'Text','全自动尚未启动','FontSize',11,'FontWeight','bold','WordWrap','on','VerticalAlignment','top');
+            app.AutoTuneVerdict=uilabel(autoRoot,'Text','验收待记录；评分下降不代表通过。','FontSize',11,'FontWeight','bold', ...
+                'FontColor',[.65 .28 .08],'WordWrap','on','VerticalAlignment','top');
+            app.AutoTuneParameters=uitable(autoRoot,'ColumnName',{'本组运行记录','实际值'},'RowName',{},'ColumnEditable',false, ...
+                'ColumnWidth',{150,105},'FontSize',10);
+            uilabel(autoRoot,'Text','自动比较六项权重及训练设置，可能多组长时间运行。可点“停止”，下一次回调生效，加密检验可能需等待。调优期间车体、传动比、阈值、目标点锁定。最终须通过几何与4/8倍收敛检验；不保证找到可行解。', ...
+                'FontSize',10,'WordWrap','on','VerticalAlignment','top');
             charts=uigridlayout(root,[2 2],'ColumnWidth',{'1.35x','1x'},'RowHeight',{'1x','2.7x'}, ...
                 'Padding',[0 0 0 0],'ColumnSpacing',12,'RowSpacing',10);
             charts.Layout.Row=4; charts.Layout.Column=2;
@@ -314,6 +339,9 @@ classdef CamReplicaApp < handle
             settings=camdesign.dynamicWeightSettings(p); app.DynamicWeightsEnabled.Value=settings.enabled;
             names={'interval','gain','maxMultiplier','response'};
             for k=1:4, app.DynamicWeightFields(k).Value=settings.(names{k}); end
+            settings=camdesign.autoTuneSettings(p);
+            app.AutoTuneFields(1).Value=settings.trials; app.AutoTuneFields(2).Value=settings.maxIterations;
+            app.AutoTuneSeed.Text=sprintf('随机种子 %g · 另精修 %g 组（随项目保存）',settings.seed,settings.polishCount);
             app.syncTrainingInputs();
         end
         function readInputs(app)
@@ -335,6 +363,11 @@ classdef CamReplicaApp < handle
                 'gain',app.DynamicWeightFields(2).Value,'maxMultiplier',app.DynamicWeightFields(3).Value,'response',app.DynamicWeightFields(4).Value);
             if ~isequaln(settings,camdesign.dynamicWeightSettings(p))
                 p.dynamicWeights=settings; camdesign.dynamicWeightSettings(p);
+            end
+            auto=camdesign.autoTuneSettings(p); edited=auto;
+            edited.trials=app.AutoTuneFields(1).Value; edited.maxIterations=app.AutoTuneFields(2).Value;
+            if ~isequaln(auto,edited)
+                p.autoTune=edited; camdesign.autoTuneSettings(p);
             end
             candidate=app.Project; candidate.params=p; candidate.targets=double(app.TargetsTable.Data);
             candidate.nodes=double(app.NodesTable.Data);
@@ -781,15 +814,25 @@ classdef CamReplicaApp < handle
         function dynamicWeightsChanged(app)
             app.refreshDynamicWeightControls(); app.invalidate();
         end
+        function algorithmChanged(app)
+            app.refreshTrainingControls();
+            if strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), app.openTraining(); end
+            app.updateDiagnostics();
+        end
         function refreshDynamicWeightControls(app)
             if isempty(app.DynamicWeightsEnabled), return; end
             editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
             constrained=startsWith(app.AlgorithmSelector.Value,'fmincon'); enabled=app.DynamicWeightsEnabled.Value;
-            app.DynamicWeightsEnabled.Enable=editable && (~constrained || enabled);
-            for k=1:4, app.DynamicWeightFields(k).Enable=editable && enabled && ~constrained; end
-            app.Buttons(5).Enable=editable && ~(constrained && enabled);
+            automatic=strcmp(app.AlgorithmSelector.Value,'auto-tune-v1');
+            app.DynamicWeightsEnabled.Enable=editable && ~automatic && (~constrained || enabled);
+            for k=1:4, app.DynamicWeightFields(k).Enable=editable && enabled && ~constrained && ~automatic; end
+            app.Buttons(5).Enable=editable && ~(constrained && enabled) && ~(automatic && app.TrainingDirty);
             app.Buttons(5).Tooltip='使用当前画法和优化方法训练';
-            if constrained
+            if automatic
+                app.DynamicWeightInfo.Text='全自动调优独立选择六项权重，此按违规调权开关不叠加，原配置保留。实际获选值与验收结论见全自动页。';
+                app.Buttons(5).Tooltip='运行多组权重与训练设置比较；可能耗时较长，可停止，最终按几何与收敛门禁验收。';
+                if app.TrainingDirty, app.Buttons(5).Tooltip='请先还原待应用手动训练输入，或切回原方法应用后再启动全自动。'; end
+            elseif constrained
                 app.DynamicWeightInfo.Text='内点法本次目标必须固定，暂不支持动态权重。已开启时请先取消勾选；基础权重仍可在训练前修改。';
                 if enabled, app.Buttons(5).Tooltip='内点法暂不支持动态权重；请先在权重页关闭动态开关。'; end
             elseif enabled
@@ -801,10 +844,11 @@ classdef CamReplicaApp < handle
         function refreshTrainingControls(app)
             if isempty(app.TrainingFields), return; end
             editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
-            for k=1:9, app.TrainingFields(k).Enable=editable; end
-            app.TrainingModel.Enable=editable; app.TrainingApplyButton.Enable=editable; app.TrainingResetButton.Enable=editable;
+            automatic=strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'); manual=editable && ~automatic;
+            for k=1:9, app.TrainingFields(k).Enable=manual; end
+            app.TrainingModel.Enable=manual; app.TrainingApplyButton.Enable=manual; app.TrainingResetButton.Enable=manual;
             bezier=strcmp(app.TrainingModel.Value,'bezier-blend-independent-v1');
-            app.TrainingFields(4).Enable=editable && bezier;
+            app.TrainingFields(4).Enable=manual && bezier;
             constrained=startsWith(app.AlgorithmSelector.Value,'fmincon');
             if constrained, for k=6:9, app.TrainingFields(k).Enable='off'; end, end
             model='三次插值样条'; if strcmp(camdesign.routeModel(app.Project.params),'bezier-blend-independent-v1'), model='独立贝塞尔融合'; end
@@ -819,15 +863,27 @@ classdef CamReplicaApp < handle
             else, description=[description,newline,'梯度力=差分距离；步幅×学习率×阶梯衰减；平滑仅接受改善。']; end
             app.TrainingInfo.Text=sprintf('实际：%d 控制点 / %d 路线采样\n当前：%s；%s\n%s', ...
                 size(app.Project.nodes,1),app.Project.params.samples,model,pending,description);
+            app.TrainingShortcut.Text='打开训练设置（九项）';
+            for k=1:2, app.AutoTuneFields(k).Enable=editable && automatic; end
+            if automatic
+                app.TrainingShortcut.Text='打开全自动设置（预算）';
+                app.TrainingInfo.Text='全自动从已应用设置起步，比较权重、路线模型和训练配置；未应用输入须先处理。结束后回填获选参数，真实运行值见全自动页。';
+                if app.TrainingDirty
+                    app.TrainingShortcut.Text='处理待应用训练设置';
+                    app.TrainingResetButton.Enable=editable;
+                    app.TrainingInfo.Text='尚有待应用手动训练输入。请明确还原，或切回原方法应用后再启动全自动；这些输入不会自动丢弃。';
+                end
+            end
             if ~isempty(app.MethodSummary)
                 app.MethodSummary.Text=sprintf('画法决定连线，优化方法负责改点；传动比 %.6g 固定执行，只能用户手改。',app.Project.params.gearRatio);
+                if automatic, app.MethodSummary.Text='全自动比较六项权重与训练设置；调优期间车体、传动比、阈值及目标锁定，最终按验收判定。'; end
             end
             app.refreshTrainingRuntime();
             app.refreshDynamicWeightControls();
         end
         function applied=applyTraining(app)
             applied=false;
-            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
+            if app.Busy || app.SimulationMode || app.MapEditMode || strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), return; end
             app.TrainingDirty=true;
             try
                 candidate=app.inputProject(true); changes=struct('routeModel',app.TrainingModel.Value);
@@ -903,12 +959,16 @@ classdef CamReplicaApp < handle
         function runOptimization(app)
             if app.Busy || app.SimulationMode || app.MapEditMode, return; end
             app.readInputs(); app.Busy=true; app.StopRequested=false; app.setBusy(true);
+            if strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), app.ControlsTabs.SelectedTab=app.AutoTuneTab; end
             cleanup=onCleanup(@()app.finishBusy());
             app.OptimizationDirection=[]; app.OptimizationInfo=[];
             app.History=[]; app.HistoryProject=[]; app.updateDiagnostics();
             [project,history,info]=camdesign.optimize(app.Project,@app.optimizationUpdate,app.AlgorithmSelector.Value);
             app.Project=project; app.History=history; app.HistoryProject=project; app.OptimizationDirection=[]; app.OptimizationInfo=info;
             app.syncInputs(); app.calculate();
+            if isfield(info,'fullAuto') && info.fullAuto
+                app.finishAutoTune(info); return;
+            end
             reasons=struct('iteration_limit','达到请求轮数','user_stop','用户停止', ...
                 'gradient_tolerance','梯度与候选均无改善','no_improving_step','多尺度搜索无改善', ...
                 'constrained_converged','约束求解器一阶停止条件满足','constrained_step_tolerance','约束求解器步长停止', ...
@@ -966,9 +1026,22 @@ classdef CamReplicaApp < handle
             end
         end
         function stop=optimizationUpdate(app,iteration,project,history)
+            automatic=~isempty(history) && isfield(history,'autoStage');
+            if automatic && isfield(history,'comparisonGrid')
+                grid=history(end).comparisonGrid; project.params.samples=grid(1); project.params.camSamples=grid(2);
+            end
             app.Project=project; app.History=history; app.HistoryProject=project; app.NodesTable.Data=project.nodes;
+            if automatic
+                p=project.params;
+                values=cellfun(@(name)p.(name),app.DisplayedParameterFields,'UniformOutput',false);
+                app.ParamsTable.Data(:,2)=values(:); app.TrainingModel.Value=camdesign.routeModel(p);
+            end
             app.OptimizationDirection=history(end);
             app.Result=camdesign.evaluate(project,false); app.render();
+            if automatic
+                app.Status.Text=[strrep(app.autoProgressText(history(end)),newline,'；'),sprintf('\n统一网格固定参照 %.5g；本组实际分 %.5g；验收待最终记录。',history(end).score,history(end).dynamicScore)];
+                drawnow; stop=app.StopRequested; return;
+            end
             if strcmp(history(end).event,'searching')
                 app.Status.Text=sprintf('搜索第 %d/%d 轮（已完成 %d 轮）    固定参照 %.5f    最大偏差 %.2f mm', ...
                     history(end).directionIteration,project.params.iterations,iteration,history(end).score,history(end).maxHitError);
@@ -985,8 +1058,110 @@ classdef CamReplicaApp < handle
             end
             drawnow; stop=app.StopRequested;
         end
+        function text=autoProgressText(app,h)
+            stages=struct('initial','准备配置','search','配置搜索','polish','约束精修','complete','搜索结束');
+            stage=char(h.autoStage); if isfield(stages,stage), stage=stages.(stage); end
+            if strcmp(h.autoStage,'initial')
+                text=sprintf('准备配置，尚未开始分组\n累计%d轮；预算上限%d轮',h.iteration,h.autoTotalBudget);
+            elseif strcmp(h.autoStage,'complete')
+                selected='保留初始配置'; if h.autoTrial>0, selected=sprintf('获选配置组%d',h.autoTrial); end
+                text=sprintf('%s · %s\n累计%d轮；预算上限%d轮',stage,selected,h.iteration,h.autoTotalBudget);
+            else
+                text=sprintf('%s · 组%d/%d\n本组%d/%d轮；累计%d轮（上限%d）',stage,h.autoTrial,h.autoTrialCount, ...
+                    h.trialIteration,h.trialBudget,h.iteration,h.autoTotalBudget);
+            end
+        end
+        function text=recordNumber(app,record,name)
+            text='未记录';
+            if isstruct(record) && isfield(record,name) && isnumeric(record.(name)) && isscalar(record.(name)) && isfinite(record.(name))
+                text=sprintf('%.6g',record.(name));
+            end
+        end
+        function [text,color,passed]=autoTuneGrade(app,info)
+            color=[.65 .28 .08]; passed=false;
+            if ~isstruct(info) || ~all(isfield(info,{'fullAuto','verifiedFeasible','convergencePassed'})) || ~info.fullAuto
+                text='全自动验收未记录；评分下降不代表通过。'; return;
+            end
+            passed=isequal(info.verifiedFeasible,true) && isequal(info.convergencePassed,true);
+            verdict='验收未通过'; if passed, verdict='记录的验收标志通过'; end
+            errors=sprintf('轮廓差：未记录\n理论回推：未记录');
+            if isfield(info,'assessment') && isfield(info.assessment,'numericalChecks')
+                numeric=info.assessment.numericalChecks;
+                errors=sprintf('轮廓差 %s mm\n理论回推 %s mm',app.recordNumber(numeric,'camMaxDifferenceMM'),app.recordNumber(numeric,'inverseFrontMaxErrorMM'));
+                if ~isfield(numeric,'passed') || ~isequal(numeric.passed,true), passed=false; verdict='数值精度检查未通过或缺少记录'; end
+                if passed, verdict='数值模型验收通过'; color=[.14 .40 .28]; end
+            elseif passed
+                passed=false; verdict='旧记录标志通过，新增精度未验证';
+            end
+            text=sprintf('%s\n%s\n仅数值模型；实车/加工待复核。',verdict,errors);
+        end
+        function refreshAutoTuneDisplay(app)
+            if isempty(app.AutoTuneProgress), return; end
+            matched=~isempty(app.HistoryProject) && isequaln(app.HistoryProject,app.CamBaseProject);
+            info=[]; if matched, info=app.OptimizationInfo; end
+            prefix=''; if ~matched || ~app.diagnosticsAreCurrent(), prefix='历史 · '; end
+            app.AutoTuneParameters.Data=cell(0,2);
+            if ~isempty(app.History) && isfield(app.History,'autoStage')
+                h=app.History(end); app.AutoTuneProgress.Text=[prefix,app.autoProgressText(h)];
+                rows={'真实训练采样',app.recordNumber(h,'trainingSamples');'真实凸轮训练采样',app.recordNumber(h,'trainingCamSamples')};
+                if isfield(h,'comparisonGrid'), rows(end+1,:)={'统一展示网格',mat2str(h.comparisonGrid)}; end
+                if ~isempty(app.HistoryProject)
+                    model='三次样条'; if strcmp(camdesign.routeModel(app.HistoryProject.params),'bezier-blend-independent-v1'), model='独立贝塞尔'; end
+                    rows(end+1,:)={'记录路线模型',model};
+                end
+                if isfield(h,'trainingControls') && isstruct(h.trainingControls)
+                    labels={'组内轮数设置','控制点数','名义插值/段','贝塞尔阶数','差分设置/mm','学习率设置','平滑设置','调节间隔','调节指数'};
+                    for k=1:numel(app.TrainingFieldNames)
+                        rows(end+1,:)={labels{k},app.recordNumber(h.trainingControls,app.TrainingFieldNames{k})};
+                    end
+                end
+                if strcmp(h.autoStage,'polish')
+                    rows(end+1,:)={'内点名义差分/mm',app.recordNumber(h,'nominalDifferenceStepMM')};
+                elseif strcmp(h.autoStage,'search')
+                    rows(end+1,:)={'记录探测距离/mm',app.recordNumber(h,'probeMM')};
+                end
+                stepLabel='配置步幅/mm';
+                if strcmp(h.autoStage,'search'), stepLabel='本轮计划步幅/mm';
+                elseif strcmp(h.autoStage,'polish'), stepLabel='搜索步幅/精修不用'; end
+                rows(end+1,:)={stepLabel,app.recordNumber(h,'scheduledStepMM')};
+                app.AutoTuneParameters.Data=rows;
+                app.AutoTuneParameters.ColumnName={[prefix,'本组运行记录'],'实际值'};
+            else
+                app.AutoTuneProgress.Text='全自动尚未启动；设置预算后点击“迭代优化”。';
+                if isstruct(info) && isfield(info,'fullAuto') && info.fullAuto
+                    app.AutoTuneProgress.Text=sprintf('%s全自动已有结束记录\n累计%d轮；预算上限%d轮；本组历史明细未记录。',prefix,info.iterations,info.requestedIterations);
+                end
+                if app.TrainingDirty, app.AutoTuneProgress.Text='尚有待应用手动训练输入；请先还原或切回原方法应用。'; end
+            end
+            [grade,color]=app.autoTuneGrade(info); app.AutoTuneVerdict.Text=[prefix,grade]; app.AutoTuneVerdict.FontColor=color;
+            settings=camdesign.autoTuneSettings(app.Project.params);
+            if isempty(info) && ~isempty(settings.selectedWeights)
+                app.AutoTuneVerdict.Text=['已保存获选权重 ',mat2str(settings.selectedWeights,4),newline,'本会话无匹配验收记录，不能确认通过。'];
+            end
+        end
+        function finishAutoTune(app,info)
+            [grade,color,passed]=app.autoTuneGrade(info); app.Status.FontColor=color;
+            verdict='未通过全部验收'; if passed, verdict='记录验收通过，仍待外部验证'; end
+            reason='配置比较结束'; if strcmp(info.reason,'user_stop'), reason='用户停止，保留当前候选'; end
+            app.Status.Text=sprintf('全自动：%s · %s\n累计%d轮（预算上限%d）；精度误差与最终门禁见全自动页。', ...
+                reason,verdict,info.iterations,info.requestedIterations);
+            app.message(sprintf('全自动 %s；累计%d轮，预算上限%d；%d次评价，%.3f秒。',reason,info.iterations,info.requestedIterations,info.evaluations,info.elapsedSeconds));
+            app.message(['全自动验收：',strrep(grade,newline,'；')]);
+            app.message(sprintf('统一网格固定参照分 %.6g；获选权重实际分 %.6g。评分下降不能代替几何或收敛验收。',info.finalMetrics.score,info.finalDynamicScore));
+            for k=1:numel(info.trials)
+                trial=info.trials(k);
+                app.message(sprintf('配置组%d [%s]：实际%d轮 / 请求上限%d轮；原因 %s。', ...
+                    trial.trial,trial.stage,trial.iterations,trial.requestedIterations,trial.reason));
+                if strcmp(trial.reason,'invalid_configuration') && ~isempty(trial.errorMessage)
+                    app.message(['配置未执行/失败：',trial.errorMessage]);
+                end
+            end
+            for k=1:numel(info.remainingConstraints), app.message(['全自动剩余问题：',info.remainingConstraints{k}]); end
+            app.updateDiagnostics();
+        end
         function openTraining(app)
             app.ControlsTabs.SelectedTab=app.TrainingTab;
+            if strcmp(app.AlgorithmSelector.Value,'auto-tune-v1') && ~app.TrainingDirty, app.ControlsTabs.SelectedTab=app.AutoTuneTab; end
             app.refreshTrainingControls();
         end
         function resizeLayout(app)
@@ -999,6 +1174,7 @@ classdef CamReplicaApp < handle
             sideColumn=floor((width-65)/2);
             app.TargetsTable.ColumnWidth={sideColumn,sideColumn}; app.NodesTable.ColumnWidth={sideColumn,sideColumn};
             app.WeightsTable.ColumnWidth={width-168,60,60};
+            app.AutoTuneParameters.ColumnWidth={width-138,100};
         end
         function view=createScoreView(app,parent)
             grid=uigridlayout(parent,[1 3],'ColumnWidth',{370,'1x','1x'},'Padding',[2 0 2 0],'ColumnSpacing',8);
@@ -1083,7 +1259,8 @@ classdef CamReplicaApp < handle
                 dynamicText='未记录';
                 if data.dynamicAvailable, dynamicText=sprintf('%.5g',data.dynamicTotal);
                 elseif strcmp(data.weightMode,'fixed'), dynamicText='未启用'; end
-                app.ScoreSummary.Text=sprintf('固定参照 %.5g · 动态 %s\n%s · %d/%d',data.total,dynamicText,data.state,data.grid);
+                actualLabel='动态'; if strcmp(data.weightMode,'auto-tuned-v1'), actualLabel='实际'; end
+                app.ScoreSummary.Text=sprintf('固定参照 %.5g · %s %s\n%s · %d/%d',data.total,actualLabel,dynamicText,data.state,data.grid);
             else, app.ScoreSummary.Text=sprintf('固定参照：暂无\n请先计算'); end
             app.ScoreSummary.Tooltip=['固定参照分使用基础权重；动态分使用匹配记录的实际权重。',data.weightSource,'。动态分不可按固定尺度判断跨轮改善。'];
             app.ScoreBasis.Enable='on';
@@ -1102,6 +1279,11 @@ classdef CamReplicaApp < handle
                     source='已记录实际权重，更新轮次未记录';
                     if data.weightUpdateIteration>0, source=sprintf('使用第%d轮起的搜索权重',data.weightUpdateIteration);
                     elseif data.weightUpdateIteration==0, source='初始搜索权重，尚未更新'; end
+                    if strcmp(data.weightMode,'auto-tuned-v1')
+                        source='全自动获选权重';
+                        if data.autoTrial>0, source=sprintf('全自动配置组%d的权重',data.autoTrial);
+                        elseif strcmp(data.autoStage,'initial'), source='全自动初始候选权重'; end
+                    end
                 end
             end
             app.DynamicWeightSource.Text=[weightState,' · ',source];
@@ -1121,6 +1303,10 @@ classdef CamReplicaApp < handle
                     if strcmp(data.weightMode,'fixed'), viewStatus='动态未启用'; end
                 end
             end
+            if strcmp(data.weightMode,'auto-tuned-v1') && ~strcmp(app.ScoreBasis.Value,'reference') && ~isempty(tableRows)
+                contributionHeading='实际贡献'; viewStatus='本组实际权重';
+                if strcmp(data.autoStage,'complete'), viewStatus='实际获选权重'; end
+            end
             if ~isfinite(data.total), viewStatus='待计算 / 未记录'; end
             app.ScoreViewStatus.Text=[weightState,' · ',viewStatus];
             for k=1:numel(app.ScoreViews)
@@ -1129,19 +1315,22 @@ classdef CamReplicaApp < handle
                 view.table.ColumnName={'本版评分项','基础项',weightHeading,contributionHeading};
                 view.table.Tooltip=sprintf('%s 视图：%s；来源：%s，网格%d/%d，版本%s。%s。', ...
                     data.description,viewStatus,data.state,data.grid,data.scoreVersion,data.weightSource);
+                referenceTitle='固定参照分'; if data.unifiedHistory, referenceTitle='固定参照分（统一网格）'; end
                 app.plotDiagnosticSeries(view.scoreAxes,data.scoreX,data.scoreY, ...
-                    ['固定参照分 · ',data.historyState],data.xLabel,'固定参照分','尚无迭代记录');
+                    [referenceTitle,' · ',data.historyState],data.xLabel,'固定参照分','尚无迭代记录');
                 objectiveTitle='内点目标（独立尺度）';
                 if startsWith(data.historyState,'历史'), objectiveTitle=['历史 · ',objectiveTitle]; end
                 if ~isempty(data.objectiveY)
                     app.plotDiagnosticSeries(view.objectiveAxes,data.objectiveX,data.objectiveY, ...
                         objectiveTitle,data.xLabel,'独立目标值','尚无记录');
                 else
+                    dynamicTitle='动态搜索分（权重会变）';
+                    if data.unifiedHistory, dynamicTitle='本组实际分（统一网格，组间权重不同）'; end
                     app.plotDiagnosticSeries(view.objectiveAxes,data.dynamicX,data.dynamicY, ...
-                        ['动态搜索分（权重会变）· ',data.historyState],data.xLabel,'动态分（非固定尺度）','未启用动态搜索 / 缺少记录');
+                        [dynamicTitle,' · ',data.historyState],data.xLabel,'实际分（非固定尺度）','未启用实际权重记录 / 缺少记录');
                 end
             end
-            app.updateCrossingViews(); app.refreshTrainingRuntime();
+            app.updateCrossingViews(); app.refreshTrainingRuntime(); app.refreshAutoTuneDisplay();
         end
         function plotDiagnosticSeries(app,a,x,y,heading,xLabel,yLabel,emptyText)
             cla(a); title(a,heading,'FontSize',10);
@@ -1231,11 +1420,20 @@ classdef CamReplicaApp < handle
         function refreshTrainingRuntime(app)
             if isempty(app.TrainingRuntime) || ~isvalid(app.TrainingRuntime), return; end
             if isempty(app.History)
-                app.TrainingRuntime.Text='尚未开始训练；编辑初始设置后点击“应用训练设置”。'; return;
+                app.TrainingRuntime.Text='尚未开始训练；编辑初始设置后点击“应用训练设置”。';
+                if strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), app.TrainingRuntime.Text='全自动尚未开始；在全自动页设置预算后点击“迭代优化”。'; end
+                return;
             end
             h=app.History(end); state='本次'; iteration='未记录';
             if isfield(h,'iteration'), iteration=sprintf('%d',h.iteration); end
             if ~app.diagnosticsAreCurrent() || isempty(app.HistoryProject) || ~isequaln(app.HistoryProject,app.Project), state='上次'; end
+            if isfield(h,'autoStage')
+                controls=struct(); if isfield(h,'trainingControls'), controls=h.trainingControls; end
+                app.TrainingRuntime.Text=sprintf('%s全自动：%s\n真实训练采样%s；控制点%s；差分设置%s mm', ...
+                    state,strrep(app.autoProgressText(h),newline,'；'),app.recordNumber(h,'trainingSamples'), ...
+                    app.recordNumber(controls,'controlPointCount'),app.recordNumber(controls,'gradientForce'));
+                return;
+            end
             constrained=isfield(h,'objective');
             if constrained
                 nominal='未记录';

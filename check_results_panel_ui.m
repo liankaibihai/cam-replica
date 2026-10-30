@@ -7,8 +7,8 @@ folder=fullfile(root,'outputs','results_panel_20261030'); if ~isfolder(folder), 
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
 solar=camdesign.solarTestProject(); app.Project=solar; app.syncInputs(); app.calculate();
 assert(isequal(app.TrainingModel.Items,{'三次样条（通过节点）','贝塞尔曲线（控制点调形）'}));
-assert(isequal(app.AlgorithmSelector.Items,{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）'}));
-assert(contains(app.TrainingModel.Tooltip,'路线画法') && contains(app.AlgorithmSelector.Tooltip,'不决定路线画法'));
+assert(isequal(app.AlgorithmSelector.Items,{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）','全自动调优（权重＋训练）'}));
+assert(contains(app.TrainingModel.Tooltip,'路线画法') && contains(app.AlgorithmSelector.Tooltip,'全自动还会比较路线模型'));
 assert(strcmp(app.AutoRatio.Visible,'off') && strcmp(app.AutoRatio.Enable,'off'));
 assert(contains(app.RatioNotice.Text,'固定使用用户输入 35'));
 assert(contains(app.TrainingRuntime.Text,'尚未开始训练'));
