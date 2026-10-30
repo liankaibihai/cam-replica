@@ -1,0 +1,4144 @@
+{
+  "release": "2025b",
+  "input": "solarTestProject: official preliminary visits, flat, ratio35",
+  "iterations": 3890,
+  "requestedIterations": 6000,
+  "reason": "auto_budget_complete",
+  "evaluations": 451099,
+  "elapsedSeconds": 2504.4191421,
+  "selectedTrial": 5,
+  "before": {
+    "routeSamples": 4801,
+    "camSamples": 5761,
+    "valid": true,
+    "feasible": false,
+    "maxScaledViolation": 5.185685040012672,
+    "metrics": {
+      "maxHitError": 13.94454612303073,
+      "rmsHitError": 7.3311184733331265,
+      "routeLength": 12724.099273175238,
+      "driveLength": 12254.984996407202,
+      "maxSteeringDeg": 38.9836686619967,
+      "maxPressureDeg": 87.04863108639631,
+      "maxWorkPressureDeg": 87.04863108639631,
+      "maxReturnPressureDeg": 32.743416650298364,
+      "minUndercutMargin": 0.5086435396543866,
+      "intersectionCount": 0,
+      "actualReturnDeg": 51.35871723504218,
+      "returnAngleSatisfied": false,
+      "score": 87.32414028618292,
+      "terms": [
+        0.2757729607193084,
+        1.0396129008297017,
+        0.14948130133344434,
+        27.55876308468488,
+        0,
+        0
+      ],
+      "objectiveVersion": "peak-v2",
+      "legacyScore": 3.1675467006299933,
+      "legacyTerms": [
+        0.05971699785560691,
+        1.0396129008297017,
+        0.0034202552558918265,
+        0.468163105007075,
+        0,
+        0
+      ],
+      "geometryChecked": true
+    },
+    "nodeBoundsSatisfied": true,
+    "thresholdsSatisfied": false,
+    "intersectionFree": true,
+    "trajectoryBoundsSatisfied": false,
+    "maxTrajectoryOutsideMM": 93.644021209969,
+    "trajectoryBounds": {
+      "sampleCount": 4801,
+      "componentNames": [
+        "front",
+        "rear",
+        "drive",
+        "driven",
+        "sensor"
+      ],
+      "residualBlockOrder": [
+        "xmin",
+        "xmax",
+        "ymin",
+        "ymax"
+      ],
+      "boundsMM": [
+        0,
+        6000,
+        0,
+        2000
+      ],
+      "satisfied": false,
+      "maximumOutsideMM": 93.644021209969,
+      "maxScaledViolation": 0.0468220106049845,
+      "worstPoint": "driven",
+      "worstSide": "ymin",
+      "worstSampleIndex": 3220,
+      "components": {
+        "front": {
+          "minimumXY": [
+            390.24474069341886,
+            -18.319498157480098
+          ],
+          "maximumXY": [
+            5493.671946787392,
+            1641.2797119538743
+          ],
+          "maximumOutsideMM": 18.319498157480098,
+          "outsideSampleCount": 180
+        },
+        "rear": {
+          "minimumXY": [
+            410,
+            -13.79404573662318
+          ],
+          "maximumXY": [
+            5488.367491814487,
+            1630.875713499601
+          ],
+          "maximumOutsideMM": 13.79404573662318,
+          "outsideSampleCount": 150
+        },
+        "drive": {
+          "minimumXY": [
+            489.5,
+            65.70592984422834
+          ],
+          "maximumXY": [
+            5408.867502497644,
+            1551.3758353605467
+          ],
+          "maximumOutsideMM": 0,
+          "outsideSampleCount": 0
+        },
+        "driven": {
+          "minimumXY": [
+            330.15,
+            -93.644021209969
+          ],
+          "maximumXY": [
+            5568.217481084297,
+            1710.7255911021605
+          ],
+          "maximumOutsideMM": 93.644021209969,
+          "outsideSampleCount": 386
+        },
+        "sensor": {
+          "minimumXY": [
+            409.86716619015397,
+            -16.867795100232396
+          ],
+          "maximumXY": [
+            5492.069355357028,
+            1638.467006349755
+          ],
+          "maximumOutsideMM": 16.867795100232396,
+          "outsideSampleCount": 171
+        }
+      },
+      "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+    },
+    "requestedRatio": 35,
+    "effectiveRatio": 35,
+    "autoRatio": false,
+    "ratioPolicy": "fixed-user-input-v1",
+    "workEndDeg": 308.6412827649578,
+    "warnings": [
+      "凸轮压力角超过设定上限（含回程）。",
+      "固定传动比 35：实际回程 51.359°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+      "五个部件中心点的采样轨迹最大出界 93.644 mm（driven，ymin）；不含车宽及整车外廓。"
+    ],
+    "errorIdentifier": "",
+    "errorMessage": ""
+  },
+  "after": {
+    "routeSamples": 4801,
+    "camSamples": 5761,
+    "valid": true,
+    "feasible": false,
+    "maxScaledViolation": 0.9624134875654753,
+    "metrics": {
+      "maxHitError": 17.390636319060736,
+      "rmsHitError": 5.6827046067323765,
+      "routeLength": 12763.968513062851,
+      "driveLength": 12299.432368962747,
+      "maxSteeringDeg": 21.617341178675638,
+      "maxPressureDeg": 49.03015931309736,
+      "maxWorkPressureDeg": 49.03015931309736,
+      "maxReturnPressureDeg": 23.096820233811894,
+      "minUndercutMargin": 0.13439053625815967,
+      "intersectionCount": 0,
+      "actualReturnDeg": 50.23931202278799,
+      "returnAngleSatisfied": false,
+      "score": 11.662777538964125,
+      "terms": [
+        0.3719192924769019,
+        1.0428703868995266,
+        0.014903125213874645,
+        2.0423564639713416,
+        0,
+        0
+      ],
+      "objectiveVersion": "peak-v2",
+      "legacyScore": 1.6974352394655816,
+      "legacyTerms": [
+        0.03588125738597486,
+        1.0428703868995266,
+        0.0011407412735535136,
+        0.07390276046241659,
+        0,
+        0
+      ],
+      "geometryChecked": true
+    },
+    "nodeBoundsSatisfied": true,
+    "thresholdsSatisfied": false,
+    "intersectionFree": true,
+    "trajectoryBoundsSatisfied": false,
+    "maxTrajectoryOutsideMM": 38.497473160354936,
+    "trajectoryBounds": {
+      "sampleCount": 4801,
+      "componentNames": [
+        "front",
+        "rear",
+        "drive",
+        "driven",
+        "sensor"
+      ],
+      "residualBlockOrder": [
+        "xmin",
+        "xmax",
+        "ymin",
+        "ymax"
+      ],
+      "boundsMM": [
+        0,
+        6000,
+        0,
+        2000
+      ],
+      "satisfied": false,
+      "maximumOutsideMM": 38.497473160354936,
+      "maxScaledViolation": 0.019248736580177467,
+      "worstPoint": "driven",
+      "worstSide": "ymin",
+      "worstSampleIndex": 3213,
+      "components": {
+        "front": {
+          "minimumXY": [
+            390.22335364632795,
+            37.08697008265125
+          ],
+          "maximumXY": [
+            5497.688948685243,
+            1647.8641739259197
+          ],
+          "maximumOutsideMM": 0,
+          "outsideSampleCount": 0
+        },
+        "rear": {
+          "minimumXY": [
+            410,
+            41.352516893734624
+          ],
+          "maximumXY": [
+            5494.725858768193,
+            1637.6052050629048
+          ],
+          "maximumOutsideMM": 0,
+          "outsideSampleCount": 0
+        },
+        "drive": {
+          "minimumXY": [
+            489.5,
+            120.85250699141929
+          ],
+          "maximumXY": [
+            5415.225880170418,
+            1558.1052344694804
+          ],
+          "maximumOutsideMM": 0,
+          "outsideSampleCount": 0
+        },
+        "driven": {
+          "minimumXY": [
+            330.15,
+            -38.497473160354936
+          ],
+          "maximumXY": [
+            5574.575837271744,
+            1717.4551755268662
+          ],
+          "maximumOutsideMM": 38.497473160354936,
+          "outsideSampleCount": 260
+        },
+        "sensor": {
+          "minimumXY": [
+            409.9224834645232,
+            38.47287763484728
+          ],
+          "maximumXY": [
+            5496.822992698796,
+            1644.9532271041676
+          ],
+          "maximumOutsideMM": 0,
+          "outsideSampleCount": 0
+        }
+      },
+      "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+    },
+    "requestedRatio": 35,
+    "effectiveRatio": 35,
+    "autoRatio": false,
+    "ratioPolicy": "fixed-user-input-v1",
+    "workEndDeg": 309.760687977212,
+    "warnings": [
+      "凸轮压力角超过设定上限（含回程）。",
+      "固定传动比 35：实际回程 50.239°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+      "五个部件中心点的采样轨迹最大出界 38.4975 mm（driven，ymin）；不含车宽及整车外廓。"
+    ],
+    "errorIdentifier": "",
+    "errorMessage": ""
+  },
+  "convergencePassed": true,
+  "verifiedFeasible": false,
+  "convergenceDelta": {
+    "pressureDeg": 0.0457428842404326,
+    "hitMM": 0.0008910412918652355,
+    "steeringDeg": 3.649109103776027E-08,
+    "returnDeg": 6.873539138041451E-05,
+    "lengthMM": 0.0028989251113671344
+  },
+  "numericalChecks": {
+    "camMaxDifferenceMM": 0.012250170643684362,
+    "inverseFrontMaxErrorMM": 0.026926445317450774,
+    "camToleranceMM": 0.05,
+    "inverseToleranceMM": 2,
+    "passed": true,
+    "physicalEvaluationAttempts": 2,
+    "errorIdentifier": "",
+    "errorMessage": "",
+    "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+  },
+  "referenceWeights": [
+    12,
+    1,
+    2,
+    3,
+    10,
+    10
+  ],
+  "actualWeights": [
+    20.14916347811844,
+    2.098323936848151,
+    4.6005339174010675,
+    10.496804033656858,
+    3.354808086904857,
+    8.26234018085422
+  ],
+  "trials": [
+    {
+      "trial": 0,
+      "stage": "initial",
+      "startFrom": "original",
+      "reason": "initial",
+      "iterations": 0,
+      "requestedIterations": 0,
+      "evaluations": 0,
+      "weights": [
+        12,
+        1,
+        2,
+        3,
+        10,
+        10
+      ],
+      "training": [],
+      "samples": 601,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        5.170870708381524,
+        0,
+        86.99669268909985
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.061613608212324,
+          "metrics": {
+            "maxHitError": 14.016797945424248,
+            "rmsHitError": 7.3664334626364605,
+            "routeLength": 12724.045762315038,
+            "driveLength": 12254.936320791203,
+            "maxSteeringDeg": 38.98361948885244,
+            "maxPressureDeg": 86.17120557390443,
+            "maxWorkPressureDeg": 86.17120557390443,
+            "maxReturnPressureDeg": 32.28437092411976,
+            "minUndercutMargin": 0.5673744701757428,
+            "intersectionCount": 0,
+            "actualReturnDeg": 51.35994312838812,
+            "returnAngleSatisfied": false,
+            "score": 84.66187924295521,
+            "terms": [
+              0.2785944073358884,
+              1.0396085287653691,
+              0.14840603181198112,
+              26.660775254178404,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 3.197508569044733,
+            "legacyTerms": [
+              0.06029371328827797,
+              1.0396085287653691,
+              0.0034090574442259634,
+              0.4758524553105255,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 93.62818493574616,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 93.62818493574616,
+            "maxScaledViolation": 0.04681409246787308,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 403,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.24474069341886,
+                  -18.305080713742313
+                ],
+                "maximumXY": [
+                  5493.669309551501,
+                  1641.270432964777
+                ],
+                "maximumOutsideMM": 18.305080713742313,
+                "outsideSampleCount": 23
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  -13.778886680676901
+                ],
+                "maximumXY": [
+                  5488.362727494329,
+                  1630.8203663617358
+                ],
+                "maximumOutsideMM": 13.778886680676901,
+                "outsideSampleCount": 18
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  65.72041465029373
+                ],
+                "maximumXY": [
+                  5408.863030750376,
+                  1551.3295713730708
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -93.62818493574616
+                ],
+                "maximumXY": [
+                  5568.212422903193,
+                  1710.6611208251934
+                ],
+                "maximumOutsideMM": 93.62818493574616,
+                "outsideSampleCount": 49
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.86716649098855,
+                  -16.855943273359465
+                ],
+                "maximumXY": [
+                  5492.050848529096,
+                  1638.4613156967848
+                ],
+                "maximumOutsideMM": 16.855943273359465,
+                "outsideSampleCount": 21
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 308.6400568716119,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 51.360°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 93.6282 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.170870708381524,
+          "metrics": {
+            "maxHitError": 13.946109936790519,
+            "rmsHitError": 7.332622190299473,
+            "routeLength": 12724.096713907298,
+            "driveLength": 12254.982645986709,
+            "maxSteeringDeg": 38.983669680911134,
+            "maxPressureDeg": 86.9443305671357,
+            "maxWorkPressureDeg": 86.9443305671357,
+            "maxReturnPressureDeg": 32.719098578364196,
+            "minUndercutMargin": 0.53359424185337,
+            "intersectionCount": 0,
+            "actualReturnDeg": 51.35877643028366,
+            "returnAngleSatisfied": false,
+            "score": 86.99669268909985,
+            "terms": [
+              0.2758459228385772,
+              1.0396126917266517,
+              0.14941927249170683,
+              27.449363459442285,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 3.1650361476105164,
+            "legacyTerms": [
+              0.05974149798408024,
+              1.0396126917266517,
+              0.003419721892046089,
+              0.4672286787636032,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 93.64389015224656,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 93.64389015224656,
+            "maxScaledViolation": 0.04682194507612328,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1610,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.24474069341886,
+                  -18.319246791419516
+                ],
+                "maximumXY": [
+                  5493.669309551501,
+                  1641.278637351832
+                ],
+                "maximumOutsideMM": 18.319246791419516,
+                "outsideSampleCount": 90
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  -13.793920320606796
+                ],
+                "maximumXY": [
+                  5488.365739740479,
+                  1630.8757136863283
+                ],
+                "maximumOutsideMM": 13.793920320606796,
+                "outsideSampleCount": 75
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  65.70604964326748
+                ],
+                "maximumXY": [
+                  5408.865857621297,
+                  1551.3758355470575
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -93.64389015224656
+                ],
+                "maximumXY": [
+                  5568.215621340688,
+                  1710.7255912891053
+                ],
+                "maximumOutsideMM": 93.64389015224656,
+                "outsideSampleCount": 193
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.8671661911933,
+                  -16.867795087420653
+                ],
+                "maximumXY": [
+                  5492.069355352684,
+                  1638.4626126402334
+                ],
+                "maximumOutsideMM": 16.867795087420653,
+                "outsideSampleCount": 85
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 308.6412235697163,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 51.359°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 93.6439 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 93.64389015224656,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 1,
+      "stage": "search",
+      "startFrom": "original",
+      "reason": "iteration_limit",
+      "iterations": 300,
+      "requestedIterations": 300,
+      "evaluations": 14594,
+      "weights": [
+        12,
+        1,
+        2,
+        3,
+        10,
+        10
+      ],
+      "training": {
+        "iterations": 300,
+        "controlPointCount": 10,
+        "interpolationPerSegment": 67,
+        "bezierDegree": 3,
+        "gradientForce": 0.5,
+        "learningRate": 1,
+        "smoothingRate": 0,
+        "adjustInterval": 10,
+        "adjustExponent": 0
+      },
+      "samples": 601,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        5.179876103089956,
+        0,
+        84.08905504655678
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.060625074573298,
+          "metrics": {
+            "maxHitError": 3.3587777207369536,
+            "rmsHitError": 1.7365328882631548,
+            "routeLength": 12773.309680755328,
+            "driveLength": 12303.341875287155,
+            "maxSteeringDeg": 39.16421192289116,
+            "maxPressureDeg": 86.16417884685195,
+            "maxWorkPressureDeg": 86.16417884685195,
+            "maxReturnPressureDeg": 32.92914395128659,
+            "minUndercutMargin": 0.46591678465827036,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.14085127009862,
+            "returnAngleSatisfied": false,
+            "score": 81.50793988183489,
+            "terms": [
+              0.015885482499265,
+              1.0436335999359407,
+              0.1513593988681324,
+              26.656987231390502,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.5285374321955603,
+            "legacyTerms": [
+              0.0033506071911328606,
+              1.0436335999359407,
+              0.003465381987042626,
+              0.47925526066398005,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 95.3097110685575,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 95.3097110685575,
+            "maxScaledViolation": 0.04765485553427875,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 403,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.2463793126067,
+                  -19.991135180821516
+                ],
+                "maximumXY": [
+                  5506.705704857553,
+                  1649.5495350740557
+                ],
+                "maximumOutsideMM": 19.991135180821516,
+                "outsideSampleCount": 23
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  -15.459801745686972
+                ],
+                "maximumXY": [
+                  5501.46627266453,
+                  1638.719465652865
+                ],
+                "maximumOutsideMM": 15.459801745686972,
+                "outsideSampleCount": 20
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  64.04010797464124
+                ],
+                "maximumXY": [
+                  5421.966393457486,
+                  1559.2257858276546
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -95.3097110685575
+                ],
+                "maximumXY": [
+                  5581.316151339781,
+                  1718.5631176534064
+                ],
+                "maximumOutsideMM": 95.3097110685575,
+                "outsideSampleCount": 49
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.85428840439545,
+                  -18.524646644795318
+                ],
+                "maximumXY": [
+                  5505.130927035504,
+                  1646.6488088374315
+                ],
+                "maximumOutsideMM": 18.524646644795318,
+                "outsideSampleCount": 22
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.8591487299014,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.141°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 95.3097 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.179876103089956,
+          "metrics": {
+            "maxHitError": 3.3275439420406077,
+            "rmsHitError": 1.7128583335278877,
+            "routeLength": 12773.36145321864,
+            "driveLength": 12303.38885693959,
+            "maxSteeringDeg": 39.17310245253035,
+            "maxPressureDeg": 87.00774808191048,
+            "maxWorkPressureDeg": 87.00774808191048,
+            "maxReturnPressureDeg": 33.37762659475551,
+            "minUndercutMargin": 0.49575430235866513,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.139668039153996,
+            "returnAngleSatisfied": false,
+            "score": 84.08905504655678,
+            "terms": [
+              0.015562702618830089,
+              1.0436378299658713,
+              0.15304669963428147,
+              27.517523795298796,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.4981046975402412,
+            "legacyTerms": [
+              0.0032598707452621465,
+              1.0436378299658713,
+              0.003476424639356441,
+              0.46946518978417034,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 95.30973279439922,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 95.30973279439922,
+            "maxScaledViolation": 0.04765486639719961,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1609,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.2463793126067,
+                  -20.02498119961058
+                ],
+                "maximumXY": [
+                  5506.711223598442,
+                  1649.5721650014598
+                ],
+                "maximumOutsideMM": 20.02498119961058,
+                "outsideSampleCount": 93
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  -15.459823449764844
+                ],
+                "maximumXY": [
+                  5501.466270525556,
+                  1638.7532650539692
+                ],
+                "maximumOutsideMM": 15.459823449764844,
+                "outsideSampleCount": 80
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  64.04008629223183
+                ],
+                "maximumXY": [
+                  5421.966391320982,
+                  1559.2538326637027
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -95.30973279439922
+                ],
+                "maximumXY": [
+                  5581.316149198326,
+                  1718.602694945325
+                ],
+                "maximumOutsideMM": 95.30973279439922,
+                "outsideSampleCount": 194
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.85428809425815,
+                  -18.559727017477098
+                ],
+                "maximumXY": [
+                  5505.130928265004,
+                  1646.6487999461845
+                ],
+                "maximumOutsideMM": 18.559727017477098,
+                "outsideSampleCount": 89
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.860331960846,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.140°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 95.3097 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 95.30973279439922,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 2,
+      "stage": "search",
+      "startFrom": "original",
+      "reason": "iteration_limit",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "evaluations": 88718,
+      "weights": [
+        24,
+        0.5,
+        1,
+        12,
+        20,
+        20
+      ],
+      "training": {
+        "iterations": 600,
+        "controlPointCount": 34,
+        "interpolationPerSegment": 10,
+        "bezierDegree": 3,
+        "gradientForce": 4.913434476162726,
+        "learningRate": 1.1331654745751987,
+        "smoothingRate": 0.21874397035790646,
+        "adjustInterval": 34,
+        "adjustExponent": 0.16494675322071006
+      },
+      "samples": 331,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        1.0687970660650477,
+        0,
+        12.484473782020672
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 1.0070484931264363,
+          "metrics": {
+            "maxHitError": 16.75576466540103,
+            "rmsHitError": 5.486589343883536,
+            "routeLength": 12810.800754860085,
+            "driveLength": 12347.249288089057,
+            "maxSteeringDeg": 21.688605492491085,
+            "maxPressureDeg": 49.58461862392292,
+            "maxWorkPressureDeg": 49.58461862392292,
+            "maxReturnPressureDeg": 15.339041190027837,
+            "minUndercutMargin": 0.2510530048784254,
+            "intersectionCount": 0,
+            "actualReturnDeg": 49.03504492157656,
+            "returnAngleSatisfied": false,
+            "score": 11.839631997173885,
+            "terms": [
+              0.34539812461190905,
+              1.0466967797704014,
+              0.014601495903202729,
+              2.206318243418057,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.687905019517896,
+            "legacyTerms": [
+              0.033447402920462645,
+              1.0466967797704014,
+              0.0011088433030759272,
+              0.07920723936526362,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 85.95617742912827,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 85.95617742912827,
+            "maxScaledViolation": 0.042978088714564135,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 403,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  389.9998326115717,
+                  -10.77274120888461
+                ],
+                "maximumXY": [
+                  5494.66930602102,
+                  1648.1314096911433
+                ],
+                "maximumOutsideMM": 10.77274120888461,
+                "outsideSampleCount": 17
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  -6.1076583204367765
+                ],
+                "maximumXY": [
+                  5491.254626608401,
+                  1637.7883769983525
+                ],
+                "maximumOutsideMM": 6.1076583204367765,
+                "outsideSampleCount": 12
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  73.39086727932497
+                ],
+                "maximumXY": [
+                  5411.754629862413,
+                  1558.2972922150552
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -85.95617742912827
+                ],
+                "maximumXY": [
+                  5571.104623340063,
+                  1717.629422532268
+                ],
+                "maximumOutsideMM": 85.95617742912827,
+                "outsideSampleCount": 46
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.7000637904918,
+                  -9.273756499123
+                ],
+                "maximumXY": [
+                  5493.518286292384,
+                  1645.219156442153
+                ],
+                "maximumOutsideMM": 9.273756499123,
+                "outsideSampleCount": 15
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 310.96495507842343,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 49.035°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 85.9562 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 1.0687970660650477,
+          "metrics": {
+            "maxHitError": 16.6800780517267,
+            "rmsHitError": 5.4597499219269885,
+            "routeLength": 12810.83117647482,
+            "driveLength": 12347.275735857542,
+            "maxSteeringDeg": 21.69419972059329,
+            "maxPressureDeg": 50.34159717301075,
+            "maxWorkPressureDeg": 50.34159717301075,
+            "maxReturnPressureDeg": 15.572578246609165,
+            "minUndercutMargin": 0.2129234984803342,
+            "intersectionCount": 0,
+            "actualReturnDeg": 49.03437883563737,
+            "returnAngleSatisfied": false,
+            "score": 12.484473782020672,
+            "terms": [
+              0.34225985891297395,
+              1.0466992653454086,
+              0.0158739170565893,
+              2.4329694585354655,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.6843416047153057,
+            "legacyTerms": [
+              0.033120965788868625,
+              1.0466992653454086,
+              0.0011102444325090952,
+              0.07932342034615185,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 85.99110929734015,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 85.99110929734015,
+            "maxScaledViolation": 0.042995554648670074,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1607,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  389.9998326115717,
+                  -10.775993353856734
+                ],
+                "maximumXY": [
+                  5494.66930602102,
+                  1648.1388129489599
+                ],
+                "maximumOutsideMM": 10.775993353856734,
+                "outsideSampleCount": 69
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  -6.141120953906401
+                ],
+                "maximumXY": [
+                  5491.254735193551,
+                  1637.8539504693838
+                ],
+                "maximumOutsideMM": 6.141120953906401,
+                "outsideSampleCount": 50
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  73.35886744062063
+                ],
+                "maximumXY": [
+                  5411.7547384681775,
+                  1558.3540102830666
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -85.99110929734015
+                ],
+                "maximumXY": [
+                  5571.104731904507,
+                  1717.7038903923703
+                ],
+                "maximumOutsideMM": 85.99110929734015,
+                "outsideSampleCount": 184
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.7000637933823,
+                  -9.273761008064417
+                ],
+                "maximumXY": [
+                  5493.52477535323,
+                  1645.219139181689
+                ],
+                "maximumOutsideMM": 9.273761008064417,
+                "outsideSampleCount": 63
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 310.96562116436263,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 49.034°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 85.9911 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 85.99110929734015,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 3,
+      "stage": "search",
+      "startFrom": "incumbent",
+      "reason": "iteration_limit",
+      "iterations": 458,
+      "requestedIterations": 458,
+      "evaluations": 33531,
+      "weights": [
+        12.328090111919167,
+        3.7357426085913414,
+        0.928374986576214,
+        1.1290507453613325,
+        32.68285918120092,
+        8.406492376493372
+      ],
+      "training": {
+        "iterations": 458,
+        "controlPointCount": 18,
+        "interpolationPerSegment": 36,
+        "bezierDegree": 3,
+        "gradientForce": 0.6156662933428427,
+        "learningRate": 1.187783257670354,
+        "smoothingRate": 0.20985612010001048,
+        "adjustInterval": 10,
+        "adjustExponent": 1.461172939938008
+      },
+      "samples": 613,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        4.707432092506529,
+        0,
+        74.17629962903158
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 4.596578728787646,
+          "metrics": {
+            "maxHitError": 3.6357556901179744,
+            "rmsHitError": 1.672433775809773,
+            "routeLength": 12762.339131631625,
+            "driveLength": 12296.952371201345,
+            "maxSteeringDeg": 33.5293796673733,
+            "maxPressureDeg": 82.79981245609719,
+            "maxWorkPressureDeg": 82.79981245609719,
+            "maxReturnPressureDeg": 38.457681895355826,
+            "minUndercutMargin": 0.5530237809726666,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.30177066231774,
+            "returnAngleSatisfied": false,
+            "score": 71.42069937502343,
+            "terms": [
+              0.01779528241410507,
+              1.042737259522892,
+              0.06055133201451144,
+              23.347772020834086,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.22409508145461,
+            "legacyTerms": [
+              0.003107816371632593,
+              1.042737259522892,
+              0.0020385053979612364,
+              0.3799956715587347,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 61.239383705984906,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 61.239383705984906,
+            "maxScaledViolation": 0.030619691852992452,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 405,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  389.7709427372024,
+                  14.69713581529436
+                ],
+                "maximumXY": [
+                  5531.377303486806,
+                  1645.6439281312673
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  409.50563420265615,
+                  18.610230603991663
+                ],
+                "maximumXY": [
+                  5525.588735663094,
+                  1636.1886377103397
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.0056089482903,
+                  98.10984660453191
+                ],
+                "maximumXY": [
+                  5446.089967328488,
+                  1556.6900392450327
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  329.6556595682048,
+                  -61.239383705984906
+                ],
+                "maximumXY": [
+                  5605.437498575274,
+                  1716.037230005368
+                ],
+                "maximumOutsideMM": 61.239383705984906,
+                "outsideSampleCount": 41
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.31501227726756,
+                  15.93878654074158
+                ],
+                "maximumXY": [
+                  5529.703855755325,
+                  1643.0779355034306
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.6982293376823,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.302°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 61.2394 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 4.707432092506529,
+          "metrics": {
+            "maxHitError": 3.5188045240965105,
+            "rmsHitError": 1.634566599845419,
+            "routeLength": 12762.387904974037,
+            "driveLength": 12297.004102651708,
+            "maxSteeringDeg": 33.54944885754137,
+            "maxPressureDeg": 83.61581377538879,
+            "maxWorkPressureDeg": 83.61581377538879,
+            "maxReturnPressureDeg": 39.937889223177805,
+            "minUndercutMargin": 0.5389907072541803,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.30046780791164,
+            "returnAngleSatisfied": false,
+            "score": 74.17629962903158,
+            "terms": [
+              0.016726436942369204,
+              1.0427412445119195,
+              0.061049702278997,
+              24.270247245551076,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.256790126050438,
+            "legacyTerms": [
+              0.002968675521478016,
+              1.0427412445119195,
+              0.002043004668641101,
+              0.3914462553145,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 61.24948542728795,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 61.24948542728795,
+            "maxScaledViolation": 0.030624742713643974,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1618,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  389.7709427372024,
+                  14.690547644839398
+                ],
+                "maximumXY": [
+                  5531.432356825792,
+                  1645.726505366776
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  409.50164506484515,
+                  18.60051360174279
+                ],
+                "maximumXY": [
+                  5525.605619035956,
+                  1636.1979723069335
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.0016441266471,
+                  98.1005126350295
+                ],
+                "maximumXY": [
+                  5446.1056268256,
+                  1556.6980785075496
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  329.65164600717367,
+                  -61.24948542728795
+                ],
+                "maximumXY": [
+                  5605.455611212018,
+                  1716.0478656387675
+                ],
+                "maximumOutsideMM": 61.24948542728795,
+                "outsideSampleCount": 165
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.312000865554,
+                  15.931259069592219
+                ],
+                "maximumXY": [
+                  5529.722163327156,
+                  1643.090488272576
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.6995321920884,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.300°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 61.2495 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 61.24948542728795,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 4,
+      "stage": "search",
+      "startFrom": "original",
+      "reason": "iteration_limit",
+      "iterations": 345,
+      "requestedIterations": 345,
+      "evaluations": 47267,
+      "weights": [
+        11.568140099877793,
+        0.8115265297370939,
+        0.8156171632744837,
+        11.777476759475947,
+        2.7389512631975355,
+        4.072875758181201
+      ],
+      "training": {
+        "iterations": 345,
+        "controlPointCount": 34,
+        "interpolationPerSegment": 28,
+        "bezierDegree": 10,
+        "gradientForce": 6.982926597654696,
+        "learningRate": 0.1707849302101102,
+        "smoothingRate": 0.11355967509340517,
+        "adjustInterval": 13,
+        "adjustExponent": 0.9198811239166715
+      },
+      "samples": 925,
+      "routeModel": "bezier-blend-independent-v1",
+      "rank": [
+        1,
+        301.70477189095516,
+        0,
+        4242.805967011464
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 301.70477189095516,
+          "metrics": {
+            "maxHitError": 521.95238738975,
+            "rmsHitError": 210.92289361144833,
+            "routeLength": 11036.915682048004,
+            "driveLength": 10606.692711441889,
+            "maxSteeringDeg": 21.231067856657187,
+            "maxPressureDeg": 58.30483030247864,
+            "maxWorkPressureDeg": 58.30483030247864,
+            "maxReturnPressureDeg": 28.28421941903972,
+            "minUndercutMargin": 0.6244222981654033,
+            "intersectionCount": 0,
+            "actualReturnDeg": 92.87088924932232,
+            "returnAngleSatisfied": true,
+            "score": 4243.192625523805,
+            "terms": [
+              352.13640194587333,
+              0.9017628424682543,
+              0.009181883523330929,
+              5.545225187936633,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 594.4251676408422,
+            "legacyTerms": [
+              49.43163005491816,
+              0.9017628424682543,
+              0.0008110191830752072,
+              0.11407403366336502,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": true,
+            "maximumOutsideMM": 0,
+            "maxScaledViolation": 0,
+            "worstPoint": "",
+            "worstSide": "",
+            "worstSampleIndex": null,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.2106467559781,
+                  416.9011077234543
+                ],
+                "maximumXY": [
+                  5293.289649351248,
+                  1551.5288472804953
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  320
+                ],
+                "maximumXY": [
+                  5272.166070297264,
+                  1546.6002282071079
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  320
+                ],
+                "maximumXY": [
+                  5192.666424124774,
+                  1467.1006585786613
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  320
+                ],
+                "maximumXY": [
+                  5352.015714912023,
+                  1626.4497959408368
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.7301716268353,
+                  420
+                ],
+                "maximumXY": [
+                  5287.16699842171,
+                  1550.1989452685043
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 267.1291107506777,
+          "warnings": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 301.65775417437084,
+          "metrics": {
+            "maxHitError": 521.9118496038711,
+            "rmsHitError": 210.90538426263092,
+            "routeLength": 11036.91736609615,
+            "driveLength": 10606.690805080148,
+            "maxSteeringDeg": 21.231213568501698,
+            "maxPressureDeg": 58.50083174490816,
+            "maxWorkPressureDeg": 58.50083174490816,
+            "maxReturnPressureDeg": 28.459840734354092,
+            "minUndercutMargin": 0.6239778509004175,
+            "intersectionCount": 0,
+            "actualReturnDeg": 92.87093726096272,
+            "returnAngleSatisfied": true,
+            "score": 4242.805967011464,
+            "terms": [
+              352.08117763100194,
+              0.9017629800621335,
+              0.009204997298194259,
+              5.637220821594463,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 594.3274571830485,
+            "legacyTerms": [
+              49.42342345663111,
+              0.9017629800621335,
+              0.0008115198520716969,
+              0.11432989456963032,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": true,
+            "maximumOutsideMM": 0,
+            "maxScaledViolation": 0,
+            "worstPoint": "",
+            "worstSide": "",
+            "worstSampleIndex": null,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.2106467559781,
+                  416.9011077234543
+                ],
+                "maximumXY": [
+                  5293.289649351247,
+                  1551.5349003170843
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  320
+                ],
+                "maximumXY": [
+                  5272.166055833138,
+                  1546.6057922459952
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  320
+                ],
+                "maximumXY": [
+                  5192.666409632059,
+                  1467.1057979422649
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  320
+                ],
+                "maximumXY": [
+                  5352.0157004766115,
+                  1626.4557865246475
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.73017156458735,
+                  420
+                ],
+                "maximumXY": [
+                  5287.174335557178,
+                  1550.2031846725697
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 267.1290627390373,
+          "warnings": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": true,
+        "maxTrajectoryOutsideMM": 0,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 5,
+      "stage": "search",
+      "startFrom": "incumbent",
+      "reason": "iteration_limit",
+      "iterations": 458,
+      "requestedIterations": 458,
+      "evaluations": 97217,
+      "weights": [
+        20.14916347811844,
+        2.098323936848151,
+        4.6005339174010675,
+        10.496804033656858,
+        3.354808086904857,
+        8.26234018085422
+      ],
+      "training": {
+        "iterations": 458,
+        "controlPointCount": 50,
+        "interpolationPerSegment": 25,
+        "bezierDegree": 3,
+        "gradientForce": 2.6289866640250805,
+        "learningRate": 1.2432021220880793,
+        "smoothingRate": 0.025992406946407837,
+        "adjustInterval": 37,
+        "adjustExponent": 0.28348195137680826
+      },
+      "samples": 1226,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        0.958753512551566,
+        0,
+        11.624545386324073
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 0.9558321005478518,
+          "metrics": {
+            "maxHitError": 17.460524108120058,
+            "rmsHitError": 5.707578336248423,
+            "routeLength": 12763.906053555751,
+            "driveLength": 12299.374538682598,
+            "maxSteeringDeg": 21.607480975300845,
+            "maxPressureDeg": 48.94787353063582,
+            "maxWorkPressureDeg": 48.94787353063582,
+            "maxReturnPressureDeg": 22.25331055395862,
+            "minUndercutMargin": 0.17769312492731115,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.240768475966256,
+            "returnAngleSatisfied": false,
+            "score": 11.628696071328466,
+            "terms": [
+              0.37494039177183786,
+              1.0428652836927719,
+              0.014451250476163073,
+              2.0192145284737713,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.7008438987130745,
+            "legacyTerms": [
+              0.03619605607156924,
+              1.0428652836927719,
+              0.001138818769249519,
+              0.07378276820765758,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 38.46681639325576,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 38.46681639325576,
+            "maxScaledViolation": 0.01923340819662788,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 403,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.22335364632795,
+                  37.09760452809002
+                ],
+                "maximumXY": [
+                  5497.660352791537,
+                  1647.8537283393466
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  41.381990937180696
+                ],
+                "maximumXY": [
+                  5494.721273496798,
+                  1637.5362586249973
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  120.88080349534849
+                ],
+                "maximumXY": [
+                  5415.221473331166,
+                  1558.0455699032868
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -38.46681639325576
+                ],
+                "maximumXY": [
+                  5574.571072782656,
+                  1717.3769063536588
+                ],
+                "maximumOutsideMM": 38.46681639325576,
+                "outsideSampleCount": 32
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.9224834749264,
+                  38.477363961427365
+                ],
+                "maximumXY": [
+                  5496.819504830064,
+                  1644.9519558440913
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.75923152403374,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.241°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 38.4668 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 0.958753512551566,
+          "metrics": {
+            "maxHitError": 17.3915273603526,
+            "rmsHitError": 5.683380827285194,
+            "routeLength": 12763.96561413774,
+            "driveLength": 12299.429639738766,
+            "maxSteeringDeg": 21.61734121516673,
+            "maxPressureDeg": 48.984416428856925,
+            "maxWorkPressureDeg": 48.984416428856925,
+            "maxReturnPressureDeg": 23.048692805737097,
+            "minUndercutMargin": 0.16762279921296253,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.23938075817937,
+            "returnAngleSatisfied": false,
+            "score": 11.624545386324073,
+            "terms": [
+              0.3719622683931622,
+              1.0428701500450446,
+              0.014777060472504868,
+              2.0295246315386906,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.697485827124675,
+            "legacyTerms": [
+              0.03588979736439214,
+              1.0428701500450446,
+              0.0011406498806784753,
+              0.0738856029818559,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 38.49747308214688,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 38.49747308214688,
+            "maxScaledViolation": 0.019248736541073442,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1607,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.22335364632795,
+                  37.08697008265125
+                ],
+                "maximumXY": [
+                  5497.688948685243,
+                  1647.86339940598
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  41.352516971916714
+                ],
+                "maximumXY": [
+                  5494.725809435181,
+                  1637.605205567747
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  120.85250706957552
+                ],
+                "maximumXY": [
+                  5415.225832596366,
+                  1558.1052349746103
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -38.49747308214688
+                ],
+                "maximumXY": [
+                  5574.5757861720285,
+                  1717.4551760314193
+                ],
+                "maximumOutsideMM": 38.49747308214688,
+                "outsideSampleCount": 130
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.9224834646235,
+                  38.47287764897804
+                ],
+                "maximumXY": [
+                  5496.822033654493,
+                  1644.9519388384085
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.7606192418206,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.239°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 38.4975 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 38.49747308214688,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 6,
+      "stage": "search",
+      "startFrom": "original",
+      "reason": "iteration_limit",
+      "iterations": 352,
+      "requestedIterations": 352,
+      "evaluations": 18442,
+      "weights": [
+        9.326328334229622,
+        1.0187744004317127,
+        5.855594801884017,
+        3.4195836707523184,
+        9.09412032493172,
+        17.625611465141386
+      ],
+      "training": {
+        "iterations": 352,
+        "controlPointCount": 10,
+        "interpolationPerSegment": 34,
+        "bezierDegree": 3,
+        "gradientForce": 3.446198104651464,
+        "learningRate": 0.3041268695143339,
+        "smoothingRate": 0.17857016056262276,
+        "adjustInterval": 11,
+        "adjustExponent": 0.020089053382330302
+      },
+      "samples": 307,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        5.144447846701333,
+        0,
+        83.94987593319023
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.034807879880877,
+          "metrics": {
+            "maxHitError": 6.977297474425084,
+            "rmsHitError": 3.6388663175811855,
+            "routeLength": 12839.92728626131,
+            "driveLength": 12370.24070325182,
+            "maxSteeringDeg": 38.47588670844891,
+            "maxPressureDeg": 85.98046087835348,
+            "maxWorkPressureDeg": 85.98046087835348,
+            "maxReturnPressureDeg": 35.036745294138434,
+            "minUndercutMargin": 0.49992661733087185,
+            "intersectionCount": 0,
+            "actualReturnDeg": 48.456007095704315,
+            "returnAngleSatisfied": false,
+            "score": 81.57694388821848,
+            "terms": [
+              0.06880447569316168,
+              1.0490765409740075,
+              0.14054329841642346,
+              26.47370901403123,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.6831443228516982,
+            "legacyTerms": [
+              0.014712608974696506,
+              1.0490765409740075,
+              0.003325839833403352,
+              0.4836215981715086,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 98.25827313941815,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 98.25827313941815,
+            "maxScaledViolation": 0.049129136569709075,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 401,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  329.275557178476,
+                  -22.97618718527383
+                ],
+                "maximumXY": [
+                  5508.44024140047,
+                  1646.7936978529328
+                ],
+                "maximumOutsideMM": 22.97618718527383,
+                "outsideSampleCount": 25
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  -18.40829508739948
+                ],
+                "maximumXY": [
+                  5503.238065463,
+                  1635.7658675178918
+                ],
+                "maximumOutsideMM": 18.40829508739948,
+                "outsideSampleCount": 21
+              },
+              "drive": {
+                "minimumXY": [
+                  431.35011305695105,
+                  61.09168306082199
+                ],
+                "maximumXY": [
+                  5423.7381327322655,
+                  1556.2751193405134
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -98.25827313941815
+                ],
+                "maximumXY": [
+                  5583.08799789758,
+                  1715.6065749639758
+                ],
+                "maximumOutsideMM": 98.25827313941815,
+                "outsideSampleCount": 49
+              },
+              "sensor": {
+                "minimumXY": [
+                  348.887020247499,
+                  -21.500761140578128
+                ],
+                "maximumXY": [
+                  5506.874507190997,
+                  1643.8210591721747
+                ],
+                "maximumOutsideMM": 21.500761140578128,
+                "outsideSampleCount": 24
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 311.5439929042957,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 48.456°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 98.2583 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 5.144447846701333,
+          "metrics": {
+            "maxHitError": 6.914053193552028,
+            "rmsHitError": 3.6210676572859386,
+            "routeLength": 12839.978871318981,
+            "driveLength": 12370.28760532948,
+            "maxSteeringDeg": 38.54011261174136,
+            "maxPressureDeg": 86.75798875152151,
+            "maxWorkPressureDeg": 86.75798875152151,
+            "maxReturnPressureDeg": 35.50332378445556,
+            "minUndercutMargin": 0.43746800940098773,
+            "intersectionCount": 0,
+            "actualReturnDeg": 48.45482586884704,
+            "returnAngleSatisfied": false,
+            "score": 83.94987593319023,
+            "terms": [
+              0.06768473615767696,
+              1.0490807556921022,
+              0.14229453399913447,
+              27.26799642520258,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 2.6602886847375924,
+            "legacyTerms": [
+              0.014569034420713636,
+              1.0490807556921022,
+              0.0033361367139811047,
+              0.4765690808563214,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 98.2582951957078,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 98.2582951957078,
+            "maxScaledViolation": 0.0491291475978539,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1601,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  329.275557178476,
+                  -22.99190925106285
+                ],
+                "maximumXY": [
+                  5508.446838446148,
+                  1646.7936978529328
+                ],
+                "maximumOutsideMM": 22.99190925106285,
+                "outsideSampleCount": 100
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  -18.408317154577652
+                ],
+                "maximumXY": [
+                  5503.238064188766,
+                  1635.8201312364508
+                ],
+                "maximumOutsideMM": 18.408317154577652,
+                "outsideSampleCount": 85
+              },
+              "drive": {
+                "minimumXY": [
+                  431.35010526877045,
+                  61.09166098280301
+                ],
+                "maximumXY": [
+                  5423.73813145913,
+                  1556.3203413290762
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -98.2582951957078
+                ],
+                "maximumXY": [
+                  5583.087996622243,
+                  1715.6699202188895
+                ],
+                "maximumOutsideMM": 98.2582951957078,
+                "outsideSampleCount": 195
+              },
+              "sensor": {
+                "minimumXY": [
+                  348.8870199464603,
+                  -21.519073351552542
+                ],
+                "maximumXY": [
+                  5506.874508650575,
+                  1643.8385203447149
+                ],
+                "maximumOutsideMM": 21.519073351552542,
+                "outsideSampleCount": 96
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 311.545174131153,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 48.455°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 98.2583 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 98.2582951957078,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 7,
+      "stage": "search",
+      "startFrom": "incumbent",
+      "reason": "iteration_limit",
+      "iterations": 349,
+      "requestedIterations": 349,
+      "evaluations": 27565,
+      "weights": [
+        31.768005614413465,
+        0.6883833710153977,
+        1.6547716723570693,
+        5.477887696409451,
+        19.27129272099547,
+        5.619918827626476
+      ],
+      "training": {
+        "iterations": 349,
+        "controlPointCount": 18,
+        "interpolationPerSegment": 36,
+        "bezierDegree": 3,
+        "gradientForce": 0.38284742228859636,
+        "learningRate": 1.712312823682332,
+        "smoothingRate": 0.013244793143591838,
+        "adjustInterval": 99,
+        "adjustExponent": 1.471844905985887
+      },
+      "samples": 613,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        1.9226368514375776,
+        0,
+        20.24637809190073
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 1.8110408657155586,
+          "metrics": {
+            "maxHitError": 2.313210728119627,
+            "rmsHitError": 1.354783167924826,
+            "routeLength": 12851.647857055452,
+            "driveLength": 12389.354804454955,
+            "maxSteeringDeg": 20.313614692480503,
+            "maxPressureDeg": 58.68155639126794,
+            "maxWorkPressureDeg": 58.68155639126794,
+            "maxReturnPressureDeg": 35.75223888056399,
+            "minUndercutMargin": 0.5648851518473508,
+            "intersectionCount": 0,
+            "actualReturnDeg": 47.97461925916558,
+            "returnAngleSatisfied": false,
+            "score": 18.50151639847594,
+            "terms": [
+              0.007984868116422402,
+              1.0500341613399824,
+              0.012171013339440734,
+              5.777107264353335,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.5665050601663189,
+            "legacyTerms": [
+              0.0020393749245471407,
+              1.0500341613399824,
+              0.0010679500294202501,
+              0.16328749989097668,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 95.31457450951379,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 95.31457450951379,
+            "maxScaledViolation": 0.047657287254756896,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 404,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.1945959200722,
+                  -19.78112302780744
+                ],
+                "maximumXY": [
+                  5517.992448003429,
+                  1638.1903940132145
+                ],
+                "maximumOutsideMM": 19.78112302780744,
+                "outsideSampleCount": 23
+              },
+              "rear": {
+                "minimumXY": [
+                  407.98127871719925,
+                  -15.466197802088036
+                ],
+                "maximumXY": [
+                  5513.150277634269,
+                  1630.2368200653193
+                ],
+                "maximumOutsideMM": 15.466197802088036,
+                "outsideSampleCount": 20
+              },
+              "drive": {
+                "minimumXY": [
+                  487.48127712221844,
+                  64.03218602058382
+                ],
+                "maximumXY": [
+                  5433.65087623721,
+                  1550.7385931312422
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  328.13128031920195,
+                  -95.31457450951379
+                ],
+                "maximumXY": [
+                  5592.999676395969,
+                  1710.085039193446
+                ],
+                "maximumOutsideMM": 95.31457450951379,
+                "outsideSampleCount": 49
+              },
+              "sensor": {
+                "minimumXY": [
+                  407.6438511947982,
+                  -18.42125468527876
+                ],
+                "maximumXY": [
+                  5516.571227606194,
+                  1635.9999072584123
+                ],
+                "maximumOutsideMM": 18.42125468527876,
+                "outsideSampleCount": 23
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 312.0253807408344,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 47.975°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 95.3146 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 1.9226368514375776,
+          "metrics": {
+            "maxHitError": 2.2159198392209425,
+            "rmsHitError": 1.3200104091731246,
+            "routeLength": 12851.715540517936,
+            "driveLength": 12389.42769507637,
+            "maxSteeringDeg": 20.314924721959127,
+            "maxPressureDeg": 59.83502438380912,
+            "maxWorkPressureDeg": 59.83502438380912,
+            "maxReturnPressureDeg": 36.7085436946575,
+            "minUndercutMargin": 0.5646292481090218,
+            "intersectionCount": 0,
+            "actualReturnDeg": 47.97278351192463,
+            "returnAngleSatisfied": false,
+            "score": 20.24637809190073,
+            "terms": [
+              0.007391920237975963,
+              1.0500396913660581,
+              0.01317094306332832,
+              6.3604311571841015,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.5657772995710921,
+            "legacyTerms": [
+              0.0019360305336948887,
+              1.0500396913660581,
+              0.0010692506384105927,
+              0.1634555801746248,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 95.35365566062747,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 95.35365566062747,
+            "maxScaledViolation": 0.04767682783031373,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1615,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.1945959200722,
+                  -19.78112302780744
+                ],
+                "maximumXY": [
+                  5518.045762128205,
+                  1638.2229029205505
+                ],
+                "maximumOutsideMM": 19.78112302780744,
+                "outsideSampleCount": 94
+              },
+              "rear": {
+                "minimumXY": [
+                  407.98129959134224,
+                  -15.503655792348834
+                ],
+                "maximumXY": [
+                  5513.160418663085,
+                  1630.251588280416
+                ],
+                "maximumOutsideMM": 15.503655792348834,
+                "outsideSampleCount": 81
+              },
+              "drive": {
+                "minimumXY": [
+                  487.4812979935901,
+                  63.99634407650716
+                ],
+                "maximumXY": [
+                  5433.660427588126,
+                  1550.751588774225
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  328.1313011961285,
+                  -95.35365566062747
+                ],
+                "maximumXY": [
+                  5593.010409698751,
+                  1710.101587784433
+                ],
+                "maximumOutsideMM": 95.35365566062747,
+                "outsideSampleCount": 197
+              },
+              "sensor": {
+                "minimumXY": [
+                  407.64185126886383,
+                  -18.421257754297176
+                ],
+                "maximumXY": [
+                  5516.586151528034,
+                  1636.0291072322452
+                ],
+                "maximumOutsideMM": 18.421257754297176,
+                "outsideSampleCount": 90
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 312.02721648807534,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 47.973°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 95.3537 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 95.35365566062747,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 8,
+      "stage": "search",
+      "startFrom": "original",
+      "reason": "iteration_limit",
+      "iterations": 309,
+      "requestedIterations": 309,
+      "evaluations": 42335,
+      "weights": [
+        3.8718782273014845,
+        0.6734839303126533,
+        0.5299265681786679,
+        11.90643737883129,
+        4.902649226746373,
+        3.532554261483919
+      ],
+      "training": {
+        "iterations": 309,
+        "controlPointCount": 34,
+        "interpolationPerSegment": 28,
+        "bezierDegree": 5,
+        "gradientForce": 0.11423044468486261,
+        "learningRate": 0.3427465098086876,
+        "smoothingRate": 0.06877862767087492,
+        "adjustInterval": 12,
+        "adjustExponent": 0.10437765436378826
+      },
+      "samples": 925,
+      "routeModel": "bezier-blend-independent-v1",
+      "rank": [
+        1,
+        155.57003737220313,
+        0,
+        2241.34111009105
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 155.57003737220313,
+          "metrics": {
+            "maxHitError": 375.3838483938578,
+            "rmsHitError": 148.92985588301877,
+            "routeLength": 11520.91522758405,
+            "driveLength": 11076.696984612508,
+            "maxSteeringDeg": 29.774863330057844,
+            "maxPressureDeg": 81.16878886743625,
+            "maxWorkPressureDeg": 81.16878886743625,
+            "maxReturnPressureDeg": 38.64466590576175,
+            "minUndercutMargin": 0.20436968511368425,
+            "intersectionCount": 0,
+            "actualReturnDeg": 81.03385135666718,
+            "returnAngleSatisfied": true,
+            "score": 2241.197444180768,
+            "terms": [
+              181.21459512035506,
+              0.9413076590192982,
+              0.06796540341571039,
+              21.848354756885467,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 297.8802375310423,
+            "legacyTerms": [
+              24.644557748151936,
+              0.9413076590192982,
+              0.0021961375296362423,
+              0.3999482063801917,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": true,
+            "maximumOutsideMM": 0,
+            "maxScaledViolation": 0,
+            "worstPoint": "",
+            "worstSide": "",
+            "worstSampleIndex": null,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.2428024916019,
+                  417.0193637471871
+                ],
+                "maximumXY": [
+                  5402.526516824379,
+                  1591.071614555496
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  320
+                ],
+                "maximumXY": [
+                  5387.058339304462,
+                  1583.1503023032105
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  320
+                ],
+                "maximumXY": [
+                  5307.55892109677,
+                  1503.6511569207962
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  320
+                ],
+                "maximumXY": [
+                  5466.907754950804,
+                  1662.9994439231575
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.76942425828344,
+                  420
+                ],
+                "maximumXY": [
+                  5398.190094348787,
+                  1588.9317879396788
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 278.9661486433328,
+          "warnings": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 155.4830464596296,
+          "metrics": {
+            "maxHitError": 375.2795515527946,
+            "rmsHitError": 148.88441396094578,
+            "routeLength": 11520.911834733031,
+            "driveLength": 11076.68938469687,
+            "maxSteeringDeg": 29.774867038160334,
+            "maxPressureDeg": 81.64497413222246,
+            "maxWorkPressureDeg": 81.64497413222246,
+            "maxReturnPressureDeg": 38.88254959953285,
+            "minUndercutMargin": 0.1994338296104513,
+            "intersectionCount": 0,
+            "actualReturnDeg": 81.03404276022356,
+            "returnAngleSatisfied": true,
+            "score": 2241.34111009105,
+            "terms": [
+              181.1125672601788,
+              0.9413073818089738,
+              0.06834744021729637,
+              22.304100235553527,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 297.6874241658407,
+            "legacyTerms": [
+              24.629520800549184,
+              0.9413073818089738,
+              0.002200283218500866,
+              0.3958222036681691,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": true,
+            "maximumOutsideMM": 0,
+            "maxScaledViolation": 0,
+            "worstPoint": "",
+            "worstSide": "",
+            "worstSampleIndex": null,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.2428024916019,
+                  417.0193637471871
+                ],
+                "maximumXY": [
+                  5402.526516824379,
+                  1591.0903513252608
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  320
+                ],
+                "maximumXY": [
+                  5387.058292305919,
+                  1583.1574830778202
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  320
+                ],
+                "maximumXY": [
+                  5307.558874217354,
+                  1503.6574852981742
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  320
+                ],
+                "maximumXY": [
+                  5466.90770783261,
+                  1663.007480847691
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.7694242109478,
+                  420
+                ],
+                "maximumXY": [
+                  5398.190089517822,
+                  1588.9543610635874
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 278.96595723977646,
+          "warnings": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": true,
+        "maxTrajectoryOutsideMM": 0,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 9,
+      "stage": "polish",
+      "startFrom": "original",
+      "reason": "iteration_limit",
+      "iterations": 600,
+      "requestedIterations": 600,
+      "evaluations": 61886,
+      "weights": [
+        20.14916347811844,
+        2.098323936848151,
+        4.6005339174010675,
+        10.496804033656858,
+        3.354808086904857,
+        8.26234018085422
+      ],
+      "training": {
+        "iterations": 600,
+        "controlPointCount": 50,
+        "interpolationPerSegment": 25,
+        "bezierDegree": 3,
+        "gradientForce": 0.01,
+        "learningRate": 1.2432021220880793,
+        "smoothingRate": 0.025992406946407837,
+        "adjustInterval": 37,
+        "adjustExponent": 0.28348195137680826
+      },
+      "samples": 1226,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        0.958753512551566,
+        0,
+        11.624545386324073
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 0.9558321005478518,
+          "metrics": {
+            "maxHitError": 17.460524108120058,
+            "rmsHitError": 5.707578336248423,
+            "routeLength": 12763.906053555751,
+            "driveLength": 12299.374538682598,
+            "maxSteeringDeg": 21.607480975300845,
+            "maxPressureDeg": 48.94787353063582,
+            "maxWorkPressureDeg": 48.94787353063582,
+            "maxReturnPressureDeg": 22.25331055395862,
+            "minUndercutMargin": 0.17769312492731115,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.240768475966256,
+            "returnAngleSatisfied": false,
+            "score": 11.628696071328466,
+            "terms": [
+              0.37494039177183786,
+              1.0428652836927719,
+              0.014451250476163073,
+              2.0192145284737713,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.7008438987130745,
+            "legacyTerms": [
+              0.03619605607156924,
+              1.0428652836927719,
+              0.001138818769249519,
+              0.07378276820765758,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 38.46681639325576,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 38.46681639325576,
+            "maxScaledViolation": 0.01923340819662788,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 403,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.22335364632795,
+                  37.09760452809002
+                ],
+                "maximumXY": [
+                  5497.660352791537,
+                  1647.8537283393466
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  41.381990937180696
+                ],
+                "maximumXY": [
+                  5494.721273496798,
+                  1637.5362586249973
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  120.88080349534849
+                ],
+                "maximumXY": [
+                  5415.221473331166,
+                  1558.0455699032868
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -38.46681639325576
+                ],
+                "maximumXY": [
+                  5574.571072782656,
+                  1717.3769063536588
+                ],
+                "maximumOutsideMM": 38.46681639325576,
+                "outsideSampleCount": 32
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.9224834749264,
+                  38.477363961427365
+                ],
+                "maximumXY": [
+                  5496.819504830064,
+                  1644.9519558440913
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.75923152403374,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.241°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 38.4668 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 0.958753512551566,
+          "metrics": {
+            "maxHitError": 17.3915273603526,
+            "rmsHitError": 5.683380827285194,
+            "routeLength": 12763.96561413774,
+            "driveLength": 12299.429639738766,
+            "maxSteeringDeg": 21.61734121516673,
+            "maxPressureDeg": 48.984416428856925,
+            "maxWorkPressureDeg": 48.984416428856925,
+            "maxReturnPressureDeg": 23.048692805737097,
+            "minUndercutMargin": 0.16762279921296253,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.23938075817937,
+            "returnAngleSatisfied": false,
+            "score": 11.624545386324073,
+            "terms": [
+              0.3719622683931622,
+              1.0428701500450446,
+              0.014777060472504868,
+              2.0295246315386906,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.697485827124675,
+            "legacyTerms": [
+              0.03588979736439214,
+              1.0428701500450446,
+              0.0011406498806784753,
+              0.0738856029818559,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 38.49747308214688,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 38.49747308214688,
+            "maxScaledViolation": 0.019248736541073442,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1607,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.22335364632795,
+                  37.08697008265125
+                ],
+                "maximumXY": [
+                  5497.688948685243,
+                  1647.86339940598
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  41.352516971916714
+                ],
+                "maximumXY": [
+                  5494.725809435181,
+                  1637.605205567747
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  120.85250706957552
+                ],
+                "maximumXY": [
+                  5415.225832596366,
+                  1558.1052349746103
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -38.49747308214688
+                ],
+                "maximumXY": [
+                  5574.5757861720285,
+                  1717.4551760314193
+                ],
+                "maximumOutsideMM": 38.49747308214688,
+                "outsideSampleCount": 130
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.9224834646235,
+                  38.47287764897804
+                ],
+                "maximumXY": [
+                  5496.822033654493,
+                  1644.9519388384085
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.7606192418206,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.239°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 38.4975 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 38.49747308214688,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    },
+    {
+      "trial": 10,
+      "stage": "polish",
+      "startFrom": "original",
+      "reason": "constrained_infeasible",
+      "iterations": 119,
+      "requestedIterations": 600,
+      "evaluations": 12419,
+      "weights": [
+        20.14916347811844,
+        2.098323936848151,
+        4.6005339174010675,
+        10.496804033656858,
+        3.354808086904857,
+        8.26234018085422
+      ],
+      "training": {
+        "iterations": 600,
+        "controlPointCount": 50,
+        "interpolationPerSegment": 25,
+        "bezierDegree": 3,
+        "gradientForce": 0.001,
+        "learningRate": 1.2432021220880793,
+        "smoothingRate": 0.025992406946407837,
+        "adjustInterval": 37,
+        "adjustExponent": 0.28348195137680826
+      },
+      "samples": 1226,
+      "routeModel": "cubic",
+      "rank": [
+        1,
+        0.958753512551566,
+        0,
+        11.624545386324073
+      ],
+      "verification": {
+        "optimizationGrid": {
+          "routeSamples": 601,
+          "camSamples": 721,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 0.9558321005478518,
+          "metrics": {
+            "maxHitError": 17.460524108120058,
+            "rmsHitError": 5.707578336248423,
+            "routeLength": 12763.906053555751,
+            "driveLength": 12299.374538682598,
+            "maxSteeringDeg": 21.607480975300845,
+            "maxPressureDeg": 48.94787353063582,
+            "maxWorkPressureDeg": 48.94787353063582,
+            "maxReturnPressureDeg": 22.25331055395862,
+            "minUndercutMargin": 0.17769312492731115,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.240768475966256,
+            "returnAngleSatisfied": false,
+            "score": 11.628696071328466,
+            "terms": [
+              0.37494039177183786,
+              1.0428652836927719,
+              0.014451250476163073,
+              2.0192145284737713,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.7008438987130745,
+            "legacyTerms": [
+              0.03619605607156924,
+              1.0428652836927719,
+              0.001138818769249519,
+              0.07378276820765758,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 38.46681639325576,
+          "trajectoryBounds": {
+            "sampleCount": 601,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 38.46681639325576,
+            "maxScaledViolation": 0.01923340819662788,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 403,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.22335364632795,
+                  37.09760452809002
+                ],
+                "maximumXY": [
+                  5497.660352791537,
+                  1647.8537283393466
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  41.381990937180696
+                ],
+                "maximumXY": [
+                  5494.721273496798,
+                  1637.5362586249973
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  120.88080349534849
+                ],
+                "maximumXY": [
+                  5415.221473331166,
+                  1558.0455699032868
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -38.46681639325576
+                ],
+                "maximumXY": [
+                  5574.571072782656,
+                  1717.3769063536588
+                ],
+                "maximumOutsideMM": 38.46681639325576,
+                "outsideSampleCount": 32
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.9224834749264,
+                  38.477363961427365
+                ],
+                "maximumXY": [
+                  5496.819504830064,
+                  1644.9519558440913
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.75923152403374,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.241°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 38.4668 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinedGrid": {
+          "routeSamples": 2401,
+          "camSamples": 2881,
+          "valid": true,
+          "feasible": false,
+          "maxScaledViolation": 0.958753512551566,
+          "metrics": {
+            "maxHitError": 17.3915273603526,
+            "rmsHitError": 5.683380827285194,
+            "routeLength": 12763.96561413774,
+            "driveLength": 12299.429639738766,
+            "maxSteeringDeg": 21.61734121516673,
+            "maxPressureDeg": 48.984416428856925,
+            "maxWorkPressureDeg": 48.984416428856925,
+            "maxReturnPressureDeg": 23.048692805737097,
+            "minUndercutMargin": 0.16762279921296253,
+            "intersectionCount": 0,
+            "actualReturnDeg": 50.23938075817937,
+            "returnAngleSatisfied": false,
+            "score": 11.624545386324073,
+            "terms": [
+              0.3719622683931622,
+              1.0428701500450446,
+              0.014777060472504868,
+              2.0295246315386906,
+              0,
+              0
+            ],
+            "objectiveVersion": "peak-v2",
+            "legacyScore": 1.697485827124675,
+            "legacyTerms": [
+              0.03588979736439214,
+              1.0428701500450446,
+              0.0011406498806784753,
+              0.0738856029818559,
+              0,
+              0
+            ],
+            "geometryChecked": true
+          },
+          "nodeBoundsSatisfied": true,
+          "thresholdsSatisfied": false,
+          "intersectionFree": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 38.49747308214688,
+          "trajectoryBounds": {
+            "sampleCount": 2401,
+            "componentNames": [
+              "front",
+              "rear",
+              "drive",
+              "driven",
+              "sensor"
+            ],
+            "residualBlockOrder": [
+              "xmin",
+              "xmax",
+              "ymin",
+              "ymax"
+            ],
+            "boundsMM": [
+              0,
+              6000,
+              0,
+              2000
+            ],
+            "satisfied": false,
+            "maximumOutsideMM": 38.49747308214688,
+            "maxScaledViolation": 0.019248736541073442,
+            "worstPoint": "driven",
+            "worstSide": "ymin",
+            "worstSampleIndex": 1607,
+            "components": {
+              "front": {
+                "minimumXY": [
+                  390.22335364632795,
+                  37.08697008265125
+                ],
+                "maximumXY": [
+                  5497.688948685243,
+                  1647.86339940598
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "rear": {
+                "minimumXY": [
+                  410,
+                  41.352516971916714
+                ],
+                "maximumXY": [
+                  5494.725809435181,
+                  1637.605205567747
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "drive": {
+                "minimumXY": [
+                  489.5,
+                  120.85250706957552
+                ],
+                "maximumXY": [
+                  5415.225832596366,
+                  1558.1052349746103
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              },
+              "driven": {
+                "minimumXY": [
+                  330.15,
+                  -38.49747308214688
+                ],
+                "maximumXY": [
+                  5574.5757861720285,
+                  1717.4551760314193
+                ],
+                "maximumOutsideMM": 38.49747308214688,
+                "outsideSampleCount": 130
+              },
+              "sensor": {
+                "minimumXY": [
+                  409.9224834646235,
+                  38.47287764897804
+                ],
+                "maximumXY": [
+                  5496.822033654493,
+                  1644.9519388384085
+                ],
+                "maximumOutsideMM": 0,
+                "outsideSampleCount": 0
+              }
+            },
+            "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+          },
+          "requestedRatio": 35,
+          "effectiveRatio": 35,
+          "autoRatio": false,
+          "ratioPolicy": "fixed-user-input-v1",
+          "workEndDeg": 309.7606192418206,
+          "warnings": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "固定传动比 35：实际回程 50.239°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。",
+            "五个部件中心点的采样轨迹最大出界 38.4975 mm（driven，ymin）；不含车宽及整车外廓。"
+          ],
+          "errorIdentifier": "",
+          "errorMessage": ""
+        },
+        "refinementFactor": 4,
+        "independentRefinement": true,
+        "nodeBoundsSatisfied": true,
+        "trajectoryBoundsSatisfied": false,
+        "maxTrajectoryOutsideMM": 38.49747308214688,
+        "verifiedFeasible": false,
+        "physicalEvaluationAttempts": 2,
+        "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+      },
+      "errorIdentifier": "",
+      "errorMessage": ""
+    }
+  ],
+  "physicalParametersUnchanged": true,
+  "fixedRatio": 35,
+  "evidence": "outputs/auto_tune_20261030/quality_v2/candidate.mat",
+  "evidenceSHA256": "16fb153d40c3df12c2ca68acf30424f66a0a3d739f74bd3ef71f2b138e799268",
+  "timingScope": "Includes full-history HDF5 checkpoints and callback work; not a pure solver performance benchmark.",
+  "laterNonNumericalFixes": "Callback project grid alignment, saved-weight re-clamping, and failed-trial observed counts were contract-tested separately; this run used no saved weights and had no failed-configuration catch, so candidate geometry/ranking were unaffected."
+}

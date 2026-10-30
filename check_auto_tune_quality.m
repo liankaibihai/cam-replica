@@ -7,7 +7,7 @@ if ~isfolder(folder), mkdir(folder); end
 project=camdesign.solarTestProject(); project.params.autoTune=camdesign.autoTuneSettings(project.params);
 before=camdesign.autoTuneAssessment(project);
 [q,h,info]=camdesign.optimize(project,@(i,q,h)progress(i,q,h,folder),'auto-tune-v1');
-save(fullfile(folder,'candidate.mat'),'project','q','h','info','before','-v7.3');
+save(fullfile(folder,'candidate.mat'),'project','q','h','info','before','-v7');
 report=struct('release',version('-release'),'input','solarTestProject: official preliminary visits, flat, ratio35', ...
     'iterations',info.iterations,'requestedIterations',info.requestedIterations,'reason',info.reason, ...
     'evaluations',info.evaluations,'elapsedSeconds',info.elapsedSeconds,'selectedTrial',info.selectedTrial, ...
@@ -30,7 +30,7 @@ if isempty(lastStage) || ~strcmp(lastStage,r.autoStage) || lastTrial~=r.autoTria
         r.autoStage,r.autoTrial,r.trialIteration,r.trialBudget,r.iteration,r.score,r.metrics.maxPressureDeg, ...
         r.metrics.maxHitError,r.metrics.actualReturnDeg,size(q.nodes,1),r.trainingSamples);
     lastStage=r.autoStage; lastTrial=r.autoTrial; lastRound=r.trialIteration;
-    save(fullfile(folder,'checkpoint.mat'),'q','h','-v7.3');
+    hEnd=h(end); save(fullfile(folder,'checkpoint.mat'),'q','hEnd','-v7');
 end
 stop=false;
 end
