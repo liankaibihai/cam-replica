@@ -1,10 +1,11 @@
-function report=check_constrained_optimizer(mode)
+function report=check_constrained_optimizer(mode,outputFolder)
 % Targeted contracts and identical-input solver comparison, never user figures.
 if nargin<1, mode='all'; end
 assert(ismember(mode,{'contracts','comparison','all'}));
 assert(batchStartupOptionUsed,'cam:ConstrainedBatchOnly','请使用独立 MATLAB -batch 运行。');
 root=fileparts(mfilename('fullpath')); addpath(root);
-folder=fullfile(root,'outputs','constrained_optimizer'); if ~isfolder(folder), mkdir(folder); end
+if nargin<2, outputFolder=fullfile(root,'outputs','constrained_optimizer'); end
+folder=outputFolder; if ~isfolder(folder), mkdir(folder); end
 caseFolder=fullfile(folder,'interior_point');
 contracts=[]; cases={};
 if ismember(mode,{'contracts','all'}), contracts=checkContracts(); end
@@ -55,7 +56,7 @@ end
 function report=checkContracts()
 project=simpleCase(); initial=camdesign.fminconModel(project,project.nodes);
 assert(initial.valid && initial.maxViolation==0);
-expected=size(project.targets,1)+project.params.samples+2*project.params.camSamples;
+expected=size(project.targets,1)+5*project.params.samples+2*project.params.camSamples;
 assert(numel(initial.constraints)==expected);
 longer=project; longer.nodes(:,2)=1.1*longer.nodes(:,2);
 changed=camdesign.fminconModel(longer,project.nodes);

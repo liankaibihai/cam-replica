@@ -255,9 +255,10 @@ classdef CamReplicaApp < handle
             legend(a,camLines,{'理论','实际','回程','零位圆 d/2'}, ...
                 'Location','northeast','NumColumns',1,'FontSize',9,'IconColumnWidth',18,'AutoUpdate','off');
             m=app.Result.metrics;
-            app.Status.Text=sprintf('最大打卡偏差 %.2f mm    最大压力角 %.1f°    目标函数 %.4f    轮廓交叉 %g', ...
-                m.maxHitError,m.maxPressureDeg,m.score,m.intersectionCount);
-            if m.maxPressureDeg>p.maxPressureDeg || m.minUndercutMargin<=0 || m.maxHitError>p.hitTolerance || m.intersectionCount>0
+            [~,trajectory]=camdesign.trajectoryBounds(r,p.bounds);
+            app.Status.Text=sprintf('最大打卡偏差 %.2f mm    最大压力角 %.1f°    目标函数 %.4f    轮廓交叉 %g    五点中心出界 %.6g mm', ...
+                m.maxHitError,m.maxPressureDeg,m.score,m.intersectionCount,trajectory.maximumOutsideMM);
+            if m.maxPressureDeg>p.maxPressureDeg || m.minUndercutMargin<=0 || m.maxHitError>p.hitTolerance || m.intersectionCount>0 || ~trajectory.satisfied
                 app.Status.Text=[app.Status.Text,'    有指标超限，需改进'];
                 app.Status.FontColor=[.65 .28 .08];
             else
@@ -591,16 +592,21 @@ classdef CamReplicaApp < handle
                 'time_limit','达到求解时间预算','solver_stopped','求解器停止');
             if isfield(reasons,info.reason), text=reasons.(info.reason); else, text=info.reason; end
             m=app.Result.metrics; p=app.Project.params;
+            [~,trajectory]=camdesign.trajectoryBounds(app.Result.route,p.bounds);
             verdict='本模型检查通过，仍待外部验证';
             if m.maxHitError>p.hitTolerance || m.maxPressureDeg>p.maxPressureDeg || m.maxSteeringDeg>p.maxSteeringDeg ...
-                    || m.minUndercutMargin<=0 || m.intersectionCount>0, verdict='未达标候选'; end
+                    || m.minUndercutMargin<=0 || m.intersectionCount>0 || ~trajectory.satisfied, verdict='未达标候选'; end
             if isfield(info,'verifiedFeasible')
                 if info.verifiedFeasible, verdict='加密离散模型检查通过，仍待外部验证';
                 else, verdict='加密验收未通过或未完成；未达标候选'; end
             end
-            app.Status.Text=sprintf('优化结束 %d/%d 轮：%s · %s\n工作/回程压力角 %.1f°/%.1f°，阈值 %.1f°；最大打卡偏差 %.2f mm', ...
+            if ~trajectory.satisfied || (isfield(info,'verifiedFeasible') && ~info.verifiedFeasible)
+                app.Status.FontColor=[.65 .28 .08];
+            end
+            app.Status.Text=sprintf('优化结束 %d/%d 轮：%s · %s\n工作/回程压力角 %.1f°/%.1f°，阈值 %.1f°；最大打卡偏差 %.2f mm；五点中心出界 %.6g mm', ...
                 info.iterations,info.requestedIterations,text,verdict,app.Result.metrics.maxWorkPressureDeg, ...
-                app.Result.metrics.maxReturnPressureDeg,app.Project.params.maxPressureDeg,app.Result.metrics.maxHitError);
+                app.Result.metrics.maxReturnPressureDeg,app.Project.params.maxPressureDeg,app.Result.metrics.maxHitError,trajectory.maximumOutsideMM);
+            app.message('场界检查覆盖前轮、后轴中点、主从动轮中心和传感器的采样位置，不含车宽与整车外廓。');
             app.message(sprintf('%s，%d/%d 轮，原因：%s；%.3f 秒，%d 次评价；目标 %.6g → %.6g。', ...
                 info.algorithm,info.iterations,info.requestedIterations,text,info.elapsedSeconds,info.evaluations,history(1).score,history(end).score));
             if isfield(info,'returnedObjective')
@@ -611,9 +617,9 @@ classdef CamReplicaApp < handle
                 fine=info.verification.refinedGrid;
                 if fine.valid
                     fm=fine.metrics;
-                    detail=sprintf('加密工作/回程压力角 %.3f°/%.3f°（阈值 %.1f°）；打卡 %.3f mm；转角 %.3f°；欠切余量 %.6g；自交 %d。', ...
+                    detail=sprintf('加密压力角 %.3f°/%.3f°（限 %.1f°）；打卡 %.3f mm；转角 %.3f°；欠切 %.6g；自交 %d；五点中心出界 %.6g mm。', ...
                         fm.maxWorkPressureDeg,fm.maxReturnPressureDeg,p.maxPressureDeg, ...
-                        fm.maxHitError,fm.maxSteeringDeg,fm.minUndercutMargin,fm.intersectionCount);
+                        fm.maxHitError,fm.maxSteeringDeg,fm.minUndercutMargin,fm.intersectionCount,fine.maxTrajectoryOutsideMM);
                 else
                     detail=['加密计算未完成：',fine.errorIdentifier,' ',fine.errorMessage];
                 end
