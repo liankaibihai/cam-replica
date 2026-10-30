@@ -1,0 +1,1186 @@
+{
+  "date": "2026-10-31",
+  "timezone": "Asia/Shanghai",
+  "scope": "Targeted literature discovery, not systematic review; metadata is not implementation validation.",
+  "toolAvailability": "No academic-search MCP tools exposed in this chat. Skill fallback OpenAlex returned HTTP 429; direct public CrossRef/arXiv endpoints used.",
+  "results": [
+    {
+      "source": "crossref",
+      "query": "Spline-Based Minimum-Curvature Trajectory Optimization for Autonomous Racing",
+      "url": "https://api.crossref.org/works?query.title=Spline-Based+Minimum-Curvature+Trajectory+Optimization+for+Autonomous+Racing&rows=3",
+      "records": [
+        {
+          "DOI": "10.7467/ksae.2025.33.12.1015",
+          "title": [
+            "Curvature Optimization-Based Path Planning for Autonomous Racing"
+          ],
+          "author": [
+            {
+              "given": "Haejun",
+              "family": "Kim",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Jongho",
+              "family": "Shin",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2025,
+                12,
+                1
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2025,
+                12,
+                1
+              ]
+            ]
+          },
+          "published-online": null,
+          "container-title": [
+            "Transaction of the Korean Society of Automotive Engineers"
+          ],
+          "URL": "https://doi.org/10.7467/ksae.2025.33.12.1015",
+          "type": "journal-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        },
+        {
+          "DOI": "10.1504/ijista.2010.034317",
+          "title": [
+            "Non-uniform rational B-spline-based minimum cost trajectory planning for autonomous robots"
+          ],
+          "author": [
+            {
+              "given": "R.",
+              "family": "Saravanan",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "S.",
+              "family": "Ramabalan",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "P.",
+              "family": "Sriram",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "C.",
+              "family": "Balamurugan",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2010
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2010
+              ]
+            ]
+          },
+          "published-online": null,
+          "container-title": [
+            "International Journal of Intelligent Systems Technologies and Applications"
+          ],
+          "URL": "https://doi.org/10.1504/ijista.2010.034317",
+          "type": "journal-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        },
+        {
+          "DOI": "10.1038/s41598-025-21211-2",
+          "title": [
+            "Global minimum time trajectory planning considering curvature and distance for track racing"
+          ],
+          "author": [
+            {
+              "given": "Dongmin",
+              "family": "Zhang",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Yi",
+              "family": "Yuan",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Futang",
+              "family": "Zhu",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2025,
+                10,
+                24
+              ]
+            ]
+          },
+          "published-print": null,
+          "published-online": {
+            "date-parts": [
+              [
+                2025,
+                10,
+                24
+              ]
+            ]
+          },
+          "container-title": [
+            "Scientific Reports"
+          ],
+          "URL": "https://doi.org/10.1038/s41598-025-21211-2",
+          "type": "journal-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "source": "crossref",
+      "query": "Effective Parametrization of Low Order Bezier Motion Primitives for Continuous-Curvature Path-Planning Applications",
+      "url": "https://api.crossref.org/works?query.title=Effective+Parametrization+of+Low+Order+Bezier+Motion+Primitives+for+Continuous-Curvature+Path-Planning+Applications&rows=3",
+      "records": [
+        {
+          "DOI": "10.3390/electronics11111709",
+          "title": [
+            "Effective Parametrization of Low Order Bézier Motion Primitives for Continuous-Curvature Path-Planning Applications"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0002-9347-8534",
+              "authenticated-orcid": false,
+              "given": "Sašo",
+              "family": "Blažič",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Faculty of Electrical Engineering, University of Ljubljana, Tržaška 25, SI-1000 Ljubljana, Slovenia"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-1461-3321",
+              "authenticated-orcid": false,
+              "given": "Gregor",
+              "family": "Klančar",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Faculty of Electrical Engineering, University of Ljubljana, Tržaška 25, SI-1000 Ljubljana, Slovenia"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2022,
+                5,
+                27
+              ]
+            ]
+          },
+          "published-print": null,
+          "published-online": {
+            "date-parts": [
+              [
+                2022,
+                5,
+                27
+              ]
+            ]
+          },
+          "container-title": [
+            "Electronics"
+          ],
+          "URL": "https://doi.org/10.3390/electronics11111709",
+          "type": "journal-article",
+          "screening": "selected"
+        },
+        {
+          "DOI": "10.1177/0954410015603415",
+          "title": [
+            "A new approach in UAV path planning using Bezier–Dubins continuous curvature path"
+          ],
+          "author": [
+            {
+              "given": "A",
+              "family": "Askari",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Aerospace Engineering Department, Amirkabir University of Technology, Tehran, Iran"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "M",
+              "family": "Mortazavi",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Aerospace Engineering Department, Amirkabir University of Technology, Tehran, Iran"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "HA",
+              "family": "Talebi",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Electrical Engineering Department, Amirkabir University of Technology, Tehran, Iran"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "A",
+              "family": "Motamedi",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Aerospace Engineering Department, K.N.Toosi University of Technology, Tehran, Iran"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2015,
+                9,
+                18
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2016,
+                5
+              ]
+            ]
+          },
+          "published-online": {
+            "date-parts": [
+              [
+                2015,
+                9,
+                18
+              ]
+            ]
+          },
+          "container-title": [
+            "Proceedings of the Institution of Mechanical Engineers, Part G: Journal of Aerospace Engineering"
+          ],
+          "URL": "https://doi.org/10.1177/0954410015603415",
+          "type": "journal-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        },
+        {
+          "DOI": "10.2514/6.2009-5625",
+          "title": [
+            "A Path-Parametrization Approach Using Trajectory Primitives for 3-Dimensional Motion Planning"
+          ],
+          "author": [
+            {
+              "given": "Abraham",
+              "family": "Pachikara",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "University of Florida"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Joseph",
+              "family": "Kehoe",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Scientific Systems Company"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Rick",
+              "family": "Lind",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "University of Florida"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2009,
+                6,
+                14
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2009,
+                8,
+                10
+              ]
+            ]
+          },
+          "published-online": {
+            "date-parts": [
+              [
+                2009,
+                6,
+                14
+              ]
+            ]
+          },
+          "container-title": [
+            "AIAA Guidance, Navigation, and Control Conference"
+          ],
+          "URL": "https://doi.org/10.2514/6.2009-5625",
+          "type": "proceedings-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "source": "crossref",
+      "query": "Interpolating clothoid splines with curvature continuity",
+      "url": "https://api.crossref.org/works?query.title=Interpolating+clothoid+splines+with+curvature+continuity&rows=3",
+      "records": [
+        {
+          "DOI": "10.1002/mma.4700",
+          "title": [
+            "Interpolating clothoid splines with curvature continuity"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0003-0487-5210",
+              "authenticated-orcid": false,
+              "given": "Enrico",
+              "family": "Bertolazzi",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Department of Industrial Engineering University of Trento  Italy"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Marco",
+              "family": "Frego",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Information and Engineering and Computer Science University of Trento  Italy"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2017,
+                12,
+                19
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2018,
+                3,
+                15
+              ]
+            ]
+          },
+          "published-online": {
+            "date-parts": [
+              [
+                2017,
+                12,
+                19
+              ]
+            ]
+          },
+          "container-title": [
+            "Mathematical Methods in the Applied Sciences"
+          ],
+          "URL": "https://doi.org/10.1002/mma.4700",
+          "type": "journal-article",
+          "screening": "selected"
+        },
+        {
+          "DOI": "10.2139/ssrn.6334904",
+          "title": [
+            "Guided Spherical Clothoid Splines"
+          ],
+          "author": [
+            {
+              "given": "Alexandru",
+              "family": "Ionut",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2026
+              ]
+            ]
+          },
+          "published-print": null,
+          "published-online": null,
+          "container-title": null,
+          "URL": "https://doi.org/10.2139/ssrn.6334904",
+          "type": "posted-content",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        },
+        {
+          "DOI": "10.1145/800031.808575",
+          "title": [
+            "Interpolating splines with local tension, continuity, and bias control"
+          ],
+          "author": [
+            {
+              "given": "Doris H. U.",
+              "family": "Kochanek",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Computer Motion Graphics Centre, National Film Board of Canada, Box 6100, Station A, P-36, Montreal, Quebec, Canada, H3C 3H5"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "given": "Richard H.",
+              "family": "Bartels",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Computer Graphics Laboratory, University of Waterloo, Waterloo, Ontario, Canada N2L 3G1"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                1984,
+                1
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                1984,
+                1
+              ]
+            ]
+          },
+          "published-online": {
+            "date-parts": [
+              [
+                1984,
+                1
+              ]
+            ]
+          },
+          "container-title": [
+            "Proceedings of the 11th annual conference on Computer graphics and interactive techniques"
+          ],
+          "URL": "https://doi.org/10.1145/800031.808575",
+          "type": "proceedings-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "source": "crossref",
+      "query": "Tunable Trajectory Planner Using G3 Curves",
+      "url": "https://api.crossref.org/works?query.title=Tunable+Trajectory+Planner+Using+G3+Curves&rows=3",
+      "records": [
+        {
+          "DOI": "10.1109/tiv.2022.3141881",
+          "title": [
+            "Tunable Trajectory Planner Using G<sup>3</sup> Curves"
+          ],
+          "author": [
+            {
+              "ORCID": "https://orcid.org/0000-0002-6927-2149",
+              "authenticated-orcid": false,
+              "given": "Alexander",
+              "family": "Botros",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Department of Electrical and Computer Engineering, University of Waterloo, Waterloo, ON, Canada"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            },
+            {
+              "ORCID": "https://orcid.org/0000-0002-8636-407X",
+              "authenticated-orcid": false,
+              "given": "Stephen L.",
+              "family": "Smith",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Department of Electrical and Computer Engineering, University of Waterloo, Waterloo, ON, Canada"
+                }
+              ],
+              "role": [
+                {
+                  "vocabulary": "crossref",
+                  "role": "author"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2022,
+                6
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2022,
+                6
+              ]
+            ]
+          },
+          "published-online": null,
+          "container-title": [
+            "IEEE Transactions on Intelligent Vehicles"
+          ],
+          "URL": "https://doi.org/10.1109/tiv.2022.3141881",
+          "type": "journal-article",
+          "screening": "selected"
+        },
+        {
+          "DOI": "10.1109/isatp.1999.782953",
+          "title": [
+            "A trajectory planner for manipulators using genetic algorithms"
+          ],
+          "author": [
+            {
+              "given": "E.J.",
+              "family": "Solteiro Pires",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "J.A.",
+              "family": "Tenreiro Machado",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": null,
+          "published-print": null,
+          "published-online": null,
+          "container-title": [
+            "Proceedings of the 1999 IEEE International Symposium on Assembly and Task Planning (ISATP'99) (Cat. No.99TH8470)"
+          ],
+          "URL": "https://doi.org/10.1109/isatp.1999.782953",
+          "type": "proceedings-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        },
+        {
+          "DOI": "10.2514/6.1997-3555",
+          "title": [
+            "3D local trajectory planner"
+          ],
+          "author": [
+            {
+              "given": "Jerzy",
+              "family": "Sasiadek",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Carleton Univ., Ottawa, Canada"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Ignacy",
+              "family": "Duleba",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Wroclaw, Technical Univ., Poland"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Jerzy",
+              "family": "Sasiadek",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Carleton Univ., Ottawa, Canada"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Ignacy",
+              "family": "Duleba",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Wroclaw, Technical Univ., Poland"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                1997,
+                8,
+                11
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                1997,
+                8,
+                11
+              ]
+            ]
+          },
+          "published-online": {
+            "date-parts": [
+              [
+                1997,
+                8,
+                22
+              ]
+            ]
+          },
+          "container-title": [
+            "Guidance, Navigation, and Control Conference"
+          ],
+          "URL": "https://doi.org/10.2514/6.1997-3555",
+          "type": "proceedings-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "source": "crossref",
+      "query": "Optimal Generation of Cam Curves with B-Spline",
+      "url": "https://api.crossref.org/works?query.title=Optimal+Generation+of+Cam+Curves+with+B-Spline&rows=3",
+      "records": [
+        {
+          "DOI": "10.1299/kikaic.68.708",
+          "title": [
+            "Optimal Generation of Cam Curves with B-Spline."
+          ],
+          "author": [
+            {
+              "given": "Chang-Jun",
+              "family": "LIN",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Hua",
+              "family": "QIU",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Hiroaki",
+              "family": "OZAKI",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Tetsuji",
+              "family": "SHIMOGAWA",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2002
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2002
+              ]
+            ]
+          },
+          "published-online": null,
+          "container-title": [
+            "TRANSACTIONS OF THE JAPAN SOCIETY OF MECHANICAL ENGINEERS Series C"
+          ],
+          "URL": "https://doi.org/10.1299/kikaic.68.708",
+          "type": "journal-article",
+          "screening": "selected"
+        },
+        {
+          "DOI": "10.1299/jsmeiip.2002.90",
+          "title": [
+            "Optimal Design of Cam Curves"
+          ],
+          "author": [
+            {
+              "given": "Hua",
+              "family": "QIU",
+              "sequence": "first",
+              "affiliation": [
+                {
+                  "name": "Kyushu Sangyo University"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Chang Jun",
+              "family": "LIN",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Fukuoka University"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Zi Ye",
+              "family": "LI",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Joetsu University of Education"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "Hiroaki",
+              "family": "OZAKI",
+              "sequence": "additional",
+              "affiliation": [
+                {
+                  "name": "Fukuoka University"
+                }
+              ],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                2002
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                2002
+              ]
+            ]
+          },
+          "published-online": null,
+          "container-title": [
+            "The Proceedings of the Conference on Information, Intelligence and Precision Equipment : IIP"
+          ],
+          "URL": "https://doi.org/10.1299/jsmeiip.2002.90",
+          "type": "journal-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        },
+        {
+          "DOI": "10.1016/0010-4485(88)90006-1",
+          "title": [
+            "Optimal approximate conversion of spline curves and spline approximation of offset curves"
+          ],
+          "author": [
+            {
+              "given": "J.",
+              "family": "Hoschek",
+              "sequence": "first",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            },
+            {
+              "given": "N.",
+              "family": "Wissel",
+              "sequence": "additional",
+              "affiliation": [],
+              "role": [
+                {
+                  "role": "author",
+                  "vocabulary": "crossref"
+                }
+              ]
+            }
+          ],
+          "published": {
+            "date-parts": [
+              [
+                1988,
+                10
+              ]
+            ]
+          },
+          "published-print": {
+            "date-parts": [
+              [
+                1988,
+                10
+              ]
+            ]
+          },
+          "published-online": null,
+          "container-title": [
+            "Computer-Aided Design"
+          ],
+          "URL": "https://doi.org/10.1016/0010-4485(88)90006-1",
+          "type": "journal-article",
+          "screening": "not_selected_title_mismatch_or_out_of_scope"
+        }
+      ],
+      "status": "ok"
+    },
+    {
+      "source": "arxiv",
+      "query": "id:2309.09186 OR id:2106.03836 OR id:1801.08995",
+      "url": "https://export.arxiv.org/api/query?search_query=id%3A2309.09186+OR+id%3A2106.03836+OR+id%3A1801.08995&max_results=5",
+      "records": [
+        {
+          "id": "http://arxiv.org/abs/2309.09186v1",
+          "title": "Spline-Based Minimum-Curvature Trajectory Optimization for Autonomous Racing",
+          "published": "2023-09-17T07:20:12Z",
+          "updated": "2023-09-17T07:20:12Z",
+          "screening": "selected"
+        },
+        {
+          "id": "http://arxiv.org/abs/2106.03836v1",
+          "title": "Tunable Trajectory Planner Using G3 Curves",
+          "published": "2021-06-07T17:54:57Z",
+          "updated": "2021-06-07T17:54:57Z",
+          "screening": "selected"
+        },
+        {
+          "id": "http://arxiv.org/abs/1801.08995v2",
+          "title": "Trajectory Generation using Sharpness Continuous Dubins-like Paths with Applications in Control of Heavy Duty Vehicles",
+          "published": "2018-01-26T22:27:28Z",
+          "updated": "2018-05-07T14:57:40Z",
+          "screening": "selected"
+        }
+      ],
+      "status": "ok"
+    }
+  ],
+  "notes": [
+    "Raw metadata titles retained; selected Bezier title has encoding damage in CrossRef and is verified against publisher page in report.",
+    "Xue 2023 exact title query returned unrelated CrossRef results; arXiv 2309.09186 is verified. No CrossRef DOI invented.",
+    "Bertolazzi/Frego first online 2017-12-19, journal issue 2018; Botros/Smith preprint 2021, journal publication 2022."
+  ],
+  "code_sources": [
+    {
+      "repo": "https://github.com/HaoruXue/spline-trajectory-optimization",
+      "paper_branch": "devel",
+      "commit": "75bd42de4fe3ba85a2f43aafaf17910e34071d82",
+      "license": "Apache-2.0",
+      "reviewed": [
+        "README.md",
+        "spline_traj_optm/models/trajectory.py"
+      ],
+      "executed": false
+    },
+    {
+      "repo": "https://github.com/ebertolazzi/Clothoids",
+      "reviewed": [
+        "README.md",
+        "license.txt"
+      ],
+      "license_note": "Two-condition redistribution/use terms in license.txt; preserve notice and disclaimer.",
+      "matlab": "C++ library with MATLAB MEX interface; not compiled/tested in R2025b in this review.",
+      "executed": false
+    }
+  ]
+}
