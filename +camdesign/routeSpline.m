@@ -1,6 +1,7 @@
 function [px,py,stations,endDerivative] = routeSpline(nodes,p)
 % Front-wheel interpolating cubic. Fixed stations support nested refinement.
 % Legacy projects retain chord-length stations and the final chord tangent.
+assert(strcmp(camdesign.routeModel(p),'cubic'),'cam:RouteSpline','独立贝塞尔不是插值三次样条。');
 if isfield(p,'routeSpline')
     stations=p.routeSpline.stations(:);
     endDerivative=p.routeSpline.endDerivative;

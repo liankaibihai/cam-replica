@@ -18,6 +18,7 @@
 | 文档 | 负责记录什么 | 常用搜索词 |
 |---|---|---|
 | [使用说明](USAGE.md) | 启动、参数、导入导出、固定凸轮试调、本地视频工具 | R2025b、运行、参数、反推、ASR |
+| [训练参数与独立贝塞尔](TRAINING_PARAMETERS.md) | 九项参数实际语义、后端适用性、独立融合及自交红圈 | 控制点、插值、阶数、学习率、调度、自交 |
 | [拆解说明](REVERSE_ENGINEERING.md) | 独立模型、字段映射、公式、复现边界 | 平推、齿条、坐标、传动比、包络 |
 | [视频算法实现映射](ALGORITHM_IMPLEMENTATION_MAP.md) | 视频步骤、实际代码、独立补充及尚未恢复部分逐项对应 | 候选整套加权、邻点平滑、Bezier、十二项评分 |
 | [成熟约束优化适配](CONSTRAINED_OPTIMIZATION.md) | 公开方法选型、原生fmincon实现与同输入验证边界 | SQP、B样条、约束、压力角、可行性 |
@@ -26,7 +27,7 @@
 | [五份新增算法包](ADDITIONAL_SOURCE_PACKAGES.md) | 单Bezier源码恢复、阿克曼/共轭/通用凸轮资料分类 | BV1obN9enEtd、杨辉三角、de Casteljau |
 | [原版实操与对照](REFERENCE_COMPARISON.md) | 原版窗口功能、资料/视频证据、同输入比较进展 | 3.1.2、2.5.1、Bezier、评分、截图、时间戳 |
 | [验证记录](VALIDATION.md) | 实际执行的检查与结果、尚未验证事项 | run_tests、check_app、误差、收敛 |
-| [功能证据与复现进展](FEATURE_STATUS.md) | 原版实操、视频、更新日志对应的功能状态与实施次序 | F01～F13、地图编辑、太阳能、Bezier、局部最优 |
+| [功能证据与复现进展](FEATURE_STATUS.md) | 原版实操、视频、更新日志对应的功能状态与实施次序 | F01～F15、地图编辑、太阳能、Bezier、局部最优 |
 
 ## 数据与代码入口
 
@@ -37,6 +38,7 @@
 | [三图布局变更](changes/2026/2026-10-29-012-chart-layout.md) | 左路线、右转角/凸轮、图内图例、真实场地边界与多窗口验证 |
 | [路线细化与长预算](changes/2026/2026-10-29-014-route-refinement.md) / [数值摘要](../data/route_refinement_20261029.json) | 保形插值、固定站位、10/34节点自由度、压力角峰值及部件越界 |
 | [部件场界与加密门禁](changes/2026/2026-10-29-015-trajectory-boundaries.md) / [结果摘要](../data/trajectory_bounds_20261029.json) | 五个参考中心点、固定长度约束、147/300轮、8倍模型检查；非整车/实车保证 |
+| [训练功能与贝塞尔实验](changes/2026/2026-10-29-016-training-controls.md) / [数值摘要](../data/training_controls_20261030.json) | 九项真实接线、50控制点/7与15阶、8组300轮预算、自交定位；实验候选未通过加密验收 |
 | [生物质能点库](../data/2027_biomass_course.json) / [点库检查](../check_2027_course.m) | 另一赛项资料及历史算法测试 |
 | [四段原理视频证据](../data/video_principles_20261029.json) / [公式检查](../check_video_principles.m) | 来源、抽帧及独立解析验证 |
 | [两段反推视频证据](../data/video_inverse_lectures_20261029.json) / [反推检查](../check_video_inverse.m) | 相位/行程/积分线索、转写质量与覆盖范围 |

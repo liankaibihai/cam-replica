@@ -6,6 +6,7 @@ function [refined,info] = refineRoute(project,segments)
 % Omit segments for all intervals; [] freezes parameterization without adding
 % nodes, providing a fixed-station control for optimizer comparisons.
 camdesign.validateProject(project);
+assert(strcmp(camdesign.routeModel(project.params),'cubic'),'cam:RefineBezier','保形细化仅适用于三次样条；贝塞尔增点需要显式重建。');
 [px,py,stations,endDerivative]=camdesign.routeSpline(project.nodes,project.params);
 oldCount=size(project.nodes,1);
 if nargin<2, segments=(1:oldCount-1)'; end

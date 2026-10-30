@@ -4,11 +4,13 @@ if isempty(callback), callback=@(~,~,~)false; end
 assert(ismember(algorithm,{'peak-gradient-v2','video-four-direction-v1'}),'cam:Optimizer','未知优化路径。');
 timer=tic; camdesign.validateProject(project); best=project;
 current=camdesign.evaluate(best,false); value=current.metrics.score; evals=1;
-history=entry(0,false,'initial',0,[],[]);
+controls=camdesign.searchSchedule(project.params,1);
 step=project.params.stepMM; probe=project.params.gradientProbeMM;
+history=entry(0,false,'initial',0,[],[]);
 free=[(2:size(best.nodes,1))';(size(best.nodes,1)+2:2*size(best.nodes,1))'];
 reason='iteration_limit'; refinements=0;
 for iteration=1:project.params.iterations
+    controls=camdesign.searchSchedule(project.params,iteration);
     if callback(iteration-1,best,history), reason='user_stop'; break; end
     baseNodes=best.nodes; grad=zeros(size(baseNodes));
     probeScores=inf(size(baseNodes,1),4); bestProbe=best; bestProbeScore=value;
@@ -38,10 +40,12 @@ for iteration=1:project.params.iterations
     history(end).event='searching'; history(end).directionIteration=iteration;
     history(end).directionBaseNodes=baseNodes; history(end).descentDirection=direction;
     history(end).gradient=grad; history(end).probeScores=probeScores; history(end).evaluations=evals;
+    history(end).probeMM=probe; history(end).learningScale=controls.learningScale;
+    history(end).scheduleScale=controls.decay; history(end).scheduledStepMM=step*controls.learningScale;
     if callback(iteration-1,best,history), reason='user_stop'; break; end
     accepted=false; acceptedStep=0; method='no_step'; smoothingAttempts=0; smoothingAlpha=0;
     if magnitude>1e-12
-        trialStep=step;
+        trialStep=step*controls.learningScale;
         for line=1:12
             trial=best; trial.nodes=baseNodes+trialStep*direction;
             trialScore=safeScore(trial);
@@ -53,13 +57,24 @@ for iteration=1:project.params.iterations
     end
     % Retain an improving individual probe if aggregate search cannot advance.
     if ~accepted && improves(bestProbeScore)
-        best=bestProbe; value=bestProbeScore; accepted=true; acceptedStep=probe; method='coordinate_rescue';
+        rescued=bestProbe; rescueScore=bestProbeScore;
+        if controls.custom && controls.learningScale~=1
+            rescued.nodes=baseNodes+(bestProbe.nodes-baseNodes)*controls.learningScale;
+            rescueScore=safeScore(rescued);
+        end
+        if improves(rescueScore)
+            best=rescued; value=rescueScore; accepted=true;
+            if controls.learningScale==1, acceptedStep=probe;
+            else, acceptedStep=max(vecnorm(best.nodes-baseNodes,2,2)); end
+            method='coordinate_rescue';
+        end
     end
-    if strcmp(algorithm,'video-four-direction-v1')
+    if strcmp(algorithm,'video-four-direction-v1') || controls.custom
         % Test the visible board formula after each search step. Our trigger and
         % objective-based acceptance/backtracking are explicitly independent.
         smoothingBase=best.nodes;
-        for alpha=[0.1 0.05 0.025]
+        rates=[0.1 0.05 0.025]; if controls.custom, rates=controls.smoothingRates; end
+        for alpha=rates
             smoothingAttempts=smoothingAttempts+1;
             trial=best; middle=2:size(baseNodes,1)-1;
             trial.nodes(middle,:)=(1-alpha)*smoothingBase(middle,:)+alpha*(smoothingBase(middle-1,:)+smoothingBase(middle+1,:))/2;
@@ -89,6 +104,7 @@ info=struct('algorithm',algorithm,'objectiveVersion','peak-v2','reason',reason, 
     'iterations',history(end).iteration,'requestedIterations',project.params.iterations, ...
     'evaluations',evals,'elapsedSeconds',toc(timer),'remainingConstraints',{current.warnings}, ...
     'finalMetrics',current.metrics);
+info.trainingSemantics='Legacy when settings absent; probe=gradientForce mm; step=adaptiveStep*learningRate*decay; smoothing=rate*decay*[1 .5 .25]; decay=(1+floor((k-1)/interval))^(-exponent).';
 callback(history(end).iteration,best,history);
     function yes=improves(v)
         yes=isfinite(v) && v<value-1e-10*max(1,abs(value));
@@ -106,6 +122,8 @@ callback(history(end).iteration,best,history);
         item=struct('iteration',iteration,'score',current.metrics.score,'maxHitError',current.metrics.maxHitError, ...
             'evaluations',evals,'stopped',false,'accepted',accepted,'event',event,'stepType',event,'stepMM',stepUsed, ...
             'directionIteration',iteration,'directionBaseNodes',base,'descentDirection',directionUsed, ...
-            'gradient',[],'probeScores',[],'metrics',current.metrics,'smoothingAttempts',0,'smoothingAlpha',0);
+            'gradient',[],'probeScores',[],'metrics',current.metrics,'smoothingAttempts',0,'smoothingAlpha',0, ...
+            'probeMM',probe,'learningScale',controls.learningScale,'scheduleScale',controls.decay, ...
+            'scheduledStepMM',step*controls.learningScale);
     end
 end

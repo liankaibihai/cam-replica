@@ -26,6 +26,14 @@ classdef CamReplicaApp < handle
         PointButtons
         RefineRouteButton
         NodeInfo
+        TrainingFields
+        TrainingModel
+        TrainingApplyButton
+        TrainingResetButton
+        TrainingInfo
+        TrainingDirty = false
+        TrainingFieldNames = {'iterations','controlPointCount','interpolationPerSegment','bezierDegree', ...
+            'gradientForce','learningRate','smoothingRate','adjustInterval','adjustExponent'}
         SimulationMode = false
         SimulationReference = []
         SimulationResult = []
@@ -75,7 +83,8 @@ classdef CamReplicaApp < handle
                 'FontSize',20,'FontWeight','bold','FontColor',[.12 .20 .30]);
             app.AlgorithmSelector=uidropdown(titleBar, ...
                 'Items',{'峰值梯度（独立算法）','四方向加权 + 平滑（视频启发实验）','内点法非线性约束（实验）'}, ...
-                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1'},'Value','peak-gradient-v2');
+                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1'},'Value','peak-gradient-v2', ...
+                'ValueChangedFcn',@(~,~)app.refreshTrainingControls());
             bar=uigridlayout(root,[1 8],'Padding',[0 0 0 0],'ColumnSpacing',8);
             bar.Layout.Row=2; bar.Layout.Column=[1 2];
             labels={'导入 MAT','保存项目','重建路线','计算凸轮','迭代优化','停止','固定凸轮反推','导出候选'};
@@ -96,11 +105,11 @@ classdef CamReplicaApp < handle
             app.AutoRatio=uicheckbox(side,'Text','工作段过长时自动增大传动比','Value',true, ...
                 'ValueChangedFcn',@(~,~)app.invalidate());
             tabs=uitabgroup(side);
-            t=uitab(tabs,'Title','车体参数'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
+            t=uitab(tabs,'Title','车体'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
             app.ParamsTable=uitable(g,'ColumnName',{'参数','数值'},'ColumnEditable',[false true], ...
                 'ColumnWidth',{185,65},'ColumnFormat',{'char','numeric'},'RowName',{},'FontSize',11,'CellEditCallback',@(~,~)app.invalidate());
             app.PointButtons=gobjects(1,4);
-            t=uitab(tabs,'Title','打卡点'); g=uigridlayout(t,[2 1],'RowHeight',{30,'1x'},'Padding',[0 0 0 0]);
+            t=uitab(tabs,'Title','目标'); g=uigridlayout(t,[2 1],'RowHeight',{30,'1x'},'Padding',[0 0 0 0]);
             controls=uigridlayout(g,[1 2],'Padding',[0 0 0 0]);
             app.PointButtons(1)=uibutton(controls,'Text','选中行后插入','ButtonPushedFcn',@(~,~)app.modifyPoints('target',1));
             app.PointButtons(2)=uibutton(controls,'Text','删除选中行','ButtonPushedFcn',@(~,~)app.modifyPoints('target',-1));
@@ -119,6 +128,34 @@ classdef CamReplicaApp < handle
             t=uitab(tabs,'Title','权重'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
             app.WeightsTable=uitable(g,'ColumnName',{'独立目标项','权重'},'ColumnEditable',[false true], ...
                 'ColumnWidth',{180,65},'ColumnFormat',{'char','numeric'},'RowName',{},'CellEditCallback',@(~,~)app.invalidate());
+            t=uitab(tabs,'Title','训练');
+            training=uigridlayout(t,[12 2],'RowHeight',[{30},repmat({26},1,9),{'1x',32}], ...
+                'ColumnWidth',{170,'1x'},'Padding',[4 2 4 2],'ColumnSpacing',2,'RowSpacing',4);
+            app.TrainingModel=uidropdown(training,'Items',{'三次插值样条（本版）','独立贝塞尔融合（实验）'}, ...
+                'ItemsData',{'cubic','bezier-blend-independent-v1'},'ValueChangedFcn',@(~,~)app.markTrainingDirty());
+            app.TrainingModel.Layout.Row=1; app.TrainingModel.Layout.Column=[1 2];
+            labels={'训练次数','控制点数量','插值数量（名义/段）','贝塞尔阶数','梯度力 /mm（本版）', ...
+                '学习率（本版）','平滑率（本版）','调节间隔 /轮','调节指数（本版）'};
+            tips={'请求迭代次数，连接 iterations。','真实节点/控制点数；减点和贝塞尔重建可能改变曲线。', ...
+                '名义密度；全局samples=(N-1)×m+1，具体区间采样数随参数长度变化；加密验收尊重新samples。', ...
+                '仅独立贝塞尔模式生效，3至min(49,N-1)。', ...
+                '本版差分距离；搜索直接用±X/Y mm。内点默认名义步长限0.001～1 mm（6→1、0.0005→0.001），再按1000mm归一化及TypicalX规则缩放；非原版力权重。', ...
+                '搜索步幅倍率；不适用于内点法。','邻点平均平滑候选率，仅接受目标改善的候选。', ...
+                '每J轮更新阶梯衰减。','衰减=(1+floor((k-1)/J))^(-指数)。'};
+            app.TrainingFields=gobjects(1,9);
+            for k=1:9
+                label=uilabel(training,'Text',labels{k},'FontSize',11,'Tooltip',tips{k});
+                label.Layout.Row=k+1; label.Layout.Column=1;
+                app.TrainingFields(k)=uieditfield(training,'numeric','Value',1,'FontSize',11, ...
+                    'Tooltip',tips{k},'ValueChangedFcn',@(~,~)app.markTrainingDirty());
+                app.TrainingFields(k).Layout.Row=k+1; app.TrainingFields(k).Layout.Column=2;
+            end
+            app.TrainingInfo=uilabel(training,'Text','','FontSize',11,'WordWrap','on','VerticalAlignment','top');
+            app.TrainingInfo.Layout.Row=11; app.TrainingInfo.Layout.Column=[1 2];
+            app.TrainingApplyButton=uibutton(training,'Text','应用训练设置','FontSize',11,'ButtonPushedFcn',@(~,~)app.applyTraining());
+            app.TrainingApplyButton.Layout.Row=12; app.TrainingApplyButton.Layout.Column=1;
+            app.TrainingResetButton=uibutton(training,'Text','还原','FontSize',11,'ButtonPushedFcn',@(~,~)app.syncTrainingInputs());
+            app.TrainingResetButton.Layout.Row=12; app.TrainingResetButton.Layout.Column=2;
             charts=uigridlayout(root,[2 2],'ColumnWidth',{'1.35x','1x'},'RowHeight',{'1x','2.7x'}, ...
                 'Padding',[0 0 0 0],'ColumnSpacing',12,'RowSpacing',10);
             charts.Layout.Row=3; charts.Layout.Column=2;
@@ -158,12 +195,15 @@ classdef CamReplicaApp < handle
             app.Mechanism.Value=p.mechanism; app.AutoRatio.Value=p.autoRatio;
             labels={'有序打卡偏差','前轮路线长度','转向变化率','压力角超限','前轮转角超限','包络欠切风险'};
             app.WeightsTable.Data=[labels(:),num2cell(p.weights(:))];
+            app.syncTrainingInputs();
         end
         function readInputs(app)
             assert(~app.MapEditMode,'cam:MapEditActive','请先确认或取消地图编辑。');
             app.Project=app.inputProject();
         end
-        function candidate=inputProject(app)
+        function candidate=inputProject(app,allowPendingTraining)
+            if nargin<2, allowPendingTraining=false; end
+            assert(~app.TrainingDirty || allowPendingTraining,'cam:TrainingPending','请先应用或还原训练设置，当前图像仍是上次结果。');
             p=app.Project.params;
             for k=1:numel(app.DisplayedParameterFields)
                 value=app.ParamsTable.Data{k,2};
@@ -187,6 +227,7 @@ classdef CamReplicaApp < handle
                 rethrow(ex);
             end
             app.Project=candidate; app.Result=result; app.render();
+            app.syncTrainingInputs();
             app.message(sprintf('完成几何计算；实际传动比 %.6g，工作段 %.1f°。', ...
                 app.Result.cam.effectiveRatio,rad2deg(app.Result.cam.workEnd)));
             for k=1:numel(app.Result.warnings), app.message(app.Result.warnings{k}); end
@@ -242,22 +283,33 @@ classdef CamReplicaApp < handle
             camLines=gobjects(1,4);
             camLines(1)=plot(a,c.pitch(:,1),c.pitch(:,2),'Color',[.2 .4 .75],'LineWidth',1.2);
             camLines(2)=plot(a,c.actual(:,1),c.actual(:,2),'Color',[.85 .25 .20],'LineWidth',1.5);
-            camLines(3)=plot(a,c.actual(~c.workingMask,1),c.actual(~c.workingMask,2),'--','Color',[.5 .5 .5],'LineWidth',1.5);
+            camLines(3)=plot(a,NaN,NaN,'--','Color',[.5 .5 .5],'LineWidth',1.5);
+            returnPoints=c.actual(~c.workingMask,:);
+            if ~isempty(returnPoints), set(camLines(3),'XData',returnPoints(:,1),'YData',returnPoints(:,2)); end
             reference=p.referenceDiameter/2;
             if app.SimulationMode, reference=app.SimulationReference.project.params.referenceDiameter/2; end
             angle=linspace(0,2*pi,257);
             camLines(4)=plot(a,reference*cos(angle),reference*sin(angle),':','Color',[.2 .2 .2],'LineWidth',1.1,'Tag','zero-reference-circle');
+            camLabels={'理论','实际','回程','零位圆 d/2'};
+            if isfield(app.Result,'intersectionPoints') && ~isempty(app.Result.intersectionPoints)
+                points=app.Result.intersectionPoints;
+                camLines(5)=plot(a,points(:,1),points(:,2),'ro','LineStyle','none','MarkerSize',8,'LineWidth',1.6, ...
+                    'HitTest','off','PickableParts','none','Tag','cam-self-intersections');
+                camLabels{5}='实际自交';
+            end
             plot(a,0,0,'k+','MarkerSize',7,'Tag','cam-center');
             hold(a,'off'); axis(a,'equal'); grid(a,'on'); xlabel(a,'X / mm'); ylabel(a,'Y / mm');
             extent=1.25*max([vecnorm(c.pitch,2,2);vecnorm(c.actual,2,2);reference]);
             xlim(a,[-extent extent]); ylim(a,[-extent extent]);
             title(a,'凸轮（含回程）');
-            legend(a,camLines,{'理论','实际','回程','零位圆 d/2'}, ...
+            legend(a,camLines,camLabels, ...
                 'Location','northeast','NumColumns',1,'FontSize',9,'IconColumnWidth',18,'AutoUpdate','off');
             m=app.Result.metrics;
             [~,trajectory]=camdesign.trajectoryBounds(r,p.bounds);
-            app.Status.Text=sprintf('最大打卡偏差 %.2f mm    最大压力角 %.1f°    目标函数 %.4f    轮廓交叉 %g    五点中心出界 %.6g mm', ...
-                m.maxHitError,m.maxPressureDeg,m.score,m.intersectionCount,trajectory.maximumOutsideMM);
+            crossText=sprintf('%g',m.intersectionCount);
+            if ~m.geometryChecked, crossText='未完整检查'; end
+            app.Status.Text=sprintf('最大打卡偏差 %.2f mm    最大压力角 %.1f°    目标函数 %.4f    轮廓自交 %s    五点中心出界 %.6g mm', ...
+                m.maxHitError,m.maxPressureDeg,m.score,crossText,trajectory.maximumOutsideMM);
             if m.maxPressureDeg>p.maxPressureDeg || m.minUndercutMargin<=0 || m.maxHitError>p.hitTolerance || m.intersectionCount>0 || ~trajectory.satisfied
                 app.Status.Text=[app.Status.Text,'    有指标超限，需改进'];
                 app.Status.FontColor=[.65 .28 .08];
@@ -454,7 +506,7 @@ classdef CamReplicaApp < handle
             if ~isempty(app.RouteAxes.Toolbar), app.RouteAxes.Toolbar.Visible=ref.toolbarVisible; end
             app.RouteAxes.XLim=ref.xlim; app.RouteAxes.YLim=ref.ylim;
             app.MapEditMode=false; app.MapEditSelection=0; app.MapEditNodes=[]; app.MapEditReference=[];
-            app.MapEditHelp.Text='独立三次样条路线节点'; app.refreshControls();
+            app.MapEditHelp.Text='独立三次样条路线节点'; app.updateNodeInfo(); app.refreshControls();
         end
         function routeEditorKey(app,event)
             if ~app.MapEditMode, return; end
@@ -475,13 +527,19 @@ classdef CamReplicaApp < handle
                 if operation>0
                     app.refineRoute(min(selected,size(data,1)-1)); return;
                 elseif size(data,1)>2
+                    if strcmp(camdesign.routeModel(app.Project.params),'bezier-blend-independent-v1') && size(data,1)-1<=app.Project.params.bezier.degree
+                        app.Status.Text='无法删点：控制点数量必须大于贝塞尔阶数。'; app.message(app.Status.Text); return;
+                    end
                     candidate=app.inputProject(); candidate.nodes(selected,:)=[];
                     if isfield(candidate.params,'routeSpline')
                         stations=candidate.params.routeSpline.stations;
                         stations(selected)=[]; stations=stations-stations(1);
                         candidate.params.routeSpline.stations=stations;
                     end
-                    camdesign.validateProject(candidate);
+                    if strcmp(camdesign.routeModel(candidate.params),'bezier-blend-independent-v1')
+                        assert(size(candidate.nodes,1)>candidate.params.bezier.degree,'cam:BezierCount','删点后数量必须大于贝塞尔阶数。');
+                    end
+                    candidate=camdesign.updateTrainingSampling(candidate); camdesign.validateProject(candidate);
                     app.Project=candidate; app.History=[]; app.SelectedNodeRow=min(selected,size(candidate.nodes,1));
                     app.syncInputs(); app.invalidate();
                     app.message('路线节点已删除；此操作可能改变路线，请重新计算。'); return;
@@ -509,8 +567,26 @@ classdef CamReplicaApp < handle
                 candidate=app.inputProject();
                 assert(~isempty(app.Result) && isequaln(candidate,app.Project), ...
                     'cam:StaleRoute','请先计算凸轮，使当前路线与表格输入一致，再保形插点。');
-                if nargin<2, segments=(1:size(candidate.nodes,1)-1)'; end
-                [candidate,info]=camdesign.refineRoute(candidate,segments);
+                bezier=strcmp(camdesign.routeModel(candidate.params),'bezier-blend-independent-v1');
+                oldCount=size(candidate.nodes,1);
+                if bezier
+                    if nargin<2
+                        candidate=camdesign.setControlPointCount(candidate,2*oldCount-1);
+                        inserted=2;
+                    else
+                        segment=max(1,min(oldCount-1,segments(1)));
+                        middle=(candidate.nodes(segment,:)+candidate.nodes(segment+1,:))/2;
+                        candidate.nodes=[candidate.nodes(1:segment,:);middle;candidate.nodes(segment+1:end,:)];
+                        assert(size(candidate.nodes,1)<=250,'cam:BezierCount','控制点数量上限为250。');
+                        inserted=segment+1;
+                    end
+                    info=struct('originalNodeCount',oldCount,'newNodeCount',size(candidate.nodes,1), ...
+                        'addedCoordinateDOF',2*(size(candidate.nodes,1)-oldCount),'skippedSegments',[],'insertedIndices',inserted);
+                else
+                    if nargin<2, segments=(1:oldCount-1)'; end
+                    [candidate,info]=camdesign.refineRoute(candidate,segments);
+                end
+                candidate=camdesign.updateTrainingSampling(candidate);
                 result=camdesign.evaluate(candidate,true);
             catch ex
                 app.Status.Text=['路线未细化：',ex.message]; app.message(app.Status.Text); return;
@@ -519,14 +595,75 @@ classdef CamReplicaApp < handle
             app.OptimizationDirection=[]; app.OptimizationInfo=[];
             if ~isempty(info.insertedIndices), app.SelectedNodeRow=info.insertedIndices(1); end
             app.syncInputs(); app.render(); applied=true;
-            app.message(sprintf('保形细化：%d → %d 个前轮插值节点，新增 %d 个坐标自由度；场外拟插点跳过 %d 个。目标访问顺序不变。', ...
-                info.originalNodeCount,info.newNodeCount,info.addedCoordinateDOF,numel(info.skippedSegments)));
+            if bezier
+                app.message(sprintf('独立贝塞尔控制点 %d → %d；增点已重建，曲线可能改变，目标访问顺序不变。',oldCount,info.newNodeCount));
+            else
+                app.message(sprintf('保形细化：%d → %d 个前轮插值节点，新增 %d 个坐标自由度；场外拟插点跳过 %d 个。目标访问顺序不变。', ...
+                    info.originalNodeCount,info.newNodeCount,info.addedCoordinateDOF,numel(info.skippedSegments)));
+            end
         end
         function updateNodeInfo(app)
+            if strcmp(camdesign.routeModel(app.Project.params),'bezier-blend-independent-v1')
+                app.NodeInfo.Text=sprintf('控制点 %d · 目标访问 %d · 独立贝塞尔\n路线不必穿点；增减或改阶会改变曲线。',size(app.NodesTable.Data,1),size(app.TargetsTable.Data,1));
+                app.RefineRouteButton.Text='重建增点'; app.PointButtons(3).Text='插控制点';
+                if ~app.MapEditMode, app.MapEditHelp.Text='独立贝塞尔控制点（不必穿过）'; end
+                return;
+            end
             mode='弦长站位';
             if isfield(app.Project.params,'routeSpline'), mode='固定站位'; end
             app.NodeInfo.Text=sprintf('路线节点 %d · 目标访问 %d · %s\n插点保留曲线；移动节点后改变路线。', ...
                 size(app.NodesTable.Data,1),size(app.TargetsTable.Data,1),mode);
+            app.RefineRouteButton.Text='全段细化'; app.PointButtons(3).Text='段中插点';
+            if ~app.MapEditMode, app.MapEditHelp.Text='独立三次样条路线节点'; end
+        end
+        function syncTrainingInputs(app)
+            settings=camdesign.trainingSettings(app.Project);
+            for k=1:numel(app.TrainingFieldNames), app.TrainingFields(k).Value=settings.(app.TrainingFieldNames{k}); end
+            app.TrainingModel.Value=camdesign.routeModel(app.Project.params); app.TrainingDirty=false;
+            app.refreshTrainingControls();
+        end
+        function markTrainingDirty(app)
+            app.TrainingDirty=true; app.refreshTrainingControls();
+        end
+        function refreshTrainingControls(app)
+            if isempty(app.TrainingFields), return; end
+            editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
+            for k=1:9, app.TrainingFields(k).Enable=editable; end
+            app.TrainingModel.Enable=editable; app.TrainingApplyButton.Enable=editable; app.TrainingResetButton.Enable=editable;
+            bezier=strcmp(app.TrainingModel.Value,'bezier-blend-independent-v1');
+            app.TrainingFields(4).Enable=editable && bezier;
+            constrained=startsWith(app.AlgorithmSelector.Value,'fmincon');
+            if constrained, for k=6:9, app.TrainingFields(k).Enable='off'; end, end
+            model='三次插值样条'; if strcmp(camdesign.routeModel(app.Project.params),'bezier-blend-independent-v1'), model='独立贝塞尔融合'; end
+            pending='已应用';
+            if ~isfield(app.Project.params,'training'), pending='旧模式；本版默认未启用'; end
+            if app.TrainingDirty, pending='待应用；旧图保留'; end
+            description='本版独立规则，非原版融合/调度。减点或切换模型会重建。';
+            if constrained
+                inputMM=app.TrainingFields(5).Value;
+                nominalMM=max(.001,min(1,inputMM));
+                description=[description,newline,sprintf('内点默认差分：输入 %.6g → 名义 %.6g mm（限0.001～1 mm，之后按TypicalX缩放）。学习、平滑与调节项禁用。',inputMM,nominalMM)];
+            else, description=[description,newline,'梯度力=差分距离；步幅×学习率×阶梯衰减；平滑仅接受改善。']; end
+            app.TrainingInfo.Text=sprintf('实际：%d 控制点 / %d 路线采样\n当前：%s；%s\n%s', ...
+                size(app.Project.nodes,1),app.Project.params.samples,model,pending,description);
+        end
+        function applied=applyTraining(app)
+            applied=false;
+            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
+            app.TrainingDirty=true;
+            try
+                candidate=app.inputProject(true); changes=struct('routeModel',app.TrainingModel.Value);
+                for k=1:numel(app.TrainingFieldNames), changes.(app.TrainingFieldNames{k})=app.TrainingFields(k).Value; end
+                [candidate,info]=camdesign.applyTrainingSettings(candidate,changes,app.AlgorithmSelector.Value);
+                result=camdesign.evaluate(candidate,true);
+            catch ex
+                app.Status.Text=['训练设置未应用：',ex.message,' 当前图像为上次结果。'];
+                app.message(app.Status.Text); app.refreshTrainingControls(); return;
+            end
+            app.Project=candidate; app.Result=result; app.History=[]; app.OptimizationDirection=[]; app.OptimizationInfo=[];
+            app.syncInputs(); app.render(); applied=true;
+            app.message(sprintf('本版训练设置已应用：实际 %d 个控制点，%d 个路线采样；保形保证=%d，目标访问顺序保持。', ...
+                size(candidate.nodes,1),info.actualSamples,info.shapePreservationGuaranteed));
         end
         function action(app,name)
             try
@@ -541,8 +678,16 @@ classdef CamReplicaApp < handle
                     case 'calculate', app.calculate();
                     case 'seed'
                         app.readInputs();
+                        wasBezier=strcmp(camdesign.routeModel(app.Project.params),'bezier-blend-independent-v1');
+                        trained=isfield(app.Project.params,'training'); settings=camdesign.trainingSettings(app.Project);
+                        mode=camdesign.routeModel(app.Project.params);
                         if isfield(app.Project.params,'routeSpline'), app.Project.params=rmfield(app.Project.params,'routeSpline'); end
+                        if wasBezier, app.Project.params=rmfield(app.Project.params,'bezier'); app.Project.params.routeModel='cubic'; end
                         app.Project.nodes=camdesign.seedNodes(app.Project.targets,app.Project.params);
+                        if trained || wasBezier
+                            app.Project=camdesign.applyTrainingSettings(app.Project,struct('routeModel',mode, ...
+                                'controlPointCount',settings.controlPointCount,'bezierDegree',settings.bezierDegree),app.AlgorithmSelector.Value);
+                        end
                         app.syncInputs(); app.calculate();
                     case 'import'
                         [f,d]=uigetfile('*.mat','导入本项目或原软件 MAT'); if isequal(f,0), return; end
@@ -666,6 +811,7 @@ classdef CamReplicaApp < handle
             app.MapEditButton.Enable=editable;
             app.ConfirmNodeButton.Enable=app.MapEditMode && app.MapEditSelection>0 && ~app.Busy && ~app.SimulationMode;
             app.CancelNodeButton.Enable=app.MapEditMode && ~app.Busy && ~app.SimulationMode;
+            app.refreshTrainingControls();
         end
         function finishBusy(app)
             app.Busy=false;

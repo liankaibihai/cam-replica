@@ -29,10 +29,10 @@ metrics=struct('maxHitError',max(hits.errors),'rmsHitError',sqrt(mean(hits.error
     'score',sum(p.weights.*terms),'terms',terms,'objectiveVersion','peak-v2', ...
     'legacyScore',sum(p.weights.*legacyTerms),'legacyTerms',legacyTerms,'geometryChecked',logical(fullCheck));
 if fullCheck
-    pairs=camdesign.selfIntersections(c.actual);
+    [pairs,intersectionPoints]=camdesign.selfIntersections(c.actual);
     metrics.intersectionCount=size(pairs,1);
 else
-    pairs=zeros(0,2);
+    pairs=zeros(0,2); intersectionPoints=zeros(0,2);
 end
 messages={};
 if metrics.maxHitError>p.hitTolerance, messages{end+1}='部分打卡点超出设定的几何容差。'; end
@@ -41,5 +41,6 @@ if metrics.maxPressureDeg>p.maxPressureDeg, messages{end+1}='凸轮压力角超�
 if metrics.minUndercutMargin<=0, messages{end+1}='滚子包络存在局部欠切风险。'; end
 if fullCheck && metrics.intersectionCount>0, messages{end+1}='离散凸轮轮廓存在自交或非相邻接触。'; end
 if c.effectiveRatio>p.gearRatio*(1+1e-6), messages{end+1}=sprintf('实际传动比已从 %.5g 增大至 %.5g。',p.gearRatio,c.effectiveRatio); end
-result=struct('route',r,'cam',c,'hits',hits,'metrics',metrics,'warnings',{messages},'intersectionPairs',pairs);
+result=struct('route',r,'cam',c,'hits',hits,'metrics',metrics,'warnings',{messages}, ...
+    'intersectionPairs',pairs,'intersectionPoints',intersectionPoints);
 end

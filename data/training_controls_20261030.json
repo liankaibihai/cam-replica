@@ -1,0 +1,3226 @@
+{
+  "date": "2026-10-30",
+  "baselineGit": "8807270",
+  "scope": "Independent nine-field training controls, switchable Bernstein blend and actual cam self-intersection display verified. Eight 300-round-request 50-control experiments all failed dense validation. Not original 3.1.2 numerical equivalence or vehicle/manufacturing approval.",
+  "intersection": {
+    "release": "2025b",
+    "analyticCases": 6,
+    "crossingPairs": [
+      1,
+      3
+    ],
+    "crossingCoordinates": [
+      1,
+      1
+    ],
+    "overlapPairs": [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ],
+      [
+        1,
+        5
+      ],
+      [
+        3,
+        5
+      ]
+    ],
+    "overlapCoordinates": [
+      [
+        1,
+        0
+      ],
+      [
+        2,
+        0
+      ],
+      [
+        3,
+        0
+      ],
+      [
+        2,
+        0.6666666666666667
+      ]
+    ],
+    "touchPairs": [
+      [
+        1,
+        3
+      ],
+      [
+        1,
+        4
+      ]
+    ],
+    "touchCoordinates": [
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        0
+      ]
+    ],
+    "fullEvaluationIntersectionCount": 0,
+    "scope": "Existing nonadjacent segment detector/count unchanged. Coordinates are exact for analytical crossings and representative for overlapping/tolerance contacts; not a continuous cam guarantee."
+  },
+  "intersectionLog": "local/matlab_4a34a7024ef641a8a6d7dc8d29c2299b.log",
+  "bezierBasis": {
+    "release": "2025b",
+    "checks": 7,
+    "firstDifferenceError": 1.243746794443723e-07,
+    "secondDifferenceError": 3.843611338538722e-06,
+    "joinDifferences": [
+      0.0001391910702996505,
+      0.0001449065763912242,
+      0.0001706764760707697
+    ],
+    "scope": "Independent raw Bernstein partition, constant/linear reproduction, source single-curve agreement, analytic derivatives and cache keys. Endpoint constraints and vehicle integration tested separately."
+  },
+  "bezierBasisLog": "local/matlab_156e45d69f624d57a4e27284b007edcb.log",
+  "core": {
+    "release": "2025b",
+    "checks": [
+      "reading defaults preserves legacy project and route mode",
+      "arbitrary cubic increase is exact insertion; reduction is explicitly a rebuild",
+      "per-interval density sets actual samples only on application; refined p.samples takes precedence",
+      "independent degree-15 blend is noninterpolating and fixes current initial pose/tangent without locking control two",
+      "degree changes actual geometry; physical-parameter first/second derivatives match finite differences",
+      "straight controls reproduce analytic straight position and unit tangent",
+      "preferred solar 50-control degree-15 initialization evaluates and honors denser route/cam grids",
+      "legacy search equals explicitly neutral controls at identical geometry and sampling",
+      "gradient force changes actual difference probes; learning rate scales accepted displacement",
+      "smoothing produces accepted geometry changes; interval/exponent drive logged step decay",
+      "inapplicable/invalid settings are rejected; constrained nominal probe clamps and complete MAT round trip are real"
+    ],
+    "cubicPreservationMM": 9.374856803373542e-13,
+    "degreeEffectMM": 330.33808985944944,
+    "derivativeError": 2.118245756577153e-08,
+    "secondDerivativeError": 2.7361399550143023e-10,
+    "gradientForceEffect": 0.001959609831569386,
+    "learningMovesMM": [
+      0.003000000000002056,
+      0.006000000000004112
+    ],
+    "smoothingAlpha": 0.4,
+    "bezierInitialMetrics": {
+      "maxHitError": 393.2800163683096,
+      "rmsHitError": 153.38624750760485,
+      "routeLength": 11569.21057543467,
+      "driveLength": 11122.172372257324,
+      "maxSteeringDeg": 29.758931473176002,
+      "maxPressureDeg": 78.96611830860844,
+      "maxWorkPressureDeg": 78.96611830860844,
+      "maxReturnPressureDeg": 13.524050345051144,
+      "minUndercutMargin": 0.24816890896112087,
+      "intersectionCount": 0,
+      "score": 2436.164973803067,
+      "terms": [
+        197.9961246656912,
+        0.9452535938629074,
+        0.04819830477100763,
+        19.723275870455872,
+        0,
+        0
+      ],
+      "objectiveVersion": "peak-v2",
+      "legacyScore": 315.82735737859844,
+      "legacyTerms": [
+        26.141489916071357,
+        0.9452535938629074,
+        0.0024919771541269654,
+        0.39308027919031946,
+        0,
+        0
+      ],
+      "geometryChecked": true
+    },
+    "settings": {
+      "iterations": 300,
+      "controlPointCount": 50,
+      "interpolationPerSegment": 11,
+      "bezierDegree": 15,
+      "gradientForce": 0.5,
+      "learningRate": 1,
+      "smoothingRate": 0,
+      "adjustInterval": 10,
+      "adjustExponent": 0
+    },
+    "defaultSettings": {
+      "iterations": 300,
+      "controlPointCount": 10,
+      "interpolationPerSegment": 67,
+      "bezierDegree": 3,
+      "gradientForce": 0.5,
+      "learningRate": 1,
+      "smoothingRate": 0,
+      "adjustInterval": 10,
+      "adjustExponent": 0
+    },
+    "constrainedProbeClamps": [
+      [
+        0.75,
+        0.75
+      ],
+      [
+        6,
+        1
+      ],
+      [
+        0.0005,
+        0.001
+      ]
+    ],
+    "scope": "Independent fusion/scheduling; short runs test functionality, not convergence or original-software identity."
+  },
+  "coreLog": "local/matlab_8c75645d77864b38b9aa7e66a52b0ee4.log",
+  "convergence300": {
+    "release": "2025b",
+    "scope": "Solar flat: cubic vs independent Bernstein blend, 50 control points, nominal 11 intervals per segment, explicit independent search schedule. Physical dimensions and engineering limits retained. No original-app or real-car equivalence.",
+    "cases": [
+      {
+        "label": "cubic_fmincon-interior-point-experimental-v1",
+        "settings": {
+          "iterations": 300,
+          "controlPointCount": 50,
+          "interpolationPerSegment": 11,
+          "bezierDegree": 3,
+          "gradientForce": 0.5,
+          "learningRate": 1,
+          "smoothingRate": 0,
+          "adjustInterval": 10,
+          "adjustExponent": 0
+        },
+        "settingsInfo": {
+          "controlPoints": {
+            "oldCount": 10,
+            "actualCount": 50,
+            "shapePreservationGuaranteed": true,
+            "outsideSegmentsSkipped": 1,
+            "targetOrderUnchanged": true
+          },
+          "actualSamples": 540,
+          "modelChanged": false,
+          "shapePreservationGuaranteed": true,
+          "semantics": "Independent controls and Bernstein blend, not recovered original rules."
+        },
+        "initial": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 5.192848802805355,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": false,
+            "maxTrajectoryOutsideMM": 93.60966718039681,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.00797113884837,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 14.021927548646124,
+              "rmsHitError": 7.366048588571579,
+              "routeLength": 12724.032498485678,
+              "driveLength": 12254.924227797002,
+              "maxSteeringDeg": 38.9473719823648,
+              "maxPressureDeg": 87.09902286154856,
+              "maxWorkPressureDeg": 87.09902286154856,
+              "maxReturnPressureDeg": 35.737188320363195,
+              "minUndercutMargin": 0.5366869794660662,
+              "intersectionCount": 0,
+              "score": 87.51779347862424,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 3.160705106989984,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 5.196658220424387,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": false,
+            "maxTrajectoryOutsideMM": 93.6430803978152,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.008140588352674,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 13.94771760002711,
+              "rmsHitError": 7.333539859438876,
+              "routeLength": 12724.095893304542,
+              "driveLength": 12254.981898106382,
+              "maxSteeringDeg": 38.98242144084957,
+              "maxPressureDeg": 87.12580742822342,
+              "maxWorkPressureDeg": 87.12580742822342,
+              "maxReturnPressureDeg": 36.325219955875866,
+              "minUndercutMargin": 0.5038094134284754,
+              "intersectionCount": 0,
+              "score": 87.62677097713188,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 3.1752373897637294,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 93.6430803978152,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final4x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 0.9087016963174208,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.41334403846756,
+            "autoRatio": true,
+            "workEndDeg": 299.99999969999993,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 41.44673119421698,
+              "rmsHitError": 27.00408723119069,
+              "routeLength": 13196.149730377467,
+              "driveLength": 12733.227721493462,
+              "maxSteeringDeg": 19.062059395174,
+              "maxPressureDeg": 46.025854519459905,
+              "maxWorkPressureDeg": 46.025854519459905,
+              "maxReturnPressureDeg": 29.045774977955197,
+              "minUndercutMargin": -0.4303341832710168,
+              "intersectionCount": 1,
+              "score": 40.205921464426254,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 10.830061863582488,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 1.3924970033851805,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.41470410478256,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 41.367884131897824,
+              "rmsHitError": 26.961311890495626,
+              "routeLength": 13196.625830662928,
+              "driveLength": 12733.690605380225,
+              "maxSteeringDeg": 19.06298148764721,
+              "maxPressureDeg": 46.99874981446304,
+              "maxWorkPressureDeg": 46.99874981446304,
+              "maxReturnPressureDeg": 29.21247585377823,
+              "minUndercutMargin": -1.3924960033851805,
+              "intersectionCount": 3,
+              "score": 60.23715265190826,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 10.812326324147875,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final8x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 0.9087016963174208,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.41334403846756,
+            "autoRatio": true,
+            "workEndDeg": 299.99999969999993,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 41.44673119421698,
+              "rmsHitError": 27.00408723119069,
+              "routeLength": 13196.149730377467,
+              "driveLength": 12733.227721493462,
+              "maxSteeringDeg": 19.062059395174,
+              "maxPressureDeg": 46.025854519459905,
+              "maxWorkPressureDeg": 46.025854519459905,
+              "maxReturnPressureDeg": 29.045774977955197,
+              "minUndercutMargin": -0.4303341832710168,
+              "intersectionCount": 1,
+              "score": 40.205921464426254,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 10.830061863582488,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 4313,
+            "camSamples": 5761,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 1.2758224179869935,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.41478012250757,
+            "autoRatio": true,
+            "workEndDeg": 299.99999969999993,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 41.3675838780692,
+              "rmsHitError": 26.960477916180047,
+              "routeLength": 13196.652256642445,
+              "driveLength": 12733.716477192229,
+              "maxSteeringDeg": 19.06432589713864,
+              "maxPressureDeg": 47.08728157746851,
+              "maxWorkPressureDeg": 47.08728157746851,
+              "maxReturnPressureDeg": 29.244814095310907,
+              "minUndercutMargin": -1.2758214179869936,
+              "intersectionCount": 3,
+              "score": 56.952783690476224,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 10.810894465236881,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 8,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "ruleAudit": {
+          "modeledPointBounds": {
+            "front": {
+              "minXY": [
+                74.03823447015941,
+                105.04863052774965
+              ],
+              "maxXY": [
+                5524.0926697246205,
+                1648.6085189805665
+              ],
+              "minimumBoundaryClearanceMM": 74.03823447015941,
+              "maximumOutsideMM": 0
+            },
+            "rear": {
+              "minXY": [
+                192.5823566570985,
+                108.89003072848618
+              ],
+              "maxXY": [
+                5517.0451496384,
+                1640.301328198985
+              ],
+              "minimumBoundaryClearanceMM": 108.89003072848618,
+              "maximumOutsideMM": 0
+            },
+            "drive": {
+              "minXY": [
+                180.23617375981135,
+                188.39000704263552
+              ],
+              "maxXY": [
+                5437.545152277802,
+                1560.8014716519897
+              ],
+              "minimumBoundaryClearanceMM": 180.23617375981135,
+              "maximumOutsideMM": 0
+            },
+            "driven": {
+              "minXY": [
+                204.98289381871334,
+                29.040054518614184
+              ],
+              "maxXY": [
+                5596.895146987378,
+                1720.151184114426
+              ],
+              "minimumBoundaryClearanceMM": 29.040054518614184,
+              "maximumOutsideMM": 0
+            },
+            "sensor": {
+              "minXY": [
+                93.7955881679826,
+                106.2896549101474
+              ],
+              "maxXY": [
+                5522.014710304536,
+                1646.2371899484774
+              ],
+              "minimumBoundaryClearanceMM": 93.7955881679826,
+              "maximumOutsideMM": 0
+            }
+          },
+          "recognitionScenarios": [
+            {
+              "geometricRadiusMM": 8.5,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": 1,
+              "eventEntryExitDistanceMM": [
+                0,
+                8.500003946141273
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 15,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": 1,
+              "eventEntryExitDistanceMM": [
+                0,
+                15.000024961579769
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 20,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  20.00006078913062
+                ],
+                [
+                  1237.2245110541987,
+                  1257.9876724238088
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 30,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                5,
+                6,
+                7,
+                8,
+                9
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  30.000210726741656
+                ],
+                [
+                  1223.4171199703019,
+                  1271.78367574179
+                ],
+                [
+                  5236.9386495383405,
+                  5262.81232389493
+                ],
+                [
+                  6206.563424306024,
+                  6243.739015187546
+                ],
+                [
+                  7537.216262526408,
+                  7570.644337140377
+                ],
+                [
+                  9851.351865797706,
+                  9886.161468853194
+                ],
+                [
+                  10705.38924924708,
+                  10722.553380397458
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            }
+          ],
+          "boundaryScope": "Dense sampled reference-point trajectories and their straight segments, not complete wheel/body footprint or a continuous spline bound.",
+          "recognitionScope": "Continuous polyline/disk entries; contiguous dwell counts once, exit then re-entry counts again. Radii are sensitivity scenarios, not guaranteed RFID ranges."
+        },
+        "geometryPassIncluding8x": false,
+        "lastTenEntryReductionFraction": 0.7913361668504818,
+        "extendRecommended": false,
+        "info": {
+          "algorithm": "fmincon-interior-point-experimental-v1",
+          "solverAlgorithm": "interior-point",
+          "reason": "constrained_infeasible",
+          "iterations": 18,
+          "requestedIterations": 300,
+          "evaluations": 1859,
+          "objectiveCalls": 1849,
+          "constraintCalls": 1849,
+          "cacheHits": 1861,
+          "elapsedSeconds": 9.270996,
+          "solverSeconds": 7.8760581,
+          "solverExitflag": -2,
+          "solverTerminalViolation": 0.9087016963174208,
+          "returnedMaxViolation": 0.9087016963174208,
+          "maxSeconds": 600,
+          "maxFunctionEvaluations": 119196,
+          "freeVariables": 98,
+          "differenceType": "forward",
+          "nominalDifferenceStepMM": 0.5,
+          "differenceStepSource": "project_gradient_probe",
+          "parametersUnchanged": true,
+          "selectionPolicy": "Strict zero-violation iterates preferred; otherwise reduce scaled violation; same-class feasible iterates compare constrained objective. Finite-difference probes not selected.",
+          "remainingConstraints": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。",
+            "滚子包络存在局部欠切风险。",
+            "离散凸轮轮廓存在自交或非相邻接触。",
+            "实际传动比已从 20 增大至 37.413。",
+            "加密采样或完整几何检查未通过，候选不能标为可行。"
+          ]
+        },
+        "savedCandidateProject": "outputs/training_controls_20261030/convergence_300/cubic_fmincon-interior-point-experimental-v1_project.mat"
+      },
+      {
+        "label": "cubic_peak-gradient-v2",
+        "settings": {
+          "iterations": 300,
+          "controlPointCount": 50,
+          "interpolationPerSegment": 11,
+          "bezierDegree": 3,
+          "gradientForce": 0.5,
+          "learningRate": 0.3,
+          "smoothingRate": 0.4,
+          "adjustInterval": 100,
+          "adjustExponent": 1
+        },
+        "settingsInfo": {
+          "controlPoints": {
+            "oldCount": 10,
+            "actualCount": 50,
+            "shapePreservationGuaranteed": true,
+            "outsideSegmentsSkipped": 1,
+            "targetOrderUnchanged": true
+          },
+          "actualSamples": 540,
+          "modelChanged": false,
+          "shapePreservationGuaranteed": true,
+          "semantics": "Independent controls and Bernstein blend, not recovered original rules."
+        },
+        "initial": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 5.192848802805355,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": false,
+            "maxTrajectoryOutsideMM": 93.60966718039681,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.00797113884837,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 14.021927548646124,
+              "rmsHitError": 7.366048588571579,
+              "routeLength": 12724.032498485678,
+              "driveLength": 12254.924227797002,
+              "maxSteeringDeg": 38.9473719823648,
+              "maxPressureDeg": 87.09902286154856,
+              "maxWorkPressureDeg": 87.09902286154856,
+              "maxReturnPressureDeg": 35.737188320363195,
+              "minUndercutMargin": 0.5366869794660662,
+              "intersectionCount": 0,
+              "score": 87.51779347862424,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 3.160705106989984,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 5.196658220424387,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": false,
+            "maxTrajectoryOutsideMM": 93.6430803978152,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.008140588352674,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 13.94771760002711,
+              "rmsHitError": 7.333539859438876,
+              "routeLength": 12724.095893304542,
+              "driveLength": 12254.981898106382,
+              "maxSteeringDeg": 38.98242144084957,
+              "maxPressureDeg": 87.12580742822342,
+              "maxWorkPressureDeg": 87.12580742822342,
+              "maxReturnPressureDeg": 36.325219955875866,
+              "minUndercutMargin": 0.5038094134284754,
+              "intersectionCount": 0,
+              "score": 87.62677097713188,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 3.1752373897637294,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 93.6430803978152,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final4x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 3.897232079516904,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": false,
+            "maxTrajectoryOutsideMM": 99.7593123762932,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.05484235145468,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 11.301215581557601,
+              "rmsHitError": 7.276084046433933,
+              "routeLength": 12737.00114262587,
+              "driveLength": 12270.876338976508,
+              "maxSteeringDeg": 31.437871456606246,
+              "maxPressureDeg": 77.45391725024763,
+              "maxWorkPressureDeg": 77.45391725024763,
+              "maxReturnPressureDeg": 9.84742765387658,
+              "minUndercutMargin": 0.09122885715056661,
+              "intersectionCount": 0,
+              "score": 59.05711077900055,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 3.1900405645362624,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 3.901134161021174,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": false,
+            "maxTrajectoryOutsideMM": 99.75934801334188,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.05501163353233,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 11.19472349281138,
+              "rmsHitError": 7.237093991847647,
+              "routeLength": 12737.062735374562,
+              "driveLength": 12270.933952304034,
+              "maxSteeringDeg": 31.45668179002163,
+              "maxPressureDeg": 77.48476848549615,
+              "maxWorkPressureDeg": 77.48476848549615,
+              "maxReturnPressureDeg": 9.817406644580418,
+              "minUndercutMargin": 0.0010154219203770687,
+              "intersectionCount": 1,
+              "score": 59.19814767312104,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 3.186761078791536,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 99.75934801334188,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final8x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 3.897232079516904,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": false,
+            "maxTrajectoryOutsideMM": 99.7593123762932,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.05484235145468,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 11.301215581557601,
+              "rmsHitError": 7.276084046433933,
+              "routeLength": 12737.00114262587,
+              "driveLength": 12270.876338976508,
+              "maxSteeringDeg": 31.437871456606246,
+              "maxPressureDeg": 77.45391725024763,
+              "maxWorkPressureDeg": 77.45391725024763,
+              "maxReturnPressureDeg": 9.84742765387658,
+              "minUndercutMargin": 0.09122885715056661,
+              "intersectionCount": 0,
+              "score": 59.05711077900055,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 3.1900405645362624,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 4313,
+            "camSamples": 5761,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 3.901190835962063,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": false,
+            "maxTrajectoryOutsideMM": 99.76249687287589,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.0550207450791,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 11.19425887666892,
+              "rmsHitError": 7.235562676120993,
+              "routeLength": 12737.0659379522,
+              "driveLength": 12270.937053320606,
+              "maxSteeringDeg": 31.45830766993288,
+              "maxPressureDeg": 77.48521648710499,
+              "maxWorkPressureDeg": 77.48521648710499,
+              "maxReturnPressureDeg": 9.81682419594954,
+              "minUndercutMargin": -0.021006464109906586,
+              "intersectionCount": 0,
+              "score": 59.247751186374344,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 3.186898134422144,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 8,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": 99.76249687287589,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "ruleAudit": {
+          "modeledPointBounds": {
+            "front": {
+              "minXY": [
+                390.148012228776,
+                -24.504689065823584
+              ],
+              "maxXY": [
+                5493.830063489376,
+                1642.0483481325032
+              ],
+              "minimumBoundaryClearanceMM": -24.504689065823584,
+              "maximumOutsideMM": 24.504689065823584
+            },
+            "rear": {
+              "minXY": [
+                410,
+                -19.912496910073436
+              ],
+              "maxXY": [
+                5488.397703521296,
+                1631.5899922083656
+              ],
+              "minimumBoundaryClearanceMM": -19.912496910073436,
+              "maximumOutsideMM": 19.912496910073436
+            },
+            "drive": {
+              "minXY": [
+                489.5,
+                59.58750305289205
+              ],
+              "maxXY": [
+                5408.897711268469,
+                1552.0900977820945
+              ],
+              "minimumBoundaryClearanceMM": 59.58750305289205,
+              "maximumOutsideMM": 0
+            },
+            "driven": {
+              "minXY": [
+                330.15,
+                -99.76249687287589
+              ],
+              "maxXY": [
+                5568.247695740016,
+                1711.439886169847
+              ],
+              "minimumBoundaryClearanceMM": -99.76249687287589,
+              "maximumOutsideMM": 99.76249687287589
+            },
+            "sensor": {
+              "minXY": [
+                409.7695949284133,
+                -23.027968947334518
+              ],
+              "maxXY": [
+                5492.2043393385175,
+                1639.2288375544001
+              ],
+              "minimumBoundaryClearanceMM": -23.027968947334518,
+              "maximumOutsideMM": 23.027968947334518
+            }
+          },
+          "recognitionScenarios": [
+            {
+              "geometricRadiusMM": 8.5,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                4,
+                5,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  8.500000384531662
+                ],
+                [
+                  3965.341967744839,
+                  3982.140105320251
+                ],
+                [
+                  4966.443543742165,
+                  4983.361445897582
+                ],
+                [
+                  9710.152961301716,
+                  9721.292008475024
+                ],
+                [
+                  10561.048812428568,
+                  10570.969737184167
+                ],
+                [
+                  12696.459401117705,
+                  12705.047554624913
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 15,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  15.000002552200883
+                ],
+                [
+                  1229.7572751012456,
+                  1249.1624709619143
+                ],
+                [
+                  2122.6940003637437,
+                  2144.3830417820054
+                ],
+                [
+                  3958.8058368984903,
+                  3988.676224738618
+                ],
+                [
+                  4959.930115951702,
+                  4989.874925511589
+                ],
+                [
+                  5939.0967501660125,
+                  5960.749496674107
+                ],
+                [
+                  7256.528373597661,
+                  7279.006363467972
+                ],
+                [
+                  9702.154578870397,
+                  9729.290223049053
+                ],
+                [
+                  10552.730261141429,
+                  10579.287421416931
+                ],
+                [
+                  12689.94780068085,
+                  12705.047554624913
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 20,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  20.00000620622086
+                ],
+                [
+                  1223.3489881534347,
+                  1255.5713732351455
+                ],
+                [
+                  2116.498339703535,
+                  2150.5773340927863
+                ],
+                [
+                  3953.796084158128,
+                  3993.6859309544966
+                ],
+                [
+                  4954.926851670104,
+                  4994.878205833772
+                ],
+                [
+                  5932.991975101528,
+                  5966.852969086993
+                ],
+                [
+                  7250.4759010263915,
+                  7285.056825143161
+                ],
+                [
+                  9696.76329022322,
+                  9734.681496449522
+                ],
+                [
+                  10547.296550592991,
+                  10584.720821447832
+                ],
+                [
+                  12684.944343415493,
+                  12705.047554624913
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 30,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  30.00002362025115
+                ],
+                [
+                  1212.3856392501466,
+                  1266.5342650675052
+                ],
+                [
+                  2105.5365285799558,
+                  2161.5351056301624
+                ],
+                [
+                  3943.789350959893,
+                  4003.6926850455816
+                ],
+                [
+                  4944.92501433234,
+                  5004.880111399431
+                ],
+                [
+                  5922.152126495087,
+                  5977.692972056329
+                ],
+                [
+                  7239.615149297814,
+                  7295.911762028662
+                ],
+                [
+                  9686.388369010421,
+                  9745.056221823757
+                ],
+                [
+                  10536.908045434295,
+                  10595.10853070922
+                ],
+                [
+                  12674.941445664714,
+                  12705.047554624913
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": true,
+              "notSensorReadGuarantee": true
+            }
+          ],
+          "boundaryScope": "Dense sampled reference-point trajectories and their straight segments, not complete wheel/body footprint or a continuous spline bound.",
+          "recognitionScope": "Continuous polyline/disk entries; contiguous dwell counts once, exit then re-entry counts again. Radii are sensitivity scenarios, not guaranteed RFID ranges."
+        },
+        "geometryPassIncluding8x": false,
+        "lastTenEntryReductionFraction": 0.005281836126199275,
+        "extendRecommended": false,
+        "info": {
+          "algorithm": "peak-gradient-v2",
+          "reason": "iteration_limit",
+          "iterations": 300,
+          "requestedIterations": 300,
+          "evaluations": 60304,
+          "elapsedSeconds": 57.1599255,
+          "remainingConstraints": [
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 36.055。"
+          ]
+        },
+        "savedCandidateProject": "outputs/training_controls_20261030/convergence_300/cubic_peak-gradient-v2_project.mat"
+      },
+      {
+        "label": "bezier-blend-independent-v1_fmincon-interior-point-experimental-v1",
+        "settings": {
+          "iterations": 300,
+          "controlPointCount": 50,
+          "interpolationPerSegment": 11,
+          "bezierDegree": 15,
+          "gradientForce": 0.5,
+          "learningRate": 1,
+          "smoothingRate": 0,
+          "adjustInterval": 10,
+          "adjustExponent": 0
+        },
+        "settingsInfo": {
+          "controlPoints": {
+            "oldCount": 10,
+            "actualCount": 50,
+            "shapePreservationGuaranteed": true,
+            "outsideSegmentsSkipped": 1,
+            "targetOrderUnchanged": true
+          },
+          "actualSamples": 540,
+          "modelChanged": true,
+          "shapePreservationGuaranteed": false,
+          "semantics": "Independent controls and Bernstein blend, not recovered original rules."
+        },
+        "initial": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 170.85463474961986,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.67966854280026,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 393.2800163683096,
+              "rmsHitError": 153.38624750760485,
+              "routeLength": 11569.21057543467,
+              "driveLength": 11122.172372257324,
+              "maxSteeringDeg": 29.758931473176002,
+              "maxPressureDeg": 78.96611830860844,
+              "maxWorkPressureDeg": 78.96611830860844,
+              "maxReturnPressureDeg": 13.524050345051144,
+              "minUndercutMargin": 0.24816890896112087,
+              "intersectionCount": 0,
+              "score": 2436.164973803067,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 315.82735737859844,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 170.74586679729225,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.67962808087277,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 393.155541888402,
+              "rmsHitError": 153.34806883900387,
+              "routeLength": 11569.19701610366,
+              "driveLength": 11122.158601477138,
+              "maxSteeringDeg": 29.768049982081735,
+              "maxPressureDeg": 79.14720288958218,
+              "maxWorkPressureDeg": 79.14720288958218,
+              "maxReturnPressureDeg": 13.658903525678978,
+              "minUndercutMargin": 0.24191448810689475,
+              "intersectionCount": 0,
+              "score": 2435.1823300584383,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 315.671105207348,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final4x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 1.7015609257825566,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.98310690180867,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 49.309277354310325,
+              "rmsHitError": 27.410714899460647,
+              "routeLength": 13328.858657526465,
+              "driveLength": 12927.140360756963,
+              "maxSteeringDeg": 16.64922450964377,
+              "maxPressureDeg": 40.698042101707344,
+              "maxWorkPressureDeg": 40.698042101707344,
+              "maxReturnPressureDeg": 22.53305467058429,
+              "minUndercutMargin": -1.6429155046750616,
+              "intersectionCount": 1,
+              "score": 74.94892328110758,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 11.167825953829981,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 3.3178349257226074,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.980830869664935,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 49.10208679497472,
+              "rmsHitError": 27.343709064268023,
+              "routeLength": 13328.067768466535,
+              "driveLength": 12926.365737789345,
+              "maxSteeringDeg": 16.65155758493138,
+              "maxPressureDeg": 41.06477526804699,
+              "maxWorkPressureDeg": 41.06477526804699,
+              "maxReturnPressureDeg": 18.939188139592257,
+              "minUndercutMargin": -3.3178339257226073,
+              "intersectionCount": 1,
+              "score": 161.2520835381257,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 11.174980064520842,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final8x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 1.7015609257825566,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.98310690180867,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 49.309277354310325,
+              "rmsHitError": 27.410714899460647,
+              "routeLength": 13328.858657526465,
+              "driveLength": 12927.140360756963,
+              "maxSteeringDeg": 16.64922450964377,
+              "maxPressureDeg": 40.698042101707344,
+              "maxWorkPressureDeg": 40.698042101707344,
+              "maxReturnPressureDeg": 22.53305467058429,
+              "minUndercutMargin": -1.6429155046750616,
+              "intersectionCount": 1,
+              "score": 74.94892328110758,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 11.167825953829981,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 4313,
+            "camSamples": 5761,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 3.524997731561597,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.98071406823884,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 49.09165712189255,
+              "rmsHitError": 27.339904286978427,
+              "routeLength": 13328.028214996315,
+              "driveLength": 12926.325985684985,
+              "maxSteeringDeg": 16.651557597133934,
+              "maxPressureDeg": 41.06513046039118,
+              "maxWorkPressureDeg": 41.06513046039118,
+              "maxReturnPressureDeg": 18.685084605151705,
+              "minUndercutMargin": -3.524996731561597,
+              "intersectionCount": 1,
+              "score": 175.8260419068315,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 11.17233457970867,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 8,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "ruleAudit": {
+          "modeledPointBounds": {
+            "front": {
+              "minXY": [
+                380.5376260128262,
+                225.63831764285044
+              ],
+              "maxXY": [
+                5682.300628236255,
+                1610.344994842902
+              ],
+              "minimumBoundaryClearanceMM": 225.63831764285044,
+              "maximumOutsideMM": 0
+            },
+            "rear": {
+              "minXY": [
+                383.93177431336267,
+                227.6640915598566
+              ],
+              "maxXY": [
+                5671.216487319207,
+                1604.536812931616
+              ],
+              "minimumBoundaryClearanceMM": 227.6640915598566,
+              "maximumOutsideMM": 0
+            },
+            "drive": {
+              "minXY": [
+                399.67447867880753,
+                307.16406676296674
+              ],
+              "maxXY": [
+                5591.71650428934,
+                1525.0368879727168
+              ],
+              "minimumBoundaryClearanceMM": 307.16406676296674,
+              "maximumOutsideMM": 0
+            },
+            "driven": {
+              "minXY": [
+                304.08178288807153,
+                147.8141164659151
+              ],
+              "maxXY": [
+                5751.0664702743625,
+                1684.3867375601455
+              ],
+              "minimumBoundaryClearanceMM": 147.8141164659151,
+              "maximumOutsideMM": 0
+            },
+            "sensor": {
+              "minXY": [
+                381.43414769881423,
+                226.27182139711442
+              ],
+              "maxXY": [
+                5678.945047332932,
+                1608.6798045249195
+              ],
+              "minimumBoundaryClearanceMM": 226.27182139711442,
+              "maximumOutsideMM": 0
+            }
+          },
+          "recognitionScenarios": [
+            {
+              "geometricRadiusMM": 8.5,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                9
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  8.500001233909668
+                ],
+                [
+                  10850.23808556689,
+                  10861.88711583386
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 15,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                9
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  15.000007779284703
+                ],
+                [
+                  10842.391815944979,
+                  10869.733065133052
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 20,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                9
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  20.00001920248545
+                ],
+                [
+                  10837.032553393157,
+                  10875.091838333352
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 30,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                2,
+                4,
+                5,
+                6,
+                8,
+                9,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  30.00006858256235
+                ],
+                [
+                  1257.7656746102828,
+                  1285.0757287265262
+                ],
+                [
+                  4295.229239869077,
+                  4327.3494028541545
+                ],
+                [
+                  5287.82608702592,
+                  5317.06336477406
+                ],
+                [
+                  6251.171620028552,
+                  6278.652754528889
+                ],
+                [
+                  9998.17367540651,
+                  10014.693456420453
+                ],
+                [
+                  10826.68768554145,
+                  10885.435177177997
+                ],
+                [
+                  13288.071191490886,
+                  13296.810268071762
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            }
+          ],
+          "boundaryScope": "Dense sampled reference-point trajectories and their straight segments, not complete wheel/body footprint or a continuous spline bound.",
+          "recognitionScope": "Continuous polyline/disk entries; contiguous dwell counts once, exit then re-entry counts again. Radii are sensitivity scenarios, not guaranteed RFID ranges."
+        },
+        "geometryPassIncluding8x": false,
+        "lastTenEntryReductionFraction": 0.5953928156118949,
+        "extendRecommended": false,
+        "info": {
+          "algorithm": "fmincon-interior-point-experimental-v1",
+          "solverAlgorithm": "interior-point",
+          "reason": "constrained_infeasible",
+          "iterations": 22,
+          "requestedIterations": 300,
+          "evaluations": 2355,
+          "objectiveCalls": 2342,
+          "constraintCalls": 2342,
+          "cacheHits": 2356,
+          "elapsedSeconds": 7.2350199,
+          "solverSeconds": 7.141886,
+          "solverExitflag": -2,
+          "solverTerminalViolation": 1.7020523761904265,
+          "returnedMaxViolation": 1.7015609257825566,
+          "maxSeconds": 600,
+          "maxFunctionEvaluations": 119196,
+          "freeVariables": 98,
+          "differenceType": "forward",
+          "nominalDifferenceStepMM": 0.5,
+          "differenceStepSource": "project_gradient_probe",
+          "parametersUnchanged": true,
+          "selectionPolicy": "Strict zero-violation iterates preferred; otherwise reduce scaled violation; same-class feasible iterates compare constrained objective. Finite-difference probes not selected.",
+          "remainingConstraints": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。",
+            "滚子包络存在局部欠切风险。",
+            "离散凸轮轮廓存在自交或非相邻接触。",
+            "实际传动比已从 20 增大至 37.983。",
+            "加密采样或完整几何检查未通过，候选不能标为可行。"
+          ]
+        },
+        "savedCandidateProject": "outputs/training_controls_20261030/convergence_300/bezier-blend-independent-v1_fmincon-interior-point-experimental-v1_project.mat"
+      },
+      {
+        "label": "bezier-blend-independent-v1_peak-gradient-v2",
+        "settings": {
+          "iterations": 300,
+          "controlPointCount": 50,
+          "interpolationPerSegment": 11,
+          "bezierDegree": 15,
+          "gradientForce": 0.5,
+          "learningRate": 0.3,
+          "smoothingRate": 0.4,
+          "adjustInterval": 100,
+          "adjustExponent": 1
+        },
+        "settingsInfo": {
+          "controlPoints": {
+            "oldCount": 10,
+            "actualCount": 50,
+            "shapePreservationGuaranteed": true,
+            "outsideSegmentsSkipped": 1,
+            "targetOrderUnchanged": true
+          },
+          "actualSamples": 540,
+          "modelChanged": true,
+          "shapePreservationGuaranteed": false,
+          "semantics": "Independent controls and Bernstein blend, not recovered original rules."
+        },
+        "initial": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 170.85463474961986,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.67966854280026,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 393.2800163683096,
+              "rmsHitError": 153.38624750760485,
+              "routeLength": 11569.21057543467,
+              "driveLength": 11122.172372257324,
+              "maxSteeringDeg": 29.758931473176002,
+              "maxPressureDeg": 78.96611830860844,
+              "maxWorkPressureDeg": 78.96611830860844,
+              "maxReturnPressureDeg": 13.524050345051144,
+              "minUndercutMargin": 0.24816890896112087,
+              "intersectionCount": 0,
+              "score": 2436.164973803067,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 315.82735737859844,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 170.74586679729225,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.67962808087277,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 393.155541888402,
+              "rmsHitError": 153.34806883900387,
+              "routeLength": 11569.19701610366,
+              "driveLength": 11122.158601477138,
+              "maxSteeringDeg": 29.768049982081735,
+              "maxPressureDeg": 79.14720288958218,
+              "maxWorkPressureDeg": 79.14720288958218,
+              "maxReturnPressureDeg": 13.658903525678978,
+              "minUndercutMargin": 0.24191448810689475,
+              "intersectionCount": 0,
+              "score": 2435.1823300584383,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 315.671105207348,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final4x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 160.17563913551905,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.7413600394772,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 380.86490416152435,
+              "rmsHitError": 149.8159342488374,
+              "routeLength": 11589.690342611784,
+              "driveLength": 11143.168407117497,
+              "maxSteeringDeg": 29.500005335037415,
+              "maxPressureDeg": 78.68385375898218,
+              "maxWorkPressureDeg": 78.68385375898218,
+              "maxReturnPressureDeg": 6.316528016935434,
+              "minUndercutMargin": 0.2706691792106558,
+              "intersectionCount": 0,
+              "score": 2292.8265941418017,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 301.3837362954948,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 160.06911305870648,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.74132500325423,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 380.73902052828237,
+              "rmsHitError": 149.7771208776702,
+              "routeLength": 11589.677253503383,
+              "driveLength": 11143.15648291727,
+              "maxSteeringDeg": 29.511097706809885,
+              "maxPressureDeg": 78.7921045515617,
+              "maxWorkPressureDeg": 78.7921045515617,
+              "maxReturnPressureDeg": 6.342069995869818,
+              "minUndercutMargin": 0.2669210047985362,
+              "intersectionCount": 0,
+              "score": 2291.6773449108496,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 301.22860542898,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final8x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 160.17563913551905,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.7413600394772,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 380.86490416152435,
+              "rmsHitError": 149.8159342488374,
+              "routeLength": 11589.690342611784,
+              "driveLength": 11143.168407117497,
+              "maxSteeringDeg": 29.500005335037415,
+              "maxPressureDeg": 78.68385375898218,
+              "maxWorkPressureDeg": 78.68385375898218,
+              "maxReturnPressureDeg": 6.316528016935434,
+              "minUndercutMargin": 0.2706691792106558,
+              "intersectionCount": 0,
+              "score": 2292.8265941418017,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 301.3837362954948,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 4313,
+            "camSamples": 5761,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 160.06908353958835,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.74132298486852,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 380.73898563928213,
+              "rmsHitError": 149.7765062366232,
+              "routeLength": 11589.676599039252,
+              "driveLength": 11143.15579598148,
+              "maxSteeringDeg": 29.511658843325876,
+              "maxPressureDeg": 78.7922475561133,
+              "maxWorkPressureDeg": 78.7922475561133,
+              "maxReturnPressureDeg": 6.343342574765529,
+              "minUndercutMargin": 0.2666048871177532,
+              "intersectionCount": 0,
+              "score": 2291.675051436452,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 301.22627374647027,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 8,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "ruleAudit": {
+          "modeledPointBounds": {
+            "front": {
+              "minXY": [
+                390.3351807862984,
+                416.89881446326933
+              ],
+              "maxXY": [
+                5412.002206367873,
+                1555.9026942120258
+              ],
+              "minimumBoundaryClearanceMM": 390.3351807862984,
+              "maximumOutsideMM": 0
+            },
+            "rear": {
+              "minXY": [
+                410,
+                320
+              ],
+              "maxXY": [
+                5395.824186748524,
+                1552.1243874423133
+              ],
+              "minimumBoundaryClearanceMM": 320,
+              "maximumOutsideMM": 0
+            },
+            "drive": {
+              "minXY": [
+                489.5,
+                320
+              ],
+              "maxXY": [
+                5316.324214557065,
+                1472.6243894457068
+              ],
+              "minimumBoundaryClearanceMM": 320,
+              "maximumOutsideMM": 0
+            },
+            "driven": {
+              "minXY": [
+                330.15,
+                320
+              ],
+              "maxXY": [
+                5475.6741588175555,
+                1631.9743854300998
+              ],
+              "minimumBoundaryClearanceMM": 320,
+              "maximumOutsideMM": 0
+            },
+            "sensor": {
+              "minXY": [
+                409.85241763654625,
+                420
+              ],
+              "maxXY": [
+                5407.43903712209,
+                1554.8805599720379
+              ],
+              "minimumBoundaryClearanceMM": 409.85241763654625,
+              "maximumOutsideMM": 0
+            }
+          },
+          "recognitionScenarios": [
+            {
+              "geometricRadiusMM": 8.5,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  8.500000131656126
+                ],
+                [
+                  11554.607645460448,
+                  11562.898491884887
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 15,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  15.000000861302574
+                ],
+                [
+                  11548.06687516133,
+                  11562.898491884887
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 20,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  20.0000020606911
+                ],
+                [
+                  11543.053990142742,
+                  11562.898491884887
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            },
+            {
+              "geometricRadiusMM": 30,
+              "expectedLocationIDs": [
+                1,
+                2,
+                3,
+                4,
+                5,
+                6,
+                7,
+                8,
+                9,
+                1
+              ],
+              "observedLocationIDs": [
+                1,
+                1
+              ],
+              "eventEntryExitDistanceMM": [
+                [
+                  0,
+                  30.000007522638988
+                ],
+                [
+                  11533.041704355051,
+                  11562.898491884887
+                ]
+              ],
+              "matchesRequiredOrderAndVisitCount": false,
+              "notSensorReadGuarantee": true
+            }
+          ],
+          "boundaryScope": "Dense sampled reference-point trajectories and their straight segments, not complete wheel/body footprint or a continuous spline bound.",
+          "recognitionScope": "Continuous polyline/disk entries; contiguous dwell counts once, exit then re-entry counts again. Radii are sensitivity scenarios, not guaranteed RFID ranges."
+        },
+        "geometryPassIncluding8x": false,
+        "lastTenEntryReductionFraction": 0.0009569748028350561,
+        "extendRecommended": false,
+        "info": {
+          "algorithm": "peak-gradient-v2",
+          "reason": "iteration_limit",
+          "iterations": 300,
+          "requestedIterations": 300,
+          "evaluations": 60302,
+          "elapsedSeconds": 52.4387859,
+          "remainingConstraints": [
+            "部分打卡点超出设定的几何容差。",
+            "凸轮压力角超过设定上限（含回程）。",
+            "实际传动比已从 20 增大至 32.741。"
+          ]
+        },
+        "savedCandidateProject": "outputs/training_controls_20261030/convergence_300/bezier-blend-independent-v1_peak-gradient-v2_project.mat"
+      }
+    ]
+  },
+  "convergenceLog": "local/matlab_44d2bc8e2e904e1d98da382e4960cf69.log",
+  "ui": {
+    "release": "2025b",
+    "checks": [
+      "nine-field panel applies actual node/sample counts and search settings; pending edits cannot be ignored",
+      "invalid settings stay pending; constrained backend disables and rejects unsupported search changes",
+      "switchable degree-15 independent Bezier initializes from the live panel with 50 real controls",
+      "all nine settings/model metadata survive project save/import and UI synchronization",
+      "Bezier controls can be inserted/deleted/moved with real count/density updates and a fixed initial tangent",
+      "rebuild retains explicit trained count/model; busy and simulation modes disable training changes",
+      "actual optimize button path consumes live learning/smoothing/schedule settings",
+      "actual red rings show correct positions, survive empty return, do not accumulate, and clear on no-crossing/unchecked results"
+    ],
+    "settings": {
+      "iterations": 3,
+      "controlPointCount": 18,
+      "interpolationPerSegment": 12,
+      "bezierDegree": 3,
+      "gradientForce": 0.25,
+      "learningRate": 0.8,
+      "smoothingRate": 0.2,
+      "adjustInterval": 4,
+      "adjustExponent": 0.5
+    },
+    "bezierControlCount": 50,
+    "bezierDegree": 15,
+    "bezierSamples": 540,
+    "markerCoordinates": [
+      0,
+      0
+    ],
+    "scope": "Owned hidden UI callbacks, short search integration and analytic render fixture; not native pointer or optimizer-quality validation."
+  },
+  "uiLog": "local/matlab_8c75645d77864b38b9aa7e66a52b0ee4.log",
+  "actualCamCrossings": {
+    "release": "2025b",
+    "source": "outputs/training_controls_20261030/sensitivity_300/cold_degree7_forward005.mat",
+    "historicalSourceReadOnly": true,
+    "routeSamples": 4313,
+    "camSamples": 5761,
+    "metrics": {
+      "maxHitError": 27.005378230053545,
+      "rmsHitError": 21.24989783758018,
+      "routeLength": 13445.82609655852,
+      "driveLength": 13035.066284837041,
+      "maxSteeringDeg": 16.10191505270003,
+      "maxPressureDeg": 31.52281656388378,
+      "maxWorkPressureDeg": 31.52281656388378,
+      "maxReturnPressureDeg": 13.449431156359001,
+      "minUndercutMargin": -11.852809615542741,
+      "intersectionCount": 8,
+      "score": 1446.0606259193953,
+      "terms": [
+        1.3120540127287164,
+        1.0985810446924196,
+        0.0030385923838006767,
+        0,
+        0,
+        142.92113195371908
+      ],
+      "objectiveVersion": "peak-v2",
+      "legacyScore": 7.6353097571773585,
+      "legacyTerms": [
+        0.5017312867862165,
+        1.0985810446924196,
+        0.000605393984728526,
+        0,
+        0,
+        0.05147424830808835
+      ],
+      "geometryChecked": true
+    },
+    "intersectionPairs": [
+      [
+        3809,
+        3817
+      ],
+      [
+        3809,
+        3821
+      ],
+      [
+        3809,
+        3826
+      ],
+      [
+        3813,
+        3822
+      ],
+      [
+        3813,
+        3825
+      ],
+      [
+        3814,
+        3816
+      ],
+      [
+        3817,
+        3826
+      ],
+      [
+        3818,
+        3820
+      ]
+    ],
+    "intersectionPoints": [
+      [
+        -24.70229121494412,
+        -40.75927733558566
+      ],
+      [
+        -24.65035014219367,
+        -40.821344688427494
+      ],
+      [
+        -24.719965926786912,
+        -40.73815681345868
+      ],
+      [
+        -24.843152879577545,
+        -40.70710342327083
+      ],
+      [
+        -24.868906357693668,
+        -40.681022177319406
+      ],
+      [
+        -25.34095460201809,
+        -40.40985053459459
+      ],
+      [
+        -24.749310222398325,
+        -40.72630905540283
+      ],
+      [
+        -24.394061204523293,
+        -41.02452924008661
+      ]
+    ],
+    "renderedMarkerCount": 8,
+    "sampledCentersOutsideMM": 0,
+    "failedCandidate": true,
+    "scope": "Actual dense failed cam display only, no optimizer run or manufacturing/vehicle approval.",
+    "originalNominalDifferenceStepMM": 0.05
+  },
+  "actualCamCrossingsLog": "local/matlab_f2a6ba4d83ed43ed93c7ba8038aee56e.log",
+  "legacyRegression": {
+    "release": "2025b",
+    "passed": 12,
+    "total": 12,
+    "tests": [
+      "testStraight",
+      "testCircle",
+      "testMechanisms",
+      "testClosedCam",
+      "testRoundTrip",
+      "testFixedCamTuning",
+      "testOptimize",
+      "testSaveImport",
+      "testImportTypeSchemes",
+      "testExport",
+      "testReject",
+      "testIntersections"
+    ]
+  },
+  "legacyRegressionLog": "local/matlab_chg016_regression.log",
+  "sensitivity300": {
+    "release": "2025b",
+    "scope": "Explicit degree, initialization and finite-difference diagnostics at 300 requested rounds/120000 evaluations/600 second soft budgets. Default settings and all physical dimensions/thresholds unchanged.",
+    "cases": [
+      {
+        "label": "cold_degree15_forward005",
+        "initial": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 170.85463474961986,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.67966854280026,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 393.2800163683096,
+              "rmsHitError": 153.38624750760485,
+              "routeLength": 11569.21057543467,
+              "driveLength": 11122.172372257324,
+              "maxSteeringDeg": 29.758931473176002,
+              "maxPressureDeg": 78.96611830860844,
+              "maxWorkPressureDeg": 78.96611830860844,
+              "maxReturnPressureDeg": 13.524050345051144,
+              "minUndercutMargin": 0.24816890896112087,
+              "intersectionCount": 0,
+              "score": 2436.164973803067,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 315.82735737859844,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 170.74586679729225,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.67962808087277,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 393.155541888402,
+              "rmsHitError": 153.34806883900387,
+              "routeLength": 11569.19701610366,
+              "driveLength": 11122.158601477138,
+              "maxSteeringDeg": 29.768049982081735,
+              "maxPressureDeg": 79.14720288958218,
+              "maxWorkPressureDeg": 79.14720288958218,
+              "maxReturnPressureDeg": 13.658903525678978,
+              "minUndercutMargin": 0.24191448810689475,
+              "intersectionCount": 0,
+              "score": 2435.1823300584383,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 315.671105207348,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final8x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 0,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": true,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.52062137819707,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 27.700577342991895,
+              "rmsHitError": 22.934151774464823,
+              "routeLength": 13197.569626083954,
+              "driveLength": 12769.738405882636,
+              "maxSteeringDeg": 16.355891696013003,
+              "maxPressureDeg": 30.102198100054608,
+              "maxWorkPressureDeg": 30.102198100054608,
+              "maxReturnPressureDeg": 22.952449305767747,
+              "minUndercutMargin": 0.6523749785874821,
+              "intersectionCount": 1,
+              "score": 18.331819601982573,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 8.09259506205119,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 4313,
+            "camSamples": 5761,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 6.5319249090950455,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.517266459808134,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 27.68276996442528,
+              "rmsHitError": 22.901723065397256,
+              "routeLength": 13196.415621312955,
+              "driveLength": 12768.596595629335,
+              "maxSteeringDeg": 16.35601016239252,
+              "maxPressureDeg": 45.20849238666016,
+              "maxWorkPressureDeg": 37.081685099321064,
+              "maxReturnPressureDeg": 45.20849238666016,
+              "minUndercutMargin": -6.531923909095045,
+              "intersectionCount": 2,
+              "score": 461.644649731733,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 8.337907589460134,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 8,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "info": {
+          "algorithm": "fmincon-interior-point-experimental-v1",
+          "solverAlgorithm": "interior-point",
+          "reason": "iteration_limit",
+          "iterations": 300,
+          "requestedIterations": 300,
+          "evaluations": 31118,
+          "objectiveCalls": 30976,
+          "constraintCalls": 30976,
+          "cacheHits": 31139,
+          "elapsedSeconds": 104.3939971,
+          "solverSeconds": 103.9284676,
+          "solverExitflag": 0,
+          "solverTerminalViolation": 0,
+          "returnedMaxViolation": 0,
+          "maxSeconds": 600,
+          "maxFunctionEvaluations": 120000,
+          "freeVariables": 98,
+          "differenceType": "forward",
+          "nominalDifferenceStepMM": 0.05,
+          "differenceStepSource": "explicit",
+          "parametersUnchanged": true,
+          "selectionPolicy": "Strict zero-violation iterates preferred; otherwise reduce scaled violation; same-class feasible iterates compare constrained objective. Finite-difference probes not selected.",
+          "remainingConstraints": [
+            "离散凸轮轮廓存在自交或非相邻接触。",
+            "实际传动比已从 20 增大至 37.521。",
+            "加密采样或完整几何检查未通过，候选不能标为可行。"
+          ]
+        },
+        "savedCandidateProject": "outputs/training_controls_20261030/sensitivity_300/cold_degree15_forward005_project.mat"
+      },
+      {
+        "label": "cold_degree7_forward005",
+        "initial": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 75.77869491012348,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 33.63026230014419,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 262.87035857835156,
+              "rmsHitError": 102.74472963218678,
+              "routeLength": 11906.15211704888,
+              "driveLength": 11445.696694767636,
+              "maxSteeringDeg": 33.93911893111991,
+              "maxPressureDeg": 83.72350218445358,
+              "maxWorkPressureDeg": 83.72350218445358,
+              "maxReturnPressureDeg": 14.243442344812285,
+              "minUndercutMargin": 0.2342278043326962,
+              "intersectionCount": 0,
+              "score": 1136.3297852234982,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 143.57280122119158,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 75.77869598336557,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 33.630127763247124,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 262.870360415603,
+              "rmsHitError": 102.72941111936323,
+              "routeLength": 11906.102896955856,
+              "driveLength": 11445.650906587207,
+              "maxSteeringDeg": 33.95088563479545,
+              "maxPressureDeg": 83.76177003053964,
+              "maxWorkPressureDeg": 83.76177003053964,
+              "maxReturnPressureDeg": 14.390538237648842,
+              "minUndercutMargin": 0.22515605093400715,
+              "intersectionCount": 0,
+              "score": 1136.3859152863743,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 143.5164361454082,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final8x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": true,
+            "maxScaledViolation": 0,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": true,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 38.304119420784225,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 27.025853643245036,
+              "rmsHitError": 21.29659903551426,
+              "routeLength": 13447.159827001631,
+              "driveLength": 13036.393505874474,
+              "maxSteeringDeg": 16.10159959459363,
+              "maxPressureDeg": 31.50257427760577,
+              "maxWorkPressureDeg": 31.50257427760577,
+              "maxReturnPressureDeg": 13.406103967964373,
+              "minUndercutMargin": 0.6525695201791126,
+              "intersectionCount": 0,
+              "score": 16.89062168178956,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 7.147167502519201,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 4313,
+            "camSamples": 5761,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 11.85281061554274,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 38.30021972006618,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 27.005378230053545,
+              "rmsHitError": 21.24989783758018,
+              "routeLength": 13445.82609655852,
+              "driveLength": 13035.066284837041,
+              "maxSteeringDeg": 16.10191505270003,
+              "maxPressureDeg": 31.52281656388378,
+              "maxWorkPressureDeg": 31.52281656388378,
+              "maxReturnPressureDeg": 13.449431156359001,
+              "minUndercutMargin": -11.852809615542741,
+              "intersectionCount": 8,
+              "score": 1446.0606259193953,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 7.6353097571773585,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 8,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "info": {
+          "algorithm": "fmincon-interior-point-experimental-v1",
+          "solverAlgorithm": "interior-point",
+          "reason": "constrained_step_tolerance",
+          "iterations": 277,
+          "requestedIterations": 300,
+          "evaluations": 27744,
+          "objectiveCalls": 27615,
+          "constraintCalls": 27615,
+          "cacheHits": 27768,
+          "elapsedSeconds": 88.0641129,
+          "solverSeconds": 87.9716858,
+          "solverExitflag": 2,
+          "solverTerminalViolation": 0,
+          "returnedMaxViolation": 0,
+          "maxSeconds": 600,
+          "maxFunctionEvaluations": 120000,
+          "freeVariables": 98,
+          "differenceType": "forward",
+          "nominalDifferenceStepMM": 0.05,
+          "differenceStepSource": "explicit",
+          "parametersUnchanged": true,
+          "selectionPolicy": "Strict zero-violation iterates preferred; otherwise reduce scaled violation; same-class feasible iterates compare constrained objective. Finite-difference probes not selected.",
+          "remainingConstraints": [
+            "实际传动比已从 20 增大至 38.304。",
+            "加密采样或完整几何检查未通过，候选不能标为可行。"
+          ]
+        },
+        "savedCandidateProject": "outputs/training_controls_20261030/sensitivity_300/cold_degree7_forward005_project.mat"
+      },
+      {
+        "label": "warm_degree7_forward005",
+        "initial": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 22.560820537819914,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.158304786492444,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 145.61846889745107,
+              "rmsHitError": 75.46003842997797,
+              "routeLength": 12758.229538162626,
+              "driveLength": 12306.088661740321,
+              "maxSteeringDeg": 24.52928092048184,
+              "maxPressureDeg": 69.33042148829048,
+              "maxWorkPressureDeg": 69.33042148829048,
+              "maxReturnPressureDeg": 66.97266100020823,
+              "minUndercutMargin": 0.6730680681514513,
+              "intersectionCount": 0,
+              "score": 427.9355526091045,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 79.1538144289533,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 22.531364008518175,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 36.158636248488676,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 145.52741187716614,
+              "rmsHitError": 75.42940799848716,
+              "routeLength": 12758.363512803973,
+              "driveLength": 12306.201471252207,
+              "maxSteeringDeg": 24.543912356064183,
+              "maxPressureDeg": 69.34119804203897,
+              "maxWorkPressureDeg": 69.34119804203897,
+              "maxReturnPressureDeg": 67.76221922498303,
+              "minUndercutMargin": 0.6702554336704283,
+              "intersectionCount": 0,
+              "score": 429.19790009409354,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 79.21393351504034,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final8x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 0,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": true,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.4868538020113,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 26.63379714769325,
+              "rmsHitError": 22.222718314931836,
+              "routeLength": 13204.971094825532,
+              "driveLength": 12758.24597588936,
+              "maxSteeringDeg": 16.14344590601838,
+              "maxPressureDeg": 30.11034426922306,
+              "maxWorkPressureDeg": 30.11034426922306,
+              "maxReturnPressureDeg": 10.263751458639467,
+              "minUndercutMargin": 0.5565508107108565,
+              "intersectionCount": 1,
+              "score": 17.127703172221867,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 7.66475397924867,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 4313,
+            "camSamples": 5761,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 3.9389698263626673,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.48297247368416,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 26.554589111906004,
+              "rmsHitError": 22.117966812734032,
+              "routeLength": 13203.653274566803,
+              "driveLength": 12756.92500769682,
+              "maxSteeringDeg": 16.144066493630444,
+              "maxPressureDeg": 30.105052054640524,
+              "maxWorkPressureDeg": 30.105052054640524,
+              "maxReturnPressureDeg": 10.314715727922321,
+              "minUndercutMargin": -3.938968826362667,
+              "intersectionCount": 1,
+              "score": 180.2108473707635,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 7.671319256624643,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 8,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "info": {
+          "algorithm": "fmincon-interior-point-experimental-v1",
+          "solverAlgorithm": "interior-point",
+          "reason": "iteration_limit",
+          "iterations": 300,
+          "requestedIterations": 300,
+          "evaluations": 30922,
+          "objectiveCalls": 30782,
+          "constraintCalls": 30782,
+          "cacheHits": 30947,
+          "elapsedSeconds": 97.7417635,
+          "solverSeconds": 97.6579861,
+          "solverExitflag": 0,
+          "solverTerminalViolation": 0,
+          "returnedMaxViolation": 0,
+          "maxSeconds": 600,
+          "maxFunctionEvaluations": 120000,
+          "freeVariables": 98,
+          "differenceType": "forward",
+          "nominalDifferenceStepMM": 0.05,
+          "differenceStepSource": "explicit",
+          "parametersUnchanged": true,
+          "selectionPolicy": "Strict zero-violation iterates preferred; otherwise reduce scaled violation; same-class feasible iterates compare constrained objective. Finite-difference probes not selected.",
+          "remainingConstraints": [
+            "离散凸轮轮廓存在自交或非相邻接触。",
+            "实际传动比已从 20 增大至 37.487。",
+            "加密采样或完整几何检查未通过，候选不能标为可行。"
+          ]
+        },
+        "savedCandidateProject": "outputs/training_controls_20261030/sensitivity_300/warm_degree7_forward005_project.mat"
+      },
+      {
+        "label": "cold_degree15_central0005",
+        "initial": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 170.85463474961986,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.67966854280026,
+            "autoRatio": true,
+            "workEndDeg": 299.9999997,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 393.2800163683096,
+              "rmsHitError": 153.38624750760485,
+              "routeLength": 11569.21057543467,
+              "driveLength": 11122.172372257324,
+              "maxSteeringDeg": 29.758931473176002,
+              "maxPressureDeg": 78.96611830860844,
+              "maxWorkPressureDeg": 78.96611830860844,
+              "maxReturnPressureDeg": 13.524050345051144,
+              "minUndercutMargin": 0.24816890896112087,
+              "intersectionCount": 0,
+              "score": 2436.164973803067,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 315.82735737859844,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 2157,
+            "camSamples": 2881,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 170.74586679729225,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 32.67962808087277,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 393.155541888402,
+              "rmsHitError": 153.34806883900387,
+              "routeLength": 11569.19701610366,
+              "driveLength": 11122.158601477138,
+              "maxSteeringDeg": 29.768049982081735,
+              "maxPressureDeg": 79.14720288958218,
+              "maxWorkPressureDeg": 79.14720288958218,
+              "maxReturnPressureDeg": 13.658903525678978,
+              "minUndercutMargin": 0.24191448810689475,
+              "intersectionCount": 0,
+              "score": 2435.1823300584383,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 315.671105207348,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 4,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "final8x": {
+          "optimizationGrid": {
+            "routeSamples": 540,
+            "camSamples": 721,
+            "valid": true,
+            "feasible": true,
+            "maxScaledViolation": 0,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": true,
+            "intersectionFree": true,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.07945659815787,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 27.021015228669082,
+              "rmsHitError": 23.841643921469682,
+              "routeLength": 13062.032775797175,
+              "driveLength": 12619.592735900127,
+              "maxSteeringDeg": 16.3787341919949,
+              "maxPressureDeg": 30.88587809943347,
+              "maxWorkPressureDeg": 30.88587809943347,
+              "maxReturnPressureDeg": 25.058283226165095,
+              "minUndercutMargin": 0.5315946403263698,
+              "intersectionCount": 0,
+              "score": 18.391452526052355,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 8.647612360664525,
+              "geometryChecked": true
+            }
+          },
+          "refinedGrid": {
+            "routeSamples": 4313,
+            "camSamples": 5761,
+            "valid": true,
+            "feasible": false,
+            "maxScaledViolation": 26.660036372808747,
+            "nodeBoundsSatisfied": true,
+            "thresholdsSatisfied": false,
+            "intersectionFree": false,
+            "trajectoryBoundsSatisfied": true,
+            "maxTrajectoryOutsideMM": 0,
+            "requestedRatio": 20,
+            "effectiveRatio": 37.07292697502557,
+            "autoRatio": true,
+            "workEndDeg": 299.99999970000005,
+            "errorIdentifier": "",
+            "metrics": {
+              "maxHitError": 26.973907351990288,
+              "rmsHitError": 23.77242412921185,
+              "routeLength": 13059.886629378228,
+              "driveLength": 12617.370449162176,
+              "maxSteeringDeg": 16.37927775076933,
+              "maxPressureDeg": 64.73523459431019,
+              "maxWorkPressureDeg": 36.76702686891813,
+              "maxReturnPressureDeg": 64.73523459431019,
+              "minUndercutMargin": -26.660035372808746,
+              "intersectionCount": 4,
+              "score": 7208.998356195147,
+              "objectiveVersion": "peak-v2",
+              "legacyScore": 11.674211485676095,
+              "geometryChecked": true
+            }
+          },
+          "refinementFactor": 8,
+          "independentRefinement": true,
+          "nodeBoundsSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "verifiedFeasible": false,
+          "physicalEvaluationAttempts": 2,
+          "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+        },
+        "info": {
+          "algorithm": "fmincon-interior-point-experimental-v1",
+          "solverAlgorithm": "interior-point",
+          "reason": "iteration_limit",
+          "iterations": 300,
+          "requestedIterations": 300,
+          "evaluations": 61699,
+          "objectiveCalls": 61422,
+          "constraintCalls": 61422,
+          "cacheHits": 61450,
+          "elapsedSeconds": 150.0016012,
+          "solverSeconds": 149.8489054,
+          "solverExitflag": 0,
+          "solverTerminalViolation": 0,
+          "returnedMaxViolation": 0,
+          "maxSeconds": 600,
+          "maxFunctionEvaluations": 120000,
+          "freeVariables": 98,
+          "differenceType": "central",
+          "nominalDifferenceStepMM": 0.005,
+          "differenceStepSource": "explicit",
+          "parametersUnchanged": true,
+          "selectionPolicy": "Strict zero-violation iterates preferred; otherwise reduce scaled violation; same-class feasible iterates compare constrained objective. Finite-difference probes not selected.",
+          "remainingConstraints": [
+            "实际传动比已从 20 增大至 37.079。",
+            "加密采样或完整几何检查未通过，候选不能标为可行。"
+          ]
+        },
+        "savedCandidateProject": "outputs/training_controls_20261030/sensitivity_300/cold_degree15_central0005_project.mat"
+      }
+    ]
+  },
+  "sensitivityLog": "local/matlab_e91f347e3dd84922a1016a91ca5d0713.log",
+  "retainedPriorModelCandidate": {
+    "change": "CHG-2026-10-29-015",
+    "project": "outputs/trajectory_bounds_20261029/convergence_300/solar_candidate_project.mat",
+    "routeModel": "cubic",
+    "controlPoints": 34,
+    "pressure8xDeg": 34.775641402,
+    "hit8xMM": 29.190666565,
+    "sampledCentersOutside8xMM": 0,
+    "modelGatePassed": true,
+    "notTeamMeasuredDimensions": true,
+    "notRFIDOrFullEnvelopeApproval": true
+  },
+  "failedDevelopmentChecks": [
+    {
+      "log": "local/matlab_23befc4c73b84e4a8362dcb96e5d6175.log",
+      "problem": "scalar endpoint query encountered unsupported empty-window dimensions",
+      "resolution": "skip empty windows; 7 basis cases pass, EXP-023"
+    },
+    {
+      "log": "local/matlab_dd1b224a3b7741b588f496672b2f3aac.log",
+      "problem": "diagnostic script tried changing Bezier degree in cubic mode; correctly rejected",
+      "resolution": "supply degree only for Bezier cases; 4-case run completed"
+    },
+    {
+      "log": "local/matlab_3966d060c80748d1b97acc6e9cba6f3d.log",
+      "problem": "empty return curve did not create a scalar plot handle in UI fixture",
+      "resolution": "use NaN legend proxy and add empty-return lifecycle assertion; final UI 8 pass"
+    }
+  ],
+  "warnings": "Near-singular KKT warnings occurred in constrained long diagnostics and were retained in logs. These finite budgets and local stops do not establish global infeasibility or adequate physical accuracy.",
+  "figures": {
+    "training_cubic.png": {
+      "path": "outputs/training_controls_20261030/training_cubic.png",
+      "sha256": "7bb0af5804a2ab17db5c1103cb394f0d8e4fa25cb958cc3ec19874760954f779"
+    },
+    "training_bezier_constrained.png": {
+      "path": "outputs/training_controls_20261030/training_bezier_constrained.png",
+      "sha256": "440c453a225bb57412da0aa557f8611ae46e7ee5eadf9b7ae4ba89366e23ddd7"
+    },
+    "actual_cam_intersection_marker.png": {
+      "path": "outputs/training_controls_20261030/actual_cam_intersection_marker.png",
+      "sha256": "e3ea0809aa3ca5f086a26e1a13911687891aacaface2bef4d2cd23aaec375f81"
+    },
+    "actual_cam_crossings.png": {
+      "path": "outputs/training_controls_20261030/actual_cam_crossings.png",
+      "sha256": "cde9b852afc2012e6a3af2fe828918a4ca060b5f3a1a8190ed629b39bb8b2a46"
+    },
+    "bezier_control_points.png": {
+      "path": "outputs/training_controls_20261030/bezier_control_points.png",
+      "sha256": "1e68b62ced8f495b92b4ee5849dcf434e881bad6c67a2d9e2b0e179bb4a146ee"
+    }
+  },
+  "finiteDifferenceScope": "Default constrained nominal step clamps gradientProbeMM to [0.001,1] mm, then fmincon applies TypicalX scaling. Explicit DifferenceStepMM diagnostics bypass the default clamp. Values 0.75->0.75,6->1,0.0005->0.001 verified with iteration-0 stop callbacks."
+}

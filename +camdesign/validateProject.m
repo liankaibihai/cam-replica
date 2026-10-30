@@ -5,6 +5,30 @@ validateattributes(project.targets,{'double'},{'2d','ncols',2,'real','finite'});
 validateattributes(project.nodes,{'double'},{'2d','ncols',2,'real','finite'});
 assert(size(project.targets,1)>=2 && size(project.nodes,1)>=2,'cam:Points','至少需要两个点。');
 assert(all(vecnorm(diff(project.nodes),2,2)>1e-5),'cam:Duplicate','相邻路线节点不能重合。');
+mode=camdesign.routeModel(p);
+assert(ismember(mode,{'cubic','bezier-blend-independent-v1'}),'cam:RouteModel','未知路线模型。');
+if strcmp(mode,'bezier-blend-independent-v1')
+    assert(isfield(p,'bezier') && isstruct(p.bezier) && isscalar(p.bezier) ...
+        && all(isfield(p.bezier,{'type','degree','parameterLength'})) ...
+        && strcmp(p.bezier.type,'overlap-bernstein-v1'),'cam:BezierModel','独立贝塞尔记录不完整。');
+    validateattributes(p.bezier.degree,{'double'},{'scalar','integer','>=',3,'<=',49,'<',size(project.nodes,1)});
+    validateattributes(p.bezier.parameterLength,{'double'},{'scalar','real','finite','positive'});
+    assert(~isfield(p,'routeSpline'),'cam:RouteModel','贝塞尔模式不能沿用三次样条站位。');
+end
+if isfield(p,'training')
+    t=p.training;
+    assert(isstruct(t) && isscalar(t) && all(isfield(t,{'version','interpolationPerSegment','densityManaged', ...
+        'bezierDegree','learningRate','smoothingRate','adjustInterval','adjustExponent'})) ...
+        && strcmp(t.version,'independent-training-v1'),'cam:Training','训练设置记录不完整。');
+    validateattributes(t.interpolationPerSegment,{'double'},{'scalar','integer','positive','<=',20000});
+    validateattributes(t.bezierDegree,{'double'},{'scalar','integer','>=',3,'<=',49});
+    validateattributes(t.learningRate,{'double'},{'scalar','real','finite','positive','<=',100});
+    validateattributes(t.smoothingRate,{'double'},{'scalar','real','finite','>=',0,'<=',1});
+    validateattributes(t.adjustInterval,{'double'},{'scalar','integer','positive','<=',10000});
+    validateattributes(t.adjustExponent,{'double'},{'scalar','real','finite','>=',0,'<=',10});
+    assert(isscalar(t.densityManaged) && ismember(t.densityManaged,[0 1]),'cam:Training','采样密度管理标志错误。');
+    if strcmp(mode,'bezier-blend-independent-v1'), assert(t.bezierDegree==p.bezier.degree,'cam:BezierDegree','训练阶数与路线阶数不一致。'); end
+end
 if isfield(p,'routeSpline')
     geometry=p.routeSpline;
     assert(isstruct(geometry) && isscalar(geometry) ...
