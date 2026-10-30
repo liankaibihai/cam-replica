@@ -1,0 +1,537 @@
+{
+  "schema": "fixed-ratio-validation-1",
+  "date": "2026-10-30",
+  "baseline": "e6451e3342a92ed91324a5fe6efd2a496b95bdf1",
+  "release": "2025b",
+  "requestedRatio": 35,
+  "ratioPolicy": "fixed-user-input-v1",
+  "checks": {
+    "trainingCore": 11,
+    "fixedRatio": 7,
+    "constrainedContracts": 7,
+    "boundaryContracts": 8,
+    "coreRegression": 12
+  },
+  "experiment": {
+    "reason": "constrained_infeasible",
+    "actualIterations": 173,
+    "after": {
+      "maxHitError": 37.71080671335556,
+      "rmsHitError": 30.17066209188705,
+      "routeLength": 12583.810693003936,
+      "driveLength": 12121.883857919776,
+      "maxSteeringDeg": 19.243304306159914,
+      "maxPressureDeg": 37.50414789066059,
+      "maxWorkPressureDeg": 37.50414789066059,
+      "maxReturnPressureDeg": 4.157404769235638,
+      "minUndercutMargin": 0.5053647644593358,
+      "intersectionCount": 0,
+      "actualReturnDeg": 54.71086382129091,
+      "returnAngleSatisfied": false,
+      "score": 32.32644171095804,
+      "terms": [
+        2.5915264378165475,
+        1.0281507285647749,
+        0.00514768473903784,
+        0.0632261197055414,
+        0,
+        0
+      ],
+      "objectiveVersion": "peak-v2",
+      "legacyScore": 13.16847118382536,
+      "legacyTerms": [
+        1.0114098345142557,
+        1.0281507285647749,
+        0.0009233908609451462,
+        0.0005185531225423194,
+        0,
+        0
+      ],
+      "geometryChecked": true
+    },
+    "before": {
+      "maxHitError": 14.016797945424248,
+      "rmsHitError": 7.36643346263641,
+      "routeLength": 12724.045762315038,
+      "driveLength": 12254.936320791197,
+      "maxSteeringDeg": 38.98361948885247,
+      "maxPressureDeg": 86.17120557390432,
+      "maxWorkPressureDeg": 86.17120557390432,
+      "maxReturnPressureDeg": 32.28437092412687,
+      "minUndercutMargin": 0.5673744701758384,
+      "intersectionCount": 0,
+      "actualReturnDeg": 51.35994312838822,
+      "returnAngleSatisfied": false,
+      "score": 84.66187924295485,
+      "terms": [
+        0.27859440733588764,
+        1.0396085287653691,
+        0.1484060318119889,
+        26.660775254178283,
+        0,
+        0
+      ],
+      "objectiveVersion": "peak-v2",
+      "legacyScore": 3.1975085690447207,
+      "legacyTerms": [
+        0.06029371328827717,
+        1.0396085287653691,
+        0.0034090574442259785,
+        0.47585245531052456,
+        0,
+        0
+      ],
+      "geometryChecked": true
+    },
+    "elapsedSeconds": 70.030486,
+    "evaluations": 12462,
+    "parametersUnchanged": true,
+    "requestedIterations": 300,
+    "verification8": {
+      "optimizationGrid": {
+        "routeSamples": 601,
+        "camSamples": 721,
+        "valid": true,
+        "feasible": false,
+        "maxScaledViolation": 0.580116603302292,
+        "metrics": {
+          "maxHitError": 37.71080671335556,
+          "rmsHitError": 30.17066209188705,
+          "routeLength": 12583.810693003936,
+          "driveLength": 12121.883857919776,
+          "maxSteeringDeg": 19.243304306159914,
+          "maxPressureDeg": 37.50414789066059,
+          "maxWorkPressureDeg": 37.50414789066059,
+          "maxReturnPressureDeg": 4.157404769235638,
+          "minUndercutMargin": 0.5053647644593358,
+          "intersectionCount": 0,
+          "actualReturnDeg": 54.71086382129091,
+          "returnAngleSatisfied": false,
+          "score": 32.32644171095804,
+          "terms": [
+            2.5915264378165475,
+            1.0281507285647749,
+            0.00514768473903784,
+            0.0632261197055414,
+            0,
+            0
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 13.16847118382536,
+          "legacyTerms": [
+            1.0114098345142557,
+            1.0281507285647749,
+            0.0009233908609451462,
+            0.0005185531225423194,
+            0,
+            0
+          ],
+          "geometryChecked": true
+        },
+        "nodeBoundsSatisfied": true,
+        "thresholdsSatisfied": false,
+        "intersectionFree": true,
+        "trajectoryBoundsSatisfied": true,
+        "maxTrajectoryOutsideMM": 0,
+        "trajectoryBounds": {
+          "sampleCount": 601,
+          "componentNames": [
+            "front",
+            "rear",
+            "drive",
+            "driven",
+            "sensor"
+          ],
+          "residualBlockOrder": [
+            "xmin",
+            "xmax",
+            "ymin",
+            "ymax"
+          ],
+          "boundsMM": [
+            0,
+            6000,
+            0,
+            2000
+          ],
+          "satisfied": true,
+          "maximumOutsideMM": 0,
+          "maxScaledViolation": 0,
+          "worstPoint": "",
+          "worstSide": "",
+          "worstSampleIndex": null,
+          "components": {
+            "front": {
+              "minimumXY": [
+                410,
+                179.91957105565245
+              ],
+              "maximumXY": [
+                5529.031390109477,
+                1654.2828784708643
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            },
+            "rear": {
+              "minimumXY": [
+                410,
+                182.6477561544653
+              ],
+              "maximumXY": [
+                5520.159201824549,
+                1645.3343723947874
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            },
+            "drive": {
+              "minimumXY": [
+                489.5,
+                262.14754625355545
+              ],
+              "maximumXY": [
+                5440.659589424389,
+                1565.8379857150856
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            },
+            "driven": {
+              "minimumXY": [
+                330.15,
+                102.79796697946723
+              ],
+              "maximumXY": [
+                5600.008812518295,
+                1725.1807431667899
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            },
+            "sensor": {
+              "minimumXY": [
+                410,
+                180.7920806425457
+              ],
+              "maximumXY": [
+                5526.440779040262,
+                1651.7884276963932
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            }
+          },
+          "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+        },
+        "requestedRatio": 35,
+        "effectiveRatio": 35,
+        "autoRatio": false,
+        "ratioPolicy": "fixed-user-input-v1",
+        "workEndDeg": 305.2891361787091,
+        "warnings": [
+          "部分打卡点超出设定的几何容差。",
+          "凸轮压力角超过设定上限（含回程）。",
+          "固定传动比 35：实际回程 54.711°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。"
+        ],
+        "errorIdentifier": "",
+        "errorMessage": ""
+      },
+      "refinedGrid": {
+        "routeSamples": 4801,
+        "camSamples": 5761,
+        "valid": true,
+        "feasible": false,
+        "maxScaledViolation": 0.5801166043746413,
+        "metrics": {
+          "maxHitError": 37.710806726151816,
+          "rmsHitError": 30.132181720542714,
+          "routeLength": 12584.309724998446,
+          "driveLength": 12122.380081662524,
+          "maxSteeringDeg": 19.24330040820102,
+          "maxPressureDeg": 37.729812082331854,
+          "maxWorkPressureDeg": 37.729812082331854,
+          "maxReturnPressureDeg": 8.226929299854465,
+          "minUndercutMargin": 0.34161615995637684,
+          "intersectionCount": 0,
+          "actualReturnDeg": 54.6983664471574,
+          "returnAngleSatisfied": false,
+          "score": 32.33140074376943,
+          "terms": [
+            2.588948132418873,
+            1.0281915015961918,
+            0.0054177203917907205,
+            0.07499873745439233,
+            0,
+            0
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 13.137458509334486,
+          "legacyTerms": [
+            1.0088315280442317,
+            1.0281915015961918,
+            0.0009243394948431522,
+            0.0004799974059426133,
+            0,
+            0
+          ],
+          "geometryChecked": true
+        },
+        "nodeBoundsSatisfied": true,
+        "thresholdsSatisfied": false,
+        "intersectionFree": true,
+        "trajectoryBoundsSatisfied": true,
+        "maxTrajectoryOutsideMM": 0,
+        "trajectoryBounds": {
+          "sampleCount": 4801,
+          "componentNames": [
+            "front",
+            "rear",
+            "drive",
+            "driven",
+            "sensor"
+          ],
+          "residualBlockOrder": [
+            "xmin",
+            "xmax",
+            "ymin",
+            "ymax"
+          ],
+          "boundsMM": [
+            0,
+            6000,
+            0,
+            2000
+          ],
+          "satisfied": true,
+          "maximumOutsideMM": 0,
+          "maxScaledViolation": 0,
+          "worstPoint": "",
+          "worstSide": "",
+          "worstSampleIndex": null,
+          "components": {
+            "front": {
+              "minimumXY": [
+                410,
+                179.90158611296283
+              ],
+              "maximumXY": [
+                5529.034369385163,
+                1654.3691021729444
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            },
+            "rear": {
+              "minimumXY": [
+                410,
+                182.639907110493
+              ],
+              "maximumXY": [
+                5520.1625083183435,
+                1645.3640366426378
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            },
+            "drive": {
+              "minimumXY": [
+                489.5,
+                262.1399070999347
+              ],
+              "maximumXY": [
+                5440.662515440117,
+                1565.8641347258203
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            },
+            "driven": {
+              "minimumXY": [
+                330.15,
+                102.78990712109777
+              ],
+              "maximumXY": [
+                5600.012501165216,
+                1725.2139381276425
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            },
+            "sensor": {
+              "minimumXY": [
+                410,
+                180.78257760725077
+              ],
+              "maximumXY": [
+                5526.477826010517,
+                1651.8041114606397
+              ],
+              "maximumOutsideMM": 0,
+              "outsideSampleCount": 0
+            }
+          },
+          "scope": "Five modeled centers at sampled route stations; no wheel widths, complete body envelope or continuous collision certification."
+        },
+        "requestedRatio": 35,
+        "effectiveRatio": 35,
+        "autoRatio": false,
+        "ratioPolicy": "fixed-user-input-v1",
+        "workEndDeg": 305.3016335528426,
+        "warnings": [
+          "部分打卡点超出设定的几何容差。",
+          "凸轮压力角超过设定上限（含回程）。",
+          "固定传动比 35：实际回程 54.698°，小于设定的 60.000°。需缩短路线或由用户调整参数，程序不增比。"
+        ],
+        "errorIdentifier": "",
+        "errorMessage": ""
+      },
+      "refinementFactor": 8,
+      "independentRefinement": true,
+      "nodeBoundsSatisfied": true,
+      "trajectoryBoundsSatisfied": true,
+      "maxTrajectoryOutsideMM": 0,
+      "verifiedFeasible": false,
+      "physicalEvaluationAttempts": 2,
+      "scope": "Discrete model and five sampled centers on both grids; no wheel/body envelope, continuous-curve, original-software or vehicle equivalence."
+    },
+    "nodes": 34
+  },
+  "source": "outputs/fixed_ratio_results_20261030/convergence_300/verification.json",
+  "sourceSHA256": "E533697E21C99D410E70B561D6FC3697EDF12A93D18EDE7368DEB52A4C7D3390",
+  "scope": "Current independent model, solar preliminary flat-car fixture. Other dimensions unmeasured. Failed engineering gates; no original-software or physical equivalence.",
+  "uiValidation": {
+    "resultsChecks": [
+      "plain model/method names; permanent training shortcut and apply controls visible at three sizes",
+      "legacy true is explained and ignored; manual 35-to-32 input survives calculation unchanged",
+      "six weighted terms sum to common score; edits retain historical weights and mark score/cam stale; return shortfall remains visible",
+      "real short search history drives read-only probe, decay, planned/accepted step and smoothing; old missing fields stay missing",
+      "preserved real constrained score and objective plot on independent axes; historical/missing parameter provenance is explicit",
+      "main log keeps 200 recent lines; reusable large window retains the full log",
+      "real coarse-zero/fine-eight crossings use matching dense contour, coordinates, segment pairs and score; selection zoom and full return work",
+      "missing data stays missing; closing owned app also closes its owned results window"
+    ],
+    "trainingRegressionCount": 8,
+    "layoutCaseCount": 6,
+    "layoutCases": [
+      {
+        "label": "solar_flat_1320x860",
+        "camPlotPixels": [
+          361.51489590322603,
+          361.51489590322603
+        ],
+        "coveredCamSamples": 0,
+        "coveredRouteSamples": 0,
+        "hiddenRouteSamples": 0
+      },
+      {
+        "label": "solar_flat_1920x1080",
+        "camPlotPixels": [
+          617.1531952477435,
+          617.1531952477435
+        ],
+        "coveredCamSamples": 0,
+        "coveredRouteSamples": 0,
+        "hiddenRouteSamples": 0
+      },
+      {
+        "label": "default_horizontal_1320x860",
+        "camPlotPixels": [
+          361.5148911297441,
+          361.5148911297441
+        ],
+        "coveredCamSamples": 0,
+        "coveredRouteSamples": 0,
+        "hiddenRouteSamples": 0
+      },
+      {
+        "label": "default_horizontal_1920x1080",
+        "camPlotPixels": [
+          617.1531874004288,
+          617.1531874004288
+        ],
+        "coveredCamSamples": 0,
+        "coveredRouteSamples": 0,
+        "hiddenRouteSamples": 0
+      },
+      {
+        "label": "synthetic_vertical_1320x860",
+        "camPlotPixels": [
+          361.51489467617705,
+          361.51489467617705
+        ],
+        "coveredCamSamples": 0,
+        "coveredRouteSamples": 0,
+        "hiddenRouteSamples": 0
+      },
+      {
+        "label": "synthetic_vertical_1920x1080",
+        "camPlotPixels": [
+          617.1531932305494,
+          617.1531932305494
+        ],
+        "coveredCamSamples": 0,
+        "coveredRouteSamples": 0,
+        "hiddenRouteSamples": 0
+      }
+    ],
+    "historicalCrossingFixture": {
+      "fixedRatio": 38.30021972006618,
+      "grid": [
+        4313,
+        5761
+      ],
+      "crossingCount": 8,
+      "team35Case": false
+    },
+    "appCheckPassed": true,
+    "nativeNavigation": {
+      "trainingShortcutFromVehicleTab": true,
+      "completeLogWindow": true,
+      "previousUserWindowPreserved": true,
+      "finalVisibleWindow": "新版凸轮设计 · 训练与评分 · 固定35测试",
+      "loadedExperimentIterations": 173
+    },
+    "logs": {
+      "resultsAndLayout": "local/matlab_ef9319ac991e49eea608c8afb7aa75ec.log",
+      "trainingCrossingsAndApp": "local/matlab_79555f985d014c0295c45069576a0540.log",
+      "visibleLaunch": "local/reviewed_ui_7a65159f45c14136bb935be8555d546b.log"
+    },
+    "initialAppCheckFailure": "Old legend-location assertion in resultsAndLayout batch; updated and passed in trainingCrossingsAndApp batch.",
+    "artifacts": [
+      {
+        "path": "outputs/results_panel_20261030/ui_verification.json",
+        "sha256": "dbcbb47d8baab3dbabdbef64aecdaa0f5ca87a773c5adb51e6a4c1d7beac395a"
+      },
+      {
+        "path": "outputs/results_panel_20261030/layout/verification.json",
+        "sha256": "36e6658ed562f02bc2271cb47db3e32711415523381ea1f31b980546a5d03e5d"
+      },
+      {
+        "path": "outputs/results_panel_20261030/training_1120x760.png",
+        "sha256": "371bb4e37824fec6ad9f474e1bf39550dd7147b2fdc0e070fbc9148a283ee477"
+      },
+      {
+        "path": "outputs/results_panel_20261030/training_1320x860.png",
+        "sha256": "de6d03a5a525d2583d2b7830424489992017f715d8ad13a3cbded81f228b398e"
+      },
+      {
+        "path": "outputs/results_panel_20261030/training_1920x1080.png",
+        "sha256": "11615093e982f12ee4dd6e0422ec89a95f1fa84d3e519f07174af0d5061987bb"
+      },
+      {
+        "path": "outputs/results_panel_20261030/actual_search_runtime.png",
+        "sha256": "7fc3f0daad8f4dd17fb1fb75e79aad768a07f370eb0467eb9cbfb7ea7d2ee453"
+      },
+      {
+        "path": "outputs/results_panel_20261030/large_complete_log.png",
+        "sha256": "f26d89c34f4ca6f28fb67948580c117abf8d58b59cad9d835a166f4c2ac68a94"
+      },
+      {
+        "path": "outputs/results_panel_20261030/genuine_crossing_zoom.png",
+        "sha256": "ae4a4378d74ec3cfa4d0aeb2496505fcbbed703be3e7eb49e80b60c2445927b7"
+      }
+    ],
+    "scope": "UI callbacks, layout and actual native navigation only; no new original-software comparison or physical verification. One-round runtime check does not establish convergence."
+  }
+}

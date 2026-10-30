@@ -2,12 +2,13 @@ function report=check_training_controls_ui()
 % Owned hidden app only. Short callback checks, not convergence/vehicle proof.
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:TrainingBatchOnly','请使用独立 batch。');
-folder=fullfile(root,'outputs','training_controls_20261030'); if ~isfolder(folder), mkdir(folder); end
+folder=fullfile(root,'outputs','results_panel_20261030','training_regression'); if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
 assert(numel(app.TrainingFields)==9 && ~isfield(app.Project.params,'training'));
 assert(strcmp(app.TrainingFields(4).Enable,'off') && strcmp(app.TrainingFields(5).Enable,'on'));
 solar=camdesign.solarTestProject(); app.Project=solar; app.syncInputs(); app.calculate();
-tabs=app.TrainingModel.Parent.Parent.Parent; tabs.SelectedTab=app.TrainingModel.Parent.Parent;
+callback=app.TrainingShortcut.ButtonPushedFcn; callback(app.TrainingShortcut,[]); tabs=app.ControlsTabs;
+assert(tabs.SelectedTab==app.TrainingTab);
 setField(app,'iterations',3); setField(app,'controlPointCount',18); setField(app,'interpolationPerSegment',12);
 setField(app,'gradientForce',.25); setField(app,'learningRate',.8); setField(app,'smoothingRate',.2);
 setField(app,'adjustInterval',4); setField(app,'adjustExponent',.5);

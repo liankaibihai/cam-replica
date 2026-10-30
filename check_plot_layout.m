@@ -1,7 +1,7 @@
 function report=check_plot_layout()
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:PlotLayoutBatchOnly','请使用独立 batch 运行布局检查。');
-folder=fullfile(root,'outputs','chart_layout_20261029'); if ~isfolder(folder), mkdir(folder); end
+folder=fullfile(root,'outputs','results_panel_20261030','layout'); if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeFigure(app));
 baseline=app.Project; cases=cell(6,1); sizes=[1320 860;1920 1080];
 solar=camdesign.solarTestProject();
@@ -21,6 +21,8 @@ for course=1:3
     app.Project=project; app.syncInputs(); app.calculate(); originalResult=app.Result;
     for window=1:2
         app.Figure.Position=[10 10 sizes(window,:)];
+        % Invisible figures do not reliably dispatch SizeChangedFcn themselves.
+        callback=app.Figure.SizeChangedFcn; callback(app.Figure,[]);
         stem=sprintf('%s_%dx%d',label,sizes(window,1),sizes(window,2));
         measured=captureLayout(app,fullfile(folder,[stem,'.png']),stem);
         fprintf('LAYOUT_MEASURE %s steeringShare=%.4f targets=%d nodes=%d routeSamples=%d camSamples=%d\n', ...
@@ -37,8 +39,9 @@ for course=1:3
     end
 end
 assert(all(cases{2}.camPlotPixels>1.25*cases{1}.camPlotPixels),'Wide window did not enlarge cam plot.');
-assert(cases{5}.routePlotPixels(2)>2*cases{3}.routePlotPixels(2),'Portrait field did not use the tall route area.');
-app.Figure.Position=[10 10 sizes(1,:)]; app.Project=baseline; app.syncInputs(); app.calculate(); drawnow;
+assert(cases{5}.routePlotPixels(2)>cases{5}.routePlotPixels(1),'Portrait viewport must remain taller than wide, including legend space.');
+app.Figure.Position=[10 10 sizes(1,:)]; callback=app.Figure.SizeChangedFcn; callback(app.Figure,[]);
+app.Project=baseline; app.syncInputs(); app.calculate(); drawnow;
 arrow=findobj(app.RouteAxes,'Tag','optimization-direction');
 assert(all(isnan(arrow.XData)) && any(strcmp(app.RouteAxes.Legend.String,'AI')));
 assert(~contains(app.RouteAxes.Title.String,'AI') && contains(app.DirectionStatus.Text,'无有效数据'));
@@ -105,11 +108,11 @@ assert(any(strcmp(app.CamAxes.Legend.String,'零位圆 d/2')));
 end
 function item=measureLayout(app,label)
 assert(isequal(app.RouteAxes.DataAspectRatio,[1 1 1]) && isequal(app.CamAxes.DataAspectRatio,[1 1 1]));
-assert(any(strcmp(app.RouteAxes.Legend.Location,{'northwest','northeast'})) && strcmp(app.CamAxes.Legend.Location,'northeast'));
+assert(any(strcmp(app.RouteAxes.Legend.Location,{'northwest','northeast'})) && strcmp(app.CamAxes.Legend.Location,'north'));
 assert(numel(app.RouteAxes.Legend.String)==7+app.SimulationMode && numel(app.CamAxes.Legend.String)==4);
-assert(isequal(app.RouteAxes.Parent.Layout.Row,[1 2]) && app.RouteAxes.Parent.Layout.Column==1);
-assert(app.SteeringAxes.Layout.Row==1 && app.SteeringAxes.Layout.Column==2);
-assert(app.CamAxes.Layout.Row==2 && app.CamAxes.Layout.Column==2);
+assert(app.RouteAxes.Parent.Layout.Row==2 && app.RouteAxes.Parent.Layout.Column==1);
+assert(app.SteeringAxes.Layout.Row==1 && app.SteeringAxes.Layout.Column==1);
+assert(isequal(app.CamAxes.Layout.Row,[1 2]) && app.CamAxes.Layout.Column==2);
 charts=app.CamAxes.Parent; routePanel=getpixelposition(app.RouteAxes.Parent,true);
 chartPosition=getpixelposition(charts,true);
 % Managed grids can return a cached size through getpixelposition after resize.
@@ -159,7 +162,10 @@ end
 function measured=captureLayout(app,path,label)
 % exportapp flushes the invisible figure's asynchronous managed layout.
 settleLayout(); exportapp(app.Figure,path); settleLayout();
+beforeRead=[app.RouteAxes.Position app.RouteAxes.InnerPosition app.CamAxes.Position app.CamAxes.InnerPosition];
 measured=measureLayout(app,label);
+afterRead=[app.RouteAxes.Position app.RouteAxes.InnerPosition app.CamAxes.Position app.CamAxes.InnerPosition];
+assert(max(abs(beforeRead-afterRead))<1e-8,'Measurement mutated managed axes positions.');
 exportapp(app.Figure,path); settleLayout(); afterExport=measureLayout(app,label);
 assert(max(abs(measured.routeLegendBox-afterExport.routeLegendBox))<1 ...
     && max(abs(measured.camLegendBox-afterExport.camLegendBox))<1 ...
@@ -171,15 +177,19 @@ assert(measured.coveredTargets==0 && measured.coveredNodes==0 ...
     && measured.coveredCamSamples==0,'Legend hides plotted data.');
 end
 function height=outerHeightPixels(a)
-originalUnits=a.Units; restoreUnits=onCleanup(@()set(a,'Units',originalUnits));
-a.Units='pixels'; height=a.OuterPosition(4);
+scale=axesPixelScale(a); height=a.OuterPosition(4)*scale(2);
 end
 function box=equalPlotBox(a)
-originalUnits=a.Units; restoreUnits=onCleanup(@()set(a,'Units',originalUnits));
-a.Units='pixels'; position=getpixelposition(a,true); inner=a.InnerPosition;
-origin=position(1:2)-a.Position(1:2); ratio=diff(a.XLim)/diff(a.YLim);
+scale=axesPixelScale(a); position=getpixelposition(a.Parent,true);
+inner=a.InnerPosition.*[scale scale]; origin=position(1:2); ratio=diff(a.XLim)/diff(a.YLim);
 dimensions=[min(inner(3),inner(4)*ratio),min(inner(4),inner(3)/ratio)];
 box=[origin+inner(1:2)+(inner(3:4)-dimensions)/2,dimensions];
+end
+function scale=axesPixelScale(a)
+% Never assign Units on managed axes: conversion writes can change layout.
+scale=[1 1];
+if strcmp(a.Units,'normalized'), scale=a.Parent.Position(3:4);
+else, assert(strcmp(a.Units,'pixels'),'Unexpected managed axes units.'); end
 end
 function settleLayout()
 drawnow; pause(.15); drawnow;

@@ -8,7 +8,11 @@ end
 names=who('-file',filename); notes={};
 if ismember('project',names)
     data=load(filename,'project'); project=data.project;
-    camdesign.validateProject(project); return;
+    camdesign.validateProject(project);
+    if project.params.autoRatio
+        notes{end+1}=sprintf('旧项目自动增比设置已停用；固定使用文件中的传动比 %.6g，仅用户可修改。',project.params.gearRatio);
+    end
+    project.params.autoRatio=false; return;
 end
 allowed={'pathway_points','control_points','optimal_gradient','car_type','dh','i_total','c','r','d','f', ...
     'driving_x','driving_y','driven_x','driven_y','sensor_x','sensor_y','vc_x','vc_y', ...

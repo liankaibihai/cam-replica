@@ -2,15 +2,21 @@ function report=check_training_actual_crossings()
 % Render a preserved, genuinely failing dense cam candidate; no optimization.
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:TrainingBatchOnly','请使用独立 batch。');
-folder=fullfile(root,'outputs','training_controls_20261030');
-source=fullfile(folder,'sensitivity_300','cold_degree7_forward005.mat');
+sourceFolder=fullfile(root,'outputs','training_controls_20261030');
+folder=fullfile(root,'outputs','results_panel_20261030'); if ~isfolder(folder), mkdir(folder); end
+source=fullfile(sourceFolder,'sensitivity_300','cold_degree7_forward005.mat');
 assert(isfile(source),'The preserved sensitivity candidate is required.');
 stored=load(source,'q','info'); project=stored.q;
+% Reproduce this historical contour with an explicit test-only fixed input.
+archiveSource=fullfile(fileparts(source),'verification.json'); archive=jsondecode(fileread(archiveSource));
+archived=archive.cases(strcmp({archive.cases.label},'cold_degree7_forward005'));
+project.params.gearRatio=archived.final8x.refinedGrid.effectiveRatio; project.params.autoRatio=false;
 project.params.samples=4313; project.params.camSamples=5761;
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app));
 app.Project=project; app.syncInputs(); app.calculate();
 app.AlgorithmSelector.Value='fmincon-interior-point-experimental-v1'; app.refreshTrainingControls();
-tabs=app.TrainingModel.Parent.Parent.Parent; tabs.SelectedTab=app.TrainingModel.Parent.Parent;
+callback=app.TrainingShortcut.ButtonPushedFcn; callback(app.TrainingShortcut,[]);
+assert(app.ControlsTabs.SelectedTab==app.TrainingTab);
 marker=findobj(app.CamAxes,'Tag','cam-self-intersections');
 assert(app.Result.metrics.intersectionCount==8 && isscalar(marker) && numel(marker.XData)==8);
 assert(isequal([marker.XData(:),marker.YData(:)],app.Result.intersectionPoints));
@@ -22,6 +28,7 @@ app.message('真实失败示例：独立贝塞尔7阶，实际凸轮8个自交�
 drawnow; exportapp(app.Figure,fullfile(folder,'actual_cam_crossings.png')); pause(.15); drawnow;
 exportapp(app.Figure,fullfile(folder,'actual_cam_crossings.png'));
 report=struct('release',version('-release'),'source',source,'historicalSourceReadOnly',true, ...
+    'ratioSource',archiveSource,'fixedFixtureRatio',project.params.gearRatio, ...
     'routeSamples',4313,'camSamples',5761,'metrics',app.Result.metrics, ...
     'intersectionPairs',app.Result.intersectionPairs,'intersectionPoints',app.Result.intersectionPoints, ...
     'renderedMarkerCount',numel(marker.XData),'sampledCentersOutsideMM',bounds.maximumOutsideMM, ...

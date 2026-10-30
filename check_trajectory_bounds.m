@@ -2,13 +2,13 @@ function report=check_trajectory_bounds()
 % Analytic center-point geometry and constraint/gate contracts; no long solve.
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:BoundsBatchOnly','请使用独立 batch。');
-folder=fullfile(root,'outputs','trajectory_bounds_20261029');
+folder=fullfile(root,'outputs','fixed_ratio_results_20261030','boundary_regression');
 if ~isfolder(folder), mkdir(folder); end
 checks={}; project=verticalCase();
 boundary=camdesign.fminconModel(project,project.nodes);
 assert(boundary.valid && boundary.maxViolation==0 && boundary.trajectoryBoundsSatisfied);
 assert(boundary.maxTrajectoryOutsideMM==0);
-expected=size(project.targets,1)+5*project.params.samples+2*project.params.camSamples;
+expected=size(project.targets,1)+5*project.params.samples+2*project.params.camSamples+1;
 assert(numel(boundary.constraints)==expected);
 
 % Heading=90 deg: rear midpoint=(20,y-20), driven center=(20-30,y-20).
@@ -21,7 +21,7 @@ assert(abs(model.maxTrajectoryOutsideMM-10)<1e-10 && abs(model.maxTrajectoryBoun
 assert(numel(residuals)==4*outside.params.samples && all(abs(residuals(1:outside.params.samples)-.1)<1e-12));
 assert(strcmp(diagnostic.worstPoint,'driven') && strcmp(diagnostic.worstSide,'xmin'));
 assert(diagnostic.components.front.maximumOutsideMM==0 && diagnostic.components.rear.maximumOutsideMM==0);
-assert(isequal(model.constraints(end-4*outside.params.samples+1:end),residuals));
+assert(isequal(model.constraints(end-4*outside.params.samples:end-1),residuals));
 checks{end+1}='analytic rigid offset detects 10 mm driven-center violation despite inside front/nodes';
 
 % All five named points and all four sides must influence the fixed 4N vector.
@@ -100,9 +100,18 @@ source=fullfile(root,'outputs','route_refinement_20261029','convergence_300', ..
 assert(isfile(source),'Historical CHG014 candidate is required for this regression.');
 historical=load(source,'q','verification','rules');
 assert(historical.verification.verifiedFeasible,'Expected preserved pre-boundary gate result.');
+% Preserve this old boundary regression's physical cam, explicitly selecting
+% its archived ratio in the fixture only. Production never selects a ratio.
+historical.q.params.gearRatio=historical.verification.optimizationGrid.effectiveRatio;
+historical.q.params.autoRatio=false;
 corrected=camdesign.verifyConstrained(historical.q,4);
 assert(~corrected.verifiedFeasible && corrected.nodeBoundsSatisfied && ~corrected.trajectoryBoundsSatisfied);
-assert(corrected.optimizationGrid.thresholdsSatisfied && corrected.refinedGrid.thresholdsSatisfied);
+% The archived coarse effective ratio used to be increased again on the fine
+% grid. With hardware fixed, its fine return is 59.991 degrees, below 60.
+assert(corrected.optimizationGrid.thresholdsSatisfied && ~corrected.refinedGrid.thresholdsSatisfied);
+hm=corrected.refinedGrid.metrics;
+assert(~hm.returnAngleSatisfied && hm.actualReturnDeg>59.9 && hm.actualReturnDeg<60);
+assert(hm.maxPressureDeg<=historical.q.params.maxPressureDeg && hm.maxHitError<=historical.q.params.hitTolerance);
 assert(corrected.optimizationGrid.intersectionFree && corrected.refinedGrid.intersectionFree);
 assert(corrected.refinedGrid.maxTrajectoryOutsideMM>100 && corrected.refinedGrid.maxTrajectoryOutsideMM<130);
 previousOutside=max(structfun(@(x)x.maximumOutsideMM,historical.rules.modeledPointBounds));

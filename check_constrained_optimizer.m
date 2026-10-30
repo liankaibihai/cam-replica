@@ -56,7 +56,7 @@ end
 function report=checkContracts()
 project=simpleCase(); initial=camdesign.fminconModel(project,project.nodes);
 assert(initial.valid && initial.maxViolation==0);
-expected=size(project.targets,1)+5*project.params.samples+2*project.params.camSamples;
+expected=size(project.targets,1)+5*project.params.samples+2*project.params.camSamples+1;
 assert(numel(initial.constraints)==expected);
 longer=project; longer.nodes(:,2)=1.1*longer.nodes(:,2);
 changed=camdesign.fminconModel(longer,project.nodes);
@@ -85,6 +85,7 @@ checks{end+1}='40 mm analytic straight-path miss violates unchanged 30 mm tolera
 [stopped,h,stopInfo]=camdesign.optimize(project,@(~,~,~)true,'fmincon-interior-point-experimental-v1');
 assert(strcmp(stopInfo.reason,'user_stop') && stopInfo.iterations==0 && h(end).stopped);
 assert(isequaln(stopped,project) && isfield(h,'objective') && isfield(h,'score'));
+assert(all([h.nominalDifferenceStepMM]==stopInfo.nominalDifferenceStepMM));
 checks{end+1}='immediate callback stop preserves complete project and history contract';
 
 [q,h,info]=camdesign.optimize(project,[],'fmincon-interior-point-experimental-v1');

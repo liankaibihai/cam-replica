@@ -14,6 +14,7 @@ classdef CamReplicaApp < handle
         WeightsTable
         Mechanism
         AutoRatio
+        RatioNotice
         Log
         Buttons
         Status
@@ -46,6 +47,30 @@ classdef CamReplicaApp < handle
         AlgorithmSelector
         OptimizationInfo = []
         OptimizationDirection = []
+        RootLayout
+        ControlsTabs
+        TrainingTab
+        TrainingShortcut
+        MethodSummary
+        ResultsTabs
+        ScoreSummary
+        ScoreTable
+        ScoreTrendAxes
+        ObjectiveTrendAxes
+        CrossTable
+        CrossSource
+        CamSourceLabel
+        CrossZoomButton
+        CrossResetButton
+        CrossDetailsButton
+        CamInspectionRecord = []
+        ScoreDisplayData = []
+        HistoryProject = []
+        DiagnosticsFigure = []
+        FullLog = {}
+        TrainingRuntime
+        ScoreDetailsButton
+        LogDetailsButton
     end
     properties (Access=private)
         MapEditReference = []
@@ -54,12 +79,27 @@ classdef CamReplicaApp < handle
         SelectedNodeMarker = []
         NodeMoveGuide = []
         RouteLines = []
+        ScoreViews = {}
+        CrossingViews = {}
+        DetailTabs = []
+        DetailLog = []
+        DetailCamAxes = []
+        LastDisplayProject = []
+        LastDisplayResult = []
+        CamBaseProject = []
+        CamBaseResult = []
+        CamFullLimits = []
+        SelectedCrossing = 0
+        ScoreTab
+        LogTab
+        CrossingTab
+        LegacyRatioNotice = ''
         DisplayedParameterFields = {}
         ParameterFields = {'wheelDiameter','gearRatio','lever','rollerRadius','referenceDiameter', ...
             'thickness','driveX','driveY','drivenX','drivenY','sensorX','sensorY','headingDeg', ...
             'startSteeringDeg','returnAngleDeg','maxSteeringDeg','maxPressureDeg','hitTolerance', ...
             'iterations','stepMM','gradientProbeMM','samples','camSamples'}
-        ParameterLabels = {'主动轮直径 / mm','请求传动比（轮/凸轮）','转向偏距 c / mm', ...
+        ParameterLabels = {'主动轮直径 / mm','传动比（用户设定，轮/凸轮）','转向偏距 c / mm', ...
             '推杆接触半径 r / mm','零位中心距 ×2 / mm','凸轮厚度（仅记录）/ mm', ...
             '主动轮局部 X / mm','主动轮局部 Y / mm','从动轮局部 X / mm','从动轮局部 Y / mm', ...
             '传感器局部 X / mm','传感器局部 Y / mm','发车车身方向 / deg','初始前轮转角 / deg', ...
@@ -71,20 +111,17 @@ classdef CamReplicaApp < handle
             if nargin<1, visibility='on'; end
             app.Project=camdesign.defaultProject();
             app.Figure=uifigure('Name','工创赛凸轮设计 · MATLAB 复现 v0.2', ...
-                'Position',[70 60 1320 860],'Visible',visibility,'Color',[.95 .96 .98]);
+                'Position',[70 60 1320 860],'Visible',visibility,'Color',[.95 .96 .98],'AutoResizeChildren','off');
             app.Figure.CloseRequestFcn=@(~,~)app.closeRequested();
             app.Figure.WindowKeyPressFcn=@(~,event)app.routeEditorKey(event);
-            root=uigridlayout(app.Figure,[4 2],'RowHeight',{34,36,'1x',76}, ...
-                'ColumnWidth',{280,'1x'},'Padding',[12 8 12 8], ...
+            root=uigridlayout(app.Figure,[5 2],'RowHeight',{34,36,52,'1x',230}, ...
+                'ColumnWidth',{320,'1x'},'Padding',[12 8 12 8], ...
                 'RowSpacing',6,'ColumnSpacing',10);
-            titleBar=uigridlayout(root,[1 2],'ColumnWidth',{'1x',270},'Padding',[0 0 0 0]);
+            app.RootLayout=root;
+            titleBar=uigridlayout(root,[1 1],'Padding',[0 0 0 0]);
             titleBar.Layout.Row=1; titleBar.Layout.Column=[1 2];
             uilabel(titleBar,'Text','工创赛凸轮设计  /  路线、机构与几何校验', ...
                 'FontSize',20,'FontWeight','bold','FontColor',[.12 .20 .30]);
-            app.AlgorithmSelector=uidropdown(titleBar, ...
-                'Items',{'峰值梯度（独立算法）','四方向加权 + 平滑（视频启发实验）','内点法非线性约束（实验）'}, ...
-                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1'},'Value','peak-gradient-v2', ...
-                'ValueChangedFcn',@(~,~)app.refreshTrainingControls());
             bar=uigridlayout(root,[1 8],'Padding',[0 0 0 0],'ColumnSpacing',8);
             bar.Layout.Row=2; bar.Layout.Column=[1 2];
             labels={'导入 MAT','保存项目','重建路线','计算凸轮','迭代优化','停止','固定凸轮反推','导出候选'};
@@ -98,13 +135,39 @@ classdef CamReplicaApp < handle
             app.Buttons(4).BackgroundColor=[.18 .40 .66]; app.Buttons(4).FontColor=[1 1 1];
             app.Buttons(5).BackgroundColor=[.14 .48 .39]; app.Buttons(5).FontColor=[1 1 1];
             app.Buttons(6).Enable='off';
-            side=uigridlayout(root,[3 1],'RowHeight',{30,28,'1x'},'Padding',[0 0 0 0]);
-            side.Layout.Row=3; side.Layout.Column=1;
+            methods=uigridlayout(root,[2 4],'ColumnWidth',{72,'1x',78,'1x'},'RowHeight',{28,20}, ...
+                'Padding',[0 0 0 0],'ColumnSpacing',6,'RowSpacing',2);
+            methods.Layout.Row=3; methods.Layout.Column=[1 2];
+            uilabel(methods,'Text','路线画法','FontWeight','bold');
+            app.TrainingModel=uidropdown(methods,'Items',{'三次样条（通过节点）','贝塞尔曲线（控制点调形）'}, ...
+                'ItemsData',{'cubic','bezier-blend-independent-v1'},'ValueChangedFcn',@(~,~)app.markTrainingDirty(), ...
+                'Tooltip','路线画法决定控制点怎样变成曲线。三次样条穿过节点；独立贝塞尔通常不穿控制点，是本版实验融合。');
+            app.TrainingModel.Layout.Row=1; app.TrainingModel.Layout.Column=2;
+            label=uilabel(methods,'Text','优化方法','FontWeight','bold'); label.Layout.Row=1; label.Layout.Column=3;
+            app.AlgorithmSelector=uidropdown(methods, ...
+                'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）'}, ...
+                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1'}, ...
+                'Value','peak-gradient-v2','ValueChangedFcn',@(~,~)app.refreshTrainingControls(), ...
+                'Tooltip','优化方法只决定怎样移动控制点，不决定路线画法。前两种按评分搜索；内点法使用独立目标和约束。');
+            app.AlgorithmSelector.Layout.Row=1; app.AlgorithmSelector.Layout.Column=4;
+            app.MethodSummary=uilabel(methods,'Text','','FontSize',11);
+            app.MethodSummary.Layout.Row=2; app.MethodSummary.Layout.Column=[1 3];
+            app.DirectionStatus=uilabel(methods,'Text','AI方向：无有效数据','FontSize',10,'FontColor',[.4 .4 .4]);
+            app.DirectionStatus.Layout.Row=2; app.DirectionStatus.Layout.Column=4;
+            side=uigridlayout(root,[4 1],'RowHeight',{28,26,30,'1x'},'Padding',[0 0 0 0],'RowSpacing',4);
+            side.Layout.Row=4; side.Layout.Column=1;
             app.Mechanism=uidropdown(side,'Items',{'齿条：h = cδ','平推：h = c tanδ'}, ...
                 'ItemsData',{'rack','flat'},'Value','rack','ValueChangedFcn',@(~,~)app.invalidate());
-            app.AutoRatio=uicheckbox(side,'Text','工作段过长时自动增大传动比','Value',true, ...
-                'ValueChangedFcn',@(~,~)app.invalidate());
+            ratioRow=uigridlayout(side,[1 1],'Padding',[0 0 0 0]);
+            app.AutoRatio=uicheckbox(ratioRow,'Text','','Value',false,'Enable','off','Visible','off', ...
+                'Tooltip','只由用户在车体参数手动改变gearRatio。旧文件autoRatio=true也不会自动增比。');
+            app.RatioNotice=uilabel(ratioRow,'Text','传动比：固定使用用户输入','FontSize',11);
+            app.AutoRatio.Layout.Row=1; app.AutoRatio.Layout.Column=1;
+            app.RatioNotice.Layout.Row=1; app.RatioNotice.Layout.Column=1; ratioRow.RowHeight={'1x'};
+            app.TrainingShortcut=uibutton(side,'Text','打开训练设置（九项）','FontWeight','bold', ...
+                'ButtonPushedFcn',@(~,~)app.openTraining());
             tabs=uitabgroup(side);
+            app.ControlsTabs=tabs;
             t=uitab(tabs,'Title','车体'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
             app.ParamsTable=uitable(g,'ColumnName',{'参数','数值'},'ColumnEditable',[false true], ...
                 'ColumnWidth',{185,65},'ColumnFormat',{'char','numeric'},'RowName',{},'FontSize',11,'CellEditCallback',@(~,~)app.invalidate());
@@ -128,12 +191,12 @@ classdef CamReplicaApp < handle
             t=uitab(tabs,'Title','权重'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
             app.WeightsTable=uitable(g,'ColumnName',{'独立目标项','权重'},'ColumnEditable',[false true], ...
                 'ColumnWidth',{180,65},'ColumnFormat',{'char','numeric'},'RowName',{},'CellEditCallback',@(~,~)app.invalidate());
-            t=uitab(tabs,'Title','训练');
-            training=uigridlayout(t,[12 2],'RowHeight',[{30},repmat({26},1,9),{'1x',32}], ...
-                'ColumnWidth',{170,'1x'},'Padding',[4 2 4 2],'ColumnSpacing',2,'RowSpacing',4);
-            app.TrainingModel=uidropdown(training,'Items',{'三次插值样条（本版）','独立贝塞尔融合（实验）'}, ...
-                'ItemsData',{'cubic','bezier-blend-independent-v1'},'ValueChangedFcn',@(~,~)app.markTrainingDirty());
-            app.TrainingModel.Layout.Row=1; app.TrainingModel.Layout.Column=[1 2];
+            t=uitab(tabs,'Title','训练'); app.TrainingTab=t;
+            trainingRoot=uigridlayout(t,[3 1],'RowHeight',{64,'1x',32},'Padding',[0 0 0 0],'RowSpacing',3);
+            app.TrainingRuntime=uilabel(trainingRoot,'Text','本轮有效参数：尚无训练记录','FontSize',10,'WordWrap','on','VerticalAlignment','top');
+            training=uigridlayout(trainingRoot,[10 2],'RowHeight',[repmat({24},1,9),{92}], ...
+                'ColumnWidth',{168,'1x'},'Padding',[4 2 4 2],'ColumnSpacing',2,'RowSpacing',2,'Scrollable','on');
+            training.Layout.Row=2;
             labels={'训练次数','控制点数量','插值数量（名义/段）','贝塞尔阶数','梯度力 /mm（本版）', ...
                 '学习率（本版）','平滑率（本版）','调节间隔 /轮','调节指数（本版）'};
             tips={'请求迭代次数，连接 iterations。','真实节点/控制点数；减点和贝塞尔重建可能改变曲线。', ...
@@ -145,22 +208,22 @@ classdef CamReplicaApp < handle
             app.TrainingFields=gobjects(1,9);
             for k=1:9
                 label=uilabel(training,'Text',labels{k},'FontSize',11,'Tooltip',tips{k});
-                label.Layout.Row=k+1; label.Layout.Column=1;
+                label.Layout.Row=k; label.Layout.Column=1;
                 app.TrainingFields(k)=uieditfield(training,'numeric','Value',1,'FontSize',11, ...
                     'Tooltip',tips{k},'ValueChangedFcn',@(~,~)app.markTrainingDirty());
-                app.TrainingFields(k).Layout.Row=k+1; app.TrainingFields(k).Layout.Column=2;
+                app.TrainingFields(k).Layout.Row=k; app.TrainingFields(k).Layout.Column=2;
             end
             app.TrainingInfo=uilabel(training,'Text','','FontSize',11,'WordWrap','on','VerticalAlignment','top');
-            app.TrainingInfo.Layout.Row=11; app.TrainingInfo.Layout.Column=[1 2];
-            app.TrainingApplyButton=uibutton(training,'Text','应用训练设置','FontSize',11,'ButtonPushedFcn',@(~,~)app.applyTraining());
-            app.TrainingApplyButton.Layout.Row=12; app.TrainingApplyButton.Layout.Column=1;
-            app.TrainingResetButton=uibutton(training,'Text','还原','FontSize',11,'ButtonPushedFcn',@(~,~)app.syncTrainingInputs());
-            app.TrainingResetButton.Layout.Row=12; app.TrainingResetButton.Layout.Column=2;
+            app.TrainingInfo.Layout.Row=10; app.TrainingInfo.Layout.Column=[1 2];
+            trainingActions=uigridlayout(trainingRoot,[1 2],'ColumnWidth',{'1x',70},'Padding',[2 0 2 0]);
+            trainingActions.Layout.Row=3;
+            app.TrainingApplyButton=uibutton(trainingActions,'Text','应用训练设置','FontSize',11,'ButtonPushedFcn',@(~,~)app.applyTraining());
+            app.TrainingResetButton=uibutton(trainingActions,'Text','还原','FontSize',11,'ButtonPushedFcn',@(~,~)app.syncTrainingInputs());
             charts=uigridlayout(root,[2 2],'ColumnWidth',{'1.35x','1x'},'RowHeight',{'1x','2.7x'}, ...
                 'Padding',[0 0 0 0],'ColumnSpacing',12,'RowSpacing',10);
-            charts.Layout.Row=3; charts.Layout.Column=2;
+            charts.Layout.Row=4; charts.Layout.Column=2;
             routePanel=uigridlayout(charts,[2 1],'RowHeight',{32,'1x'},'Padding',[0 0 0 0]);
-            routePanel.Layout.Row=[1 2]; routePanel.Layout.Column=1;
+            routePanel.Layout.Row=2; routePanel.Layout.Column=1;
             editorBar=uigridlayout(routePanel,[1 4],'ColumnWidth',{76,76,80,'1x'}, ...
                 'Padding',[0 0 0 0],'ColumnSpacing',5);
             app.MapEditButton=uibutton(editorBar,'Text','地图编辑','ButtonPushedFcn',@(~,~)app.beginRouteEditing());
@@ -169,17 +232,26 @@ classdef CamReplicaApp < handle
             app.MapEditHelp=uilabel(editorBar,'Text','独立三次样条路线节点','FontSize',11);
             app.RouteAxes=uiaxes(routePanel);
             app.RouteAxes.ButtonDownFcn=@(source,~)app.routeMapClick(source.CurrentPoint(1,1:2),source,app.Figure.SelectionType);
-            app.SteeringAxes=uiaxes(charts); app.SteeringAxes.Layout.Row=1; app.SteeringAxes.Layout.Column=2;
-            app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=2; app.CamAxes.Layout.Column=2;
-            bottom=uigridlayout(root,[2 1],'RowHeight',{36,'1x'},'Padding',[0 0 0 0]);
-            bottom.Layout.Row=4; bottom.Layout.Column=[1 2];
-            statusRow=uigridlayout(bottom,[1 2],'ColumnWidth',{'1x',190},'Padding',[0 0 0 0]);
-            app.Status=uilabel(statusRow,'Text','准备就绪','FontSize',12,'FontWeight','bold','WordWrap','on');
-            app.DirectionStatus=uilabel(statusRow,'Text','AI方向：无有效数据', ...
-                'FontSize',10,'FontColor',[.4 .4 .4],'WordWrap','on');
-            app.Log=uitextarea(bottom,'Editable','off','FontSize',12);
+            app.SteeringAxes=uiaxes(charts); app.SteeringAxes.Layout.Row=1; app.SteeringAxes.Layout.Column=1;
+            app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=[1 2]; app.CamAxes.Layout.Column=2;
+            bottom=uigridlayout(root,[2 1],'RowHeight',{38,'1x'},'Padding',[0 0 0 0],'RowSpacing',3);
+            bottom.Layout.Row=5; bottom.Layout.Column=[1 2];
+            statusRow=uigridlayout(bottom,[1 4],'ColumnWidth',{'1x',220,90,90},'Padding',[0 0 0 0],'ColumnSpacing',5);
+            app.Status=uilabel(statusRow,'Text','准备就绪','FontSize',11,'FontWeight','bold','WordWrap','on');
+            app.ScoreSummary=uilabel(statusRow,'Text','通用评分：待计算','FontSize',11,'FontWeight','bold','WordWrap','on');
+            app.ScoreDetailsButton=uibutton(statusRow,'Text','评分详情','ButtonPushedFcn',@(~,~)app.openDiagnostics('score'));
+            app.LogDetailsButton=uibutton(statusRow,'Text','日志大窗','ButtonPushedFcn',@(~,~)app.openDiagnostics('log'));
+            app.ResultsTabs=uitabgroup(bottom);
+            app.ScoreTab=uitab(app.ResultsTabs,'Title','评分与趋势'); view=app.createScoreView(app.ScoreTab);
+            app.ScoreViews={view}; app.ScoreTable=view.table; app.ScoreTrendAxes=view.scoreAxes; app.ObjectiveTrendAxes=view.objectiveAxes;
+            app.LogTab=uitab(app.ResultsTabs,'Title','日志'); logLayout=uigridlayout(app.LogTab,[1 1],'Padding',[0 0 0 0]);
+            app.Log=uitextarea(logLayout,'Editable','off','FontSize',11);
+            app.CrossingTab=uitab(app.ResultsTabs,'Title','交点定位'); crossing=app.createCrossingView(app.CrossingTab,false);
+            app.CrossingViews={crossing}; app.CrossTable=crossing.table; app.CrossSource=crossing.source; app.CamSourceLabel=crossing.label;
+            app.CrossZoomButton=crossing.zoom; app.CrossResetButton=crossing.reset; app.CrossDetailsButton=crossing.details;
             app.syncInputs(); app.calculate();
             app.message('v0.2：齿条/平推、固定凸轮调参；独立样条与数值优化。尚未完成原版点集或实车对照。');
+            app.Figure.SizeChangedFcn=@(~,~)app.resizeLayout(); app.resizeLayout();
         end
         function syncInputs(app)
             p=app.Project.params;
@@ -187,12 +259,17 @@ classdef CamReplicaApp < handle
             if app.SimulationMode, indices=[1 2 3 5 7 8 10 11 12 13]; end
             app.DisplayedParameterFields=app.ParameterFields(indices);
             labels=app.ParameterLabels(indices);
-            if app.SimulationMode, labels{2}='实际传动比（轮/凸轮）'; end
+            if app.SimulationMode, labels{2}='传动比（用户试调，轮/凸轮）'; end
             values=cellfun(@(k)p.(k),app.DisplayedParameterFields,'UniformOutput',false);
             app.ParamsTable.Data=[labels(:),values(:)];
             app.TargetsTable.Data=app.Project.targets; app.NodesTable.Data=app.Project.nodes;
             app.updateNodeInfo();
-            app.Mechanism.Value=p.mechanism; app.AutoRatio.Value=p.autoRatio;
+            app.Mechanism.Value=p.mechanism; app.AutoRatio.Value=false;
+            app.RatioNotice.Text=sprintf('传动比：固定使用用户输入 %.6g（车体页可改）',p.gearRatio);
+            if p.autoRatio
+                notice=sprintf('旧项目%s记录了自动增比；本次固定执行用户传动比 %.6g，原数值未改。',app.Project.name,p.gearRatio);
+                if ~strcmp(app.LegacyRatioNotice,notice), app.LegacyRatioNotice=notice; app.message(notice); end
+            end
             labels={'有序打卡偏差','前轮路线长度','转向变化率','压力角超限','前轮转角超限','包络欠切风险'};
             app.WeightsTable.Data=[labels(:),num2cell(p.weights(:))];
             app.syncTrainingInputs();
@@ -210,7 +287,7 @@ classdef CamReplicaApp < handle
                 if ischar(value) || isstring(value), value=str2double(value); end
                 p.(app.DisplayedParameterFields{k})=double(value);
             end
-            p.mechanism=app.Mechanism.Value; p.autoRatio=app.AutoRatio.Value;
+            p.mechanism=app.Mechanism.Value; p.autoRatio=false;
             p.weights=cellfun(@double,app.WeightsTable.Data(:,2))';
             candidate=app.Project; candidate.params=p; candidate.targets=double(app.TargetsTable.Data);
             candidate.nodes=double(app.NodesTable.Data);
@@ -224,6 +301,7 @@ classdef CamReplicaApp < handle
             catch ex
                 app.Result=[];
                 app.Status.Text='计算未完成；表格输入保留，当前图像为上次结果。';
+                app.updateDiagnostics();
                 rethrow(ex);
             end
             app.Project=candidate; app.Result=result; app.render();
@@ -235,6 +313,14 @@ classdef CamReplicaApp < handle
         function render(app)
             if isempty(app.Result), return; end
             r=app.Result.route; c=app.Result.cam; p=app.Project.params; a=app.RouteAxes;
+            sourceProject=app.Project;
+            if app.SimulationMode, sourceProject=app.SimulationReference.project; end
+            app.LastDisplayProject=sourceProject; app.LastDisplayResult=app.Result;
+            if isempty(app.CamBaseResult) || ~isequaln(app.CamBaseProject,sourceProject) || ~isequaln(app.CamBaseResult,app.Result)
+                app.CamBaseProject=sourceProject; app.CamBaseResult=app.Result;
+                app.CamInspectionRecord=camdesign.camInspectionData(sourceProject,app.Result,[],'current');
+                app.SelectedCrossing=0;
+            end
             cla(a); hold(a,'on');
             rectangle(a,'Position',[p.bounds(1) p.bounds(3) diff(p.bounds(1:2)) diff(p.bounds(3:4))], ...
                 'EdgeColor',[.4 .4 .4],'LineStyle','--','LineWidth',.8, ...
@@ -279,38 +365,20 @@ classdef CamReplicaApp < handle
             a=app.SteeringAxes; legend(a,'off'); cla(a); plot(a,r.frontDistance,rad2deg(r.steering),'Color',[.15 .40 .70],'LineWidth',1.4);
             yline(a,p.maxSteeringDeg,'--'); yline(a,-p.maxSteeringDeg,'--'); grid(a,'on');
             title(a,'前轮转角（左转为正）'); xlabel(a,'前轮行程 / mm'); ylabel(a,'转角 / deg');
-            a=app.CamAxes; cla(a); hold(a,'on');
-            camLines=gobjects(1,4);
-            camLines(1)=plot(a,c.pitch(:,1),c.pitch(:,2),'Color',[.2 .4 .75],'LineWidth',1.2);
-            camLines(2)=plot(a,c.actual(:,1),c.actual(:,2),'Color',[.85 .25 .20],'LineWidth',1.5);
-            camLines(3)=plot(a,NaN,NaN,'--','Color',[.5 .5 .5],'LineWidth',1.5);
-            returnPoints=c.actual(~c.workingMask,:);
-            if ~isempty(returnPoints), set(camLines(3),'XData',returnPoints(:,1),'YData',returnPoints(:,2)); end
-            reference=p.referenceDiameter/2;
-            if app.SimulationMode, reference=app.SimulationReference.project.params.referenceDiameter/2; end
-            angle=linspace(0,2*pi,257);
-            camLines(4)=plot(a,reference*cos(angle),reference*sin(angle),':','Color',[.2 .2 .2],'LineWidth',1.1,'Tag','zero-reference-circle');
-            camLabels={'理论','实际','回程','零位圆 d/2'};
-            if isfield(app.Result,'intersectionPoints') && ~isempty(app.Result.intersectionPoints)
-                points=app.Result.intersectionPoints;
-                camLines(5)=plot(a,points(:,1),points(:,2),'ro','LineStyle','none','MarkerSize',8,'LineWidth',1.6, ...
-                    'HitTest','off','PickableParts','none','Tag','cam-self-intersections');
-                camLabels{5}='实际自交';
-            end
-            plot(a,0,0,'k+','MarkerSize',7,'Tag','cam-center');
-            hold(a,'off'); axis(a,'equal'); grid(a,'on'); xlabel(a,'X / mm'); ylabel(a,'Y / mm');
-            extent=1.25*max([vecnorm(c.pitch,2,2);vecnorm(c.actual,2,2);reference]);
-            xlim(a,[-extent extent]); ylim(a,[-extent extent]);
-            title(a,'凸轮（含回程）');
-            legend(a,camLines,camLabels, ...
-                'Location','northeast','NumColumns',1,'FontSize',9,'IconColumnWidth',18,'AutoUpdate','off');
-            m=app.Result.metrics;
-            [~,trajectory]=camdesign.trajectoryBounds(r,p.bounds);
+            app.drawCamRecord();
+            app.updateInspectionStatus(); app.updateDiagnostics();
+        end
+        function updateInspectionStatus(app)
+            if isempty(app.CamInspectionRecord), return; end
+            data=app.CamInspectionRecord; m=data.result.metrics; p=data.project.params;
+            [~,trajectory]=camdesign.trajectoryBounds(data.result.route,p.bounds);
             crossText=sprintf('%g',m.intersectionCount);
             if ~m.geometryChecked, crossText='未完整检查'; end
-            app.Status.Text=sprintf('最大打卡偏差 %.2f mm    最大压力角 %.1f°    目标函数 %.4f    轮廓自交 %s    五点中心出界 %.6g mm', ...
-                m.maxHitError,m.maxPressureDeg,m.score,crossText,trajectory.maximumOutsideMM);
-            if m.maxPressureDeg>p.maxPressureDeg || m.minUndercutMargin<=0 || m.maxHitError>p.hitTolerance || m.intersectionCount>0 || ~trajectory.satisfied
+            app.Status.Text=sprintf('%s · 打卡偏差 %.2f mm；压力角 %.2f°；轮廓自交 %s\n五点中心出界 %.6g mm；欠切余量 %.4g', ...
+                data.shortLabel,m.maxHitError,m.maxPressureDeg,crossText,trajectory.maximumOutsideMM,m.minUndercutMargin);
+            returnOK=isfield(m,'returnAngleSatisfied') && m.returnAngleSatisfied;
+            if isfield(m,'actualReturnDeg'), app.Status.Text=[app.Status.Text,sprintf('    回程 %.2f° / 预留 %.2f°',m.actualReturnDeg,p.returnAngleDeg)]; end
+            if m.maxPressureDeg>p.maxPressureDeg || m.minUndercutMargin<=0 || m.maxHitError>p.hitTolerance || m.intersectionCount>0 || ~trajectory.satisfied || ~returnOK
                 app.Status.Text=[app.Status.Text,'    有指标超限，需改进'];
                 app.Status.FontColor=[.65 .28 .08];
             else
@@ -327,6 +395,39 @@ classdef CamReplicaApp < handle
             app.OptimizationDirection=[]; app.OptimizationInfo=[];
             app.DirectionStatus.Text='AI方向：无有效数据';
             app.Result=[]; app.Status.Text='输入已修改，请重新计算；当前图像为上次结果。';
+            app.updateDiagnostics();
+        end
+        function drawCamRecord(app)
+            if isempty(app.CamInspectionRecord), return; end
+            data=app.CamInspectionRecord; c=data.result.cam; p=data.project.params;
+            a=app.CamAxes; legend(a,'off'); cla(a); hold(a,'on');
+            camLines=gobjects(1,4);
+            camLines(1)=plot(a,c.pitch(:,1),c.pitch(:,2),'Color',[.2 .4 .75],'LineWidth',1.2);
+            camLines(2)=plot(a,c.actual(:,1),c.actual(:,2),'Color',[.85 .25 .20],'LineWidth',1.5);
+            camLines(3)=plot(a,NaN,NaN,'--','Color',[.5 .5 .5],'LineWidth',1.5);
+            returnPoints=c.actual(~c.workingMask,:);
+            if ~isempty(returnPoints), set(camLines(3),'XData',returnPoints(:,1),'YData',returnPoints(:,2)); end
+            set(camLines(2),'Tag','inspected-cam-actual');
+            reference=p.referenceDiameter/2;
+            if app.SimulationMode, reference=app.SimulationReference.project.params.referenceDiameter/2; end
+            angle=linspace(0,2*pi,257);
+            camLines(4)=plot(a,reference*cos(angle),reference*sin(angle),':','Color',[.2 .2 .2],'LineWidth',1.1,'Tag','zero-reference-circle');
+            camLabels={'理论','实际','回程','零位圆 d/2'};
+            if isfield(data.result,'intersectionPoints') && ~isempty(data.result.intersectionPoints)
+                points=data.result.intersectionPoints;
+                camLines(5)=plot(a,points(:,1),points(:,2),'ro','LineStyle','none','MarkerSize',8,'LineWidth',1.6, ...
+                    'HitTest','off','PickableParts','none','Tag','cam-self-intersections');
+                camLabels{5}='实际自交';
+            end
+            plot(a,0,0,'k+','MarkerSize',7,'Tag','cam-center');
+            hold(a,'off'); axis(a,'equal'); grid(a,'on'); xlabel(a,'X / mm'); ylabel(a,'Y / mm');
+            extent=1.25*max([vecnorm(c.pitch,2,2);vecnorm(c.actual,2,2);reference]);
+            xlim(a,[-extent extent]); ylim(a,[-extent extent]);
+            title(a,['凸轮 · ',data.shortLabel]);
+            legend(a,camLines,camLabels, ...
+                'Location','north','NumColumns',numel(camLines),'FontSize',9,'IconColumnWidth',10,'AutoUpdate','off');
+            app.CamFullLimits=[a.XLim a.YLim];
+            app.refreshDetailCam();
         end
         function fitRouteView(app,extraPoints)
             r=app.Result.route; bounds=app.Project.params.bounds;
@@ -335,8 +436,14 @@ classdef CamReplicaApp < handle
             lower=min([points;bounds([1 3])],[],1);
             upper=max([points;bounds([2 4])],[],1);
             padding=.04*[diff(bounds(1:2)) diff(bounds(3:4))];
-            xlim(app.RouteAxes,[lower(1)-padding(1) upper(1)+padding(1)]);
-            ylim(app.RouteAxes,[lower(2)-padding(2) upper(2)+padding(2)]);
+            horizontal=[lower(1)-padding(1) upper(1)+padding(1)];
+            vertical=[lower(2)-padding(2) upper(2)+padding(2)];
+            if diff(bounds(3:4))>1.5*diff(bounds(1:2))
+                % Keep equal millimetre scales while leaving room beside a
+                % portrait field for its vertical legend.
+                span=max(diff(horizontal),.8*diff(vertical)); horizontal=mean(horizontal)+[-span span]/2;
+            end
+            xlim(app.RouteAxes,horizontal); ylim(app.RouteAxes,vertical);
         end
         function toggleSimulation(app)
             if app.Busy || app.MapEditMode, return; end
@@ -351,7 +458,6 @@ classdef CamReplicaApp < handle
             app.calculate();
             app.SimulationReference=struct('project',app.Project,'result',app.Result);
             app.SimulationMode=true;
-            app.Project.params.gearRatio=app.Result.cam.effectiveRatio;
             app.syncInputs(); app.setSimulationControls(); app.runFixedCamSimulation();
             app.message('已固定当前理论凸轮。可修改轮径、传动比、轴距、c、中心距、传感器坐标或发车方向，再点“更新反推”。');
         end
@@ -646,6 +752,10 @@ classdef CamReplicaApp < handle
             else, description=[description,newline,'梯度力=差分距离；步幅×学习率×阶梯衰减；平滑仅接受改善。']; end
             app.TrainingInfo.Text=sprintf('实际：%d 控制点 / %d 路线采样\n当前：%s；%s\n%s', ...
                 size(app.Project.nodes,1),app.Project.params.samples,model,pending,description);
+            if ~isempty(app.MethodSummary)
+                app.MethodSummary.Text=sprintf('画法决定连线，优化方法负责改点；传动比 %.6g 固定执行，只能用户手改。',app.Project.params.gearRatio);
+            end
+            app.refreshTrainingRuntime();
         end
         function applied=applyTraining(app)
             applied=false;
@@ -727,8 +837,9 @@ classdef CamReplicaApp < handle
             app.readInputs(); app.Busy=true; app.StopRequested=false; app.setBusy(true);
             cleanup=onCleanup(@()app.finishBusy());
             app.OptimizationDirection=[]; app.OptimizationInfo=[];
+            app.History=[]; app.HistoryProject=[]; app.updateDiagnostics();
             [project,history,info]=camdesign.optimize(app.Project,@app.optimizationUpdate,app.AlgorithmSelector.Value);
-            app.Project=project; app.History=history; app.OptimizationDirection=[]; app.OptimizationInfo=info;
+            app.Project=project; app.History=history; app.HistoryProject=project; app.OptimizationDirection=[]; app.OptimizationInfo=info;
             app.syncInputs(); app.calculate();
             reasons=struct('iteration_limit','达到请求轮数','user_stop','用户停止', ...
                 'gradient_tolerance','梯度与候选均无改善','no_improving_step','多尺度搜索无改善', ...
@@ -740,7 +851,8 @@ classdef CamReplicaApp < handle
             [~,trajectory]=camdesign.trajectoryBounds(app.Result.route,p.bounds);
             verdict='本模型检查通过，仍待外部验证';
             if m.maxHitError>p.hitTolerance || m.maxPressureDeg>p.maxPressureDeg || m.maxSteeringDeg>p.maxSteeringDeg ...
-                    || m.minUndercutMargin<=0 || m.intersectionCount>0 || ~trajectory.satisfied, verdict='未达标候选'; end
+                    || m.minUndercutMargin<=0 || m.intersectionCount>0 || ~trajectory.satisfied ...
+                    || ~isfield(m,'returnAngleSatisfied') || ~m.returnAngleSatisfied, verdict='未达标候选'; end
             if isfield(info,'verifiedFeasible')
                 if info.verifiedFeasible, verdict='加密离散模型检查通过，仍待外部验证';
                 else, verdict='加密验收未通过或未完成；未达标候选'; end
@@ -774,9 +886,16 @@ classdef CamReplicaApp < handle
                 for k=1:numel(info.remainingConstraints), app.message(['约束验收：',info.remainingConstraints{k}]); end
             end
             for k=1:numel(app.Result.warnings), app.message(['结束时仍需处理：',app.Result.warnings{k}]); end
+            app.updateDiagnostics();
+            if isfield(info,'verification') && isfield(info.verification,'refinedGrid')
+                fine=info.verification.refinedGrid;
+                if fine.valid && ~isempty(fine.metrics) && fine.metrics.intersectionCount>0
+                    app.changeCamSource('refined'); app.ResultsTabs.SelectedTab=app.CrossingTab;
+                end
+            end
         end
         function stop=optimizationUpdate(app,iteration,project,history)
-            app.Project=project; app.NodesTable.Data=project.nodes;
+            app.Project=project; app.History=history; app.HistoryProject=project; app.NodesTable.Data=project.nodes;
             app.OptimizationDirection=history(end);
             app.Result=camdesign.evaluate(project,false); app.render();
             if strcmp(history(end).event,'searching')
@@ -792,6 +911,224 @@ classdef CamReplicaApp < handle
             end
             drawnow; stop=app.StopRequested;
         end
+        function openTraining(app)
+            app.ControlsTabs.SelectedTab=app.TrainingTab;
+            app.refreshTrainingControls();
+        end
+        function resizeLayout(app)
+            if isempty(app.RootLayout) || ~isvalid(app.RootLayout), return; end
+            dimensions=app.Figure.Position(3:4); width=320; footer=230;
+            if dimensions(1)<1220, width=260; end
+            app.RootLayout.ColumnWidth={width,'1x'};
+            app.RootLayout.RowHeight={34,36,52,'1x',footer};
+            app.ParamsTable.ColumnWidth={width-100,75};
+            sideColumn=floor((width-65)/2);
+            app.TargetsTable.ColumnWidth={sideColumn,sideColumn}; app.NodesTable.ColumnWidth={sideColumn,sideColumn};
+            app.WeightsTable.ColumnWidth={width-95,65};
+        end
+        function view=createScoreView(app,parent)
+            grid=uigridlayout(parent,[1 3],'ColumnWidth',{370,'1x','1x'},'Padding',[2 0 2 0],'ColumnSpacing',8);
+            table=uitable(grid,'ColumnName',{'本版评分项','基础项','权重','加权贡献'}, ...
+                'ColumnWidth',{125,70,50,95},'RowName',{},'FontSize',10,'ColumnEditable',false);
+            scoreAxes=uiaxes(grid,'FontSize',9); objectiveAxes=uiaxes(grid,'FontSize',9);
+            view=struct('table',table,'scoreAxes',scoreAxes,'objectiveAxes',objectiveAxes);
+        end
+        function view=createCrossingView(app,parent,large)
+            grid=uigridlayout(parent,[2 2],'RowHeight',{50,'1x'},'ColumnWidth',{360,'1x'},'Padding',[2 0 2 0],'RowSpacing',2);
+            bar=uigridlayout(grid,[2 4],'RowHeight',{28,18},'ColumnWidth',{'1x',110,90,100},'Padding',[0 0 0 0],'RowSpacing',2);
+            bar.Layout.Row=1; bar.Layout.Column=[1 2];
+            source=uidropdown(bar,'Items',{'当前网格轮廓','加密复查轮廓'},'ItemsData',{'current','refined'}, ...
+                'ValueChangedFcn',@(object,~)app.changeCamSource(object.Value));
+            zoom=uibutton(bar,'Text','放大选中交点','ButtonPushedFcn',@(~,~)app.zoomCamCrossing());
+            reset=uibutton(bar,'Text','返回全凸轮','ButtonPushedFcn',@(~,~)app.resetCamView());
+            details=uibutton(bar,'Text','交点大窗','ButtonPushedFcn',@(~,~)app.openDiagnostics('crossings'));
+            label=uilabel(bar,'Text','尚无已计算轮廓','FontSize',10); label.Layout.Row=2; label.Layout.Column=[1 4];
+            table=uitable(grid,'ColumnName',{'交点','段 A','段 B','X / mm','Y / mm'}, ...
+                'ColumnWidth',{45,55,55,90,90},'RowName',{},'FontSize',10,'ColumnEditable',false, ...
+                'CellSelectionCallback',@(~,event)app.selectCamCrossing(event));
+            table.Layout.Row=2; table.Layout.Column=1;
+            if large
+                axesHandle=uiaxes(grid); axesHandle.Layout.Row=2; axesHandle.Layout.Column=2;
+                app.DetailCamAxes=axesHandle;
+            else
+                text=uilabel(grid,'Text',['点选列表即可局部放大，也可点击“放大选中交点”。',newline, ...
+                    '交点坐标、段对和凸轮来自同一个网格；加密复查会同时切换轮廓。',newline, ...
+                    '未完整检查不显示旧交点；加密显示不会改写用户参数或历史文件。'], ...
+                    'WordWrap','on','FontSize',11,'VerticalAlignment','top');
+                text.Layout.Row=2; text.Layout.Column=2;
+            end
+            view=struct('source',source,'label',label,'table',table,'zoom',zoom,'reset',reset,'details',details);
+        end
+        function openDiagnostics(app,kind)
+            if isempty(app.DiagnosticsFigure) || ~isgraphics(app.DiagnosticsFigure)
+                app.DiagnosticsFigure=uifigure('Name','结果详情 · 评分、日志与交点','Position',[100 80 1260 760], ...
+                    'Visible',app.Figure.Visible);
+                layout=uigridlayout(app.DiagnosticsFigure,[1 1],'Padding',[8 8 8 8]);
+                tabs=uitabgroup(layout); app.DetailTabs=struct();
+                app.DetailTabs.score=uitab(tabs,'Title','通用评分与独立目标');
+                app.ScoreViews{2}=app.createScoreView(app.DetailTabs.score);
+                app.DetailTabs.log=uitab(tabs,'Title','完整日志');
+                logGrid=uigridlayout(app.DetailTabs.log,[1 1]);
+                app.DetailLog=uitextarea(logGrid,'Editable','off','FontSize',13);
+                app.DetailTabs.crossings=uitab(tabs,'Title','交点与对应轮廓');
+                app.CrossingViews{2}=app.createCrossingView(app.DetailTabs.crossings,true);
+            end
+            app.DetailTabs.(kind).Parent.SelectedTab=app.DetailTabs.(kind);
+            if strcmp(kind,'log'), app.ResultsTabs.SelectedTab=app.LogTab;
+            elseif strcmp(kind,'crossings'), app.ResultsTabs.SelectedTab=app.CrossingTab;
+            else, app.ResultsTabs.SelectedTab=app.ScoreTab; end
+            app.DiagnosticsFigure.Visible=app.Figure.Visible;
+            if isempty(app.FullLog), app.DetailLog.Value={''}; else, app.DetailLog.Value=app.FullLog; end
+            app.updateDiagnostics(); app.refreshDetailCam();
+        end
+        function updateDiagnostics(app)
+            if isempty(app.ScoreSummary) || ~isvalid(app.ScoreSummary), return; end
+            current=app.diagnosticsAreCurrent();
+            project=app.LastDisplayProject; result=app.LastDisplayResult; state='暂无当前计算';
+            if ~isempty(app.CamInspectionRecord)
+                project=app.CamInspectionRecord.project; result=app.CamInspectionRecord.result;
+                state='当前计算';
+                if strcmp(app.CamInspectionRecord.source,'refined'), state='加密复查'; end
+            end
+            if ~current && ~isempty(result), state='历史 / 待重算'; end
+            if app.SimulationMode, state='设计参考分（固定凸轮试调中）'; end
+            historyState='本次训练（优化网格）';
+            if ~current || isempty(app.HistoryProject) || ~isequaln(app.HistoryProject,app.CamBaseProject)
+                historyState='历史记录（非当前输入）';
+            end
+            data=camdesign.resultDisplayData(project,result,app.History,app.OptimizationInfo,state,historyState);
+            app.ScoreDisplayData=data;
+            if isfinite(data.total)
+                app.ScoreSummary.Text=sprintf('通用总分 %.6g（越低越好）\n%s · %d/%d',data.total,data.state,data.grid);
+            else, app.ScoreSummary.Text=sprintf('通用总分：暂无\n请先计算'); end
+            for k=1:numel(app.ScoreViews)
+                view=app.ScoreViews{k}; if ~isvalid(view.table), continue; end
+                view.table.Data=data.rows;
+                view.table.Tooltip=sprintf('%s 来源：%s，网格%d/%d，版本%s。',data.description,data.state,data.grid,data.scoreVersion);
+                app.plotDiagnosticSeries(view.scoreAxes,data.scoreX,data.scoreY, ...
+                    ['通用总分 · ',data.historyState],data.xLabel,'通用评分','尚无迭代记录');
+                objectiveTitle='内点目标（独立尺度）';
+                if startsWith(data.historyState,'历史'), objectiveTitle=['历史 · ',objectiveTitle]; end
+                app.plotDiagnosticSeries(view.objectiveAxes,data.objectiveX,data.objectiveY, ...
+                    objectiveTitle,data.xLabel,'独立目标值','此方法无内点目标 / 尚无记录');
+            end
+            app.updateCrossingViews(); app.refreshTrainingRuntime();
+        end
+        function plotDiagnosticSeries(app,a,x,y,heading,xLabel,yLabel,emptyText)
+            cla(a); title(a,heading,'FontSize',10);
+            if isempty(x)
+                axis(a,'off'); text(a,.5,.5,emptyText,'Units','normalized','HorizontalAlignment','center','FontSize',10);
+            else
+                axis(a,'on'); plot(a,x,y,'-','Color',[.18 .4 .65],'LineWidth',1.2); grid(a,'on');
+                xlabel(a,xLabel); ylabel(a,yLabel);
+            end
+        end
+        function changeCamSource(app,source)
+            if isempty(app.CamBaseResult), return; end
+            info=[];
+            if ~isempty(app.HistoryProject) && isequaln(app.HistoryProject,app.CamBaseProject), info=app.OptimizationInfo; end
+            try
+                data=camdesign.camInspectionData(app.CamBaseProject,app.CamBaseResult,info,source);
+            catch ex
+                app.message(['凸轮复查未完成：',ex.message]);
+                for k=1:numel(app.CrossingViews)
+                    view=app.CrossingViews{k}; if ~isvalid(view.source), continue; end
+                    view.source.Value=app.CamInspectionRecord.source;
+                    view.label.Text=['复查未完成，保持原轮廓：',ex.message];
+                end
+                return;
+            end
+            app.CamInspectionRecord=data; app.SelectedCrossing=0;
+            app.drawCamRecord(); app.updateInspectionStatus(); app.updateDiagnostics();
+            app.message(['凸轮显示来源：',data.label,'。坐标与轮廓使用同一结果。']);
+        end
+        function updateCrossingViews(app)
+            if isempty(app.CamInspectionRecord), return; end
+            data=app.CamInspectionRecord; locations=data.result.intersectionPoints; pairs=data.result.intersectionPairs;
+            tableData=[(1:size(locations,1))',pairs,locations];
+            prefix='';
+            fresh=app.diagnosticsAreCurrent();
+            if ~fresh, prefix='历史 / 编辑前 · '; end
+            if app.SimulationMode, prefix='设计参考 · '; end
+            for k=1:numel(app.CrossingViews)
+                view=app.CrossingViews{k}; if ~isvalid(view.table), continue; end
+                view.table.Data=tableData; view.label.Text=[prefix,data.label]; view.source.Value=data.source;
+                view.source.Enable=~app.Busy && fresh;
+                view.zoom.Enable=~isempty(locations);
+            end
+        end
+        function current=diagnosticsAreCurrent(app)
+            current=~isempty(app.Result) && ~app.TrainingDirty && ~app.MapEditMode && ~app.SimulationMode;
+            try, current=current && isequaln(app.inputProject(true),app.CamBaseProject); catch, current=false; end
+        end
+        function selectCamCrossing(app,event)
+            if isempty(event.Indices), return; end
+            app.SelectedCrossing=event.Indices(1,1); app.zoomCamCrossing();
+        end
+        function zoomCamCrossing(app)
+            if isempty(app.CamInspectionRecord) || isempty(app.CamInspectionRecord.result.intersectionPoints), return; end
+            data=app.CamInspectionRecord; count=size(data.result.intersectionPoints,1);
+            index=max(1,min(count,app.SelectedCrossing)); app.SelectedCrossing=index;
+            point=data.result.intersectionPoints(index,:); pairs=data.result.intersectionPairs(index,:);
+            curve=data.result.cam.actual;
+            if norm(curve(1,:)-curve(end,:))>1e-8, curve=[curve;curve(1,:)]; end
+            vertices=curve([pairs(1),pairs(1)+1,pairs(2),pairs(2)+1],:);
+            fullSpan=max(diff(app.CamFullLimits(1:2)),diff(app.CamFullLimits(3:4)));
+            radius=max(.05,min(.12*fullSpan,4*max(vecnorm(vertices-point,2,2))));
+            limits=[point(1)+[-radius radius],point(2)+[-radius radius]];
+            app.applyCamLimits(limits);
+        end
+        function resetCamView(app)
+            if ~isempty(app.CamFullLimits), app.applyCamLimits(app.CamFullLimits); end
+        end
+        function applyCamLimits(app,limits)
+            app.CamAxes.XLim=limits(1:2); app.CamAxes.YLim=limits(3:4);
+            if ~isempty(app.DetailCamAxes) && isgraphics(app.DetailCamAxes)
+                app.DetailCamAxes.XLim=limits(1:2); app.DetailCamAxes.YLim=limits(3:4);
+            end
+        end
+        function refreshDetailCam(app)
+            if isempty(app.DetailCamAxes) || ~isgraphics(app.DetailCamAxes) || isempty(app.CamInspectionRecord), return; end
+            data=app.CamInspectionRecord; a=app.DetailCamAxes; c=data.result.cam;
+            cla(a); hold(a,'on'); plot(a,c.pitch(:,1),c.pitch(:,2),'Color',[.2 .4 .75]);
+            plot(a,c.actual(:,1),c.actual(:,2),'Color',[.85 .25 .2],'Tag','detail-cam-actual');
+            if ~isempty(data.result.intersectionPoints)
+                points=data.result.intersectionPoints;
+                plot(a,points(:,1),points(:,2),'ro','LineStyle','none','MarkerSize',8,'LineWidth',1.6);
+            end
+            hold(a,'off'); axis(a,'equal'); grid(a,'on'); xlabel(a,'X / mm'); ylabel(a,'Y / mm');
+            title(a,data.shortLabel); if ~isempty(app.CamFullLimits), app.applyCamLimits(app.CamFullLimits); end
+        end
+        function refreshTrainingRuntime(app)
+            if isempty(app.TrainingRuntime) || ~isvalid(app.TrainingRuntime), return; end
+            if isempty(app.History)
+                app.TrainingRuntime.Text='尚未开始训练；编辑初始设置后点击“应用训练设置”。'; return;
+            end
+            h=app.History(end); state='本次'; iteration='未记录';
+            if isfield(h,'iteration'), iteration=sprintf('%d',h.iteration); end
+            if ~app.diagnosticsAreCurrent() || isempty(app.HistoryProject) || ~isequaln(app.HistoryProject,app.Project), state='上次'; end
+            constrained=isfield(h,'objective');
+            if constrained
+                nominal='未记录';
+                if isfield(h,'nominalDifferenceStepMM')
+                    nominal=sprintf('%.6g mm（历史记录）',h.nominalDifferenceStepMM);
+                elseif isstruct(app.OptimizationInfo) && isfield(app.OptimizationInfo,'nominalDifferenceStepMM')
+                    nominal=sprintf('%.6g mm（求解器记录）',app.OptimizationInfo.nominalDifferenceStepMM);
+                end
+                violation='未记录';
+                if isfield(h,'maxConstraintViolation'), violation=sprintf('%.6g',h.maxConstraintViolation); end
+                app.TrainingRuntime.Text=sprintf('%s内点第%s轮：名义差分 %s\n独立目标 %.6g；归一化违规 %s。\n本法不使用学习率/平滑调度。', ...
+                    state,iteration,nominal,h.objective,violation);
+            elseif all(isfield(h,{'probeMM','learningScale','scheduleScale','scheduledStepMM','stepMM','smoothingAlpha'}))
+                requested='未记录';
+                if isfield(h,'plannedSmoothingRates')
+                    if isempty(h.plannedSmoothingRates), requested='无';
+                    else, requested=mat2str(h.plannedSmoothingRates,3); end
+                end
+                app.TrainingRuntime.Text=sprintf('%s第%s轮：探测 %.5g mm；学习倍率 %.5g；衰减 %.5g\n计划步 %.5g mm；采纳位移 %.5g mm\n计划平滑 %s；采纳平滑 %.5g', ...
+                    state,iteration,h.probeMM,h.learningScale,h.scheduleScale,h.scheduledStepMM,h.stepMM,requested,h.smoothingAlpha);
+            else, app.TrainingRuntime.Text='历史记录缺少有效参数字段，不能从初始设置反推实际值。'; end
+        end
         function setBusy(app,busy)
             app.Busy=logical(busy); app.refreshControls();
         end
@@ -801,7 +1138,7 @@ classdef CamReplicaApp < handle
             app.Buttons(4).Enable=~app.Busy && ~app.MapEditMode;
             app.Buttons(6).Enable=app.Busy;
             app.Buttons(7).Enable=~app.Busy && ~app.MapEditMode;
-            app.Mechanism.Enable=editable; app.AutoRatio.Enable=editable;
+            app.Mechanism.Enable=editable; app.AutoRatio.Enable='off'; app.TrainingShortcut.Enable=~app.MapEditMode;
             app.AlgorithmSelector.Enable=editable;
             for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=editable; end
             app.RefineRouteButton.Enable=editable;
@@ -816,18 +1153,20 @@ classdef CamReplicaApp < handle
         function finishBusy(app)
             app.Busy=false;
             if isvalid(app.Figure), app.setBusy(false); end
-            if app.CloseAfterStop && isvalid(app.Figure), delete(app.Figure); end
+            if app.CloseAfterStop && isvalid(app.Figure), app.closeRequested(); end
         end
         function closeRequested(app)
             if app.Busy, app.StopRequested=true; app.CloseAfterStop=true;
             else
                 if app.MapEditMode, app.cancelRouteEditing(); end
+                if ~isempty(app.DiagnosticsFigure) && isgraphics(app.DiagnosticsFigure), delete(app.DiagnosticsFigure); end
                 delete(app.Figure);
             end
         end
         function message(app,text)
-            old=app.Log.Value; if ischar(old), old={old}; end
-            app.Log.Value=[old(max(1,end-25):end);{char(text)}];
+            app.FullLog(end+1,1)={char(text)};
+            app.Log.Value=app.FullLog(max(1,end-199):end);
+            if ~isempty(app.DetailLog) && isvalid(app.DetailLog), app.DetailLog.Value=app.FullLog; end
         end
     end
 end

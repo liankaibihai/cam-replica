@@ -1,7 +1,7 @@
 function check_app()
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:AppCheckBatchOnly','请使用独立 batch 运行界面检查。');
-folder=fullfile(root,'outputs','chart_layout_20261029'); if ~isfolder(folder), mkdir(folder); end
+folder=fullfile(root,'outputs','results_panel_20261030','app_regression'); if ~isfolder(folder), mkdir(folder); end
 fprintf('APP_CHECK_START\n');
 app=CamReplicaApp('off'); cleaner=onCleanup(@()delete(app.Figure));
 fprintf('APP_CONSTRUCTED\n');
@@ -33,7 +33,7 @@ assert(app.OptimizationInfo.iterations==2 && app.OptimizationInfo.requestedItera
 assert(contains(app.Status.Text,'2/2') && contains(app.Status.Text,'阈值'));
 arrow=findobj(app.RouteAxes,'Tag','optimization-direction');
 assert(all(isnan(arrow.XData)) && numel(findobj(app.CamAxes,'Tag','cam-center'))==1);
-assert(strcmp(app.RouteAxes.Legend.Location,'northwest') && strcmp(app.CamAxes.Legend.Location,'northeast'));
+assert(strcmp(app.RouteAxes.Legend.Location,'northwest') && strcmp(app.CamAxes.Legend.Location,'north'));
 assert(strcmp(app.RouteAxes.Title.String,'路线与有序打卡点') && contains(app.DirectionStatus.Text,'无有效数据'));
 app.Figure.Visible='on'; drawnow;
 exportapp(app.Figure,fullfile(folder,'app_preview.png'));

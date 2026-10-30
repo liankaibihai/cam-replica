@@ -1,10 +1,11 @@
 function c = camProfile(r,p)
 % Radial translating roller. q is roller-center radius, not surface radius.
 ratio=p.gearRatio; workLimit=2*pi-deg2rad(p.returnAngleDeg);
-required=2*r.driveDistance(end)/(p.wheelDiameter*workLimit);
-if p.autoRatio, ratio=max(ratio,required*(1+1e-9)); end
+% Transmission is user-owned hardware. Legacy autoRatio metadata cannot
+% change it, including during search, verification or export.
 phi=2*r.driveDistance/(p.wheelDiameter*ratio);
-assert(phi(end)<2*pi-deg2rad(5),'cam:GearRatio','凸轮工作段过长，需增大传动比或启用自动调整。');
+assert(phi(end)<2*pi-deg2rad(5),'cam:GearRatio', ...
+    '固定传动比 %.6g 下工作段 %.3f°，整圈至少需留5°回程。请缩短路线或由用户重新设定机构参数；程序不会调整传动比。',ratio,rad2deg(phi(end)));
 q0=p.referenceDiameter/2;
 qWork=q0+camdesign.lift(r.steering,p);
 pp=spline(phi,qWork); pp1=camdesign.ppDerivative(pp,1); pp2=camdesign.ppDerivative(pp,2);
@@ -32,5 +33,7 @@ c=struct('phi',a,'radius',q,'pitch',pitch,'actual',actual, ...
     'pressure',atan2(abs(d),q),'curvature',curvature, ...
     'undercutMargin',1-p.rollerRadius*curvature,'workingMask',working, ...
     'workPhi',phi,'workRadius',qWork,'workEnd',phi(end), ...
-    'effectiveRatio',ratio,'requestedRatio',p.gearRatio,'returnCoefficients',coeff);
+    'effectiveRatio',ratio,'requestedRatio',p.gearRatio,'returnCoefficients',coeff, ...
+    'actualReturnDeg',rad2deg(gap),'returnAngleSatisfied',phi(end)<=workLimit, ...
+    'ratioPolicy','fixed-user-input-v1');
 end

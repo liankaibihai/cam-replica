@@ -42,6 +42,7 @@ for iteration=1:project.params.iterations
     history(end).gradient=grad; history(end).probeScores=probeScores; history(end).evaluations=evals;
     history(end).probeMM=probe; history(end).learningScale=controls.learningScale;
     history(end).scheduleScale=controls.decay; history(end).scheduledStepMM=step*controls.learningScale;
+    history(end).plannedSmoothingRates=smoothingPlan();
     if callback(iteration-1,best,history), reason='user_stop'; break; end
     accepted=false; acceptedStep=0; method='no_step'; smoothingAttempts=0; smoothingAlpha=0;
     if magnitude>1e-12
@@ -73,7 +74,7 @@ for iteration=1:project.params.iterations
         % Test the visible board formula after each search step. Our trigger and
         % objective-based acceptance/backtracking are explicitly independent.
         smoothingBase=best.nodes;
-        rates=[0.1 0.05 0.025]; if controls.custom, rates=controls.smoothingRates; end
+        rates=smoothingPlan();
         for alpha=rates
             smoothingAttempts=smoothingAttempts+1;
             trial=best; middle=2:size(baseNodes,1)-1;
@@ -124,6 +125,11 @@ callback(history(end).iteration,best,history);
             'directionIteration',iteration,'directionBaseNodes',base,'descentDirection',directionUsed, ...
             'gradient',[],'probeScores',[],'metrics',current.metrics,'smoothingAttempts',0,'smoothingAlpha',0, ...
             'probeMM',probe,'learningScale',controls.learningScale,'scheduleScale',controls.decay, ...
-            'scheduledStepMM',step*controls.learningScale);
+            'scheduledStepMM',step*controls.learningScale,'plannedSmoothingRates',smoothingPlan());
+    end
+    function rates=smoothingPlan()
+        rates=[];
+        if controls.custom, rates=controls.smoothingRates;
+        elseif strcmp(algorithm,'video-four-direction-v1'), rates=[.1 .05 .025]; end
     end
 end
