@@ -285,3 +285,7 @@ simulation = camdesign.simulate(result.cam, actual, ...
 `check_video_inverse` 检查理论轮廓极坐标恢复、平推反算、行程相位关系，以及直行/左右恒转角和变转角的圆弧步进，输出 `outputs/video_inverse/verification.json`。诊断沿用本项目符号约定，不改变生产反推算法，不宣称恢复了完整旧教程源文件。
 
 `tools/requirements-video.txt` 记录研究环境版本；这些依赖不参与 MATLAB 凸轮计算。原始视频、模型、页面元数据、弹幕及抽帧均放在 Git 忽略的 `local/` 中，Git 只记录工具和核对结论。
+
+## 比赛几何与本队设计配置
+
+新增检查的参数语义、诊断边界和本队计算表来源见[比赛几何](CONTEST_GEOMETRY.md)。普通启动使用`camdesign.teamSolarProject()`的用户确认设计值；历史太阳能回归工厂仍为`solarTestProject()`。当前保存的项目不因新默认而被覆盖。

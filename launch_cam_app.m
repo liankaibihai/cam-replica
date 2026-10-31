@@ -1,7 +1,7 @@
 function app = launch_cam_app(project)
 % Run this from the project directory in MATLAB R2025b.
 addpath(fileparts(mfilename('fullpath')));
-if nargin<1, project=camdesign.solarTestProject(); end
+if nargin<1, project=camdesign.teamSolarProject(); end
 camdesign.validateProject(project);
 app=CamReplicaApp('off');
 app.Project=project; app.syncInputs(); app.calculate();

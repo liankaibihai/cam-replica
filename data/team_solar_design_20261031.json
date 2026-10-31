@@ -1,0 +1,49 @@
+{
+  "source": "F:\\许昊阳\\竞赛\\2027工创\\工创\\新能源2027小车计算表格 (1).xlsx",
+  "sha256": "e3640872f46a6438003716c8c78916bf73a00bf99baefa82348628700d925b65",
+  "sheet": "顶球",
+  "confirmed": "2026-10-31 用户确认轴距、轮偏距、传感器、轮径、转向偏距、基准圆为本队平推设计值，标题为旧模板。传动比35沿用既有用户确认。",
+  "params": {
+    "mechanism": "flat",
+    "wheelDiameter": 135,
+    "gearRatio": 35,
+    "driveX": 60,
+    "driveY": -110,
+    "drivenX": -105,
+    "drivenY": -110,
+    "sensorX": 20,
+    "sensorY": 0,
+    "lever": 20,
+    "referenceDiameter": 150
+  },
+  "cellMap": {
+    "wheelDiameter": "A9",
+    "gearRatio": "C12 = D9*E9 = 5*7",
+    "driveX": "B3",
+    "driveY": "-A3",
+    "drivenX": "C3",
+    "drivenY": "-A3",
+    "sensorX_sensorY": "D3",
+    "lever": "A6",
+    "referenceDiameter": "C6"
+  },
+  "notApplied": {
+    "thickness": "B6=3, not included in explicit confirmation; existing test value retained (record only)",
+    "rearExtent": "A12=150 is checkpoint-to-tail distance; not a verified front-axis rear extent",
+    "heading": "E6=(0,1) ambiguous body/front direction; retain 90 degrees as assumption",
+    "gearTeeth": "D9*E9=35 but gear rows 150/30 and 120/30 multiply to20; do not override confirmed35",
+    "length": "用户明确为原版计算后显示并填入，用于计算凸轮利用率；非根据官方有效距离填写。保留为工作段对照参考，原版同输入和具体字段尚未核验，不强制替换本版主动轮积分。",
+    "bodyFootprint": "No left/right/front boundaries or continuous coverage region supplied"
+  },
+  "asBuiltMeasured": false,
+  "originalSimulationReference": {
+    "lengthMM": 12238,
+    "source": "用户2026-10-31明确：原版仿真结果填入",
+    "trajectoryField": "用户说明计算后显示，用于凸轮利用率，原版字段文字尚未记录",
+    "sameInputComparisonVerified": false,
+    "purposeConfirmed": "凸轮工作段占整圈，非全部轮廓用于赛道工作",
+    "workFractionFromWorkbook": 0.8244394470089377,
+    "workAngleDegFromWorkbook": 296.79820092321756,
+    "returnAngleDegFromWorkbook": 63.201799076782436
+  }
+}

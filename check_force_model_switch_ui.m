@@ -1,7 +1,8 @@
-function report=check_force_model_switch_ui()
+function report=check_force_model_switch_ui(folder)
 % Owned hidden UI only. Real callbacks, complete recovery and failure states.
 assert(batchStartupOptionUsed,'cam:BatchOnly','Use independent MATLAB batch.');
-root=fileparts(mfilename('fullpath')); folder=fullfile(root,'outputs','force_model_switch_20261031','ui');
+root=fileparts(mfilename('fullpath'));
+if nargin<1, folder=fullfile(root,'outputs','force_model_switch_20261031','ui'); end
 if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleanup=onCleanup(@()closeOwn(app));
 saved=load(fullfile(root,'outputs','model_mapping_20261031','quality_cubic','result.mat'),'q');

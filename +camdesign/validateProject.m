@@ -1,5 +1,6 @@
 function validateProject(project)
 p=project.params;
+if isfield(p,'contestGeometry'), camdesign.contestGeometrySettings(p); end
 assert(strcmp(project.schema,'cam-replica-1'),'cam:Schema','不支持的项目版本。');
 validateattributes(project.targets,{'double'},{'2d','ncols',2,'real','finite'});
 validateattributes(project.nodes,{'double'},{'2d','ncols',2,'real','finite'});

@@ -1,0 +1,1900 @@
+{
+  "date": "2026-10-31",
+  "baseline": "2c0fe8ed043976187230f145ce4e6800613566c9",
+  "reports": [
+    {
+      "path": "outputs/contest_geometry_20261031/auto_contracts/contracts/auto_model_lock.json",
+      "sha256": "5fb46d9432f6701c5aacf0872edadccd72ead4e27e91dac80087c917f3a35cb2",
+      "report": {
+        "release": "2025b",
+        "checks": [
+          "All four configurations and final callback retain user model and Bezier degree: cubic",
+          "All four configurations and final callback retain user model and Bezier degree: bezier-blend-independent-v1",
+          "Unsupported B-spline automatic mode explicitly rejects before any callback/model change"
+        ],
+        "scope": "Short model-lock contracts only, not optimizer quality."
+      }
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/core/verification.json",
+      "sha256": "e8e7111cba61bd09813425c9679cae238c6461c83013cd616395e376733d9a6e",
+      "report": {
+        "release": "2025b",
+        "checksPassed": 8,
+        "checks": [
+          "analytic straight and 90deg body transforms; steering/tangent are not substituted for body heading",
+          "centers inside do not excuse body crossing; exact contact and configured safety-buffer contact fail",
+          "whole UID disk required; half-exposed and numerical boundary-touch coverage conservatively reject",
+          "repeated start/end require separate reentry; continuous dwell, extra events and simultaneous entries cannot fake order",
+          "missing/unmeasured assumptions cannot pass; negative/nonfinite/malformed values reject; old settings remain unchanged",
+          "route audit independent of cam failure; dual-grid resolution gates, immutable physical inputs and saved setting roundtrip",
+          "candidate export recomputes new current geometry report and explicitly records unconfigured legacy projects",
+          "confirmed team solar preliminary design values retained; ten visits including repeated Earth audited only as unmeasured diagnostic geometry"
+        ],
+        "analyticStraight": {
+          "version": "sampled-contest-geometry-v1",
+          "valid": true,
+          "configured": true,
+          "measurementsConfirmed": true,
+          "coverageRectangleConfirmed": true,
+          "readyForSampledAssessment": true,
+          "sampledGeometryPassed": true,
+          "competitionCertified": false,
+          "rfidCertified": false,
+          "continuousCertified": false,
+          "settings": {
+            "version": "rectangle-contest-geometry-v1",
+            "measurementsConfirmed": true,
+            "coverageRectangleConfirmed": true,
+            "leftMM": 50,
+            "rightMM": 50,
+            "frontMM": 40,
+            "rearMM": 160,
+            "coverXMinMM": -25,
+            "coverXMaxMM": 25,
+            "coverYMinMM": -100,
+            "coverYMaxMM": -20,
+            "tagDiameterMM": 20,
+            "boundaryMarginMM": 0,
+            "coverageMarginMM": 0
+          },
+          "missingFields": [],
+          "boundary": {
+            "satisfied": true,
+            "minimumMarginMM": 140,
+            "worstSampleIndex": 1,
+            "worstSide": "xmin",
+            "worstFrontXY": [
+              300,
+              300
+            ],
+            "worstBodyHeadingRad": 0,
+            "worstPolygonXY": [
+              [
+                140,
+                350
+              ],
+              [
+                140,
+                250
+              ],
+              [
+                340,
+                250
+              ],
+              [
+                340,
+                350
+              ],
+              [
+                140,
+                350
+              ]
+            ],
+            "violatingSampleIndices": [],
+            "violatingSampleCount": 0,
+            "perSampleMarginMM": {
+              "omittedDenseArray": true,
+              "count": 101,
+              "source": "Full array retained in hashed local report"
+            },
+            "touchIsFailure": true,
+            "marginIncludesExtraBufferMM": 0
+          },
+          "coverage": {
+            "allRequiredVisitsCovered": true,
+            "orderSatisfied": true,
+            "satisfied": true,
+            "expectedLocationIDs": [
+              1,
+              2
+            ],
+            "observedLocationIDs": [
+              1,
+              2
+            ],
+            "eventsLocationEntryExitSample": [
+              [
+                1,
+                1,
+                30
+              ],
+              [
+                2,
+                72,
+                101
+              ]
+            ],
+            "ambiguousSimultaneousEntries": false,
+            "extraEventIndices": [],
+            "unmatchedVisitIndices": [],
+            "problemVisitIndices": [],
+            "visits": [
+              {
+                "visitIndex": 1,
+                "locationID": 1,
+                "targetXY": [
+                  240,
+                  300
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 1,
+                "bestMarginMM": 15,
+                "bestSampleIndex": 1,
+                "bestFrontXY": [
+                  300,
+                  300
+                ],
+                "bestBodyHeadingRad": 0,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 2,
+                "locationID": 2,
+                "targetXY": [
+                  340,
+                  300
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 2,
+                "bestMarginMM": 15,
+                "bestSampleIndex": 86,
+                "bestFrontXY": [
+                  385,
+                  300
+                ],
+                "bestBodyHeadingRad": 0,
+                "reason": "独立全覆盖事件已找到"
+              }
+            ],
+            "worstBestMarginMM": 15,
+            "worstVisitIndex": 1,
+            "tagDiameterMM": 20,
+            "coverageExtraMarginMM": 0,
+            "scope": "Whole UID disk strictly inside independent opaque inner rectangle at sampled body poses. Continuous dwell is ONE event; re-entry is required for repeated start/end. No RFID trigger inference."
+          },
+          "sampleCount": 101,
+          "maxFrontStepMM": 1,
+          "maxHeadingStepDeg": 0,
+          "verdict": "已确认输入下采样几何通过；不是比赛或RFID认证",
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "numericContactToleranceMM": 1e-09,
+          "scope": "Sampled body poses only; strict touch rejection within 1e-9mm numerical guard. Body envelope encloses the entire vehicle including wires; independent coverage rectangle is an opaque, continuously covered INNER footprint. Origin=front steering axis; body X right, Y forward. No measured defaults. No between-sample swept-volume, opaque-body measurement, tire slip, RFID timing, LED, speech, official score or continuous certification."
+        },
+        "rotated": {
+          "version": "sampled-contest-geometry-v1",
+          "valid": true,
+          "configured": true,
+          "measurementsConfirmed": true,
+          "coverageRectangleConfirmed": true,
+          "readyForSampledAssessment": true,
+          "sampledGeometryPassed": true,
+          "competitionCertified": false,
+          "rfidCertified": false,
+          "continuousCertified": false,
+          "settings": {
+            "version": "rectangle-contest-geometry-v1",
+            "measurementsConfirmed": true,
+            "coverageRectangleConfirmed": true,
+            "leftMM": 50,
+            "rightMM": 50,
+            "frontMM": 40,
+            "rearMM": 160,
+            "coverXMinMM": -25,
+            "coverXMaxMM": 25,
+            "coverYMinMM": -100,
+            "coverYMaxMM": -20,
+            "tagDiameterMM": 20,
+            "boundaryMarginMM": 0,
+            "coverageMarginMM": 0
+          },
+          "missingFields": [],
+          "boundary": {
+            "satisfied": true,
+            "minimumMarginMM": 140,
+            "worstSampleIndex": 1,
+            "worstSide": "ymin",
+            "worstFrontXY": [
+              300,
+              300
+            ],
+            "worstBodyHeadingRad": 1.5707963267948966,
+            "worstPolygonXY": [
+              [
+                250,
+                140
+              ],
+              [
+                350,
+                140
+              ],
+              [
+                350,
+                340
+              ],
+              [
+                250,
+                340
+              ],
+              [
+                250,
+                140
+              ]
+            ],
+            "violatingSampleIndices": [],
+            "violatingSampleCount": 0,
+            "perSampleMarginMM": 140,
+            "touchIsFailure": true,
+            "marginIncludesExtraBufferMM": 0
+          },
+          "coverage": {
+            "allRequiredVisitsCovered": true,
+            "orderSatisfied": true,
+            "satisfied": true,
+            "expectedLocationIDs": 1,
+            "observedLocationIDs": 1,
+            "eventsLocationEntryExitSample": [
+              1,
+              1,
+              1
+            ],
+            "ambiguousSimultaneousEntries": false,
+            "extraEventIndices": [],
+            "unmatchedVisitIndices": [],
+            "problemVisitIndices": [],
+            "visits": {
+              "visitIndex": 1,
+              "locationID": 1,
+              "targetXY": [
+                300,
+                240
+              ],
+              "orderedCovered": true,
+              "matchingEventIndex": 1,
+              "bestMarginMM": 14.999999999999996,
+              "bestSampleIndex": 1,
+              "bestFrontXY": [
+                300,
+                300
+              ],
+              "bestBodyHeadingRad": 1.5707963267948966,
+              "reason": "独立全覆盖事件已找到"
+            },
+            "worstBestMarginMM": 14.999999999999996,
+            "worstVisitIndex": 1,
+            "tagDiameterMM": 20,
+            "coverageExtraMarginMM": 0,
+            "scope": "Whole UID disk strictly inside independent opaque inner rectangle at sampled body poses. Continuous dwell is ONE event; re-entry is required for repeated start/end. No RFID trigger inference."
+          },
+          "sampleCount": 1,
+          "maxFrontStepMM": 0,
+          "maxHeadingStepDeg": 0,
+          "verdict": "已确认输入下采样几何通过；不是比赛或RFID认证",
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "numericContactToleranceMM": 1e-09,
+          "scope": "Sampled body poses only; strict touch rejection within 1e-9mm numerical guard. Body envelope encloses the entire vehicle including wires; independent coverage rectangle is an opaque, continuously covered INNER footprint. Origin=front steering axis; body X right, Y forward. No measured defaults. No between-sample swept-volume, opaque-body measurement, tire slip, RFID timing, LED, speech, official score or continuous certification."
+        },
+        "crossed": {
+          "version": "sampled-contest-geometry-v1",
+          "valid": true,
+          "configured": true,
+          "measurementsConfirmed": true,
+          "coverageRectangleConfirmed": true,
+          "readyForSampledAssessment": true,
+          "sampledGeometryPassed": false,
+          "competitionCertified": false,
+          "rfidCertified": false,
+          "continuousCertified": false,
+          "settings": {
+            "version": "rectangle-contest-geometry-v1",
+            "measurementsConfirmed": true,
+            "coverageRectangleConfirmed": true,
+            "leftMM": 50,
+            "rightMM": 50,
+            "frontMM": 40,
+            "rearMM": 160,
+            "coverXMinMM": -25,
+            "coverXMaxMM": 25,
+            "coverYMinMM": -100,
+            "coverYMaxMM": -20,
+            "tagDiameterMM": 20,
+            "boundaryMarginMM": 0,
+            "coverageMarginMM": 0
+          },
+          "missingFields": [],
+          "boundary": {
+            "satisfied": false,
+            "minimumMarginMM": -30,
+            "worstSampleIndex": 1,
+            "worstSide": "ymin",
+            "worstFrontXY": [
+              170,
+              20
+            ],
+            "worstBodyHeadingRad": 0,
+            "worstPolygonXY": [
+              [
+                10,
+                70
+              ],
+              [
+                10,
+                -30
+              ],
+              [
+                210,
+                -30
+              ],
+              [
+                210,
+                70
+              ],
+              [
+                10,
+                70
+              ]
+            ],
+            "violatingSampleIndices": 1,
+            "violatingSampleCount": 1,
+            "perSampleMarginMM": -30,
+            "touchIsFailure": true,
+            "marginIncludesExtraBufferMM": 0
+          },
+          "coverage": {
+            "allRequiredVisitsCovered": true,
+            "orderSatisfied": true,
+            "satisfied": true,
+            "expectedLocationIDs": 1,
+            "observedLocationIDs": 1,
+            "eventsLocationEntryExitSample": [
+              1,
+              1,
+              1
+            ],
+            "ambiguousSimultaneousEntries": false,
+            "extraEventIndices": [],
+            "unmatchedVisitIndices": [],
+            "problemVisitIndices": [],
+            "visits": {
+              "visitIndex": 1,
+              "locationID": 1,
+              "targetXY": [
+                110,
+                20
+              ],
+              "orderedCovered": true,
+              "matchingEventIndex": 1,
+              "bestMarginMM": 15,
+              "bestSampleIndex": 1,
+              "bestFrontXY": [
+                170,
+                20
+              ],
+              "bestBodyHeadingRad": 0,
+              "reason": "独立全覆盖事件已找到"
+            },
+            "worstBestMarginMM": 15,
+            "worstVisitIndex": 1,
+            "tagDiameterMM": 20,
+            "coverageExtraMarginMM": 0,
+            "scope": "Whole UID disk strictly inside independent opaque inner rectangle at sampled body poses. Continuous dwell is ONE event; re-entry is required for repeated start/end. No RFID trigger inference."
+          },
+          "sampleCount": 1,
+          "maxFrontStepMM": 150,
+          "maxHeadingStepDeg": 0,
+          "verdict": "采样比赛几何未通过",
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "numericContactToleranceMM": 1e-09,
+          "scope": "Sampled body poses only; strict touch rejection within 1e-9mm numerical guard. Body envelope encloses the entire vehicle including wires; independent coverage rectangle is an opaque, continuously covered INNER footprint. Origin=front steering axis; body X right, Y forward. No measured defaults. No between-sample swept-volume, opaque-body measurement, tire slip, RFID timing, LED, speech, official score or continuous certification."
+        },
+        "halfExposed": {
+          "version": "sampled-contest-geometry-v1",
+          "valid": true,
+          "configured": true,
+          "measurementsConfirmed": true,
+          "coverageRectangleConfirmed": true,
+          "readyForSampledAssessment": true,
+          "sampledGeometryPassed": false,
+          "competitionCertified": false,
+          "rfidCertified": false,
+          "continuousCertified": false,
+          "settings": {
+            "version": "rectangle-contest-geometry-v1",
+            "measurementsConfirmed": true,
+            "coverageRectangleConfirmed": true,
+            "leftMM": 50,
+            "rightMM": 50,
+            "frontMM": 40,
+            "rearMM": 160,
+            "coverXMinMM": -25,
+            "coverXMaxMM": 25,
+            "coverYMinMM": -100,
+            "coverYMaxMM": -20,
+            "tagDiameterMM": 20,
+            "boundaryMarginMM": 0,
+            "coverageMarginMM": 0
+          },
+          "missingFields": [],
+          "boundary": {
+            "satisfied": true,
+            "minimumMarginMM": 140,
+            "worstSampleIndex": 1,
+            "worstSide": "xmin",
+            "worstFrontXY": [
+              300,
+              300
+            ],
+            "worstBodyHeadingRad": 0,
+            "worstPolygonXY": [
+              [
+                140,
+                350
+              ],
+              [
+                140,
+                250
+              ],
+              [
+                340,
+                250
+              ],
+              [
+                340,
+                350
+              ],
+              [
+                140,
+                350
+              ]
+            ],
+            "violatingSampleIndices": [],
+            "violatingSampleCount": 0,
+            "perSampleMarginMM": 140,
+            "touchIsFailure": true,
+            "marginIncludesExtraBufferMM": 0
+          },
+          "coverage": {
+            "allRequiredVisitsCovered": false,
+            "orderSatisfied": false,
+            "satisfied": false,
+            "expectedLocationIDs": 1,
+            "observedLocationIDs": [],
+            "eventsLocationEntryExitSample": [],
+            "ambiguousSimultaneousEntries": false,
+            "extraEventIndices": [],
+            "unmatchedVisitIndices": 1,
+            "problemVisitIndices": 1,
+            "visits": {
+              "visitIndex": 1,
+              "locationID": 1,
+              "targetXY": [
+                240,
+                280
+              ],
+              "orderedCovered": false,
+              "matchingEventIndex": 0,
+              "bestMarginMM": -5,
+              "bestSampleIndex": 1,
+              "bestFrontXY": [
+                300,
+                300
+              ],
+              "bestBodyHeadingRad": 0,
+              "reason": "没有全覆盖样本"
+            },
+            "worstBestMarginMM": -5,
+            "worstVisitIndex": 1,
+            "tagDiameterMM": 20,
+            "coverageExtraMarginMM": 0,
+            "scope": "Whole UID disk strictly inside independent opaque inner rectangle at sampled body poses. Continuous dwell is ONE event; re-entry is required for repeated start/end. No RFID trigger inference."
+          },
+          "sampleCount": 1,
+          "maxFrontStepMM": 0,
+          "maxHeadingStepDeg": 0,
+          "verdict": "采样比赛几何未通过",
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "numericContactToleranceMM": 1e-09,
+          "scope": "Sampled body poses only; strict touch rejection within 1e-9mm numerical guard. Body envelope encloses the entire vehicle including wires; independent coverage rectangle is an opaque, continuously covered INNER footprint. Origin=front steering axis; body X right, Y forward. No measured defaults. No between-sample swept-volume, opaque-body measurement, tire slip, RFID timing, LED, speech, official score or continuous certification."
+        },
+        "repeat": {
+          "version": "sampled-contest-geometry-v1",
+          "valid": true,
+          "configured": true,
+          "measurementsConfirmed": true,
+          "coverageRectangleConfirmed": true,
+          "readyForSampledAssessment": true,
+          "sampledGeometryPassed": true,
+          "competitionCertified": false,
+          "rfidCertified": false,
+          "continuousCertified": false,
+          "settings": {
+            "version": "rectangle-contest-geometry-v1",
+            "measurementsConfirmed": true,
+            "coverageRectangleConfirmed": true,
+            "leftMM": 50,
+            "rightMM": 50,
+            "frontMM": 40,
+            "rearMM": 160,
+            "coverXMinMM": -25,
+            "coverXMaxMM": 25,
+            "coverYMinMM": -100,
+            "coverYMaxMM": -20,
+            "tagDiameterMM": 20,
+            "boundaryMarginMM": 0,
+            "coverageMarginMM": 0
+          },
+          "missingFields": [],
+          "boundary": {
+            "satisfied": true,
+            "minimumMarginMM": 140,
+            "worstSampleIndex": 1,
+            "worstSide": "xmin",
+            "worstFrontXY": [
+              300,
+              300
+            ],
+            "worstBodyHeadingRad": 0,
+            "worstPolygonXY": [
+              [
+                140,
+                350
+              ],
+              [
+                140,
+                250
+              ],
+              [
+                340,
+                250
+              ],
+              [
+                340,
+                350
+              ],
+              [
+                140,
+                350
+              ]
+            ],
+            "violatingSampleIndices": [],
+            "violatingSampleCount": 0,
+            "perSampleMarginMM": {
+              "omittedDenseArray": true,
+              "count": 401,
+              "source": "Full array retained in hashed local report"
+            },
+            "touchIsFailure": true,
+            "marginIncludesExtraBufferMM": 0
+          },
+          "coverage": {
+            "allRequiredVisitsCovered": true,
+            "orderSatisfied": true,
+            "satisfied": true,
+            "expectedLocationIDs": [
+              1,
+              2,
+              1
+            ],
+            "observedLocationIDs": [
+              1,
+              2,
+              1
+            ],
+            "eventsLocationEntryExitSample": [
+              [
+                1,
+                1,
+                30
+              ],
+              [
+                2,
+                172,
+                230
+              ],
+              [
+                1,
+                372,
+                401
+              ]
+            ],
+            "ambiguousSimultaneousEntries": false,
+            "extraEventIndices": [],
+            "unmatchedVisitIndices": [],
+            "problemVisitIndices": [],
+            "visits": [
+              {
+                "visitIndex": 1,
+                "locationID": 1,
+                "targetXY": [
+                  240,
+                  300
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 1,
+                "bestMarginMM": 15,
+                "bestSampleIndex": 1,
+                "bestFrontXY": [
+                  300,
+                  300
+                ],
+                "bestBodyHeadingRad": 0,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 2,
+                "locationID": 2,
+                "targetXY": [
+                  440,
+                  300
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 2,
+                "bestMarginMM": 15,
+                "bestSampleIndex": 186,
+                "bestFrontXY": [
+                  485,
+                  300
+                ],
+                "bestBodyHeadingRad": 0,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 3,
+                "locationID": 1,
+                "targetXY": [
+                  240,
+                  300
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 3,
+                "bestMarginMM": 15,
+                "bestSampleIndex": 386,
+                "bestFrontXY": [
+                  315,
+                  300
+                ],
+                "bestBodyHeadingRad": 0,
+                "reason": "独立全覆盖事件已找到"
+              }
+            ],
+            "worstBestMarginMM": 15,
+            "worstVisitIndex": 1,
+            "tagDiameterMM": 20,
+            "coverageExtraMarginMM": 0,
+            "scope": "Whole UID disk strictly inside independent opaque inner rectangle at sampled body poses. Continuous dwell is ONE event; re-entry is required for repeated start/end. No RFID trigger inference."
+          },
+          "sampleCount": 401,
+          "maxFrontStepMM": 1,
+          "maxHeadingStepDeg": 0,
+          "verdict": "已确认输入下采样几何通过；不是比赛或RFID认证",
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "numericContactToleranceMM": 1e-09,
+          "scope": "Sampled body poses only; strict touch rejection within 1e-9mm numerical guard. Body envelope encloses the entire vehicle including wires; independent coverage rectangle is an opaque, continuously covered INNER footprint. Origin=front steering axis; body X right, Y forward. No measured defaults. No between-sample swept-volume, opaque-body measurement, tire slip, RFID timing, LED, speech, official score or continuous certification."
+        },
+        "routeIndependent": {
+          "version": "sampled-contest-geometry-v1",
+          "valid": true,
+          "configured": true,
+          "measurementsConfirmed": true,
+          "coverageRectangleConfirmed": true,
+          "readyForSampledAssessment": true,
+          "sampledGeometryPassed": true,
+          "competitionCertified": false,
+          "rfidCertified": false,
+          "continuousCertified": false,
+          "settings": {
+            "version": "rectangle-contest-geometry-v1",
+            "measurementsConfirmed": true,
+            "coverageRectangleConfirmed": true,
+            "leftMM": 50,
+            "rightMM": 50,
+            "frontMM": 40,
+            "rearMM": 160,
+            "coverXMinMM": -25,
+            "coverXMaxMM": 25,
+            "coverYMinMM": -100,
+            "coverYMaxMM": -20,
+            "tagDiameterMM": 20,
+            "boundaryMarginMM": 0,
+            "coverageMarginMM": 0
+          },
+          "missingFields": [],
+          "boundary": {
+            "satisfied": true,
+            "minimumMarginMM": 60,
+            "worstSampleIndex": 1001,
+            "worstSide": "xmax",
+            "worstFrontXY": [
+              900,
+              300
+            ],
+            "worstBodyHeadingRad": 0,
+            "worstPolygonXY": [
+              [
+                740,
+                350
+              ],
+              [
+                740,
+                250
+              ],
+              [
+                940,
+                250
+              ],
+              [
+                940,
+                350
+              ],
+              [
+                740,
+                350
+              ]
+            ],
+            "violatingSampleIndices": [],
+            "violatingSampleCount": 0,
+            "perSampleMarginMM": {
+              "omittedDenseArray": true,
+              "count": 1001,
+              "source": "Full array retained in hashed local report"
+            },
+            "touchIsFailure": true,
+            "marginIncludesExtraBufferMM": 0
+          },
+          "coverage": {
+            "allRequiredVisitsCovered": true,
+            "orderSatisfied": true,
+            "satisfied": true,
+            "expectedLocationIDs": [
+              1,
+              2,
+              3
+            ],
+            "observedLocationIDs": [
+              1,
+              2,
+              3
+            ],
+            "eventsLocationEntryExitSample": [
+              [
+                1,
+                1,
+                50
+              ],
+              [
+                2,
+                452,
+                550
+              ],
+              [
+                3,
+                952,
+                1001
+              ]
+            ],
+            "ambiguousSimultaneousEntries": false,
+            "extraEventIndices": [],
+            "unmatchedVisitIndices": [],
+            "problemVisitIndices": [],
+            "visits": [
+              {
+                "visitIndex": 1,
+                "locationID": 1,
+                "targetXY": [
+                  240,
+                  300
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 1,
+                "bestMarginMM": 15,
+                "bestSampleIndex": 1,
+                "bestFrontXY": [
+                  300,
+                  300
+                ],
+                "bestBodyHeadingRad": 0,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 2,
+                "locationID": 2,
+                "targetXY": [
+                  540,
+                  300
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 2,
+                "bestMarginMM": 15,
+                "bestSampleIndex": 476,
+                "bestFrontXY": [
+                  585,
+                  300
+                ],
+                "bestBodyHeadingRad": 0,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 3,
+                "locationID": 3,
+                "targetXY": [
+                  840,
+                  300
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 3,
+                "bestMarginMM": 15,
+                "bestSampleIndex": 976,
+                "bestFrontXY": [
+                  885,
+                  300
+                ],
+                "bestBodyHeadingRad": 0,
+                "reason": "独立全覆盖事件已找到"
+              }
+            ],
+            "worstBestMarginMM": 15,
+            "worstVisitIndex": 1,
+            "tagDiameterMM": 20,
+            "coverageExtraMarginMM": 0,
+            "scope": "Whole UID disk strictly inside independent opaque inner rectangle at sampled body poses. Continuous dwell is ONE event; re-entry is required for repeated start/end. No RFID trigger inference."
+          },
+          "sampleCount": 1001,
+          "maxFrontStepMM": 0.6000000000000227,
+          "maxHeadingStepDeg": 0,
+          "verdict": "两档采样几何通过；不是连续、RFID或比赛认证",
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "numericContactToleranceMM": 1e-09,
+          "scope": "Sampled body poses only; strict touch rejection within 1e-9mm numerical guard. Body envelope encloses the entire vehicle including wires; independent coverage rectangle is an opaque, continuously covered INNER footprint. Origin=front steering axis; body X right, Y forward. No measured defaults. No between-sample swept-volume, opaque-body measurement, tire slip, RFID timing, LED, speech, official score or continuous certification.",
+          "sampleCounts": [
+            101,
+            1001
+          ],
+          "independentRefinement": true,
+          "resolutionSatisfied": true,
+          "resolutionTargets": {
+            "maxFrontStepMM": 5,
+            "maxHeadingStepDeg": 0.5,
+            "sampleCap": 20001
+          },
+          "eventSequenceStable": true,
+          "coarseBoundaryMinimumMarginMM": 60,
+          "coarseToFineBoundaryDifferenceMM": 0,
+          "coarseObservedLocationIDs": [
+            1,
+            2,
+            3
+          ],
+          "routeSource": "cubic",
+          "gearRatio": 35
+        },
+        "teamSolar": {
+          "version": "sampled-contest-geometry-v1",
+          "valid": true,
+          "configured": true,
+          "measurementsConfirmed": false,
+          "coverageRectangleConfirmed": true,
+          "readyForSampledAssessment": false,
+          "sampledGeometryPassed": false,
+          "competitionCertified": false,
+          "rfidCertified": false,
+          "continuousCertified": false,
+          "settings": {
+            "version": "rectangle-contest-geometry-v1",
+            "measurementsConfirmed": false,
+            "coverageRectangleConfirmed": true,
+            "leftMM": 50,
+            "rightMM": 50,
+            "frontMM": 40,
+            "rearMM": 160,
+            "coverXMinMM": -25,
+            "coverXMaxMM": 25,
+            "coverYMinMM": -100,
+            "coverYMaxMM": -20,
+            "tagDiameterMM": 20,
+            "boundaryMarginMM": 0,
+            "coverageMarginMM": 0
+          },
+          "missingFields": [],
+          "boundary": {
+            "satisfied": false,
+            "minimumMarginMM": -84.64794764955711,
+            "worstSampleIndex": 6352,
+            "worstSide": "ymin",
+            "worstFrontXY": [
+              4648.3229084466875,
+              -30.962738595879273
+            ],
+            "worstBodyHeadingRad": -3.0432664008353303,
+            "worstPolygonXY": [
+              [
+                4812.45848183424,
+                -65.01436922848728
+              ],
+              [
+                4802.641692623704,
+                34.50261751044047
+              ],
+              [
+                4603.607719145849,
+                14.869039089370645
+              ],
+              [
+                4613.424508356385,
+                -84.64794764955711
+              ],
+              [
+                4812.45848183424,
+                -65.01436922848728
+              ]
+            ],
+            "violatingSampleIndices": {
+              "omittedDenseArray": true,
+              "count": 883,
+              "source": "Full array retained in hashed local report"
+            },
+            "violatingSampleCount": 883,
+            "perSampleMarginMM": {
+              "omittedDenseArray": true,
+              "count": 9601,
+              "source": "Full array retained in hashed local report"
+            },
+            "touchIsFailure": true,
+            "marginIncludesExtraBufferMM": 0
+          },
+          "coverage": {
+            "allRequiredVisitsCovered": false,
+            "orderSatisfied": false,
+            "satisfied": false,
+            "expectedLocationIDs": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              1
+            ],
+            "observedLocationIDs": [
+              2,
+              4,
+              6,
+              7
+            ],
+            "eventsLocationEntryExitSample": [
+              [
+                2,
+                993,
+                1054
+              ],
+              [
+                4,
+                3080,
+                3107
+              ],
+              [
+                6,
+                4597,
+                4654
+              ],
+              [
+                7,
+                5580,
+                5628
+              ]
+            ],
+            "ambiguousSimultaneousEntries": false,
+            "extraEventIndices": [],
+            "unmatchedVisitIndices": [
+              1,
+              3,
+              5,
+              8,
+              9,
+              10
+            ],
+            "problemVisitIndices": [
+              1,
+              3,
+              5,
+              8,
+              9,
+              10
+            ],
+            "visits": [
+              {
+                "visitIndex": 1,
+                "locationID": 1,
+                "targetXY": [
+                  410,
+                  420
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -4.688825378448502,
+                "bestSampleIndex": 70,
+                "bestFrontXY": [
+                  390.89108068204393,
+                  513.533980915698
+                ],
+                "bestBodyHeadingRad": 1.5645924048169355,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 2,
+                "locationID": 2,
+                "targetXY": [
+                  700,
+                  1580
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 1,
+                "bestMarginMM": 11.133111970876115,
+                "bestSampleIndex": 1009,
+                "bestFrontXY": [
+                  739.5453231278468,
+                  1593.2906128648135
+                ],
+                "bestBodyHeadingRad": 0.41704771094217696,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 3,
+                "locationID": 3,
+                "targetXY": [
+                  1440,
+                  1100
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -5.810097574811966,
+                "bestSampleIndex": 1666,
+                "bestFrontXY": [
+                  1471.2228216216165,
+                  1106.6696871772094
+                ],
+                "bestBodyHeadingRad": -0.4994992746630805,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 4,
+                "locationID": 4,
+                "targetXY": [
+                  3170,
+                  1560
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 2,
+                "bestMarginMM": 1.3465353494580157,
+                "bestSampleIndex": 3106,
+                "bestFrontXY": [
+                  3256.6853286890855,
+                  1581.116213460675
+                ],
+                "bestBodyHeadingRad": 0.08530769800417615,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 5,
+                "locationID": 5,
+                "targetXY": [
+                  4160,
+                  1440
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -7.3227097743829646,
+                "bestSampleIndex": 3830,
+                "bestFrontXY": [
+                  4182.13778503722,
+                  1462.7602092767502
+                ],
+                "bestBodyHeadingRad": 0.02398595930455095,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 6,
+                "locationID": 6,
+                "targetXY": [
+                  5110,
+                  1630
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 3,
+                "bestMarginMM": 9.848262899203363,
+                "bestSampleIndex": 4645,
+                "bestFrontXY": [
+                  5188.211511223073,
+                  1612.3879144452442
+                ],
+                "bestBodyHeadingRad": -0.2857953255352199,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 7,
+                "locationID": 7,
+                "targetXY": [
+                  5450,
+                  440
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 4,
+                "bestMarginMM": 5.551120503075815,
+                "bestSampleIndex": 5623,
+                "bestFrontXY": [
+                  5432.211896651462,
+                  357.6306778005848
+                ],
+                "bestBodyHeadingRad": -1.8958505476758907,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 8,
+                "locationID": 8,
+                "targetXY": [
+                  3250,
+                  350
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -1.7036629269404955,
+                "bestSampleIndex": 7361,
+                "bestFrontXY": [
+                  3162.0198938667063,
+                  376.6361489729264
+                ],
+                "bestBodyHeadingRad": -3.6182994919332327,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 9,
+                "locationID": 9,
+                "targetXY": [
+                  2500,
+                  750
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -6.2178545949724295,
+                "bestSampleIndex": 7981,
+                "bestFrontXY": [
+                  2469.8750386603006,
+                  738.7927158037478
+                ],
+                "bestBodyHeadingRad": -3.506417871429877,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 10,
+                "locationID": 1,
+                "targetXY": [
+                  410,
+                  420
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -4.688825378448502,
+                "bestSampleIndex": 70,
+                "bestFrontXY": [
+                  390.89108068204393,
+                  513.533980915698
+                ],
+                "bestBodyHeadingRad": 1.5645924048169355,
+                "reason": "没有全覆盖样本"
+              }
+            ],
+            "worstBestMarginMM": -7.3227097743829646,
+            "worstVisitIndex": 5,
+            "tagDiameterMM": 20,
+            "coverageExtraMarginMM": 0,
+            "scope": "Whole UID disk strictly inside independent opaque inner rectangle at sampled body poses. Continuous dwell is ONE event; re-entry is required for repeated start/end. No RFID trigger inference."
+          },
+          "sampleCount": 9601,
+          "maxFrontStepMM": 1.6371095539883522,
+          "maxHeadingStepDeg": 0.2797997546761058,
+          "verdict": "仅诊断；尺寸/场界/UID或连续遮挡区域未确认，无法验收",
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "numericContactToleranceMM": 1e-09,
+          "scope": "Sampled body poses only; strict touch rejection within 1e-9mm numerical guard. Body envelope encloses the entire vehicle including wires; independent coverage rectangle is an opaque, continuously covered INNER footprint. Origin=front steering axis; body X right, Y forward. No measured defaults. No between-sample swept-volume, opaque-body measurement, tire slip, RFID timing, LED, speech, official score or continuous certification.",
+          "sampleCounts": [
+            601,
+            9601
+          ],
+          "independentRefinement": true,
+          "resolutionSatisfied": true,
+          "resolutionTargets": {
+            "maxFrontStepMM": 5,
+            "maxHeadingStepDeg": 0.5,
+            "sampleCap": 20001
+          },
+          "eventSequenceStable": true,
+          "coarseBoundaryMinimumMarginMM": -84.64780931549132,
+          "coarseToFineBoundaryDifferenceMM": 0.00013833406579522034,
+          "coarseObservedLocationIDs": [
+            2,
+            4,
+            6,
+            7
+          ],
+          "routeSource": "cubic",
+          "gearRatio": 35
+        },
+        "scope": "Numerical analytic/sampled geometry tests only. Configured rectangles are test assumptions, not measured team dimensions."
+      }
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/force_ui/verification.json",
+      "sha256": "073eb53ed117658b3ca13c37a2a91508e2d8d9814abc3afd2f943891bfd9749c",
+      "report": {
+        "release": "2025b",
+        "checksPassed": 6,
+        "checks": [
+          "solar cubic strict reject -> real Bezier15 force -> saved metadata -> full project/result/history/pending inputs restored",
+          "pending failed model can rebuild directly from targets with start, hardware, order and legal settings preserved",
+          "physical evaluation failure keeps new model editable/savable, clears stale results, and restores invalidated-result historical plot",
+          "incomplete backup rejects atomically before modifying project, results or pending inputs",
+          "force refuses invalid hardware and broken source endpoint constraints while preserving raw input and old result",
+          "ordinary strict exact mapping remains available; automatic/busy modes disable force and recovery; narrow fixed action rows visible"
+        ],
+        "bezier15Fit": {
+          "positionMaxMM": 0.043713870770782634,
+          "positionRMSMM": 0.005097004848121724,
+          "maxTangentErrorDeg": 0.06419485265085792,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            0,
+            5.33167196845001e-16
+          ],
+          "endpointTangentErrorDeg": [
+            0,
+            1.908332808878109e-14
+          ],
+          "withinTolerance": false,
+          "shapePreservationGuaranteed": false,
+          "finiteGeometry": true,
+          "endpointConstraintsSatisfied": true,
+          "mathematicallyExactSpace": false,
+          "method": "constrained-fit",
+          "validationSamples": 12845,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bezier-blend-independent-v1",
+          "sourceDegree": 3,
+          "targetDegree": 15,
+          "oldControlPointCount": 34,
+          "requestedControlPointCount": 34,
+          "actualControlPointCount": 250,
+          "controlPointCount": 250,
+          "automaticallyIncreasedCount": true,
+          "attempts": [
+            {
+              "count": 34,
+              "positionMaxMM": 20.319782713788957,
+              "positionRMSMM": 6.875940476414465
+            },
+            {
+              "count": 51,
+              "positionMaxMM": 6.633848815258392,
+              "positionRMSMM": 1.9881130029918037
+            },
+            {
+              "count": 77,
+              "positionMaxMM": 1.5163997179983808,
+              "positionRMSMM": 0.32484752551183377
+            },
+            {
+              "count": 116,
+              "positionMaxMM": 0.40886026665069447,
+              "positionRMSMM": 0.08766891815206335
+            },
+            {
+              "count": 174,
+              "positionMaxMM": 0.11502980917029623,
+              "positionRMSMM": 0.01556418179007683
+            },
+            {
+              "count": 250,
+              "positionMaxMM": 0.043713870770782634,
+              "positionRMSMM": 0.005097004848121724
+            }
+          ],
+          "parameterLength": 12231.165673855725,
+          "targetOrderUnchanged": true,
+          "allowApproximate": true,
+          "forced": true,
+          "approximate": true,
+          "acceptance": "forced-approximate"
+        },
+        "backupPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\model_switch_backups\\tp452ea29f_7afe_4778_9aa0_10205373f012.mat",
+        "screenshots": [
+          "forced_bezier15.png",
+          "rebuilt_pending_model.png",
+          "editable_after_physical_failure.png",
+          "training_actions_narrow.png"
+        ],
+        "scope": "Owned hidden UI; no user windows closed, no optimization, and no assertion of exact reproduction of unavailable user input."
+      }
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/review/verification.json",
+      "sha256": "70074387b8f864ca8ba54b211fd21629df08eeb12ab349cc9846e6b3c9765c21",
+      "report": {
+        "release": "2025b",
+        "checksPassed": 3,
+        "randomPoses": 100,
+        "maxIndependentErrorMM": 1.1368683772161603e-13,
+        "teamAssumedFootprintVerdict": "采样比赛几何未通过",
+        "scope": "Independent polygon-edge oracle, tangency and immutable inputs. Test rectangles are synthetic, not team dimensions."
+      }
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/team/verification.json",
+      "sha256": "e95f85fbfe9f24ac880ab9760e8bb859fa43f5ad79eafd200275dd49754f6abf",
+      "report": {
+        "checksPassed": 5,
+        "release": "2025b",
+        "confirmedDesign": true,
+        "asBuiltMeasured": false,
+        "sourceSHA256": "e3640872f46a6438003716c8c78916bf73a00bf99baefa82348628700d925b65",
+        "wheelCircumferenceMM": 424.11500823462205,
+        "oneCamRevolutionDriveDistanceMM": 14844.025288211771,
+        "scope": "Source mapping, sensor origin, historical fixture preservation and save/load only. Not physical route feasibility."
+      }
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/ui/location_verification.json",
+      "sha256": "8752aa32fea2b37575b4ef276c0c36d47237e81fb3c88a7f47819012acf7ca0a",
+      "report": {
+        "checksPassed": 3,
+        "release": "2025b",
+        "checks": [
+          "empty problem set displays 无",
+          "selected label hidden; detail moved to axes title",
+          "narrow numeric column stays visible; short table headers and team screenshots refreshed"
+        ]
+      }
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/ui/verification.json",
+      "sha256": "8c668e0d9ef3f3bfd451e8e6434e1fd8d0a96667b392c858a0e7f65088f9e051",
+      "report": {
+        "release": "2025b",
+        "checksPassed": 6,
+        "checks": [
+          "old project stays unchanged and unconfigured; separate visible geometry shortcut leaves training entry available",
+          "unconfirmed geometry cannot pass or inherit green numerical verdict; confirmed test input can pass sampled scope; save/load and same-project redraw work",
+          "parameter edits invalidate old report/markers; shell contact failure and insufficient whole UID coverage locate true polygons/visit numbers independently",
+          "route-only audit works without cam; fixed-cam simulation mode refuses design-route auditing and explicitly asks to exit",
+          "force backup restores applied and pending geometry state; older full backup files without the extension remain compatible",
+          "confirmed team design solar 10-visit case uses unmeasured rectangular assumptions only; narrow controls accessible and invalid settings reject atomically"
+        ],
+        "teamSolar": {
+          "version": "sampled-contest-geometry-v1",
+          "valid": true,
+          "configured": true,
+          "measurementsConfirmed": false,
+          "coverageRectangleConfirmed": false,
+          "readyForSampledAssessment": false,
+          "sampledGeometryPassed": false,
+          "competitionCertified": false,
+          "rfidCertified": false,
+          "continuousCertified": false,
+          "settings": {
+            "version": "rectangle-contest-geometry-v1",
+            "measurementsConfirmed": false,
+            "coverageRectangleConfirmed": false,
+            "leftMM": 110,
+            "rightMM": 80,
+            "frontMM": 40,
+            "rearMM": 180,
+            "coverXMinMM": -25,
+            "coverXMaxMM": 25,
+            "coverYMinMM": -100,
+            "coverYMaxMM": -20,
+            "tagDiameterMM": 20,
+            "boundaryMarginMM": 0,
+            "coverageMarginMM": 0
+          },
+          "missingFields": [],
+          "boundary": {
+            "satisfied": false,
+            "minimumMarginMM": -144.3738178405795,
+            "worstSampleIndex": 6357,
+            "worstSide": "ymin",
+            "worstFrontXY": [
+              4641.105932116681,
+              -31.120553591853138
+            ],
+            "worstBodyHeadingRad": -3.0481202355449075,
+            "worstPolygonXY": [
+              [
+                4830.587166220702,
+                -123.839817622676
+              ],
+              [
+                4812.853256941603,
+                65.33076270545193
+              ],
+              [
+                4593.813637614297,
+                44.79676248754841
+              ],
+              [
+                4611.5475468933955,
+                -144.3738178405795
+              ],
+              [
+                4830.587166220702,
+                -123.839817622676
+              ]
+            ],
+            "violatingSampleIndices": {
+              "omittedDenseArray": true,
+              "count": 1107,
+              "source": "Full array retained in hashed local report"
+            },
+            "violatingSampleCount": 1107,
+            "perSampleMarginMM": {
+              "omittedDenseArray": true,
+              "count": 9601,
+              "source": "Full array retained in hashed local report"
+            },
+            "touchIsFailure": true,
+            "marginIncludesExtraBufferMM": 0
+          },
+          "coverage": {
+            "allRequiredVisitsCovered": false,
+            "orderSatisfied": false,
+            "satisfied": false,
+            "expectedLocationIDs": [
+              1,
+              2,
+              3,
+              4,
+              5,
+              6,
+              7,
+              8,
+              9,
+              1
+            ],
+            "observedLocationIDs": [
+              2,
+              4,
+              6,
+              7
+            ],
+            "eventsLocationEntryExitSample": [
+              [
+                2,
+                993,
+                1054
+              ],
+              [
+                4,
+                3080,
+                3107
+              ],
+              [
+                6,
+                4597,
+                4654
+              ],
+              [
+                7,
+                5580,
+                5628
+              ]
+            ],
+            "ambiguousSimultaneousEntries": false,
+            "extraEventIndices": [],
+            "unmatchedVisitIndices": [
+              1,
+              3,
+              5,
+              8,
+              9,
+              10
+            ],
+            "problemVisitIndices": [
+              1,
+              3,
+              5,
+              8,
+              9,
+              10
+            ],
+            "visits": [
+              {
+                "visitIndex": 1,
+                "locationID": 1,
+                "targetXY": [
+                  410,
+                  420
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -4.688825378448502,
+                "bestSampleIndex": 70,
+                "bestFrontXY": [
+                  390.89108068204393,
+                  513.533980915698
+                ],
+                "bestBodyHeadingRad": 1.5645924048169355,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 2,
+                "locationID": 2,
+                "targetXY": [
+                  700,
+                  1580
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 1,
+                "bestMarginMM": 11.133111970876115,
+                "bestSampleIndex": 1009,
+                "bestFrontXY": [
+                  739.5453231278468,
+                  1593.2906128648135
+                ],
+                "bestBodyHeadingRad": 0.41704771094217696,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 3,
+                "locationID": 3,
+                "targetXY": [
+                  1440,
+                  1100
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -5.810097574811966,
+                "bestSampleIndex": 1666,
+                "bestFrontXY": [
+                  1471.2228216216165,
+                  1106.6696871772094
+                ],
+                "bestBodyHeadingRad": -0.4994992746630805,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 4,
+                "locationID": 4,
+                "targetXY": [
+                  3170,
+                  1560
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 2,
+                "bestMarginMM": 1.3465353494580157,
+                "bestSampleIndex": 3106,
+                "bestFrontXY": [
+                  3256.6853286890855,
+                  1581.116213460675
+                ],
+                "bestBodyHeadingRad": 0.08530769800417615,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 5,
+                "locationID": 5,
+                "targetXY": [
+                  4160,
+                  1440
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -7.3227097743829646,
+                "bestSampleIndex": 3830,
+                "bestFrontXY": [
+                  4182.13778503722,
+                  1462.7602092767502
+                ],
+                "bestBodyHeadingRad": 0.02398595930455095,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 6,
+                "locationID": 6,
+                "targetXY": [
+                  5110,
+                  1630
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 3,
+                "bestMarginMM": 9.848262899203363,
+                "bestSampleIndex": 4645,
+                "bestFrontXY": [
+                  5188.211511223073,
+                  1612.3879144452442
+                ],
+                "bestBodyHeadingRad": -0.2857953255352199,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 7,
+                "locationID": 7,
+                "targetXY": [
+                  5450,
+                  440
+                ],
+                "orderedCovered": true,
+                "matchingEventIndex": 4,
+                "bestMarginMM": 5.551120503075815,
+                "bestSampleIndex": 5623,
+                "bestFrontXY": [
+                  5432.211896651462,
+                  357.6306778005848
+                ],
+                "bestBodyHeadingRad": -1.8958505476758907,
+                "reason": "独立全覆盖事件已找到"
+              },
+              {
+                "visitIndex": 8,
+                "locationID": 8,
+                "targetXY": [
+                  3250,
+                  350
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -1.7036629269404955,
+                "bestSampleIndex": 7361,
+                "bestFrontXY": [
+                  3162.0198938667063,
+                  376.6361489729264
+                ],
+                "bestBodyHeadingRad": -3.6182994919332327,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 9,
+                "locationID": 9,
+                "targetXY": [
+                  2500,
+                  750
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -6.2178545949724295,
+                "bestSampleIndex": 7981,
+                "bestFrontXY": [
+                  2469.8750386603006,
+                  738.7927158037478
+                ],
+                "bestBodyHeadingRad": -3.506417871429877,
+                "reason": "没有全覆盖样本"
+              },
+              {
+                "visitIndex": 10,
+                "locationID": 1,
+                "targetXY": [
+                  410,
+                  420
+                ],
+                "orderedCovered": false,
+                "matchingEventIndex": 0,
+                "bestMarginMM": -4.688825378448502,
+                "bestSampleIndex": 70,
+                "bestFrontXY": [
+                  390.89108068204393,
+                  513.533980915698
+                ],
+                "bestBodyHeadingRad": 1.5645924048169355,
+                "reason": "没有全覆盖样本"
+              }
+            ],
+            "worstBestMarginMM": -7.3227097743829646,
+            "worstVisitIndex": 5,
+            "tagDiameterMM": 20,
+            "coverageExtraMarginMM": 0,
+            "scope": "Whole UID disk strictly inside independent opaque inner rectangle at sampled body poses. Continuous dwell is ONE event; re-entry is required for repeated start/end. No RFID trigger inference."
+          },
+          "sampleCount": 9601,
+          "maxFrontStepMM": 1.6371095539883522,
+          "maxHeadingStepDeg": 0.2797997546761058,
+          "verdict": "仅诊断；尺寸/场界/UID或连续遮挡区域未确认，无法验收",
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "numericContactToleranceMM": 1e-09,
+          "scope": "Sampled body poses only; strict touch rejection within 1e-9mm numerical guard. Body envelope encloses the entire vehicle including wires; independent coverage rectangle is an opaque, continuously covered INNER footprint. Origin=front steering axis; body X right, Y forward. No measured defaults. No between-sample swept-volume, opaque-body measurement, tire slip, RFID timing, LED, speech, official score or continuous certification.",
+          "sampleCounts": [
+            601,
+            9601
+          ],
+          "independentRefinement": true,
+          "resolutionSatisfied": true,
+          "resolutionTargets": {
+            "maxFrontStepMM": 5,
+            "maxHeadingStepDeg": 0.5,
+            "sampleCap": 20001
+          },
+          "eventSequenceStable": true,
+          "coarseBoundaryMinimumMarginMM": -144.3637097674135,
+          "coarseToFineBoundaryDifferenceMM": 0.010108073166009035,
+          "coarseObservedLocationIDs": [
+            2,
+            4,
+            6,
+            7
+          ],
+          "routeSource": "cubic",
+          "gearRatio": 35
+        },
+        "screenshots": [
+          "body_boundary_failure.png",
+          "uid_partial_coverage_location.png",
+          "team_solar_diagnostic.png",
+          "team_solar_narrow.png"
+        ],
+        "scope": "Owned hidden windows and synthetic rectangular dimensions; no as-built vehicle, continuous swept-volume or RFID certification."
+      }
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/contest_geometry_20261031/auto_contracts/contracts/auto_model_lock.json",
+      "sha256": "5fb46d9432f6701c5aacf0872edadccd72ead4e27e91dac80087c917f3a35cb2"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/core/export_current/report.json",
+      "sha256": "baba0077517101ef6d67b0f71e19d6b2a9c06179532beadd3caffbcbb9af5015"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/core/export_old/report.json",
+      "sha256": "3de52a6a97691286b49aabe799d040e85a3dd71bc4b6daf6e1678033972d7dbd"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/core/verification.json",
+      "sha256": "e8e7111cba61bd09813425c9679cae238c6461c83013cd616395e376733d9a6e"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/force_ui/editable_after_physical_failure.png",
+      "sha256": "cb3d7cd3f9896153d358391df91a8a2d5eb0f82338915c1ce9cfca9e8e59cb2f"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/force_ui/forced_bezier15.png",
+      "sha256": "ee28d7cecefc557ed35f88f62feb541ff5437963089d97db5a56bdfbdda14314"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/force_ui/rebuilt_pending_model.png",
+      "sha256": "f9acc754980ddef4afa5a4944a312bdba9fd4c221cc4ead1f1173104a2f34bd4"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/force_ui/training_actions_narrow.png",
+      "sha256": "1ea65cc3ef46aaf15ec2045cd18ea1b6d2f8ad06941656014cd3e7f42a3ab0c2"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/force_ui/verification.json",
+      "sha256": "073eb53ed117658b3ca13c37a2a91508e2d8d9814abc3afd2f943891bfd9749c"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/review/verification.json",
+      "sha256": "70074387b8f864ca8ba54b211fd21629df08eeb12ab349cc9846e6b3c9765c21"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/team/launch_missing_geometry.png",
+      "sha256": "5fc41b0866e37fd585f63ace84970a5a8f8f99828a4061a23ff0fd4ee6ee5510"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/team/verification.json",
+      "sha256": "e95f85fbfe9f24ac880ab9760e8bb859fa43f5ad79eafd200275dd49754f6abf"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/ui/body_boundary_failure.png",
+      "sha256": "a28461658357f884b8a21d5d26370eb37b8a668a7f603d085b3b48717bd077f0"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/ui/location_verification.json",
+      "sha256": "8752aa32fea2b37575b4ef276c0c36d47237e81fb3c88a7f47819012acf7ca0a"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/ui/team_solar_diagnostic.png",
+      "sha256": "2a732ee403624ebc3b75fe8439a728b19debc8c0122b5d00148f85aa0f378e6b"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/ui/team_solar_narrow.png",
+      "sha256": "5b6b030f8c87720e82a4ab07b42fae4a838364acb0e0ba1f314608d71d35000a"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/ui/uid_partial_coverage_location.png",
+      "sha256": "ff22e7a20a9142d72c90dea749603092b4304874c0fb6cad2ba096f9a65ffa99"
+    },
+    {
+      "path": "outputs/contest_geometry_20261031/ui/verification.json",
+      "sha256": "8c668e0d9ef3f3bfd451e8e6434e1fd8d0a96667b392c858a0e7f65088f9e051"
+    }
+  ],
+  "inspectedLogs": [
+    {
+      "path": "local/matlab_f7bd6a93e09940149ac28d7c462c7a69.log",
+      "sha256": "81d5437f4c04a5d98a2fa98d8f2a46ddc520d126a2a65b8cab62baf2d2c04fd7",
+      "content": "CONTEST_GEOMETRY_CORE_PASS checks=8 team worstBody=-84.6479476496 mm problemVisits=[1 3 5 8 9 10] samples=[601 9601]\n"
+    },
+    {
+      "path": "local/matlab_efa89042042b4d75adae5d41a9cc37e0.log",
+      "sha256": "decf983c0b2185ad2fb19321ce43c2c189ba13dca092d3ed158a0f8330d7e3d8",
+      "content": "CONTEST_GEOMETRY_UI_PASS checks=6\n"
+    },
+    {
+      "path": "local/matlab_e011443d11584f8d975b64b4a41bb867.log",
+      "sha256": "ef35316230071faf7155c756b5c91b2eeddb7cf62431ea38ede62cc86322e0e0",
+      "content": "CONTEST_GEOMETRY_LOCATION_PASS checks=3\n"
+    },
+    {
+      "path": "local/matlab_a919c270b3bb4302a8bb567a739495b9.log",
+      "sha256": "09eec876ab8808f66e8d42ff01c08206a5e51e865614bc689088074f3c78e533",
+      "content": "TEAM_SOLAR_PROJECT_PASS 5\n\nans = \n\n  包含以下字段的 struct:\n\n                       checksPassed: 5\n                            release: '2025b'\n                    confirmedDesign: 1\n                    asBuiltMeasured: 0\n                       sourceSHA256: 'e3640872f46a6438003716c8c78916bf73a00bf99baefa82348628700d925b65'\n               wheelCircumferenceMM: 424.1150\n    oneCamRevolutionDriveDistanceMM: 1.4844e+04\n                              scope: 'Source mapping, sensor origin, historical fixture preservation and save/load only. Not physical route feasibility.'\n\n"
+    },
+    {
+      "path": "local/matlab_e704cce9f0134b4ca47d190ac9a9d241.log",
+      "sha256": "ff45018b2c454a67f2a5ae69d0009a4842840461f56412ac53c0909b9476a44b",
+      "content": "CONTEST_GEOMETRY_REVIEW_PASS 3 oracleError=1.13687e-13\nPASS testStraight\n  body offsets: sensor 20 mm, rear track 159.35 mm; analytic circle tracks verified\nPASS testCircle\nPASS testMechanisms\nPASS testClosedCam\n  route/cam inverse max sensor discrepancy 0.032775 mm\nPASS testRoundTrip\nPASS testFixedCamTuning\n  objective 26.376925 -> 21.204876\nPASS testOptimize\nPASS testSaveImport\nPASS testImportTypeSchemes\nPASS testExport\nPASS testReject\nPASS testIntersections\nRESULT {\"release\":\"2025b\",\"passed\":12,\"total\":12,\"tests\":[\"testStraight\",\"testCircle\",\"testMechanisms\",\"testClosedCam\",\"testRoundTrip\",\"testFixedCamTuning\",\"testOptimize\",\"testSaveImport\",\"testImportTypeSchemes\",\"testExport\",\"testReject\",\"testIntersections\"]}\n"
+    },
+    {
+      "path": "local/matlab_4f7d5090946b4010a4fafac145e6fd59.log",
+      "sha256": "c00acd6f896c58e4db145263545f86fe99d4f71ae573febd447dca094a989e6f",
+      "content": "FORCE_MODEL_SWITCH_UI_PASS checks=6\n"
+    },
+    {
+      "path": "local/matlab_e3333e6f766c4e81b957a13393501e11.log",
+      "sha256": "1fa77caa75d770e48383f2c2d3f7d791f14651f6151a543450006a1e36a23a2e",
+      "content": "AUTO_MODEL_LOCK_CASE_PASS All four configurations and final callback retain user model and Bezier degree: cubic\nAUTO_MODEL_LOCK_CASE_PASS All four configurations and final callback retain user model and Bezier degree: bezier-blend-independent-v1\nAUTO_MODEL_LOCK_CASE_PASS Unsupported B-spline automatic mode explicitly rejects before any callback/model change\nAUTO_MODEL_LOCK_PASS cases=3\n"
+    },
+    {
+      "path": "local/matlab_124a7739441d47388024890123e922aa.log",
+      "sha256": "9d76634072bcf13d20e0fe0dac1ec41d3a975e0ec029634234da33ba7727726c",
+      "content": "TEAM_LAUNCH_MISSING_GEOMETRY_PASS\n"
+    },
+    {
+      "path": "local/matlab_88adfe8f2f0d45adab8c747d5b498fb9.log",
+      "sha256": "2aa2c92c66506adfc8d3ccad235c1a7ff83e2fd2e85003511b8e8280656c62db",
+      "content": "                  maxHitError: 3.5294\n                  rmsHitError: 1.3688\n                  routeLength: 1.2812e+04\n                  driveLength: 1.2448e+04\n               maxSteeringDeg: 36.4304\n               maxPressureDeg: 80.2575\n           maxWorkPressureDeg: 80.2575\n         maxReturnPressureDeg: 17.0935\n            minUndercutMargin: 0.6519\n            intersectionCount: 0\n              actualReturnDeg: 58.1045\n         returnAngleSatisfied: 0\n                        score: 63.5718\n                        terms: [0.0159 1.0468 0.1281 20.6926 0 0]\n             objectiveVersion: 'peak-v2'\n                  legacyScore: 1.7083\n                  legacyTerms: [0.0021 1.0468 0.0030 0.2102 0 0]\n              geometryChecked: 1\n            visitOrderChecked: 1\n          visitOrderSatisfied: 1\n      trajectoryBoundsChecked: 1\n    trajectoryBoundsSatisfied: 0\n       maxTrajectoryOutsideMM: 132.8557\n\n"
+    }
+  ],
+  "scope": "Functional and sampled-geometry validation. Synthetic footprints are not team measurements. No RFID, continuous sweep, optimization quality or competition certification."
+}

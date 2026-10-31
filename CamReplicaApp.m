@@ -96,6 +96,23 @@ classdef CamReplicaApp < handle
         TrainingRuntime
         ScoreDetailsButton
         LogDetailsButton
+        ContestGeometryShortcut
+        ContestGeometrySettingsTab
+        ContestGeometryTab
+        ContestGeometryParams
+        ContestGeometryMeasured
+        ContestGeometryCoverageConfirmed
+        ContestGeometryCheckButton
+        ContestGeometryBodyButton
+        ContestGeometryTargetButton
+        ContestGeometryNotice
+        ContestGeometryStatus
+        ContestGeometrySummaryTable
+        ContestGeometryTargetTable
+        ContestGeometryReport = []
+        ContestGeometryProject = []
+        ContestGeometryRoute = []
+        ContestGeometrySelectedVisit = 1
     end
     properties (Access=private)
         MapEditReference = []
@@ -193,8 +210,12 @@ classdef CamReplicaApp < handle
             app.RatioNotice=uilabel(ratioRow,'Text','传动比：固定使用用户输入','FontSize',11);
             app.AutoRatio.Layout.Row=1; app.AutoRatio.Layout.Column=1;
             app.RatioNotice.Layout.Row=1; app.RatioNotice.Layout.Column=1; ratioRow.RowHeight={'1x'};
-            app.TrainingShortcut=uibutton(side,'Text','打开训练设置（九项）','FontWeight','bold', ...
+            shortcuts=uigridlayout(side,[1 2],'ColumnWidth',{'1x',100},'Padding',[0 0 0 0],'ColumnSpacing',4); shortcuts.Layout.Row=3;
+            app.TrainingShortcut=uibutton(shortcuts,'Text','打开训练设置（九项）','FontWeight','bold','FontSize',11, ...
                 'ButtonPushedFcn',@(~,~)app.openTraining());
+            app.ContestGeometryShortcut=uibutton(shortcuts,'Text','比赛几何','FontSize',11, ...
+                'Tooltip','独立设置整车外包络、真实连续覆盖区域及UID直径；可不生成凸轮而审查路线。', ...
+                'ButtonPushedFcn',@(~,~)app.openContestGeometry());
             tabs=uitabgroup(side);
             app.ControlsTabs=tabs;
             t=uitab(tabs,'Title','车体'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
@@ -302,6 +323,7 @@ classdef CamReplicaApp < handle
                 'ColumnWidth',{150,105},'FontSize',10);
             uilabel(autoRoot,'Text','自动比较六项权重及训练设置，可能多组长时间运行。可点“停止”，下一次回调生效，加密检验可能需等待。调优期间车体、传动比、阈值、目标点锁定。最终须通过几何与4/8倍收敛检验；不保证找到可行解。', ...
                 'FontSize',10,'WordWrap','on','VerticalAlignment','top');
+            app.createContestGeometrySettings(tabs);
             charts=uigridlayout(root,[2 2],'ColumnWidth',{'1.35x','1x'},'RowHeight',{'1x','2.7x'}, ...
                 'Padding',[0 0 0 0],'ColumnSpacing',12,'RowSpacing',10);
             charts.Layout.Row=4; charts.Layout.Column=2;
@@ -317,7 +339,7 @@ classdef CamReplicaApp < handle
             app.RouteAxes.ButtonDownFcn=@(source,~)app.routeMapClick(source.CurrentPoint(1,1:2),source,app.Figure.SelectionType);
             app.SteeringAxes=uiaxes(charts); app.SteeringAxes.Layout.Row=1; app.SteeringAxes.Layout.Column=1;
             app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=[1 2]; app.CamAxes.Layout.Column=2;
-            bottom=uigridlayout(root,[3 1],'RowHeight',{38,28,'1x'},'Padding',[0 0 0 0],'RowSpacing',3);
+            bottom=uigridlayout(root,[4 1],'RowHeight',{38,22,28,'1x'},'Padding',[0 0 0 0],'RowSpacing',3);
             bottom.Layout.Row=5; bottom.Layout.Column=[1 2];
             statusRow=uigridlayout(bottom,[1 5],'ColumnWidth',{'1x',220,165,90,90},'Padding',[0 0 0 0],'ColumnSpacing',5);
             app.Status=uilabel(statusRow,'Text','准备就绪','FontSize',11,'FontWeight','bold','WordWrap','on');
@@ -329,6 +351,8 @@ classdef CamReplicaApp < handle
             app.ScoreViewStatus=uilabel(scoreChoice,'Text','固定参照 / 待记录','FontSize',10);
             app.ScoreDetailsButton=uibutton(statusRow,'Text','评分详情','ButtonPushedFcn',@(~,~)app.openDiagnostics('score'));
             app.LogDetailsButton=uibutton(statusRow,'Text','日志大窗','ButtonPushedFcn',@(~,~)app.openDiagnostics('log'));
+            app.ContestGeometryNotice=uilabel(bottom,'Text','比赛几何：未配置/未检查，无法验收；机构数值通过不等于赛事通过。', ...
+                'FontSize',11,'FontWeight','bold','FontColor',[.7 .25 .08],'BackgroundColor',[1 .96 .9],'WordWrap','on');
             app.LengthSummary=uilabel(bottom,'Text','总路程（前轮轨迹）：待计算    主动轮行程：待计算', ...
                 'FontSize',12,'FontWeight','bold','FontColor',[.12 .25 .38],'BackgroundColor',[.9 .94 .98], ...
                 'WordWrap','on','Tooltip','真实长度取自当前显示结果的 routeLength / driveLength，单位 mm；m=mm/1000。不是评分表中归一化的路线长度项。');
@@ -346,9 +370,213 @@ classdef CamReplicaApp < handle
             app.ActualClosureButton=uibutton(closureBar,'Text','检查当前实际轮廓','ButtonPushedFcn',@(~,~)app.checkActualClosure());
             app.ActualClosureStatus=uilabel(closureBar,'Text','尚未检查；固定实际轮廓进行接触与车辆反推，再加密积分比较。','WordWrap','on','FontSize',11);
             app.ActualClosureTable=uitable(closureLayout,'ColumnName',{'闭环检查项','计算值／状态'},'ColumnWidth',{280,'auto'},'ColumnEditable',false,'RowName',{});
+            app.createContestGeometryResults();
             app.syncInputs(); app.calculate();
             app.message('v0.2：齿条/平推、固定凸轮调参；独立样条与数值优化。尚未完成原版点集或实车对照。');
             app.Figure.SizeChangedFcn=@(~,~)app.resizeLayout(); app.resizeLayout();
+        end
+        function createContestGeometrySettings(app,tabs)
+            t=uitab(tabs,'Title','比赛几何'); app.ContestGeometrySettingsTab=t;
+            grid=uigridlayout(t,[4 1],'RowHeight',{72,'1x',34,44},'Padding',[2 2 2 2],'RowSpacing',3);
+            uilabel(grid,'Text',['前轮轴为原点：X向右、Y向前。外包络须含整车/软线；覆盖矩形须是车底真实连续遮挡的内接区域，两者独立。', ...
+                ' 留空即未配置，无实车默认。覆盖下/上界为有符号坐标。'], ...
+                'WordWrap','on','VerticalAlignment','top','FontSize',10);
+            app.ContestGeometryParams=uitable(grid,'ColumnName',{'独立比赛几何参数','mm'},'ColumnEditable',[false true], ...
+                'ColumnWidth',{190,65},'ColumnFormat',{'char','numeric'},'RowName',{},'FontSize',10, ...
+                'CellEditCallback',@(~,~)app.contestGeometryChanged());
+            app.ContestGeometryMeasured=uicheckbox(grid,'Text','尺寸、场界、UID直径已现场核实', ...
+                'Value',false,'WordWrap','on','FontSize',10,'ValueChangedFcn',@(~,~)app.contestGeometryChanged());
+            app.ContestGeometryCoverageConfirmed=uicheckbox(grid,'Text','已确认覆盖矩形内无孔隙且连续遮挡（非外接盒）', ...
+                'Value',false,'WordWrap','on','FontSize',10,'ValueChangedFcn',@(~,~)app.contestGeometryChanged());
+        end
+        function createContestGeometryResults(app)
+            app.ContestGeometryTab=uitab(app.ResultsTabs,'Title','比赛几何');
+            grid=uigridlayout(app.ContestGeometryTab,[2 2],'RowHeight',{42,'1x'},'ColumnWidth',{'1x','1.35x'},'Padding',[3 2 3 2]);
+            bar=uigridlayout(grid,[1 4],'ColumnWidth',{150,120,120,'1x'},'Padding',[0 0 0 0],'ColumnSpacing',4);
+            bar.Layout.Row=1; bar.Layout.Column=[1 2];
+            app.ContestGeometryCheckButton=uibutton(bar,'Text','独立检查当前路线','FontSize',11, ...
+                'Tooltip','按车体航向独立重算并加密路线，不要求凸轮可生成；不运行优化，不等于RFID或赛事认证。', ...
+                'ButtonPushedFcn',@(~,~)app.checkContestGeometry());
+            app.ContestGeometryBodyButton=uibutton(bar,'Text','定位最差外廓','FontSize',11,'Enable','off','ButtonPushedFcn',@(~,~)app.locateContestGeometry('body'));
+            app.ContestGeometryTargetButton=uibutton(bar,'Text','定位所选标签','FontSize',11,'Enable','off','ButtonPushedFcn',@(~,~)app.locateContestGeometry('target'));
+            app.ContestGeometryStatus=uilabel(bar,'Text','未检查；这项诊断独立于机构数值门禁。','WordWrap','on','FontSize',10);
+            app.ContestGeometrySummaryTable=uitable(grid,'ColumnName',{'检查范围/最差项','结果'},'ColumnWidth',{175,'auto'},'ColumnEditable',false,'RowName',{},'FontSize',10);
+            app.ContestGeometryTargetTable=uitable(grid,'ColumnName',{'序号','位置','覆盖余量mm','按序覆盖','样本','说明'}, ...
+                'ColumnWidth',{48,48,85,65,65,'auto'},'ColumnEditable',false,'RowName',{},'FontSize',10, ...
+                'CellSelectionCallback',@(~,event)app.selectContestGeometryTarget(event));
+        end
+        function openContestGeometry(app)
+            app.ControlsTabs.SelectedTab=app.ContestGeometrySettingsTab;
+            app.ResultsTabs.SelectedTab=app.ContestGeometryTab; app.refreshContestGeometryStatus();
+        end
+        function syncContestGeometryInputs(app)
+            [cfg,state]=camdesign.contestGeometrySettings(app.Project.params);
+            values=cellfun(@(name)cfg.(name),state.fieldNames,'UniformOutput',false);
+            app.ContestGeometryParams.Data=[state.labels(:),values(:)];
+            app.ContestGeometryMeasured.Value=cfg.measurementsConfirmed;
+            app.ContestGeometryCoverageConfirmed.Value=cfg.coverageRectangleConfirmed;
+            app.refreshContestGeometryStatus();
+        end
+        function [cfg,store]=readContestGeometryInputs(app)
+            [cfg,state]=camdesign.contestGeometrySettings(struct());
+            data=app.ContestGeometryParams.Data;
+            assert(iscell(data) && size(data,1)==numel(state.fieldNames) && size(data,2)==2, ...
+                'cam:ContestGeometryParameters','比赛几何参数表结构不完整。');
+            store=false;
+            for k=1:numel(state.fieldNames)
+                value=data{k,2};
+                if ischar(value) || isstring(value)
+                    if strlength(strtrim(string(value)))==0, value=[]; else, value=str2double(value); end
+                end
+                cfg.(state.fieldNames{k})=value; store=store || ~isempty(value);
+            end
+            cfg.measurementsConfirmed=app.ContestGeometryMeasured.Value;
+            cfg.coverageRectangleConfirmed=app.ContestGeometryCoverageConfirmed.Value;
+            store=store || cfg.measurementsConfirmed || cfg.coverageRectangleConfirmed;
+            camdesign.contestGeometrySettings(struct('contestGeometry',cfg));
+        end
+        function contestGeometryChanged(app)
+            app.clearContestGeometry('比赛几何：参数或确认状态已修改，原结果失效。'); app.updateDiagnostics();
+        end
+        function clearContestGeometry(app,text)
+            if nargin<2, text='比赛几何：未检查，无法验收；机构数值通过不等于赛事通过。'; end
+            app.ContestGeometryReport=[]; app.ContestGeometryProject=[]; app.ContestGeometryRoute=[];
+            if ~isempty(app.RouteAxes) && isgraphics(app.RouteAxes), delete(findobj(app.RouteAxes,'-regexp','Tag','^contest-')); end
+            if isempty(app.ContestGeometryNotice), return; end
+            app.ContestGeometryNotice.Text=text; app.ContestGeometryNotice.FontColor=[.7 .25 .08];
+            app.ContestGeometryStatus.Text=text; app.ContestGeometrySummaryTable.Data=cell(0,2); app.ContestGeometryTargetTable.Data=cell(0,6);
+            app.ContestGeometryBodyButton.Enable='off'; app.ContestGeometryTargetButton.Enable='off';
+        end
+        function current=contestGeometryIsCurrent(app)
+            current=~isempty(app.ContestGeometryReport) && ~app.SimulationMode && ~app.MapEditMode && ~app.TrainingDirty;
+            if current
+                try, current=isequaln(app.inputProject(true),app.ContestGeometryProject); catch, current=false; end
+            end
+        end
+        function refreshContestGeometryStatus(app)
+            if isempty(app.ContestGeometryNotice), return; end
+            if app.SimulationMode
+                app.clearContestGeometry('比赛几何：固定凸轮反推中不审查设计路线；请先退出反推。'); return;
+            end
+            if ~app.contestGeometryIsCurrent()
+                if ~isempty(app.ContestGeometryReport), app.clearContestGeometry('比赛几何：路线/输入已变化，原检查失效，无法验收。'); end
+                return;
+            end
+            r=app.ContestGeometryReport; text=['比赛几何：',r.verdict];
+            if r.valid && r.configured && ~isempty(r.boundary)
+                text=[text,sprintf('；外廓最差 %.4g mm；问题访问号 %s。',r.boundary.minimumMarginMM,app.contestIndexText(r.coverage.problemVisitIndices))];
+            end
+            app.ContestGeometryNotice.Text=text; app.ContestGeometryStatus.Text=text;
+            app.ContestGeometryNotice.FontColor=[.7 .25 .08];
+            if r.sampledGeometryPassed, app.ContestGeometryNotice.FontColor=[.1 .3 .5]; end
+            app.ContestGeometryBodyButton.Enable=r.valid && ~isempty(r.boundary);
+            app.ContestGeometryTargetButton.Enable=r.valid && ~isempty(r.coverage);
+            app.populateContestGeometryTables();
+        end
+        function populateContestGeometryTables(app)
+            r=app.ContestGeometryReport; rows={'独立结论',r.verdict;'赛事/RFID认证','否；不计算官方成绩';'连续扫掠认证','否；离散姿态采样'};
+            if ~r.valid
+                app.ContestGeometrySummaryTable.Data=[rows;{'失败原因',r.errorMessage}]; return;
+            end
+            if ~r.configured
+                [~,state]=camdesign.contestGeometrySettings(app.ContestGeometryProject.params);
+                rows=[rows;{'缺少参数',strjoin(state.labels(ismember(state.fieldNames,r.missingFields)),'、')}];
+                app.ContestGeometrySummaryTable.Data=rows; return;
+            end
+            rows=[rows;{'实测/现场数据已确认',app.passText(r.measurementsConfirmed)}; ...
+                {'真实连续遮挡内接区已确认',app.passText(r.coverageRectangleConfirmed)}; ...
+                {'外廓最差余量/mm',sprintf('%.8g',r.boundary.minimumMarginMM)}; ...
+                {'外廓最差样本/边',sprintf('%d / %s',r.boundary.worstSampleIndex,r.boundary.worstSide)}; ...
+                {'碰线/越界样本数',sprintf('%d',r.boundary.violatingSampleCount)}; ...
+                {'标签最差有序余量/mm',sprintf('%.8g',r.coverage.worstBestMarginMM)}; ...
+                {'问题访问号',app.contestIndexText(r.coverage.problemVisitIndices)}; ...
+                {'要求/观察位置ID',[app.contestIndexText(r.coverage.expectedLocationIDs),' / ',app.contestIndexText(r.coverage.observedLocationIDs)]}; ...
+                {'粗/密路线采样数',mat2str(r.sampleCounts)}; ...
+                {'确有独立加密',app.passText(r.independentRefinement)}; ...
+                {'最大前轮轴步长/mm',sprintf('%.8g',r.maxFrontStepMM)}; ...
+                {'最大车体角步长/deg',sprintf('%.8g',r.maxHeadingStepDeg)}; ...
+                {'采样分辨率/事件稳定',[app.passText(r.resolutionSatisfied),' / ',app.passText(r.eventSequenceStable)]}; ...
+                {'判定假设','外包络/连续遮挡内接矩形；碰线和数值临界接触保守拒绝'}];
+            app.ContestGeometrySummaryTable.Data=rows;
+            visits=r.coverage.visits; data=cell(numel(visits),6);
+            for k=1:numel(visits)
+                v=visits(k); data(k,:)={v.visitIndex,v.locationID,sprintf('%.6g',v.bestMarginMM),app.passText(v.orderedCovered),v.bestSampleIndex,v.reason};
+            end
+            app.ContestGeometryTargetTable.Data=data;
+        end
+        function checkContestGeometry(app)
+            if app.SimulationMode
+                app.clearContestGeometry('比赛几何：固定凸轮反推中不检查设计路线；请先退出反推。');
+                app.message(app.ContestGeometryNotice.Text); return;
+            end
+            if app.Busy || app.SimulationMode || app.MapEditMode || app.TrainingDirty, return; end
+            app.openContestGeometry();
+            try
+                candidate=app.inputProject(); [report,route]=camdesign.verifyContestGeometry(candidate);
+                if ~isequaln(candidate,app.Project)
+                    app.clearPublishedAnalysis(); app.Project=candidate; app.syncInputs();
+                    app.renderUncomputedRoute();
+                elseif isempty(app.Result), app.renderUncomputedRoute();
+                else, app.render(); end
+                app.ContestGeometryReport=report; app.ContestGeometryProject=candidate; app.ContestGeometryRoute=route;
+                app.ContestGeometrySelectedVisit=1;
+                if ~isempty(report.coverage) && ~isempty(report.coverage.problemVisitIndices), app.ContestGeometrySelectedVisit=report.coverage.problemVisitIndices(1); end
+                app.refreshContestGeometryStatus(); app.drawContestGeometry(); app.updateDiagnostics(); app.refreshControls();
+                if isempty(app.Result), app.Status.Text='当前仅审查路线与车体几何；凸轮/机构数值尚未计算，不能据此验收整车。'; end
+                app.message([app.ContestGeometryNotice.Text,' ',report.scope]);
+            catch ex
+                app.clearContestGeometry(['比赛几何：检查失败，无法验收：',ex.message]); app.message(['比赛几何拒绝：',ex.identifier,' ',ex.message]);
+            end
+        end
+        function drawContestGeometry(app)
+            if ~app.contestGeometryIsCurrent(), return; end
+            r=app.ContestGeometryReport; if ~r.valid || isempty(r.boundary), return; end
+            delete(findobj(app.RouteAxes,'-regexp','Tag','^contest-')); a=app.RouteAxes; hold(a,'on');
+            polygon=r.boundary.worstPolygonXY; color=[.75 .1 .1]; if r.boundary.satisfied, color=[.15 .35 .65]; end
+            plot(a,polygon(:,1),polygon(:,2),'-','Color',color,'LineWidth',2,'Tag','contest-envelope','HitTest','off','PickableParts','none');
+            text(a,polygon(1,1),polygon(1,2),sprintf(' 外廓 %.4gmm @%d',r.boundary.minimumMarginMM,r.boundary.worstSampleIndex), ...
+                'Color',color,'FontSize',10,'Tag','contest-envelope-label','HitTest','off','PickableParts','none');
+            bad=r.coverage.problemVisitIndices;
+            if ~isempty(bad)
+                points=app.Project.targets(bad,:); [locations,~,group]=unique(points,'rows','stable'); angle=linspace(0,2*pi,65)';
+                for k=1:size(locations,1)
+                    circle=locations(k,:)+r.settings.tagDiameterMM/2*[cos(angle),sin(angle)];
+                    plot(a,circle(:,1),circle(:,2),'r-','LineWidth',1.2,'Tag','contest-tag','HitTest','off','PickableParts','none');
+                    plot(a,locations(k,1),locations(k,2),'rx','MarkerSize',9,'LineWidth',1.5,'Tag','contest-tag','HitTest','off','PickableParts','none');
+                    text(a,locations(k,1),locations(k,2),[' 未满足访问 ',strjoin(string(bad(group==k)),'/')], ...
+                        'Color',[.8 .1 .1],'FontSize',10,'Tag','contest-tag-label','HitTest','off','PickableParts','none');
+                end
+            end
+            hold(a,'off'); app.fitRouteView(polygon);
+        end
+        function selectContestGeometryTarget(app,event)
+            if isempty(event.Indices), return; end
+            app.ContestGeometrySelectedVisit=event.Indices(1,1); app.locateContestGeometry('target');
+        end
+        function locateContestGeometry(app,kind)
+            if ~app.contestGeometryIsCurrent(), return; end
+            r=app.ContestGeometryReport; if ~r.valid || isempty(r.boundary), return; end
+            if strcmp(kind,'body')
+                points=r.boundary.worstPolygonXY;
+                title(app.RouteAxes,sprintf('外廓最差样本 %d · 余量 %.5g mm',r.boundary.worstSampleIndex,r.boundary.minimumMarginMM),'FontSize',10);
+            else
+                index=max(1,min(numel(r.coverage.visits),app.ContestGeometrySelectedVisit)); v=r.coverage.visits(index);
+                points=camdesign.contestBodyPolygon(v.bestFrontXY,v.bestBodyHeadingRad,r.settings,'coverage');
+                hold(app.RouteAxes,'on'); delete(findobj(app.RouteAxes,'Tag','contest-best-cover'));
+                plot(app.RouteAxes,points(:,1),points(:,2),'c--','LineWidth',2,'Tag','contest-best-cover','HitTest','off','PickableParts','none');
+                labels=findobj(app.RouteAxes,'Tag','contest-tag-label');
+                for k=1:numel(labels)
+                    labels(k).Visible='on';
+                    if norm(labels(k).Position(1:2)-v.targetXY)<1e-8, labels(k).Visible='off'; end
+                end
+                title(app.RouteAxes,{sprintf('UID访问 %d · 覆盖余量 %.5g mm',index,v.bestMarginMM),v.reason},'FontSize',10);
+                hold(app.RouteAxes,'off'); points=[points;v.targetXY];
+            end
+            lo=min(points,[],1); hi=max(points,[],1); padding=max(20,.25*max(hi-lo));
+            app.RouteAxes.XLim=[lo(1)-padding hi(1)+padding]; app.RouteAxes.YLim=[lo(2)-padding hi(2)+padding];
+        end
+        function text=contestIndexText(~,indices)
+            if isempty(indices), text='无'; else, text=mat2str(indices); end
         end
         function syncInputs(app)
             p=app.Project.params;
@@ -377,6 +605,7 @@ classdef CamReplicaApp < handle
             app.AutoTuneFields(1).Value=settings.trials; app.AutoTuneFields(2).Value=settings.maxIterations;
             app.AutoTuneSeed.Text=sprintf('随机种子 %g · 另精修 %g 组（随项目保存）',settings.seed,settings.polishCount);
             app.syncTrainingInputs();
+            app.syncContestGeometryInputs();
         end
         function readInputs(app)
             assert(~app.MapEditMode,'cam:MapEditActive','请先确认或取消地图编辑。');
@@ -393,6 +622,8 @@ classdef CamReplicaApp < handle
                 p.(app.DisplayedParameterFields{k})=double(value);
             end
             p.mechanism=app.Mechanism.Value; p.autoRatio=false;
+            [contest,configured]=app.readContestGeometryInputs();
+            if configured || isfield(p,'contestGeometry'), p.contestGeometry=contest; end
             p.weights=cellfun(@double,app.WeightsTable.Data(:,2))';
             settings=struct('enabled',logical(app.DynamicWeightsEnabled.Value),'interval',app.DynamicWeightFields(1).Value, ...
                 'gain',app.DynamicWeightFields(2).Value,'maxMultiplier',app.DynamicWeightFields(3).Value,'response',app.DynamicWeightFields(4).Value);
@@ -496,7 +727,7 @@ classdef CamReplicaApp < handle
             yline(a,p.maxSteeringDeg,'--'); yline(a,-p.maxSteeringDeg,'--'); grid(a,'on');
             title(a,'前轮转角（左转为正）'); xlabel(a,'前轮行程 / mm'); ylabel(a,'转角 / deg');
             app.drawCamRecord();
-            app.updateInspectionStatus(); app.updateDiagnostics();
+            app.updateInspectionStatus(); app.updateDiagnostics(); app.drawContestGeometry();
         end
         function updateInspectionStatus(app)
             if isempty(app.CamInspectionRecord), return; end
@@ -521,6 +752,7 @@ classdef CamReplicaApp < handle
         function invalidate(app)
             if app.MapEditMode, app.message('请先确认或取消地图编辑。'); return; end
             app.clearActualClosure();
+            app.clearContestGeometry('比赛几何：输入已修改，结果失效，须重新检查。');
             if app.SimulationMode
                 app.SimulationResult=[];
                 app.Status.Text='反推参数已修改，凸轮保持固定；点击“更新反推”查看路线变化。';
@@ -1006,7 +1238,7 @@ classdef CamReplicaApp < handle
             app.markTrainingDirty();
         end
         function markTrainingDirty(app)
-            app.TrainingDirty=true; app.refreshTrainingControls();
+            app.TrainingDirty=true; app.clearContestGeometry('比赛几何：训练设置待应用，原检查失效。'); app.refreshTrainingControls();
         end
         function dynamicWeightsChanged(app)
             app.refreshDynamicWeightControls(); app.invalidate();
@@ -1178,6 +1410,7 @@ classdef CamReplicaApp < handle
             app.LastDisplayProject=[]; app.LastDisplayResult=[]; app.CamBaseProject=[]; app.CamBaseResult=[];
             app.CamInspectionRecord=[]; app.SelectedCrossing=0; app.CamFullLimits=[];
             app.SimulationReference=[]; app.SimulationResult=[]; app.clearActualClosure();
+            app.clearContestGeometry('比赛几何：路线已改变，尚未独立检查。');
             app.DirectionStatus.Text='AI方向：无有效数据';
             for k=1:numel(app.CrossingViews)
                 view=app.CrossingViews{k}; if ~isvalid(view.table), continue; end
@@ -1228,6 +1461,10 @@ classdef CamReplicaApp < handle
             backup.axesModes={app.RouteAxes.XLimMode,app.RouteAxes.YLimMode;app.CamAxes.XLimMode,app.CamAxes.YLimMode;app.SteeringAxes.XLimMode,app.SteeringAxes.YLimMode};
             line=findobj(app.RouteAxes,'Tag','actual-closure-route'); backup.closureLine=[];
             if ~isempty(line), backup.closureLine=[line(1).XData(:),line(1).YData(:)]; end
+            backup.contestGeometryState=struct('paramsData',{app.ContestGeometryParams.Data}, ...
+                'measured',app.ContestGeometryMeasured.Value,'coverageConfirmed',app.ContestGeometryCoverageConfirmed.Value, ...
+                'report',app.ContestGeometryReport,'project',app.ContestGeometryProject,'route',app.ContestGeometryRoute, ...
+                'selectedVisit',app.ContestGeometrySelectedVisit);
         end
         function filename=backupModelSwitch(app,reason)
             app.updateDiagnostics();
@@ -1268,7 +1505,16 @@ classdef CamReplicaApp < handle
                 for k=1:4, app.DynamicWeightFields(k).Value=backup.inputs.DynamicWeightFields(k); end
                 for k=1:2, app.AutoTuneFields(k).Value=backup.inputs.AutoTuneFields(k); end
                 for k=1:numel(names), app.(names{k})=backup.state.(names{k}); end
+                if isfield(backup,'contestGeometryState')
+                    saved=backup.contestGeometryState; app.ContestGeometryParams.Data=saved.paramsData;
+                    app.ContestGeometryMeasured.Value=saved.measured; app.ContestGeometryCoverageConfirmed.Value=saved.coverageConfirmed;
+                    app.ContestGeometryReport=saved.report; app.ContestGeometryProject=saved.project; app.ContestGeometryRoute=saved.route;
+                    app.ContestGeometrySelectedVisit=saved.selectedVisit;
+                else
+                    app.syncContestGeometryInputs(); app.clearContestGeometry('比赛几何：旧备份未包含独立检查，无法验收。');
+                end
                 app.updateDiagnostics();
+                app.drawContestGeometry();
                 app.TrainingDirty=backup.state.TrainingDirty; app.Status.Text=backup.status; app.Status.FontColor=backup.statusColor;
                 app.DirectionStatus.Text=backup.directionStatus; app.ActualClosureStatus.Text=backup.closureStatus; app.ActualClosureTable.Data=backup.closureTable;
                 for tab=app.ControlsTabs.Children', if strcmp(tab.Title,backup.controlsTab), app.ControlsTabs.SelectedTab=tab; break; end, end
@@ -1286,7 +1532,7 @@ classdef CamReplicaApp < handle
             catch ex, app.message(['恢复未完成：',ex.identifier,' ',ex.message]); end
         end
         function validateModelSwitchBackup(app,backup)
-            template=app.snapshotModelSwitchState(); required=fieldnames(template);
+            template=app.snapshotModelSwitchState(); required=setdiff(fieldnames(template),{'contestGeometryState'});
             assert(isstruct(backup) && isscalar(backup) && all(isfield(backup,required)) ...
                 && strcmp(backup.version,'cam-app-model-switch-backup-v1'), ...
                 'cam:ModelSwitchBackup','备份缺少完整状态字段或版本不受支持；当前状态保留。');
@@ -1321,6 +1567,13 @@ classdef CamReplicaApp < handle
             assert(iscell(backup.axesModes) && isequal(size(backup.axesModes),[3 2]) ...
                 && all(ismember(backup.axesModes,{'auto','manual'}),'all'), ...
                 'cam:ModelSwitchBackup','备份坐标轴模式无效；当前状态保留。');
+            if isfield(backup,'contestGeometryState')
+                saved=backup.contestGeometryState;
+                assert(isstruct(saved) && isscalar(saved) && all(isfield(saved,fieldnames(template.contestGeometryState))) ...
+                    && iscell(saved.paramsData) && isequal(size(saved.paramsData),size(app.ContestGeometryParams.Data)) ...
+                    && isscalar(saved.measured) && ismember(saved.measured,[0 1]) && isscalar(saved.coverageConfirmed) && ismember(saved.coverageConfirmed,[0 1]), ...
+                    'cam:ModelSwitchBackup','比赛几何备份输入不完整；当前状态保留。');
+            end
         end
         function action(app,name,filename)
             % Optional explicit path uses the same import/save action as the
@@ -1517,6 +1770,9 @@ classdef CamReplicaApp < handle
                 passed=false; verdict='旧记录标志通过，新增精度未验证';
             end
             text=sprintf('%s\n%s\n仅数值模型；实车/加工待复核。',verdict,errors);
+            if ~app.contestGeometryIsCurrent() || ~app.ContestGeometryReport.sampledGeometryPassed
+                color=[.65 .28 .08]; text=[text,newline,'比赛几何未通过或未检查；不是赛事合格。'];
+            end
         end
         function refreshAutoTuneDisplay(app)
             if isempty(app.AutoTuneProgress), return; end
@@ -1597,6 +1853,7 @@ classdef CamReplicaApp < handle
             sideColumn=floor((width-65)/2);
             app.TargetsTable.ColumnWidth={sideColumn,sideColumn}; app.NodesTable.ColumnWidth={sideColumn,sideColumn};
             app.WeightsTable.ColumnWidth={width-168,60,60};
+            app.ContestGeometryParams.ColumnWidth={width-105,65};
             app.AutoTuneParameters.ColumnWidth={width-138,100};
         end
         function view=createScoreView(app,parent)
@@ -1753,7 +2010,7 @@ classdef CamReplicaApp < handle
                         [dynamicTitle,' · ',data.historyState],data.xLabel,'实际分（非固定尺度）','未启用实际权重记录 / 缺少记录');
                 end
             end
-            app.updateCrossingViews(); app.refreshTrainingRuntime(); app.refreshAutoTuneDisplay();
+            app.updateCrossingViews(); app.refreshTrainingRuntime(); app.refreshAutoTuneDisplay(); app.refreshContestGeometryStatus();
         end
         function plotDiagnosticSeries(app,a,x,y,heading,xLabel,yLabel,emptyText)
             cla(a); title(a,heading,'FontSize',10);
@@ -1892,6 +2149,12 @@ classdef CamReplicaApp < handle
             app.AlgorithmSelector.Enable=editable;
             app.SimulationSource.Enable=editable;
             app.ActualClosureButton.Enable=editable && ~app.TrainingDirty;
+            app.ContestGeometryShortcut.Enable=~app.MapEditMode;
+            app.ContestGeometryCheckButton.Enable=editable && ~app.TrainingDirty;
+            if app.SimulationMode, app.ContestGeometryCheckButton.Tooltip='请先退出固定凸轮反推；此入口只审查设计路线，不混用反推结果。';
+            else, app.ContestGeometryCheckButton.Tooltip='独立重算并加密当前设计路线；不要求凸轮可生成，不等于RFID/比赛认证。'; end
+            app.ContestGeometryParams.ColumnEditable=[false editable];
+            app.ContestGeometryMeasured.Enable=editable; app.ContestGeometryCoverageConfirmed.Enable=editable;
             for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=editable; end
             app.RefineRouteButton.Enable=editable;
             app.ParamsTable.ColumnEditable=[false ~app.Busy && ~app.MapEditMode];
