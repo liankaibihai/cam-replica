@@ -1,0 +1,183 @@
+{
+  "baseline": "b11e3c25017edf27f6a1eb49dbdc974801db007e",
+  "date": "2026-10-31",
+  "release": "R2025b",
+  "scope": "Find-only review; no production fixes or optimization-quality conclusions",
+  "model": {
+    "cubicToBezier": {
+      "nodesUnchanged": true,
+      "sameParameterMaxMM": 953.3885881034415,
+      "hausdorffSampledMM": 572.6193535626101,
+      "conversionInfo": {
+        "controlPoints": {
+          "oldCount": 34,
+          "actualCount": 34,
+          "shapePreservationGuaranteed": true,
+          "outsideSegmentsSkipped": 0,
+          "targetOrderUnchanged": true
+        },
+        "actualSamples": 601,
+        "modelChanged": true,
+        "shapePreservationGuaranteed": false,
+        "semantics": "Independent controls and Bernstein blend, not recovered original rules."
+      }
+    },
+    "bezierToCubic": {
+      "nodesUnchanged": true,
+      "sameParameterMaxMM": 897.6435502811912,
+      "hausdorffSampledMM": 541.2789322340241,
+      "conversionInfo": {
+        "controlPoints": {
+          "oldCount": 34,
+          "actualCount": 34,
+          "shapePreservationGuaranteed": true,
+          "outsideSegmentsSkipped": 0,
+          "targetOrderUnchanged": true
+        },
+        "actualSamples": 601,
+        "modelChanged": true,
+        "shapePreservationGuaranteed": false,
+        "semantics": "Independent controls and Bernstein blend, not recovered original rules."
+      }
+    },
+    "roundTripToOriginalMM": 133.84385514160076,
+    "degreeChange": {
+      "nodesUnchanged": true,
+      "sameParameterMaxMM": 158.52175715176668,
+      "hausdorffSampledMM": 112.4036504136996,
+      "info": {
+        "controlPoints": {
+          "oldCount": 34,
+          "actualCount": 34,
+          "shapePreservationGuaranteed": true,
+          "outsideSegmentsSkipped": 0,
+          "targetOrderUnchanged": true
+        },
+        "actualSamples": 601,
+        "modelChanged": false,
+        "shapePreservationGuaranteed": true,
+        "semantics": "Independent controls and Bernstein blend, not recovered original rules."
+      }
+    }
+  },
+  "uiExport": {
+    "map": {
+      "editFinished": true,
+      "currentByPredicate": true,
+      "displayState": "历史 / 待重算",
+      "fineSelectorEnable": "off"
+    },
+    "failedSeed": {
+      "beforeModel": "bspline-v1",
+      "afterModel": "cubic",
+      "dropdown": "bspline-5",
+      "projectCount": 3,
+      "tableCount": 8,
+      "metadataLost": true,
+      "lastLog": "错误：标准B样条目前仅支持约束优化（内点法）。",
+      "savedModel": "cubic",
+      "savedOriginalCoefficientsAsInterpolationNodes": true
+    },
+    "export": {
+      "actualTrajectoryOutsideMM": 19.85,
+      "physicalBoundsSatisfied": false,
+      "warningCount": 0,
+      "hasBoundsResult": false,
+      "status": "candidate_geometry_not_manufacturing_release"
+    }
+  },
+  "visitOrder": {
+    "targets": [
+      [
+        0,
+        0
+      ],
+      [
+        100,
+        0
+      ],
+      [
+        100,
+        100
+      ]
+    ],
+    "path": [
+      [
+        0,
+        0
+      ],
+      [
+        100,
+        100
+      ],
+      [
+        100,
+        0
+      ],
+      [
+        100,
+        100
+      ]
+    ],
+    "orderedProjection": {
+      "errors": [
+        0,
+        0,
+        0
+      ],
+      "points": [
+        [
+          0,
+          0
+        ],
+        [
+          100,
+          0
+        ],
+        [
+          100,
+          100
+        ]
+      ],
+      "indices": [
+        1,
+        3,
+        4
+      ]
+    },
+    "geometricVisitAudit": {
+      "geometricRadiusMM": 8.5,
+      "expectedLocationIDs": [
+        1,
+        2,
+        3
+      ],
+      "observedLocationIDs": [
+        1,
+        3,
+        2,
+        3
+      ],
+      "eventEntryExitDistanceMM": [
+        [
+          0,
+          8.5
+        ],
+        [
+          132.9213562373095,
+          149.9213562373095
+        ],
+        [
+          232.9213562373095,
+          249.9213562373095
+        ],
+        [
+          332.9213562373095,
+          341.4213562373095
+        ]
+      ],
+      "matchesRequiredOrderAndVisitCount": false,
+      "notSensorReadGuarantee": true
+    }
+  }
+}
