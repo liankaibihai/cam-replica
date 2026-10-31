@@ -903,6 +903,13 @@ classdef CamReplicaApp < handle
             try
                 candidate=app.inputProject(); result=camdesign.evaluate(candidate,true);
                 [report,sim]=camdesign.verifyActualClosure(candidate,result);
+                app.presentActualClosure(candidate,result,report,sim);
+            catch ex
+                app.ActualClosureStatus.Text=['检查未通过：',ex.message];
+                app.message(['实际轮廓闭环未完成：',ex.identifier,' ',ex.message]);
+            end
+        end
+        function presentActualClosure(app,candidate,result,report,sim)
                 if ~report.valid || isempty(sim)
                     app.ActualClosureReport=report; app.ActualClosureProject=candidate;
                     app.ActualClosureStatus.Text=['检查未通过：',report.errorMessage];
@@ -949,10 +956,6 @@ classdef CamReplicaApp < handle
                     app.passText(report.closurePassed),report.tolerances.closureMM,app.passText(report.geometryFeasible));
                 app.message(sprintf('实际轮廓完整反推：最大传感器差 %.6g mm，加密差 %.6g mm。%s', ...
                     report.maxSensorDeviationMM,report.integrationMaxSensorDifferenceMM,app.ActualClosureStatus.Text));
-            catch ex
-                app.ActualClosureStatus.Text=['检查未通过：',ex.message];
-                app.message(['实际轮廓闭环未完成：',ex.identifier,' ',ex.message]);
-            end
         end
         function value=passText(~,passed)
             value='未通过'; if passed, value='通过'; end
@@ -1720,6 +1723,10 @@ classdef CamReplicaApp < handle
             app.Project=project; app.History=history; app.HistoryProject=project; app.OptimizationDirection=[]; app.OptimizationInfo=info;
             app.syncInputs();
             if isfield(info,'cachedFinalResult'), app.Result=info.cachedFinalResult; app.render(); app.syncTrainingInputs(); else, app.calculate(); end
+            app.finishOptimizationDisplay(info);
+        end
+        function finishOptimizationDisplay(app,info,preparedInspection)
+            history=app.History;
             if isfield(info,'fullAuto') && info.fullAuto
                 app.finishAutoTune(info); return;
             end
@@ -1794,7 +1801,9 @@ classdef CamReplicaApp < handle
             if isfield(info,'verification') && isfield(info.verification,'refinedGrid')
                 fine=info.verification.refinedGrid;
                 if fine.valid && ~isempty(fine.metrics) && fine.metrics.intersectionCount>0
-                    app.changeCamSource('refined'); app.ResultsTabs.SelectedTab=app.CrossingTab;
+                    if nargin<3, app.changeCamSource('refined');
+                    else, app.changeCamSource('refined',preparedInspection); end
+                    app.ResultsTabs.SelectedTab=app.CrossingTab;
                 end
             end
         end
@@ -2137,12 +2146,21 @@ classdef CamReplicaApp < handle
                 xlabel(a,xLabel); ylabel(a,yLabel);
             end
         end
-        function changeCamSource(app,source)
+        function changeCamSource(app,source,prepared)
             if isempty(app.CamBaseResult), return; end
             info=[];
             if ~isempty(app.HistoryProject) && isequaln(app.HistoryProject,app.CamBaseProject), info=app.OptimizationInfo; end
             try
-                data=camdesign.camInspectionData(app.CamBaseProject,app.CamBaseResult,info,source);
+                if nargin<3
+                    data=camdesign.camInspectionData(app.CamBaseProject,app.CamBaseResult,info,source);
+                else
+                    expected=app.CamBaseProject;
+                    expected.params.samples=prepared.project.params.samples; expected.params.camSamples=prepared.project.params.camSamples;
+                    expected.params.autoRatio=false;
+                    assert(strcmp(prepared.source,source) && isequaln(prepared.project,expected), ...
+                        'cam:DisplaySource','预计算轮廓与当前项目来源不匹配。');
+                    data=prepared;
+                end
             catch ex
                 app.message(['凸轮复查未完成：',ex.message]);
                 for k=1:numel(app.CrossingViews)

@@ -1,0 +1,2566 @@
+{
+  "change": "CHG-2026-10-31-019",
+  "baseline": "02489ec4d0b7f2951da6686bc340d22c16c2ae59",
+  "scope": "UI plus one sequential numerical job, preselected thread/process backend. No competition tests, candidate parallelism, speedup claim, or numerical-core changes. Local Git only.",
+  "acceptedSyntheticRun": "check_7",
+  "syntheticChecks": {
+    "release": "2025b",
+    "baseline": "02489ec4d0b7f2951da6686bc340d22c16c2ae59",
+    "checksPassed": 13,
+    "checks": [
+      "existing App and owned detail callbacks plus three named execution-menu actions are complete and repair-auditable",
+      "launch reuse installs mode menu only for an idle existing App and leaves an already-busy synchronous session untouched",
+      "background calculate equals synchronous result, submission returns, main-thread evaluate count is zero, terminal deferral and retired-token rejection work",
+      "one-iteration serial/background search decisions and evaluation ledger agree with zero main-thread evaluate; score-basis/detail navigation remains usable and original completion logs/verdict are retained",
+      "synthetic positive-intersection display trigger reuses a precomputed matching refined record and retains automatic crossing-tab navigation without main-thread evaluation",
+      "background numerical error retains complete confirmed state, raw invalid input and plotted route; no automatic retry",
+      "engineering input changed during job prevents overwrite while complete computed outcome is saved before the guard and raw user edit is retained",
+      "throttled cached preview shows routes/cam/scores and details, normal Stop recovers full-checked best and complete solver history",
+      "force cancel after live preview restores model/results/history/raw inputs/graphics and does not cancel an unrelated future",
+      "actual-outline closure runs in background and publishes through the existing display; explicit foreground compatibility remains synchronous",
+      "close requests stop only their own job and save full final state; unexpectedly destroyed figure releases both registry references and its own future",
+      "six remaining backends use preselected thread/process execution with one requested iteration and intact budgets; an existing user Threads pool is refused and preserved",
+      "process-backed relay accepts cooperative UI stop, returns full checked best, preserves a single bounded ledger and saves its complete outcome"
+    ],
+    "submissionSeconds": 0.2637849,
+    "mainThreadEvaluateCalls": 0,
+    "mainThreadOptimizationEvaluateCalls": 0,
+    "backendReports": [
+      {
+        "algorithm": "video-four-direction-v1",
+        "executor": "thread",
+        "status": "success",
+        "reason": "iteration_limit",
+        "evaluations": 15,
+        "displayEvaluationAttempts": 1
+      },
+      {
+        "algorithm": "feasibility-four-direction-v1",
+        "executor": "thread",
+        "status": "success",
+        "reason": "iteration_limit",
+        "evaluations": 37,
+        "displayEvaluationAttempts": 0
+      },
+      {
+        "algorithm": "fmincon-interior-point-experimental-v1",
+        "executor": "thread",
+        "status": "success",
+        "reason": "iteration_limit",
+        "evaluations": 13,
+        "displayEvaluationAttempts": 1
+      },
+      {
+        "algorithm": "relay-sqp-v1",
+        "executor": "process",
+        "status": "success",
+        "reason": "starts_complete",
+        "evaluations": 60,
+        "displayEvaluationAttempts": 0
+      },
+      {
+        "algorithm": "multistart-relay-sqp-v1",
+        "executor": "process",
+        "status": "success",
+        "reason": "starts_complete",
+        "evaluations": 296,
+        "displayEvaluationAttempts": 0
+      },
+      {
+        "algorithm": "auto-tune-v1",
+        "executor": "thread",
+        "status": "success",
+        "reason": "auto_budget_complete",
+        "evaluations": 195,
+        "displayEvaluationAttempts": 1
+      }
+    ],
+    "callbackAudit": {
+      "inventory": [
+        {
+          "class": "matlab.ui.Figure",
+          "tag": "",
+          "property": "CloseRequestFcn",
+          "classification": "app",
+          "identity": "Figure",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.Figure",
+          "tag": "",
+          "property": "SizeChangedFcn",
+          "classification": "app",
+          "identity": "Figure",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.Figure",
+          "tag": "",
+          "property": "WindowKeyPressFcn",
+          "classification": "app",
+          "identity": "Figure",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.container.Menu",
+          "tag": "cam-execution-force-cancel",
+          "property": "MenuSelectedFcn",
+          "classification": "app",
+          "identity": "cam-execution-force-cancel",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.container.Menu",
+          "tag": "cam-execution-foreground",
+          "property": "MenuSelectedFcn",
+          "classification": "app",
+          "identity": "cam-execution-foreground",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.container.Menu",
+          "tag": "cam-execution-background",
+          "property": "MenuSelectedFcn",
+          "classification": "app",
+          "identity": "cam-execution-background",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(3)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(4)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(5)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(6)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(7)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(8)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingModel",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "AlgorithmSelector",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "Mechanism",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ItemHitFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultItemHitCallback"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ButtonDownFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "bdowncb"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "TrainingShortcut",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryShortcut",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.UIAxes",
+          "tag": "",
+          "property": "ButtonDownFcn",
+          "classification": "app",
+          "identity": "RouteAxes",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ItemHitFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultItemHitCallback"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ButtonDownFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "bdowncb"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ScoreDetailsButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "LogDetailsButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "MapEditButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ConfirmNodeButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "CancelNodeButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "ScoreBasis",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "ParamsTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "TargetsTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "TargetsTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "NodesTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "NodesTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "WeightsTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "ContestGeometryParams",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.CheckBox",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryMeasured",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.CheckBox",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryCoverageConfirmed",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "cam-cross-table",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "CrossTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "ContestGeometryTargetTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "PointButtons(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "PointButtons(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "PointButtons(3)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "PointButtons(4)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "RefineRouteButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.CheckBox",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightsEnabled",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightFields(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightFields(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightFields(3)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightFields(4)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(3)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(4)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(5)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(6)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(7)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(8)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(9)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "TrainingApplyButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "TrainingResetButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ForceModelSwitchButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "RestoreModelSwitchButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "AutoTuneFields(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "AutoTuneFields(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "cam-cross-source",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "CrossSource",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-zoom",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "CrossZoomButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-reset",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "CrossResetButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-details",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "CrossDetailsButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ActualClosureButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryCheckButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryBodyButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryTargetButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.Figure",
+          "tag": "cam-app-details",
+          "property": "CloseRequestFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "closereq"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "cam-cross-table",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "cam-cross-table",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "cam-cross-source",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "cam-cross-source",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-zoom",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "cam-cross-zoom",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-reset",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "cam-cross-reset",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-details",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "cam-cross-details",
+          "callback": "cam_app_ui_dispatch"
+        }
+      ],
+      "unknown": [],
+      "framework": [
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ItemHitFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultItemHitCallback"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ButtonDownFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "bdowncb"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ItemHitFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultItemHitCallback"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ButtonDownFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "bdowncb"
+        },
+        {
+          "class": "matlab.ui.Figure",
+          "tag": "cam-app-details",
+          "property": "CloseRequestFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "closereq"
+        }
+      ],
+      "plannedBindings": 75,
+      "ownedFigureCount": 2,
+      "scope": "Only app.Figure and confirmed app.DiagnosticsFigure descendants; no global graphics search."
+    },
+    "stopObservation": {
+      "active": true,
+      "futureState": "running"
+    },
+    "processStop": {
+      "mode": "background",
+      "active": false,
+      "status": "finished",
+      "runId": "cam-tpc3aaceaa_679a_412a_a0d8_d2bc0ba1a815",
+      "kind": "optimize",
+      "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tpc3aaceaa_679a_412a_a0d8_d2bc0ba1a815.mat",
+      "summary": {
+        "message": "后台训练正常停止；已收回算法完整检查的保留候选，最终验收结论见训练记录。 显示计算 0 次，后处理 0 次（与搜索预算分列）。",
+        "postProcessingEvaluations": 0,
+        "displayEvaluationAttempts": 0,
+        "previewPackets": 0,
+        "resultFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tpc3aaceaa_679a_412a_a0d8_d2bc0ba1a815-result.mat",
+        "resultSaved": true,
+        "executor": "process"
+      }
+    },
+    "lastState": {
+      "mode": "background",
+      "active": false,
+      "status": "finished",
+      "runId": "cam-tpc3aaceaa_679a_412a_a0d8_d2bc0ba1a815",
+      "kind": "optimize",
+      "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tpc3aaceaa_679a_412a_a0d8_d2bc0ba1a815.mat",
+      "summary": {
+        "message": "后台训练正常停止；已收回算法完整检查的保留候选，最终验收结论见训练记录。 显示计算 0 次，后处理 0 次（与搜索预算分列）。",
+        "postProcessingEvaluations": 0,
+        "displayEvaluationAttempts": 0,
+        "previewPackets": 0,
+        "resultFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tpc3aaceaa_679a_412a_a0d8_d2bc0ba1a815-result.mat",
+        "resultSaved": true,
+        "executor": "process"
+      }
+    },
+    "scope": "Only handwritten3/6-point inputs and short functional optimization. No course factory/data/MAT, quality/performance comparison or user window. UI+one thread/process job run concurrently; candidates remain serial."
+  },
+  "liveInstallation": {
+    "projectResultHistoryPreserved": true,
+    "inputsPreserved": true,
+    "priorLogPreserved": true,
+    "appendedModeLogCount": 1,
+    "displayLimitsPreserved": true,
+    "mode": {
+      "mode": "background",
+      "active": false,
+      "status": "error",
+      "runId": "cam-tpc8011d64_bc91_431b_900f_32e04421462a",
+      "kind": "optimize",
+      "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tpc8011d64_bc91_431b_900f_32e04421462a.mat",
+      "summary": {
+        "message": "后台结果未发布：cam:BackgroundInputsChanged 任务期间输入或已确认结果改变，未覆盖当前状态。",
+        "postProcessingEvaluations": 0,
+        "displayEvaluationAttempts": 0,
+        "previewPackets": 296
+      }
+    },
+    "controlCount": 50,
+    "callbackCount": 70,
+    "menuKeys": [
+      "execution-background",
+      "execution-foreground",
+      "execution-force-cancel"
+    ],
+    "callbackAudit": {
+      "inventory": [
+        {
+          "class": "matlab.ui.Figure",
+          "tag": "",
+          "property": "CloseRequestFcn",
+          "classification": "app",
+          "identity": "Figure",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.Figure",
+          "tag": "",
+          "property": "SizeChangedFcn",
+          "classification": "app",
+          "identity": "Figure",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.container.ContextMenu",
+          "tag": "defaultlegendcontextmenu",
+          "property": "ContextMenuOpeningFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultContextMenuCB"
+        },
+        {
+          "class": "matlab.ui.container.ContextMenu",
+          "tag": "defaultlegendcontextmenu",
+          "property": "ContextMenuOpeningFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultContextMenuCB"
+        },
+        {
+          "class": "matlab.ui.container.Menu",
+          "tag": "cam-execution-force-cancel",
+          "property": "MenuSelectedFcn",
+          "classification": "app",
+          "identity": "cam-execution-force-cancel",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.container.Menu",
+          "tag": "cam-execution-foreground",
+          "property": "MenuSelectedFcn",
+          "classification": "app",
+          "identity": "cam-execution-foreground",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.container.Menu",
+          "tag": "cam-execution-background",
+          "property": "MenuSelectedFcn",
+          "classification": "app",
+          "identity": "cam-execution-background",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(3)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(4)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(5)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(6)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(7)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "Buttons(8)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingModel",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "AlgorithmSelector",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "Mechanism",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ItemHitFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultItemHitCallback"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ButtonDownFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "bdowncb"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "TrainingShortcut",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryShortcut",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.UIAxes",
+          "tag": "",
+          "property": "ButtonDownFcn",
+          "classification": "app",
+          "identity": "RouteAxes",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ItemHitFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultItemHitCallback"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ButtonDownFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "bdowncb"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ScoreDetailsButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "LogDetailsButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "overflow",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)obj.overflowCallback(e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "brush",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.interaction.webmodes.toggleMode(d.Axes,'brush',d.Value)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "datacursor",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('datacursor',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "rotate",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('rotate',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "pan",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('pan',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomin",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoom',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomout",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoomout',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "restoreview",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "overflow",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)obj.overflowCallback(e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "brush",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.interaction.webmodes.toggleMode(d.Axes,'brush',d.Value)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "datacursor",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('datacursor',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "rotate",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('rotate',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "pan",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('pan',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomin",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoom',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomout",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoomout',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "restoreview",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "MapEditButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ConfirmNodeButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "CancelNodeButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "ScoreBasis",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "ParamsTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "TargetsTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "TargetsTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "NodesTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "NodesTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "WeightsTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellEditCallback",
+          "classification": "app",
+          "identity": "ContestGeometryParams",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.CheckBox",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryMeasured",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.CheckBox",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryCoverageConfirmed",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "saveas",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportCallback(matlab.graphics.controls.internal.exportHelper(d.Axes))"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyimage",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','image')"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyvector",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','vector','vector',true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "saveas",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportCallback(matlab.graphics.controls.internal.exportHelper(d.Axes))"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyimage",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','image')"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyvector",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','vector','vector',true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "overflow",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)obj.overflowCallback(e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "brush",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.interaction.webmodes.toggleMode(d.Axes,'brush',d.Value)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "datacursor",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('datacursor',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "rotate",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('rotate',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "pan",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('pan',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomin",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoom',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomout",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoomout',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "restoreview",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "cam-cross-table",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "CrossTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Table",
+          "tag": "",
+          "property": "CellSelectionCallback",
+          "classification": "app",
+          "identity": "ContestGeometryTargetTable",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "PointButtons(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "PointButtons(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "PointButtons(3)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "PointButtons(4)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "RefineRouteButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.CheckBox",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightsEnabled",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightFields(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightFields(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightFields(3)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "DynamicWeightFields(4)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(3)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(4)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(5)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(6)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(7)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(8)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "TrainingFields(9)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "TrainingApplyButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "TrainingResetButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ForceModelSwitchButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "RestoreModelSwitchButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "AutoTuneFields(1)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.NumericEditField",
+          "tag": "",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "AutoTuneFields(2)",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "saveas",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportCallback(matlab.graphics.controls.internal.exportHelper(d.Axes))"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyimage",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','image')"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyvector",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','vector','vector',true)"
+        },
+        {
+          "class": "matlab.ui.control.DropDown",
+          "tag": "cam-cross-source",
+          "property": "ValueChangedFcn",
+          "classification": "app",
+          "identity": "CrossSource",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-zoom",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "CrossZoomButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-reset",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "CrossResetButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "cam-cross-details",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "CrossDetailsButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ActualClosureButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryCheckButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryBodyButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.control.Button",
+          "tag": "",
+          "property": "ButtonPushedFcn",
+          "classification": "app",
+          "identity": "ContestGeometryTargetButton",
+          "callback": "cam_app_ui_dispatch"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "overflow",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)obj.overflowCallback(e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "brush",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.interaction.webmodes.toggleMode(d.Axes,'brush',d.Value)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "datacursor",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('datacursor',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "rotate",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('rotate',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "pan",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('pan',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomin",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoom',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomout",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoomout',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "restoreview",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "saveas",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportCallback(matlab.graphics.controls.internal.exportHelper(d.Axes))"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyimage",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','image')"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyvector",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','vector','vector',true)"
+        }
+      ],
+      "unknown": [],
+      "framework": [
+        {
+          "class": "matlab.ui.container.ContextMenu",
+          "tag": "defaultlegendcontextmenu",
+          "property": "ContextMenuOpeningFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultContextMenuCB"
+        },
+        {
+          "class": "matlab.ui.container.ContextMenu",
+          "tag": "defaultlegendcontextmenu",
+          "property": "ContextMenuOpeningFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultContextMenuCB"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ItemHitFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultItemHitCallback"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ButtonDownFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "bdowncb"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ItemHitFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "defaultItemHitCallback"
+        },
+        {
+          "class": "matlab.graphics.illustration.Legend",
+          "tag": "legend",
+          "property": "ButtonDownFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "bdowncb"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "overflow",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)obj.overflowCallback(e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "brush",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.interaction.webmodes.toggleMode(d.Axes,'brush',d.Value)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "datacursor",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('datacursor',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "rotate",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('rotate',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "pan",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('pan',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomin",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoom',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomout",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoomout',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "restoreview",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "overflow",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)obj.overflowCallback(e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "brush",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.interaction.webmodes.toggleMode(d.Axes,'brush',d.Value)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "datacursor",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('datacursor',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "rotate",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('rotate',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "pan",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('pan',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomin",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoom',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomout",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoomout',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "restoreview",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "saveas",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportCallback(matlab.graphics.controls.internal.exportHelper(d.Axes))"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyimage",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','image')"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyvector",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','vector','vector',true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "saveas",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportCallback(matlab.graphics.controls.internal.exportHelper(d.Axes))"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyimage",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','image')"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyvector",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','vector','vector',true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "overflow",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)obj.overflowCallback(e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "brush",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.interaction.webmodes.toggleMode(d.Axes,'brush',d.Value)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "datacursor",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('datacursor',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "rotate",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('rotate',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "pan",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('pan',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomin",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoom',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomout",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoomout',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "restoreview",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "saveas",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportCallback(matlab.graphics.controls.internal.exportHelper(d.Axes))"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyimage",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','image')"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyvector",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','vector','vector',true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "overflow",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)obj.overflowCallback(e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "brush",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.interaction.webmodes.toggleMode(d.Axes,'brush',d.Value)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "datacursor",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('datacursor',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "rotate",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('rotate',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "pan",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('pan',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomin",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoom',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarStateButton",
+          "tag": "zoomout",
+          "property": "ValueChangedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.interactionsModeCallback('zoomout',e,d)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "restoreview",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.controls.internal.resetHelper(d.Axes,true)"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "saveas",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportCallback(matlab.graphics.controls.internal.exportHelper(d.Axes))"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyimage",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','image')"
+        },
+        {
+          "class": "matlab.ui.controls.ToolbarPushButton",
+          "tag": "copyvector",
+          "property": "ButtonPushedFcn",
+          "classification": "matlab-framework",
+          "identity": "",
+          "callback": "@(e,d)matlab.graphics.internal.export.exportTo(matlab.graphics.controls.internal.exportHelper(d.Axes),'target','clipboard','format','vector','vector',true)"
+        }
+      ],
+      "plannedBindings": 70,
+      "ownedFigureCount": 1,
+      "scope": "Only app.Figure and confirmed app.DiagnosticsFigure descendants; no global graphics search."
+    },
+    "scope": "Install and select accepted background mode on existing idle user App. No calculation, optimize, model switch, project reload, reset or close."
+  },
+  "testedSourcesMatchFinal": true,
+  "testedSources": [
+    {
+      "file": "CamReplicaApp.m",
+      "sha256": "b45b47d9b5af6d9cba7d5adbaab54ffed0774d0d3a29f18ff08b7cf8c2736195"
+    },
+    {
+      "file": "launch_cam_app.m",
+      "sha256": "69e36118ae094ed28bc6603aaa5593dcc3b628e5241796e891728f935196d9ab"
+    },
+    {
+      "file": "cam_app_ui_dispatch.m",
+      "sha256": "f8c8f78021c065ae9abee4adb7b71708fa4efcafc0e2e95184f4770187815dc1"
+    },
+    {
+      "file": "cam_app_ui_spec.m",
+      "sha256": "234145f1ee087082b21e0098f412108de88bdbde2c4ae90cea1f4272b8555ed5"
+    },
+    {
+      "file": "cam_app_ui_binding_plan.m",
+      "sha256": "0df92579297b7c6c7d64a1bb25e106f3ede005a921acccd9e9f9ea50d8c11828"
+    },
+    {
+      "file": "cam_app_async.m",
+      "sha256": "7c85e1beae9a2b179aff3d8b1fc5f96c1f552647a72cf9b1ca99388876985f32"
+    },
+    {
+      "file": "cam_app_async_registry.m",
+      "sha256": "84910053a263610a055c807628d636fb742511855b4a555d33b584e0104f6ef3"
+    },
+    {
+      "file": "cam_app_async_receive.m",
+      "sha256": "6f15c6767630ea4d1ed48e6b99f2ec6f645b18c726ff8b3c13c595bf6ae0faa1"
+    },
+    {
+      "file": "cam_app_async_complete.m",
+      "sha256": "4ac3ecad815f918a4a9ec2291225d8b4d4589c33a65ea5354edec0c4ada3e872"
+    },
+    {
+      "file": "cam_app_async_worker.m",
+      "sha256": "8b527962e5c4e74d9f9f3b4a79eb1673a47329c00818bbe13650847b679a3b12"
+    },
+    {
+      "file": "check_background_ui.m",
+      "sha256": "6c015d8fc65776b086d2467355ff866534efea9201a22317e52338bf80a986cc"
+    },
+    {
+      "file": "check_actual_cam_ui.m",
+      "sha256": "744848d6c41dee950faba8ba6b5b144c6d82a2c328060968fd4db74ebc2b5161"
+    },
+    {
+      "file": "check_auto_tune_app.m",
+      "sha256": "627bbf48eff1773c26214591f5f2eacb0481069fa05f30491c787420f5db174d"
+    },
+    {
+      "file": "check_bspline_ui.m",
+      "sha256": "d0d5071e1f15bb5ffc705d5fd854777793978938335f01e49bd5d938764d4723"
+    },
+    {
+      "file": "outputs/parallel_ui_20261031/compare_guard_inputs_019.m",
+      "sha256": "054cdd61c623f3f040ff8b752f327447163cd02595c0fee7ee9e24caad188842"
+    },
+    {
+      "file": "cam_app_async_pool.m",
+      "sha256": "08a8394c05213235dcecc2dc5f57859cb17864cc9e08b83f13fb08b6aeb4250f"
+    }
+  ],
+  "knownFailures": [
+    {
+      "run": "check_1",
+      "result": "Failed optimization publication assertion; diagnostic state not yet saved."
+    },
+    {
+      "run": "check_2",
+      "result": "BackgroundInputsChanged; readonly display values were incorrectly guarded as engineering inputs."
+    },
+    {
+      "run": "check_3",
+      "result": "Guard fixed; Stop sent after the tiny task had finished during screenshot export. Test race."
+    },
+    {
+      "run": "check_6",
+      "result": "Lifecycle assertions passed; relay failed because nlpSQP is unsupported on thread workers. Fixed by preselecting process backend."
+    }
+  ],
+  "unusedSnapshots": [
+    "source_run_4",
+    "source_run_5"
+  ],
+  "liveIncident": "Unaccepted dispatcher became active on existing user window; user-triggered optimization hit the input guard. Full current state backed up, temporarily foreground, then accepted version explicitly activated. Old job final result unavailable; retained iteration-0 preview is not a recovered final result.",
+  "files": [
+    {
+      "path": "local/capture_background_live_019.m",
+      "sha256": "97b2f1dd31fd8ea9c44f1d4d9deae9925f6a608aa4c30e21f4d4bda8be7ea782",
+      "bytes": 1480
+    },
+    {
+      "path": "local/compare_background_compat_019.m",
+      "sha256": "9a06d266b5aab401c109dd03c07f21633c39640efd7e15b001639f1b89a196f5",
+      "bytes": 1303
+    },
+    {
+      "path": "local/install_background_live_019.m",
+      "sha256": "7fe8d05420f2f21b17369815aa33a0cc9f71579d649459f091168d6ebb0ca326",
+      "bytes": 2250
+    },
+    {
+      "path": "local/matlab_12cc44be62eb4e5b91bc4aa98238215a.log",
+      "sha256": "d4a97bbe3571943db73d15640878f1832f86b43c3162c54a650c619676119ef3",
+      "bytes": 390
+    },
+    {
+      "path": "local/matlab_360a24a862e84eeb842db7bf67dc064b.log",
+      "sha256": "36f585fdab49520a888c35a54ee40ee1ece9a67f515eb650c5faa1b8093e6390",
+      "bytes": 320
+    },
+    {
+      "path": "local/matlab_8c112419c62a4a599de24e52ef77b776.log",
+      "sha256": "d033221efd9b19c0ba2e9c11aa8ca33077d23d15e0b1624ffbce0fda7804c052",
+      "bytes": 772
+    },
+    {
+      "path": "local/matlab_c41ce87c8adf4aa782d3ad7b85da889e.log",
+      "sha256": "700524384740eae38c0f1ee35dfccc31845eca88fdefb9825630c17bc06d12b9",
+      "bytes": 1032
+    },
+    {
+      "path": "local/matlab_da9cc761cdd2440b8e925e29d5b4e24a.log",
+      "sha256": "815b4263ae75638e60849d514f95ac9e1c99693a0b22cabc93e56d005fb3b0db",
+      "bytes": 950
+    },
+    {
+      "path": "local/matlab_eddb6c29a28d4045b777d1c2a9121f53.log",
+      "sha256": "7a7caeeea5d8e0699772e87ab4276e0a268ebdf2272f37b41363d284a6014f3e",
+      "bytes": 945
+    },
+    {
+      "path": "local/matlab_fe41ed410e3e4f8db333cfa60b29db99.log",
+      "sha256": "30a28f8e24051234feab672783a77cfb2f17055b2c7ccc922ae636426607d3bd",
+      "bytes": 1341
+    },
+    {
+      "path": "local/preserve_background_payload_019.m",
+      "sha256": "eeeefc699661f3e8e6fe3faa166c9a680a70527051fe3e24915e0721c93c5e0a",
+      "bytes": 1155
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/capability_1/capabilities.json",
+      "sha256": "91a75df0b603fc9c9cac3ecc1bfdc3696ae2702f5765d1515f9958e33f77f82b",
+      "bytes": 2909
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_2/actual_guard_diff.json",
+      "sha256": "93f1413f15ab919e9d5bb21ce91e1777f8f77aeea1eea6c87627a9bc8bd0e1ba",
+      "bytes": 472
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_3/background_preview.png",
+      "sha256": "169a321fd62ee9ea1aba65f0361d1405d09a4239c2a3aec392fe392d82c65435",
+      "bytes": 226111
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_3/last_session.json",
+      "sha256": "d2d02cd029fd6be6ee954cafcb9f6036f00a248e19909c73b575eea7bd6dd6cb",
+      "bytes": 2451
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_3/last_session.mat",
+      "sha256": "fdabea1bac83230383b2387f21f18114adf81938d3fec8aec9bef43951e35086",
+      "bytes": 235430
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_6/background_preview.png",
+      "sha256": "12079556cadd7955085d637f1d3127ed6a57b26d6c5c79b2246824b41925752f",
+      "bytes": 218037
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_6/canceled_preview_restored.png",
+      "sha256": "b0652316f09508f80aa4de68f74d144e82898f2ade2b301a8217b66430de2cf6",
+      "bytes": 216367
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_6/last_session.json",
+      "sha256": "a89aa6d8b74a0f1a6ec94b422ec5d63d32ae09ccf1c738fd83e7a47f6f2e4036",
+      "bytes": 3587
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_6/last_session.mat",
+      "sha256": "90bebfa468643641aec80b04ad57f4dd1883136758a3b14ddc802981915914a4",
+      "bytes": 211520
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/backend_1.mat",
+      "sha256": "8ad5b3b74651e182e47dab68e8690ea23693e86b0ed51e2498ea02c3d63ce5a8",
+      "bytes": 32107
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/backend_2.mat",
+      "sha256": "55bba190ad83db963dc6e5246c43cfeb784139b625a9111ca60d56373b1c1e69",
+      "bytes": 108804
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/backend_3.mat",
+      "sha256": "6833fc5843f19f085e4b38c6e15b6ef3a5be7d6a9967daacd116ba49c845fe25",
+      "bytes": 37900
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/backend_4.mat",
+      "sha256": "fb78e1c0646dbe49d530e4e850f97debcfcd1af444c8de2f76ad1e47629c8c32",
+      "bytes": 197766
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/backend_5.mat",
+      "sha256": "1e3c6a8817b73db89bfa1a2ae58c5ad1e77030dd1d01c2c9a7950bfe13b53661",
+      "bytes": 612425
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/backend_6.mat",
+      "sha256": "7e85363eef710819bbcab97aeea450b32e0684ec761f0f17a827f91a6475988f",
+      "bytes": 68063
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/background_preview.png",
+      "sha256": "d2fcbba26d6b3ca11021882e39ce533cbb369426db571a366fb516f2af010631",
+      "bytes": 218037
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/canceled_preview_restored.png",
+      "sha256": "027c3fa23426a25d80fc98710c6ce0f2a95d42c13aa3b9a97c5d7c3a8c3b6da9",
+      "bytes": 216367
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/last_session.json",
+      "sha256": "7e7785179eeafd2e10f26c3b1de5b9e7966911d079b2e0f2af3a5dd2fd7b32be",
+      "bytes": 4908
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/last_session.mat",
+      "sha256": "29d2ca87c1771181bb6095a415063ae6ca959016e5b989f973959fdfa259df38",
+      "bytes": 373297
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/check_7/verification.json",
+      "sha256": "0d22cc171d8aac982e089ef966f5d35d228aa8955e4ef8acf1bdba577564a5d1",
+      "bytes": 26204
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/compatibility_edits.json",
+      "sha256": "8eda77829fbebc7e4aea228082a2bf9498966b5efbeab00414f7fc4c8a738140",
+      "bytes": 225
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/diagnosis.json",
+      "sha256": "c7ff52385b3551108a722cdc0254f46be06075363a256b3c350b72efc70ebe6a",
+      "bytes": 9683
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/numeric_1/numeric.json",
+      "sha256": "799c458adcf028621ae2d2a8052b2492c648876b8932b27cc795cd5a8c31b22b",
+      "bytes": 3605
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/after_compat.json",
+      "sha256": "ef3946258a19158af56fc72501320b595e0854097ba56aa7e8fe7b2c0d6d7134",
+      "bytes": 608
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/after_compat.mat",
+      "sha256": "8f4fbacda0bc555640ec9520ede3edbc5580ecd443d4001a54d861fa559aab0f",
+      "bytes": 8964013
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/after_install.json",
+      "sha256": "3955e5964707c8f76fb5625b17b2d4a1ac7b090872a40c75a68dd326897ad6e8",
+      "bytes": 610
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/after_install.mat",
+      "sha256": "4619e5b390be1efdbb7d962c4712882716a3d1c04f0fb04b390fc0effc5d6236",
+      "bytes": 8963898
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/before_compat.json",
+      "sha256": "ebba5c3efa4e9037b8b8206965f96ad98b02d033429e2cbc90d682fd0f2ec09a",
+      "bytes": 647
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/before_compat.mat",
+      "sha256": "4309d7853eb71a3478d656e787fd1ab81d8e9d013c89e90bed3c4732da813c59",
+      "bytes": 8963968
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/before_install.json",
+      "sha256": "1fdad77c238b9569e7859e461b269244aaffa83bc273598b481ab65a991de29a",
+      "bytes": 612
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/before_install.mat",
+      "sha256": "90d4ebad67bee8eb617dce948af4efbd1266a578cc9ac73a67ca9ec11d6237f3",
+      "bytes": 8963842
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/retained_preview.json",
+      "sha256": "b5b06b0865caf68950f17d65be2fc313fc1c25fea35d8ceb8d962b027c46d26c",
+      "bytes": 398
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/retained_preview.mat",
+      "sha256": "ce8f555c077433be59eea8232cdb5059d4c58a697c2a0500d6249218307d7ac8",
+      "bytes": 870730
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/temporary_compatibility.json",
+      "sha256": "73f6733493d4d7263308722ac0a0d7d21600f11911c48ad8ed342e8de65a34f2",
+      "bytes": 1087
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/parent_live/verification.json",
+      "sha256": "dd8ed6cc72d0077d14b82ed6ed6597597af96f662196278f3e581efe04ddb43a",
+      "bytes": 49102
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_1/manifest.json",
+      "sha256": "b11d2253f3f943b17f84f4debe1ebe04ea478c884cf6431a774e84913bbff9ce",
+      "bytes": 2108
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_2/manifest.json",
+      "sha256": "8598f220397bd90ad83c1f62161db9cdcdfde7924766172a5ce7565c5135ff49",
+      "bytes": 2213
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_3/manifest.json",
+      "sha256": "89751f60fa1c0d2d4e4c73f99dd6de17c5ce6cbe0fd724699816401728d82bf4",
+      "bytes": 2486
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_4/manifest.json",
+      "sha256": "ab4c04d1045e5916b232083b5ce9d79207703a8ad2dfc01d289f349e423e0be7",
+      "bytes": 2503
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_4/not_run.json",
+      "sha256": "58e13c5b5e45acc50d13dc2278090bbc8128f7dbf06b9aa49e324b176519936c",
+      "bytes": 146
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_5/manifest.json",
+      "sha256": "4f9c764927fa3d686e3e6e98f30eaa5b30537dee7d44db7f223a9ad9dbfa2af0",
+      "bytes": 2489
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_5/not_run.json",
+      "sha256": "b43e0083624a050f5d14d9c3f9c7db2d8ab44e49013227b9a019b07d9a5205ec",
+      "bytes": 150
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_6/manifest.json",
+      "sha256": "9edc522aee8a9a906bdebeea72983be79b79de511dab2093e7c77efa8a6aa9c5",
+      "bytes": 2399
+    },
+    {
+      "path": "outputs/parallel_ui_20261031/source_run_7/manifest.json",
+      "sha256": "e6bd31d5b602b8e6cc7881becef223f34a6d03a3e04bf8a61915ef33232a6181",
+      "bytes": 2636
+    }
+  ]
+}

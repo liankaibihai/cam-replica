@@ -41,6 +41,10 @@ rows={ ...
  'zoomCamCrossing','zoomCamCrossing','fixed',{};
  'resetCamView','resetCamView','fixed',{};
  'selectCamCrossing','selectCamCrossing','event',{} };
+% These three App UI actions are handled by the external async service.
+rows(end+1,:)={'execution-background','setExecutionMode','fixed',{'background'}};
+rows(end+1,:)={'execution-foreground','setExecutionMode','fixed',{'foreground'}};
+rows(end+1,:)={'execution-force-cancel','forceCancelBackground','fixed',{}};
 for action={'import','save','seed','calculate','optimize','stop','simulate','export'}
     rows(end+1,:)={['action/' action{1}],'action','fixed',action}; %#ok<AGROW>
 end

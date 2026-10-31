@@ -63,6 +63,17 @@ for k=1:size(arrays,1)
     controls=app.(arrays{k,1});
     for n=1:numel(controls), add(controls(n),arrays{k,2},arrays{k,3},sprintf('%s(%d)',arrays{k,1},n),app.Figure); end
 end
+execution=findall(app.Figure,'Type','uimenu','Tag','cam-execution-menu');
+assert(numel(execution)<=1,'cam:CallbackAmbiguous','执行方式菜单不唯一。');
+if ~isempty(execution)
+    assert(isequal(execution.Parent,app.Figure),'cam:CallbackOwnership','执行方式菜单不属于主窗口。');
+    keys={'execution-background','execution-foreground','execution-force-cancel'};
+    for k=1:numel(keys)
+        menu=findall(execution,'Type','uimenu','Tag',['cam-' keys{k}]);
+        assert(isscalar(menu) && isequal(menu.Parent,execution),'cam:CallbackAmbiguous','执行方式子菜单身份不唯一或父级不匹配。');
+        add(menu,'MenuSelectedFcn',keys{k},['cam-' keys{k}],app.Figure);
+    end
+end
 if numel(roots)>1
     detail=roots(2);
     assert(strcmp(detail.Tag,'cam-app-details') || strcmp(detail.Name,'结果详情 · 评分、日志与交点'), ...

@@ -5,6 +5,7 @@ assert(batchStartupOptionUsed,'cam:BSplineBatchOnly','请用独立batch运行。
 if nargin<1, folder=fullfile(root,'outputs','review_fixes_20261031','bspline_ui'); end
 if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
+cam_app_async('mode',app,'foreground'); % This legacy check reads results immediately.
 p=fixture(); app.Project=p; app.syncInputs(); invoke(app.Buttons(4),'ButtonPushedFcn');
 assert(numel(app.TrainingModel.Items)==4 && ~isempty(app.Result));
 app.TrainingModel.Value='bspline-3'; invoke(app.TrainingModel,'ValueChangedFcn');

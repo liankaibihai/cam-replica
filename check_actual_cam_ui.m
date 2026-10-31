@@ -4,6 +4,7 @@ assert(batchStartupOptionUsed,'cam:ActualUIBatch','Run in independent batch.');
 if nargin<1, folder=fullfile(root,'outputs','actual_cam_20261031','ui'); end
 if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
+cam_app_async('mode',app,'foreground'); % This legacy check reads results immediately.
 p=camdesign.solarTestProject(); p.params.headingDeg=0; p.params.startSteeringDeg=0;
 p.params.samples=301; p.params.camSamples=1441;
 p.nodes=[1000 1000;1500 1000;2000 1000]; p.targets=p.nodes+[-20 0];
