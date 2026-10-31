@@ -1,12 +1,24 @@
-function [best,history,info]=optimizeFeasibilityFour(project,callback)
+function [best,history,info]=optimizeFeasibilityFour(project,callback,options)
 % Independent four-direction search with full checks BEFORE every acceptance.
 % Old video-four-direction-v1 remains a separate unchanged comparison path.
-if nargin<2 || isempty(callback), callback=@(~,~,~)false; end
+arguments
+    project struct
+    callback=[]
+    options.MaxPhysicalEvaluations (1,1) double {mustBePositive}=Inf
+    options.Budget=[]
+    options.MaxIterations (1,1) double {mustBeInteger,mustBePositive}=project.params.iterations
+    options.FinalAssessment (1,1) logical=true
+end
+if isempty(callback), callback=@(~,~,~)false; end
 camdesign.validateProject(project);
 assert(~strcmp(camdesign.routeModel(project.params),'bspline-v1'),'cam:BSplineBackend','可行性优先四方向目前支持cubic/独立贝塞尔；B样条仍仅支持内点法。');
 dynamic=camdesign.dynamicWeightSettings(project.params);
 assert(~dynamic.enabled,'cam:FeasibilityDynamicWeights','可行性优先四方向使用独立约束排序，不支持动态权重；请先明确关闭开关。六项固定分仅作参照/辅助提案。');
 timer=tic; best=project; evals=0; fullEvals=0; invalidEvals=0; rejectedFull=0;
+budget=options.Budget; if isempty(budget), budget=camdesign.PhysicalEvaluationBudget(options.MaxPhysicalEvaluations); end
+assert(isa(budget,'camdesign.PhysicalEvaluationBudget'),'cam:PhysicalBudget','Budget须为共享物理评价计数器。');
+if isfinite(options.MaxPhysicalEvaluations), validateattributes(options.MaxPhysicalEvaluations,{'double'},{'integer'}); end
+budgetStart=budget.Used; stopAt=min(budget.Limit,budgetStart+options.MaxPhysicalEvaluations);
 current=assess(best,true); assert(current.valid,'cam:FeasibilityInitial','初始路线无法评价；请先调整合法初值。');
 probe=project.params.gradientProbeMM; initialProbe=probe; step=project.params.stepMM;
 controls=camdesign.searchSchedule(project.params,1); refinements=0; expansions=0; reason='iteration_limit';
@@ -15,9 +27,10 @@ referenceDirection=direction; referenceGrad=direction; referenceProbeScores=prob
 baseNodes=best.nodes; acceptedStep=0; smoothingAttempts=0; smoothingAlpha=0;
 history=entry(0,false,'initial');
 free=[(2:size(best.nodes,1))';(size(best.nodes,1)+2:2*size(best.nodes,1))'];
-for iteration=1:project.params.iterations
+try
+for iteration=1:options.MaxIterations
     controls=camdesign.searchSchedule(project.params,iteration);
-    if callback(iteration-1,best,history), reason='user_stop'; break; end
+    if notify(iteration-1), reason='user_stop'; break; end
     baseNodes=best.nodes; grad=zeros(size(baseNodes)); probeScores=inf(size(baseNodes,1),4);
     referenceGrad=grad; referenceProbeScores=probeScores; referenceAnchor=current.metrics.score;
     candidates=cell(numel(free)*2,1); states=candidates; costs=inf(numel(candidates),1); slot=0;
@@ -54,7 +67,7 @@ for iteration=1:project.params.iterations
     history(end).directionBaseNodes=baseNodes; history(end).descentDirection=direction;
     history(end).gradient=grad; history(end).probeScores=probeScores; history(end).evaluations=evals;
     history(end).referenceProbeScores=referenceProbeScores; history(end).referenceDescentDirection=referenceDirection;
-    if callback(iteration-1,best,history), reason='user_stop'; break; end
+    if notify(iteration-1), reason='user_stop'; break; end
     accepted=false; acceptedStep=0; method='no_step'; smoothingAttempts=0; smoothingAlpha=0;
     if ~current.feasible
         % Do not postpone a provably feasible transition behind an unrelated
@@ -124,35 +137,56 @@ for iteration=1:project.params.iterations
     assert(isequaln(best.params,project.params) && isequaln(best.targets,project.targets) && isequal(best.nodes(1,:),project.nodes(1,:)), ...
         'cam:FeasibilityMutation','搜索改变了锁定参数、目标顺序或起点。');
 end
+catch ex
+    if strcmp(ex.identifier,'cam:PhysicalEvaluationBudget'), reason='physical_evaluation_limit';
+    elseif strcmp(ex.identifier,'cam:PhysicalTimeBudget'), reason='time_limit';
+    else, rethrow(ex); end
+    if ~isequal(history(end).nodes,best.nodes), history(end+1)=entry(iteration,true,'budget_terminal_selection'); end
+end
 trainingState=current;
-assessment=camdesign.autoTuneAssessment(best,[project.params.samples project.params.camSamples]);
+assessment=[]; verified=false; converged=false; verification=[]; assessmentAttempts=0;
+if options.FinalAssessment
+    assessment=camdesign.autoTuneAssessment(best,[project.params.samples project.params.camSamples]);
+    verified=assessment.verifiedFeasible; converged=assessment.convergencePassed;
+    verification=assessment.eight; assessmentAttempts=assessment.physicalEvaluationAttempts;
+end
 history(end).stopped=strcmp(reason,'user_stop'); history(end).event='finished'; history(end).evaluations=evals;
 info=struct('algorithm','feasibility-four-direction-v1','objectiveVersion',current.rankingVersion, ...
-    'reason',reason,'iterations',history(end).iteration,'requestedIterations',project.params.iterations, ...
+    'reason',reason,'iterations',history(end).iteration,'requestedIterations',options.MaxIterations, ...
     'evaluations',evals,'fullGeometryEvaluations',fullEvals,'invalidEvaluations',invalidEvals,'rejectedFullCandidates',rejectedFull, ...
     'elapsedSeconds',toc(timer),'finalMetrics',current.metrics,'trainingFeasible',current.feasible, ...
-    'rankingState',trainingState,'verifiedFeasible',assessment.verifiedFeasible,'convergencePassed',assessment.convergencePassed, ...
-    'assessment',assessment,'verification',assessment.eight,'remainingConstraints',{{}}, ...
+    'rankingState',trainingState,'verifiedFeasible',verified,'convergencePassed',converged, ...
+    'assessment',assessment,'verification',verification,'remainingConstraints',{{}}, ...
     'dynamicWeights',dynamic,'referenceWeights',project.params.weights,'finalActiveWeights',project.params.weights, ...
     'finalDynamicScore',current.metrics.score,'probeExpansions',expansions);
-final=camdesign.evaluate(best,true); info.remainingConstraints=final.warnings;
-info.assessmentEvaluationAttempts=assessment.physicalEvaluationAttempts; info.totalEvaluationAttempts=evals+assessment.physicalEvaluationAttempts+1;
+info.remainingConstraints=current.result.warnings;
+info.assessmentEvaluationAttempts=assessmentAttempts; info.totalEvaluationAttempts=evals+assessmentAttempts;
+info.physicalBudget=budget.snapshot(); info.physicalEvaluations=budget.Used-budgetStart; info.physicalEvaluationStopAt=stopAt;
+info.assessmentPerformed=options.FinalAssessment;
+info.cachedFinalResult=current.result;
 info.rankingSemantics='Infeasible: lexicographic sum(normalized gate violations^2), max violation, quality. Feasible: fully feasible candidates only. Quality=L/direct + .2[(RMS/tol)^2+(maxHit/tol)^2] + .03(pressureProbe/limit)^2 + .02 soft excess over preferred pressure margin min(0.5deg,0.1*limit). Pressure preference uses extra same-law samples. User gates never change.';
 info.trainingSemantics='Four-direction probes and whole-set improvement weighting, full-check line search, next-best coordinate rescue, same learning/smoothing schedule; adaptive probe halving and two logged expansions. Independent algorithm, not recovered original code.';
 info.proposalVersion='dual-proposal-small-error-pressure-margin-v3';
 info.weightSemantics='Original six fixed weights/peak-v2 score guide a SECOND proposal only; neither reference score nor dynamic weights decide acceptance. Independent feasibility/quality ranking remains unchanged.';
-callback(history(end).iteration,best,history);
+notify(history(end).iteration);
     function state=assess(candidate,full)
+        budget.check(stopAt);
         evals=evals+1; if full, fullEvals=fullEvals+1; end
         try
-            result=camdesign.evaluate(candidate,full); state=camdesign.feasibilityFourState(candidate,result);
+            result=budget.evaluate(candidate,full,stopAt); state=camdesign.feasibilityFourState(candidate,result); state.result=result;
         catch ex
+            if ismember(ex.identifier,{'cam:PhysicalEvaluationBudget','cam:PhysicalTimeBudget'}), rethrow(ex); end
             if startsWith(ex.identifier,'cam:') || startsWith(ex.identifier,'MATLAB:expected')
                 invalidEvals=invalidEvals+1;
                 state=struct('valid',false,'fullChecked',full,'feasible',false,'numericFeasible',false,'orderSatisfied',false, ...
                     'partialViolationSquared',Inf,'violationSquared',Inf,'maxNormalizedViolation',Inf,'qualityObjective',Inf,'violations',Inf(1,9));
             else, rethrow(ex); end
         end
+    end
+    function stop=notify(iter)
+        shown=history; shown(end).displayResult=current.result;
+        shown(end).physicalEvaluations=budget.Used-budgetStart; shown(end).physicalEvaluationLimit=stopAt-budgetStart;
+        stop=callback(iter,best,shown);
     end
     function value=proxy(state)
         value=Inf; if ~state.valid, return; end

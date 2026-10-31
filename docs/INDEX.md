@@ -30,6 +30,7 @@
 | [四方法太阳能比较](PATH_METHOD_COMPARISON.md) | 标准B3/B5与旧插值/独立Bezier接入、66DOF、5成对初值长测和极值审计 | 同条件、节点、压力角、稳定性、实际结果 |
 | [训练参数与独立贝塞尔](TRAINING_PARAMETERS.md) | 九项参数实际语义、后端适用性、独立融合及自交红圈 | 控制点、插值、阶数、学习率、调度、自交 |
 | [四方向可行性与短路线](FEASIBILITY_SEARCH.md) | 先处理违规、再比较长度/偏差/压力角；同初值对照与验收 | 四方向、固定35、回程预算、可行性 |
+| [接力精修与多起点](RELAY_MULTISTART.md) | 固定模型的四方向/SQP接力、平滑多起点及统一计算预算对照 | 接力、SQP、20万、真实调用、候选保留 |
 | [拆解说明](REVERSE_ENGINEERING.md) | 独立模型、字段映射、公式、复现边界 | 平推、齿条、坐标、传动比、包络 |
 | [视频算法实现映射](ALGORITHM_IMPLEMENTATION_MAP.md) | 视频步骤、实际代码、独立补充及尚未恢复部分逐项对应 | 候选整套加权、邻点平滑、Bezier、十二项评分 |
 | [成熟约束优化适配](CONSTRAINED_OPTIMIZATION.md) | 公开方法选型、原生fmincon实现与同输入验证边界 | SQP、B样条、约束、压力角、可行性 |

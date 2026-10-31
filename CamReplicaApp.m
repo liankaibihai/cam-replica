@@ -191,8 +191,8 @@ classdef CamReplicaApp < handle
             app.TrainingModel.Layout.Row=1; app.TrainingModel.Layout.Column=2;
             label=uilabel(methods,'Text','优化方法','FontWeight','bold'); label.Layout.Row=1; label.Layout.Column=3;
             app.AlgorithmSelector=uidropdown(methods, ...
-                'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）','全自动调优（权重＋训练）','四方向（可行性优先）'}, ...
-                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1','auto-tune-v1','feasibility-four-direction-v1'}, ...
+                'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）','全自动调优（权重＋训练）','四方向（可行性优先）','接力精修（四方向＋SQP）','多起点接力（固定种子）'}, ...
+                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1','auto-tune-v1','feasibility-four-direction-v1','relay-sqp-v1','multistart-relay-sqp-v1'}, ...
                 'Value','peak-gradient-v2','ValueChangedFcn',@(~,~)app.algorithmChanged(), ...
                 'Tooltip','全自动锁定当前路线模型及阶数，只比较权重和适用训练设置。物理参数和阈值不自动改变。');
             app.AlgorithmSelector.Layout.Row=1; app.AlgorithmSelector.Layout.Column=4;
@@ -707,6 +707,7 @@ classdef CamReplicaApp < handle
             xlabel(a,'场地 X / mm'); ylabel(a,'场地 Y / mm');
             direction=app.OptimizationDirection;
             if app.Busy && ~app.SimulationMode && ~isempty(direction) && strcmp(direction.event,'searching') ...
+                    && all(isfield(direction,{'directionBaseNodes','descentDirection','directionIteration'})) ...
                     && isequaln(direction.directionBaseNodes,app.Project.nodes) && any(direction.descentDirection(:))
                 vectors=direction.descentDirection; origins=direction.directionBaseNodes;
                 visible=vecnorm(vectors,2,2)>1e-12;
@@ -1253,7 +1254,7 @@ classdef CamReplicaApp < handle
             editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
             constrained=startsWith(app.AlgorithmSelector.Value,'fmincon'); enabled=app.DynamicWeightsEnabled.Value;
             automatic=strcmp(app.AlgorithmSelector.Value,'auto-tune-v1');
-            feasibility=strcmp(app.AlgorithmSelector.Value,'feasibility-four-direction-v1');
+            feasibility=ismember(app.AlgorithmSelector.Value,{'feasibility-four-direction-v1','relay-sqp-v1','multistart-relay-sqp-v1'});
             app.WeightsTable.ColumnEditable=[false editable false];
             app.DynamicWeightsEnabled.Enable=editable && ~automatic && (~constrained || enabled) && (~feasibility || enabled);
             for k=1:4, app.DynamicWeightFields(k).Enable=editable && enabled && ~constrained && ~automatic && ~feasibility; end
@@ -1312,6 +1313,10 @@ classdef CamReplicaApp < handle
                 size(app.Project.nodes,1),app.Project.params.samples,model,pending,description);
             if strcmp(app.AlgorithmSelector.Value,'feasibility-four-direction-v1')
                 app.TrainingInfo.Text=[app.TrainingInfo.Text,newline,'独立排序：先降归一化违规；完整可行后按小偏差、长度及至多0.5°压力余量偏好折中（不改变正式门限）。六项分引导辅助提案，需另看4/8倍验收。'];
+            end
+            if ismember(app.AlgorithmSelector.Value,{'relay-sqp-v1','multistart-relay-sqp-v1'})
+                starts=1; if strcmp(app.AlgorithmSelector.Value,'multistart-relay-sqp-v1'), starts=5; end
+                app.TrainingInfo.Text=[app.TrainingInfo.Text,newline,sprintf('接力默认：共享200000次物理评价，%d起点，种子20261031，最长3600秒；每阶段受训练轮数上限约束。四方向占各启动25%%预算，差分沿用梯度力；余量交SQP，名义差分固定0.0005mm。统一小偏差/长度/压力余量目标，完整门禁及4/8倍另验。',starts)];
             end
             if isfield(app.Project,'routeMapping')
                 fit=app.Project.routeMapping;
@@ -1648,7 +1653,8 @@ classdef CamReplicaApp < handle
             app.History=[]; app.HistoryProject=[]; app.updateDiagnostics();
             [project,history,info]=camdesign.optimize(app.Project,@app.optimizationUpdate,app.AlgorithmSelector.Value);
             app.Project=project; app.History=history; app.HistoryProject=project; app.OptimizationDirection=[]; app.OptimizationInfo=info;
-            app.syncInputs(); app.calculate();
+            app.syncInputs();
+            if isfield(info,'cachedFinalResult'), app.Result=info.cachedFinalResult; app.render(); app.syncTrainingInputs(); else, app.calculate(); end
             if isfield(info,'fullAuto') && info.fullAuto
                 app.finishAutoTune(info); return;
             end
@@ -1656,7 +1662,8 @@ classdef CamReplicaApp < handle
                 'gradient_tolerance','梯度与候选均无改善','no_improving_step','多尺度搜索无改善', ...
                 'constrained_converged','约束求解器一阶停止条件满足','constrained_step_tolerance','约束求解器步长停止', ...
                 'constrained_infeasible','约束求解器未找到可行点','function_evaluation_limit','达到函数调用预算', ...
-                'time_limit','达到求解时间预算','solver_stopped','求解器停止');
+                'time_limit','达到求解时间预算','solver_stopped','求解器停止', ...
+                'physical_evaluation_limit','达到实际物理评价预算','starts_complete','所有启动已完成或局部停止');
             if isfield(reasons,info.reason), text=reasons.(info.reason); else, text=info.reason; end
             m=app.Result.metrics; p=app.Project.params;
             [~,trajectory]=camdesign.trajectoryBounds(app.Result.route,p.bounds);
@@ -1709,8 +1716,11 @@ classdef CamReplicaApp < handle
                         fm.maxHitError,fm.maxWorkPressureDeg,fm.maxReturnPressureDeg,fm.routeLength,fm.driveLength,fm.intersectionCount, ...
                         fm.visitOrderSatisfied,fine.maxTrajectoryOutsideMM);
                 end
-                app.Status.Text=sprintf('可行性优先四方向 %d/%d轮：训练可行=%d；4/8倍验收=%d；Σ违规² %.5g；质量排序 %.5g\n%s', ...
-                    info.iterations,info.requestedIterations,info.trainingFeasible,info.verifiedFeasible,rank.violationSquared,rank.qualityObjective,detail);
+                label='可行性优先四方向';
+                if ismember(info.algorithm,{'relay-sqp-v1','multistart-relay-sqp-v1'}), label='接力搜索'; end
+                budgetText=''; if isfield(info,'physicalBudget'), budgetText=sprintf('；实际调用%d/%g；终止%s',info.physicalEvaluations,info.physicalBudget.limit,info.reason); end
+                app.Status.Text=sprintf('%s %d轮：训练可行=%d；4/8倍验收=%d；Σ违规² %.5g；质量排序 %.5g%s\n%s', ...
+                    label,info.iterations,info.trainingFeasible,info.verifiedFeasible,rank.violationSquared,rank.qualityObjective,budgetText,detail);
                 app.message(info.rankingSemantics); app.message(detail);
                 app.message('六项分数保留参照并可引导辅助提案，不决定候选接受；排序下降不等于比赛/实车通过。');
             end
@@ -1735,7 +1745,17 @@ classdef CamReplicaApp < handle
                 app.ParamsTable.Data(:,2)=values(:); app.TrainingModel.Value=app.trainingModelValue(p);
             end
             app.OptimizationDirection=history(end);
-            app.Result=camdesign.evaluate(project,false); app.render();
+            if isfield(history,'displayResult') && ~isempty(history(end).displayResult)
+                app.Result=history(end).displayResult;
+            else, app.Result=camdesign.evaluate(project,false); end
+            app.render();
+            if isfield(history,'relayStage')
+                h=history(end);
+                app.Status.Text=sprintf('接力·%s；起点%d/%d；累计%d轮；实际物理调用%d/%g\n保留完整可行=%d；偏差%.4gmm；长度%.1fmm；压力%.4g°；探索可行=%d；最终加密另验', ...
+                    h.relayStage,h.relayStart,h.relayStarts,iteration,h.physicalEvaluations,h.physicalEvaluationLimit, ...
+                    h.trainingFeasible,h.metrics.maxHitError,h.metrics.routeLength,h.metrics.maxPressureDeg,h.explorationFeasible);
+                drawnow; stop=app.StopRequested; return;
+            end
             if automatic
                 app.Status.Text=[strrep(app.autoProgressText(history(end)),newline,'；'),sprintf('\n统一网格固定参照 %.5g；本组实际分 %.5g；验收待最终记录。',history(end).score,history(end).dynamicScore)];
                 drawnow; stop=app.StopRequested; return;
@@ -2138,6 +2158,12 @@ classdef CamReplicaApp < handle
             h=app.History(end); state='本次'; iteration='未记录';
             if isfield(h,'iteration'), iteration=sprintf('%d',h.iteration); end
             if ~app.diagnosticsAreCurrent() || isempty(app.HistoryProject) || ~isequaln(app.HistoryProject,app.Project), state='上次'; end
+            if isfield(h,'relayStage')
+                app.TrainingRuntime.Text=sprintf('%s接力·%s；起点%d/%d\n累计%s轮；实际物理调用%d/%g\n保留训练可行=%d；质量%.6g\n偏差%.4gmm；长度%.1fmm；压力%.4g°\n最终4/8倍验收见结束记录；非比赛认证。', ...
+                    state,h.relayStage,h.relayStart,h.relayStarts,iteration,h.physicalEvaluations,h.physicalEvaluationLimit, ...
+                    h.trainingFeasible,h.qualityObjective,h.metrics.maxHitError,h.metrics.routeLength,h.metrics.maxPressureDeg);
+                return;
+            end
             if isfield(h,'feasibilityStage')
                 phase='恢复可行性'; if h.trainingFeasible, phase='训练网格可行内改进'; end
                 app.TrainingRuntime.Text=sprintf('%s第%s轮：%s\n违规Σ² %.5g / 最大 %.5g；质量排序 %.5g\n完整自交/顺序检查=%d；参照分不参与排序。\n4/8倍及比赛几何另验，非赛事合格。', ...

@@ -1,0 +1,887 @@
+{
+  "schema": "cam-project-json-shapes-1",
+  "project": {
+    "schema": "cam-replica-1",
+    "name": "本队太阳能初赛 · 平推设计（外廓待补）",
+    "params": {
+      "mechanism": "flat",
+      "wheelDiameter": 135,
+      "gearRatio": 35,
+      "lever": 20,
+      "rollerRadius": 2,
+      "referenceDiameter": 150,
+      "thickness": 5,
+      "driveX": 60,
+      "driveY": -110,
+      "drivenX": -105,
+      "drivenY": -110,
+      "sensorX": 20,
+      "sensorY": 0,
+      "headingDeg": 90,
+      "startSteeringDeg": 0,
+      "samples": 601,
+      "camSamples": 721,
+      "autoRatio": false,
+      "returnAngleDeg": 60,
+      "maxSteeringDeg": 65,
+      "maxPressureDeg": 35,
+      "hitTolerance": 30,
+      "iterations": 600,
+      "stepMM": 10,
+      "gradientProbeMM": 0.5,
+      "bounds": [
+        0,
+        6000,
+        0,
+        2000
+      ],
+      "weights": [
+        12,
+        1,
+        2,
+        3,
+        10,
+        10
+      ],
+      "routeModel": "bezier-blend-independent-v1",
+      "bezier": {
+        "type": "overlap-bernstein-v1",
+        "degree": 5,
+        "parameterLength": 12315.653650084425
+      },
+      "training": {
+        "version": "independent-training-v1",
+        "interpolationPerSegment": 20,
+        "densityManaged": true,
+        "bezierDegree": 5,
+        "learningRate": 1,
+        "smoothingRate": 0.1,
+        "adjustInterval": 50,
+        "adjustExponent": 0
+      }
+    },
+    "targets": [
+      [
+        410,
+        420
+      ],
+      [
+        700,
+        1580
+      ],
+      [
+        1440,
+        1100
+      ],
+      [
+        3170,
+        1560
+      ],
+      [
+        4160,
+        1440
+      ],
+      [
+        5110,
+        1630
+      ],
+      [
+        5450,
+        440
+      ],
+      [
+        3250,
+        350
+      ],
+      [
+        2500,
+        750
+      ],
+      [
+        410,
+        420
+      ]
+    ],
+    "nodes": [
+      [
+        390,
+        420
+      ],
+      [
+        526.32979915698877,
+        871.87350537201644
+      ],
+      [
+        326.573284453715,
+        1350.5830678586694
+      ],
+      [
+        190.52528580641138,
+        1849.3794695717909
+      ],
+      [
+        1131.4725991332734,
+        1722.1406232682073
+      ],
+      [
+        1308.2245306284037,
+        1253.7239313337834
+      ],
+      [
+        1402.2476012958098,
+        839.52963537607923
+      ],
+      [
+        1800.7582488378903,
+        997.74618590253976
+      ],
+      [
+        2279.23883145398,
+        1317.766446456483
+      ],
+      [
+        2747.1603181046048,
+        1460.9515480655589
+      ],
+      [
+        3078.05904992176,
+        1651.5293392631427
+      ],
+      [
+        3391.6489073035523,
+        1660.932352098602
+      ],
+      [
+        3751.4416659990438,
+        1463.1085894404468
+      ],
+      [
+        4179.4663813148509,
+        1322.3809283129974
+      ],
+      [
+        4558.8179561244506,
+        1498.5712142008986
+      ],
+      [
+        4981.6060156328658,
+        1801.7151154416208
+      ],
+      [
+        5289.4730527943093,
+        1818.7854528238556
+      ],
+      [
+        5443.7162614232975,
+        1332.0377763253566
+      ],
+      [
+        5622.5786140532373,
+        802.80583223253427
+      ],
+      [
+        5701.827642887778,
+        307.08982695620091
+      ],
+      [
+        5293.0766029511406,
+        176.31495424134442
+      ],
+      [
+        4808.3576612938841,
+        251.16900156595457
+      ],
+      [
+        4424.360635308215,
+        338.67268745140706
+      ],
+      [
+        4029.2222822660051,
+        328.25527827434735
+      ],
+      [
+        3580.6949984452508,
+        270.45384167637508
+      ],
+      [
+        3216.5154079640415,
+        183.4692025400206
+      ],
+      [
+        2866.8921107274123,
+        471.68795319113013
+      ],
+      [
+        2605.9423895425589,
+        821.261653831073
+      ],
+      [
+        2368.3730719530981,
+        857.48141915051451
+      ],
+      [
+        2084.5675093769005,
+        651.2463142783979
+      ],
+      [
+        1501.567218260431,
+        570.95336076618287
+      ],
+      [
+        1153.5620047015543,
+        532.20589860361133
+      ],
+      [
+        766.284425720004,
+        490.21532551106236
+      ],
+      [
+        414.95503103146422,
+        400.57951911036059
+      ]
+    ],
+    "provenance": "用户2026-10-31确认计算表为本队平推设计，顶球/生物质能标题是旧模板；采用轴距110、轮径135、主动轮X60、从动轮X-105、传感器(20,0)、c20、d150、传动比35。设计值不等于制造实测；外廓与连续遮挡区域未提供。初始航向90度、零转角及阈值为原测试假设，起点为首次地球观测，不含实际发车引入段。",
+    "testContext": {
+      "category": "solar",
+      "stage": "preliminary",
+      "courseSourceSHA256": "390bde4a2c6d47601fa92bb47cafbe24b309820314d74da09bcaaf40f2a7c42b",
+      "orderedIDs": [
+        1,
+        3,
+        4,
+        6,
+        8,
+        10,
+        12,
+        14,
+        15,
+        16
+      ],
+      "teamMechanismConfirmed": true,
+      "teamGearRatioConfirmed": true,
+      "vehicleDimensionsMeasured": false,
+      "launchLeadInIncluded": false,
+      "initialHeadingMeasured": false,
+      "coordinateReferenceOnly": true,
+      "vehicleDesignConfirmed": true,
+      "designSourceSHA256": "e3640872f46a6438003716c8c78916bf73a00bf99baefa82348628700d925b65",
+      "bodyFootprintKnown": false
+    },
+    "routeRebuild": {
+      "version": "target-route-rebuild-v1",
+      "rebuiltFromTargets": true,
+      "shapePreservationGuaranteed": false,
+      "targetModel": "bezier-blend-independent-v1",
+      "targetDegree": 5,
+      "requestedControlPointCount": 34,
+      "actualControlPointCount": 34,
+      "actualSamples": 661,
+      "startPointUnchanged": true,
+      "targetOrderUnchanged": true,
+      "semantics": "New target-seeded controls with the existing start; explicit reshape, no old-curve mapping or physical-feasibility claim."
+    }
+  },
+  "numericShapes": [
+    {
+      "path": [
+        "params",
+        "wheelDiameter"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "gearRatio"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "lever"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "rollerRadius"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "referenceDiameter"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "thickness"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "driveX"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "driveY"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "drivenX"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "drivenY"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "sensorX"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "sensorY"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "headingDeg"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "startSteeringDeg"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "samples"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "camSamples"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "autoRatio"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "returnAngleDeg"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "maxSteeringDeg"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "maxPressureDeg"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "hitTolerance"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "iterations"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "stepMM"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "gradientProbeMM"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "bounds"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        4
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "weights"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        6
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "bezier",
+        "degree"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "bezier",
+        "parameterLength"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "training",
+        "interpolationPerSegment"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "training",
+        "densityManaged"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "training",
+        "bezierDegree"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "training",
+        "learningRate"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "training",
+        "smoothingRate"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "training",
+        "adjustInterval"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "params",
+        "training",
+        "adjustExponent"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "targets"
+      ],
+      "class": "double",
+      "size": [
+        10,
+        2
+      ]
+    },
+    {
+      "path": [
+        "nodes"
+      ],
+      "class": "double",
+      "size": [
+        34,
+        2
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "orderedIDs"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        10
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "teamMechanismConfirmed"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "teamGearRatioConfirmed"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "vehicleDimensionsMeasured"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "launchLeadInIncluded"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "initialHeadingMeasured"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "coordinateReferenceOnly"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "vehicleDesignConfirmed"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "testContext",
+        "bodyFootprintKnown"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "routeRebuild",
+        "rebuiltFromTargets"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "routeRebuild",
+        "shapePreservationGuaranteed"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "routeRebuild",
+        "targetDegree"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "routeRebuild",
+        "requestedControlPointCount"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "routeRebuild",
+        "actualControlPointCount"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "routeRebuild",
+        "actualSamples"
+      ],
+      "class": "double",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "routeRebuild",
+        "startPointUnchanged"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    },
+    {
+      "path": [
+        "routeRebuild",
+        "targetOrderUnchanged"
+      ],
+      "class": "logical",
+      "size": [
+        1,
+        1
+      ]
+    }
+  ]
+}
