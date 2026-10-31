@@ -34,20 +34,23 @@ classdef PhysicalEvaluationBudget < handle
                 'reserved',obj.Reserved,'parallelIntervals',obj.ParallelIntervals, ...
                 'scope','Actual camdesign.evaluate attempts, including failures and full acceptance checks; cache/objective/constraint calls do not count. Independent final assessment excluded.');
         end
-        function records=evaluateBatch(obj,projects,full,stopAt,workers)
+        function records=evaluateBatch(obj,projects,full,stopAt,workers,stopCheck)
             % Reserve before submission, settle actual attempts after drain.
             % A failed future retains its reservation (unknown execution),
             % never refunds it or fabricates a physical-attempt count.
-            pool=backgroundPool;
+            if nargin<6, stopCheck=[]; end
+            pool=cam_candidate_pool(workers);
             assert(~isempty(pool) && pool.NumWorkers>=workers,'cam:CandidatePool','候选池配额不足，未开始探针。');
             available=min(numel(projects),min(obj.Limit,stopAt)-obj.Used-obj.Reserved);
             records=cell(1,available);
+            futures={};
+            scope=camdesign.CandidateFutureScope; cleanupGuard=onCleanup(@scope.close);
             for first=1:workers:available
                 obj.check(stopAt); last=min(available,first+workers-1); futures=cell(1,last-first+1);
-                failure=[];
+                failure=[]; scope.Futures={};
                 for k=first:last
                     obj.Reserved=obj.Reserved+1;
-                    try, futures{k-first+1}=parfeval(pool,@camdesign.candidateEvaluation,1,projects{k},full);
+                    try, futures{k-first+1}=parfeval(pool,@camdesign.candidateEvaluation,1,projects{k},full); scope.Futures=futures;
                     catch ex, obj.Reserved=obj.Reserved-1; failure=ex; break; end
                 end
                 for k=first:last
@@ -60,6 +63,8 @@ classdef PhysicalEvaluationBudget < handle
                     catch ex, failure=ex; end
                 end
                 if ~isempty(failure), rethrow(failure); end
+                drawnow;
+                if ~isempty(stopCheck) && stopCheck(), error('cam:CandidateStopped','用户停止；已结算当前批次。'); end
             end
         end
     end

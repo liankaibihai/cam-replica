@@ -14,7 +14,8 @@ arguments
     options.FinalAssessment (1,1) logical=true
     options.StageCompleteFcn=[]
     options.StartFcn=[]
-    options.CandidateWorkers (1,1) double {mustBeInteger,mustBeNonnegative}=0
+    options.StopCheck=[]
+    options.CandidateWorkers (1,1) double {mustBeInteger,mustBeNonnegative}=4
     options.Budget=[]
 end
 if isempty(callback), callback=@(~,~,~)false; end
@@ -44,7 +45,7 @@ for startIndex=1:starts
     activePhase='four'; phaseOffset=totalIterations; fourLease=max(1,floor(allocation*options.FourFraction));
     try
         [candidate,trace,fourInfo]=camdesign.optimizeFeasibilityFour(seed,@stageProgress, ...
-            Budget=budget,MaxPhysicalEvaluations=fourLease,MaxIterations=options.MaxIterations,FinalAssessment=false,CandidateWorkers=options.CandidateWorkers);
+            Budget=budget,MaxPhysicalEvaluations=fourLease,MaxIterations=options.MaxIterations,FinalAssessment=false,CandidateWorkers=options.CandidateWorkers,StopCheck=options.StopCheck);
         archive(candidate,trace,fourInfo,fourLease); totalIterations=phaseOffset+fourInfo.iterations;
         stopped=stopped || strcmp(fourInfo.reason,'user_stop');
         left=min(budget.Limit-budget.Used,allocation-(budget.Used-startAt));

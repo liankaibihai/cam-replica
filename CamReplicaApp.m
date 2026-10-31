@@ -1714,16 +1714,30 @@ classdef CamReplicaApp < handle
             if app.Busy || app.SimulationMode || app.MapEditMode, return; end
             reason=app.optimizationBlockedReason();
             assert(isempty(reason),'cam:OptimizationBlocked','迭代优化未启动：%s',reason);
+            options=struct();
+            supported=ismember(app.AlgorithmSelector.Value,{'feasibility-four-direction-v1','relay-sqp-v1','multistart-relay-sqp-v1'});
+            if supported
+                workers=4; enabled=true;
+                if isappdata(app.Figure,'camCandidateWorkers'), workers=getappdata(app.Figure,'camCandidateWorkers'); end
+                if isappdata(app.Figure,'camCandidateEnabled'), enabled=getappdata(app.Figure,'camCandidateEnabled'); end
+                options.CandidateWorkers=workers*double(enabled); options.StopCheck=@app.candidateStopRequested;
+                if enabled, cam_candidate_pool(workers); end
+            else
+                app.message('当前方法未接入候选并行，按原求解器同步执行；可行性四方向及接力四方向阶段支持候选线程。');
+            end
             app.readInputs(); app.Busy=true; app.StopRequested=false; app.setBusy(true);
             if strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), app.ControlsTabs.SelectedTab=app.AutoTuneTab; end
             cleanup=onCleanup(@()app.finishBusy());
             app.OptimizationDirection=[]; app.OptimizationInfo=[];
             app.History=[]; app.HistoryProject=[]; app.updateDiagnostics();
-            [project,history,info]=camdesign.optimize(app.Project,@app.optimizationUpdate,app.AlgorithmSelector.Value);
+            [project,history,info]=camdesign.optimize(app.Project,@app.optimizationUpdate,app.AlgorithmSelector.Value,options);
             app.Project=project; app.History=history; app.HistoryProject=project; app.OptimizationDirection=[]; app.OptimizationInfo=info;
             app.syncInputs();
             if isfield(info,'cachedFinalResult'), app.Result=info.cachedFinalResult; app.render(); app.syncTrainingInputs(); else, app.calculate(); end
             app.finishOptimizationDisplay(info);
+        end
+        function value=candidateStopRequested(app)
+            value=app.StopRequested;
         end
         function finishOptimizationDisplay(app,info,preparedInspection)
             history=app.History;

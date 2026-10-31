@@ -1,0 +1,134 @@
+{
+  "baseline": "53b6018e2a5d6c6116a6c8a6f997fe7a38e18f85",
+  "status": "reviewed; targeted validation passed",
+  "reports": {
+    "prototype": {
+      "callbackSynchronous": true,
+      "durationSeconds": 0.1419173,
+      "poolClass": "parallel.BackgroundPool",
+      "poolWorkers": 8,
+      "requestedWorkers": 4,
+      "actualOverlapSeconds": 0.011999532580375671,
+      "resultsEqual": true,
+      "budgetEqual": true,
+      "physicalEvaluations": 37,
+      "stopReason": "user_stop",
+      "productModified": false,
+      "scope": "Foreground caller synchronously waits for internal candidate threads. Handwritten3-point only; no course or user UI."
+    },
+    "full": {
+      "checks": [
+        "direct default4 feasibility and relay equal explicit serial at the same physical budgets",
+        "foreground batch StopCheck stops after first four-candidate window; initial plus four attempts settled exactly",
+        "idle legacy menu migration backs up and preserves full project/results/history/pending values, removes execution mode and defaults to4",
+        "active synchronous session migration refuses",
+        "candidate resource/settings preflight refuses before clearing original result/history",
+        "real optimize callback is synchronous and complete on return with genuine candidate intervals and no detached job",
+        "default enabled switch does not reject unsupported peak backend or change user switch; scope logged explicitly",
+        "UI Stop event is processed by foreground drawnow, callback completes with checked best"
+      ],
+      "checksPassed": 8,
+      "foregroundCallbackSeconds": 8.7614876,
+      "lastLedger": {
+        "limit": 60,
+        "used": 37,
+        "fullChecks": 6,
+        "invalid": 4,
+        "elapsedSeconds": 0.2411266,
+        "maxSeconds": 3600,
+        "reserved": 0,
+        "parallelIntervals": [
+          [
+            740286.9791507291,
+            740286.9791511343
+          ],
+          [
+            740286.9791507291,
+            740286.9791507523
+          ],
+          [
+            740286.9791507291,
+            740286.9791511806
+          ],
+          [
+            740286.9791507291,
+            740286.9791507523
+          ],
+          [
+            740286.9791512153,
+            740286.9791512153
+          ],
+          [
+            740286.9791512153,
+            740286.9791512153
+          ],
+          [
+            740286.9791512153,
+            740286.9791512268
+          ],
+          [
+            740286.9791512153,
+            740286.9791512385
+          ]
+        ],
+        "scope": "Actual camdesign.evaluate attempts, including failures and full acceptance checks; cache/objective/constraint calls do not count. Independent final assessment excluded."
+      },
+      "migration": {
+        "alreadyInstalled": false,
+        "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\foreground_migration\\tp480bf5bb_98f2_408b_8148_77bb63c75db8.mat",
+        "stateUnchanged": true,
+        "candidateEnabled": true,
+        "workers": 4
+      },
+      "scope": "Handwritten3-point only; synchronous foreground callback and internal candidate threads. Timer only injects a UI Stop event, never performs model work. No user window/course data."
+    },
+    "cleanup": {
+      "injectedIdentifier": "cam:InjectedCleanup",
+      "settledAttempts": 4,
+      "reserved": 0,
+      "unrelatedFuturePreserved": true,
+      "ownedTasksRemaining": 0,
+      "synchronousResultComplete": true,
+      "defaultThreads": 4,
+      "backgroundModeRemoved": true,
+      "scope": "Controlled exception at drained batch boundary; no literal Ctrl+C or forced worker crash injected. Small handwritten input only."
+    },
+    "owned": {
+      "ownedStateBefore": "running",
+      "ownedStateAfter": "finished",
+      "ownedError": "parallel:fevalqueue:ExecutionCancelled",
+      "cleanupInvokedByException": true,
+      "unrelatedFuturePreserved": true,
+      "cleanupWarning": "",
+      "scope": "Independent owned-future lifetime check with pause only; no model or literal Ctrl+C."
+    }
+  },
+  "failedCleanup": "cleanup_2 warning retained, not accepted as passing cleanup",
+  "scope": "No competition data or user-window operation. Local commit by parent; no push.",
+  "parentIndependent": {
+    "scopeAssertionsPassed": true,
+    "scopeProcessExitCode": 0,
+    "scopeLog": "local/matlab_7818dd47fffb4badb9dfd49203cd2af6.log",
+    "scopeReport": "outputs/foreground_parallel_20261031/parent_scope/verification.json",
+    "helper": "local/check_owned_future_021.m",
+    "scope": "Assertions PASS; exit waited longer, then session34004 returned0 naturally. No manual termination. No literal Ctrl+C/model-stop claim.",
+    "executorOwnedFutureExitCode": 0,
+    "before": {
+      "report": "outputs/foreground_parallel_20261031/parent_live/before.json",
+      "stateMAT": "outputs/foreground_parallel_20261031/parent_live/before.mat",
+      "figureOpen": false,
+      "appBusy": false,
+      "backgroundRunning": 0,
+      "backgroundQueued": 0,
+      "processPoolPresent": false,
+      "source": "Parent-reported read-only backup before authorizing source removal."
+    },
+    "scopeReportSHA256": "e3e77a513c0e8124a9c4b89c5154099b45ec056c62750e875ca477841fb58beb",
+    "beforeReportSHA256": "e73d9d8e63f177186136c2091a0b4a336c07311b32ab61521d6b5666399b4e58",
+    "scopeTestPIDs": {
+      "launcher": 63848,
+      "child": 61456
+    },
+    "manualTerminationExecuted": false
+  }
+}

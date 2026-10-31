@@ -21,8 +21,8 @@
 | [旧窗口回调恢复](changes/2026/2026-10-31-016-ui-callback-recovery.md) | 源码更新后按钮失效、完整状态保全和就地恢复 | 找不到函数、匿名回调、applyTraining、未应用输入 |
 | [全界面回调检查](changes/2026/2026-10-31-017-all-ui-callbacks.md) | 全部持久UI连接、事件参数、旧窗口覆盖清单与无计算验证 | 按钮、SizeChangedFcn、具名分派、MATLAB工具栏 |
 | [训练设置反馈与点数调整](changes/2026/2026-10-31-018-training-controls-feedback.md) | 优化灰色原因、保形请求与实际点数、显式强制调整 | 动态权重、50→170、待应用、保形 |
-| [候选并行搜索](CANDIDATE_PARALLEL.md) | 真正多核探针、独立开关、配额、单账本及同结果检查 | CandidateWorkers、NumThreads、预留、并行 |
-| [后台计算与界面响应](BACKGROUND_COMPUTATION.md) | 多线程接入、停止与状态保全；实施范围及实测记录 | backgroundPool、parfeval、卡顿、异步 |
+| [候选并行搜索](CANDIDATE_PARALLEL.md) | 真正多核探针、独立开关、配额、单账本及同结果检查 | CandidateWorkers、默认4、预留、并行 |
+| [前台执行与默认候选线程](FOREGROUND_COMPUTATION.md) | 同步计算、默认4线程、停止、旧异步菜单移除与保全迁移 | 前台、默认4、onCleanup |
 | [实际轮廓完整反推](ACTUAL_CAM_CLOSURE.md) | 冻结实际XY、线段接触、车辆积分、闭环及加密检查 | actual、圆盘、RK4、积分稳定、理论对照 |
 | [贝塞尔数值精度](BEZIER_PRECISION.md) | 固定曲线误差定位、解析凸轮导数、同步积分与工作/回程构造 | Bezier、D3、RK4、Hermite、workPP、采样收敛 |
 | [总路程显示](changes/2026/2026-10-30-002-route-length.md) | 前轮总路程与主动轮行程、单位及结果来源 | 总路程、mm、m、历史、加密 |

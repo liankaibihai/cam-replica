@@ -8,7 +8,6 @@ project=camdesign.solarTestProject();
 project.params.autoTune=struct('trials',2,'maxIterations',1,'seed',2027,'polishCount',0);
 project.params.dynamicWeights=struct('enabled',true);
 app=CamReplicaApp('off'); cleanup=onCleanup(@()closeOwn(app));
-cam_app_async('mode',app,'foreground'); % This legacy check reads results immediately.
 app.Project=project; app.syncInputs(); app.calculate();
 app.AlgorithmSelector.Value='auto-tune-v1'; callback=app.AlgorithmSelector.ValueChangedFcn; cam_invoke_ui_callback(callback,app.AlgorithmSelector,[]);
 callback=app.Buttons(5).ButtonPushedFcn; cam_invoke_ui_callback(callback,app.Buttons(5),[]);

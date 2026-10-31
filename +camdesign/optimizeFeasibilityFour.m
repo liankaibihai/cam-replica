@@ -8,7 +8,8 @@ arguments
     options.Budget=[]
     options.MaxIterations (1,1) double {mustBeInteger,mustBePositive}=project.params.iterations
     options.FinalAssessment (1,1) logical=true
-    options.CandidateWorkers (1,1) double {mustBeInteger,mustBeNonnegative}=0
+    options.StopCheck=[]
+    options.CandidateWorkers (1,1) double {mustBeInteger,mustBeNonnegative}=4
 end
 if isempty(callback), callback=@(~,~,~)false; end
 camdesign.validateProject(project);
@@ -47,7 +48,7 @@ for iteration=1:options.MaxIterations
                 frozen{2*j-2+directionIndex}=trial;
             end
         end
-        batch=budget.evaluateBatch(frozen,fullProbes,stopAt,options.CandidateWorkers);
+        batch=budget.evaluateBatch(frozen,fullProbes,stopAt,options.CandidateWorkers,options.StopCheck);
     end
     for k=1:numel(free)
         idx=free(k); values=[Inf Inf]; referenceValues=values;
@@ -156,7 +157,8 @@ for iteration=1:options.MaxIterations
         'cam:FeasibilityMutation','搜索改变了锁定参数、目标顺序或起点。');
 end
 catch ex
-    if strcmp(ex.identifier,'cam:PhysicalEvaluationBudget'), reason='physical_evaluation_limit';
+    if strcmp(ex.identifier,'cam:CandidateStopped'), reason='user_stop';
+    elseif strcmp(ex.identifier,'cam:PhysicalEvaluationBudget'), reason='physical_evaluation_limit';
     elseif strcmp(ex.identifier,'cam:PhysicalTimeBudget'), reason='time_limit';
     else, rethrow(ex); end
     if ~isequal(history(end).nodes,best.nodes), history(end+1)=entry(iteration,true,'budget_terminal_selection'); end

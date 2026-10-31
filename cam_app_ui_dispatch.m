@@ -2,7 +2,6 @@ function cam_app_ui_dispatch(source,event,app,key)
 % Named callback bridge: no anonymous function tied to CamReplicaApp.m.
 assert(isvalid(app),'cam:CallbackApp','回调对应的窗口对象已失效。');
 if isa(app,'CamReplicaApp') && startsWith(key,'candidate-') && cam_candidate_ui(app,key), return; end
-if isa(app,'CamReplicaApp') && cam_app_async('ui',app,key), return; end
 spec=cam_app_ui_spec(key); args=spec.fixedArguments;
 switch spec.mode
     case 'fixed'

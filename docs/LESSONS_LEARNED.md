@@ -16,6 +16,7 @@
 
 | 编号 | 分类 | 主题 | 检索关键词 |
 |---|---|---|---|
+| [EXP-043](#exp-043-前台生命周期及退出清理不能靠嵌套变量) | 实际清理警告及修正 | 前台等待、handle容器、只清理自有future | onCleanup、nested、默认4线程 |
 | [EXP-042](#exp-042-后台执行不等于候选并发) | 需求纠正与验证经验 | 多核候选须证明真实重叠及单账本 | NumThreads、候选、预留、确定性 |
 | [EXP-041](#exp-041-后台计算与候选并行需要分别证明) | 能力探针与审查经验 | 线程数不等于并发或加速，UI异步不能丢验收与预览 | backgroundPool、嵌套、预算、ScoreBasis、private、旧消息 |
 | [EXP-040](#exp-040-回调可达不代表设置真正生效) | 实际交互问题 | 禁用原因和请求点数必须在操作处反馈 | 灰色按钮、动态权重冲突、50→170、强制点数、待应用 |
@@ -474,3 +475,10 @@ EXP-038补充（CHG-017）：父侧在存活窗口只调用布局回调，复现
 - 原process worker的backgroundPool只有1worker；独立原型将进程NumThreads配置为4后才实测到4worker和0.509秒重叠。不能只凭CPU数、池名称或parfeval语法宣称并行。
 - 实现先冻结整轮探针，以原索引归并；协调者独占预算，提交前预留、返回后结算，失败同样计数。正常停止与取消须留存已执行尝试和完整结果。
 - 小合成同结果、同预算及实际重叠通过，仍不能当比赛速度或算法质量证据。见[CHG-020](changes/2026/2026-10-31-020-candidate-parallel.md)。
+
+## EXP-043 前台生命周期及退出清理不能靠嵌套变量
+
+- 用户在021要求删产品后台模式、默认多线程；内部候选future与可脱离前台的业务模式不同。前台回调须等待完成，候选线程仍可真正并发。
+- cleanup_2实际出现onCleanup警告：nested函数捕获的futures已先于清理被销毁。虽然业务断言通过且批次已排空，仍不能宣称异常清理通过。父侧指出[MathWorks onCleanup Tips](https://www.mathworks.com/help/matlab/ref/oncleanup.html)提醒避免这种nested清理引用。
+- 改为专属handle容器，onCleanup持有绑定方法；容器持续记录当批future。cleanup_3无警告，独立owned_future_4进一步通过受控异常确认running自有future确实被取消并等待，无关future返回正常。没有声称实际按Ctrl+C或worker硬崩溃已测。
+- 资源/配置预检必须在清结果历史前；旧窗迁移必须先保全且空闲，用户已关窗口不重开。详见[CHG-021](changes/2026/2026-10-31-021-foreground-default-parallel.md)。

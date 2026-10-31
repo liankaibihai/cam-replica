@@ -9,7 +9,7 @@ launch_cam_app
 
 无需安装旧版 Runtime，不修改原 EXE。窗口使用 MATLAB 自带的 `uifigure`，正常桌面启动即可；某些受限执行环境可能阻塞图形组件初始化。
 
-“计算执行方式”菜单可选择后台计算或前台兼容。后台把计算凸轮、迭代优化、实际轮廓闭环检查移出界面执行线程，保留路线/凸轮/评分预览和正常停止；接力/多起点中的SQP需进程worker，首次启动池可能稍候。当前方案的搜索顺序、采样、预算和验收阈值不变，不代表所有候选同时搜索。任务结束前的图形标为预览；强制取消会回到原确认结果。适用入口、结果保全和限制见[后台计算说明](BACKGROUND_COMPUTATION.md)。
+计算、优化与闭环检查现为前台同步执行，候选线程默认开启4个；没有后台执行模式。支持范围、停止和旧窗迁移见[前台执行说明](FOREGROUND_COMPUTATION.md)。
 
 若基础工作区已经有仍打开的 `camReplicaApp`，再次无参数运行 `launch_cam_app` 会保留并返回这个窗口，同时给出提示，不重新初始化项目。显式传入项目仍按原入口新建窗口。开发用 `CamReplicaApp('off',syntheticProject,false)` 可只创建界面而跳过初始计算，供无路线计算的按钮检查使用；普通启动行为仍会计算初始项目。
 
@@ -306,4 +306,4 @@ simulation = camdesign.simulate(result.cam, actual, ...
 
 新增检查的参数语义、诊断边界和本队计算表来源见[比赛几何](CONTEST_GEOMETRY.md)。普通启动使用`camdesign.teamSolarProject()`的用户确认设计值；历史太阳能回归工厂仍为`solarTestProject()`。当前保存的项目不因新默认而被覆盖。
 
-候选多核搜索已单独提供，默认关闭；支持可行性四方向及接力的四方向阶段，详见[候选并行搜索](CANDIDATE_PARALLEL.md)。后台计算本身不等于候选并行。
+候选多核搜索默认开启4线程；可行性四方向和接力四方向阶段支持，其它方法保持原同步后端。详见[候选线程并行](CANDIDATE_PARALLEL.md)。
