@@ -18,7 +18,7 @@ assert(isequaln(app.Project,confirmed) && app.diagnosticsAreCurrent());
 assert(~contains(app.ScoreDisplayData.state,'历史') && strcmp(app.CrossSource.Enable,'on'));
 checks={'map confirmation refreshes diagnostics and enables refinement','map cancellation restores project and diagnostics'};
 [bs,~]=camdesign.toBSpline(p,8,5); app.Project=bs; app.syncInputs(); app.calculate();
-app.AlgorithmSelector.Value='auto-tune-v1'; cb=app.AlgorithmSelector.ValueChangedFcn; cb(app.AlgorithmSelector,[]);
+app.AlgorithmSelector.Value='auto-tune-v1'; cb=app.AlgorithmSelector.ValueChangedFcn; cam_invoke_ui_callback(cb,app.AlgorithmSelector,[]);
 before=app.Project; oldResult=app.Result; oldNodes=app.NodesTable.Data; oldParams=app.ParamsTable.Data;
 app.action('seed');
 assert(isequaln(app.Project,before) && isequaln(app.Result,oldResult));

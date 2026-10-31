@@ -156,8 +156,8 @@ classdef CamReplicaApp < handle
             app.Project=project;
             app.Figure=uifigure('Name','工创赛凸轮设计 · MATLAB 复现 v0.2', ...
                 'Position',[70 60 1320 860],'Visible',visibility,'Color',[.95 .96 .98],'AutoResizeChildren','off');
-            app.Figure.CloseRequestFcn=@(~,~)app.closeRequested();
-            app.Figure.WindowKeyPressFcn=@(~,event)app.routeEditorKey(event);
+            app.Figure.CloseRequestFcn=cam_app_ui_callback(app,'closeRequested');
+            app.Figure.WindowKeyPressFcn=cam_app_ui_callback(app,'routeEditorKey');
             root=uigridlayout(app.Figure,[5 2],'RowHeight',{34,36,52,'1x',262}, ...
                 'ColumnWidth',{320,'1x'},'Padding',[12 8 12 8], ...
                 'RowSpacing',6,'ColumnSpacing',10);
@@ -178,7 +178,7 @@ classdef CamReplicaApp < handle
             for k=1:8
                 actionName=actions{k};
                 app.Buttons(k)=uibutton(bar,'Text',labels{k},'FontSize',13, ...
-                    'ButtonPushedFcn',@(~,~)app.action(actionName));
+                    'ButtonPushedFcn',cam_app_ui_callback(app,['action/' actionName]));
             end
             app.Buttons(4).BackgroundColor=[.18 .40 .66]; app.Buttons(4).FontColor=[1 1 1];
             app.Buttons(5).BackgroundColor=[.14 .48 .39]; app.Buttons(5).FontColor=[1 1 1];
@@ -188,14 +188,14 @@ classdef CamReplicaApp < handle
             methods.Layout.Row=3; methods.Layout.Column=[1 2];
             uilabel(methods,'Text','路线画法','FontWeight','bold');
             app.TrainingModel=uidropdown(methods,'Items',{'三次样条（通过节点）','贝塞尔曲线（控制点调形）','标准三次B样条（内点法）','标准五次B样条（内点法）'}, ...
-                'ItemsData',{'cubic','bezier-blend-independent-v1','bspline-3','bspline-5'},'ValueChangedFcn',@(~,~)app.routeModelChanged(), ...
+                'ItemsData',{'cubic','bezier-blend-independent-v1','bspline-3','bspline-5'},'ValueChangedFcn',cam_app_ui_callback(app,'routeModelChanged'), ...
                 'Tooltip','B样条是系数控制多边形，通常不穿控制点。切换优先精确保形，否则独立误差门禁拟合，超限拒绝；仅支持内点法。');
             app.TrainingModel.Layout.Row=1; app.TrainingModel.Layout.Column=2;
             label=uilabel(methods,'Text','优化方法','FontWeight','bold'); label.Layout.Row=1; label.Layout.Column=3;
             app.AlgorithmSelector=uidropdown(methods, ...
                 'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）','全自动调优（权重＋训练）','四方向（可行性优先）','接力精修（四方向＋SQP）','多起点接力（固定种子）'}, ...
                 'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1','auto-tune-v1','feasibility-four-direction-v1','relay-sqp-v1','multistart-relay-sqp-v1'}, ...
-                'Value','peak-gradient-v2','ValueChangedFcn',@(~,~)app.algorithmChanged(), ...
+                'Value','peak-gradient-v2','ValueChangedFcn',cam_app_ui_callback(app,'algorithmChanged'), ...
                 'Tooltip','全自动锁定当前路线模型及阶数，只比较权重和适用训练设置。物理参数和阈值不自动改变。');
             app.AlgorithmSelector.Layout.Row=1; app.AlgorithmSelector.Layout.Column=4;
             app.MethodSummary=uilabel(methods,'Text','','FontSize',11);
@@ -205,7 +205,7 @@ classdef CamReplicaApp < handle
             side=uigridlayout(root,[4 1],'RowHeight',{28,26,30,'1x'},'Padding',[0 0 0 0],'RowSpacing',4);
             side.Layout.Row=4; side.Layout.Column=1;
             app.Mechanism=uidropdown(side,'Items',{'齿条：h = cδ','平推：h = c tanδ'}, ...
-                'ItemsData',{'rack','flat'},'Value','rack','ValueChangedFcn',@(~,~)app.invalidate());
+                'ItemsData',{'rack','flat'},'Value','rack','ValueChangedFcn',cam_app_ui_callback(app,'invalidate'));
             ratioRow=uigridlayout(side,[1 1],'Padding',[0 0 0 0]);
             app.AutoRatio=uicheckbox(ratioRow,'Text','','Value',false,'Enable','off','Visible','off', ...
                 'Tooltip','只由用户在车体参数手动改变gearRatio。旧文件autoRatio=true也不会自动增比。');
@@ -214,38 +214,38 @@ classdef CamReplicaApp < handle
             app.RatioNotice.Layout.Row=1; app.RatioNotice.Layout.Column=1; ratioRow.RowHeight={'1x'};
             shortcuts=uigridlayout(side,[1 2],'ColumnWidth',{'1x',100},'Padding',[0 0 0 0],'ColumnSpacing',4); shortcuts.Layout.Row=3;
             app.TrainingShortcut=uibutton(shortcuts,'Text','打开训练设置（九项）','FontWeight','bold','FontSize',11, ...
-                'ButtonPushedFcn',@(~,~)app.openTraining());
+                'ButtonPushedFcn',cam_app_ui_callback(app,'openTraining'));
             app.ContestGeometryShortcut=uibutton(shortcuts,'Text','比赛几何','FontSize',11, ...
                 'Tooltip','独立设置整车外包络、真实连续覆盖区域及UID直径；可不生成凸轮而审查路线。', ...
-                'ButtonPushedFcn',@(~,~)app.openContestGeometry());
+                'ButtonPushedFcn',cam_app_ui_callback(app,'openContestGeometry'));
             tabs=uitabgroup(side);
             app.ControlsTabs=tabs;
             t=uitab(tabs,'Title','车体'); g=uigridlayout(t,[1 1],'Padding',[0 0 0 0]);
             app.ParamsTable=uitable(g,'ColumnName',{'参数','数值'},'ColumnEditable',[false true], ...
-                'ColumnWidth',{185,65},'ColumnFormat',{'char','numeric'},'RowName',{},'FontSize',11,'CellEditCallback',@(~,~)app.invalidate());
+                'ColumnWidth',{185,65},'ColumnFormat',{'char','numeric'},'RowName',{},'FontSize',11,'CellEditCallback',cam_app_ui_callback(app,'invalidate'));
             app.PointButtons=gobjects(1,4);
             t=uitab(tabs,'Title','目标'); g=uigridlayout(t,[2 1],'RowHeight',{30,'1x'},'Padding',[0 0 0 0]);
             controls=uigridlayout(g,[1 2],'Padding',[0 0 0 0]);
-            app.PointButtons(1)=uibutton(controls,'Text','选中行后插入','ButtonPushedFcn',@(~,~)app.modifyPoints('target',1));
-            app.PointButtons(2)=uibutton(controls,'Text','删除选中行','ButtonPushedFcn',@(~,~)app.modifyPoints('target',-1));
+            app.PointButtons(1)=uibutton(controls,'Text','选中行后插入','ButtonPushedFcn',cam_app_ui_callback(app,'target-insert'));
+            app.PointButtons(2)=uibutton(controls,'Text','删除选中行','ButtonPushedFcn',cam_app_ui_callback(app,'target-delete'));
             app.TargetsTable=uitable(g,'ColumnName',{'X / mm','Y / mm'},'ColumnEditable',[true true], ...
-                'ColumnWidth',{120,120},'CellEditCallback',@(~,~)app.invalidate(), ...
-                'CellSelectionCallback',@(~,event)app.selectPoint('target',event));
+                'ColumnWidth',{120,120},'CellEditCallback',cam_app_ui_callback(app,'invalidate'), ...
+                'CellSelectionCallback',cam_app_ui_callback(app,'target-select'));
             t=uitab(tabs,'Title','节点'); g=uigridlayout(t,[3 1],'RowHeight',{30,44,'1x'},'Padding',[0 0 0 0]);
             controls=uigridlayout(g,[1 3],'Padding',[0 0 0 0],'ColumnSpacing',4);
-            app.PointButtons(3)=uibutton(controls,'Text','段中插点','FontSize',11,'ButtonPushedFcn',@(~,~)app.modifyPoints('node',1));
-            app.PointButtons(4)=uibutton(controls,'Text','删除节点','FontSize',11,'ButtonPushedFcn',@(~,~)app.modifyPoints('node',-1));
-            app.RefineRouteButton=uibutton(controls,'Text','全段细化','FontSize',11,'ButtonPushedFcn',@(~,~)app.refineRoute());
+            app.PointButtons(3)=uibutton(controls,'Text','段中插点','FontSize',11,'ButtonPushedFcn',cam_app_ui_callback(app,'node-insert'));
+            app.PointButtons(4)=uibutton(controls,'Text','删除节点','FontSize',11,'ButtonPushedFcn',cam_app_ui_callback(app,'node-delete'));
+            app.RefineRouteButton=uibutton(controls,'Text','全段细化','FontSize',11,'ButtonPushedFcn',cam_app_ui_callback(app,'refineRoute'));
             app.NodeInfo=uilabel(g,'Text','','FontSize',11,'WordWrap','on');
             app.NodesTable=uitable(g,'ColumnName',{'前轮 X / mm','前轮 Y / mm'},'ColumnEditable',[true true], ...
-                'ColumnWidth',{105,105},'CellEditCallback',@(~,~)app.invalidate(), ...
-                'CellSelectionCallback',@(~,event)app.selectPoint('node',event));
+                'ColumnWidth',{105,105},'CellEditCallback',cam_app_ui_callback(app,'invalidate'), ...
+                'CellSelectionCallback',cam_app_ui_callback(app,'node-select'));
             t=uitab(tabs,'Title','权重'); app.WeightsTab=t;
             g=uigridlayout(t,[3 1],'RowHeight',{104,156,58},'Padding',[0 0 0 0],'RowSpacing',3,'Scrollable','on');
             settings=uigridlayout(g,[4 4],'RowHeight',{26,16,26,26},'ColumnWidth',{'1x',48,'1x',48}, ...
                 'Padding',[2 0 2 0],'ColumnSpacing',3,'RowSpacing',2);
             app.DynamicWeightsEnabled=uicheckbox(settings,'Text','按违规自动调权重','Value',false, ...
-                'ValueChangedFcn',@(~,~)app.dynamicWeightsChanged(), ...
+                'ValueChangedFcn',cam_app_ui_callback(app,'dynamicWeightsChanged'), ...
                 'Tooltip','基础权重不变；在轮次边界根据物理违规调整搜索权重。只支持梯度搜索和四方向试探。');
             app.DynamicWeightsEnabled.Layout.Row=1; app.DynamicWeightsEnabled.Layout.Column=[1 4];
             app.DynamicWeightSource=uilabel(settings,'Text','实际权重未记录','FontSize',10);
@@ -259,12 +259,12 @@ classdef CamReplicaApp < handle
                 label=uilabel(settings,'Text',names{k},'FontSize',10,'Tooltip',tips{k});
                 label.Layout.Row=row; label.Layout.Column=column;
                 app.DynamicWeightFields(k)=uieditfield(settings,'numeric','Value',1,'FontSize',10, ...
-                    'Tooltip',tips{k},'ValueChangedFcn',@(~,~)app.dynamicWeightsChanged());
+                    'Tooltip',tips{k},'ValueChangedFcn',cam_app_ui_callback(app,'dynamicWeightsChanged'));
                 app.DynamicWeightFields(k).Layout.Row=row; app.DynamicWeightFields(k).Layout.Column=column+1;
             end
             app.WeightsTable=uitable(g,'ColumnName',{'评分项','基础','实际'},'ColumnEditable',[false true false], ...
                 'ColumnWidth',{130,60,60},'ColumnFormat',{'char','numeric','char'},'RowName',{},'FontSize',11, ...
-                'CellEditCallback',@(~,~)app.invalidate());
+                'CellEditCallback',cam_app_ui_callback(app,'invalidate'));
             app.DynamicWeightInfo=uilabel(g,'Text','','FontSize',10,'WordWrap','on','VerticalAlignment','top');
             t=uitab(tabs,'Title','训练'); app.TrainingTab=t;
             trainingRoot=uigridlayout(t,[4 1],'RowHeight',{64,'1x',62,40},'Padding',[0 0 0 0],'RowSpacing',3);
@@ -285,7 +285,7 @@ classdef CamReplicaApp < handle
                 label=uilabel(training,'Text',labels{k},'FontSize',11,'Tooltip',tips{k});
                 label.Layout.Row=k; label.Layout.Column=1;
                 app.TrainingFields(k)=uieditfield(training,'numeric','Value',1,'FontSize',11, ...
-                    'Tooltip',tips{k},'ValueChangedFcn',@(~,~)app.markTrainingDirty());
+                    'Tooltip',tips{k},'ValueChangedFcn',cam_app_ui_callback(app,'markTrainingDirty'));
                 app.TrainingFields(k).Layout.Row=k; app.TrainingFields(k).Layout.Column=2;
             end
             app.TrainingInfo=uilabel(training,'Text','','FontSize',11,'WordWrap','on','VerticalAlignment','top');
@@ -293,17 +293,17 @@ classdef CamReplicaApp < handle
             trainingActions=uigridlayout(trainingRoot,[2 2],'RowHeight',{28,28},'ColumnWidth',{'1x',84},'Padding',[2 0 2 0],'RowSpacing',3,'ColumnSpacing',4);
             trainingActions.Layout.Row=3;
             app.TrainingApplyButton=uibutton(trainingActions,'Text','应用训练设置','FontSize',11, ...
-                'ButtonPushedFcn',{@cam_app_ui_dispatch,app,'applyTraining'});
+                'ButtonPushedFcn',cam_app_ui_callback(app,'applyTraining'));
             app.TrainingResetButton=uibutton(trainingActions,'Text','还原','FontSize',11, ...
-                'ButtonPushedFcn',{@cam_app_ui_dispatch,app,'syncTrainingInputs'});
+                'ButtonPushedFcn',cam_app_ui_callback(app,'syncTrainingInputs'));
             app.TrainingApplyButton.Tooltip='严格保形映射；最大位置、RMS及切向超限则拒绝，原方案和待应用输入保留。';
             app.ForceModelSwitchButton=uibutton(trainingActions,'Text','强制切换（允许改形）','FontSize',10, ...
                 'Tooltip','仅手动使用：先备份完整项目、结果与所有待应用输入，再接受端点约束合格的有限真实曲线拟合。超出保形门限会明确标示；物理计算失败仍保留新路线供编辑。', ...
-                'ButtonPushedFcn',@(~,~)app.applyTraining(true));
+                'ButtonPushedFcn',cam_app_ui_callback(app,'force-model-switch'));
             app.ForceModelSwitchButton.Layout.Row=2; app.ForceModelSwitchButton.Layout.Column=1;
             app.RestoreModelSwitchButton=uibutton(trainingActions,'Text','恢复备份','FontSize',10, ...
                 'Tooltip','恢复最近一次手动改形前的完整项目、原结果、历史与全部待应用表格输入；备份文件保留。', ...
-                'ButtonPushedFcn',@(~,~)app.restoreModelSwitch());
+                'ButtonPushedFcn',cam_app_ui_callback(app,'restoreModelSwitch'));
             app.RestoreModelSwitchButton.Layout.Row=2; app.RestoreModelSwitchButton.Layout.Column=2;
             app.ModelSwitchBackupInfo=uilabel(trainingRoot,'Text','手动改形前自动备份；备份后可恢复完整状态。','WordWrap','on','FontSize',9,'VerticalAlignment','top');
             app.ModelSwitchBackupInfo.Layout.Row=4;
@@ -315,7 +315,7 @@ classdef CamReplicaApp < handle
             for k=1:2
                 uilabel(budget,'Text',labels{k},'FontSize',11);
                 app.AutoTuneFields(k)=uieditfield(budget,'numeric','Value',1,'FontSize',11, ...
-                    'ValueChangedFcn',@(~,~)app.invalidate());
+                    'ValueChangedFcn',cam_app_ui_callback(app,'invalidate'));
             end
             app.AutoTuneFields(1).Tooltip='搜索配置数量；另有约束精修组，合计以运行记录为准。';
             app.AutoTuneFields(2).Tooltip='每组轮数上限；实际轮数可因收敛、无改善或停止而减少。';
@@ -335,12 +335,12 @@ classdef CamReplicaApp < handle
             routePanel.Layout.Row=2; routePanel.Layout.Column=1;
             editorBar=uigridlayout(routePanel,[1 4],'ColumnWidth',{76,76,80,'1x'}, ...
                 'Padding',[0 0 0 0],'ColumnSpacing',5);
-            app.MapEditButton=uibutton(editorBar,'Text','地图编辑','ButtonPushedFcn',@(~,~)app.beginRouteEditing());
-            app.ConfirmNodeButton=uibutton(editorBar,'Text','确认落点','Enable','off','ButtonPushedFcn',@(~,~)app.confirmRouteNode());
-            app.CancelNodeButton=uibutton(editorBar,'Text','取消 / Esc','Enable','off','ButtonPushedFcn',@(~,~)app.cancelRouteEditing());
+            app.MapEditButton=uibutton(editorBar,'Text','地图编辑','ButtonPushedFcn',cam_app_ui_callback(app,'beginRouteEditing'));
+            app.ConfirmNodeButton=uibutton(editorBar,'Text','确认落点','Enable','off','ButtonPushedFcn',cam_app_ui_callback(app,'confirmRouteNode'));
+            app.CancelNodeButton=uibutton(editorBar,'Text','取消 / Esc','Enable','off','ButtonPushedFcn',cam_app_ui_callback(app,'cancelRouteEditing'));
             app.MapEditHelp=uilabel(editorBar,'Text','独立三次样条路线节点','FontSize',11);
             app.RouteAxes=uiaxes(routePanel);
-            app.RouteAxes.ButtonDownFcn=@(source,~)app.routeMapClick(source.CurrentPoint(1,1:2),source,app.Figure.SelectionType);
+            app.RouteAxes.ButtonDownFcn=cam_app_ui_callback(app,'route-click');
             app.SteeringAxes=uiaxes(charts); app.SteeringAxes.Layout.Row=1; app.SteeringAxes.Layout.Column=1;
             app.CamAxes=uiaxes(charts); app.CamAxes.Layout.Row=[1 2]; app.CamAxes.Layout.Column=2;
             bottom=uigridlayout(root,[4 1],'RowHeight',{38,22,28,'1x'},'Padding',[0 0 0 0],'RowSpacing',3);
@@ -350,11 +350,11 @@ classdef CamReplicaApp < handle
             app.ScoreSummary=uilabel(statusRow,'Text','通用评分：待计算','FontSize',11,'FontWeight','bold','WordWrap','on');
             scoreChoice=uigridlayout(statusRow,[2 1],'RowHeight',{22,16},'Padding',[0 0 0 0],'RowSpacing',0);
             app.ScoreBasis=uidropdown(scoreChoice,'Items',{'自动显示实际','固定参照评分','本轮动态评分'},'ItemsData',{'auto','reference','dynamic'}, ...
-                'Value','auto','ValueChangedFcn',@(~,~)app.updateDiagnostics(), ...
+                'Value','auto','ValueChangedFcn',cam_app_ui_callback(app,'updateDiagnostics'), ...
                 'Tooltip','自动模式优先显示匹配记录的实际权重；手动选择会保留。固定参照趋势不变。');
             app.ScoreViewStatus=uilabel(scoreChoice,'Text','固定参照 / 待记录','FontSize',10);
-            app.ScoreDetailsButton=uibutton(statusRow,'Text','评分详情','ButtonPushedFcn',@(~,~)app.openDiagnostics('score'));
-            app.LogDetailsButton=uibutton(statusRow,'Text','日志大窗','ButtonPushedFcn',@(~,~)app.openDiagnostics('log'));
+            app.ScoreDetailsButton=uibutton(statusRow,'Text','评分详情','ButtonPushedFcn',cam_app_ui_callback(app,'details-score'));
+            app.LogDetailsButton=uibutton(statusRow,'Text','日志大窗','ButtonPushedFcn',cam_app_ui_callback(app,'details-log'));
             app.ContestGeometryNotice=uilabel(bottom,'Text','比赛几何：未配置/未检查，无法验收；机构数值通过不等于赛事通过。', ...
                 'FontSize',11,'FontWeight','bold','FontColor',[.7 .25 .08],'BackgroundColor',[1 .96 .9],'WordWrap','on');
             app.LengthSummary=uilabel(bottom,'Text','总路程（前轮轨迹）：待计算    主动轮行程：待计算', ...
@@ -371,14 +371,14 @@ classdef CamReplicaApp < handle
             app.ActualClosureTab=uitab(app.ResultsTabs,'Title','轮廓闭环');
             closureLayout=uigridlayout(app.ActualClosureTab,[2 1],'RowHeight',{36,'1x'},'Padding',[4 2 4 2]);
             closureBar=uigridlayout(closureLayout,[1 2],'ColumnWidth',{165,'1x'},'Padding',[0 0 0 0]);
-            app.ActualClosureButton=uibutton(closureBar,'Text','检查当前实际轮廓','ButtonPushedFcn',@(~,~)app.checkActualClosure());
+            app.ActualClosureButton=uibutton(closureBar,'Text','检查当前实际轮廓','ButtonPushedFcn',cam_app_ui_callback(app,'checkActualClosure'));
             app.ActualClosureStatus=uilabel(closureBar,'Text','尚未检查；固定实际轮廓进行接触与车辆反推，再加密积分比较。','WordWrap','on','FontSize',11);
             app.ActualClosureTable=uitable(closureLayout,'ColumnName',{'闭环检查项','计算值／状态'},'ColumnWidth',{280,'auto'},'ColumnEditable',false,'RowName',{});
             app.createContestGeometryResults();
             app.syncInputs();
             if calculateInitially, app.calculate(); end
             app.message('v0.2：齿条/平推、固定凸轮调参；独立样条与数值优化。尚未完成原版点集或实车对照。');
-            app.Figure.SizeChangedFcn=@(~,~)app.resizeLayout(); app.resizeLayout();
+            app.Figure.SizeChangedFcn=cam_app_ui_callback(app,'resizeLayout'); app.resizeLayout();
         end
         function createContestGeometrySettings(app,tabs)
             t=uitab(tabs,'Title','比赛几何'); app.ContestGeometrySettingsTab=t;
@@ -388,11 +388,11 @@ classdef CamReplicaApp < handle
                 'WordWrap','on','VerticalAlignment','top','FontSize',10);
             app.ContestGeometryParams=uitable(grid,'ColumnName',{'独立比赛几何参数','mm'},'ColumnEditable',[false true], ...
                 'ColumnWidth',{190,65},'ColumnFormat',{'char','numeric'},'RowName',{},'FontSize',10, ...
-                'CellEditCallback',@(~,~)app.contestGeometryChanged());
+                'CellEditCallback',cam_app_ui_callback(app,'contestGeometryChanged'));
             app.ContestGeometryMeasured=uicheckbox(grid,'Text','尺寸、场界、UID直径已现场核实', ...
-                'Value',false,'WordWrap','on','FontSize',10,'ValueChangedFcn',@(~,~)app.contestGeometryChanged());
+                'Value',false,'WordWrap','on','FontSize',10,'ValueChangedFcn',cam_app_ui_callback(app,'contestGeometryChanged'));
             app.ContestGeometryCoverageConfirmed=uicheckbox(grid,'Text','已确认覆盖矩形内无孔隙且连续遮挡（非外接盒）', ...
-                'Value',false,'WordWrap','on','FontSize',10,'ValueChangedFcn',@(~,~)app.contestGeometryChanged());
+                'Value',false,'WordWrap','on','FontSize',10,'ValueChangedFcn',cam_app_ui_callback(app,'contestGeometryChanged'));
         end
         function createContestGeometryResults(app)
             app.ContestGeometryTab=uitab(app.ResultsTabs,'Title','比赛几何');
@@ -401,14 +401,14 @@ classdef CamReplicaApp < handle
             bar.Layout.Row=1; bar.Layout.Column=[1 2];
             app.ContestGeometryCheckButton=uibutton(bar,'Text','独立检查当前路线','FontSize',11, ...
                 'Tooltip','按车体航向独立重算并加密路线，不要求凸轮可生成；不运行优化，不等于RFID或赛事认证。', ...
-                'ButtonPushedFcn',@(~,~)app.checkContestGeometry());
-            app.ContestGeometryBodyButton=uibutton(bar,'Text','定位最差外廓','FontSize',11,'Enable','off','ButtonPushedFcn',@(~,~)app.locateContestGeometry('body'));
-            app.ContestGeometryTargetButton=uibutton(bar,'Text','定位所选标签','FontSize',11,'Enable','off','ButtonPushedFcn',@(~,~)app.locateContestGeometry('target'));
+                'ButtonPushedFcn',cam_app_ui_callback(app,'checkContestGeometry'));
+            app.ContestGeometryBodyButton=uibutton(bar,'Text','定位最差外廓','FontSize',11,'Enable','off','ButtonPushedFcn',cam_app_ui_callback(app,'contest-body'));
+            app.ContestGeometryTargetButton=uibutton(bar,'Text','定位所选标签','FontSize',11,'Enable','off','ButtonPushedFcn',cam_app_ui_callback(app,'contest-target'));
             app.ContestGeometryStatus=uilabel(bar,'Text','未检查；这项诊断独立于机构数值门禁。','WordWrap','on','FontSize',10);
             app.ContestGeometrySummaryTable=uitable(grid,'ColumnName',{'检查范围/最差项','结果'},'ColumnWidth',{175,'auto'},'ColumnEditable',false,'RowName',{},'FontSize',10);
             app.ContestGeometryTargetTable=uitable(grid,'ColumnName',{'序号','位置','覆盖余量mm','按序覆盖','样本','说明'}, ...
                 'ColumnWidth',{48,48,85,65,65,'auto'},'ColumnEditable',false,'RowName',{},'FontSize',10, ...
-                'CellSelectionCallback',@(~,event)app.selectContestGeometryTarget(event));
+                'CellSelectionCallback',cam_app_ui_callback(app,'selectContestGeometryTarget'));
         end
         function openContestGeometry(app)
             app.ControlsTabs.SelectedTab=app.ContestGeometrySettingsTab;
@@ -978,7 +978,7 @@ classdef CamReplicaApp < handle
             app.MapEditReference=ref; app.MapEditNodes=app.Project.nodes;
             app.MapEditMode=true; app.MapEditSelection=0;
             app.Figure.Pointer='crosshair';
-            app.Figure.WindowButtonMotionFcn=@(~,~)app.routePointerMove();
+            app.Figure.WindowButtonMotionFcn=cam_app_ui_callback(app,'routePointerMove');
             app.refreshControls();
             app.MapEditHelp.Text='点击地图选最近节点；Esc 取消';
             app.Status.Text='地图编辑：先点击选择路线节点，再移动预览；确认后重算，取消恢复。';
@@ -1920,15 +1920,15 @@ classdef CamReplicaApp < handle
             grid=uigridlayout(parent,[2 2],'RowHeight',{50,'1x'},'ColumnWidth',{360,'1x'},'Padding',[2 0 2 0],'RowSpacing',2);
             bar=uigridlayout(grid,[2 4],'RowHeight',{28,18},'ColumnWidth',{'1x',110,90,100},'Padding',[0 0 0 0],'RowSpacing',2);
             bar.Layout.Row=1; bar.Layout.Column=[1 2];
-            source=uidropdown(bar,'Items',{'当前网格轮廓','加密复查轮廓'},'ItemsData',{'current','refined'}, ...
-                'ValueChangedFcn',@(object,~)app.changeCamSource(object.Value));
-            zoom=uibutton(bar,'Text','放大选中交点','ButtonPushedFcn',@(~,~)app.zoomCamCrossing());
-            reset=uibutton(bar,'Text','返回全凸轮','ButtonPushedFcn',@(~,~)app.resetCamView());
-            details=uibutton(bar,'Text','交点大窗','ButtonPushedFcn',@(~,~)app.openDiagnostics('crossings'));
+            source=uidropdown(bar,'Tag','cam-cross-source','Items',{'当前网格轮廓','加密复查轮廓'},'ItemsData',{'current','refined'}, ...
+                'ValueChangedFcn',cam_app_ui_callback(app,'changeCamSource'));
+            zoom=uibutton(bar,'Tag','cam-cross-zoom','Text','放大选中交点','ButtonPushedFcn',cam_app_ui_callback(app,'zoomCamCrossing'));
+            reset=uibutton(bar,'Tag','cam-cross-reset','Text','返回全凸轮','ButtonPushedFcn',cam_app_ui_callback(app,'resetCamView'));
+            details=uibutton(bar,'Tag','cam-cross-details','Text','交点大窗','ButtonPushedFcn',cam_app_ui_callback(app,'details-crossings'));
             label=uilabel(bar,'Text','尚无已计算轮廓','FontSize',10); label.Layout.Row=2; label.Layout.Column=[1 4];
-            table=uitable(grid,'ColumnName',{'交点','段 A','段 B','X / mm','Y / mm'}, ...
+            table=uitable(grid,'Tag','cam-cross-table','ColumnName',{'交点','段 A','段 B','X / mm','Y / mm'}, ...
                 'ColumnWidth',{45,55,55,90,90},'RowName',{},'FontSize',10,'ColumnEditable',false, ...
-                'CellSelectionCallback',@(~,event)app.selectCamCrossing(event));
+                'CellSelectionCallback',cam_app_ui_callback(app,'selectCamCrossing'));
             table.Layout.Row=2; table.Layout.Column=1;
             if large
                 axesHandle=uiaxes(grid); axesHandle.Layout.Row=2; axesHandle.Layout.Column=2;
@@ -1944,7 +1944,7 @@ classdef CamReplicaApp < handle
         end
         function openDiagnostics(app,kind)
             if isempty(app.DiagnosticsFigure) || ~isgraphics(app.DiagnosticsFigure)
-                app.DiagnosticsFigure=uifigure('Name','结果详情 · 评分、日志与交点','Position',[100 80 1260 760], ...
+                app.DiagnosticsFigure=uifigure('Name','结果详情 · 评分、日志与交点','Tag','cam-app-details','Position',[100 80 1260 760], ...
                     'Visible',app.Figure.Visible);
                 layout=uigridlayout(app.DiagnosticsFigure,[1 1],'Padding',[8 8 8 8]);
                 tabs=uitabgroup(layout); app.DetailTabs=struct();

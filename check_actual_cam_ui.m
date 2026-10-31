@@ -21,7 +21,7 @@ assert(max(vecnorm(app.SimulationResult.sensor-baseline,2,2))>1);
 assert(isequaln(frozen,app.SimulationReference.result.cam));
 app.action('simulate'); assert(~app.SimulationMode && isequaln(saved,app.Project));
 checks{end+1}='contact radius changes trajectory without changing cam, exit restores design';
-cb=app.ActualClosureButton.ButtonPushedFcn; cb(app.ActualClosureButton,[]);
+cb=app.ActualClosureButton.ButtonPushedFcn; cam_invoke_ui_callback(cb,app.ActualClosureButton,[]);
 assert(~app.Busy && ~isempty(app.ActualClosureReport) && app.ActualClosureReport.closurePassed);
 assert(app.ActualClosureReport.contactValid && ~isempty(app.ActualClosureTable.Data));
 assert(numel(findobj(app.RouteAxes,'Tag','actual-closure-route'))==1);
@@ -43,7 +43,7 @@ source=load(fullfile(root,'outputs','model_mapping_20261031','quality_cubic','re
 app.Project=source.q; app.Project.params.samples=4801; app.Project.params.camSamples=5761;
 app.syncInputs(); app.calculate(); before=app.Project;
 assert(app.Result.metrics.intersectionCount>0);
-cb(app.ActualClosureButton,[]);
+cam_invoke_ui_callback(cb,app.ActualClosureButton,[]);
 assert(~app.Busy && ~app.ActualClosureReport.valid && ~app.ActualClosureReport.closurePassed);
 assert(contains(app.ActualClosureStatus.Text,'未通过') && contains(app.ActualClosureReport.errorIdentifier,'SelfIntersection'));
 assert(isequaln(before,app.Project) && isempty(findobj(app.RouteAxes,'Tag','actual-closure-route')));
@@ -54,7 +54,7 @@ assert(app.SimulationMode && contains(app.Status.Text,'理论对照')); app.acti
 checks{end+1}='theoretical reference remains explicitly selectable';
 source=load(fullfile(root,'outputs','model_mapping_20261031','quality_bezier','result.mat'),'q');
 app.Project=source.q; app.Project.params.samples=4801; app.Project.params.camSamples=5761;
-app.SimulationSource.Value='actual'; app.syncInputs(); app.calculate(); cb(app.ActualClosureButton,[]);
+app.SimulationSource.Value='actual'; app.syncInputs(); app.calculate(); cam_invoke_ui_callback(cb,app.ActualClosureButton,[]);
 assert(~app.Busy && app.ActualClosureReport.valid && app.ActualClosureReport.contactValid);
 assert(~app.ActualClosureReport.geometryFeasible && app.Project.params.gearRatio==35);
 drawnow; exportapp(app.Figure,fullfile(folder,'solar_actual_closure.png'));

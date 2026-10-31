@@ -19,6 +19,7 @@
 |---|---|---|
 | [使用说明](USAGE.md) | 启动、参数、导入导出、固定凸轮试调、本地视频工具 | R2025b、运行、参数、反推、ASR |
 | [旧窗口回调恢复](changes/2026/2026-10-31-016-ui-callback-recovery.md) | 源码更新后按钮失效、完整状态保全和就地恢复 | 找不到函数、匿名回调、applyTraining、未应用输入 |
+| [全界面回调检查](changes/2026/2026-10-31-017-all-ui-callbacks.md) | 全部持久UI连接、事件参数、旧窗口覆盖清单与无计算验证 | 按钮、SizeChangedFcn、具名分派、MATLAB工具栏 |
 | [实际轮廓完整反推](ACTUAL_CAM_CLOSURE.md) | 冻结实际XY、线段接触、车辆积分、闭环及加密检查 | actual、圆盘、RK4、积分稳定、理论对照 |
 | [贝塞尔数值精度](BEZIER_PRECISION.md) | 固定曲线误差定位、解析凸轮导数、同步积分与工作/回程构造 | Bezier、D3、RK4、Hermite、workPP、采样收敛 |
 | [总路程显示](changes/2026/2026-10-30-002-route-length.md) | 前轮总路程与主动轮行程、单位及结果来源 | 总路程、mm、m、历史、加密 |

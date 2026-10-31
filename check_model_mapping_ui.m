@@ -38,7 +38,7 @@ fid=fopen(fullfile(folder,'verification.json'),'w','n','UTF-8'); closeFile=onCle
 fprintf(fid,'%s',jsonencode(report,PrettyPrint=true)); fprintf('MODEL_MAPPING_UI_PASS %d\n',numel(checks));
 end
 function invoke(control)
-cb=control.ValueChangedFcn; cb(control,[]);
+cb=control.ValueChangedFcn; cam_invoke_ui_callback(cb,control,[]);
 end
 function xy=geometry(p)
 mode=camdesign.routeModel(p.params);

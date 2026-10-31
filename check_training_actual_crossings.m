@@ -15,7 +15,7 @@ project.params.samples=4313; project.params.camSamples=5761;
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app));
 app.Project=project; app.syncInputs(); app.calculate();
 app.AlgorithmSelector.Value='fmincon-interior-point-experimental-v1'; app.refreshTrainingControls();
-callback=app.TrainingShortcut.ButtonPushedFcn; callback(app.TrainingShortcut,[]);
+callback=app.TrainingShortcut.ButtonPushedFcn; cam_invoke_ui_callback(callback,app.TrainingShortcut,[]);
 assert(app.ControlsTabs.SelectedTab==app.TrainingTab);
 marker=findobj(app.CamAxes,'Tag','cam-self-intersections');
 assert(app.Result.metrics.intersectionCount==8 && isscalar(marker) && numel(marker.XData)==8);

@@ -11,7 +11,11 @@ launch_cam_app
 
 若基础工作区已经有仍打开的 `camReplicaApp`，再次无参数运行 `launch_cam_app` 会保留并返回这个窗口，同时给出提示，不重新初始化项目。显式传入项目仍按原入口新建窗口。开发用 `CamReplicaApp('off',syntheticProject,false)` 可只创建界面而跳过初始计算，供无路线计算的按钮检查使用；普通启动行为仍会计算初始项目。
 
-源码更新后，旧窗口若提示找不到 `@(~,~)app.applyTraining()` 或 `@(~,~)app.syncTrainingInputs()`，在同一MATLAB命令窗口运行 `repair_cam_app_callbacks(camReplicaApp)`。若对象保存于其他变量，传入该变量。工具先备份项目、原结果和未应用输入，再就地修复这两个按钮；不清空工作区、不关闭窗口、不应用输入、不计算路线。修复只覆盖“应用训练设置”和“还原”两个入口，其余旧匿名回调仍可能受后续源码编辑影响。详见[恢复记录与范围](changes/2026/2026-10-31-016-ui-callback-recovery.md)。
+源码更新后，旧窗口若提示在 `CamReplicaApp.m` 中找不到匿名函数，在同一MATLAB命令窗口运行 `repair_cam_app_callbacks(camReplicaApp)`。若对象保存于其他变量，传入该变量。工具先备份项目、原结果、待应用输入和界面值，再核对主窗口及已打开详情窗口的完整回调清单，统一修复可识别的连接；不清空工作区、不关闭窗口、不应用输入、不计算路线。训练、仿真、地图编辑进行中会拒绝修复，须先正常完成或停止。未知连接会整批拒绝并留下报告，不能静默覆盖成猜测的动作。
+
+`repair_cam_app_callbacks(camReplicaApp,DryRun=true)` 只备份并生成识别报告，不改变连接；默认报告和备份保存在 `local/ui_all_callback_backups/`。MATLAB自带工具栏、图例交互及详情窗默认关闭保留。该入口支持当前版本已知控件，不是任意类结构变更的通用热更新器。详见[全界面修复记录](changes/2026/2026-10-31-017-all-ui-callbacks.md)；此前仅修两个按钮的历史见[016记录](changes/2026/2026-10-31-016-ui-callback-recovery.md)。
+
+开发时在 `cam_app_ui_spec` 中登记动作、固定参数及事件模式，用 `cam_app_ui_callback` 创建持久连接，并同步 `cam_app_ui_binding_plan` 的控件识别。检查脚本通过 `cam_invoke_ui_callback(callback,source,event)` 调用句柄或cell格式，不直接假定所有回调都是单函数句柄。数值运算中短生命周期的 `cellfun`、`arrayfun`、`onCleanup` 不属于持久UI连接，无需为了本问题改变算法实现。
 
 普通入口 `launch_cam_app` 加载 `camdesign.teamSolarProject()` 的本队太阳能平推设计值；`camdesign.solarTestProject()` 保留历史回归配置，两者并非相同机械输入。初赛按地球→金星→太阳→谷神星→天王星→冥王星→鸟神星→木星→水星→地球，共10次访问、9处不同位置，不能去重删除终点地球。完整16行保留为地点库。运行 `check_2027_solar_course` 可核对并导出点位；`c=camdesign.course2027Solar();` 的 `c.preliminarySoftwareMM` 保留规则正X坐标。
 

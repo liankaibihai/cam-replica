@@ -140,7 +140,7 @@ assert(contains(app.CamSourceLabel.Text,'加密复查') && contains(app.CamSourc
 assert(contains(app.Status.Text,'加密复查') && contains(app.Status.Text,'轮廓自交 8'));
 call(app.CrossDetailsButton,'ButtonPushedFcn'); fullLimits=[app.CamAxes.XLim app.CamAxes.YLim];
 capture(app,folder,'genuine_fine_crossings_main.png'); captureFigure(detail,folder,'genuine_fine_crossings_large.png');
-callback=app.CrossTable.CellSelectionCallback; callback(app.CrossTable,struct('Indices',[1 1]));
+callback=app.CrossTable.CellSelectionCallback; cam_invoke_ui_callback(callback,app.CrossTable,struct('Indices',[1 1]));
 point=dense.result.intersectionPoints(1,:); zoomLimits=[app.CamAxes.XLim app.CamAxes.YLim];
 assert(norm([mean(zoomLimits(1:2)),mean(zoomLimits(3:4))]-point)<1e-8);
 assert(diff(zoomLimits(1:2))<diff(fullLimits(1:2)));
@@ -175,7 +175,7 @@ for k=1:numel(checks), fprintf('RESULTS_UI_CASE_PASS %s\n',checks{k}); end
 fprintf('RESULTS_UI_PASS cases=%d fineCrossings=8 shortSearchIterations=1\n',numel(checks));
 end
 function call(object,property)
-callback=object.(property); callback(object,[]);
+callback=object.(property); cam_invoke_ui_callback(callback,object,[]);
 end
 function setField(app,name,value)
 index=find(strcmp(app.TrainingFieldNames,name)); app.TrainingFields(index).Value=value;

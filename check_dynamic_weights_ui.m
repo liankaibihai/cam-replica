@@ -105,7 +105,7 @@ for k=1:numel(checks), fprintf('DYNAMIC_UI_CASE_PASS %s\n',checks{k}); end
 fprintf('DYNAMIC_WEIGHTS_UI_PASS cases=%d iterations=%d ratio=35\n',numel(checks),info.iterations);
 end
 function call(object,property)
-callback=object.(property); callback(object,[]);
+callback=object.(property); cam_invoke_ui_callback(callback,object,[]);
 end
 function restore(app,project,h,info)
 app.Project=project; app.History=h; app.HistoryProject=project; app.OptimizationInfo=info;

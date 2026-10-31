@@ -39,7 +39,7 @@ report=struct('release',version('-release'),'checksPassed',3,'physicalEvaluatePr
 fid=fopen(fullfile(folder,'verification.json'),'w','n','UTF-8'); closer=onCleanup(@()fclose(fid)); fprintf(fid,'%s\n',jsonencode(report,PrettyPrint=true));
 fprintf('RELAY_MULTISTART_UI_PASS checks=3 search=%d independent=%d profiler=%d\n',info.physicalEvaluations,info.assessmentEvaluationAttempts,actualCalls);
 end
-function invoke(control), callback=control.ValueChangedFcn; callback(control,[]); end
+function invoke(control), callback=control.ValueChangedFcn; cam_invoke_ui_callback(callback,control,[]); end
 function closeOwn(app)
 if ~isempty(app.DiagnosticsFigure) && isgraphics(app.DiagnosticsFigure), delete(app.DiagnosticsFigure); end
 if isgraphics(app.Figure), delete(app.Figure); end

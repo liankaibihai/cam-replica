@@ -12,7 +12,7 @@ solar=camdesign.solarTestProject(); app.Project=solar; app.syncInputs(); app.cal
 tabs=app.NodesTable.Parent.Parent.Parent; tabs.SelectedTab=app.NodesTable.Parent.Parent;
 initialResult=app.Result; capture(app,folder,'solar_before_nodes.png');
 
-callback=app.RefineRouteButton.ButtonPushedFcn; callback(app.RefineRouteButton,[]);
+callback=app.RefineRouteButton.ButtonPushedFcn; cam_invoke_ui_callback(callback,app.RefineRouteButton,[]);
 [expectedOnce,onceInfo]=camdesign.refineRoute(solar);
 assert(isequaln(app.Project,expectedOnce) && isequal(app.TargetsTable.Data,solar.targets));
 assert(contains(app.NodeInfo.Text,'固定站位') && contains(app.NodeInfo.Text,sprintf('节点 %d',onceInfo.newNodeCount)));
@@ -21,7 +21,7 @@ assert(isempty(app.History) && isempty(app.OptimizationDirection) && isempty(app
 capture(app,folder,'solar_refined_once.png');
 checks{end+1}='whole-route button inserts exact transition nodes without changing targets or computed curve';
 
-callback(app.RefineRouteButton,[]);
+cam_invoke_ui_callback(callback,app.RefineRouteButton,[]);
 [expectedTwice,twiceInfo]=camdesign.refineRoute(expectedOnce);
 assert(isequaln(app.Project,expectedTwice));
 assert(max(vecnorm(app.Result.route.front-initialResult.route.front,2,2))<1e-8);
@@ -31,13 +31,13 @@ checks{end+1}='second refinement synchronizes node table and fixed stations';
 % Selecting the terminal row inserts within the final existing interval.
 before=app.Project; beforeResult=app.Result; app.SelectedNodeRow=size(before.nodes,1);
 [expectedTail,tailInfo]=camdesign.refineRoute(before,size(before.nodes,1)-1);
-callback=app.PointButtons(3).ButtonPushedFcn; callback(app.PointButtons(3),[]);
+callback=app.PointButtons(3).ButtonPushedFcn; cam_invoke_ui_callback(callback,app.PointButtons(3),[]);
 assert(isequaln(app.Project,expectedTail) && numel(tailInfo.insertedIndices)==1);
 assert(isequal(app.Project.nodes(end,:),before.nodes(end,:)));
 checks{end+1}='selected last-row insertion subdivides the final interval without extrapolating';
 
 app.SelectedNodeRow=tailInfo.insertedIndices(1);
-callback=app.PointButtons(4).ButtonPushedFcn; callback(app.PointButtons(4),[]);
+callback=app.PointButtons(4).ButtonPushedFcn; cam_invoke_ui_callback(callback,app.PointButtons(4),[]);
 assert(isempty(app.Result) && isequaln(app.Project,before));
 assert(isequal(app.NodesTable.Data,before.nodes)); app.calculate();
 assert(max(vecnorm(app.Result.route.front-beforeResult.route.front,2,2))<1e-8);

@@ -116,8 +116,8 @@ report=struct('release',version('-release'),'checksPassed',numel(checks),'checks
 fid=fopen(fullfile(folder,'verification.json'),'w','n','UTF-8'); closer=onCleanup(@()fclose(fid));
 fprintf(fid,'%s\n',jsonencode(report,PrettyPrint=true)); fprintf('FORCE_MODEL_SWITCH_UI_PASS checks=%d\n',numel(checks));
 end
-function invoke(control), callback=control.ValueChangedFcn; callback(control,[]); end
-function push(control), callback=control.ButtonPushedFcn; callback(control,[]); end
+function invoke(control), callback=control.ValueChangedFcn; cam_invoke_ui_callback(callback,control,[]); end
+function push(control), callback=control.ButtonPushedFcn; cam_invoke_ui_callback(callback,control,[]); end
 function closeOwn(app)
 if ~isempty(app.DiagnosticsFigure) && isgraphics(app.DiagnosticsFigure), delete(app.DiagnosticsFigure); end
 if isgraphics(app.Figure), delete(app.Figure); end

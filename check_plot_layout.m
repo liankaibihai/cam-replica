@@ -23,7 +23,7 @@ for course=1:3
     for window=1:2
         app.Figure.Position=[10 10 sizes(window,:)];
         % Invisible figures do not reliably dispatch SizeChangedFcn themselves.
-        callback=app.Figure.SizeChangedFcn; callback(app.Figure,[]);
+        callback=app.Figure.SizeChangedFcn; cam_invoke_ui_callback(callback,app.Figure,[]);
         stem=sprintf('%s_%dx%d',label,sizes(window,1),sizes(window,2));
         measured=captureLayout(app,fullfile(folder,[stem,'.png']),stem);
         fprintf('LAYOUT_MEASURE %s steeringShare=%.4f targets=%d nodes=%d routeSamples=%d camSamples=%d\n', ...
@@ -41,7 +41,7 @@ for course=1:3
 end
 assert(all(cases{2}.camPlotPixels>1.25*cases{1}.camPlotPixels),'Wide window did not enlarge cam plot.');
 assert(cases{5}.routePlotPixels(2)>cases{5}.routePlotPixels(1),'Portrait viewport must remain taller than wide, including legend space.');
-app.Figure.Position=[10 10 sizes(1,:)]; callback=app.Figure.SizeChangedFcn; callback(app.Figure,[]);
+app.Figure.Position=[10 10 sizes(1,:)]; callback=app.Figure.SizeChangedFcn; cam_invoke_ui_callback(callback,app.Figure,[]);
 app.Project=baseline; app.syncInputs(); app.calculate(); drawnow;
 arrow=findobj(app.RouteAxes,'Tag','optimization-direction');
 assert(all(isnan(arrow.XData)) && any(strcmp(app.RouteAxes.Legend.String,'AI')));

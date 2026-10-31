@@ -103,7 +103,7 @@ app.Project=saved.q; app.History=saved.h; app.HistoryProject=saved.q; app.Optimi
 app.AlgorithmSelector.Value='auto-tune-v1'; app.syncInputs(); app.calculate();
 end
 function call(object,property)
-callback=object.(property); callback(object,[]);
+callback=object.(property); cam_invoke_ui_callback(callback,object,[]);
 end
 function capture(app,folder,name)
 drawnow; exportapp(app.Figure,fullfile(folder,name)); pause(.15); drawnow; exportapp(app.Figure,fullfile(folder,name));

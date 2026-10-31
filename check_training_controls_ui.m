@@ -9,7 +9,7 @@ app.SimulationSource.Value='theoretical'; % Preserve legacy theoretical-mode UI 
 assert(numel(app.TrainingFields)==9 && ~isfield(app.Project.params,'training'));
 assert(strcmp(app.TrainingFields(4).Enable,'off') && strcmp(app.TrainingFields(5).Enable,'on'));
 solar=camdesign.solarTestProject(); app.Project=solar; app.syncInputs(); app.calculate();
-callback=app.TrainingShortcut.ButtonPushedFcn; callback(app.TrainingShortcut,[]); tabs=app.ControlsTabs;
+callback=app.TrainingShortcut.ButtonPushedFcn; cam_invoke_ui_callback(callback,app.TrainingShortcut,[]); tabs=app.ControlsTabs;
 assert(tabs.SelectedTab==app.TrainingTab);
 setField(app,'iterations',3); setField(app,'controlPointCount',18); setField(app,'interpolationPerSegment',12);
 setField(app,'gradientForce',.25); setField(app,'learningRate',.8); setField(app,'smoothingRate',.2);
@@ -31,14 +31,14 @@ before=app.Project; setField(app,'learningRate',-1);
 assert(~app.applyTraining() && isequaln(app.Project,before) && app.TrainingDirty);
 app.syncTrainingInputs(); assert(~app.TrainingDirty && app.TrainingFields(6).Value==.8);
 app.AlgorithmSelector.Value='fmincon-interior-point-experimental-v1';
-callback=app.AlgorithmSelector.ValueChangedFcn; callback(app.AlgorithmSelector,[]);
+callback=app.AlgorithmSelector.ValueChangedFcn; cam_invoke_ui_callback(callback,app.AlgorithmSelector,[]);
 assert(strcmp(app.TrainingFields(5).Enable,'on') && all(arrayfun(@(field)strcmp(field.Enable,'off'),app.TrainingFields(6:9))));
 setField(app,'learningRate',1); assert(~app.applyTraining() && contains(app.Status.Text,'内点法'));
 app.syncTrainingInputs();
 setField(app,'gradientForce',1); assert(app.applyTraining() && app.Project.params.gradientProbeMM==1);
 checks{end+1}='invalid settings stay pending; constrained backend disables and rejects unsupported search changes';
 
-app.TrainingModel.Value='bezier-blend-independent-v1'; callback=app.TrainingModel.ValueChangedFcn; callback(app.TrainingModel,[]);
+app.TrainingModel.Value='bezier-blend-independent-v1'; callback=app.TrainingModel.ValueChangedFcn; cam_invoke_ui_callback(callback,app.TrainingModel,[]);
 assert(strcmp(app.TrainingFields(4).Enable,'on'));
 mappingSource=app.Project; requestedBezierCount=50; bezierDensity=11;
 setField(app,'controlPointCount',requestedBezierCount); setField(app,'bezierDegree',15);
@@ -207,7 +207,7 @@ assert(audit.positionMaxMM<=fit.tolerances.positionMaxMM && audit.positionRMSMM<
 end
 function setField(app,name,value)
 index=find(strcmp(app.TrainingFieldNames,name)); app.TrainingFields(index).Value=value;
-callback=app.TrainingFields(index).ValueChangedFcn; callback(app.TrainingFields(index),[]);
+callback=app.TrainingFields(index).ValueChangedFcn; cam_invoke_ui_callback(callback,app.TrainingFields(index),[]);
 end
 function capture(app,folder,name)
 drawnow; exportapp(app.Figure,fullfile(folder,name)); pause(.15); drawnow; exportapp(app.Figure,fullfile(folder,name));

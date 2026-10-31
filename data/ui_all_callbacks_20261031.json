@@ -1,0 +1,563 @@
+{
+  "change": "CHG-2026-10-31-017",
+  "baselineCommit": "b422cf79d656bd7704443defc5a751ee28917659",
+  "userConstraint": "No contest data computation, optimization benchmark, or GitHub push. UI callback checks only.",
+  "initialLiveInventory": {
+    "path": "outputs/ui_all_callbacks_20261031/parent_independent/before.json",
+    "nonemptyCallbacks": 106,
+    "appAnonymous": 65,
+    "previousNamedDispatcher": 2,
+    "matlabOtherCallbacks": 39
+  },
+  "initialLiveBackup": {
+    "path": "outputs/ui_all_callbacks_20261031/parent_independent/before.mat",
+    "sha256": "211d4ee51d7ec67324cfa75e88a2560f5a3890bc22230d1e6c06e741d6f20ecf"
+  },
+  "observedAdditionalFailure": {
+    "property": "Figure.SizeChangedFcn",
+    "succeeded": false,
+    "identifier": "MATLAB:dispatcher:UnableToResolveHiddenFunction",
+    "message": "在 F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\CamReplicaApp.m 中找不到函数 @(~,~)app.resizeLayout()。",
+    "stateUnchanged": true
+  },
+  "status": "Accepted: synthetic UI callbacks and independent live-window state preservation; no contest computations; local Git only",
+  "liveDryRunFailure": {
+    "phase": "before any callback write",
+    "observedMessage": "类 'ToolbarPushButton' 没有公共属性 'Position'。",
+    "location": "cam_app_ui_value_snapshot line 13; repair_cam_app_callbacks line 12",
+    "cause": "isprop returns true for non-public properties; generic UI snapshot attempted a private/protected read",
+    "source": "Observed in existing MATLAB R2025b command window",
+    "callbacksWritten": 0
+  },
+  "compatibilityFiles": [
+    {
+      "file": "check_actual_cam_ui.m",
+      "invocations": 3
+    },
+    {
+      "file": "check_auto_score_view_ui.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_auto_tune_app.m",
+      "invocations": 2
+    },
+    {
+      "file": "check_auto_tune_ui.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_bspline_ui.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_contest_geometry_ui.m",
+      "invocations": 2
+    },
+    {
+      "file": "check_dynamic_weights_ui.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_feasibility_four_ui.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_force_model_switch_ui.m",
+      "invocations": 2
+    },
+    {
+      "file": "check_model_mapping_ui.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_plot_layout.m",
+      "invocations": 2
+    },
+    {
+      "file": "check_relay_multistart_ui.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_results_panel_ui.m",
+      "invocations": 2
+    },
+    {
+      "file": "check_review_ui_fixes.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_route_editor.m",
+      "invocations": 5
+    },
+    {
+      "file": "check_route_length_ui.m",
+      "invocations": 5
+    },
+    {
+      "file": "check_route_refinement_ui.m",
+      "invocations": 4
+    },
+    {
+      "file": "check_training_actual_crossings.m",
+      "invocations": 1
+    },
+    {
+      "file": "check_training_controls_ui.m",
+      "invocations": 4
+    },
+    {
+      "file": "scripts\\review_state_and_export.m",
+      "invocations": 1
+    }
+  ],
+  "sourceFreeze": {
+    "baseline": "b422cf79d656bd7704443defc5a751ee28917659",
+    "files": [
+      {
+        "file": "CamReplicaApp.m",
+        "sha256": "7653954db9b9c9a93915f0888908ee695d740670f41421726a0dd0ec0b744113"
+      },
+      {
+        "file": "cam_app_ui_dispatch.m",
+        "sha256": "c7f9eeced4bcb33161af6b726a0855a5054ee571a8dc3c01af881e402c268c17"
+      },
+      {
+        "file": "repair_cam_app_callbacks.m",
+        "sha256": "8cb7f70f3b0a5cc401ada500b05c5f2971d0e9fceb2959620488e009385e0f15"
+      },
+      {
+        "file": "cam_app_apply_ui_bindings.m",
+        "sha256": "ed73536774435e4913fca66c93697706b219c20878f25923e995b24e7aae6c00"
+      },
+      {
+        "file": "cam_app_ui_binding_plan.m",
+        "sha256": "ce5938076c27b03eb8b4b5f9360834b45a5a4a5b5ef4d14ed73e4a639e025381"
+      },
+      {
+        "file": "cam_app_ui_callback.m",
+        "sha256": "cab76f51b036320c76a9f564b29567502d5a15fb95dffac11357984294cb4dc5"
+      },
+      {
+        "file": "cam_app_ui_callback_matches.m",
+        "sha256": "d834447353f02b7981725640443351aa8f61c15d399152a47417c0bc6a1e7ae9"
+      },
+      {
+        "file": "cam_app_ui_legacy_compatible.m",
+        "sha256": "0589284875d494e37c6b5c9dc337ac741e48751791d0709e946e0699c9f20e3e"
+      },
+      {
+        "file": "cam_app_ui_spec.m",
+        "sha256": "88b028bd19929c90136a3614e1e90b50c78ca3e4b10e9ecbd582b2b076cdab89"
+      },
+      {
+        "file": "cam_app_ui_value_snapshot.m",
+        "sha256": "c11758c7db58b8b1b07f5b4de47e90278bfc45a42be596bb5d81c20fd6b65be0"
+      },
+      {
+        "file": "cam_invoke_ui_callback.m",
+        "sha256": "a156e755b817aaeee36f483ceed7722d0fb8c1ea37d751c589bb4156ddf99641"
+      },
+      {
+        "file": "check_ui_all_callbacks.m",
+        "sha256": "f74ec8b6e0a94a6868fd66efc728bd9af793d3913e92266f2b307fe56f74d5c8"
+      },
+      {
+        "file": "check_actual_cam_ui.m",
+        "sha256": "a73f962be3e6408b53da6976050115e9d84b7681c12fdbea382ada185b235673"
+      },
+      {
+        "file": "check_auto_score_view_ui.m",
+        "sha256": "aaa0d9f887d07b38ac3c2f6fda1e54cdbb13abee2b65efb62a5fd570b5dadd34"
+      },
+      {
+        "file": "check_auto_tune_app.m",
+        "sha256": "99f5e639a867d60154579c78c03a3d5e25d2e007035cd5e98a98a65eb7b29069"
+      },
+      {
+        "file": "check_auto_tune_ui.m",
+        "sha256": "16d89367d7ef3f52e6a27e8691522147003f7b1d802553ceda55dcab894c48f3"
+      },
+      {
+        "file": "check_bspline_ui.m",
+        "sha256": "c175bc273a54859a8c9ae4161dd4278f3e6e10b84124a73e2071f713dceea6d4"
+      },
+      {
+        "file": "check_contest_geometry_ui.m",
+        "sha256": "3a610b77c8f8f8e9f2d1f698c3f40bc9f488e19df9dcedc861be6a478bc62c9a"
+      },
+      {
+        "file": "check_dynamic_weights_ui.m",
+        "sha256": "d4570ac728c887719b7805b43be19efa3ded479bb5312c2f2c8f2cb546e62a16"
+      },
+      {
+        "file": "check_feasibility_four_ui.m",
+        "sha256": "0318da289d88793b692f93959bf7c085d237abc94e295f27170e166fc6ba213d"
+      },
+      {
+        "file": "check_force_model_switch_ui.m",
+        "sha256": "d64f339a530ad8ec6123982b2c511754a1edbc998268bc618e038e73306018dc"
+      },
+      {
+        "file": "check_model_mapping_ui.m",
+        "sha256": "344c22e2a5e5a29bbda66df5280dd061d41fd975fcfd9bc959cd07bf01e5df71"
+      },
+      {
+        "file": "check_plot_layout.m",
+        "sha256": "d8372242711c98eacce2b5af755e6f78c984edbf00f915055d05ffe8b5e92ec9"
+      },
+      {
+        "file": "check_relay_multistart_ui.m",
+        "sha256": "f55c3d71875a8cc5ca0bc154b9a4226785a67f237adf985c2902110f462deab8"
+      },
+      {
+        "file": "check_results_panel_ui.m",
+        "sha256": "d4438c53024663040a0a6d9942ce1180dc0379255f01072e2211d97410b25845"
+      },
+      {
+        "file": "check_review_ui_fixes.m",
+        "sha256": "c49041764956b0fe4ca272ec3f9e6732c45d4dbea991055a7c1aa28d32cc9401"
+      },
+      {
+        "file": "check_route_editor.m",
+        "sha256": "8e2831280478d39f7edb8a51a5bab7ed49add10b2d81b29f4daf33df58e7ba80"
+      },
+      {
+        "file": "check_route_length_ui.m",
+        "sha256": "f069575e6cf0720f6fc312364a5dc9b4ab6a8c3ca4cb8e5414a46659ffc3c5a0"
+      },
+      {
+        "file": "check_route_refinement_ui.m",
+        "sha256": "1897e4851758015d0af9ab64bdf3c80bfdb3f9c1d17e48126aa9d1fe5b01dbb9"
+      },
+      {
+        "file": "check_training_actual_crossings.m",
+        "sha256": "cffc717f6a836b7172a33accf69ad8eb5e50ec1f5574bee080662fe893be12fe"
+      },
+      {
+        "file": "check_training_controls_ui.m",
+        "sha256": "1747861573bde4b97aa5e46c9d7b15fd35195f2e6a0e3cd7036290be145fa990"
+      },
+      {
+        "file": "scripts/review_state_and_export.m",
+        "sha256": "34209b72157abe5bfeb0967b84df84f1246a4763c09e76a0cf2ae019f328d623"
+      }
+    ]
+  },
+  "sourceHashNote": "SHA256 of raw working files at checked freeze, not Git blob hashes; line endings are retained.",
+  "syntheticChecks": [
+    {
+      "release": "2025b",
+      "checksPassed": 8,
+      "checks": [
+        "67 real main-window slots use named cells; persistent registration has no App anonymous callback",
+        "all manifest actions and actual slots dispatch to spy; eight loop actions, booleans, strings, event, Value and distinct source.CurrentPoint are correct; invocation supports handle/cell",
+        "dynamically created cross/score/log detail controls are named; tagless old detail identities resolve by type and scoped parent/text; MATLAB closereq preserved",
+        "safe view, table event, keyboard/layout and reset callbacks execute on real synthetic controls without compute",
+        "empty old slots repair atomically; full model/results/pending main+detail values round-trip and remain equal; repeated repair and active-mode guards work",
+        "foreign callback in a known slot, unknown motion/control/plot are reported and refused before any binding changes",
+        "actual UI setter failure after one assignment rolls back prior callback",
+        "ambiguous tagless detail identities refuse; unrelated App is untouched; named dynamic motion is covered"
+      ],
+      "profilerCounts": {
+        "evaluate": 0,
+        "defaultProject": 0,
+        "teamSolarProject": 0,
+        "solarTestProject": 0,
+        "optimize": 0,
+        "applyTraining": 0,
+        "calculate": 0,
+        "runOptimization": 0,
+        "rebuildCurrentRoute": 0,
+        "restoreModelSwitch": 0
+      },
+      "spyDispatchCount": 124,
+      "sourcePersistentAnonymousMatches": [],
+      "scope": "Synthetic UI only; all computing/import/export/optimization/force actions dispatched to spy, not real business. User window and old016 evidence untouched. No native mouse-gesture claim.",
+      "reportPath": "outputs/ui_all_callbacks_20261031/check_1/verification.json",
+      "reportSha256": "39eda4d983b92404f94b17c3c03bbb4bb9ccc25986ed6846a8e5695e328e3d7e",
+      "mainSlots": 67,
+      "mainAndDetailSlots": 72
+    },
+    {
+      "release": "2025b",
+      "checksPassed": 8,
+      "checks": [
+        "67 real main-window slots use named cells; actual axes toolbar/legend public-value snapshot succeeds; persistent registration has no App anonymous callback",
+        "all manifest actions and actual slots dispatch to spy; eight loop actions, booleans, strings, event, Value and distinct source.CurrentPoint are correct; invocation supports handle/cell",
+        "dynamically created cross/score/log detail controls are named; tagless old detail identities resolve by type and scoped parent/text; MATLAB closereq preserved",
+        "safe view, table event, keyboard/layout and reset callbacks execute on real synthetic controls without compute",
+        "empty old slots repair atomically; full model/results/pending main+detail values round-trip and remain equal; repeated repair and active-mode guards work",
+        "foreign callback in a known slot (including main closereq), unknown motion/control/plot are reported and refused before any binding changes",
+        "actual UI setter failure after one assignment rolls back prior callback",
+        "ambiguous tagless detail identities refuse; unrelated App is untouched; named dynamic motion is covered"
+      ],
+      "profilerCounts": {
+        "evaluate": 0,
+        "defaultProject": 0,
+        "teamSolarProject": 0,
+        "solarTestProject": 0,
+        "optimize": 0,
+        "applyTraining": 0,
+        "calculate": 0,
+        "runOptimization": 0,
+        "rebuildCurrentRoute": 0,
+        "restoreModelSwitch": 0
+      },
+      "frameworkCallbacksPreserved": 42,
+      "spyDispatchCount": 124,
+      "sourcePersistentAnonymousMatches": [],
+      "scope": "Synthetic UI only; all computing/import/export/optimization/force actions dispatched to spy, not real business. User window and old016 evidence untouched. No native mouse-gesture claim.",
+      "reportPath": "outputs/ui_all_callbacks_20261031/check_2/verification.json",
+      "reportSha256": "dd79a9e9267f811d225078b194177248d92b6b743138e9d88a54de4949a901ac",
+      "mainSlots": 67,
+      "mainAndDetailSlots": 72
+    }
+  ],
+  "logs": [
+    {
+      "path": "local/matlab_7e4767e7c2b74208a1e4979759a1c474.log",
+      "sha256": "e7a1622c49900efeb1a2d8fbfd871051abc0912af10af32468abbbd7a2b2650b",
+      "text": "UI_ALL_CALLBACKS_PASS checks=8 main=67 details=72 spy=124 allForbiddenCalls=0\n"
+    },
+    {
+      "path": "local/matlab_f71783c0467342a1a1dd3c7aa9a7d8b5.log",
+      "sha256": "e7a1622c49900efeb1a2d8fbfd871051abc0912af10af32468abbbd7a2b2650b",
+      "text": "UI_ALL_CALLBACKS_PASS checks=8 main=67 details=72 spy=124 allForbiddenCalls=0\n"
+    }
+  ],
+  "liveRepair": {
+    "dryrun_2": {
+      "version": "cam-all-callback-repair-1",
+      "plannedCount": 67,
+      "reboundCount": 65,
+      "alreadyBound": false,
+      "applied": false,
+      "dryRun": true,
+      "stateUnchanged": true,
+      "calculationsPerformed": 0,
+      "oldWindowRetained": true,
+      "scope": "Main and existing owned detail figures only; all unknown non-framework callback slots cause atomic refusal. No callback/business operation is invoked.",
+      "reportPath": "outputs/ui_all_callbacks_20261031/parent_independent/dryrun_2/tp4419bf30_f383_4932_b43f_8e0409b09f2b_repair.json",
+      "reportSha256": "a65a962dd8d63a6376827c2ec373adcdd647e7a37a1421e9cc30a5c539f16e21",
+      "backupPath": "outputs/ui_all_callbacks_20261031/parent_independent/dryrun_2/tp4419bf30_f383_4932_b43f_8e0409b09f2b.mat",
+      "backupSha256": "ac1e5d68c17f955ce668ff2f6314860476866092d28b9acb9ae3236855eff819",
+      "unknownCallbacks": 0,
+      "frameworkCallbacks": 39
+    },
+    "repaired": {
+      "version": "cam-all-callback-repair-1",
+      "plannedCount": 67,
+      "reboundCount": 65,
+      "alreadyBound": false,
+      "applied": true,
+      "dryRun": false,
+      "stateUnchanged": true,
+      "calculationsPerformed": 0,
+      "oldWindowRetained": true,
+      "scope": "Main and existing owned detail figures only; all unknown non-framework callback slots cause atomic refusal. No callback/business operation is invoked.",
+      "reportPath": "outputs/ui_all_callbacks_20261031/parent_independent/repaired/tp47e3e0b0_7066_4b46_ba23_1e9726c13eb5_repair.json",
+      "reportSha256": "7fd81975f731670bc393bcbd373c33726c61892e6923e1f567aefe4e6027629a",
+      "backupPath": "outputs/ui_all_callbacks_20261031/parent_independent/repaired/tp47e3e0b0_7066_4b46_ba23_1e9726c13eb5.mat",
+      "backupSha256": "b5b1a4f9f4e3c65a2b02f16a3b19c9cd218fe04bf0c83f14043b5311fb3f3e46",
+      "unknownCallbacks": 0,
+      "frameworkCallbacks": 39
+    }
+  },
+  "independentLiveVerification": {
+    "callbackCountBefore": 106,
+    "callbackCountAfter": 106,
+    "appAnonymousAfter": 0,
+    "appNamedAfter": 67,
+    "frameworkCount": 39,
+    "frameworkPreserved": true,
+    "initialModelInputsResultsPreserved": true,
+    "allBindingsMatch": true,
+    "unknownCallbacks": 0,
+    "layoutCallback": {
+      "property": "Figure.SizeChangedFcn",
+      "succeeded": true,
+      "identifier": "",
+      "message": "",
+      "stateUnchanged": true
+    },
+    "scope": "Independent before/after inventory and model snapshot. Only layout callback executed; no route/calculation/optimization/import/export/apply/reset business.",
+    "reportPath": "outputs/ui_all_callbacks_20261031/parent_independent/verification.json",
+    "reportSha256": "3465d6e40734bb3129c75afc0790a1c195f46e11e66491d5579344e0ebe548a5"
+  },
+  "staticReview": {
+    "sourceFilesVerifiedAgainstFreeze": 32,
+    "compatibilityFilesOnlyInvocationSyntaxChanged": 20,
+    "compatibilityInvocationEdits": 41,
+    "camdesignPackageUnchanged": true,
+    "businessActionsRun": false
+  },
+  "parentAuditScripts": [
+    {
+      "path": "local/capture_ui_callbacks_017.m",
+      "sha256": "d168da47601ceae420e568d5da6246b4f8c0173de1e507b58903664985d5fd86",
+      "source": "function report=capture_ui_callbacks_017(app,phase)\n% Parent-side read-only inventory. Never invoke callbacks or calculate.\nassert(isvalid(app) && ~app.Busy && ~app.SimulationMode && ~app.MapEditMode);\nroot=fileparts(fileparts(mfilename('fullpath')));\nfolder=fullfile(root,'outputs','ui_all_callbacks_20261031','parent_independent');\nif ~isfolder(folder), mkdir(folder); end\njsonFile=fullfile(folder,[phase '.json']); backupFile=fullfile(folder,[phase '.mat']);\nassert(~isfile(jsonFile) && ~isfile(backupFile));\nbackup=app.snapshotModelSwitchState(); seedText=app.AutoTuneSeed.Text;\nsave(backupFile,'backup','seedText','-v7');\nloaded=load(backupFile); assert(isequaln(loaded.backup,backup));\nfigures={app.Figure};\nif ~isempty(app.DiagnosticsFigure) && isgraphics(app.DiagnosticsFigure), figures{end+1}=app.DiagnosticsFigure; end\ninventory=struct('figure',{},'class',{},'tag',{},'text',{},'property',{},'type',{},'function',{});\nfor f=1:numel(figures)\n    objects=findall(figures{f});\n    for k=1:numel(objects)\n        object=objects(k); names=properties(object);\n        for n=1:numel(names)\n            name=names{n};\n            if isempty(regexp(name,'(Fcn|Callback)$','once')), continue; end\n            callback=object.(name); if isempty(callback), continue; end\n            entry=struct('figure',f,'class',class(object),'tag','','text','', ...\n                'property',name,'type',class(callback),'function','');\n            if isprop(object,'Tag'), entry.tag=object.Tag; end\n            if isprop(object,'Text'), entry.text=object.Text; end\n            handle=callback; if iscell(callback), handle=callback{1}; end\n            if isa(handle,'function_handle'), entry.function=func2str(handle);\n            elseif ischar(handle) || isstring(handle), entry.function=char(handle); end\n            inventory(end+1)=entry; %#ok<AGROW>\n        end\n    end\nend\nreport=struct('phase',phase,'backupFile',backupFile,'callbackCount',numel(inventory), ...\n    'inventory',inventory,'stateUnchanged',isequaln(backup,app.snapshotModelSwitchState()), ...\n    'scope','Read-only callback inventory and full snapshot; no callbacks invoked or route calculation.');\nfid=fopen(jsonFile,'w','n','UTF-8'); assert(fid>=0); closer=onCleanup(@()fclose(fid));\nfprintf(fid,'%s',jsonencode(report,PrettyPrint=true));\nfprintf('CALLBACK_INVENTORY_%s count=%d stateUnchanged=%d\\n',phase,numel(inventory),report.stateUnchanged);\nend\n"
+    },
+    {
+      "path": "local/probe_ui_layout_callback_017.m",
+      "sha256": "f8b4ed374fa30325b7fc0c8231c9124edfb1098f82f4e61c2b0dd70a4fbb447d",
+      "source": "function report=probe_ui_layout_callback_017(app,phase)\n% The layout callback only sets view dimensions; never runs the model.\nassert(isvalid(app) && ~app.Busy && ~app.SimulationMode && ~app.MapEditMode);\nroot=fileparts(fileparts(mfilename('fullpath')));\npath=fullfile(root,'outputs','ui_all_callbacks_20261031','parent_independent',[phase '_layout.json']);\nassert(~isfile(path));\nbefore=app.snapshotModelSwitchState(); callback=app.Figure.SizeChangedFcn;\nreport=struct('property','Figure.SizeChangedFcn','succeeded',false,'identifier','','message','');\ntry\n    if iscell(callback), feval(callback{1},app.Figure,[],callback{2:end});\n    else, feval(callback,app.Figure,[]); end\n    report.succeeded=true;\ncatch ex\n    report.identifier=ex.identifier; report.message=ex.message;\nend\nreport.stateUnchanged=isequaln(before,app.snapshotModelSwitchState());\nassert(report.stateUnchanged);\nfid=fopen(path,'w','n','UTF-8'); assert(fid>=0); closer=onCleanup(@()fclose(fid));\nfprintf(fid,'%s',jsonencode(report,PrettyPrint=true));\nfprintf('LAYOUT_CALLBACK_%s success=%d stateUnchanged=%d %s\\n',phase,report.succeeded,report.stateUnchanged,report.identifier);\nend\n"
+    },
+    {
+      "path": "local/verify_ui_callbacks_017.m",
+      "sha256": "460c556839b638259d3d6ee7cce031e9dc8b6f1fb3eea23f66c3450f9434c33a",
+      "source": "function report=verify_ui_callbacks_017(app)\nroot=fileparts(fileparts(mfilename('fullpath')));\nfolder=fullfile(root,'outputs','ui_all_callbacks_20261031','parent_independent');\nout=fullfile(folder,'verification.json'); assert(~isfile(out));\ncapture_ui_callbacks_017(app,'after');\nlayout=probe_ui_layout_callback_017(app,'after'); assert(layout.succeeded);\nbefore=jsondecode(fileread(fullfile(folder,'before.json')));\nafter=jsondecode(fileread(fullfile(folder,'after.json')));\noldNames={before.inventory.function}; newNames={after.inventory.function};\noldApp=contains(oldNames,'app.') | strcmp(oldNames,'cam_app_ui_dispatch');\nnewApp=contains(newNames,'app.') | strcmp(newNames,'cam_app_ui_dispatch');\nanonymousCount=nnz(startsWith(newNames,'@') & contains(newNames,'app.'));\nnamedCount=nnz(strcmp(newNames,'cam_app_ui_dispatch'));\nframeworkPreserved=isequaln(before.inventory(~oldApp),after.inventory(~newApp));\nsaved=load(fullfile(folder,'before.mat'),'backup');\nmodelPreserved=isequaln(saved.backup,app.snapshotModelSwitchState());\n[plan,audit]=cam_app_ui_binding_plan(app);\nnamedBindings=all(arrayfun(@(p)cam_app_ui_callback_matches(p.control.(p.property),app,p.key),plan));\nassert(anonymousCount==0 && namedCount==67 && frameworkPreserved && modelPreserved && namedBindings && isempty(audit.unknown));\nreport=struct('callbackCountBefore',before.callbackCount,'callbackCountAfter',after.callbackCount, ...\n    'appAnonymousAfter',anonymousCount,'appNamedAfter',namedCount,'frameworkCount',nnz(~newApp), ...\n    'frameworkPreserved',frameworkPreserved,'initialModelInputsResultsPreserved',modelPreserved, ...\n    'allBindingsMatch',namedBindings,'unknownCallbacks',numel(audit.unknown),'layoutCallback',layout, ...\n    'scope','Independent before/after inventory and model snapshot. Only layout callback executed; no route/calculation/optimization/import/export/apply/reset business.');\nfid=fopen(out,'w','n','UTF-8'); assert(fid>=0); closer=onCleanup(@()fclose(fid)); fprintf(fid,'%s',jsonencode(report,PrettyPrint=true));\nfprintf('LIVE_CALLBACK_VERIFY_PASS named=%d framework=%d anonymous=%d modelPreserved=%d\\n',namedCount,nnz(~newApp),anonymousCount,modelPreserved);\nend\n"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_1/backups/tp101a8ff7_8b47_4b00_9a12_c661a8379890.mat",
+      "sha256": "5dca0f071d4a3786585ddc0d67e693e7e38407cbe0f8ce54c053da106dbf2032",
+      "bytes": 31261
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_1/backups/tp101a8ff7_8b47_4b00_9a12_c661a8379890_repair.json",
+      "sha256": "6c105b28ce646dff652160487ca5d02c5bd353e40af222dbfced01be4183e75d",
+      "bytes": 17145
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_1/spy/CamAllCallbackSpy017.m",
+      "sha256": "f892fb6be161b3ca5ad6de30447c196764f3b2be755494eaa910b35a0153d83b",
+      "bytes": 3194
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_1/unknown_backups/tp1d92783f_5b46_42a3_88a6_e167b178e1c3.mat",
+      "sha256": "10c327e21bc74a0b0d44481bb72a26dd27a89103bddd8359867c2ccc7d058fca",
+      "bytes": 31261
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_1/unknown_backups/tp1d92783f_5b46_42a3_88a6_e167b178e1c3_repair.json",
+      "sha256": "d6ffe76a0476da033679eedd329eb29220e59192005e4d704b1f882b5b5c4b98",
+      "bytes": 34761
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_1/verification.json",
+      "sha256": "39eda4d983b92404f94b17c3c03bbb4bb9ccc25986ed6846a8e5695e328e3d7e",
+      "bytes": 72034
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_2/backups/tp84b788e0_132e_4994_8efb_bf2d78bd4ffc.mat",
+      "sha256": "f9045345acf8402960eb951fe048240a810985721f333a1ab17a5f16407d5694",
+      "bytes": 39073
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_2/backups/tp84b788e0_132e_4994_8efb_bf2d78bd4ffc_repair.json",
+      "sha256": "38f477568a897485e029971a7b3abaaa2113288ef8d687e8d209612648ea295d",
+      "bytes": 42875
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_2/framework_fixture.json",
+      "sha256": "275bbe0b3d4f266f8ac27a2648fc3d7caee672b77b4ca5af7b02f3befaef0a44",
+      "bytes": 39456
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_2/spy/CamAllCallbackSpy017.m",
+      "sha256": "f892fb6be161b3ca5ad6de30447c196764f3b2be755494eaa910b35a0153d83b",
+      "bytes": 3194
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_2/unknown_backups/tp95e74612_2135_41bb_bb26_d7f0961e2547.mat",
+      "sha256": "29390886b8ad1093b0662e243de8926fab725fa5db9a801ff0f98e62a67da31d",
+      "bytes": 39073
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_2/unknown_backups/tp95e74612_2135_41bb_bb26_d7f0961e2547_repair.json",
+      "sha256": "815d26e0b8ee069ed87e516f3b464da567f0f01520a73b87308ed076f39b46f5",
+      "bytes": 60463
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/check_2/verification.json",
+      "sha256": "dd79a9e9267f811d225078b194177248d92b6b743138e9d88a54de4949a901ac",
+      "bytes": 176320
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/compatibility_edits.json",
+      "sha256": "9335647bf98596b0f0774a81753560acfe58132fc20251b7bcc98b2da91d58b6",
+      "bytes": 1500
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/executor_delivery.json",
+      "sha256": "ff1f790d0ea36fe841267b8c2e6e31f1558cbf5056b620a88d60c866a505e9f4",
+      "bytes": 4116
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/after.json",
+      "sha256": "6d5f214fc148686b94867557d3d211e51a0a5a56e172c09f9f541343603e07cd",
+      "bytes": 26690
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/after.mat",
+      "sha256": "d47457954bcd5103cc2f020be13dd3d0764e7651cb541f04202401377a4c81b6",
+      "bytes": 559162
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/after_layout.json",
+      "sha256": "e17cd27ddfd2383d79d49cb09caec8c62e75230c419732ff85c0024424a3dc91",
+      "bytes": 125
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/before.json",
+      "sha256": "7a8fd8b3f91ab9302d2b0c3c253fc89149be13b96b3f2ba4fdc9a5e4d8ab3afb",
+      "bytes": 28202
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/before.mat",
+      "sha256": "211d4ee51d7ec67324cfa75e88a2560f5a3890bc22230d1e6c06e741d6f20ecf",
+      "bytes": 559162
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/before_layout.json",
+      "sha256": "34ee2128cc5b1d85caf2566f5e0d4afb788ab1abe9ec224a17316c6bb4e336cd",
+      "bytes": 295
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/CamReplicaApp_baseline.m",
+      "sha256": "9d60c68a6f132a10566c3a3117d3bded19b68ed2a736c13ba2913fd9dfaa9333",
+      "bytes": 168179
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/dryrun_2/tp4419bf30_f383_4932_b43f_8e0409b09f2b.mat",
+      "sha256": "ac1e5d68c17f955ce668ff2f6314860476866092d28b9acb9ae3236855eff819",
+      "bytes": 596404
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/dryrun_2/tp4419bf30_f383_4932_b43f_8e0409b09f2b_repair.json",
+      "sha256": "a65a962dd8d63a6376827c2ec373adcdd647e7a37a1421e9cc30a5c539f16e21",
+      "bytes": 56543
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/repaired/tp47e3e0b0_7066_4b46_ba23_1e9726c13eb5.mat",
+      "sha256": "b5b1a4f9f4e3c65a2b02f16a3b19c9cd218fe04bf0c83f14043b5311fb3f3e46",
+      "bytes": 596404
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/repaired/tp47e3e0b0_7066_4b46_ba23_1e9726c13eb5_repair.json",
+      "sha256": "7fd81975f731670bc393bcbd373c33726c61892e6923e1f567aefe4e6027629a",
+      "bytes": 56543
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/parent_independent/verification.json",
+      "sha256": "3465d6e40734bb3129c75afc0790a1c195f46e11e66491d5579344e0ebe548a5",
+      "bytes": 592
+    },
+    {
+      "path": "outputs/ui_all_callbacks_20261031/source_freeze.json",
+      "sha256": "73d21700dd45374d2c0f9115d1735d3a98a15461c90431a433058692ae46dd4b",
+      "bytes": 4641
+    }
+  ],
+  "limitations": [
+    "Synthetic callback spies do not run calculation/import/export/apply business methods.",
+    "Only the harmless layout callback was invoked in the retained user window; existing plotted contest results were not recomputed.",
+    "No native mouse gesture coverage claim; no numerical/optimization/physical precision conclusion.",
+    "First synthetic pass missed non-public toolbar properties; the failed live DryRun occurred before any binding mutation. Final fixture and successful live retry are recorded separately.",
+    "Live backup MAT files stay in ignored local outputs; hashes only are archived here.",
+    "Known version-specific callback recovery is not a general MATLAB class hot-reload mechanism.",
+    "No GitHub push."
+  ]
+}

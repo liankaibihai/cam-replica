@@ -126,8 +126,8 @@ for k=1:numel(state.fieldNames), app.ContestGeometryParams.Data{k,2}=cfg.(state.
 app.ContestGeometryMeasured.Value=cfg.measurementsConfirmed; app.ContestGeometryCoverageConfirmed.Value=cfg.coverageRectangleConfirmed;
 app.contestGeometryChanged();
 end
-function invoke(control), callback=control.ValueChangedFcn; callback(control,[]); end
-function push(control), callback=control.ButtonPushedFcn; callback(control,[]); end
+function invoke(control), callback=control.ValueChangedFcn; cam_invoke_ui_callback(callback,control,[]); end
+function push(control), callback=control.ButtonPushedFcn; cam_invoke_ui_callback(callback,control,[]); end
 function closeOwn(app)
 if ~isempty(app.DiagnosticsFigure) && isgraphics(app.DiagnosticsFigure), delete(app.DiagnosticsFigure); end
 if isgraphics(app.Figure), delete(app.Figure); end

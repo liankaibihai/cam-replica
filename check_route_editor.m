@@ -19,7 +19,7 @@ assert(strcmp(axesHandle.Legend.Location,'northwest') && contains(app.DirectionS
 checks{end+1}='four component trajectories and explicit legend';
 
 % Enter through the actual button callback, then test the state-machine inputs.
-callback=app.MapEditButton.ButtonPushedFcn; callback(app.MapEditButton,[]);
+callback=app.MapEditButton.ButtonPushedFcn; cam_invoke_ui_callback(callback,app.MapEditButton,[]);
 assert(app.MapEditMode && app.MapEditSelection==0);
 assert(all(arrayfun(@(b)strcmp(b.Enable,'off'),app.Buttons)));
 assert(~any(app.NodesTable.ColumnEditable) && ~any(app.ParamsTable.ColumnEditable));
@@ -53,7 +53,7 @@ app.routeMapClick([1 2001],axesHandle);
 assert(isequal(app.NodesTable.Data(k,:),point+[5 2]) && app.MapEditMode);
 app.Figure.Visible='on'; drawnow;
 exportapp(app.Figure,fullfile(folder,'node_preview.png'));
-callback=app.Figure.WindowKeyPressFcn; callback(app.Figure,struct('Key','escape'));
+callback=app.Figure.WindowKeyPressFcn; cam_invoke_ui_callback(callback,app.Figure,struct('Key','escape'));
 assert(~app.MapEditMode && isequaln(app.Project,baseline) && isequaln(app.Result,baselineResult));
 assert(isequal(app.NodesTable.Data,baseline.nodes) && isempty(findall(axesHandle,'Tag','node-edit-selection')));
 assert(strcmp(app.MapEditButton.Enable,'on') && strcmp(app.ConfirmNodeButton.Enable,'off'));
@@ -78,7 +78,7 @@ assert(app.MapEditMode && isequaln(app.Project,confirmed) && isequaln(app.Result
 assert(contains(app.Status.Text,'候选不可用') && contains(app.Status.Text,'重合'));
 exportapp(app.Figure,fullfile(folder,'invalid_candidate.png'));
 app.previewRouteNode(confirmed.nodes(k,:)+[2 1],axesHandle);
-callback=app.ConfirmNodeButton.ButtonPushedFcn; callback(app.ConfirmNodeButton,[]);
+callback=app.ConfirmNodeButton.ButtonPushedFcn; cam_invoke_ui_callback(callback,app.ConfirmNodeButton,[]);
 assert(~app.MapEditMode && isequal(app.Project.nodes(k,:),confirmed.nodes(k,:)+[2 1]));
 checks{end+1}='duplicate candidate rejected atomically; same session recovers and confirms';
 
@@ -89,7 +89,7 @@ app.previewRouteNode([-100 1900],axesHandle); app.confirmRouteNode();
 assert(app.MapEditMode && contains(app.Status.Text,'候选不可用'));
 assert(isequaln(app.Project,confirmed) && isequaln(app.Result,confirmedResult));
 geometryRejection=app.Log.Value{end};
-callback=app.CancelNodeButton.ButtonPushedFcn; callback(app.CancelNodeButton,[]);
+callback=app.CancelNodeButton.ButtonPushedFcn; cam_invoke_ui_callback(callback,app.CancelNodeButton,[]);
 assert(~app.MapEditMode && isequaln(app.Project,confirmed) && isequaln(app.Result,confirmedResult));
 checks{end+1}='invalid geometry rejected; Cancel button restores design';
 
@@ -99,7 +99,7 @@ app.ParamsTable.Data{wheelRow,2}=app.ParamsTable.Data{wheelRow,2}+1;
 pending=app.ParamsTable.Data;
 app.beginRouteEditing(); % Also catches edits for which a CellEditCallback did not fire.
 assert(~app.MapEditMode && isequal(app.ParamsTable.Data,pending) && isequaln(app.Project,confirmed));
-callback=app.ParamsTable.CellEditCallback; callback(app.ParamsTable,[]);
+callback=app.ParamsTable.CellEditCallback; cam_invoke_ui_callback(callback,app.ParamsTable,[]);
 assert(isempty(app.Result)); app.beginRouteEditing();
 assert(~app.MapEditMode && isequal(app.ParamsTable.Data,pending));
 app.calculate(); assert(app.Project.params.wheelDiameter==pending{wheelRow,2});

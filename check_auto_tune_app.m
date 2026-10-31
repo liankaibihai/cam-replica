@@ -9,8 +9,8 @@ project.params.autoTune=struct('trials',2,'maxIterations',1,'seed',2027,'polishC
 project.params.dynamicWeights=struct('enabled',true);
 app=CamReplicaApp('off'); cleanup=onCleanup(@()closeOwn(app));
 app.Project=project; app.syncInputs(); app.calculate();
-app.AlgorithmSelector.Value='auto-tune-v1'; callback=app.AlgorithmSelector.ValueChangedFcn; callback(app.AlgorithmSelector,[]);
-callback=app.Buttons(5).ButtonPushedFcn; callback(app.Buttons(5),[]);
+app.AlgorithmSelector.Value='auto-tune-v1'; callback=app.AlgorithmSelector.ValueChangedFcn; cam_invoke_ui_callback(callback,app.AlgorithmSelector,[]);
+callback=app.Buttons(5).ButtonPushedFcn; cam_invoke_ui_callback(callback,app.Buttons(5),[]);
 assert(~app.Busy && isstruct(app.OptimizationInfo) && app.OptimizationInfo.fullAuto);
 assert(strcmp(app.History(end).autoStage,'complete') && app.OptimizationInfo.iterations<=2);
 assert(app.Project.params.gearRatio==35 && isequal(app.Project.params.weights,project.params.weights));

@@ -87,7 +87,7 @@ assert(isequal(cell2mat(app.ScoreTable.Data(:,3)),data.activeWeights(:)));
 assert(abs(sum(cell2mat(app.ScoreTable.Data(:,4)))-data.dynamicTotal)<1e-9*max(1,data.dynamicTotal));
 end
 function call(object,property)
-callback=object.(property); callback(object,[]);
+callback=object.(property); cam_invoke_ui_callback(callback,object,[]);
 end
 function capture(app,folder,name)
 drawnow; exportapp(app.Figure,fullfile(folder,name)); pause(.15); drawnow; exportapp(app.Figure,fullfile(folder,name));

@@ -147,7 +147,7 @@ index=find(strcmp(app.TrainingFieldNames,name)); app.TrainingFields(index).Value
 invoke(app.TrainingFields(index),'ValueChangedFcn');
 end
 function invoke(control,name)
-callback=control.(name); callback(control,[]);
+callback=control.(name); cam_invoke_ui_callback(callback,control,[]);
 end
 function closeOwn(app)
 if isgraphics(app.DiagnosticsFigure), delete(app.DiagnosticsFigure); end

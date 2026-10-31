@@ -15,7 +15,7 @@ assert(app.ScoreDisplayData.routeLengthMM~=app.Result.metrics.terms(2));
 checks{end+1}='current raw route/drive lengths display in metres and millimetres, separately from the normalized score';
 
 app.NodesTable.Data(2,1)=app.NodesTable.Data(2,1)+1;
-callback=app.NodesTable.CellEditCallback; callback(app.NodesTable,[]);
+callback=app.NodesTable.CellEditCallback; cam_invoke_ui_callback(callback,app.NodesTable,[]);
 assert(contains(app.LengthSummary.Text,'历史 / 待重算') && contains(app.ScoreSummary.Text,'历史 / 待重算'));
 assert(app.ScoreDisplayData.routeLengthMM==initial.routeLength && app.ScoreDisplayData.driveLengthMM==initial.driveLength);
 app.calculate(); assertLengths(app,app.Result.metrics);
@@ -24,12 +24,12 @@ assert(app.ScoreDisplayData.routeLengthMM~=initial.routeLength);
 checks{end+1}='input edits label cached lengths historical; recalculation refreshes both lengths from the new result';
 
 coarse=app.Result; base=app.Project;
-app.CrossSource.Value='refined'; callback=app.CrossSource.ValueChangedFcn; callback(app.CrossSource,[]);
+app.CrossSource.Value='refined'; callback=app.CrossSource.ValueChangedFcn; cam_invoke_ui_callback(callback,app.CrossSource,[]);
 fine=app.CamInspectionRecord.result; assertLengths(app,fine.metrics);
 assert(contains(app.LengthSummary.Text,'加密复查') && strcmp(app.CamInspectionRecord.source,'refined'));
 assert(isequaln(app.Project,base) && isequaln(app.Result,coarse));
 capture(app,folder,'refined_lengths.png');
-app.CrossSource.Value='current'; callback(app.CrossSource,[]); assertLengths(app,coarse.metrics);
+app.CrossSource.Value='current'; cam_invoke_ui_callback(callback,app.CrossSource,[]); assertLengths(app,coarse.metrics);
 assert(contains(app.LengthSummary.Text,'当前计算'));
 checks{end+1}='fine/coarse source switches refresh lengths from the same displayed grid without changing the project';
 
@@ -54,8 +54,8 @@ app.CamInspectionRecord=original; app.updateDiagnostics(); assertLengths(app,opt
 checks{end+1}='missing result/metric fields remain missing and display pending calculation rather than a zero';
 
 for dimensions={[1320 860],[1120 760]}
-    wh=dimensions{1}; app.Figure.Position=[10 10 wh]; callback=app.Figure.SizeChangedFcn; callback(app.Figure,[]);
-    callback=app.TrainingShortcut.ButtonPushedFcn; callback(app.TrainingShortcut,[]);
+    wh=dimensions{1}; app.Figure.Position=[10 10 wh]; callback=app.Figure.SizeChangedFcn; cam_invoke_ui_callback(callback,app.Figure,[]);
+    callback=app.TrainingShortcut.ButtonPushedFcn; cam_invoke_ui_callback(callback,app.TrainingShortcut,[]);
     tabs=app.ResultsTabs.Children;
     for k=1:numel(tabs)
         app.ResultsTabs.SelectedTab=tabs(k); drawnow;
