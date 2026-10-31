@@ -4,6 +4,7 @@ root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:DynamicUIBatch','Use an independent batch.');
 folder=fullfile(root,'outputs','dynamic_weights_20261030'); if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
+app.SimulationSource.Value='theoretical'; % Preserve legacy theoretical-mode UI regression.
 solar=camdesign.solarTestProject(); solar.params.samples=101; solar.params.camSamples=181; solar.params.iterations=2;
 app.Project=solar; app.syncInputs(); app.calculate();
 assert(~isfield(app.inputProject().params,'dynamicWeights') && ~app.DynamicWeightsEnabled.Value);

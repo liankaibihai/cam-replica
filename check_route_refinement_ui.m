@@ -5,6 +5,7 @@ assert(batchStartupOptionUsed,'cam:RefinementBatchOnly','请使用独立 batch�
 folder=fullfile(root,'outputs','route_refinement_20261029');
 if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
+app.SimulationSource.Value='theoretical'; % Preserve legacy theoretical-mode UI regression.
 assert(isequaln(app.Project,camdesign.defaultProject()) && ~isfield(app.Project.params,'routeSpline'));
 checks{end+1}='historical default constructor retains legacy parameterization';
 solar=camdesign.solarTestProject(); app.Project=solar; app.syncInputs(); app.calculate();

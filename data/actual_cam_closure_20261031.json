@@ -1,0 +1,274 @@
+{
+  "change": "CHG-2026-10-31-008",
+  "baselineCommit": "f072cde32b482fcc5631952659e97632c62556c1",
+  "core": {
+    "release": "2025b",
+    "groupsPassed": 8,
+    "groups": [
+      "analytic segment-interior contact and pressure",
+      "noncircle independent bisection oracle and winding invariance",
+      "analytic straight and signed constant-turn car with polygon refinement",
+      "actual mutation, poisoned/deleted theoretical fields and physical ratio",
+      "explicit rejection of unsupported geometry, zero radius, phase and rotation",
+      "frozen solar fine outline, full-cycle physical gates and report isolation",
+      "real solar self-intersecting actual outline rejected",
+      "return-phase pressure is distinct from working-phase pressure"
+    ],
+    "segmentInteriorMaxErrorMM": 1.7763568394002505e-15,
+    "independentNoncircleOracleMaxErrorMM": 1.4210854715202004e-14,
+    "windingMaxRadiusErrorMM": 1.4210854715202004e-14,
+    "windingMaxPressureErrorRad": 4.996003610813204e-16,
+    "pressureDerivativeMaxErrorRad": 1.3761108919041476e-10,
+    "analyticCircleSteeringRad": [
+      0,
+      0.1,
+      -0.1
+    ],
+    "analyticCircleVertexCounts": [
+      721,
+      5761
+    ],
+    "analyticCircleMaxPathErrorMM": [
+      [
+        0.18711599289236963,
+        0.0029329827625846953
+      ],
+      [
+        0.15747433404654643,
+        0.0024684210462098876
+      ],
+      [
+        0.19452665593804164,
+        0.003049173165697065
+      ]
+    ],
+    "analyticCircleMaxRadiusErrorMM": [
+      [
+        0.0004569251079473702,
+        7.139465964201008e-06
+      ],
+      [
+        0.00048080293714747313,
+        7.512557623101657e-06
+      ],
+      [
+        0.00043304727874726723,
+        6.766374298194933e-06
+      ]
+    ],
+    "analyticCircleMaxHeadingErrorRad": [
+      [
+        0.00018127980463549786,
+        2.840772295466219e-06
+      ],
+      [
+        0.0001678780563254545,
+        2.6308385547846314e-06
+      ],
+      [
+        0.0001969330640640976,
+        3.085957986037613e-06
+      ]
+    ],
+    "actualMutationMaxSensorDifferenceMM": 588.3008840277972,
+    "theoreticalFieldsIsolationExact": true,
+    "projectAndOutlineUnchanged": true,
+    "invalidInputs": {
+      "open": "cam:ActualOutlineOpen",
+      "nonfinite": "cam:ActualOutlineInvalid",
+      "zeroEdge": "cam:ActualOutlineDegenerate",
+      "zeroArea": "cam:ActualOutlineDegenerate",
+      "selfIntersection": "cam:ActualOutlineSelfIntersection",
+      "originOutside": "cam:ActualOutlineOrigin",
+      "zeroRoller": "cam:ActualContactRadius",
+      "rotation": "cam:ActualRotationConvention",
+      "missingPhase": "cam:ActualPhase",
+      "phaseConflict": "cam:ActualPhase"
+    },
+    "solarActualClosure": {
+      "valid": true,
+      "passed": false,
+      "contactValid": true,
+      "closurePassed": true,
+      "integrationConverged": true,
+      "geometryFeasible": false,
+      "maxSensorDeviationMM": 0.06818635599778843,
+      "rmsSensorDeviationMM": 0.03857310037913025,
+      "maxFrontDeviationMM": 0.0682543131007947,
+      "maxSteeringDeviationDeg": 0.0008165118445289395,
+      "integrationMaxSensorDifferenceMM": 0.00012966234829394466,
+      "integrationMaxFrontDifferenceMM": 0.00013048244737309933,
+      "maxContactResidualMM": 1.2656542480726785e-14,
+      "maxPenetrationMM": 1.2656542480726785e-14,
+      "maxHitErrorMM": 0.8597670023693857,
+      "visitOrderSatisfied": true,
+      "trajectoryBoundsSatisfied": true,
+      "maxTrajectoryOutsideMM": 0,
+      "maxPressureDeg": 37.875601875770215,
+      "maxWorkPressureDeg": 37.87083788892919,
+      "maxSteeringDeg": 17.917808600673048,
+      "maxFullCycleSteeringDeg": 17.917808600673048,
+      "pressureSatisfied": false,
+      "steeringSatisfied": true,
+      "hitSatisfied": true,
+      "returnAngleSatisfied": false,
+      "actualReturnDeg": 47.27790180074778,
+      "phaseCoverageSatisfied": true,
+      "designGateAvailable": true,
+      "designGeometryFeasible": false,
+      "designMinUndercutMargin": 0.025728854666744017,
+      "designIntersectionCount": 0,
+      "tolerances": {
+        "closureMM": 2,
+        "integrationMM": 0.05,
+        "contactResidualMM": 1e-07,
+        "maxPressureDeg": 35,
+        "maxSteeringDeg": 65,
+        "maxHitErrorMM": 30,
+        "minimumReturnDeg": 60,
+        "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+      },
+      "integrationSamples": [
+        1201,
+        2401
+      ],
+      "outlineVertexCount": 5761,
+      "outlineUnchanged": true,
+      "physicalGearRatio": 35,
+      "errorIdentifier": "",
+      "errorMessage": "",
+      "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+      "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+    },
+    "solarDesignMetrics": {
+      "maxHitError": 0.8424114284544485,
+      "rmsHitError": 0.3412571778898175,
+      "routeLength": 12874.877943494237,
+      "driveLength": 12417.018835407507,
+      "maxSteeringDeg": 17.918532039811303,
+      "maxPressureDeg": 37.87498810232771,
+      "maxWorkPressureDeg": 37.87498810232771,
+      "maxReturnPressureDeg": 33.885487788289,
+      "minUndercutMargin": 0.025728854666744017,
+      "intersectionCount": 0,
+      "actualReturnDeg": 47.27790180074778,
+      "returnAngleSatisfied": false,
+      "score": 1.3894200339990996,
+      "terms": [
+        0.0009179038625022079,
+        1.05193215797068,
+        0.007380202119112319,
+        0.08549736295200563,
+        0,
+        0.005522053658415164
+      ],
+      "objectiveVersion": "peak-v2",
+      "legacyScore": 1.0642664512858646,
+      "legacyTerms": [
+        0.00012939606829035841,
+        1.05193215797068,
+        0.0010988215012227738,
+        0.0028417970667464617,
+        0,
+        5.85062930153116e-06
+      ],
+      "geometryChecked": true,
+      "visitOrderChecked": true,
+      "visitOrderSatisfied": true,
+      "trajectoryBoundsChecked": true,
+      "trajectoryBoundsSatisfied": true,
+      "maxTrajectoryOutsideMM": 0
+    },
+    "rawCubicIntersectionCount": 4,
+    "rawCubicRejectedIdentifier": "cam:ActualOutlineSelfIntersection",
+    "separatePressureTestWorkDeg": 0.11984513366888791,
+    "separatePressureTestFullCycleDeg": 14.7577683534588,
+    "scope": "Frozen closed polygon plus rigid disk, sampled direct contact and no-slip vehicle only; not continuous-extrema, outline-discretization, original-software or hardware validation."
+  },
+  "solarDense": {
+    "valid": true,
+    "passed": false,
+    "contactValid": true,
+    "closurePassed": true,
+    "integrationConverged": true,
+    "geometryFeasible": false,
+    "maxSensorDeviationMM": 0.0676473257664782,
+    "rmsSensorDeviationMM": 0.03822327551049087,
+    "maxFrontDeviationMM": 0.0677205963096002,
+    "maxSteeringDeviationDeg": 0.0009331658811197898,
+    "integrationMaxSensorDifferenceMM": 9.750430261256183e-05,
+    "integrationMaxFrontDifferenceMM": 9.806131368272928e-05,
+    "maxContactResidualMM": 1.6209256159527285e-14,
+    "maxPenetrationMM": 1.6209256159527285e-14,
+    "maxHitErrorMM": 0.8569557967729305,
+    "visitOrderSatisfied": true,
+    "trajectoryBoundsSatisfied": true,
+    "maxTrajectoryOutsideMM": 0,
+    "maxPressureDeg": 37.90170439704111,
+    "maxWorkPressureDeg": 37.90170439704111,
+    "maxSteeringDeg": 17.917808600673048,
+    "maxFullCycleSteeringDeg": 17.917808600673048,
+    "pressureSatisfied": false,
+    "steeringSatisfied": true,
+    "hitSatisfied": true,
+    "returnAngleSatisfied": false,
+    "actualReturnDeg": 47.27790180074778,
+    "phaseCoverageSatisfied": true,
+    "designGateAvailable": true,
+    "designGeometryFeasible": false,
+    "designMinUndercutMargin": 0.025728854666744017,
+    "designIntersectionCount": 0,
+    "tolerances": {
+      "closureMM": 2,
+      "integrationMM": 0.05,
+      "contactResidualMM": 1e-07,
+      "maxPressureDeg": 35,
+      "maxSteeringDeg": 65,
+      "maxHitErrorMM": 30,
+      "minimumReturnDeg": 60,
+      "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+    },
+    "integrationSamples": [
+      4801,
+      9601
+    ],
+    "outlineVertexCount": 5761,
+    "outlineUnchanged": true,
+    "physicalGearRatio": 35,
+    "errorIdentifier": "",
+    "errorMessage": "",
+    "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+    "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy.",
+    "release": "2025b",
+    "evidenceSource": "Same frozen solar actual polygon saved by check_actual_cam; default verifyActualClosure samples, no cam regeneration or optimization."
+  },
+  "ui": {
+    "release": "2025b",
+    "checks": [
+      "default actual mode enters through toolbar and freezes actual geometry with editable contact radius",
+      "contact radius changes trajectory without changing cam, exit restores design",
+      "actual closure button reports independent contact/integration metrics and overlays route",
+      "edits invalidate closure evidence and self-crossing outline cannot enter normal actual simulation",
+      "real closure button rejects crossing solar outline with clear reason and intact project",
+      "theoretical reference remains explicitly selectable",
+      "solar flat fixed35 actual closure displayed separately from failed physical gates"
+    ],
+    "passed": 7
+  },
+  "scope": "Independent actual polygon contact and ideal no-slip vehicle; numerical closure is not physical feasibility, original-app equivalence or measured hardware accuracy.",
+  "sourceSHA256": {
+    "outputs/model_mapping_20261031/quality_bezier/result.mat": "2f9991620db6a4fa9d5bba12b928cc1007e3e0bb6f60bb8930e9fe859b680742",
+    "outputs/model_mapping_20261031/quality_cubic/result.mat": "9574bd083057e52d1ee443ffe228d662f077eac981c13e14986d5f5330a4da86",
+    "outputs/actual_cam_20261031/core_verification.json": "d73d8748120dc8fbda860648ac00d2218bbeb0f21dc4d6f38564ccfa7daf9407",
+    "outputs/actual_cam_20261031/solar_dense_verification.json": "22876a8284e6b6c1a7d461b5dc58e8a811a5ffe9585f404524756289126e6359",
+    "outputs/actual_cam_20261031/ui/verification.json": "373e1db2e04568b8fa1691a90378ccfefd0a4926aac1461619ad0ce242d46ad8",
+    "outputs/actual_cam_20261031/core_results.mat": "bf1edc4c1d580ea0a5ea0797f94627dc7771ab75373d7444ebb4368051288234",
+    "outputs/actual_cam_20261031/solar_dense_results.mat": "e9a67e56e000a231dbcefed97c13c0c10b8d8c4c7d1f742086169a9b11659d46",
+    "local/matlab_971ea8b0fb8d4eac8d8251b9855847e0.log": "1c16174d9daff6d2e4847742233779307babd9f5bb1d777aceaad9d79c956b8c",
+    "local/matlab_c17b85a96763432da3a9584261bac9b0.log": "495ca94d46801ca54e7d4304700cd3d1d80925e6fa6637a53344a4123ecc0578",
+    "local/matlab_cadd6d4eeec4444283f22284a4744036.log": "2b8eceb8ee108ef71607bf82e9c43393ccec68e015a64540227ece6be6ef0579",
+    "local/matlab_64c9fd19d53543f2bd85c4e6be9633bd.log": "f9d2a752f4a03d01afaa58f5004c8fc6743269c33151df20409702082b0790c1",
+    "local/matlab_9dec92253e3a477cb29f27ac2574a90b.log": "46c7f8291e92e2b19e1d5bd7a8b92016b68508ac68d189ce951aa62c09a34793",
+    "local/matlab_725c538c807d492a947cb1ab3467a672.log": "88a85b9719bcf888001dc43268b17a755994a7d0391321673f28481ef403d11b"
+  }
+}

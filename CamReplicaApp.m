@@ -45,6 +45,13 @@ classdef CamReplicaApp < handle
         SimulationMode = false
         SimulationReference = []
         SimulationResult = []
+        SimulationSource
+        ActualClosureTab
+        ActualClosureButton
+        ActualClosureStatus
+        ActualClosureTable
+        ActualClosureReport = []
+        ActualClosureProject = []
         MapEditMode = false
         MapEditSelection = 0
         MapEditButton
@@ -132,10 +139,14 @@ classdef CamReplicaApp < handle
                 'ColumnWidth',{320,'1x'},'Padding',[12 8 12 8], ...
                 'RowSpacing',6,'ColumnSpacing',10);
             app.RootLayout=root;
-            titleBar=uigridlayout(root,[1 1],'Padding',[0 0 0 0]);
+            titleBar=uigridlayout(root,[1 3],'ColumnWidth',{'1x',65,210},'Padding',[0 0 0 0]);
             titleBar.Layout.Row=1; titleBar.Layout.Column=[1 2];
             uilabel(titleBar,'Text','工创赛凸轮设计  /  路线、机构与几何校验', ...
                 'FontSize',20,'FontWeight','bold','FontColor',[.12 .20 .30]);
+            uilabel(titleBar,'Text','反推来源','FontSize',11);
+            app.SimulationSource=uidropdown(titleBar,'Items',{'实际轮廓接触（默认）','理论凸轮（对照）'}, ...
+                'ItemsData',{'actual','theoretical'},'Value','actual', ...
+                'Tooltip','实际模式由冻结的轮廓线段求接触；理论模式直接读取滚子中心运动。试调中退出后才能切换。');
             bar=uigridlayout(root,[1 8],'Padding',[0 0 0 0],'ColumnSpacing',8);
             bar.Layout.Row=2; bar.Layout.Column=[1 2];
             labels={'导入 MAT','保存项目','重建路线','计算凸轮','迭代优化','停止','固定凸轮反推','导出候选'};
@@ -155,14 +166,14 @@ classdef CamReplicaApp < handle
             uilabel(methods,'Text','路线画法','FontWeight','bold');
             app.TrainingModel=uidropdown(methods,'Items',{'三次样条（通过节点）','贝塞尔曲线（控制点调形）','标准三次B样条（内点法）','标准五次B样条（内点法）'}, ...
                 'ItemsData',{'cubic','bezier-blend-independent-v1','bspline-3','bspline-5'},'ValueChangedFcn',@(~,~)app.routeModelChanged(), ...
-                'Tooltip','B样条是标准系数控制多边形，通常不穿控制点；首点和首末导数受约束。切换与增减点用拟合，可能改变曲线，仅支持内点法。');
+                'Tooltip','B样条是系数控制多边形，通常不穿控制点。切换优先精确保形，否则独立误差门禁拟合，超限拒绝；仅支持内点法。');
             app.TrainingModel.Layout.Row=1; app.TrainingModel.Layout.Column=2;
             label=uilabel(methods,'Text','优化方法','FontWeight','bold'); label.Layout.Row=1; label.Layout.Column=3;
             app.AlgorithmSelector=uidropdown(methods, ...
                 'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）','全自动调优（权重＋训练）'}, ...
                 'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1','auto-tune-v1'}, ...
                 'Value','peak-gradient-v2','ValueChangedFcn',@(~,~)app.algorithmChanged(), ...
-                'Tooltip','普通搜索及约束方法调整当前路线控制点；全自动还会比较路线模型、权重和训练设置。物理参数和阈值不自动改变。');
+                'Tooltip','全自动锁定当前路线模型及阶数，只比较权重和适用训练设置。物理参数和阈值不自动改变。');
             app.AlgorithmSelector.Layout.Row=1; app.AlgorithmSelector.Layout.Column=4;
             app.MethodSummary=uilabel(methods,'Text','','FontSize',11);
             app.MethodSummary.Layout.Row=2; app.MethodSummary.Layout.Column=[1 3];
@@ -313,6 +324,12 @@ classdef CamReplicaApp < handle
             app.CrossingTab=uitab(app.ResultsTabs,'Title','交点定位'); crossing=app.createCrossingView(app.CrossingTab,false);
             app.CrossingViews={crossing}; app.CrossTable=crossing.table; app.CrossSource=crossing.source; app.CamSourceLabel=crossing.label;
             app.CrossZoomButton=crossing.zoom; app.CrossResetButton=crossing.reset; app.CrossDetailsButton=crossing.details;
+            app.ActualClosureTab=uitab(app.ResultsTabs,'Title','轮廓闭环');
+            closureLayout=uigridlayout(app.ActualClosureTab,[2 1],'RowHeight',{36,'1x'},'Padding',[4 2 4 2]);
+            closureBar=uigridlayout(closureLayout,[1 2],'ColumnWidth',{165,'1x'},'Padding',[0 0 0 0]);
+            app.ActualClosureButton=uibutton(closureBar,'Text','检查当前实际轮廓','ButtonPushedFcn',@(~,~)app.checkActualClosure());
+            app.ActualClosureStatus=uilabel(closureBar,'Text','尚未检查；固定实际轮廓进行接触与车辆反推，再加密积分比较。','WordWrap','on','FontSize',11);
+            app.ActualClosureTable=uitable(closureLayout,'ColumnName',{'闭环检查项','计算值／状态'},'ColumnWidth',{280,'auto'},'ColumnEditable',false,'RowName',{});
             app.syncInputs(); app.calculate();
             app.message('v0.2：齿条/平推、固定凸轮调参；独立样条与数值优化。尚未完成原版点集或实车对照。');
             app.Figure.SizeChangedFcn=@(~,~)app.resizeLayout(); app.resizeLayout();
@@ -321,6 +338,7 @@ classdef CamReplicaApp < handle
             p=app.Project.params;
             indices=1:numel(app.ParameterFields);
             if app.SimulationMode, indices=[1 2 3 5 7 8 10 11 12 13]; end
+            if app.SimulationMode && strcmp(app.SimulationSource.Value,'actual'), indices=[1 2 3 4 5 7 8 10 11 12 13]; end
             app.DisplayedParameterFields=app.ParameterFields(indices);
             labels=app.ParameterLabels(indices);
             if app.SimulationMode, labels{2}='传动比（用户试调，轮/凸轮）'; end
@@ -400,6 +418,9 @@ classdef CamReplicaApp < handle
         end
         function render(app)
             if isempty(app.Result), return; end
+            if ~isempty(app.ActualClosureProject) && ~isequaln(app.Project,app.ActualClosureProject)
+                app.clearActualClosure();
+            end
             r=app.Result.route; c=app.Result.cam; p=app.Project.params; a=app.RouteAxes;
             sourceProject=app.Project;
             if app.SimulationMode, sourceProject=app.SimulationReference.project; end
@@ -479,6 +500,7 @@ classdef CamReplicaApp < handle
         end
         function invalidate(app)
             if app.MapEditMode, app.message('请先确认或取消地图编辑。'); return; end
+            app.clearActualClosure();
             if app.SimulationMode
                 app.SimulationResult=[];
                 app.Status.Text='反推参数已修改，凸轮保持固定；点击“更新反推”查看路线变化。';
@@ -548,10 +570,12 @@ classdef CamReplicaApp < handle
                 return;
             end
             app.calculate();
-            app.SimulationReference=struct('project',app.Project,'result',app.Result);
-            app.SimulationMode=true;
-            app.syncInputs(); app.setSimulationControls(); app.runFixedCamSimulation();
-            app.message('已固定当前理论凸轮。可修改轮径、传动比、轴距、c、中心距、传感器坐标或发车方向，再点“更新反推”。');
+            reference=struct('project',app.Project,'result',app.Result);
+            sim=app.computeFixedSimulation(reference,app.Project.params);
+            app.SimulationReference=reference; app.SimulationMode=true;
+            app.syncInputs(); app.setSimulationControls(); app.presentFixedSimulation(sim);
+            app.message(['已固定凸轮；来源：',app.SimulationSource.Items{strcmp(app.SimulationSource.ItemsData,app.SimulationSource.Value)}, ...
+                '。可修改车体参数再更新反推，退出会恢复设计。实际接触模式也可试调接触半径。']);
         end
         function setSimulationControls(app)
             if app.SimulationMode
@@ -562,12 +586,22 @@ classdef CamReplicaApp < handle
             app.refreshControls();
         end
         function runFixedCamSimulation(app)
-            app.readInputs(); ref=app.SimulationReference; p=app.Project.params;
+            candidate=app.inputProject(); sim=app.computeFixedSimulation(app.SimulationReference,candidate.params);
+            app.Project=candidate; app.presentFixedSimulation(sim);
+        end
+        function sim=computeFixedSimulation(app,ref,p)
             assert(strcmp(p.mechanism,ref.project.params.mechanism),'cam:SimulationMechanism','固定凸轮试调期间不能切换转向机构。');
-            sim=camdesign.simulate(ref.result.cam,p,ref.result.route.front(1,:), ...
-                deg2rad(p.headingDeg),GearRatio=p.gearRatio);
+            if strcmp(app.SimulationSource.Value,'actual')
+                sim=camdesign.simulateActual(ref.result.cam,p,ref.result.route.front(1,:),deg2rad(p.headingDeg),GearRatio=p.gearRatio);
+            else
+                sim=camdesign.simulate(ref.result.cam,p,ref.result.route.front(1,:),deg2rad(p.headingDeg),GearRatio=p.gearRatio);
+            end
             sim.hits=camdesign.orderedHits(sim.sensor,ref.project.targets);
-            sim.maxPhaseDeviation=max(vecnorm(sim.sensor-ref.result.route.sensor,2,2));
+            design=interp1(ref.result.cam.workPhi,ref.result.route.sensor,sim.phase,'pchip');
+            sim.maxPhaseDeviation=max(vecnorm(sim.sensor-design,2,2));
+        end
+        function presentFixedSimulation(app,sim)
+            ref=app.SimulationReference; p=app.Project.params;
             app.SimulationResult=sim; app.Result=ref.result; app.render();
             hold(app.RouteAxes,'on');
             trial=plot(app.RouteAxes,sim.sensor(:,1),sim.sensor(:,2),'k--','LineWidth',1.5,'DisplayName','固定凸轮试调');
@@ -578,14 +612,87 @@ classdef CamReplicaApp < handle
             legend(app.RouteAxes,[app.RouteLines trial],{'前轮','传感器','主动轮','从动轮','节点','目标','AI','试调'}, ...
                 'Location',legendCorner,'NumColumns',legendColumns,'FontSize',9,'IconColumnWidth',10,'AutoUpdate','off');
             a=app.SteeringAxes; cla(a);
-            plot(a,rad2deg(sim.phase),rad2deg(ref.result.route.steering),'b-', ...
+            plot(a,rad2deg(ref.result.cam.workPhi),rad2deg(ref.result.route.steering),'b-', ...
                 rad2deg(sim.phase),rad2deg(sim.steering),'r--'); grid(a,'on');
             xlabel(a,'凸轮相位 / deg'); ylabel(a,'转角 / deg');
             title(a,'固定凸轮：设计与试调转角'); legend(a,{'设计','试调'},'Location','best');
-            app.Status.Text=sprintf('固定凸轮反推：同相位最大传感器偏差 %.3f mm；最大打卡偏差 %.3f mm', ...
+            source='理论对照'; if strcmp(app.SimulationSource.Value,'actual'), source='实际轮廓接触'; end
+            app.Status.Text=sprintf('%s反推：同相位最大传感器偏差 %.3f mm；最大打卡偏差 %.3f mm',source, ...
                 sim.maxPhaseDeviation,max(sim.hits.errors));
             app.Status.FontColor=[.12 .20 .30];
             app.message(sprintf('固定凸轮反推完成，实际试调传动比 %.6g，主动轮行程 %.3f mm。这是理想运动学预测。',p.gearRatio,sim.driveDistance(end)));
+        end
+        function clearActualClosure(app)
+            app.ActualClosureReport=[]; app.ActualClosureProject=[];
+            if ~isempty(app.RouteAxes) && isgraphics(app.RouteAxes), delete(findobj(app.RouteAxes,'Tag','actual-closure-route')); end
+            if isempty(app.ActualClosureStatus), return; end
+            app.ActualClosureStatus.Text='当前输入尚未检查；闭环检查不等于实车或加工许可。';
+            app.ActualClosureTable.Data=cell(0,2);
+        end
+        function checkActualClosure(app)
+            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
+            if app.TrainingDirty
+                app.message('请先应用或还原待处理训练设置，再检查当前实际轮廓。'); return;
+            end
+            app.ResultsTabs.SelectedTab=app.ActualClosureTab; app.clearActualClosure();
+            app.Busy=true; app.refreshControls(); cleanup=onCleanup(@()app.finishBusy());
+            app.ActualClosureStatus.Text='正在求实际轮廓接触、积分及加密复核…'; drawnow;
+            try
+                candidate=app.inputProject(); result=camdesign.evaluate(candidate,true);
+                [report,sim]=camdesign.verifyActualClosure(candidate,result);
+                if ~report.valid || isempty(sim)
+                    app.ActualClosureReport=report; app.ActualClosureProject=candidate;
+                    app.ActualClosureStatus.Text=['检查未通过：',report.errorMessage];
+                    app.ActualClosureTable.Data={'接触／反推可用',false;'错误标识',report.errorIdentifier;'原因',report.errorMessage};
+                    app.message(['实际轮廓闭环拒绝：',report.errorIdentifier,' ',report.errorMessage]); return;
+                end
+                app.Project=candidate; app.Result=result;
+                app.ActualClosureProject=candidate; app.ActualClosureReport=report;
+                app.render(); app.syncTrainingInputs();
+                hold(app.RouteAxes,'on');
+                closureLine=plot(app.RouteAxes,sim.sensor(:,1),sim.sensor(:,2),'m--','LineWidth',1.5, ...
+                    'DisplayName','实际轮廓反推','Tag','actual-closure-route');
+                hold(app.RouteAxes,'off'); app.fitRouteView(sim.sensor);
+                legend(app.RouteAxes,[app.RouteLines closureLine],{'前轮','传感器','主动轮','从动轮','节点','目标','AI','实际轮廓反推'}, ...
+                    'Location','northwest','NumColumns',4,'FontSize',9,'IconColumnWidth',10,'AutoUpdate','off');
+                app.ActualClosureTable.Data={ ...
+                    '传感器路线最大偏差 / mm',report.maxSensorDeviationMM; ...
+                    '传感器路线RMS偏差 / mm',report.rmsSensorDeviationMM; ...
+                    '前轮路线最大偏差 / mm',report.maxFrontDeviationMM; ...
+                    '转角最大偏差 / deg',report.maxSteeringDeviationDeg; ...
+                    '积分加密最大路线差 / mm',report.integrationMaxSensorDifferenceMM; ...
+                    '接触距离残差 / mm',report.maxContactResidualMM; ...
+                    '轮廓最大穿透 / mm',report.maxPenetrationMM; ...
+                    '反推最大打卡偏差 / mm',report.maxHitErrorMM; ...
+                    '接触法线最大压力角 / deg',report.maxPressureDeg; ...
+                    '接触合法',report.contactValid; '积分稳定',report.integrationConverged; ...
+                    '几何访问顺序',report.visitOrderSatisfied; '部件中心场界',report.trajectoryBoundsSatisfied; ...
+                    '闭环数值检查',report.closurePassed; '几何门禁',report.geometryFeasible};
+                app.ActualClosureTable.Data=[app.ActualClosureTable.Data; ...
+                    {'闭环位置门限 / mm（非实车公差）',report.tolerances.closureMM; ...
+                     '积分加密门限 / mm',report.tolerances.integrationMM; ...
+                     '接触残差门限 / mm',report.tolerances.contactResidualMM; ...
+                     '实际回程角 / deg',report.actualReturnDeg; ...
+                     '回程要求 / deg',report.tolerances.minimumReturnDeg; ...
+                     '轮廓顶点数量',report.outlineVertexCount; ...
+                     '相位积分点数（原 / 加密）',mat2str(report.integrationSamples)}];
+                tableData=app.ActualClosureTable.Data;
+                for row=1:size(tableData,1)
+                    if islogical(tableData{row,2}), tableData{row,2}=app.passText(tableData{row,2});
+                    elseif isnumeric(tableData{row,2}), tableData{row,2}=sprintf('%.8g',tableData{row,2}); end
+                end
+                app.ActualClosureTable.Data=tableData;
+                app.ActualClosureStatus.Text=sprintf('闭环数值检查 %s（位置门限 %.4g mm）；几何门禁 %s。非加工或实车许可。', ...
+                    app.passText(report.closurePassed),report.tolerances.closureMM,app.passText(report.geometryFeasible));
+                app.message(sprintf('实际轮廓完整反推：最大传感器差 %.6g mm，加密差 %.6g mm。%s', ...
+                    report.maxSensorDeviationMM,report.integrationMaxSensorDifferenceMM,app.ActualClosureStatus.Text));
+            catch ex
+                app.ActualClosureStatus.Text=['检查未通过：',ex.message];
+                app.message(['实际轮廓闭环未完成：',ex.identifier,' ',ex.message]);
+            end
+        end
+        function value=passText(~,passed)
+            value='未通过'; if passed, value='通过'; end
         end
         function beginRouteEditing(app)
             if app.Busy || app.SimulationMode || app.MapEditMode, return; end
@@ -1572,6 +1679,8 @@ classdef CamReplicaApp < handle
             app.Buttons(7).Enable=~app.Busy && ~app.MapEditMode;
             app.Mechanism.Enable=editable; app.AutoRatio.Enable='off'; app.TrainingShortcut.Enable=~app.MapEditMode;
             app.AlgorithmSelector.Enable=editable;
+            app.SimulationSource.Enable=editable;
+            app.ActualClosureButton.Enable=editable && ~app.TrainingDirty;
             for k=1:numel(app.PointButtons), app.PointButtons(k).Enable=editable; end
             app.RefineRouteButton.Enable=editable;
             app.ParamsTable.ColumnEditable=[false ~app.Busy && ~app.MapEditMode];

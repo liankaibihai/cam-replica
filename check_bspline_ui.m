@@ -59,7 +59,7 @@ assert(isequaln(app.Project,saved) && strcmp(app.TrainingModel.Value,'bspline-5'
 assert(isequal(app.NodesTable.Data,saved.nodes) && strcmp(app.AlgorithmSelector.Value,'fmincon-interior-point-experimental-v1'));
 checks{end+1}='same save/import action branches as toolbar preserve knots, controls, constraints, settings and route model';
 
-design=app.Project; invoke(app.Buttons(7),'ButtonPushedFcn');
+design=app.Project; app.SimulationSource.Value='theoretical'; invoke(app.Buttons(7),'ButtonPushedFcn');
 assert(app.SimulationMode && ~isempty(app.SimulationResult));
 row=find(contains(app.ParamsTable.Data(:,1),'发车车身方向'));
 assert(isscalar(row)); app.ParamsTable.Data{row,2}=89.5;

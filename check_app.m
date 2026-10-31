@@ -13,6 +13,7 @@ app.SelectedTargetRow=2; app.modifyPoints('target',-1); assert(isequal(app.Targe
 app.Mechanism.Value='flat'; app.calculate();
 assert(strcmp(app.Project.params.mechanism,'flat'));
 app.Mechanism.Value='rack'; app.calculate();
+app.SimulationSource.Value='theoretical'; % Legacy fixed-theory regression; actual contact has its own checks.
 app.action('simulate');
 assert(app.SimulationMode && ~isempty(app.SimulationResult));
 fixedCam=app.SimulationReference.result.cam; originalProject=app.SimulationReference.project;

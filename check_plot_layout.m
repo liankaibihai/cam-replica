@@ -3,6 +3,7 @@ root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:PlotLayoutBatchOnly','请使用独立 batch 运行布局检查。');
 folder=fullfile(root,'outputs','results_panel_20261030','layout'); if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeFigure(app));
+app.SimulationSource.Value='theoretical'; % Preserve legacy theoretical-mode UI regression.
 baseline=app.Project; cases=cell(6,1); sizes=[1320 860;1920 1080];
 solar=camdesign.solarTestProject();
 assert(strcmp(solar.params.mechanism,'flat') && size(solar.targets,1)==10 ...

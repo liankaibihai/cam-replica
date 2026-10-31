@@ -4,6 +4,7 @@ root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:TrainingBatchOnly','请使用独立 batch。');
 folder=fullfile(root,'outputs','results_panel_20261030','training_regression'); if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
+app.SimulationSource.Value='theoretical'; % Preserve legacy theoretical-mode UI regression.
 assert(numel(app.TrainingFields)==9 && ~isfield(app.Project.params,'training'));
 assert(strcmp(app.TrainingFields(4).Enable,'off') && strcmp(app.TrainingFields(5).Enable,'on'));
 solar=camdesign.solarTestProject(); app.Project=solar; app.syncInputs(); app.calculate();

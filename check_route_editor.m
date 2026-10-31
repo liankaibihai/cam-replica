@@ -5,6 +5,7 @@ assert(batchStartupOptionUsed,'cam:RouteEditorCheckBatchOnly','请使用独立 b
 folder=fullfile(root,'outputs','chart_layout_20261029','route_editor'); if ~isfolder(folder), mkdir(folder); end
 fprintf('ROUTE_EDITOR_CHECK_START\n');
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeFigure(app));
+app.SimulationSource.Value='theoretical'; % Preserve legacy theoretical-mode UI regression.
 checks={}; baseline=app.Project; baselineResult=app.Result;
 axesHandle=app.RouteAxes; k=5; point=baseline.nodes(k,:);
 driven=findobj(axesHandle,'Tag','route-driven');
