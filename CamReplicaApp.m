@@ -740,7 +740,11 @@ classdef CamReplicaApp < handle
                         candidate=camdesign.setControlPointCount(candidate,size(data,1)-1);
                         candidate=camdesign.updateTrainingSampling(candidate); result=camdesign.evaluate(candidate,true);
                         app.Project=candidate; app.Result=result; app.History=[]; app.syncInputs(); app.render();
-                        app.message('B样条已受约束拟合减点；首末导数保持，曲线可能改变。');
+                        if size(candidate.nodes,1)>=size(data,1)
+                            app.message('减少控制点无法同时满足保形要求，本次保留原数量；实际数量已同步。');
+                        else
+                            app.message(sprintf('B样条控制点 %d → %d；几何映射检查通过，首末位置及切向保持。',size(data,1),size(candidate.nodes,1)));
+                        end
                     catch ex, app.Status.Text=['B样条未减点：',ex.message]; app.message(app.Status.Text); end
                     return;
                 end
@@ -793,7 +797,7 @@ classdef CamReplicaApp < handle
                 if bspline
                     count=oldCount+1; if nargin<2, count=2*oldCount-1; end
                     candidate=camdesign.setControlPointCount(candidate,count);
-                    info=struct('newNodeCount',count,'insertedIndices',[]);
+                    info=struct('newNodeCount',size(candidate.nodes,1),'insertedIndices',[]);
                 elseif bezier
                     if nargin<2
                         candidate=camdesign.setControlPointCount(candidate,2*oldCount-1);
@@ -821,7 +825,7 @@ classdef CamReplicaApp < handle
             if ~isempty(info.insertedIndices), app.SelectedNodeRow=info.insertedIndices(1); end
             app.syncInputs(); app.render(); applied=true;
             if bspline
-                app.message(sprintf('标准B样条控制点 %d → %d；受约束拟合重建，曲线可能改变，首末导数保持。',oldCount,info.newNodeCount));
+                app.message(sprintf('标准B样条控制点 %d → %d；几何映射检查通过，首末位置及切向保持。',oldCount,info.newNodeCount));
             elseif bezier
                 app.message(sprintf('独立贝塞尔控制点 %d → %d；增点已重建，曲线可能改变，目标访问顺序不变。',oldCount,info.newNodeCount));
             else
@@ -923,9 +927,9 @@ classdef CamReplicaApp < handle
             pending='已应用';
             if ~isfield(app.Project.params,'training'), pending='旧模式；本版默认未启用'; end
             if app.TrainingDirty, pending='待应用；旧图保留'; end
-            description='本版独立规则，非原版融合/调度。减点或切换模型会重建。';
+            description='切换画法/阶数会映射现有曲线，必要时自动增点；超出误差门限则保留原方案。';
             if strcmp(camdesign.routeModel(app.Project.params),'bspline-v1')
-                description=sprintf('标准B样条仅支持内点法；有效自由度%d。增减点受约束拟合，曲线可能改变。首点、首末参数导数固定。',2*size(app.Project.nodes,1)-6);
+                description=sprintf('标准B样条仅支持内点法；有效自由度%d。模型映射保留首末位置及切向，区分精确转换与容差内拟合。',2*size(app.Project.nodes,1)-6);
             end
             if constrained
                 inputMM=app.TrainingFields(5).Value;
@@ -938,7 +942,7 @@ classdef CamReplicaApp < handle
             for k=1:2, app.AutoTuneFields(k).Enable=editable && automatic; end
             if automatic
                 app.TrainingShortcut.Text='打开全自动设置（预算）';
-                app.TrainingInfo.Text='全自动从已应用设置起步，比较权重、路线模型和训练配置；未应用输入须先处理。结束后回填获选参数，真实运行值见全自动页。';
+                app.TrainingInfo.Text=['全自动锁定已应用画法：',model,'，不切换模型或阶数；只比较权重与适用训练配置。未应用输入须先处理。'];
                 if app.TrainingDirty
                     app.TrainingShortcut.Text='处理待应用训练设置';
                     app.TrainingResetButton.Enable=editable;
@@ -947,7 +951,7 @@ classdef CamReplicaApp < handle
             end
             if ~isempty(app.MethodSummary)
                 app.MethodSummary.Text=sprintf('画法决定连线，优化方法负责改点；传动比 %.6g 固定执行，只能用户手改。',app.Project.params.gearRatio);
-                if automatic, app.MethodSummary.Text='全自动比较六项权重与训练设置；调优期间车体、传动比、阈值及目标锁定，最终按验收判定。'; end
+                if automatic, app.MethodSummary.Text='全自动锁定当前画法及阶数；只调六项权重与适用训练设置，车体、传动比、阈值及目标不变。'; end
             end
             app.refreshTrainingRuntime();
             app.refreshDynamicWeightControls();
@@ -970,8 +974,14 @@ classdef CamReplicaApp < handle
             end
             app.Project=candidate; app.Result=result; app.History=[]; app.OptimizationDirection=[]; app.OptimizationInfo=[];
             app.syncInputs(); app.render(); applied=true;
-            app.message(sprintf('本版训练设置已应用：实际 %d 个控制点，%d 个路线采样；保形保证=%d，目标访问顺序保持。', ...
-                size(candidate.nodes,1),info.actualSamples,info.shapePreservationGuaranteed));
+            if info.shapePreservationGuaranteed, mappingText='精确保形转换'; else, mappingText='几何容差内映射（非数学完全相同）'; end
+            app.message(sprintf('训练设置已应用：%s；实际 %d 个控制点，%d 个路线采样；目标列表及顺序未改。', ...
+                mappingText,size(candidate.nodes,1),info.actualSamples));
+            if isfield(info,'fitInfo')
+                fit=info.fitInfo;
+                app.message(sprintf('映射独立检查：最大位置误差 %.6g mm，RMS %.6g mm，全程切向差 %.6g°；控制点请求 %d → 实际 %d。这不是凸轮/实车精度验收。', ...
+                    fit.positionMaxMM,fit.positionRMSMM,fit.maxTangentErrorDeg,fit.requestedControlPointCount,fit.actualControlPointCount));
+            end
         end
         function action(app,name,filename)
             % Optional explicit path uses the same import/save action as the

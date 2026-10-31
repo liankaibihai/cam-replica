@@ -1,7 +1,8 @@
-function [project,info]=applyTrainingSettings(project,changes,algorithm)
+function [project,info]=applyTrainingSettings(project,changes,algorithm,mappingOptions)
 % Explicit application only. Evaluation never re-derives p.samples, so the
 % independently refined verification grid always takes precedence.
 if nargin<3, algorithm='peak-gradient-v2'; end
+if nargin<4, mappingOptions=struct(); end
 camdesign.validateProject(project); original=project;
 settings=camdesign.trainingSettings(project); current=settings;
 mode=camdesign.routeModel(project.params); names=fieldnames(changes); bsplineDegree=3;
@@ -36,39 +37,14 @@ if startsWith(algorithm,'fmincon')
     end
 end
 oldMode=camdesign.routeModel(project.params);
-if strcmp(mode,'bspline-v1')
-    if strcmp(oldMode,mode) && size(project.nodes,1)==settings.controlPointCount && project.params.bspline.degree==bsplineDegree
-        countInfo=struct('shapePreservationGuaranteed',true);
-    else
-        [project,fitInfo]=camdesign.toBSpline(project,settings.controlPointCount,bsplineDegree);
-        countInfo=struct('shapePreservationGuaranteed',false,'fitInfo',fitInfo);
-    end
-else
-if strcmp(oldMode,'bspline-v1')
-    % Leaving a coefficient representation samples its real curve first.
-    T=project.params.bspline.parameterLength; stations=linspace(0,T,size(project.nodes,1))';
-    [points,derivatives]=camdesign.bsplineRoute(project.nodes,project.params,stations);
-    project.nodes=points; project.params=rmfield(project.params,'bspline'); project.params.routeModel='cubic';
-    project.params.routeSpline=struct('type','fixed-clamped-cubic-v1','stations',stations,'endDerivative',derivatives(end,:));
-end
-if strcmp(mode,'cubic') && strcmp(oldMode,'bezier-blend-independent-v1')
-    project.params=rmfield(project.params,'bezier'); project.params.routeModel='cubic';
-elseif strcmp(oldMode,'bezier-blend-independent-v1')
-    project.params.bezier.degree=min(project.params.bezier.degree,settings.bezierDegree);
-    if isfield(project.params,'training'), project.params.training.bezierDegree=project.params.bezier.degree; end
-end
-[project,countInfo]=camdesign.setControlPointCount(project,settings.controlPointCount);
-if strcmp(mode,'bezier-blend-independent-v1')
-    assert(settings.controlPointCount>settings.bezierDegree,'cam:BezierCount','控制点数量须大于贝塞尔阶数。');
-    if ~strcmp(oldMode,mode)
-        [~,~,stations]=camdesign.routeSpline(project.nodes,project.params);
-        project.params.bezier=struct('type','overlap-bernstein-v1','degree',settings.bezierDegree,'parameterLength',stations(end));
-        if isfield(project.params,'routeSpline'), project.params=rmfield(project.params,'routeSpline'); end
-    else, project.params.bezier.degree=settings.bezierDegree;
-    end
-end
-end
-project.params.routeModel=mode;
+degree=3;
+if strcmp(mode,'bspline-v1'), degree=bsplineDegree;
+elseif strcmp(mode,'bezier-blend-independent-v1'), degree=settings.bezierDegree; end
+args=namedargs2cell(mappingOptions);
+[project,fitInfo]=camdesign.mapRouteModel(project,mode,settings.controlPointCount,degree,args{:});
+countInfo=struct('oldCount',size(original.nodes,1),'actualCount',size(project.nodes,1), ...
+    'shapePreservationGuaranteed',fitInfo.shapePreservationGuaranteed,'outsideSegmentsSkipped',0, ...
+    'targetOrderUnchanged',true,'fitInfo',fitInfo);
 managed=isfield(changes,'interpolationPerSegment');
 if isfield(original.params,'training'), managed=managed || original.params.training.densityManaged; end
 project.params.training=struct('version','independent-training-v1', ...
@@ -79,6 +55,6 @@ project.params.iterations=settings.iterations; project.params.gradientProbeMM=se
 project=camdesign.updateTrainingSampling(project);
 camdesign.validateProject(project);
 info=struct('controlPoints',countInfo,'actualSamples',project.params.samples, ...
-    'modelChanged',~strcmp(oldMode,mode),'shapePreservationGuaranteed',countInfo.shapePreservationGuaranteed && strcmp(oldMode,mode), ...
-    'semantics','Independent controls and Bernstein blend, not recovered original rules.');
+    'modelChanged',~strcmp(oldMode,mode),'shapePreservationGuaranteed',fitInfo.shapePreservationGuaranteed, ...
+    'fitInfo',fitInfo,'semantics','True-geometry mapping: exact space embedding or independently validated bounded fit; never reinterpret XY controls.');
 end

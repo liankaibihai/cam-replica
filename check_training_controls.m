@@ -2,7 +2,7 @@ function report=check_training_controls()
 % Independent formulas and short integration tests, not optimizer quality.
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:TrainingBatchOnly','请使用独立 batch。');
-folder=fullfile(root,'outputs','training_controls_20261030'); if ~isfolder(folder), mkdir(folder); end
+folder=fullfile(root,'outputs','model_mapping_20261031','training_core'); if ~isfolder(folder), mkdir(folder); end
 solar=camdesign.solarTestProject(); original=solar; settings=camdesign.trainingSettings(solar);
 assert(isequaln(original,solar) && ~isfield(solar.params,'training') && strcmp(camdesign.routeModel(solar.params),'cubic'));
 checks={'reading defaults preserves legacy project and route mode'};
@@ -11,8 +11,9 @@ assert(size(more.nodes,1)==23 && countInfo.shapePreservationGuaranteed && isequa
 a=camdesign.route(solar.nodes,solar.params); b=camdesign.route(more.nodes,more.params);
 preservation=max(vecnorm(a.front-b.front,2,2)); assert(preservation<1e-8 && more.params.samples==solar.params.samples);
 [less,rebuild]=camdesign.setControlPointCount(more,12);
-assert(size(less.nodes,1)==12 && ~rebuild.shapePreservationGuaranteed && isequal(less.targets,solar.targets));
-checks{end+1}='arbitrary cubic increase is exact insertion; reduction is explicitly a rebuild';
+assert(size(less.nodes,1)>=12 && size(less.nodes,1)<=250 && rebuild.fitInfo.withinTolerance && isequal(less.targets,solar.targets));
+assert(rebuild.fitInfo.positionMaxMM<=.05 && rebuild.fitInfo.maxTangentErrorDeg<=.05);
+checks{end+1}='cubic increase is exact insertion; reduction reports actual count and must meet strict geometry/tangent mapping gates';
 
 [dense,~]=camdesign.applyTrainingSettings(solar,struct('interpolationPerSegment',12,'iterations',2));
 assert(dense.params.samples==109 && dense.params.iterations==2);
@@ -23,10 +24,16 @@ checks{end+1}='per-interval density sets actual samples only on application; ref
 
 options=struct('routeModel','bezier-blend-independent-v1','controlPointCount',50, ...
     'bezierDegree',15,'interpolationPerSegment',11,'iterations',300);
-[bezier,initialization]=camdesign.applyTrainingSettings(solar,options,'fmincon-interior-point-experimental-v1');
+% Mathematical noninterpolating-basis fixture is explicitly authored here;
+% it is never presented as a shape-preserving product model conversion.
+bezier=camdesign.setControlPointCount(solar,50);
+[~,~,s]=camdesign.routeSpline(bezier.nodes,bezier.params);
+bezier.params=rmfield(bezier.params,'routeSpline'); bezier.params.routeModel='bezier-blend-independent-v1';
+bezier.params.bezier=struct('type','overlap-bernstein-v1','degree',15,'parameterLength',s(end));
+[bezier,initialization]=camdesign.applyTrainingSettings(bezier,options,'fmincon-interior-point-experimental-v1');
 assert(size(bezier.nodes,1)==50 && bezier.params.samples==540 && ~isfield(bezier.params,'routeSpline'));
 assert(isequal(bezier.targets,solar.targets) && isequal(bezier.nodes(1,:),solar.nodes(1,:)));
-assert(~initialization.shapePreservationGuaranteed);
+assert(initialization.shapePreservationGuaranteed && strcmp(initialization.fitInfo.method,'identity'));
 lengthMM=bezier.params.bezier.parameterLength; sample=linspace(0,lengthMM,121)';
 [position,velocity,acceleration]=camdesign.bezierRoute(bezier.nodes,bezier.params,sample);
 assert(norm(position(1,:)-bezier.nodes(1,:))<1e-9 && norm(position(end,:)-bezier.nodes(end,:))<1e-9);
@@ -41,7 +48,8 @@ changed.params.headingDeg=31; changed.params.startSteeringDeg=-7;
 assert(norm(tangent-[cosd(24),sind(24)])<1e-10);
 checks{end+1}='independent degree-15 blend is noninterpolating and fixes current initial pose/tangent without locking control two';
 
-degree5=camdesign.applyTrainingSettings(bezier,struct('bezierDegree',5));
+% Direct basis comparison, not a call to the product mapping API.
+degree5=bezier; degree5.params.bezier.degree=5; degree5.params.training.bezierDegree=5;
 different=camdesign.bezierRoute(degree5.nodes,degree5.params,sample);
 degreeEffect=max(vecnorm(position-different,2,2)); assert(degreeEffect>1);
 u=lengthMM*linspace(.037,.953,19)'; h=lengthMM*1e-5;
@@ -50,7 +58,7 @@ plus=camdesign.bezierRoute(bezier.nodes,bezier.params,u+h); minus=camdesign.bezi
 derivativeError=max(abs(d1-(plus-minus)/(2*h)),[],'all');
 secondError=max(abs(d2-(plus-2*center+minus)/h^2),[],'all');
 assert(derivativeError<1e-6 && secondError<1e-6);
-checks{end+1}='degree changes actual geometry; physical-parameter first/second derivatives match finite differences';
+checks{end+1}='raw degree-5/15 mathematical bases differ; analytic first/second derivatives match finite differences (product changes use mapped geometry)';
 
 line=bezier; line.nodes=[linspace(0,900,50)',zeros(50,1)];
 line.params.bezier.parameterLength=900; line.params.headingDeg=0; line.params.startSteeringDeg=0;
@@ -65,7 +73,7 @@ bezierFine=bezier; bezierFine.params.samples=2157; bezierFine.params.camSamples=
 fineResult=camdesign.evaluate(bezierFine,false);
 assert(numel(fineResult.route.u)==2157 && numel(fineResult.cam.phi)==2881);
 save(fullfile(folder,'solar_bezier_initialized.mat'),'bezier','initialResult','initialization');
-checks{end+1}='preferred solar 50-control degree-15 initialization evaluates and honors denser route/cam grids';
+checks{end+1}='explicit 50-control degree-15 solar fixture evaluates and honors denser grids; not a product conversion or preferred candidate';
 
 fixture=searchFixture(); observations={};
 [legacy,legacyHistory]=camdesign.optimize(fixture,[],'peak-gradient-v2');
@@ -115,7 +123,7 @@ for index=1:size(constrainedProbeClamps,1)
     assert(probeInfo.iterations==0 && strcmp(probeInfo.reason,'user_stop'));
 end
 mustReject(@()camdesign.applyTrainingSettings(fixture,struct('interpolationPerSegment',1)),'cam:TrainingSamples');
-mustReject(@()camdesign.applyTrainingSettings(solar,struct('routeModel','bezier-blend-independent-v1','bezierDegree',15,'controlPointCount',4)),'cam:BezierCount');
+mustReject(@()camdesign.mapRouteModel(solar,'bezier-blend-independent-v1',4,15,MaxControlPoints=4),'cam:RouteMappingCount');
 camdesign.saveProject(bezier,fullfile(folder,'training_project.mat'));
 loaded=camdesign.importProject(fullfile(folder,'training_project.mat')); assert(isequaln(loaded,bezier));
 checks{end+1}='inapplicable/invalid settings are rejected; constrained nominal probe clamps and complete MAT round trip are real';

@@ -1,7 +1,7 @@
 function report=check_auto_tune()
 % Contract runs are deliberately short and do not judge optimizer quality.
 assert(batchStartupOptionUsed,'cam:BatchOnly','Use independent batch.');
-folder=fullfile(fileparts(mfilename('fullpath')),'outputs','auto_tune_20261030','contracts');
+folder=fullfile(fileparts(mfilename('fullpath')),'outputs','model_mapping_20261031','legacy_auto_contracts');
 if ~isfolder(folder), mkdir(folder); end
 p=camdesign.solarTestProject(); original=p; cfg=camdesign.autoTuneSettings(p.params);
 assert(isequaln(p,original) && cfg.trials==8 && cfg.maxIterations==600);
@@ -13,6 +13,7 @@ p.params.dynamicWeights=struct('enabled',true);
 state=rng; [q,h,info]=camdesign.optimize(p,@observe,'auto-tune-v1');
 assert(isequaln(state,rng) && info.physicalParametersUnchanged);
 assert(q.params.gearRatio==35 && isequal(q.params.weights,p.params.weights));
+assert(info.routeModelLocked && strcmp(info.fixedRouteModel,'cubic') && all(strcmp({info.trials.routeModel},'cubic')));
 assert(isequal(q.params.dynamicWeights,p.params.dynamicWeights));
 assert(isequal(q.params.autoTune.selectedWeights,info.finalActiveWeights));
 assert(numel(info.trials)==5 && all([h.autoTotalBudget]==8) && all(diff([h.iteration])>=0));

@@ -5,6 +5,9 @@ if nargin<2 || isempty(callback), callback=@(~,~,~)false; end
 camdesign.validateProject(project); cfg=camdesign.autoTuneSettings(project.params);
 timer=tic; stream=RandStream('mt19937ar','Seed',cfg.seed);
 base=project.params.weights(:)'; signature=physical(project);
+lockedModel=camdesign.routeModel(project.params); lockedDegree=[];
+if strcmp(lockedModel,'bezier-blend-independent-v1'), lockedDegree=project.params.bezier.degree; end
+activeMapping=[];
 grid=[max(601,min(2001,project.params.samples)),max(721,min(1441,project.params.camSamples))];
 history=[]; trials=[]; pool={}; total=0; evals=0; stopped=false;
 stage='initial'; trialNumber=0; localBudget=0; active=base; offset=0;
@@ -17,6 +20,7 @@ for t=1:cfg.trials
     if stopped, break; end
     stage='search'; trialNumber=t; offset=total; active=base;
     observedIterations=0; observedEvaluations=0; localBudget=cfg.maxIterations;
+    activeMapping=[];
     candidate=project; startFrom='original';
     if t>2 && mod(t,2)==1, candidate=best; startFrom='incumbent'; end
     try
@@ -28,7 +32,7 @@ for t=1:cfg.trials
                 active(base==0)=0; % A later user edit overrides the saved seed.
             end
         else
-            [candidate,active]=configure(candidate,t); localBudget=candidate.params.iterations;
+            [candidate,active,activeMapping]=configure(candidate,t); localBudget=candidate.params.iterations;
         end
         candidate.params.weights=active; candidate.params.dynamicWeights=struct('enabled',false);
         checkLock(candidate); startSettings=camdesign.trainingSettings(candidate);
@@ -48,9 +52,10 @@ for t=1:cfg.polishCount
     if stopped, break; end
     stage='polish'; trialNumber=cfg.trials+t; offset=total; localBudget=cfg.maxIterations;
     observedIterations=0; observedEvaluations=0;
+    activeMapping=[];
     candidate=best; selected=pool{bestIndex()}; active=selected.weights;
     if t==1 && size(candidate.nodes,1)<34 && strcmp(camdesign.routeModel(candidate.params),'cubic')
-        candidate=camdesign.setControlPointCount(candidate,34);
+        [candidate,pointInfo]=camdesign.setControlPointCount(candidate,34); activeMapping=pointInfo.fitInfo;
     end
     candidate.params.samples=max(candidate.params.samples,grid(1));
     % Large search probes are useful for exploration but poor local derivative
@@ -96,18 +101,19 @@ info=struct('algorithm','auto-tune-v1','fullAuto',true,'iterations',total,'reque
     'evaluations',evals,'elapsedSeconds',toc(timer),'comparisonGrid',grid, ...
     'requestedRatio',project.params.gearRatio,'finalEffectiveRatio',final.cam.effectiveRatio, ...
     'physicalParametersUnchanged',isequaln(signature,physical(best)), ...
+    'routeModelLocked',true,'fixedRouteModel',lockedModel,'fixedBezierDegree',lockedDegree, ...
+    'mappingPolicy','Keep model and Bezier degree; count reconfiguration must pass strict independent geometry/tangent mapping. Automatic count cap=max(50,original count).', ...
     'remainingConstraints',{remaining},'settings',cfg, ...
     'selectionPolicy','Same common grid, unchanged physical thresholds first; then scaled violation and fixed-reference score. Top three receive native/4x/8x gates.', ...
     'evaluationCountScope','Completed backend attempts plus common-grid callbacks and acceptance checks; failed backends contribute only counts observed before the failure.', ...
     'limitations',{{'Independent bounded portfolio, not recovered original AI or a global convergence guarantee.', ...
     'Only modeled sampled centers and discrete cam geometry; body clearance, RFID, slip and machining need separate validation.'}});
 
-    function [q,w]=configure(q,index)
+    function [q,w,mapping]=configure(q,index)
         choices=unique([size(project.nodes,1),18,34,50]);
         count=choices(1+mod(index-2,numel(choices)));
         if index==2, count=max(18,min(34,max(choices))); end
-        count=max(4,count); mode='cubic';
-        if mod(index,4)==0, mode='bezier-blend-independent-v1'; end
+        count=max(4,count); mode=lockedModel;
         budget=max(1,round(cfg.maxIterations*(.5+.5*rand(stream))));
         desired=[301 601 901 1201]; density=desired(1+mod(index-2,4));
         changes=struct('routeModel',mode,'controlPointCount',count, ...
@@ -116,10 +122,11 @@ info=struct('algorithm','auto-tune-v1','fullAuto',true,'iterations',total,'reque
             'learningRate',logsample(.15,2),'smoothingRate',.25*rand(stream), ...
             'adjustInterval',round(logsample(10,100)),'adjustExponent',1.5*rand(stream));
         if strcmp(mode,'bezier-blend-independent-v1')
-            degrees=[3 5 7 10 15]; degrees=degrees(degrees<count);
-            changes.bezierDegree=degrees(randi(stream,numel(degrees)));
+            changes.bezierDegree=lockedDegree;
         end
-        [q,~]=camdesign.applyTrainingSettings(q,changes,'peak-gradient-v2');
+        [q,mapped]=camdesign.applyTrainingSettings(q,changes,'peak-gradient-v2', ...
+            struct('MaxControlPoints',max(50,size(project.nodes,1))));
+        mapping=mapped.fitInfo;
         q.params.stepMM=min(100,max(.01,project.params.stepMM*logsample(.25,4)));
         % A zero base is retained: automatic tuning must not silently enable
         % an explicitly disabled score term. Nonzero six terms all participate.
@@ -181,6 +188,7 @@ info=struct('algorithm','auto-tune-v1','fullAuto',true,'iterations',total,'reque
             'iterations',iterations,'requestedIterations',budget,'evaluations',attempts, ...
             'weights',w,'training',settings,'samples',q.params.samples,'routeModel',camdesign.routeModel(q.params), ...
             'rank',key,'verification',report,'errorIdentifier','','errorMessage','');
+        record.mappingFitInfo=activeMapping;
         trials=[trials record]; %#ok<AGROW>
         best=pool{bestIndex()}.project;
     end
@@ -190,6 +198,7 @@ info=struct('algorithm','auto-tune-v1','fullAuto',true,'iterations',total,'reque
             'iterations',observedIterations,'requestedIterations',localBudget,'evaluations',observedEvaluations,'weights',active, ...
             'training',[],'samples',q.params.samples,'routeModel',camdesign.routeModel(q.params), ...
             'rank',[1 Inf Inf Inf],'verification',[],'errorIdentifier',ex.identifier,'errorMessage',ex.message);
+        record.mappingFitInfo=activeMapping;
         trials=[trials record]; %#ok<AGROW>
     end
     function indices=ranked()
@@ -208,6 +217,10 @@ info=struct('algorithm','auto-tune-v1','fullAuto',true,'iterations',total,'reque
     end
     function checkLock(q)
         assert(isequaln(signature,physical(q)),'cam:AutoTunePhysicalMutation','全自动不得改变硬件、阈值、目标或固定起点。');
+        assert(strcmp(camdesign.routeModel(q.params),lockedModel),'cam:AutoTuneModelMutation','全自动不得切换用户选定的路线模型。');
+        if ~isempty(lockedDegree)
+            assert(q.params.bezier.degree==lockedDegree,'cam:AutoTuneModelMutation','全自动不得切换用户选定的贝塞尔阶数。');
+        end
     end
 end
 function signature=physical(q)
@@ -226,5 +239,6 @@ end
 function yes=expected(ex)
 yes=ismember(ex.identifier,{'cam:Duplicate','cam:RouteSingularity','cam:ReverseWheel', ...
     'cam:ExtremeSteering','cam:GearRatio','cam:NegativeRadius','cam:ConstraintNonfinite', ...
-        'cam:FminconUnavailable','cam:FminconInitialBounds','cam:FminconInitialGeometry','cam:ControlCountUnavailable'});
+        'cam:FminconUnavailable','cam:FminconInitialBounds','cam:FminconInitialGeometry','cam:ControlCountUnavailable', ...
+        'cam:RouteMappingTolerance','cam:RouteMappingCount','cam:RouteMappingEndpoint','cam:TrainingSamples'});
 end

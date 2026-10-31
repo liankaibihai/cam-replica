@@ -2,7 +2,7 @@ function report=check_bspline()
 % Analytic geometry and endpoint/optimizer contracts; no quality comparison.
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:BSplineBatchOnly','请用独立batch运行。');
-folder=fullfile(root,'outputs','bspline_20261031','contracts'); if ~isfolder(folder), mkdir(folder); end
+folder=fullfile(root,'outputs','model_mapping_20261031','bspline_core'); if ~isfolder(folder), mkdir(folder); end
 checks={};
 for d=[3 5]
     n=12; T=500; breaks=linspace(0,T,n-d+1); knots=[zeros(1,d+1),breaks(2:end-1),T*ones(1,d+1)];
@@ -63,7 +63,7 @@ for index=1:2
     rb=camdesign.route(b.nodes,b.params); rs=camdesign.route(source.nodes,source.params);
     assert(max(vecnorm(rb.front-rs.front,2,2))<2e-9 && max(abs(rb.steering-rs.steering))<1e-10);
     [resized,resizeInfo]=camdesign.setControlPointCount(b,12);
-    assert(size(resized.nodes,1)==12 && ~resizeInfo.shapePreservationGuaranteed);
+    assert(size(resized.nodes,1)==12 && resizeInfo.shapePreservationGuaranteed && resizeInfo.fitInfo.withinTolerance);
     [resized,~]=camdesign.setControlPointCount(resized,8); camdesign.validateProject(resized);
 end
 checks{end+1}='exact quadratic/cubic polynomial conversion, derivatives, route integration and explicit count refit';
