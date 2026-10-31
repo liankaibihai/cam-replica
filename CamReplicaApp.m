@@ -38,6 +38,10 @@ classdef CamReplicaApp < handle
         TrainingModel
         TrainingApplyButton
         TrainingResetButton
+        ForceModelSwitchButton
+        RestoreModelSwitchButton
+        ModelSwitchBackupInfo
+        ModelSwitchBackupPath = ''
         TrainingInfo
         TrainingDirty = false
         TrainingFieldNames = {'iterations','controlPointCount','interpolationPerSegment','bezierDegree', ...
@@ -240,9 +244,9 @@ classdef CamReplicaApp < handle
                 'CellEditCallback',@(~,~)app.invalidate());
             app.DynamicWeightInfo=uilabel(g,'Text','','FontSize',10,'WordWrap','on','VerticalAlignment','top');
             t=uitab(tabs,'Title','训练'); app.TrainingTab=t;
-            trainingRoot=uigridlayout(t,[3 1],'RowHeight',{64,'1x',32},'Padding',[0 0 0 0],'RowSpacing',3);
+            trainingRoot=uigridlayout(t,[4 1],'RowHeight',{64,'1x',62,40},'Padding',[0 0 0 0],'RowSpacing',3);
             app.TrainingRuntime=uilabel(trainingRoot,'Text','本轮有效参数：尚无训练记录','FontSize',10,'WordWrap','on','VerticalAlignment','top');
-            training=uigridlayout(trainingRoot,[10 2],'RowHeight',[repmat({24},1,9),{92}], ...
+            training=uigridlayout(trainingRoot,[10 2],'RowHeight',[repmat({24},1,9),{166}], ...
                 'ColumnWidth',{168,'1x'},'Padding',[4 2 4 2],'ColumnSpacing',2,'RowSpacing',2,'Scrollable','on');
             training.Layout.Row=2;
             labels={'训练次数','控制点数量','插值数量（名义/段）','贝塞尔阶数','梯度力 /mm（本版）', ...
@@ -263,10 +267,22 @@ classdef CamReplicaApp < handle
             end
             app.TrainingInfo=uilabel(training,'Text','','FontSize',11,'WordWrap','on','VerticalAlignment','top');
             app.TrainingInfo.Layout.Row=10; app.TrainingInfo.Layout.Column=[1 2];
-            trainingActions=uigridlayout(trainingRoot,[1 2],'ColumnWidth',{'1x',70},'Padding',[2 0 2 0]);
+            trainingActions=uigridlayout(trainingRoot,[2 2],'RowHeight',{28,28},'ColumnWidth',{'1x',84},'Padding',[2 0 2 0],'RowSpacing',3,'ColumnSpacing',4);
             trainingActions.Layout.Row=3;
             app.TrainingApplyButton=uibutton(trainingActions,'Text','应用训练设置','FontSize',11,'ButtonPushedFcn',@(~,~)app.applyTraining());
             app.TrainingResetButton=uibutton(trainingActions,'Text','还原','FontSize',11,'ButtonPushedFcn',@(~,~)app.syncTrainingInputs());
+            app.TrainingApplyButton.Tooltip='严格保形映射；最大位置、RMS及切向超限则拒绝，原方案和待应用输入保留。';
+            app.ForceModelSwitchButton=uibutton(trainingActions,'Text','强制切换（允许改形）','FontSize',10, ...
+                'Tooltip','仅手动使用：先备份完整项目、结果与所有待应用输入，再接受端点约束合格的有限真实曲线拟合。超出保形门限会明确标示；物理计算失败仍保留新路线供编辑。', ...
+                'ButtonPushedFcn',@(~,~)app.applyTraining(true));
+            app.ForceModelSwitchButton.Layout.Row=2; app.ForceModelSwitchButton.Layout.Column=1;
+            app.RestoreModelSwitchButton=uibutton(trainingActions,'Text','恢复备份','FontSize',10, ...
+                'Tooltip','恢复最近一次手动改形前的完整项目、原结果、历史与全部待应用表格输入；备份文件保留。', ...
+                'ButtonPushedFcn',@(~,~)app.restoreModelSwitch());
+            app.RestoreModelSwitchButton.Layout.Row=2; app.RestoreModelSwitchButton.Layout.Column=2;
+            app.ModelSwitchBackupInfo=uilabel(trainingRoot,'Text','手动改形前自动备份；备份后可恢复完整状态。','WordWrap','on','FontSize',9,'VerticalAlignment','top');
+            app.ModelSwitchBackupInfo.Layout.Row=4;
+            app.Buttons(3).Tooltip='从目标按所选画法及合法训练设置重新生成路线；显式改形，保留起点和物理输入，不映射旧路线。';
             t=uitab(tabs,'Title','全自动'); app.AutoTuneTab=t;
             autoRoot=uigridlayout(t,[5 1],'RowHeight',{78,62,60,240,90},'Padding',[2 0 2 0],'RowSpacing',3,'Scrollable','on');
             budget=uigridlayout(autoRoot,[3 2],'RowHeight',{24,24,24},'ColumnWidth',{'1x',80},'Padding',[0 0 0 0],'RowSpacing',2);
@@ -366,8 +382,9 @@ classdef CamReplicaApp < handle
             assert(~app.MapEditMode,'cam:MapEditActive','请先确认或取消地图编辑。');
             app.Project=app.inputProject();
         end
-        function candidate=inputProject(app,allowPendingTraining)
+        function candidate=inputProject(app,allowPendingTraining,forRebuild)
             if nargin<2, allowPendingTraining=false; end
+            if nargin<3, forRebuild=false; end
             assert(~app.TrainingDirty || allowPendingTraining,'cam:TrainingPending','请先应用或还原训练设置，当前图像仍是上次结果。');
             p=app.Project.params;
             for k=1:numel(app.DisplayedParameterFields)
@@ -389,6 +406,9 @@ classdef CamReplicaApp < handle
             end
             candidate=app.Project; candidate.params=p; candidate.targets=double(app.TargetsTable.Data);
             candidate.nodes=double(app.NodesTable.Data);
+            % Rebuilding validates fresh target-seeded geometry, independently
+            % of the discarded model's endpoint/coefficient constraints.
+            if forRebuild, return; end
             validationCandidate=candidate;
             if app.SimulationMode && strcmp(camdesign.routeModel(p),'bspline-v1')
                 % Fixed-cam tuning does not evaluate the design spline with
@@ -544,8 +564,10 @@ classdef CamReplicaApp < handle
             app.refreshDetailCam();
         end
         function fitRouteView(app,extraPoints)
-            r=app.Result.route; bounds=app.Project.params.bounds;
-            points=[r.front;r.sensor;r.drive;r.driven;app.Project.nodes;app.Project.targets];
+            bounds=app.Project.params.bounds; points=[app.Project.nodes;app.Project.targets];
+            if ~isempty(app.Result)
+                r=app.Result.route; points=[r.front;r.sensor;r.drive;r.driven;points];
+            end
             if nargin>1, points=[points;extraPoints]; end
             lower=min([points;bounds([1 3])],[],1);
             upper=max([points;bounds([2 4])],[],1);
@@ -1025,6 +1047,12 @@ classdef CamReplicaApp < handle
             automatic=strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'); manual=editable && ~automatic;
             for k=1:9, app.TrainingFields(k).Enable=manual; end
             app.TrainingModel.Enable=manual; app.TrainingApplyButton.Enable=manual; app.TrainingResetButton.Enable=manual;
+            app.ForceModelSwitchButton.Enable=manual;
+            app.RestoreModelSwitchButton.Enable=editable && isfile(app.ModelSwitchBackupPath);
+            if ~isempty(app.ModelSwitchBackupPath)
+                app.ModelSwitchBackupInfo.Text=['完整备份：',app.ModelSwitchBackupPath];
+                app.ModelSwitchBackupInfo.Tooltip=app.ModelSwitchBackupPath;
+            end
             bezier=strcmp(app.TrainingModel.Value,'bezier-blend-independent-v1');
             app.TrainingFields(4).Enable=manual && bezier;
             constrained=startsWith(app.AlgorithmSelector.Value,'fmincon');
@@ -1045,6 +1073,18 @@ classdef CamReplicaApp < handle
             else, description=[description,newline,'梯度力=差分距离；步幅×学习率×阶梯衰减；平滑仅接受改善。']; end
             app.TrainingInfo.Text=sprintf('实际：%d 控制点 / %d 路线采样\n当前：%s；%s\n%s', ...
                 size(app.Project.nodes,1),app.Project.params.samples,model,pending,description);
+            if isfield(app.Project,'routeMapping')
+                fit=app.Project.routeMapping;
+                if all(isfield(fit,{'forced','withinTolerance','positionMaxMM','positionRMSMM','maxTangentErrorDeg'}))
+                    label='容差内映射';
+                    if fit.shapePreservationGuaranteed, label='精确保形'; end
+                    if fit.forced, label='强制近似改形；保形未通过'; end
+                    app.TrainingInfo.Text=[app.TrainingInfo.Text,newline,sprintf('上次映射：%s\n最大 %.6g mm；RMS %.6g mm；切向 %.6g°', ...
+                        label,fit.positionMaxMM,fit.positionRMSMM,fit.maxTangentErrorDeg)];
+                end
+            elseif isfield(app.Project,'routeRebuild')
+                app.TrainingInfo.Text=[app.TrainingInfo.Text,newline,'上次操作：按目标重建（显式改形，不是保形映射）。'];
+            end
             app.TrainingShortcut.Text='打开训练设置（九项）';
             for k=1:2, app.AutoTuneFields(k).Enable=editable && automatic; end
             if automatic
@@ -1066,22 +1106,30 @@ classdef CamReplicaApp < handle
                 app.Buttons(5).Enable='off'; app.Buttons(5).Tooltip='标准B样条目前仅支持约束优化（内点法），请切换优化方法。';
             end
         end
-        function applied=applyTraining(app)
+        function applied=applyTraining(app,allowApproximate)
+            if nargin<2, allowApproximate=false; end
             applied=false;
             if app.Busy || app.SimulationMode || app.MapEditMode || strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), return; end
-            app.TrainingDirty=true;
             try
-                candidate=app.inputProject(true); changes=struct('routeModel',app.TrainingModel.Value);
-                for k=1:numel(app.TrainingFieldNames), changes.(app.TrainingFieldNames{k})=app.TrainingFields(k).Value; end
-                [candidate,info]=camdesign.applyTrainingSettings(candidate,changes,app.AlgorithmSelector.Value);
-                result=camdesign.evaluate(candidate,true);
+                if allowApproximate, app.backupModelSwitch('force'); end
+                app.TrainingDirty=true;
+                candidate=app.inputProject(true); changes=app.pendingTrainingChanges();
+                [candidate,info]=camdesign.applyTrainingSettings(candidate,changes,app.AlgorithmSelector.Value,struct('AllowApproximate',logical(allowApproximate)));
+                if isfield(candidate,'routeRebuild'), candidate=rmfield(candidate,'routeRebuild'); end
+                candidate.routeMapping=info.fitInfo;
+                if allowApproximate
+                    try, result=camdesign.evaluate(candidate,true); calculationError='';
+                    catch ex, result=[]; calculationError=[ex.identifier,' ',ex.message]; end
+                else
+                    result=camdesign.evaluate(candidate,true); calculationError='';
+                end
             catch ex
                 app.Status.Text=['训练设置未应用：',ex.message,' 当前图像为上次结果。'];
-                app.message(app.Status.Text); app.refreshTrainingControls(); return;
+                app.message(app.Status.Text); app.refreshTrainingControls(); app.updateDiagnostics(); return;
             end
-            app.Project=candidate; app.Result=result; app.History=[]; app.OptimizationDirection=[]; app.OptimizationInfo=[];
-            app.syncInputs(); app.render(); applied=true;
+            app.publishManualRoute(candidate,result,calculationError); applied=true;
             if info.shapePreservationGuaranteed, mappingText='精确保形转换'; else, mappingText='几何容差内映射（非数学完全相同）'; end
+            if info.forced, mappingText='强制近似切换（允许改形；保形门禁未通过）'; end
             app.message(sprintf('训练设置已应用：%s；实际 %d 个控制点，%d 个路线采样；目标列表及顺序未改。', ...
                 mappingText,size(candidate.nodes,1),info.actualSamples));
             if isfield(info,'fitInfo')
@@ -1089,6 +1137,190 @@ classdef CamReplicaApp < handle
                 app.message(sprintf('映射独立检查：最大位置误差 %.6g mm，RMS %.6g mm，全程切向差 %.6g°；控制点请求 %d → 实际 %d。这不是凸轮/实车精度验收。', ...
                     fit.positionMaxMM,fit.positionRMSMM,fit.maxTangentErrorDeg,fit.requestedControlPointCount,fit.actualControlPointCount));
             end
+            if info.forced
+                app.Status.Text=[app.Status.Text,newline,sprintf('强制近似改形：最大 %.6g mm / RMS %.6g mm / 切向 %.6g°；保形未通过，可从训练栏恢复备份。', ...
+                    info.fitInfo.positionMaxMM,info.fitInfo.positionRMSMM,info.fitInfo.maxTangentErrorDeg)];
+            end
+        end
+        function changes=pendingTrainingChanges(app)
+            changes=struct('routeModel',app.TrainingModel.Value);
+            for k=1:numel(app.TrainingFieldNames), changes.(app.TrainingFieldNames{k})=app.TrainingFields(k).Value; end
+        end
+        function rebuilt=rebuildCurrentRoute(app)
+            rebuilt=false;
+            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
+            try
+                assert(~strcmp(app.AlgorithmSelector.Value,'auto-tune-v1') || ~app.TrainingDirty, ...
+                    'cam:TrainingPending','全自动锁定已应用画法；请先还原待应用输入或切回手动方法。');
+                candidate=app.inputProject(true,true);
+                [candidate,~]=camdesign.rebuildRoute(candidate,app.pendingTrainingChanges(),app.AlgorithmSelector.Value);
+                app.backupModelSwitch('rebuild');
+                try, result=camdesign.evaluate(candidate,true); calculationError='';
+                catch ex, result=[]; calculationError=[ex.identifier,' ',ex.message]; end
+            catch ex
+                app.message(['重建未完成：',ex.identifier,' ',ex.message]); return;
+            end
+            app.publishManualRoute(candidate,result,calculationError); rebuilt=true;
+            app.message('路线已从目标按所选画法重建（显式改形）；保留起点、目标顺序和物理输入，未经过旧路线保形映射。原状态已备份，项目尚未保存。');
+        end
+        function publishManualRoute(app,candidate,result,calculationError)
+            app.clearPublishedAnalysis(); app.Project=candidate; app.Result=result;
+            app.syncInputs();
+            if isempty(result)
+                app.renderUncomputedRoute();
+                app.Status.Text=['新路线已应用；凸轮尚未计算：',calculationError,' 可编辑节点表、保存或重建后重算。'];
+                app.Status.FontColor=[.65 .28 .08]; app.message(app.Status.Text);
+            else, app.render(); end
+            app.refreshControls();
+        end
+        function clearPublishedAnalysis(app)
+            app.Result=[]; app.History=[]; app.HistoryProject=[]; app.OptimizationInfo=[]; app.OptimizationDirection=[];
+            app.LastDisplayProject=[]; app.LastDisplayResult=[]; app.CamBaseProject=[]; app.CamBaseResult=[];
+            app.CamInspectionRecord=[]; app.SelectedCrossing=0; app.CamFullLimits=[];
+            app.SimulationReference=[]; app.SimulationResult=[]; app.clearActualClosure();
+            app.DirectionStatus.Text='AI方向：无有效数据';
+            for k=1:numel(app.CrossingViews)
+                view=app.CrossingViews{k}; if ~isvalid(view.table), continue; end
+                view.table.Data=zeros(0,5); view.label.Text='新路线尚未计算凸轮'; view.source.Enable='off'; view.zoom.Enable='off';
+            end
+            for axesHandle=[app.CamAxes,app.SteeringAxes]
+                legend(axesHandle,'off'); cla(axesHandle); axesHandle.XLimMode='auto'; axesHandle.YLimMode='auto'; title(axesHandle,'新路线尚未计算');
+            end
+            if ~isempty(app.DetailCamAxes) && isgraphics(app.DetailCamAxes), cla(app.DetailCamAxes); end
+        end
+        function renderUncomputedRoute(app)
+            p=app.Project.params; mode=camdesign.routeModel(p);
+            if strcmp(mode,'cubic'), [~,~,station]=camdesign.routeSpline(app.Project.nodes,p); T=station(end);
+            elseif strcmp(mode,'bspline-v1'), T=p.bspline.parameterLength;
+            else, T=p.bezier.parameterLength; end
+            curve=camdesign.routeGeometry(app.Project.nodes,p,linspace(0,T,min(4001,p.samples))');
+            a=app.RouteAxes; legend(a,'off'); cla(a); hold(a,'on');
+            rectangle(a,'Position',[p.bounds(1) p.bounds(3) diff(p.bounds(1:2)) diff(p.bounds(3:4))], ...
+                'EdgeColor',[.4 .4 .4],'LineStyle','--','Tag','course-boundary');
+            front=plot(a,curve(:,1),curve(:,2),'k-','LineWidth',1.5,'Tag','route-front-uncomputed');
+            app.NodeLine=plot(a,app.Project.nodes(:,1),app.Project.nodes(:,2),'o-','Color',[.2 .6 .42],'MarkerSize',4,'Tag','route-nodes');
+            targets=scatter(a,app.Project.targets(:,1),app.Project.targets(:,2),45,'k','o');
+            hold(a,'off'); axis(a,'equal'); grid(a,'on'); app.fitRouteView(curve);
+            title(a,'当前新路线 · 凸轮未计算'); xlabel(a,'场地 X / mm'); ylabel(a,'场地 Y / mm');
+            app.RouteLines=[front app.NodeLine targets];
+            legend(a,app.RouteLines,{'新前轮几何','节点/控制点','目标'},'Location','northwest','FontSize',9,'AutoUpdate','off');
+            app.updateDiagnostics();
+        end
+        function backup=snapshotModelSwitchState(app)
+            backup=struct('version','cam-app-model-switch-backup-v1','state',struct(),'inputs',struct());
+            names={'Project','Result','History','HistoryProject','OptimizationInfo','OptimizationDirection', ...
+                'SelectedTargetRow','SelectedNodeRow','TrainingDirty','ActualClosureReport','ActualClosureProject', ...
+                'CamInspectionRecord','ScoreDisplayData','LastDisplayProject','LastDisplayResult','CamBaseProject','CamBaseResult', ...
+                'CamFullLimits','SelectedCrossing','LegacyRatioNotice','DisplayedParameterFields'};
+            for k=1:numel(names), backup.state.(names{k})=app.(names{k}); end
+            for name={'ParamsTable','TargetsTable','NodesTable','WeightsTable'}
+                backup.inputs.(name{1})=app.(name{1}).Data;
+            end
+            for name={'Mechanism','AutoRatio','DynamicWeightsEnabled','AlgorithmSelector','ScoreBasis','SimulationSource','TrainingModel'}
+                backup.inputs.(name{1})=app.(name{1}).Value;
+            end
+            backup.inputs.TrainingFields=[app.TrainingFields.Value];
+            backup.inputs.DynamicWeightFields=[app.DynamicWeightFields.Value]; backup.inputs.AutoTuneFields=[app.AutoTuneFields.Value];
+            backup.status=app.Status.Text; backup.statusColor=app.Status.FontColor; backup.directionStatus=app.DirectionStatus.Text;
+            backup.closureStatus=app.ActualClosureStatus.Text; backup.closureTable=app.ActualClosureTable.Data;
+            backup.controlsTab=app.ControlsTabs.SelectedTab.Title; backup.resultsTab=app.ResultsTabs.SelectedTab.Title;
+            backup.log=app.FullLog; backup.axesLimits=[app.RouteAxes.XLim app.RouteAxes.YLim;app.CamAxes.XLim app.CamAxes.YLim;app.SteeringAxes.XLim app.SteeringAxes.YLim];
+            backup.axesModes={app.RouteAxes.XLimMode,app.RouteAxes.YLimMode;app.CamAxes.XLimMode,app.CamAxes.YLimMode;app.SteeringAxes.XLimMode,app.SteeringAxes.YLimMode};
+            line=findobj(app.RouteAxes,'Tag','actual-closure-route'); backup.closureLine=[];
+            if ~isempty(line), backup.closureLine=[line(1).XData(:),line(1).YData(:)]; end
+        end
+        function filename=backupModelSwitch(app,reason)
+            app.updateDiagnostics();
+            backup=app.snapshotModelSwitchState(); backup.reason=reason;
+            folder=fullfile(fileparts(mfilename('fullpath')),'local','model_switch_backups');
+            if ~isfolder(folder), mkdir(folder); end
+            filename=[tempname(folder),'.mat']; save(filename,'backup','-v7');
+            app.ModelSwitchBackupPath=filename;
+            app.message(['完整状态已自动备份（项目、原结果、历史及待应用输入）：',filename]);
+            app.refreshTrainingControls();
+        end
+        function restored=restoreModelSwitch(app,filename)
+            restored=false;
+            if app.Busy || app.SimulationMode || app.MapEditMode, return; end
+            if nargin<2, filename=app.ModelSwitchBackupPath; end
+            try
+                loaded=load(filename,'backup'); backup=loaded.backup;
+                app.validateModelSwitchBackup(backup);
+                names=fieldnames(backup.state);
+                for k=1:numel(names), app.(names{k})=backup.state.(names{k}); end
+                app.syncInputs();
+                if isempty(app.Result) && ~isempty(backup.state.LastDisplayResult)
+                    % Pending edits may have invalidated Result while the
+                    % last published plot and reference were still visible.
+                    app.Project=backup.state.LastDisplayProject; app.Result=backup.state.LastDisplayResult; app.render();
+                elseif isempty(app.Result), app.renderUncomputedRoute();
+                else, app.render(); end
+                for k=1:numel(names), app.(names{k})=backup.state.(names{k}); end
+                if ~isempty(app.CamInspectionRecord), app.drawCamRecord(); end
+                if ~isempty(backup.closureLine)
+                    hold(app.RouteAxes,'on'); plot(app.RouteAxes,backup.closureLine(:,1),backup.closureLine(:,2),'m--','LineWidth',1.5,'Tag','actual-closure-route'); hold(app.RouteAxes,'off');
+                end
+                for name={'ParamsTable','TargetsTable','NodesTable','WeightsTable'}, app.(name{1}).Data=backup.inputs.(name{1}); end
+                for name={'Mechanism','AutoRatio','DynamicWeightsEnabled','AlgorithmSelector','ScoreBasis','SimulationSource','TrainingModel'}
+                    app.(name{1}).Value=backup.inputs.(name{1});
+                end
+                for k=1:9, app.TrainingFields(k).Value=backup.inputs.TrainingFields(k); end
+                for k=1:4, app.DynamicWeightFields(k).Value=backup.inputs.DynamicWeightFields(k); end
+                for k=1:2, app.AutoTuneFields(k).Value=backup.inputs.AutoTuneFields(k); end
+                for k=1:numel(names), app.(names{k})=backup.state.(names{k}); end
+                app.updateDiagnostics();
+                app.TrainingDirty=backup.state.TrainingDirty; app.Status.Text=backup.status; app.Status.FontColor=backup.statusColor;
+                app.DirectionStatus.Text=backup.directionStatus; app.ActualClosureStatus.Text=backup.closureStatus; app.ActualClosureTable.Data=backup.closureTable;
+                for tab=app.ControlsTabs.Children', if strcmp(tab.Title,backup.controlsTab), app.ControlsTabs.SelectedTab=tab; break; end, end
+                for tab=app.ResultsTabs.Children', if strcmp(tab.Title,backup.resultsTab), app.ResultsTabs.SelectedTab=tab; break; end, end
+                app.RouteAxes.XLim=backup.axesLimits(1,1:2); app.RouteAxes.YLim=backup.axesLimits(1,3:4);
+                app.CamAxes.XLim=backup.axesLimits(2,1:2); app.CamAxes.YLim=backup.axesLimits(2,3:4);
+                app.SteeringAxes.XLim=backup.axesLimits(3,1:2); app.SteeringAxes.YLim=backup.axesLimits(3,3:4);
+                axesList=[app.RouteAxes,app.CamAxes,app.SteeringAxes];
+                for k=1:3, axesList(k).XLimMode=backup.axesModes{k,1}; axesList(k).YLimMode=backup.axesModes{k,2}; end
+                app.ModelSwitchBackupPath=filename; app.refreshControls();
+                if numel(app.FullLog)<numel(backup.log) || ~isequal(app.FullLog(1:numel(backup.log)),backup.log)
+                    app.FullLog=[backup.log;app.FullLog];
+                end
+                app.message(['已恢复完整切换前状态（含待应用输入）；切换/恢复日志保留。备份：',filename]); restored=true;
+            catch ex, app.message(['恢复未完成：',ex.identifier,' ',ex.message]); end
+        end
+        function validateModelSwitchBackup(app,backup)
+            template=app.snapshotModelSwitchState(); required=fieldnames(template);
+            assert(isstruct(backup) && isscalar(backup) && all(isfield(backup,required)) ...
+                && strcmp(backup.version,'cam-app-model-switch-backup-v1'), ...
+                'cam:ModelSwitchBackup','备份缺少完整状态字段或版本不受支持；当前状态保留。');
+            assert(isstruct(backup.state) && isscalar(backup.state) && isequal(sort(fieldnames(backup.state)),sort(fieldnames(template.state))) ...
+                && isstruct(backup.inputs) && isscalar(backup.inputs) && isequal(sort(fieldnames(backup.inputs)),sort(fieldnames(template.inputs))), ...
+                'cam:ModelSwitchBackup','备份缺少项目、结果或待应用输入字段；当前状态保留。');
+            camdesign.validateProject(backup.state.Project);
+            if ~isempty(backup.state.LastDisplayProject), camdesign.validateProject(backup.state.LastDisplayProject); end
+            for name={'Result','LastDisplayResult','CamBaseResult'}
+                value=backup.state.(name{1});
+                assert(isempty(value) || (isstruct(value) && isscalar(value) && all(isfield(value,{'route','cam','metrics'}))), ...
+                    'cam:ModelSwitchBackup','备份中的原计算结果不完整；当前状态保留。');
+            end
+            for name={'ParamsTable','TargetsTable','NodesTable','WeightsTable'}
+                value=backup.inputs.(name{1}); columns=2; if strcmp(name{1},'WeightsTable'), columns=3; end
+                assert((isnumeric(value) || iscell(value)) && ismatrix(value) && size(value,2)==columns, ...
+                    'cam:ModelSwitchBackup','备份表格结构无效；当前状态保留。');
+            end
+            for name={'Mechanism','AlgorithmSelector','ScoreBasis','SimulationSource','TrainingModel'}
+                assert(ismember(backup.inputs.(name{1}),app.(name{1}).ItemsData), ...
+                    'cam:ModelSwitchBackup','备份选择值无效；当前状态保留。');
+            end
+            for name={'TrainingFields','DynamicWeightFields','AutoTuneFields'}
+                value=backup.inputs.(name{1}); count=numel(app.(name{1}));
+                assert(isnumeric(value) && isreal(value) && numel(value)==count && all(isfinite(value)), ...
+                    'cam:ModelSwitchBackup','备份训练输入结构无效；当前状态保留。');
+            end
+            assert(isnumeric(backup.axesLimits) && isequal(size(backup.axesLimits),[3 4]) ...
+                && all(isfinite(backup.axesLimits),'all') && all(backup.axesLimits(:,2)>backup.axesLimits(:,1)) ...
+                && all(backup.axesLimits(:,4)>backup.axesLimits(:,3)) && iscell(backup.log), ...
+                'cam:ModelSwitchBackup','备份视图或日志结构无效；当前状态保留。');
+            assert(iscell(backup.axesModes) && isequal(size(backup.axesModes),[3 2]) ...
+                && all(ismember(backup.axesModes,{'auto','manual'}),'all'), ...
+                'cam:ModelSwitchBackup','备份坐标轴模式无效；当前状态保留。');
         end
         function action(app,name,filename)
             % Optional explicit path uses the same import/save action as the
@@ -1105,28 +1337,7 @@ classdef CamReplicaApp < handle
                 switch name
                     case 'calculate', app.calculate();
                     case 'seed'
-                        % Build and evaluate a local candidate. Errors must not
-                        % alter the live model, its coefficients or input tables.
-                        candidate=app.inputProject();
-                        wasBezier=strcmp(camdesign.routeModel(candidate.params),'bezier-blend-independent-v1');
-                        wasBSpline=strcmp(camdesign.routeModel(candidate.params),'bspline-v1');
-                        trained=isfield(candidate.params,'training'); settings=camdesign.trainingSettings(candidate);
-                        mode=camdesign.routeModel(candidate.params);
-                        if wasBSpline
-                            mode=sprintf('bspline-%d',candidate.params.bspline.degree);
-                            candidate.params=rmfield(candidate.params,'bspline'); candidate.params.routeModel='cubic';
-                        end
-                        if isfield(candidate.params,'routeSpline'), candidate.params=rmfield(candidate.params,'routeSpline'); end
-                        if wasBezier, candidate.params=rmfield(candidate.params,'bezier'); candidate.params.routeModel='cubic'; end
-                        candidate.nodes=camdesign.seedNodes(candidate.targets,candidate.params);
-                        if trained || wasBezier || wasBSpline
-                            candidate=camdesign.applyTrainingSettings(candidate,struct('routeModel',mode, ...
-                                'controlPointCount',settings.controlPointCount,'bezierDegree',settings.bezierDegree),app.AlgorithmSelector.Value);
-                        end
-                        result=camdesign.evaluate(candidate,true);
-                        app.Project=candidate; app.Result=result; app.History=[]; app.HistoryProject=[];
-                        app.OptimizationInfo=[]; app.OptimizationDirection=[];
-                        app.syncInputs(); app.render(); app.message('路线已重建并完成计算；项目尚未保存。');
+                        app.rebuildCurrentRoute();
                     case 'import'
                         if isempty(filename)
                             [f,d]=uigetfile('*.mat','导入本项目或原软件 MAT'); if isequal(f,0), return; end

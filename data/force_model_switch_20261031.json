@@ -1,0 +1,822 @@
+{
+  "change": "CHG-2026-10-31-010",
+  "baselineCommit": "f06915235a977eca7939d79e370f91afb03b94eb",
+  "basicChecks": {
+    "release": "2025b",
+    "passed": 12,
+    "total": 12,
+    "tests": [
+      "testStraight",
+      "testCircle",
+      "testMechanisms",
+      "testClosedCam",
+      "testRoundTrip",
+      "testFixedCamTuning",
+      "testOptimize",
+      "testSaveImport",
+      "testImportTypeSchemes",
+      "testExport",
+      "testReject",
+      "testIntersections"
+    ]
+  },
+  "reports": {
+    "forceCore": {
+      "release": "2025b",
+      "baseline": "f069152",
+      "checksPassed": 6,
+      "checks": [
+        "real solar cubic to Bezier15 rejects strict cap250 then accepts explicit finite endpoint-constrained approximate fit with truthful errors",
+        "identity/exact and tolerance-passing fits never falsely marked as forced",
+        "force cannot bypass nonfinite inputs, endpoint constraints, invalid settings or automatic model lock",
+        "explicit adapter exposes/persists forced metadata and complete saved project roundtrips",
+        "rebuilding directly seeds selected Bezier15/B3/B5 from targets independently of old-curve mapping",
+        "new cubic retains all target seeds and exact extra refinement; illegal rebuilds preserve source and backend gate"
+      ],
+      "strictIdentifier": "cam:RouteMappingTolerance",
+      "forcedFit": {
+        "positionMaxMM": 0.04370508419736619,
+        "positionRMSMM": 0.0050962013493144245,
+        "maxTangentErrorDeg": 0.0641930524687631,
+        "firstPointErrorMM": 0,
+        "endpointPositionErrorMM": [
+          0,
+          0
+        ],
+        "endpointDerivativeError": [
+          0,
+          5.33167196845001e-16
+        ],
+        "endpointTangentErrorDeg": [
+          0,
+          1.908332808878109e-14
+        ],
+        "withinTolerance": false,
+        "shapePreservationGuaranteed": false,
+        "finiteGeometry": true,
+        "endpointConstraintsSatisfied": true,
+        "mathematicallyExactSpace": false,
+        "method": "constrained-fit",
+        "validationSamples": 12845,
+        "tolerances": {
+          "positionMaxMM": 0.05,
+          "positionRMSMM": 0.01,
+          "maxTangentDeg": 0.05,
+          "endpointPositionMM": 1e-07,
+          "endpointDerivative": 1e-07,
+          "endpointTangentDeg": 1e-05
+        },
+        "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+        "version": "route-geometry-mapping-v1",
+        "sourceModel": "cubic",
+        "targetModel": "bezier-blend-independent-v1",
+        "sourceDegree": 3,
+        "targetDegree": 15,
+        "oldControlPointCount": 34,
+        "requestedControlPointCount": 34,
+        "actualControlPointCount": 250,
+        "controlPointCount": 250,
+        "automaticallyIncreasedCount": true,
+        "attempts": [
+          {
+            "count": 34,
+            "positionMaxMM": 20.31619713832433,
+            "positionRMSMM": 6.878810034126553
+          },
+          {
+            "count": 51,
+            "positionMaxMM": 6.6338588505201495,
+            "positionRMSMM": 1.9852650965706586
+          },
+          {
+            "count": 77,
+            "positionMaxMM": 1.5112534836169236,
+            "positionRMSMM": 0.32388770107655257
+          },
+          {
+            "count": 116,
+            "positionMaxMM": 0.4088762647383612,
+            "positionRMSMM": 0.08768034498337134
+          },
+          {
+            "count": 174,
+            "positionMaxMM": 0.1150099346437872,
+            "positionRMSMM": 0.015556755589626702
+          },
+          {
+            "count": 250,
+            "positionMaxMM": 0.04370508419736619,
+            "positionRMSMM": 0.0050962013493144245
+          }
+        ],
+        "parameterLength": 12231.165673855725,
+        "targetOrderUnchanged": true,
+        "allowApproximate": true,
+        "forced": true,
+        "approximate": true,
+        "acceptance": "forced-approximate"
+      },
+      "independentGrid": {
+        "positionMaxMM": 0.04370480114610454,
+        "positionRMSMM": 0.0049976365296278595,
+        "maxTangentErrorDeg": 0.064201455736204
+      },
+      "rebuild": {
+        "version": "target-route-rebuild-v1",
+        "rebuiltFromTargets": true,
+        "shapePreservationGuaranteed": false,
+        "targetModel": "bezier-blend-independent-v1",
+        "targetDegree": 15,
+        "requestedControlPointCount": 34,
+        "actualControlPointCount": 34,
+        "actualSamples": 331,
+        "startPointUnchanged": true,
+        "targetOrderUnchanged": true,
+        "semantics": "New target-seeded controls with the existing start; explicit reshape, no old-curve mapping or physical-feasibility claim."
+      },
+      "scope": "Geometry/representation and persistence contracts; no optimization, physical feasibility or exact reproduction of an unavailable user MAT."
+    },
+    "forceUI": {
+      "release": "2025b",
+      "checksPassed": 6,
+      "checks": [
+        "solar cubic strict reject -> real Bezier15 force -> saved metadata -> full project/result/history/pending inputs restored",
+        "pending failed model can rebuild directly from targets with start, hardware, order and legal settings preserved",
+        "physical evaluation failure keeps new model editable/savable, clears stale results, and restores invalidated-result historical plot",
+        "incomplete backup rejects atomically before modifying project, results or pending inputs",
+        "force refuses invalid hardware and broken source endpoint constraints while preserving raw input and old result",
+        "ordinary strict exact mapping remains available; automatic/busy modes disable force and recovery; narrow fixed action rows visible"
+      ],
+      "bezier15Fit": {
+        "positionMaxMM": 0.043713870770782634,
+        "positionRMSMM": 0.005097004848121724,
+        "maxTangentErrorDeg": 0.06419485265085792,
+        "firstPointErrorMM": 0,
+        "endpointPositionErrorMM": [
+          0,
+          0
+        ],
+        "endpointDerivativeError": [
+          0,
+          5.33167196845001e-16
+        ],
+        "endpointTangentErrorDeg": [
+          0,
+          1.908332808878109e-14
+        ],
+        "withinTolerance": false,
+        "shapePreservationGuaranteed": false,
+        "finiteGeometry": true,
+        "endpointConstraintsSatisfied": true,
+        "mathematicallyExactSpace": false,
+        "method": "constrained-fit",
+        "validationSamples": 12845,
+        "tolerances": {
+          "positionMaxMM": 0.05,
+          "positionRMSMM": 0.01,
+          "maxTangentDeg": 0.05,
+          "endpointPositionMM": 1e-07,
+          "endpointDerivative": 1e-07,
+          "endpointTangentDeg": 1e-05
+        },
+        "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+        "version": "route-geometry-mapping-v1",
+        "sourceModel": "cubic",
+        "targetModel": "bezier-blend-independent-v1",
+        "sourceDegree": 3,
+        "targetDegree": 15,
+        "oldControlPointCount": 34,
+        "requestedControlPointCount": 34,
+        "actualControlPointCount": 250,
+        "controlPointCount": 250,
+        "automaticallyIncreasedCount": true,
+        "attempts": [
+          {
+            "count": 34,
+            "positionMaxMM": 20.319782713788957,
+            "positionRMSMM": 6.875940476414465
+          },
+          {
+            "count": 51,
+            "positionMaxMM": 6.633848815258392,
+            "positionRMSMM": 1.9881130029918037
+          },
+          {
+            "count": 77,
+            "positionMaxMM": 1.5163997179983808,
+            "positionRMSMM": 0.32484752551183377
+          },
+          {
+            "count": 116,
+            "positionMaxMM": 0.40886026665069447,
+            "positionRMSMM": 0.08766891815206335
+          },
+          {
+            "count": 174,
+            "positionMaxMM": 0.11502980917029623,
+            "positionRMSMM": 0.01556418179007683
+          },
+          {
+            "count": 250,
+            "positionMaxMM": 0.043713870770782634,
+            "positionRMSMM": 0.005097004848121724
+          }
+        ],
+        "parameterLength": 12231.165673855725,
+        "targetOrderUnchanged": true,
+        "allowApproximate": true,
+        "forced": true,
+        "approximate": true,
+        "acceptance": "forced-approximate"
+      },
+      "backupPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\model_switch_backups\\tpd2e4acc6_748d_4195_888f_cb933e023106.mat",
+      "screenshots": [
+        "forced_bezier15.png",
+        "rebuilt_pending_model.png",
+        "editable_after_physical_failure.png",
+        "training_actions_narrow.png"
+      ],
+      "scope": "Owned hidden UI; no user windows closed, no optimization, and no assertion of exact reproduction of unavailable user input."
+    },
+    "strictMapping": {
+      "release": "2025b",
+      "checks": [
+        "exact clamped cubic refinement and cubic-to-standard-B3/B5 space embeddings, with independent roundtrip geometry checks",
+        "Bezier degree/count and Bezier-to-cubic use actual curve fits; no false exact-preservation claim and launch point remains bitwise fixed",
+        "formal solar model/degree conversions either meet max/RMS/full-tangent gates or explicitly reject without returning an altered source",
+        "insufficient-cap mapping rejects atomically; application returns measured fitInfo and truthful automatic control count"
+      ],
+      "fits": [
+        {
+          "positionMaxMM": 3.457650183405701e-13,
+          "positionRMSMM": 1.251794352309941e-13,
+          "maxTangentErrorDeg": 2.1174046581134061e-13,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            1.7763568394002505e-15,
+            6.994722564282379e-16
+          ],
+          "endpointTangentErrorDeg": [
+            0,
+            1.3589532915482163e-14
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": true,
+          "finiteGeometry": true,
+          "endpointConstraintsSatisfied": true,
+          "mathematicallyExactSpace": true,
+          "method": "polynomial-space-embedding",
+          "validationSamples": 12016,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bspline-v1",
+          "sourceDegree": 3,
+          "targetDegree": 3,
+          "oldControlPointCount": 3,
+          "requestedControlPointCount": 8,
+          "actualControlPointCount": 8,
+          "controlPointCount": 8,
+          "automaticallyIncreasedCount": false,
+          "attempts": {
+            "count": 8,
+            "positionMaxMM": 3.457650183405701e-13,
+            "positionRMSMM": 1.251794352309941e-13
+          },
+          "parameterLength": 500,
+          "targetOrderUnchanged": true,
+          "allowApproximate": false,
+          "forced": false,
+          "approximate": false,
+          "acceptance": "exact"
+        },
+        {
+          "positionMaxMM": 3.694822225952521e-13,
+          "positionRMSMM": 1.2234637770064664e-13,
+          "maxTangentErrorDeg": 8.554649795960035e-14,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            4.440892098500626e-16,
+            1.1305407302409863e-15
+          ],
+          "endpointTangentErrorDeg": [
+            2.5444437451708134e-14,
+            1.2428034375697386e-14
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": true,
+          "finiteGeometry": true,
+          "endpointConstraintsSatisfied": true,
+          "mathematicallyExactSpace": true,
+          "method": "polynomial-space-embedding",
+          "validationSamples": 12007,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bspline-v1",
+          "sourceDegree": 3,
+          "targetDegree": 5,
+          "oldControlPointCount": 3,
+          "requestedControlPointCount": 8,
+          "actualControlPointCount": 9,
+          "controlPointCount": 9,
+          "automaticallyIncreasedCount": true,
+          "attempts": {
+            "count": 9,
+            "positionMaxMM": 3.694822225952521e-13,
+            "positionRMSMM": 1.2234637770064664e-13
+          },
+          "parameterLength": 500,
+          "targetOrderUnchanged": true,
+          "allowApproximate": false,
+          "forced": false,
+          "approximate": false,
+          "acceptance": "exact"
+        },
+        {
+          "positionMaxMM": 0.00041258475246763737,
+          "positionRMSMM": 0.00018462038866612685,
+          "maxTangentErrorDeg": 0.0016650819127400514,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            1.037815236043218e-15,
+            1.604435745475906e-15
+          ],
+          "endpointTangentErrorDeg": [
+            4.5597009631401137e-14,
+            2.2798215956730374e-14
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": false,
+          "finiteGeometry": true,
+          "endpointConstraintsSatisfied": true,
+          "mathematicallyExactSpace": false,
+          "method": "constrained-fit",
+          "validationSamples": 12023,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "bezier-blend-independent-v1",
+          "targetModel": "bezier-blend-independent-v1",
+          "sourceDegree": 5,
+          "targetDegree": 3,
+          "oldControlPointCount": 8,
+          "requestedControlPointCount": 8,
+          "actualControlPointCount": 8,
+          "controlPointCount": 8,
+          "automaticallyIncreasedCount": false,
+          "attempts": {
+            "count": 8,
+            "positionMaxMM": 0.00041258475246763737,
+            "positionRMSMM": 0.00018462038866612685
+          },
+          "parameterLength": 500,
+          "targetOrderUnchanged": true,
+          "allowApproximate": false,
+          "forced": false,
+          "approximate": true,
+          "acceptance": "within-tolerance"
+        },
+        {
+          "positionMaxMM": 0.0005939024465249076,
+          "positionRMSMM": 0.00020486515466889763,
+          "maxTangentErrorDeg": 0.0016439878235630634,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            0,
+            5.0415401020493126e-21
+          ],
+          "endpointTangentErrorDeg": [
+            0,
+            2.8885897009337895e-19
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": false,
+          "finiteGeometry": true,
+          "endpointConstraintsSatisfied": true,
+          "mathematicallyExactSpace": false,
+          "method": "constrained-fit",
+          "validationSamples": 12023,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "bezier-blend-independent-v1",
+          "targetModel": "cubic",
+          "sourceDegree": 5,
+          "targetDegree": 3,
+          "oldControlPointCount": 8,
+          "requestedControlPointCount": 8,
+          "actualControlPointCount": 8,
+          "controlPointCount": 8,
+          "automaticallyIncreasedCount": false,
+          "attempts": {
+            "count": 8,
+            "positionMaxMM": 0.0005939024465249076,
+            "positionRMSMM": 0.00020486515466889763
+          },
+          "parameterLength": 500,
+          "targetOrderUnchanged": true,
+          "allowApproximate": false,
+          "forced": false,
+          "approximate": true,
+          "acceptance": "within-tolerance"
+        },
+        {
+          "positionMaxMM": 4.637531231849411e-12,
+          "positionRMSMM": 9.047826657429758e-13,
+          "maxTangentErrorDeg": 6.231522506462465e-13,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            0,
+            4.335559509131367e-16
+          ],
+          "endpointTangentErrorDeg": [
+            0,
+            1.272221872585407e-14
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": true,
+          "finiteGeometry": true,
+          "endpointConstraintsSatisfied": true,
+          "mathematicallyExactSpace": true,
+          "method": "polynomial-space-embedding",
+          "validationSamples": 12101,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bspline-v1",
+          "sourceDegree": 3,
+          "targetDegree": 3,
+          "oldControlPointCount": 34,
+          "requestedControlPointCount": 34,
+          "actualControlPointCount": 36,
+          "controlPointCount": 36,
+          "automaticallyIncreasedCount": true,
+          "attempts": {
+            "count": 36,
+            "positionMaxMM": 4.637531231849411e-12,
+            "positionRMSMM": 9.047826657429758e-13
+          },
+          "parameterLength": 12231.165673855725,
+          "targetOrderUnchanged": true,
+          "allowApproximate": false,
+          "forced": false,
+          "approximate": false,
+          "acceptance": "exact"
+        },
+        {
+          "positionMaxMM": 4.582862941503293e-12,
+          "positionRMSMM": 1.00867819523688e-12,
+          "maxTangentErrorDeg": 2.6836368867360622e-12,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            8.881784197001252e-16,
+            2.0014830212433605e-16
+          ],
+          "endpointTangentErrorDeg": [
+            5.088887490341627e-14,
+            9.541664044390549e-15
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": true,
+          "finiteGeometry": true,
+          "endpointConstraintsSatisfied": true,
+          "mathematicallyExactSpace": true,
+          "method": "polynomial-space-embedding",
+          "validationSamples": 12101,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bspline-v1",
+          "sourceDegree": 3,
+          "targetDegree": 5,
+          "oldControlPointCount": 34,
+          "requestedControlPointCount": 34,
+          "actualControlPointCount": 102,
+          "controlPointCount": 102,
+          "automaticallyIncreasedCount": true,
+          "attempts": {
+            "count": 102,
+            "positionMaxMM": 4.582862941503293e-12,
+            "positionRMSMM": 1.00867819523688e-12
+          },
+          "parameterLength": 12231.165673855725,
+          "targetOrderUnchanged": true,
+          "allowApproximate": false,
+          "forced": false,
+          "approximate": false,
+          "acceptance": "exact"
+        }
+      ],
+      "solarOutcomes": [
+        {
+          "accepted": false,
+          "identifier": "cam:RouteMappingTolerance",
+          "message": "路线映射被拒绝：cubic → bezier-blend-independent-v1，250控制点，最大误差 0.0114368 mm / 容差 0.05，RMS 0.00229581 mm / 容差 0.01，全程切向 0.11637° / 容差 0.05°；原方案保留。"
+        },
+        {
+          "accepted": true,
+          "fitInfo": {
+            "positionMaxMM": 4.637531231849411e-12,
+            "positionRMSMM": 9.047826657429758e-13,
+            "maxTangentErrorDeg": 6.231522506462465e-13,
+            "firstPointErrorMM": 0,
+            "endpointPositionErrorMM": [
+              0,
+              0
+            ],
+            "endpointDerivativeError": [
+              0,
+              4.335559509131367e-16
+            ],
+            "endpointTangentErrorDeg": [
+              0,
+              1.272221872585407e-14
+            ],
+            "withinTolerance": true,
+            "shapePreservationGuaranteed": true,
+            "finiteGeometry": true,
+            "endpointConstraintsSatisfied": true,
+            "mathematicallyExactSpace": true,
+            "method": "polynomial-space-embedding",
+            "validationSamples": 12101,
+            "tolerances": {
+              "positionMaxMM": 0.05,
+              "positionRMSMM": 0.01,
+              "maxTangentDeg": 0.05,
+              "endpointPositionMM": 1e-07,
+              "endpointDerivative": 1e-07,
+              "endpointTangentDeg": 1e-05
+            },
+            "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+            "version": "route-geometry-mapping-v1",
+            "sourceModel": "cubic",
+            "targetModel": "bspline-v1",
+            "sourceDegree": 3,
+            "targetDegree": 3,
+            "oldControlPointCount": 34,
+            "requestedControlPointCount": 34,
+            "actualControlPointCount": 36,
+            "controlPointCount": 36,
+            "automaticallyIncreasedCount": true,
+            "attempts": {
+              "count": 36,
+              "positionMaxMM": 4.637531231849411e-12,
+              "positionRMSMM": 9.047826657429758e-13
+            },
+            "parameterLength": 12231.165673855725,
+            "targetOrderUnchanged": true,
+            "allowApproximate": false,
+            "forced": false,
+            "approximate": false,
+            "acceptance": "exact"
+          }
+        },
+        {
+          "accepted": true,
+          "fitInfo": {
+            "positionMaxMM": 4.582862941503293e-12,
+            "positionRMSMM": 1.00867819523688e-12,
+            "maxTangentErrorDeg": 2.6836368867360622e-12,
+            "firstPointErrorMM": 0,
+            "endpointPositionErrorMM": [
+              0,
+              0
+            ],
+            "endpointDerivativeError": [
+              8.881784197001252e-16,
+              2.0014830212433605e-16
+            ],
+            "endpointTangentErrorDeg": [
+              5.088887490341627e-14,
+              9.541664044390549e-15
+            ],
+            "withinTolerance": true,
+            "shapePreservationGuaranteed": true,
+            "finiteGeometry": true,
+            "endpointConstraintsSatisfied": true,
+            "mathematicallyExactSpace": true,
+            "method": "polynomial-space-embedding",
+            "validationSamples": 12101,
+            "tolerances": {
+              "positionMaxMM": 0.05,
+              "positionRMSMM": 0.01,
+              "maxTangentDeg": 0.05,
+              "endpointPositionMM": 1e-07,
+              "endpointDerivative": 1e-07,
+              "endpointTangentDeg": 1e-05
+            },
+            "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+            "version": "route-geometry-mapping-v1",
+            "sourceModel": "cubic",
+            "targetModel": "bspline-v1",
+            "sourceDegree": 3,
+            "targetDegree": 5,
+            "oldControlPointCount": 34,
+            "requestedControlPointCount": 34,
+            "actualControlPointCount": 102,
+            "controlPointCount": 102,
+            "automaticallyIncreasedCount": true,
+            "attempts": {
+              "count": 102,
+              "positionMaxMM": 4.582862941503293e-12,
+              "positionRMSMM": 1.00867819523688e-12
+            },
+            "parameterLength": 12231.165673855725,
+            "targetOrderUnchanged": true,
+            "allowApproximate": false,
+            "forced": false,
+            "approximate": false,
+            "acceptance": "exact"
+          }
+        }
+      ],
+      "historicalBezierDegreeChange": {
+        "accepted": false,
+        "identifier": "cam:RouteMappingTolerance",
+        "message": "路线映射被拒绝：bezier-blend-independent-v1 → bezier-blend-independent-v1，250控制点，最大误差 0.0744906 mm / 容差 0.05，RMS 0.0156475 mm / 容差 0.01，全程切向 0.391576° / 容差 0.05°；原方案保留。"
+      },
+      "scope": "Geometry and product-adapter contracts; no cam, RFID, convergence or real-car acceptance."
+    },
+    "automaticModelLock": {
+      "release": "2025b",
+      "checks": [
+        "All four configurations and final callback retain user model and Bezier degree: cubic",
+        "All four configurations and final callback retain user model and Bezier degree: bezier-blend-independent-v1",
+        "Unsupported B-spline automatic mode explicitly rejects before any callback/model change"
+      ],
+      "scope": "Short model-lock contracts only, not optimizer quality."
+    },
+    "legacyStateUI": {
+      "release": "2025b",
+      "checks": [
+        "map confirmation refreshes diagnostics and enables refinement",
+        "map cancellation restores project and diagnostics",
+        "failed rebuild preserves model, coefficients, result, tables and save/import semantics",
+        "successful rebuild publishes one matching project/result and clears previous optimization"
+      ],
+      "passed": 4
+    },
+    "legacyMappingUI": {
+      "release": "2025b",
+      "checks": [
+        "solar cubic maps to B3/B5 without sampled geometry change; actual count and fit evidence visible; project reload preserves mapping",
+        "failed apply retains full published project, result and coefficient table with pending input explicit",
+        "automatic mode UI states fixed applied model and degree"
+      ],
+      "passed": 3
+    },
+    "bsplineUI": {
+      "release": "2025b",
+      "checks": [
+        "real model/apply/calculate callbacks convert B3, select inner-point and display actual coefficient controls",
+        "B5 model callback and actual optimize button run the endpoint-constrained backend without changing ratio or parameters",
+        "actual add/delete controls refit, synchronize density and preserve derivatives; map editing accepts free controls and rejects endpoint violations",
+        "unsupported peak/four-direction/auto modes disable optimize and explicit action rejects them without model replacement",
+        "same save/import action branches as toolbar preserve knots, controls, constraints, settings and route model",
+        "fixed-cam simulation accepts trial heading and restores the complete constrained B-spline design on exit",
+        "rebuild retains explicit B5/count and switching back to cubic samples the real curve",
+        "legacy independent Bezier model/apply path remains functional after B-spline integration",
+        "visible out-of-field B-spline coefficient can be clicked, dragged and confirmed; finite/visible/source guards remain and physical bounds still fail",
+        "legacy-bound B-spline, cubic and independent Bezier retain field-limited map editing"
+      ],
+      "model": "bspline-v1",
+      "degree": 5,
+      "controlPoints": 132,
+      "scope": "Owned hidden UI callbacks and file-path action branches; native pointer/file chooser and optimizer quality not tested."
+    }
+  },
+  "uniqueChecksPassed": 48,
+  "logs": {
+    "initialUIConstruction": "local/matlab_944ce3cd4cac4a4baf19936d312936db.log",
+    "coreFixtureExpectedRejectionFailed": "local/matlab_527a6d4258224c55a4179f9a768119e1.log",
+    "coreFixtureSamplingFailed": "local/matlab_2b5a28483ad34747b05de85a053ede87.log",
+    "corePassed": "local/matlab_609e872433814206b961a0c57fc76492.log",
+    "uiBeforeAxisModesFix": "local/matlab_e4166ae87eb5481b8ff7fa3a7f97bd19.log",
+    "uiFinalPassed": "local/matlab_db871bfdb54c405ab427ecf3adfcc4fc.log",
+    "basicAndMappingPassedAutoFailed": "local/matlab_f74a91e218db454a96c8a1b256f23217.log",
+    "restrictedAutoAssertionsPassedExitStalled": "local/matlab_af6e463106974121abf964fa128ff3d4.log",
+    "restrictedUIStartupStalled": "local/matlab_bfb0be461b1c48b4893525880b98db0a.log",
+    "legacyUIFinalPassed": "local/matlab_140d4f75e1bc4cb8b47a0eee17779a59.log",
+    "autoFinalPassed": "local/matlab_2b8343ca01974beea109bae39d3d6858.log"
+  },
+  "runnerOutcomes": {
+    "newCoreAndFinalUI": "Exit 0 confirmed by executor commands.",
+    "legacyUIAndAutoFinal": "Exit 0 confirmed by root; final runs use normal host access with isolated MATLAB prefs.",
+    "initialRootRegression": "Basic 12 and mapping 4 passed; auto failed after derived metadata changed the locked top-level project. Fixed by keeping manual display metadata in UI. Owned stalled process terminated; wrapper exit 1, not overall pass.",
+    "restrictedAutoRetry": "All 3 assertions and report passed; runner failed to exit. Owned process terminated, wrapper exit 1; subsequently rerun with normal exit 0.",
+    "restrictedUI": "No test result before startup stall; owned process terminated, wrapper exit 1; subsequently rerun with normal exit 0.",
+    "legacyUIWarnings": "Rank-deficient/near-singular fmincon warnings occurred in the existing short straight-line B5 functionality fixture. Assertions passed; no optimization quality claim."
+  },
+  "sourceSHA256": {
+    "+camdesign/applyTrainingSettings.m": "a3349d01ba18ce7aedeaf81cb9ca2f1d45f5e344d91d4ba7e7bb25722ba0fb82",
+    "+camdesign/mapRouteModel.m": "e47329cde788fc58d2937e86d60ee7161e6b3b9bd686f15da5a95c8a01cd1858",
+    "+camdesign/rebuildRoute.m": "16eaee8ef0e0b408cbaca3176563932561e01798e5551f67ce51a305e5233767",
+    "CamReplicaApp.m": "8d313ac5a587a596fb3568cb95b536d11dee479efa5655b1e1242190373192e7",
+    "check_auto_model_lock.m": "53813acb05ac0526d20db78a585d26537a31ad27b52ff619fc4b2f2bc82ec5cd",
+    "check_bspline_ui.m": "98437173b7bfcb45a477fb075dd2ba2c0205bcdc58d3f93802bac7f7c9800a32",
+    "check_force_model_switch.m": "a1ffffe686a013df5e7bf6ee142f322ebcfbd6698393659c2897f81b85b91c9b",
+    "check_force_model_switch_ui.m": "ba66240a56ef877a4b047624e4fc3a3bbb1c204dc8f1d8e3f26c4bf37ef50057",
+    "check_model_mapping.m": "1902aa6bf05b81094d1d2f29e0e5aeba8324e7bf9fcdd8bca61f9f898cbaabe8",
+    "check_model_mapping_ui.m": "f8cca367353b038aed20c5f29943a5e73a501053c34588b8abf3092db681b688",
+    "check_review_ui_fixes.m": "57c9cd1b7169485780daab24bb1ca2c20537a620e83cb124331e495abb47a6d0",
+    "local/matlab_140d4f75e1bc4cb8b47a0eee17779a59.log": "c1e79a4c1fbbd7e14dcc1c89efe1430f991dcdb75f530a614cf196e082bdf7a5",
+    "local/matlab_2b5a28483ad34747b05de85a053ede87.log": "a5c67f2abaf12f6b9d7a157df44067a508b296ef733e7fc5b6d8f7b726f7e372",
+    "local/matlab_2b8343ca01974beea109bae39d3d6858.log": "1fa77caa75d770e48383f2c2d3f7d791f14651f6151a543450006a1e36a23a2e",
+    "local/matlab_527a6d4258224c55a4179f9a768119e1.log": "0857f080f4bcd234d3a409685ae7e8fdbfef4494fcfa01f61fb5e762f0569f0a",
+    "local/matlab_609e872433814206b961a0c57fc76492.log": "7a0af14f93b7ca3cbfc0e0e634e7e1d430cb01cbf8d3a524e9f925c92eed08d3",
+    "local/matlab_944ce3cd4cac4a4baf19936d312936db.log": "96accbc340833405c3a0d205cc3da62c03e3769354268335ecc22b88ea60562b",
+    "local/matlab_af6e463106974121abf964fa128ff3d4.log": "1fa77caa75d770e48383f2c2d3f7d791f14651f6151a543450006a1e36a23a2e",
+    "local/matlab_bfb0be461b1c48b4893525880b98db0a.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "local/matlab_db871bfdb54c405ab427ecf3adfcc4fc.log": "c00acd6f896c58e4db145263545f86fe99d4f71ae573febd447dca094a989e6f",
+    "local/matlab_e4166ae87eb5481b8ff7fa3a7f97bd19.log": "c00acd6f896c58e4db145263545f86fe99d4f71ae573febd447dca094a989e6f",
+    "local/matlab_f74a91e218db454a96c8a1b256f23217.log": "5291596d56e2f2e897b6dc59779f2b795227b239fe1ca4f0475b2b784c7746ad",
+    "outputs/force_model_switch_20261031/core/verification.json": "4fd474d88dbe3981e2f0321671dd025f8917192ee002d6daee0067f94292c0f5",
+    "outputs/force_model_switch_20261031/regression_auto_confirmed/contracts/auto_model_lock.json": "5fb46d9432f6701c5aacf0872edadccd72ead4e27e91dac80087c917f3a35cb2",
+    "outputs/force_model_switch_20261031/regression_mapping/model_mapping.json": "d693501950fe600b73fb07d5a482ed062662b28e3499c0681d886cd7b8f98774",
+    "outputs/force_model_switch_20261031/regression_ui/bspline/bspline_1120x760.png": "763a4c4ec48e2cb72c2c06ffcfaed4205cffc1553bff1771714a985cbaa6efb7",
+    "outputs/force_model_switch_20261031/regression_ui/bspline/bspline_1320x860.png": "d1163030075c39e0a8cff94230bc09d13981fbd281802e6707708f2ded39ad52",
+    "outputs/force_model_switch_20261031/regression_ui/bspline/verification.json": "eaaa5dc144d6c4c7ce3e82ea435ecf1dd28ac0328fb2e934ee653907bf043825",
+    "outputs/force_model_switch_20261031/regression_ui/bspline/visible_outside_coefficient.png": "91a9862744af6f1375e34618347c90126119064a7dacfba7495d2842eabf5f64",
+    "outputs/force_model_switch_20261031/regression_ui/mapping/locked_model.png": "a8341b0b19140fd953e952e1bfd2c709bb7e4e1af2f4a96bc3f4bb57f8e1751e",
+    "outputs/force_model_switch_20261031/regression_ui/mapping/verification.json": "b49f03a9f1aa82e2f523d3de3944e3e8c3cd5de38017c8e28e7d87d3fb943a42",
+    "outputs/force_model_switch_20261031/regression_ui/state/verification.json": "8573fa281f7de2b2aa3550b4ca7f1f0c1326bdac32bd5d3d1426fa4a93ac0575",
+    "outputs/force_model_switch_20261031/ui/editable_after_physical_failure.png": "ded9e73742067df043bba5a8162e4460a5b3b4f4ab36ca66cd05d6d46a57bcd5",
+    "outputs/force_model_switch_20261031/ui/forced_bezier15.png": "b422fec7c5a78a7b9113ea52b5bab21d6d7592b416bd75a66014539dd18a360e",
+    "outputs/force_model_switch_20261031/ui/rebuilt_pending_model.png": "a3a5f45f601f3e0a7f1c14a225f5cad6869b909ad4dc200440ca16b998abe892",
+    "outputs/force_model_switch_20261031/ui/training_actions_narrow.png": "7184529a83c3659511b80598a66194dde2ea4e580015b670052c0c86772c5ab0",
+    "outputs/force_model_switch_20261031/ui/verification.json": "372541670b371ef0d180e75515f92ef9a7f66d0c39f897f00d72e0c82aeea7c8",
+    "outputs/model_mapping_20261031/quality_cubic/result.mat": "9574bd083057e52d1ee443ffe228d662f077eac981c13e14986d5f5330a4da86"
+  },
+  "scope": "Manual force is an explicit reshape exception; default/automatic preservation gates and hardware remain fixed. Tests use the saved solar candidate plus analytic fixtures, not the unavailable current user MAT, and certify UI/representation behavior rather than machining or real-car precision."
+}

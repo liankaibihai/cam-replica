@@ -1,7 +1,7 @@
-function report=check_review_ui_fixes
+function report=check_review_ui_fixes(folder)
 % Regression of review R2/R4 using an owned hidden application only.
 assert(batchStartupOptionUsed,'cam:BatchOnly','Use independent batch.');
-folder=fullfile(fileparts(mfilename('fullpath')),'outputs','review_fixes_20261031','ui');
+if nargin<1, folder=fullfile(fileparts(mfilename('fullpath')),'outputs','review_fixes_20261031','ui'); end
 if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); clean=onCleanup(@()closeOwn(app));
 p=camdesign.defaultProject(); p.params.mechanism='flat'; p.params.gearRatio=35;

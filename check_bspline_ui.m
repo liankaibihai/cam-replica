@@ -1,8 +1,9 @@
-function report=check_bspline_ui()
+function report=check_bspline_ui(folder)
 % Owned hidden MATLAB app. Real callback/action paths, no user windows.
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:BSplineBatchOnly','请用独立batch运行。');
-folder=fullfile(root,'outputs','review_fixes_20261031','bspline_ui'); if ~isfolder(folder), mkdir(folder); end
+if nargin<1, folder=fullfile(root,'outputs','review_fixes_20261031','bspline_ui'); end
+if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
 p=fixture(); app.Project=p; app.syncInputs(); invoke(app.Buttons(4),'ButtonPushedFcn');
 assert(numel(app.TrainingModel.Items)==4 && ~isempty(app.Result));

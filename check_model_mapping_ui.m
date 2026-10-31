@@ -1,7 +1,7 @@
-function report=check_model_mapping_ui
+function report=check_model_mapping_ui(folder)
 % Real apply callbacks, truthful errors, model lock messaging, persistence.
 assert(batchStartupOptionUsed,'cam:BatchOnly','Use independent batch.');
-folder=fullfile(fileparts(mfilename('fullpath')),'outputs','review_fixes_20261031','mapping_ui');
+if nargin<1, folder=fullfile(fileparts(mfilename('fullpath')),'outputs','review_fixes_20261031','mapping_ui'); end
 if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); c=onCleanup(@()closeOwn(app));
 p=camdesign.solarTestProject(); app.Project=p; app.syncInputs(); app.calculate();

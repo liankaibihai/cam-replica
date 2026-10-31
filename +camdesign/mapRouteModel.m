@@ -11,6 +11,7 @@ arguments
     options.PositionMaxToleranceMM (1,1) double {mustBeFinite,mustBePositive}=.05
     options.PositionRMSToleranceMM (1,1) double {mustBeFinite,mustBePositive}=.01
     options.TangentMaxToleranceDeg (1,1) double {mustBeFinite,mustBePositive}=.05
+    options.AllowApproximate (1,1) logical=false
 end
 camdesign.validateProject(source);
 assert(options.PositionMaxToleranceMM<=.05 && options.PositionRMSToleranceMM<=.01 ...
@@ -68,6 +69,11 @@ while true
         'positionRMSMM',fitInfo.positionRMSMM); %#ok<AGROW>
     if fitInfo.withinTolerance, break; end
     if exact || size(candidate.nodes,1)>=options.MaxControlPoints
+        if options.AllowApproximate
+            assert(fitInfo.finiteGeometry,'cam:RouteMappingNonfinite','强制切换仍要求有限曲线、导数和非退化切向；原方案保留。');
+            assert(fitInfo.endpointConstraintsSatisfied,'cam:RouteMappingEndpoint','强制切换不能放宽首末位置和参数导数约束；原方案保留。');
+            break;
+        end
         error('cam:RouteMappingTolerance', ...
             '路线映射被拒绝：%s → %s，%d控制点，最大误差 %.6g mm / 容差 %.6g，RMS %.6g mm / 容差 %.6g，全程切向 %.6g° / 容差 %.6g°；原方案保留。', ...
             sourceMode,mode,size(candidate.nodes,1),fitInfo.positionMaxMM,options.PositionMaxToleranceMM, ...
@@ -97,6 +103,13 @@ fitInfo.actualControlPointCount=size(mapped.nodes,1); fitInfo.controlPointCount=
 fitInfo.automaticallyIncreasedCount=fitInfo.actualControlPointCount>fitInfo.requestedControlPointCount;
 fitInfo.attempts=attempts; fitInfo.parameterLength=T;
 fitInfo.targetOrderUnchanged=isequaln(source.targets,mapped.targets);
+fitInfo.allowApproximate=options.AllowApproximate;
+fitInfo.forced=options.AllowApproximate && ~fitInfo.withinTolerance;
+if fitInfo.forced, fitInfo.shapePreservationGuaranteed=false; end
+fitInfo.approximate=~fitInfo.shapePreservationGuaranteed;
+fitInfo.acceptance='within-tolerance';
+if fitInfo.shapePreservationGuaranteed, fitInfo.acceptance='exact'; end
+if fitInfo.forced, fitInfo.acceptance='forced-approximate'; end
 end
 
 function [T,breaks,knots]=domain(project)
@@ -184,11 +197,14 @@ maxAngle=max(allAngles);
 pointError=vecnorm(Q0-F0,2,2)'; derivativeError=vecnorm(W0-V0,2,2)';
 angle=rad2deg(atan2(abs(W0(:,1).*V0(:,2)-W0(:,2).*V0(:,1)),sum(W0.*V0,2)))';
 maximum=max(errors); rms=sqrt(mean(errors.^2));
+finiteGeometry=all(isfinite([F(:);V(:);Q(:);W(:);errors;allAngles;pointError(:);derivativeError(:);angle(:)]));
+endpointPassed=max(pointError)<=1e-7 && max(derivativeError)<=1e-7 && max(angle)<=1e-5;
 passed=maximum<=options.PositionMaxToleranceMM && rms<=options.PositionRMSToleranceMM && maxAngle<=options.TangentMaxToleranceDeg ...
     && max(pointError)<=1e-7 && max(derivativeError)<=1e-7 && max(angle)<=1e-5;
 info=struct('positionMaxMM',maximum,'positionRMSMM',rms,'maxTangentErrorDeg',maxAngle,'firstPointErrorMM',pointError(1), ...
     'endpointPositionErrorMM',pointError,'endpointDerivativeError',derivativeError,'endpointTangentErrorDeg',angle, ...
     'withinTolerance',passed,'shapePreservationGuaranteed',exact && maximum<1e-7, ...
+    'finiteGeometry',finiteGeometry,'endpointConstraintsSatisfied',endpointPassed, ...
     'mathematicallyExactSpace',exact,'method',method,'validationSamples',numel(u), ...
     'tolerances',struct('positionMaxMM',options.PositionMaxToleranceMM,'positionRMSMM',options.PositionRMSToleranceMM, ...
         'maxTangentDeg',options.TangentMaxToleranceDeg,'endpointPositionMM',1e-7,'endpointDerivative',1e-7,'endpointTangentDeg',1e-5), ...

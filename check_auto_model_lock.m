@@ -1,9 +1,14 @@
-function report=check_auto_model_lock(action)
+function report=check_auto_model_lock(action,outputFolder)
 % Contracts by default. Explicit quality actions use real solar fixed35 runs.
 if nargin<1, action='contracts'; end
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:AutoModelBatch','Use independent MATLAB batch.');
-folder=fullfile(root,'outputs','model_mapping_20261031'); if ~isfolder(folder), mkdir(folder); end
+folder=fullfile(root,'outputs','model_mapping_20261031');
+if nargin>=2
+    assert(strcmp(action,'contracts'),'cam:AutoModelFolder','Output override is only supported for contracts.');
+    folder=outputFolder;
+end
+if ~isfolder(folder), mkdir(folder); end
 assert(ismember(action,{'contracts','quality-cubic','quality-bezier','continue-cubic','trends'}),'cam:AutoModelAction','Unknown action.');
 if strcmp(action,'trends'), report=trends(folder); return; end
 if strcmp(action,'continue-cubic'), report=continuation(folder); return; end

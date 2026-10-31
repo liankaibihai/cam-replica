@@ -3,6 +3,9 @@ function [project,info]=applyTrainingSettings(project,changes,algorithm,mappingO
 % independently refined verification grid always takes precedence.
 if nargin<3, algorithm='peak-gradient-v2'; end
 if nargin<4, mappingOptions=struct(); end
+if isfield(mappingOptions,'AllowApproximate') && mappingOptions.AllowApproximate
+    assert(~strcmp(algorithm,'auto-tune-v1'),'cam:ForceManualOnly','强制改形仅用于显式手动应用，不能由全自动使用。');
+end
 camdesign.validateProject(project); original=project;
 settings=camdesign.trainingSettings(project); current=settings;
 mode=camdesign.routeModel(project.params); names=fieldnames(changes); bsplineDegree=3;
@@ -56,5 +59,6 @@ project=camdesign.updateTrainingSampling(project);
 camdesign.validateProject(project);
 info=struct('controlPoints',countInfo,'actualSamples',project.params.samples, ...
     'modelChanged',~strcmp(oldMode,mode),'shapePreservationGuaranteed',fitInfo.shapePreservationGuaranteed, ...
-    'fitInfo',fitInfo,'semantics','True-geometry mapping: exact space embedding or independently validated bounded fit; never reinterpret XY controls.');
+    'fitInfo',fitInfo,'forced',fitInfo.forced,'approximate',fitInfo.approximate, ...
+    'semantics','True-geometry mapping; explicit manual override may retain a finite endpoint-constrained fit outside the unchanged preservation gates. Never reinterpret XY controls.');
 end
