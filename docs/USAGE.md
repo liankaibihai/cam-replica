@@ -305,3 +305,5 @@ simulation = camdesign.simulate(result.cam, actual, ...
 ## 比赛几何与本队设计配置
 
 新增检查的参数语义、诊断边界和本队计算表来源见[比赛几何](CONTEST_GEOMETRY.md)。普通启动使用`camdesign.teamSolarProject()`的用户确认设计值；历史太阳能回归工厂仍为`solarTestProject()`。当前保存的项目不因新默认而被覆盖。
+
+候选多核搜索已单独提供，默认关闭；支持可行性四方向及接力的四方向阶段，详见[候选并行搜索](CANDIDATE_PARALLEL.md)。后台计算本身不等于候选并行。

@@ -14,6 +14,8 @@ arguments
     options.FinalAssessment (1,1) logical=true
     options.StageCompleteFcn=[]
     options.StartFcn=[]
+    options.CandidateWorkers (1,1) double {mustBeInteger,mustBeNonnegative}=0
+    options.Budget=[]
 end
 if isempty(callback), callback=@(~,~,~)false; end
 camdesign.validateProject(project);
@@ -21,7 +23,9 @@ assert(exist('fmincon','file')==2 && license('test','Optimization_Toolbox'),'cam
 assert(options.FourFraction<1,'cam:RelaySettings','四方向预算比例须小于1。');
 assert(~camdesign.dynamicWeightSettings(project.params).enabled,'cam:RelayDynamicWeights','接力和多起点不支持动态权重，请先明确关闭。');
 assert(~strcmp(camdesign.routeModel(project.params),'bspline-v1'),'cam:BSplineBackend','接力目前支持cubic/独立贝塞尔，不自动切换画法。');
-budget=camdesign.PhysicalEvaluationBudget(options.MaxPhysicalEvaluations,options.MaxSeconds); timer=tic;
+budget=options.Budget;
+if isempty(budget), budget=camdesign.PhysicalEvaluationBudget(options.MaxPhysicalEvaluations,options.MaxSeconds); end
+timer=tic;
 best=project; bestResult=budget.evaluate(best,true); bestState=camdesign.feasibilityFourState(best,bestResult);
 assert(bestState.valid,'cam:RelayInitial','初始路线无法评价。');
 requestedStarts=options.Starts; if strcmp(options.Mode,'relay-sqp-v1'), requestedStarts=1; end
@@ -40,7 +44,7 @@ for startIndex=1:starts
     activePhase='four'; phaseOffset=totalIterations; fourLease=max(1,floor(allocation*options.FourFraction));
     try
         [candidate,trace,fourInfo]=camdesign.optimizeFeasibilityFour(seed,@stageProgress, ...
-            Budget=budget,MaxPhysicalEvaluations=fourLease,MaxIterations=options.MaxIterations,FinalAssessment=false);
+            Budget=budget,MaxPhysicalEvaluations=fourLease,MaxIterations=options.MaxIterations,FinalAssessment=false,CandidateWorkers=options.CandidateWorkers);
         archive(candidate,trace,fourInfo,fourLease); totalIterations=phaseOffset+fourInfo.iterations;
         stopped=stopped || strcmp(fourInfo.reason,'user_stop');
         left=min(budget.Limit-budget.Used,allocation-(budget.Used-startAt));

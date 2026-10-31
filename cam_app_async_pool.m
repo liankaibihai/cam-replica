@@ -1,13 +1,16 @@
-function [pool,executor,created]=cam_app_async_pool(kind,algorithm,create)
+function [pool,executor,created]=cam_app_async_pool(kind,algorithm,create,candidateWorkers)
 % Choose before executing any solver. Never retry a numerical task or delete
 % someone else's pool. Current auto-tune uses interior-point, not SQP.
 if nargin<3, create=true; end
+if nargin<4, candidateWorkers=0; end
 pool=[]; executor='thread'; created=false;
 if strcmp(kind,'optimize') && ismember(algorithm, ...
         {'relay-sqp-v1','multistart-relay-sqp-v1','fmincon-sqp-experimental-v1'})
     executor='process';
 end
+if candidateWorkers>0, executor='process'; end
 if ~create, return; end
+if candidateWorkers>0, executor='process'; pool=cam_candidate_pool(candidateWorkers); return; end
 if strcmp(executor,'thread'), pool=backgroundPool; return; end
 assert(license('test','Distrib_Computing_Toolbox'),'cam:BackgroundProcessUnavailable', ...
     '此算法需要后台进程和Parallel Computing Toolbox；可明确选择前台兼容。');

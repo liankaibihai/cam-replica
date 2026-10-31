@@ -74,6 +74,17 @@ if ~isempty(execution)
         add(menu,'MenuSelectedFcn',keys{k},['cam-' keys{k}],app.Figure);
     end
 end
+% Candidate menu is opt-in and absent from unmodified surviving windows.
+candidateMenu=findall(app.Figure,'Type','uimenu','Tag','cam-candidate-menu');
+assert(numel(candidateMenu)<=1,'cam:CallbackAmbiguous','候选菜单身份不唯一。');
+if ~isempty(candidateMenu)
+    assert(isequal(candidateMenu.Parent,app.Figure),'cam:CallbackOwnership','候选菜单父级不匹配。');
+    for key={'candidate-toggle','candidate-two','candidate-four','candidate-prepare'}
+        item=findall(candidateMenu,'Tag',['cam-' key{1}]);
+        assert(isscalar(item) && isequal(item.Parent,candidateMenu),'cam:CallbackAmbiguous','候选菜单项身份不唯一。');
+        add(item,'MenuSelectedFcn',key{1},key{1},app.Figure);
+    end
+end
 if numel(roots)>1
     detail=roots(2);
     assert(strcmp(detail.Tag,'cam-app-details') || strcmp(detail.Name,'结果详情 · 评分、日志与交点'), ...

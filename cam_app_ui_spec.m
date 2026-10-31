@@ -49,6 +49,9 @@ for action={'import','save','seed','calculate','optimize','stop','simulate','exp
     rows(end+1,:)={['action/' action{1}],'action','fixed',action}; %#ok<AGROW>
 end
 spec=cell2struct(rows,{'key','method','mode','fixedArguments'},2);
+for item={'candidate-toggle','candidate-two','candidate-four','candidate-prepare'}
+    spec(end+1)=struct('key',item{1},'method','candidateSettings','mode','fixed','fixedArguments',{{}});
+end
 if nargin>0
     index=find(strcmp({spec.key},key));
     assert(isscalar(index),'cam:CallbackKey','未知或歧义的界面回调键：%s',key); spec=spec(index);

@@ -16,6 +16,7 @@ camdesign.validateProject(project);
 app=CamReplicaApp('off',project,false);
 app.Project=project; app.syncInputs(); app.calculate();
 cam_app_async('install',app);
+cam_candidate_ui(app,'install');
 app.Figure.Visible='on';
 app.message(project.name);
 app.message(project.provenance);

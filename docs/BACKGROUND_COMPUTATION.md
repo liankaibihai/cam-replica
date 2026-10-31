@@ -39,3 +39,5 @@
 在线MathWorks页面目前展示R2026b；本项目R2025b行为由本机探针和实际生产入口检查确认。参考：[线程支持](https://www.mathworks.com/help/matlab/matlab_prog/run-functions-on-threads.html)、[后台池及限制](https://www.mathworks.com/help/matlab/ref/parallel.backgroundpool.html)、[响应式App](https://www.mathworks.com/help/matlab/matlab_prog/use-the-background-to-make-your-apps-more-responsive.html)。线程worker中的嵌套backgroundPool不构成本轮候选并行方案；不复制预算对象给多个worker分别花同一份额度。
 
 最终`check_background_ui`在独立R2025b实例的13组检查通过，涵盖7种UI优化方法、后台/同步结果和搜索决策一致性、预览/详情浏览、正常停止、强制取消回退、旧消息拒绝、结果先存后发、关闭清理及已有池保护。计算/优化发布路径的主线程`evaluate`调用数均为0；这是被检查路径的证据，不表示所有UI操作都不计算。完整记录见[CHG-019](changes/2026/2026-10-31-019-background-computation.md)，[本地证据哈希](../data/background_computation_20261031.json)。
+
+候选多核搜索已单独提供，默认关闭；支持可行性四方向及接力的四方向阶段，详见[候选并行搜索](CANDIDATE_PARALLEL.md)。后台计算本身不等于候选并行。

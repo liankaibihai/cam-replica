@@ -8,6 +8,7 @@ outcome=struct('runId',job.runId,'kind',job.kind,'status','success','project',jo
     'result',[],'history',[],'info',struct(),'report',[],'simulation',[], ...
     'postProcessingEvaluations',0,'displayEvaluationAttempts',0,'elapsedSeconds',0,'errorIdentifier','','errorMessage','');
 outcome.refinedInspection=[];
+ledger=[];
 try
     if shouldStop(), outcome.status='stopped'; return; end
     switch job.kind
@@ -15,7 +16,14 @@ try
             outcome.result=camdesign.evaluate(job.project,true);
             if shouldStop(), outcome.status='stopped'; outcome.result=[]; end
         case 'optimize'
-            [project,history,info]=camdesign.optimize(job.project,@progress,job.algorithm);
+            options=struct();
+            if isfield(job,'candidateWorkers') && job.candidateWorkers>0
+                options.CandidateWorkers=job.candidateWorkers;
+                limit=Inf; seconds=Inf;
+                if ismember(job.algorithm,{'relay-sqp-v1','multistart-relay-sqp-v1'}), limit=200000; seconds=3600; end
+                ledger=camdesign.PhysicalEvaluationBudget(limit,seconds); options.Budget=ledger;
+            end
+            [project,history,info]=camdesign.optimize(job.project,@progress,job.algorithm,options);
             outcome.project=project; outcome.history=history; outcome.info=info;
             if isfield(info,'cachedFinalResult') && ~isempty(info.cachedFinalResult)
                 outcome.result=info.cachedFinalResult;
@@ -44,6 +52,7 @@ catch ex
 end
 outcome.elapsedSeconds=toc(timer);
 outcome.displayEvaluationAttempts=displayEvaluations;
+if ~isempty(ledger), outcome.candidateLedger=ledger.snapshot(); end
     function stop=shouldStop()
         request=poll(control);
         while ~isempty(request)

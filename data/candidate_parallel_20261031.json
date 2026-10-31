@@ -1,0 +1,200 @@
+{
+  "baseline": "688541c",
+  "status": "Accepted synthetic functionality and independent source review; existing user window busy, not installed; no competition benchmark.",
+  "prototypeOverlapSeconds": 0.5089994519948959,
+  "final": {
+    "resultsEqual": true,
+    "budgetEqual": true,
+    "invalidCount": 1,
+    "overlapSeconds": 0.0020015984773635864,
+    "intervals": [
+      [
+        740286.9551570602,
+        740286.9551570949
+      ],
+      [
+        740286.9551570602,
+        740286.9551570833
+      ],
+      [
+        740286.955157118,
+        740286.9551571297
+      ]
+    ],
+    "stop": "user_stop",
+    "relayEvaluations": 37,
+    "scope": "Handwritten small input only; real candidate overlap, no competition speed claim.",
+    "ui": {
+      "mode": "background",
+      "active": false,
+      "status": "finished",
+      "runId": "cam-tp5625d3e2_3ddc_479e_8c4f_19dd480be6c0",
+      "kind": "optimize",
+      "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tp5625d3e2_3ddc_479e_8c4f_19dd480be6c0.mat",
+      "summary": {
+        "message": "后台训练完成，用时 0.39 秒；图形已刷新。 显示计算 0 次，后处理 0 次（与搜索预算分列）。",
+        "postProcessingEvaluations": 0,
+        "displayEvaluationAttempts": 0,
+        "previewPackets": 1,
+        "resultFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tp5625d3e2_3ddc_479e_8c4f_19dd480be6c0-result.mat",
+        "resultSaved": true,
+        "executor": "process"
+      }
+    },
+    "uiLedger": {
+      "limit": null,
+      "used": 37,
+      "fullChecks": 15,
+      "invalid": 0,
+      "elapsedSeconds": 0.384028,
+      "maxSeconds": null,
+      "reserved": 0,
+      "parallelIntervals": [
+        [
+          740286.9552981481,
+          740286.9552981597
+        ],
+        [
+          740286.9552981481,
+          740286.9552981713
+        ],
+        [
+          740286.9552981481,
+          740286.9552981597
+        ],
+        [
+          740286.9552981481,
+          740286.9552981713
+        ],
+        [
+          740286.9552981944,
+          740286.9552982176
+        ],
+        [
+          740286.9552981944,
+          740286.9552982291
+        ],
+        [
+          740286.9552981944,
+          740286.9552982291
+        ],
+        [
+          740286.9552981944,
+          740286.9552982291
+        ]
+      ],
+      "scope": "Actual camdesign.evaluate attempts, including failures and full acceptance checks; cache/objective/constraint calls do not count. Independent final assessment excluded."
+    },
+    "canceled": {
+      "mode": "background",
+      "active": false,
+      "status": "canceled",
+      "runId": "cam-tpde2e658e_80cd_4367_9233_03d7eb666093",
+      "kind": "optimize",
+      "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tpde2e658e_80cd_4367_9233_03d7eb666093.mat",
+      "summary": {
+        "message": "后台任务已取消；原结果、历史和输入保留，本次没有最终验收。",
+        "postProcessingEvaluations": 0,
+        "displayEvaluationAttempts": 0,
+        "previewPackets": 0,
+        "resultFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\background_jobs\\cam-tpde2e658e_80cd_4367_9233_03d7eb666093-result.mat",
+        "resultSaved": true,
+        "executor": "process"
+      }
+    }
+  },
+  "logs": [
+    "local/matlab_13baeab19f98478893887bae1bd4ed42.log",
+    "local/matlab_9498fa98feeb40539f79dda62f177dd5.log",
+    "local/matlab_b8d1ad225a1a47889080fc568377f2fe.log",
+    "local/matlab_cc33904087e6412498bd98fdbcb708b0.log"
+  ],
+  "testedSources": {
+    "baseline": "688541c3fdecdf24ab077151e29b851959a909fa",
+    "matchesExecutedSnapshot": "source_3",
+    "files": [
+      {
+        "file": "+camdesign/PhysicalEvaluationBudget.m",
+        "sha256": "b887dba73f340c7784ab58c6665393c3dbbfb07797d2382e74483e88b2647474"
+      },
+      {
+        "file": "+camdesign/optimizeFeasibilityFour.m",
+        "sha256": "fc455f1db5cfbca3d0dff6ab1ad13552d6f2b80fbcbdc292a4612084fcd8b632"
+      },
+      {
+        "file": "+camdesign/optimizeRelay.m",
+        "sha256": "8586b2db3b9b19d9161923a078b9abcda3848ca49f7d4a4f3506f64669b81025"
+      },
+      {
+        "file": "cam_app_async.m",
+        "sha256": "b64109d86641ae3135b3b672753ee6e809180c5696ceda09aeebcbe200b13b52"
+      },
+      {
+        "file": "cam_app_async_pool.m",
+        "sha256": "6715ab6fd87ce6d8c1eb0c8dbbad72d16962b004072959d3215338b11a1ab098"
+      },
+      {
+        "file": "cam_app_async_worker.m",
+        "sha256": "69a04ad1d894a4f39d73aebeec6c5b0d96e66d80dce90b250ab34ce34a3a244f"
+      },
+      {
+        "file": "cam_app_ui_binding_plan.m",
+        "sha256": "3f202cc26df1c7ed57d3ac0a667cfbf52d4a023312453c92c5c9ad4fc0657860"
+      },
+      {
+        "file": "cam_app_ui_dispatch.m",
+        "sha256": "ffa2928c88027ee6bca2dcbbc32dc7f4ddf8b0ad1fc4eb66ef148abb3b8bc09e"
+      },
+      {
+        "file": "cam_app_ui_spec.m",
+        "sha256": "6ecb79529b9c7076c6c02cb7ace21ac652d08dd7317f13b8132df5380f70555b"
+      },
+      {
+        "file": "launch_cam_app.m",
+        "sha256": "104b409b532ca6c28313dff676f6b9e65260fa19ae9e31954c0c734b904806e3"
+      },
+      {
+        "file": "+camdesign/candidateEvaluation.m",
+        "sha256": "0eedfcf4b24698a7bee398b8390146e18f52b4abc2d1aa21dcc9f1cdc3649915"
+      },
+      {
+        "file": "cam_candidate_pool.m",
+        "sha256": "b701aa9320b710f07e48c8748813b77548cc7d14b39c61d3e324c2f18e8e8b25"
+      },
+      {
+        "file": "cam_candidate_ui.m",
+        "sha256": "3af25b7157cb16ab2e6cd4f089eb3a2671a5723c13f1dff117f7bb7c348c85f9"
+      },
+      {
+        "file": "check_candidate_parallel.m",
+        "sha256": "df27bf96470496f2e48171c3eec7460a33dde5be7e5317f19853f8bbe9d65e7d"
+      }
+    ]
+  },
+  "evidenceFiles": [
+    {
+      "path": "outputs/candidate_parallel_20261031/source_freeze.json",
+      "sha256": "2b754e179133a7c9c2c6ed940f6be888cf61517ff3517fb96a733f46c40297d6"
+    },
+    {
+      "path": "outputs/candidate_parallel_20261031/check_3/verification.json",
+      "sha256": "4f943dcb5d04b8ca93ecd1182558c4b5d00d40eff1205281fcd568a08db947e6"
+    },
+    {
+      "path": "local/matlab_13baeab19f98478893887bae1bd4ed42.log",
+      "sha256": "4b770c67b2fe2759efedd69b9879f8d61b67932cc23a56b5b0dd67b866f74c30"
+    },
+    {
+      "path": "local/matlab_9498fa98feeb40539f79dda62f177dd5.log",
+      "sha256": "235a24b8e28855d0585e3cf049922c0b8df80624609ce40e493b2a768b8f512f"
+    },
+    {
+      "path": "local/matlab_b8d1ad225a1a47889080fc568377f2fe.log",
+      "sha256": "b74a17b99738e9b75f887000957a22f5d3a7cb823e83d34935b9e3e3a6b968fa"
+    },
+    {
+      "path": "local/matlab_cc33904087e6412498bd98fdbcb708b0.log",
+      "sha256": "b74a17b99738e9b75f887000957a22f5d3a7cb823e83d34935b9e3e3a6b968fa"
+    }
+  ]
+}

@@ -8,6 +8,7 @@ arguments
     options.Budget=[]
     options.MaxIterations (1,1) double {mustBeInteger,mustBePositive}=project.params.iterations
     options.FinalAssessment (1,1) logical=true
+    options.CandidateWorkers (1,1) double {mustBeInteger,mustBeNonnegative}=0
 end
 if isempty(callback), callback=@(~,~,~)false; end
 camdesign.validateProject(project);
@@ -19,6 +20,7 @@ budget=options.Budget; if isempty(budget), budget=camdesign.PhysicalEvaluationBu
 assert(isa(budget,'camdesign.PhysicalEvaluationBudget'),'cam:PhysicalBudget','Budget须为共享物理评价计数器。');
 if isfinite(options.MaxPhysicalEvaluations), validateattributes(options.MaxPhysicalEvaluations,{'double'},{'integer'}); end
 budgetStart=budget.Used; stopAt=min(budget.Limit,budgetStart+options.MaxPhysicalEvaluations);
+fullStart=budget.FullChecks; invalidStart=budget.Invalid;
 current=assess(best,true); assert(current.valid,'cam:FeasibilityInitial','初始路线无法评价；请先调整合法初值。');
 probe=project.params.gradientProbeMM; initialProbe=probe; step=project.params.stepMM;
 controls=camdesign.searchSchedule(project.params,1); refinements=0; expansions=0; reason='iteration_limit';
@@ -36,11 +38,27 @@ for iteration=1:options.MaxIterations
     candidates=cell(numel(free)*2,1); states=candidates; costs=inf(numel(candidates),1); slot=0;
     fullProbes=~current.feasible && current.partialViolationSquared<1e-8 && current.violations(9)>0;
     anchor=proxy(current); before=current;
+    batch={};
+    if options.CandidateWorkers>0
+        frozen=cell(1,2*numel(free));
+        for j=1:numel(free)
+            for directionIndex=1:2
+                trial=best; trial.nodes(free(j))=baseNodes(free(j))+(3-2*directionIndex)*probe;
+                frozen{2*j-2+directionIndex}=trial;
+            end
+        end
+        batch=budget.evaluateBatch(frozen,fullProbes,stopAt,options.CandidateWorkers);
+    end
     for k=1:numel(free)
         idx=free(k); values=[Inf Inf]; referenceValues=values;
         for sign=[1 -1]
             trial=best; trial.nodes(idx)=baseNodes(idx)+sign*probe;
-            state=assess(trial,fullProbes); cost=proxy(state); slot=slot+1;
+            if options.CandidateWorkers>0
+                index=slot+1;
+                if index>numel(batch), budget.check(stopAt); end
+                state=assess(trial,fullProbes,batch{index});
+            else, state=assess(trial,fullProbes); end
+            cost=proxy(state); slot=slot+1;
             candidates{slot}=trial; states{slot}=state; costs(slot)=cost;
             values(1+(sign<0))=cost;
             if state.valid, referenceValues(1+(sign<0))=state.metrics.score; end
@@ -144,6 +162,9 @@ catch ex
     if ~isequal(history(end).nodes,best.nodes), history(end+1)=entry(iteration,true,'budget_terminal_selection'); end
 end
 trainingState=current;
+if options.CandidateWorkers>0
+    evals=budget.Used-budgetStart; fullEvals=budget.FullChecks-fullStart; invalidEvals=budget.Invalid-invalidStart;
+end
 assessment=[]; verified=false; converged=false; verification=[]; assessmentAttempts=0;
 if options.FinalAssessment
     assessment=camdesign.autoTuneAssessment(best,[project.params.samples project.params.camSamples]);
@@ -169,11 +190,16 @@ info.trainingSemantics='Four-direction probes and whole-set improvement weightin
 info.proposalVersion='dual-proposal-small-error-pressure-margin-v3';
 info.weightSemantics='Original six fixed weights/peak-v2 score guide a SECOND proposal only; neither reference score nor dynamic weights decide acceptance. Independent feasibility/quality ranking remains unchanged.';
 notify(history(end).iteration);
-    function state=assess(candidate,full)
-        budget.check(stopAt);
+    function state=assess(candidate,full,record)
+        if nargin<3, budget.check(stopAt); end
         evals=evals+1; if full, fullEvals=fullEvals+1; end
         try
-            result=budget.evaluate(candidate,full,stopAt); state=camdesign.feasibilityFourState(candidate,result); state.result=result;
+            if nargin<3, result=budget.evaluate(candidate,full,stopAt);
+            else
+                if ~isempty(record.identifier), error(record.identifier,'%s',record.message); end
+                result=record.result;
+            end
+            state=camdesign.feasibilityFourState(candidate,result); state.result=result;
         catch ex
             if ismember(ex.identifier,{'cam:PhysicalEvaluationBudget','cam:PhysicalTimeBudget'}), rethrow(ex); end
             if startsWith(ex.identifier,'cam:') || startsWith(ex.identifier,'MATLAB:expected')

@@ -7,6 +7,8 @@ classdef PhysicalEvaluationBudget < handle
         Invalid=0
         MaxSeconds
         Timer
+        Reserved=0
+        ParallelIntervals=zeros(0,2)
     end
     methods
         function obj=PhysicalEvaluationBudget(limit,maxSeconds)
@@ -17,7 +19,7 @@ classdef PhysicalEvaluationBudget < handle
         end
         function check(obj,stopAt)
             if nargin<2, stopAt=Inf; end
-            if obj.Used>=min(obj.Limit,stopAt), error('cam:PhysicalEvaluationBudget','实际物理评价预算已用尽。'); end
+            if obj.Used+obj.Reserved>=min(obj.Limit,stopAt), error('cam:PhysicalEvaluationBudget','实际物理评价预算已用尽。'); end
             if toc(obj.Timer)>=obj.MaxSeconds, error('cam:PhysicalTimeBudget','物理评价时间预算已用尽。'); end
         end
         function result=evaluate(obj,project,full,stopAt)
@@ -29,7 +31,36 @@ classdef PhysicalEvaluationBudget < handle
         function data=snapshot(obj)
             data=struct('limit',obj.Limit,'used',obj.Used,'fullChecks',obj.FullChecks,'invalid',obj.Invalid, ...
                 'elapsedSeconds',toc(obj.Timer),'maxSeconds',obj.MaxSeconds, ...
+                'reserved',obj.Reserved,'parallelIntervals',obj.ParallelIntervals, ...
                 'scope','Actual camdesign.evaluate attempts, including failures and full acceptance checks; cache/objective/constraint calls do not count. Independent final assessment excluded.');
+        end
+        function records=evaluateBatch(obj,projects,full,stopAt,workers)
+            % Reserve before submission, settle actual attempts after drain.
+            % A failed future retains its reservation (unknown execution),
+            % never refunds it or fabricates a physical-attempt count.
+            pool=backgroundPool;
+            assert(~isempty(pool) && pool.NumWorkers>=workers,'cam:CandidatePool','候选池配额不足，未开始探针。');
+            available=min(numel(projects),min(obj.Limit,stopAt)-obj.Used-obj.Reserved);
+            records=cell(1,available);
+            for first=1:workers:available
+                obj.check(stopAt); last=min(available,first+workers-1); futures=cell(1,last-first+1);
+                failure=[];
+                for k=first:last
+                    obj.Reserved=obj.Reserved+1;
+                    try, futures{k-first+1}=parfeval(pool,@camdesign.candidateEvaluation,1,projects{k},full);
+                    catch ex, obj.Reserved=obj.Reserved-1; failure=ex; break; end
+                end
+                for k=first:last
+                    if isempty(futures{k-first+1}), continue; end
+                    try
+                        item=fetchOutputs(futures{k-first+1}); records{k}=item;
+                        obj.Reserved=obj.Reserved-1; obj.Used=obj.Used+1; obj.FullChecks=obj.FullChecks+double(full);
+                        obj.Invalid=obj.Invalid+double(~isempty(item.identifier));
+                        obj.ParallelIntervals(end+1,:)=[item.started item.finished];
+                    catch ex, failure=ex; end
+                end
+                if ~isempty(failure), rethrow(failure); end
+            end
         end
     end
 end

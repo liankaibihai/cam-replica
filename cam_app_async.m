@@ -27,7 +27,12 @@ switch command
                 % A source update alone must not migrate a user's existing
                 % live session. launch/install explicitly activates the UI.
                 if ~isappdata(app.Figure,'camAsyncInstalled'), value=false; return; end
-                if strcmp(mode(app),'foreground'), value=false; return; end
+                if strcmp(mode(app),'foreground')
+                    if index==2 && isappdata(app.Figure,'camCandidateEnabled') && getappdata(app.Figure,'camCandidateEnabled')
+                        app.Status.Text='候选并行需要选择后台计算；未启动串行替代任务。'; app.message(app.Status.Text); return;
+                    end
+                    value=false; return;
+                end
                 names={'calculate','optimize','actual-closure'};
                 try, start(app,names{index});
                 catch ex, app.Status.Text=['后台未启动：',ex.message]; app.message(app.Status.Text); end
@@ -62,6 +67,10 @@ switch command
     case 'cancel'
         if ~active, return; end
         state.forceCanceled=true; state.stopRequested=true; state.status='stopping'; setState(app,state);
+        if isfield(state,'candidateWorkers') && state.candidateWorkers>0
+            requestStop(app,state,false);
+            app.Status.Text='候选并行正在结算当前批次，随后取消发布并恢复原状态；不遗弃已启动的物理尝试。'; return;
+        end
         if ~isempty(state.future), cancel(state.future); end
         app.Status.Text='已强制取消本次后台任务；保留原结果与历史，本次没有最终验收。';
     case 'complete'
@@ -80,7 +89,14 @@ end
 assert(exist('backgroundPool','builtin')==5 || ~isempty(which('backgroundPool')),'cam:BackgroundUnavailable', ...
     '本机后台计算不可用；可在“计算执行方式”菜单明确选择前台兼容。');
 candidate=app.inputProject(); assertPlain(candidate);
-[~,executor]=cam_app_async_pool(kind,app.AlgorithmSelector.Value,false);
+n=0;
+if strcmp(kind,'optimize') && isappdata(app.Figure,'camCandidateEnabled') && getappdata(app.Figure,'camCandidateEnabled')
+    assert(ismember(app.AlgorithmSelector.Value,{'feasibility-four-direction-v1','relay-sqp-v1','multistart-relay-sqp-v1'}), ...
+        'cam:CandidateBackend','候选并行目前只支持可行性四方向及接力中的四方向阶段。请选择支持的方法或关闭开关。');
+    n=2; if isappdata(app.Figure,'camCandidateWorkers'), n=getappdata(app.Figure,'camCandidateWorkers'); end
+end
+[~,executor]=cam_app_async_pool(kind,app.AlgorithmSelector.Value,false,n);
+if n>0, executor='process'; end
 [~,runId]=fileparts(tempname); runId=['cam-' runId];
 folder=fullfile(fileparts(mfilename('fullpath')),'local','background_jobs'); if ~isfolder(folder), mkdir(folder); end
 backup=app.snapshotModelSwitchState(); backup.reason=['background-' kind]; %#ok<NASGU>
@@ -90,8 +106,8 @@ state=struct('runId',runId,'kind',kind,'status','queued','future',[],'completion
     'before',backup,'beforeStopRequested',app.StopRequested,'priorModelBackup',app.ModelSwitchBackupPath, ...
     'priorBackupText',app.ModelSwitchBackupInfo.Text,'priorBackupTooltip',app.ModelSwitchBackupInfo.Tooltip, ...
     'priorSeedText',app.AutoTuneSeed.Text,'rendering',false,'deferredTerminal',[],'lastSequence',0,'previewed',false, ...
-    'expected',struct('Project',app.Project,'Result',app.Result,'History',app.History),'executor',executor);
-job=struct('runId',runId,'kind',kind,'project',candidate,'algorithm',app.AlgorithmSelector.Value);
+    'expected',struct('Project',app.Project,'Result',app.Result,'History',app.History),'executor',executor,'candidateWorkers',n);
+job=struct('runId',runId,'kind',kind,'project',candidate,'algorithm',app.AlgorithmSelector.Value,'candidateWorkers',n);
 queue=parallel.pool.DataQueue; afterEach(queue,@cam_app_async_receive); state.queue=queue; setState(app,state);
 entry=struct('runId',runId,'app',app,'future',[]); cam_app_async_registry('put',runId,entry);
 app.StopRequested=false; app.setBusy(true);
@@ -101,7 +117,7 @@ try
         app.message(app.Status.Text); drawnow;
     end
     assert(isgraphics(app.Figure),'cam:BackgroundClosed','窗口已关闭，任务未提交。');
-    [pool,~,created]=cam_app_async_pool(kind,job.algorithm);
+    [pool,~,created]=cam_app_async_pool(kind,job.algorithm,true,n);
     if created, app.message('已创建单worker后台进程池；仅一个任务拥有搜索预算，后续可复用。'); end
     future=parfeval(pool,@cam_app_async_worker,1,job,queue);
     state=getState(app); state.future=future; setState(app,state); entry.future=future;
@@ -165,16 +181,18 @@ function finish(app,state,future)
 state.status='finishing'; state.rendering=true; setState(app,state); install(app);
 status='error'; text=''; outcome=[]; resultFile='';
 try
+    if isempty(future.Error)
+        outcome=fetchOutputs(future);
+        [folder,name]=fileparts(state.backupFile); resultFile=fullfile(folder,[name '-result.mat']);
+        save(resultFile,'outcome','-v7');
+    end
     if state.forceCanceled || ~isempty(future.Error)
         if state.forceCanceled || strcmp(future.Error.identifier,'parallel:fevalqueue:ExecutionCancelled')
             status='canceled'; text='后台任务已取消；原结果、历史和输入保留，本次没有最终验收。';
         else, text=['后台未完成：',future.Error.message,'；原结果保留，可明确选择前台兼容后重试。']; end
     else
-        outcome=fetchOutputs(future);
         % Preserve completed work BEFORE any UI/token/input/publication guard.
         % A rejected publication must not discard a fully computed candidate.
-        [folder,name]=fileparts(state.backupFile); resultFile=fullfile(folder,[name '-result.mat']);
-        save(resultFile,'outcome','-v7');
         assert(strcmp(outcome.runId,state.runId),'cam:BackgroundToken','后台任务标识不匹配。');
         if strcmp(outcome.status,'error')
             text=['后台未完成：',outcome.errorIdentifier,' ',outcome.errorMessage,'；原结果与历史保留。未自动重试。'];
