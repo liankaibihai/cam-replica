@@ -70,3 +70,9 @@
 协作遵循 [AGENTS.md](AGENTS.md)：用户指定的总指挥对话负责任务拆分与验收，侧栏中的 Sol 极高独立执行器对话承担明确分工的任务。长期规则不混入逐次进度；每个逻辑改动使用独立 Markdown 记录，并同步维护索引。
 
 文档入口：[总索引](docs/INDEX.md) · [逐次变更索引](docs/changes/README.md) · [经验与教训](docs/LESSONS_LEARNED.md)。已有历史从 Git 和原记录查阅，新记录按模板逐次建立。
+
+## GitHub 仓库
+
+私有仓库：[liankaibihai/cam-replica](https://github.com/liankaibihai/cam-replica)。当前开发分支为 `feature/reference-comparison`，保留完整提交历史。
+
+仓库包含源码、检查脚本、整理后的证据与文档；`local/`、运行输出、原视频与原软件不随仓库分发。部分来源核对脚本依赖本机原始资料路径，克隆后不会自动获得这些资料。运行入口见上方“运行”，功能边界见 [验证记录](docs/VALIDATION.md)。
