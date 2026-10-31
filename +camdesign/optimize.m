@@ -7,6 +7,8 @@ assert(~strcmp(camdesign.routeModel(project.params),'bspline-v1') || ...
     'cam:BSplineBackend','标准B样条目前仅支持约束优化（内点法），不支持峰值、四方向、SQP或全自动组合。');
 if strcmp(algorithm,'auto-tune-v1')
     [best,history,info]=camdesign.optimizeAuto(project,callback);
+elseif strcmp(algorithm,'feasibility-four-direction-v1')
+    [best,history,info]=camdesign.optimizeFeasibilityFour(project,callback);
 elseif strcmp(algorithm,'legacy-v1')
     [best,history,info]=camdesign.optimizeLegacy(project,callback);
 elseif strcmp(algorithm,'fmincon-sqp-experimental-v1')

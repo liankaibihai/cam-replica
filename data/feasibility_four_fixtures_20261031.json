@@ -1,0 +1,612 @@
+{
+  "schema": "feasibility-four-fixtures-1",
+  "baseline": "dada6c638590ec7013e1d36050e1c25cd9c48f63",
+  "scope": "Independent cam-replica projects only; fixed synthetic team-design inputs, not measured hardware or original executable data. Vector bounds/weights are restored as rows after JSON decoding.",
+  "teamSeed": {
+    "sourceExperiment": "common initial for paired 600-round experiments",
+    "sourceArtifact": "outputs/feasibility_four_20261031/common_initial.mat",
+    "sourceArtifactSHA256": "9AB397B03407CE461E37EBF9BA3A7F9261B842DEA68A2A1E19E348369B51C6C1",
+    "project": {
+      "schema": "cam-replica-1",
+      "name": "本队太阳能初赛 · 平推设计（外廓待补）",
+      "params": {
+        "mechanism": "flat",
+        "wheelDiameter": 135,
+        "gearRatio": 35,
+        "lever": 20,
+        "rollerRadius": 2,
+        "referenceDiameter": 150,
+        "thickness": 5,
+        "driveX": 60,
+        "driveY": -110,
+        "drivenX": -105,
+        "drivenY": -110,
+        "sensorX": 20,
+        "sensorY": 0,
+        "headingDeg": 90,
+        "startSteeringDeg": 0,
+        "samples": 601,
+        "camSamples": 721,
+        "autoRatio": false,
+        "returnAngleDeg": 60,
+        "maxSteeringDeg": 65,
+        "maxPressureDeg": 35,
+        "hitTolerance": 30,
+        "iterations": 600,
+        "stepMM": 10,
+        "gradientProbeMM": 0.5,
+        "bounds": [
+          0,
+          6000,
+          0,
+          2000
+        ],
+        "weights": [
+          12,
+          1,
+          2,
+          3,
+          10,
+          10
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "bezier": {
+          "type": "overlap-bernstein-v1",
+          "degree": 5,
+          "parameterLength": 12315.653650084425
+        },
+        "training": {
+          "version": "independent-training-v1",
+          "interpolationPerSegment": 20,
+          "densityManaged": true,
+          "bezierDegree": 5,
+          "learningRate": 1,
+          "smoothingRate": 0.1,
+          "adjustInterval": 50,
+          "adjustExponent": 0
+        }
+      },
+      "targets": [
+        [
+          410,
+          420
+        ],
+        [
+          700,
+          1580
+        ],
+        [
+          1440,
+          1100
+        ],
+        [
+          3170,
+          1560
+        ],
+        [
+          4160,
+          1440
+        ],
+        [
+          5110,
+          1630
+        ],
+        [
+          5450,
+          440
+        ],
+        [
+          3250,
+          350
+        ],
+        [
+          2500,
+          750
+        ],
+        [
+          410,
+          420
+        ]
+      ],
+      "nodes": [
+        [
+          390,
+          420
+        ],
+        [
+          481.90510087074767,
+          781.70831605583089
+        ],
+        [
+          573.81020174149523,
+          1143.4166321116618
+        ],
+        [
+          665.71530261224279,
+          1505.1249481674929
+        ],
+        [
+          924.32056123767461,
+          1447.3466963341764
+        ],
+        [
+          1239.4294103825011,
+          1247.3820328042664
+        ],
+        [
+          1571.0652784514953,
+          1154.8476082936038
+        ],
+        [
+          1931.7063657725405,
+          1250.8552101066971
+        ],
+        [
+          2292.3474530935855,
+          1346.8628119197906
+        ],
+        [
+          2652.9885404146307,
+          1442.8704137328839
+        ],
+        [
+          3013.6296277356755,
+          1538.8780155459772
+        ],
+        [
+          3379.9259663848138,
+          1554.1752644155195
+        ],
+        [
+          3750.4316345109819,
+          1509.3980005823073
+        ],
+        [
+          4120.9373026371495,
+          1464.6207367490954
+        ],
+        [
+          4487.7995594812528,
+          1523.3798083712209
+        ],
+        [
+          4854.2412594533271,
+          1594.0900197383469
+        ],
+        [
+          5149.0512614836571,
+          1549.2096638835915
+        ],
+        [
+          5248.81669875375,
+          1189.5899883980667
+        ],
+        [
+          5348.5821360238415,
+          829.9703129125412
+        ],
+        [
+          5448.3475732939332,
+          470.35063742701652
+        ],
+        [
+          5137.0199887574854,
+          409.83691598160476
+        ],
+        [
+          4764.1502837541248,
+          394.1004436731784
+        ],
+        [
+          4391.2805787507632,
+          378.36397136475193
+        ],
+        [
+          4018.410873747403,
+          362.62749905632558
+        ],
+        [
+          3645.541168744041,
+          346.8910267478991
+        ],
+        [
+          3272.6714637406826,
+          331.1545544394728
+        ],
+        [
+          2940.6099312414422,
+          494.31012656916494
+        ],
+        [
+          2611.45116887939,
+          670.19066167833773
+        ],
+        [
+          2256.2478159671518,
+          691.55802820851409
+        ],
+        [
+          1887.6221030676161,
+          633.29537070549543
+        ],
+        [
+          1518.996390168076,
+          575.03271320247609
+        ],
+        [
+          1150.3706772685382,
+          516.77005569945709
+        ],
+        [
+          781.74496436899813,
+          458.50739819643763
+        ],
+        [
+          413.11925146946021,
+          400.24474069341863
+        ]
+      ]
+    }
+  },
+  "missedPressurePeak": {
+    "sourceExperiment": "feasibility/primary_v2, 600 rounds, native feasible but dense pressure failed",
+    "sourceArtifact": "outputs/feasibility_four_20261031/feasibility/primary_v2/solver_result.mat",
+    "sourceArtifactSHA256": "657D940C2E2B6E60D7278BBBE3A9CE9495513D26EF65F88DDBFC1C2258A4ACF6",
+    "sourceAlgorithmSHA256": "650c249734ca3411fb602550bda1816d51449ff13029339b92f8a871f8c3d89f",
+    "project": {
+      "schema": "cam-replica-1",
+      "name": "本队太阳能初赛 · 平推设计（外廓待补）",
+      "params": {
+        "mechanism": "flat",
+        "wheelDiameter": 135,
+        "gearRatio": 35,
+        "lever": 20,
+        "rollerRadius": 2,
+        "referenceDiameter": 150,
+        "thickness": 5,
+        "driveX": 60,
+        "driveY": -110,
+        "drivenX": -105,
+        "drivenY": -110,
+        "sensorX": 20,
+        "sensorY": 0,
+        "headingDeg": 90,
+        "startSteeringDeg": 0,
+        "samples": 601,
+        "camSamples": 721,
+        "autoRatio": false,
+        "returnAngleDeg": 60,
+        "maxSteeringDeg": 65,
+        "maxPressureDeg": 35,
+        "hitTolerance": 30,
+        "iterations": 600,
+        "stepMM": 10,
+        "gradientProbeMM": 0.5,
+        "bounds": [
+          0,
+          6000,
+          0,
+          2000
+        ],
+        "weights": [
+          12,
+          1,
+          2,
+          3,
+          10,
+          10
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "bezier": {
+          "type": "overlap-bernstein-v1",
+          "degree": 5,
+          "parameterLength": 12315.653650084425
+        },
+        "training": {
+          "version": "independent-training-v1",
+          "interpolationPerSegment": 20,
+          "densityManaged": true,
+          "bezierDegree": 5,
+          "learningRate": 1,
+          "smoothingRate": 0.1,
+          "adjustInterval": 50,
+          "adjustExponent": 0
+        }
+      },
+      "targets": [
+        [
+          410,
+          420
+        ],
+        [
+          700,
+          1580
+        ],
+        [
+          1440,
+          1100
+        ],
+        [
+          3170,
+          1560
+        ],
+        [
+          4160,
+          1440
+        ],
+        [
+          5110,
+          1630
+        ],
+        [
+          5450,
+          440
+        ],
+        [
+          3250,
+          350
+        ],
+        [
+          2500,
+          750
+        ],
+        [
+          410,
+          420
+        ]
+      ],
+      "nodes": [
+        [
+          390,
+          420
+        ],
+        [
+          481.00607022844446,
+          822.13764850205609
+        ],
+        [
+          329.6986441049051,
+          1330.0730211876828
+        ],
+        [
+          239.01297271737263,
+          1810.9429393011026
+        ],
+        [
+          1101.4232836338028,
+          1699.3591032608244
+        ],
+        [
+          1304.98791069399,
+          1252.8808733689866
+        ],
+        [
+          1449.8736463673674,
+          879.75424859435952
+        ],
+        [
+          1810.4797948902724,
+          1035.6595143598879
+        ],
+        [
+          2272.1781803124663,
+          1321.3151894251264
+        ],
+        [
+          2654.965324474073,
+          1482.0299745101834
+        ],
+        [
+          3014.3762744346918,
+          1628.2278416029753
+        ],
+        [
+          3379.9229552660386,
+          1627.4692439623775
+        ],
+        [
+          3757.5686978500325,
+          1468.2043112340382
+        ],
+        [
+          4140.0056932810512,
+          1349.5599609686046
+        ],
+        [
+          4547.3642696442821,
+          1508.339259873334
+        ],
+        [
+          4969.9850462568957,
+          1780.1132354759968
+        ],
+        [
+          5273.7856979891776,
+          1785.8025443958345
+        ],
+        [
+          5428.6095486358654,
+          1310.2762931519371
+        ],
+        [
+          5598.34752563404,
+          808.97156889104531
+        ],
+        [
+          5681.0760713207828,
+          322.36021322434868
+        ],
+        [
+          5278.4879404282065,
+          198.25563084638776
+        ],
+        [
+          4806.6103740587505,
+          261.7922876544564
+        ],
+        [
+          4409.7495306332939,
+          344.39197257464815
+        ],
+        [
+          4011.9183242004119,
+          337.47598753177743
+        ],
+        [
+          3616.2014604810383,
+          252.59782245732279
+        ],
+        [
+          3231.5986774276266,
+          200.67044797782634
+        ],
+        [
+          2926.4902307287812,
+          474.83177638323929
+        ],
+        [
+          2637.2596050846605,
+          804.72723388836857
+        ],
+        [
+          2288.5932679215907,
+          834.50790546184135
+        ],
+        [
+          1901.9132396149366,
+          686.41725869596723
+        ],
+        [
+          1518.6166714007147,
+          588.60329010514124
+        ],
+        [
+          1157.5517835104718,
+          505.4740275055712
+        ],
+        [
+          769.43984792933225,
+          478.56570550442865
+        ],
+        [
+          430.30937790999582,
+          402.37388334525104
+        ]
+      ]
+    }
+  },
+  "nearControlBound": {
+    "sourceExperiment": "R2025b strict cubic-to-six-control degree5 Bezier mapping, synthetic straight line [200 200;200 450;200 700], bounds [0 1000 0 1000]",
+    "sourceFunction": "camdesign.applyTrainingSettings -> camdesign.mapRouteModel",
+    "sourceApplyTrainingSHA256": "A3349D01BA18CE7AEDEAF81CB9CA2F1D45F5E344D91D4BA7E7BB25722BA0FB82",
+    "sourceMapRouteModelSHA256": "E47329CDE788FC58D2937E86D60EE7161E6B3B9BD686F15DA5A95C8A01CD1858",
+    "changes": {
+      "routeModel": "bezier-blend-independent-v1",
+      "controlPointCount": 6,
+      "bezierDegree": 5,
+      "interpolationPerSegment": 20,
+      "learningRate": 0.5
+    },
+    "project": {
+      "schema": "cam-replica-1",
+      "name": "2027 点位 · 齿条方案示例",
+      "params": {
+        "mechanism": "flat",
+        "wheelDiameter": 130,
+        "gearRatio": 35,
+        "lever": 25,
+        "rollerRadius": 2,
+        "referenceDiameter": 100,
+        "thickness": 5,
+        "driveX": 79.5,
+        "driveY": -120,
+        "drivenX": -79.85,
+        "drivenY": -120,
+        "sensorX": 0,
+        "sensorY": 0,
+        "headingDeg": 90,
+        "startSteeringDeg": 0,
+        "samples": 101,
+        "camSamples": 181,
+        "autoRatio": false,
+        "returnAngleDeg": 60,
+        "maxSteeringDeg": 65,
+        "maxPressureDeg": 35,
+        "hitTolerance": 30,
+        "iterations": 1,
+        "stepMM": 10,
+        "gradientProbeMM": 0.5,
+        "bounds": [
+          0,
+          1000,
+          0,
+          1000
+        ],
+        "weights": [
+          12,
+          1,
+          2,
+          3,
+          10,
+          10
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "bezier": {
+          "type": "overlap-bernstein-v1",
+          "degree": 5,
+          "parameterLength": 500
+        },
+        "training": {
+          "version": "independent-training-v1",
+          "interpolationPerSegment": 20,
+          "densityManaged": true,
+          "bezierDegree": 5,
+          "learningRate": 0.5,
+          "smoothingRate": 0,
+          "adjustInterval": 10,
+          "adjustExponent": 0
+        }
+      },
+      "targets": [
+        [
+          200,
+          200
+        ],
+        [
+          200,
+          450
+        ],
+        [
+          200,
+          700
+        ]
+      ],
+      "nodes": [
+        [
+          200,
+          200
+        ],
+        [
+          -9.4536028634361786E-15,
+          -1.8755279658614654E-14
+        ],
+        [
+          200.00000000000006,
+          400
+        ],
+        [
+          199.99999999999983,
+          499.99999999999994
+        ],
+        [
+          199.99999999999997,
+          599.99999999999989
+        ],
+        [
+          200,
+          700
+        ]
+      ]
+    }
+  }
+}

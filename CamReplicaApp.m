@@ -191,8 +191,8 @@ classdef CamReplicaApp < handle
             app.TrainingModel.Layout.Row=1; app.TrainingModel.Layout.Column=2;
             label=uilabel(methods,'Text','优化方法','FontWeight','bold'); label.Layout.Row=1; label.Layout.Column=3;
             app.AlgorithmSelector=uidropdown(methods, ...
-                'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）','全自动调优（权重＋训练）'}, ...
-                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1','auto-tune-v1'}, ...
+                'Items',{'梯度搜索（峰值评分）','四方向试探（加权）','约束优化（内点法）','全自动调优（权重＋训练）','四方向（可行性优先）'}, ...
+                'ItemsData',{'peak-gradient-v2','video-four-direction-v1','fmincon-interior-point-experimental-v1','auto-tune-v1','feasibility-four-direction-v1'}, ...
                 'Value','peak-gradient-v2','ValueChangedFcn',@(~,~)app.algorithmChanged(), ...
                 'Tooltip','全自动锁定当前路线模型及阶数，只比较权重和适用训练设置。物理参数和阈值不自动改变。');
             app.AlgorithmSelector.Layout.Row=1; app.AlgorithmSelector.Layout.Column=4;
@@ -1253,14 +1253,19 @@ classdef CamReplicaApp < handle
             editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
             constrained=startsWith(app.AlgorithmSelector.Value,'fmincon'); enabled=app.DynamicWeightsEnabled.Value;
             automatic=strcmp(app.AlgorithmSelector.Value,'auto-tune-v1');
-            app.DynamicWeightsEnabled.Enable=editable && ~automatic && (~constrained || enabled);
-            for k=1:4, app.DynamicWeightFields(k).Enable=editable && enabled && ~constrained && ~automatic; end
-            app.Buttons(5).Enable=editable && ~(constrained && enabled) && ~(automatic && app.TrainingDirty);
+            feasibility=strcmp(app.AlgorithmSelector.Value,'feasibility-four-direction-v1');
+            app.WeightsTable.ColumnEditable=[false editable false];
+            app.DynamicWeightsEnabled.Enable=editable && ~automatic && (~constrained || enabled) && (~feasibility || enabled);
+            for k=1:4, app.DynamicWeightFields(k).Enable=editable && enabled && ~constrained && ~automatic && ~feasibility; end
+            app.Buttons(5).Enable=editable && ~((constrained || feasibility) && enabled) && ~(automatic && app.TrainingDirty);
             app.Buttons(5).Tooltip='使用当前画法和优化方法训练';
             if automatic
                 app.DynamicWeightInfo.Text='全自动调优独立选择六项权重，此按违规调权开关不叠加，原配置保留。实际获选值与验收结论见全自动页。';
                 app.Buttons(5).Tooltip='运行多组权重与训练设置比较；可能耗时较长，可停止，最终按几何与收敛门禁验收。';
                 if app.TrainingDirty, app.Buttons(5).Tooltip='请先还原待应用手动训练输入，或切回原方法应用后再启动全自动。'; end
+            elseif feasibility
+                app.DynamicWeightInfo.Text='六项固定分引导辅助试探；最终按独立可行性/质量排序接受。基础权重可编辑，但不直接决定接受；不支持动态调权，请明确关闭。';
+                if enabled, app.Buttons(5).Tooltip='此后端不支持动态权重；请先关闭动态开关，程序不会静默忽略。'; end
             elseif constrained
                 app.DynamicWeightInfo.Text='内点法本次目标必须固定，暂不支持动态权重。已开启时请先取消勾选；基础权重仍可在训练前修改。';
                 if enabled, app.Buttons(5).Tooltip='内点法暂不支持动态权重；请先在权重页关闭动态开关。'; end
@@ -1305,6 +1310,9 @@ classdef CamReplicaApp < handle
             else, description=[description,newline,'梯度力=差分距离；步幅×学习率×阶梯衰减；平滑仅接受改善。']; end
             app.TrainingInfo.Text=sprintf('实际：%d 控制点 / %d 路线采样\n当前：%s；%s\n%s', ...
                 size(app.Project.nodes,1),app.Project.params.samples,model,pending,description);
+            if strcmp(app.AlgorithmSelector.Value,'feasibility-four-direction-v1')
+                app.TrainingInfo.Text=[app.TrainingInfo.Text,newline,'独立排序：先降归一化违规；完整可行后按小偏差、长度及至多0.5°压力余量偏好折中（不改变正式门限）。六项分引导辅助提案，需另看4/8倍验收。'];
+            end
             if isfield(app.Project,'routeMapping')
                 fit=app.Project.routeMapping;
                 if all(isfield(fit,{'forced','withinTolerance','positionMaxMM','positionRMSMM','maxTangentErrorDeg'}))
@@ -1692,6 +1700,20 @@ classdef CamReplicaApp < handle
                 app.message(detail);
                 for k=1:numel(info.remainingConstraints), app.message(['约束验收：',info.remainingConstraints{k}]); end
             end
+            if isfield(info,'rankingState')
+                rank=info.rankingState; fine=info.assessment.eight.refinedGrid;
+                detail=['8倍计算未通过：',fine.errorMessage];
+                if fine.valid
+                    fm=fine.metrics;
+                    detail=sprintf('8倍：偏差 %.4gmm；工作/回程压力 %.4g°/%.4g°；前轮/主动轮 %.1f/%.1fmm；自交 %d；顺序 %d；中心出界 %.4gmm。', ...
+                        fm.maxHitError,fm.maxWorkPressureDeg,fm.maxReturnPressureDeg,fm.routeLength,fm.driveLength,fm.intersectionCount, ...
+                        fm.visitOrderSatisfied,fine.maxTrajectoryOutsideMM);
+                end
+                app.Status.Text=sprintf('可行性优先四方向 %d/%d轮：训练可行=%d；4/8倍验收=%d；Σ违规² %.5g；质量排序 %.5g\n%s', ...
+                    info.iterations,info.requestedIterations,info.trainingFeasible,info.verifiedFeasible,rank.violationSquared,rank.qualityObjective,detail);
+                app.message(info.rankingSemantics); app.message(detail);
+                app.message('六项分数保留参照并可引导辅助提案，不决定候选接受；排序下降不等于比赛/实车通过。');
+            end
             for k=1:numel(app.Result.warnings), app.message(['结束时仍需处理：',app.Result.warnings{k}]); end
             app.updateDiagnostics();
             if isfield(info,'verification') && isfield(info.verification,'refinedGrid')
@@ -1728,6 +1750,12 @@ classdef CamReplicaApp < handle
             if isfield(history,'objective')
                 app.Status.Text=sprintf('实验约束 %d/%d 轮    求解目标 %.5g    最大归一化违规 %.5g；尚待加密验收', ...
                     iteration,project.params.iterations,history(end).objective,history(end).maxConstraintViolation);
+            end
+            if isfield(history,'feasibilityStage')
+                h=history(end); stage='恢复可行性'; if h.trainingFeasible, stage='训练网格可行内改进'; end
+                app.Status.Text=sprintf('四方向·%s %d/%d轮；违规平方和 %.5g / 最大 %.5g；六项分数仅参照\n前轮 %.1fmm / 主动轮 %.1fmm；偏差 %.3gmm；工作/回程压力 %.3g°/%.3g°；另需4/8倍验收', ...
+                    stage,iteration,project.params.iterations,h.violationSquared,h.maxNormalizedViolation,h.metrics.routeLength,h.metrics.driveLength, ...
+                    h.metrics.maxHitError,h.metrics.maxWorkPressureDeg,h.metrics.maxReturnPressureDeg);
             end
             if isfield(history,'weightMode') && strcmp(history(end).weightMode,'violation-adaptive-v1')
                 app.Status.Text=[app.Status.Text,sprintf('；本轮动态 %.5f（权重会变）',history(end).dynamicScore)];
@@ -1948,6 +1976,9 @@ classdef CamReplicaApp < handle
             actual=repmat({'未记录'},6,1);
             if ~isempty(data.activeWeights), actual=arrayfun(@(value)sprintf('%.5g',value),data.activeWeights(:),'UniformOutput',false); end
             app.WeightsTable.Data(:,3)=actual; app.WeightsTable.Tooltip=[data.state,' · ',data.weightSource];
+            if strcmp(app.AlgorithmSelector.Value,'feasibility-four-direction-v1')
+                app.WeightsTable.Tooltip=[app.WeightsTable.Tooltip,'；此后端六项分数仅参照/辅助提案，独立可行性排序决定接受。'];
+            end
             weightState='当前'; actualHeading='实际';
             if startsWith(data.state,'历史'), weightState='历史'; actualHeading='历史';
             elseif startsWith(data.state,'加密'), weightState='加密重评';
@@ -2107,6 +2138,21 @@ classdef CamReplicaApp < handle
             h=app.History(end); state='本次'; iteration='未记录';
             if isfield(h,'iteration'), iteration=sprintf('%d',h.iteration); end
             if ~app.diagnosticsAreCurrent() || isempty(app.HistoryProject) || ~isequaln(app.HistoryProject,app.Project), state='上次'; end
+            if isfield(h,'feasibilityStage')
+                phase='恢复可行性'; if h.trainingFeasible, phase='训练网格可行内改进'; end
+                app.TrainingRuntime.Text=sprintf('%s第%s轮：%s\n违规Σ² %.5g / 最大 %.5g；质量排序 %.5g\n完整自交/顺序检查=%d；参照分不参与排序。\n4/8倍及比赛几何另验，非赛事合格。', ...
+                    state,iteration,phase,h.violationSquared,h.maxNormalizedViolation,h.qualityObjective,h.fullGeometryChecked);
+                if strcmp(h.event,'finished') && isstruct(app.OptimizationInfo) && isfield(app.OptimizationInfo,'rankingState')
+                    info=app.OptimizationInfo; fine=info.assessment.eight.refinedGrid;
+                    if fine.valid
+                        fm=fine.metrics;
+                        app.TrainingRuntime.Text=sprintf('%s第%s轮：%s\nΣ违规² %.4g；质量排序 %.5g\n8倍偏差 %.4gmm；压力 %.4g/%.4g°\n8倍前轮/主动轮 %.1f/%.1fmm\n4/8倍验收=%d；六项分仅参照/辅助', ...
+                            state,iteration,phase,h.violationSquared,h.qualityObjective,fm.maxHitError,fm.maxWorkPressureDeg,fm.maxReturnPressureDeg, ...
+                            fm.routeLength,fm.driveLength,info.verifiedFeasible);
+                    end
+                end
+                return;
+            end
             if isfield(h,'autoStage')
                 controls=struct(); if isfield(h,'trainingControls'), controls=h.trainingControls; end
                 app.TrainingRuntime.Text=sprintf('%s全自动：%s\n真实训练采样%s；控制点%s；差分设置%s mm', ...
