@@ -149,9 +149,11 @@ classdef CamReplicaApp < handle
             '优化迭代次数','初始优化步幅 / mm','梯度差分步长 / mm','路线采样数','凸轮采样数'}
     end
     methods
-        function app=CamReplicaApp(visibility)
+        function app=CamReplicaApp(visibility,project,calculateInitially)
             if nargin<1, visibility='on'; end
-            app.Project=camdesign.defaultProject();
+            if nargin<2, project=camdesign.defaultProject(); end
+            if nargin<3, calculateInitially=true; end
+            app.Project=project;
             app.Figure=uifigure('Name','工创赛凸轮设计 · MATLAB 复现 v0.2', ...
                 'Position',[70 60 1320 860],'Visible',visibility,'Color',[.95 .96 .98],'AutoResizeChildren','off');
             app.Figure.CloseRequestFcn=@(~,~)app.closeRequested();
@@ -290,8 +292,10 @@ classdef CamReplicaApp < handle
             app.TrainingInfo.Layout.Row=10; app.TrainingInfo.Layout.Column=[1 2];
             trainingActions=uigridlayout(trainingRoot,[2 2],'RowHeight',{28,28},'ColumnWidth',{'1x',84},'Padding',[2 0 2 0],'RowSpacing',3,'ColumnSpacing',4);
             trainingActions.Layout.Row=3;
-            app.TrainingApplyButton=uibutton(trainingActions,'Text','应用训练设置','FontSize',11,'ButtonPushedFcn',@(~,~)app.applyTraining());
-            app.TrainingResetButton=uibutton(trainingActions,'Text','还原','FontSize',11,'ButtonPushedFcn',@(~,~)app.syncTrainingInputs());
+            app.TrainingApplyButton=uibutton(trainingActions,'Text','应用训练设置','FontSize',11, ...
+                'ButtonPushedFcn',{@cam_app_ui_dispatch,app,'applyTraining'});
+            app.TrainingResetButton=uibutton(trainingActions,'Text','还原','FontSize',11, ...
+                'ButtonPushedFcn',{@cam_app_ui_dispatch,app,'syncTrainingInputs'});
             app.TrainingApplyButton.Tooltip='严格保形映射；最大位置、RMS及切向超限则拒绝，原方案和待应用输入保留。';
             app.ForceModelSwitchButton=uibutton(trainingActions,'Text','强制切换（允许改形）','FontSize',10, ...
                 'Tooltip','仅手动使用：先备份完整项目、结果与所有待应用输入，再接受端点约束合格的有限真实曲线拟合。超出保形门限会明确标示；物理计算失败仍保留新路线供编辑。', ...
@@ -371,7 +375,8 @@ classdef CamReplicaApp < handle
             app.ActualClosureStatus=uilabel(closureBar,'Text','尚未检查；固定实际轮廓进行接触与车辆反推，再加密积分比较。','WordWrap','on','FontSize',11);
             app.ActualClosureTable=uitable(closureLayout,'ColumnName',{'闭环检查项','计算值／状态'},'ColumnWidth',{280,'auto'},'ColumnEditable',false,'RowName',{});
             app.createContestGeometryResults();
-            app.syncInputs(); app.calculate();
+            app.syncInputs();
+            if calculateInitially, app.calculate(); end
             app.message('v0.2：齿条/平推、固定凸轮调参；独立样条与数值优化。尚未完成原版点集或实车对照。');
             app.Figure.SizeChangedFcn=@(~,~)app.resizeLayout(); app.resizeLayout();
         end

@@ -9,9 +9,13 @@ launch_cam_app
 
 无需安装旧版 Runtime，不修改原 EXE。窗口使用 MATLAB 自带的 `uifigure`，正常桌面启动即可；某些受限执行环境可能阻塞图形组件初始化。
 
-普通入口 `launch_cam_app` 现加载太阳能初赛平推测试项目；`camdesign.solarTestProject()` 返回同一输入。初赛按地球→金星→太阳→谷神星→天王星→冥王星→鸟神星→木星→水星→地球，共10次访问、9处不同位置，不能去重删除终点地球。完整16行保留为地点库。运行 `check_2027_solar_course` 可核对并导出点位；`c=camdesign.course2027Solar();` 的 `c.preliminarySoftwareMM` 保留规则正X坐标。
+若基础工作区已经有仍打开的 `camReplicaApp`，再次无参数运行 `launch_cam_app` 会保留并返回这个窗口，同时给出提示，不重新初始化项目。显式传入项目仍按原入口新建窗口。开发用 `CamReplicaApp('off',syntheticProject,false)` 可只创建界面而跳过初始计算，供无路线计算的按钮检查使用；普通启动行为仍会计算初始项目。
 
-太阳能测试项目传动比35已由用户确认；用户可手动修改，程序不会自动调整。其他机械尺寸、90°初始航向及工程阈值仍是未实测的历史配置，默认请求300轮。从传感器位于首个地球中心开始计算，尚不含实车发车引入段。`launch_cam_app(camdesign.defaultProject())` 可显式打开旧生物质能齿条回归样例（比值20）；底层 `CamReplicaApp()` 保留该旧回归输入，日常请用 `launch_cam_app`。
+源码更新后，旧窗口若提示找不到 `@(~,~)app.applyTraining()` 或 `@(~,~)app.syncTrainingInputs()`，在同一MATLAB命令窗口运行 `repair_cam_app_callbacks(camReplicaApp)`。若对象保存于其他变量，传入该变量。工具先备份项目、原结果和未应用输入，再就地修复这两个按钮；不清空工作区、不关闭窗口、不应用输入、不计算路线。修复只覆盖“应用训练设置”和“还原”两个入口，其余旧匿名回调仍可能受后续源码编辑影响。详见[恢复记录与范围](changes/2026/2026-10-31-016-ui-callback-recovery.md)。
+
+普通入口 `launch_cam_app` 加载 `camdesign.teamSolarProject()` 的本队太阳能平推设计值；`camdesign.solarTestProject()` 保留历史回归配置，两者并非相同机械输入。初赛按地球→金星→太阳→谷神星→天王星→冥王星→鸟神星→木星→水星→地球，共10次访问、9处不同位置，不能去重删除终点地球。完整16行保留为地点库。运行 `check_2027_solar_course` 可核对并导出点位；`c=camdesign.course2027Solar();` 的 `c.preliminarySoftwareMM` 保留规则正X坐标。
+
+本队传动比35和计算表机械设计值已由用户确认；传动比可手动修改，程序不会自动调整。设计值不等于制造实测，90°初始航向及工程阈值仍沿用测试假设，默认请求300轮。从传感器位于首个地球中心开始计算，尚不含实车发车引入段。`launch_cam_app(camdesign.defaultProject())` 可显式打开旧生物质能齿条回归样例（比值20）；底层 `CamReplicaApp()` 保留该旧回归输入，日常请用 `launch_cam_app`。
 
 绿色节点/控制多边形不是行驶轨迹。默认三次样条经过前轮插值节点；“训练”页可切换独立贝塞尔融合，其控制点通常不在实际曲线上。太阳能默认初始化为10个前轮节点，目标访问始终独立保存。样条模式可在“节点”页对选中段保形插点或“全段细化”，初始曲线保持不变，移动新增节点才改变形状；两次细化为10→18→34，场外拟插点跳过并记录。独立贝塞尔模式的融合、初始化和调节属于本版实现，原版完整融合与调度尚未恢复。
 

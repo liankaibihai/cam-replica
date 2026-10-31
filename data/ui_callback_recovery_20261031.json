@@ -1,0 +1,308 @@
+{
+  "change": "CHG-2026-10-31-016",
+  "baselineCommit": "40fca017f5a9253530741a83d561ad28ac87b306",
+  "userConstraint": "No contest dataset computation, route optimization, quality comparison or physical testing in this change. Only necessary callback/state checks.",
+  "reportedError": {
+    "source": "C:\\Users\\22416\\.codex\\attachments\\fbfc4e7f-f99a-4d90-8543-6d5f888e7e7e\\已粘贴的文本.txt",
+    "sha256": "0e8a62dee584924704e5502a25d9319d4826496188bc6b26874fafda363adc67",
+    "applyOccurrences": 23,
+    "resetOccurrences": 4
+  },
+  "initialLiveBackup": {
+    "path": "local/tp8ebf1087_a052_4233_b43f_949497bf6f0e.mat",
+    "variable": "camRecovery016Backup",
+    "sha256": "2eb380515573418de02a2e57aad5b378c4ea1a9a2159349b59bb5a226e099fe7",
+    "bytes": 559050,
+    "method": "Direct snapshotModelSwitchState on the idle existing camReplicaApp; no calculate/optimization or window close."
+  },
+  "status": "Completed: current user window backed up and two callbacks rebound with identical state; no contest data computation or optimization. Local Git only.",
+  "syntheticChecks": [
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_2/verification.json",
+      "sha256": "640ccbbdbfe86edd1b5a591590a21943f3a6a16a73daba895862067c67e01900",
+      "release": "2025b",
+      "checksPassed": 4,
+      "physicalEvaluateCalls": 0,
+      "defaultCourseFactoryCalls": 0,
+      "realAppApplyCalls": 0,
+      "resetEventEngine": "direct real-control callback (UI test gesture unavailable)",
+      "resetEventEngineError": "MATLAB:uiautomation:Driver:ParentTabUnselected: 在执行手势之前，必须选择组件的父选项卡。",
+      "driftProbe": {
+        "failureReproduced": true,
+        "liveIdentifier": "MATLAB:dispatcher:UnableToResolveHiddenFunction",
+        "liveMessage": "在 F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\ui_callback_recovery_20261031\\basic_2\\drift_fixture\\legacy_training_callback016.m 中找不到函数 @(~,~)app.applyTraining()。",
+        "serializedIdentifier": "",
+        "serializedMessage": "",
+        "namedDispatchPassed": true,
+        "scope": "Temporary callback factory source replaced while old handle exists, plus saved-handle reload; no clear all/classes and no course/model calculations."
+      },
+      "repair": {
+        "version": "cam-two-button-callback-repair-1",
+        "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\ui_callback_recovery_20261031\\basic_2\\backups\\tp9e03ebd2_87fc_4532_8d9b_3832e0f32ece.mat",
+        "bindings": [
+          {
+            "property": "TrainingApplyButton.ButtonPushedFcn",
+            "function": "cam_app_ui_dispatch",
+            "method": "applyTraining",
+            "file": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\cam_app_ui_dispatch.m"
+          },
+          {
+            "property": "TrainingResetButton.ButtonPushedFcn",
+            "function": "cam_app_ui_dispatch",
+            "method": "syncTrainingInputs",
+            "file": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\cam_app_ui_dispatch.m"
+          }
+        ],
+        "stateUnchanged": true,
+        "calculationsPerformed": 0,
+        "oldWindowRetained": true,
+        "alreadyBound": false,
+        "scope": "Only two training button callback properties changed. Other anonymous callbacks are not repaired; no general hot-reload guarantee. No apply/calculate/optimization action is executed."
+      },
+      "scope": "Synthetic three-point input and UI state only. No actual course data, route calculation, apply action or optimization. User desktop window untouched."
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_3/verification.json",
+      "sha256": "8ff2fe5d28a8d4550b572e39691b0bc773415fdc2352f34520cf7924f5818b17",
+      "release": "2025b",
+      "checksPassed": 4,
+      "physicalEvaluateCalls": 0,
+      "defaultCourseFactoryCalls": 0,
+      "realAppApplyCalls": 0,
+      "resetEventEngine": "direct real-control callback (UI test gesture unavailable)",
+      "resetEventEngineError": "MATLAB:uiautomation:Driver:VisibleHierarchy: Component must belong to a visible hierarchy.",
+      "driftProbe": {
+        "failureReproduced": true,
+        "liveIdentifier": "MATLAB:dispatcher:UnableToResolveHiddenFunction",
+        "liveMessage": "在 F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\ui_callback_recovery_20261031\\basic_3\\drift_fixture\\legacy_training_callback016.m 中找不到函数 @(~,~)app.applyTraining()。",
+        "serializedIdentifier": "",
+        "serializedMessage": "",
+        "namedDispatchPassed": true,
+        "scope": "Temporary callback factory source replaced while old handle exists, plus saved-handle reload; no clear all/classes and no course/model calculations."
+      },
+      "repair": {
+        "version": "cam-two-button-callback-repair-1",
+        "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\ui_callback_recovery_20261031\\basic_3\\backups\\tp85397664_5799_4913_b473_80846632f182.mat",
+        "bindings": [
+          {
+            "property": "TrainingApplyButton.ButtonPushedFcn",
+            "function": "cam_app_ui_dispatch",
+            "method": "applyTraining",
+            "file": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\cam_app_ui_dispatch.m"
+          },
+          {
+            "property": "TrainingResetButton.ButtonPushedFcn",
+            "function": "cam_app_ui_dispatch",
+            "method": "syncTrainingInputs",
+            "file": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\cam_app_ui_dispatch.m"
+          }
+        ],
+        "stateUnchanged": true,
+        "calculationsPerformed": 0,
+        "oldWindowRetained": true,
+        "alreadyBound": false,
+        "scope": "Only two training button callback properties changed. Other anonymous callbacks are not repaired; no general hot-reload guarantee. No apply/calculate/optimization action is executed."
+      },
+      "scope": "Synthetic three-point input and UI state only. No actual course data, route calculation, apply action or optimization. User desktop window untouched."
+    }
+  ],
+  "liveRepair": {
+    "version": "cam-two-button-callback-repair-1",
+    "backupFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\ui_callback_recovery_backups\\tp3708fa4f_8010_434e_9f0f_52b1b5e81910.mat",
+    "bindings": [
+      {
+        "property": "TrainingApplyButton.ButtonPushedFcn",
+        "function": "cam_app_ui_dispatch",
+        "method": "applyTraining",
+        "file": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\cam_app_ui_dispatch.m"
+      },
+      {
+        "property": "TrainingResetButton.ButtonPushedFcn",
+        "function": "cam_app_ui_dispatch",
+        "method": "syncTrainingInputs",
+        "file": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\cam_app_ui_dispatch.m"
+      }
+    ],
+    "stateUnchanged": true,
+    "calculationsPerformed": 0,
+    "oldWindowRetained": true,
+    "alreadyBound": false,
+    "scope": "Only two training button callback properties changed. Other anonymous callbacks are not repaired; no general hot-reload guarantee. No apply/calculate/optimization action is executed."
+  },
+  "logs": [
+    {
+      "path": "local/matlab_6b096038731c4a44a2521c61c8e88c3e.log",
+      "sha256": "b5241b0894fbed18d60a03a3f33a544e31d11f33b2b6ff89d71ea4a54849a3c0",
+      "content": "{\b错误使用 assert\n断言失败。\n\n出错 check_ui_callback_recovery (第 27 行)\nsecond=repair_cam_app_callbacks(app,Backup=false); assert(second.alreadyBound && second.stateUnchanged);\n                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n}\b \n"
+    },
+    {
+      "path": "local/matlab_2d2082f033db4041b5e41d01f91184b1.log",
+      "sha256": "8eca4b1206a42c00c3500fa5ee5f97d599ff518a7fe51f27989873c1f236ac3f",
+      "content": "[\b警告: 已有窗口及未保存输入保持不变。源码更新后若按钮报匿名回调错误，请运行 repair_cam_app_callbacks(camReplicaApp)，不要清空工作区或关闭旧窗。]\b \n[\b> 位置：launch_cam_app (第 8 行)\n位置: check_ui_callback_recovery (第 30 行)]\b \nUI_CALLBACK_RECOVERY_PASS checks=4 evaluate=0 defaultCourse=0 apply=0 resetEngine=direct real-control callback (UI test gesture unavailable) driftReproduced=1\nEXISTING_BACKUP_METADATA camRecovery016Backup\n"
+    },
+    {
+      "path": "local/matlab_f46b4a084f3349aa8372a37ac1b24af5.log",
+      "sha256": "104cdfedd1d15d847cac60f839104a09e4e1ed48610dd328d41cdf1e647aa237",
+      "content": "[\b警告: 已有窗口及未保存输入保持不变。源码更新后若按钮报匿名回调错误，请运行 repair_cam_app_callbacks(camReplicaApp)，不要清空工作区或关闭旧窗。]\b \n[\b> 位置：launch_cam_app (第 8 行)\n位置: check_ui_callback_recovery (第 30 行)]\b \nUI_CALLBACK_RECOVERY_PASS checks=4 evaluate=0 defaultCourse=0 apply=0 resetEngine=direct real-control callback (UI test gesture unavailable) driftReproduced=1\n"
+    }
+  ],
+  "localArtifacts": [
+    {
+      "path": "outputs/ui_callback_recovery_20261031/executor_delivery.json",
+      "bytes": 6238,
+      "sha256": "464c57b07820bb05756bfd49b1509bd804cb3ab7343c35ca949ff28304aae843"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic/backups/tp68831bf4_1427_4937_97ea_ebe6170cc4a0.mat",
+      "bytes": 3066,
+      "sha256": "084d2dd1feb6803098c801627ac506ca99f64727a94744465389d7f4e1dbef3d"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_2/verification.json",
+      "bytes": 9155,
+      "sha256": "640ccbbdbfe86edd1b5a591590a21943f3a6a16a73daba895862067c67e01900"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_2/backups/tp9e03ebd2_87fc_4532_8d9b_3832e0f32ece.mat",
+      "bytes": 3066,
+      "sha256": "3ee0f0c3e81fa781a9b93cbfebc2de57386d54969ae1d81ba9a5059a9292483c"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_2/drift_fixture/CallbackCounter016.m",
+      "bytes": 215,
+      "sha256": "8610daa2be58bb9218fcff9f7ba24695beb8542332327b43aefcd33630bd55e5"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_2/drift_fixture/factory_after.txt",
+      "bytes": 96,
+      "sha256": "46ccee068f5fcf564b36c9cd4050aac69d23a8976ee324a6f865676741434415"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_2/drift_fixture/factory_before.txt",
+      "bytes": 91,
+      "sha256": "7565b59680b4823efbcc3747ed7be6b97f8ce4ec36d6274d03478c6846970ef7"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_2/drift_fixture/legacy_training_callback016.m",
+      "bytes": 96,
+      "sha256": "46ccee068f5fcf564b36c9cd4050aac69d23a8976ee324a6f865676741434415"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_2/drift_fixture/old_callback.mat",
+      "bytes": 998,
+      "sha256": "c52229686c9e92d37cd27c29faf25a983304809efc3ea212937e3737db98ad3a"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_3/verification.json",
+      "bytes": 9137,
+      "sha256": "8ff2fe5d28a8d4550b572e39691b0bc773415fdc2352f34520cf7924f5818b17"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_3/backups/tp85397664_5799_4913_b473_80846632f182.mat",
+      "bytes": 3066,
+      "sha256": "0b14680194a538ed0cff90089cb92a2ede99648b47ec905a35f730cc323b260f"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_3/drift_fixture/CallbackCounter016.m",
+      "bytes": 215,
+      "sha256": "8610daa2be58bb9218fcff9f7ba24695beb8542332327b43aefcd33630bd55e5"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_3/drift_fixture/factory_after.txt",
+      "bytes": 96,
+      "sha256": "46ccee068f5fcf564b36c9cd4050aac69d23a8976ee324a6f865676741434415"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_3/drift_fixture/factory_before.txt",
+      "bytes": 91,
+      "sha256": "7565b59680b4823efbcc3747ed7be6b97f8ce4ec36d6274d03478c6846970ef7"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_3/drift_fixture/legacy_training_callback016.m",
+      "bytes": 96,
+      "sha256": "46ccee068f5fcf564b36c9cd4050aac69d23a8976ee324a6f865676741434415"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/basic_3/drift_fixture/old_callback.mat",
+      "bytes": 999,
+      "sha256": "aec533b9995e977b5bfffeee05ad146dd453d4bf579407130f86a811b45c9dea"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/independent_live/verification.json",
+      "bytes": 1014,
+      "sha256": "da175ca1e767787f1bd8ee76926326d56ca7b8d6ea4106173fdd80721ca91a19"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/source_snapshot/cam_app_ui_dispatch.m",
+      "bytes": 488,
+      "sha256": "d2a78f15696f4dccfdcd0659c12a4c3d3887cc39d335ac2564c4ed3d45b37ccb"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/source_snapshot/CamReplicaApp.m",
+      "bytes": 170443,
+      "sha256": "8ed8104eb173b6e8423860dfbe1ccb6ee1f49ea4a6fdc0d1b81aa36f0cb0319b"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/source_snapshot/check_ui_callback_recovery.m",
+      "bytes": 7948,
+      "sha256": "177e5efe7146d61e9da35ca44ef75a5747aadbc742d3fe1491f34bf96dd0308d"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/source_snapshot/launch_cam_app.m",
+      "bytes": 949,
+      "sha256": "e9e1bfc7534844f8c4616029b33fdaa8f473ee431b8e4a02d2500d05f5d0721a"
+    },
+    {
+      "path": "outputs/ui_callback_recovery_20261031/source_snapshot/repair_cam_app_callbacks.m",
+      "bytes": 3115,
+      "sha256": "265cf1ac11c76152796b87ec72651c714760e161abfb89bc4457d0510c4cea62"
+    },
+    {
+      "path": "local/ui_callback_recovery_backups/tp3708fa4f_8010_434e_9f0f_52b1b5e81910.mat",
+      "bytes": 559257,
+      "sha256": "ca2322c4a7cd52dc6b24ade6bb04bcc5830bd2b514ad08b02e203a1d729e1deb"
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "CamReplicaApp.m",
+      "sha256": "8ed8104eb173b6e8423860dfbe1ccb6ee1f49ea4a6fdc0d1b81aa36f0cb0319b"
+    },
+    {
+      "path": "cam_app_ui_dispatch.m",
+      "sha256": "d2a78f15696f4dccfdcd0659c12a4c3d3887cc39d335ac2564c4ed3d45b37ccb"
+    },
+    {
+      "path": "repair_cam_app_callbacks.m",
+      "sha256": "265cf1ac11c76152796b87ec72651c714760e161abfb89bc4457d0510c4cea62"
+    },
+    {
+      "path": "launch_cam_app.m",
+      "sha256": "e9e1bfc7534844f8c4616029b33fdaa8f473ee431b8e4a02d2500d05f5d0721a"
+    },
+    {
+      "path": "check_ui_callback_recovery.m",
+      "sha256": "177e5efe7146d61e9da35ca44ef75a5747aadbc742d3fe1491f34bf96dd0308d"
+    }
+  ],
+  "limitations": [
+    "No actual applyTraining business action was run.",
+    "Automated press fell back to direct invocation of the real reset control callback; no claim of mouse-gesture verification.",
+    "Only two reported training callbacks repaired; not a general hot-reload system.",
+    "Live report zero-calculation field is an implementation invariant; profiler zero-call evidence comes from synthetic checks.",
+    "Original user snapshot MAT files remain local and ignored, not included in Git."
+  ],
+  "executorDelivery": {
+    "path": "outputs/ui_callback_recovery_20261031/executor_delivery.json",
+    "sha256": "464c57b07820bb05756bfd49b1509bd804cb3ab7343c35ca949ff28304aae843",
+    "sourceHashesVerified": true,
+    "physicsChainChanged": false
+  },
+  "finalReview": {
+    "gitDiffCheck": "passed",
+    "changedMarkdownLocalLinks": "passed",
+    "jsonAndArtifactHashes": "passed",
+    "algorithmPackageDiff": [],
+    "scope": "Code/diff, documentation, callback and state checks only. No numerical quality validation."
+  }
+}
