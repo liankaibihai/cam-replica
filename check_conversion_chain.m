@@ -28,7 +28,8 @@ result=camdesign.evaluate(solar,true); c=result.cam;
 assert(min(c.undercutMargin)>0 && result.metrics.intersectionCount==0);
 probe=linspace(.001,c.workEnd-.001,401)';
 recovered=fromOutline(c.actual,solar.params.rollerRadius,probe);
-truth=ppval(spline(c.workPhi,c.workRadius),probe);
+if isfield(c,'workPP'), law=c.workPP; else, law=spline(c.workPhi,c.workRadius); end
+truth=ppval(law,probe);
 solarError=max(abs(recovered-truth));
 assert(solarError<.01);
 sim=camdesign.simulate(c,solar.params,result.route.front(1,:),result.route.heading(1));

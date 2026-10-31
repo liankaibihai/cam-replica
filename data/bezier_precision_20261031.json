@@ -1,0 +1,4179 @@
+{
+  "change": "CHG-2026-10-31-009",
+  "baselineCommit": "100c44df3b2e2a15bc9fc438bb0eebc5d7949a4f",
+  "diagnosis": {
+    "baseline": "100c44d",
+    "release": "2025b",
+    "candidates": [
+      {
+        "label": "quality_bezier",
+        "source": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\model_mapping_20261031\\quality_bezier\\result.mat",
+        "degree": 5,
+        "controlCount": 34,
+        "parameterLengthMM": 12231.165673855725,
+        "gearRatio": 35,
+        "derivativeAudit": {
+          "positionMaxMM": 5.413852232058032e-11,
+          "velocityMax": 3.4571717494773394e-13,
+          "accelerationMax": 2.3646009035633443e-15,
+          "thirdDerivativeFiniteDifferenceMax": 2.481372806682848e-15
+        },
+        "endpointAudit": {
+          "startPositionErrorMM": 0,
+          "endPositionErrorMM": 0,
+          "startVelocityError": 0,
+          "endSavedChordVelocityError": 0,
+          "endVelocity": [
+            [
+              0,
+              1
+            ],
+            [
+              -1.4528750876467527,
+              -0.3587978738889008
+            ]
+          ],
+          "endAcceleration": [
+            [
+              -0.00036367053747111814,
+              -0.0007335305601581953
+            ],
+            [
+              3.751929146851425e-05,
+              0.0001289835508069453
+            ]
+          ],
+          "scope": "Start position/tangent and end position/last-control-chord derivative; no extra terminal heading imposed."
+        },
+        "grids": [
+          {
+            "routeSamples": 601,
+            "camSamples": 721,
+            "headingMaxErrorRad": 3.737329507647047e-06,
+            "driveDistanceMaxErrorMM": 0.1401843593139347,
+            "driveDistanceEndErrorMM": 0.012116741150748567,
+            "frontDistanceEndErrorMM": 0.02305911639268743,
+            "augmentedHeadingMaxErrorRad": 3.737329507647047e-06,
+            "augmentedDriveDistanceMaxErrorMM": 0.0002366673807046027,
+            "augmentedFrontDistanceEndErrorMM": 3.444041794864461e-06,
+            "splineEndpointQ1": [
+              20.671183182035513,
+              -0.7812095541596655
+            ],
+            "analyticEndpointQ1": [
+              20.683761818669804,
+              -0.7811870717939462
+            ],
+            "splineEndpointQ2": [
+              -276.64982246656837,
+              1.3010850762040587
+            ],
+            "analyticEndpointQ2": [
+              -281.9237868117993,
+              1.3054248547808343
+            ],
+            "endpointQ1MaxError": 0.012578636634291485,
+            "endpointQ2MaxError": 5.273964345230922,
+            "productionMaxPressureDeg": 37.8394599409044,
+            "productionMinUndercutMargin": 0.04442111134270288,
+            "productionReturnDeg": 47.27760215262759,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 0.0025997556807637826,
+            "productionReturnOutlineErrorMM": 0.06405786208310094,
+            "phaseOnlyReturnOutlineErrorMM": 0.06379974430515865,
+            "analyticEndsReturnOutlineErrorMM": 3.185470602411936e-06,
+            "analyticAllOutlineErrorMM": 0.00014128597914697154,
+            "productionCommonMaxPressureDeg": 37.87459583586163,
+            "productionCommonMinUndercutMargin": 0.022578905147816353,
+            "analyticMaxPressureDeg": 37.87532632744578,
+            "analyticMinUndercutMargin": 0.025767612285183095,
+            "productionSeamJetResidual": [
+              0,
+              1.9539925233402755e-13,
+              6.821210263296962e-13
+            ],
+            "analyticSeamJetResidual": [
+              0,
+              1.4210854715202004e-14,
+              2.2737367544323206e-13
+            ],
+            "productionIntersectionCount": 0,
+            "analyticIntersectionCount": 0
+          },
+          {
+            "routeSamples": 1201,
+            "camSamples": 1441,
+            "headingMaxErrorRad": 2.106627881026668e-07,
+            "driveDistanceMaxErrorMM": 0.03497711252202862,
+            "driveDistanceEndErrorMM": 0.00340153333672788,
+            "frontDistanceEndErrorMM": 0.005767362115875585,
+            "augmentedHeadingMaxErrorRad": 2.106627881026668e-07,
+            "augmentedDriveDistanceMaxErrorMM": 1.3491836398316082e-05,
+            "augmentedFrontDistanceEndErrorMM": 1.5630939742550254e-07,
+            "splineEndpointQ1": [
+              20.68189521787117,
+              -0.7811901198656203
+            ],
+            "analyticEndpointQ1": [
+              20.683761818669804,
+              -0.7811870717939462
+            ],
+            "splineEndpointQ2": [
+              -280.44285348107746,
+              1.3043392971616719
+            ],
+            "analyticEndpointQ2": [
+              -281.9237868117993,
+              1.3054248547808343
+            ],
+            "endpointQ1MaxError": 0.0018666007986354316,
+            "endpointQ2MaxError": 1.4809333307218253,
+            "productionMaxPressureDeg": 37.875017500130575,
+            "productionMinUndercutMargin": 0.026705721457655485,
+            "productionReturnDeg": 47.27782164477056,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 0.0005976240446732338,
+            "productionReturnOutlineErrorMM": 0.017727200902911643,
+            "phaseOnlyReturnOutlineErrorMM": 0.01766665726271766,
+            "analyticEndsReturnOutlineErrorMM": 1.8648007381993796e-07,
+            "analyticAllOutlineErrorMM": 5.6689150279243435e-05,
+            "productionCommonMaxPressureDeg": 37.87528912998755,
+            "productionCommonMinUndercutMargin": 0.02641588318926369,
+            "analyticMaxPressureDeg": 37.87531751947228,
+            "analyticMinUndercutMargin": 0.025768403801604833,
+            "productionSeamJetResidual": [
+              0,
+              0,
+              1.7053025658242404e-13
+            ],
+            "analyticSeamJetResidual": [
+              0,
+              4.973799150320701e-14,
+              1.1368683772161603e-13
+            ],
+            "productionIntersectionCount": null,
+            "analyticIntersectionCount": null
+          },
+          {
+            "routeSamples": 2401,
+            "camSamples": 2881,
+            "headingMaxErrorRad": 1.2481653488549682e-08,
+            "driveDistanceMaxErrorMM": 0.008737634901081037,
+            "driveDistanceEndErrorMM": 0.0008705722048034659,
+            "frontDistanceEndErrorMM": 0.0014419577692024177,
+            "augmentedHeadingMaxErrorRad": 1.2481653488549682e-08,
+            "augmentedDriveDistanceMaxErrorMM": 7.951002771733329e-07,
+            "augmentedFrontDistanceEndErrorMM": 6.061964086256921e-08,
+            "splineEndpointQ1": [
+              20.683490529632035,
+              -0.7811875593424318
+            ],
+            "analyticEndpointQ1": [
+              20.683761818669804,
+              -0.7811870717939462
+            ],
+            "splineEndpointQ2": [
+              -281.5313059347703,
+              1.3051532367934717
+            ],
+            "analyticEndpointQ2": [
+              -281.9237868117993,
+              1.3054248547808343
+            ],
+            "endpointQ1MaxError": 0.0002712890377694066,
+            "endpointQ2MaxError": 0.3924808770290156,
+            "productionMaxPressureDeg": 37.87496169114129,
+            "productionMinUndercutMargin": 0.027748723629866356,
+            "productionReturnDeg": 47.27788538692045,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 0.0001465266028609381,
+            "productionReturnOutlineErrorMM": 0.004663018181442056,
+            "phaseOnlyReturnOutlineErrorMM": 0.004648247511347798,
+            "analyticEndsReturnOutlineErrorMM": 1.1724379584184689e-08,
+            "analyticAllOutlineErrorMM": 7.81514437818108e-06,
+            "productionCommonMaxPressureDeg": 37.87529426527936,
+            "productionCommonMinUndercutMargin": 0.025735496095796395,
+            "analyticMaxPressureDeg": 37.8753209040372,
+            "analyticMinUndercutMargin": 0.025768733347470096,
+            "productionSeamJetResidual": [
+              2.842170943040401e-14,
+              3.197442310920451e-14,
+              5.115907697472721e-13
+            ],
+            "analyticSeamJetResidual": [
+              0,
+              1.4210854715202004e-14,
+              4.547473508864641e-13
+            ],
+            "productionIntersectionCount": null,
+            "analyticIntersectionCount": null
+          },
+          {
+            "routeSamples": 4801,
+            "camSamples": 5761,
+            "headingMaxErrorRad": 7.627938281018487e-10,
+            "driveDistanceMaxErrorMM": 0.002184000213674153,
+            "driveDistanceEndErrorMM": 0.0002188408288930077,
+            "frontDistanceEndErrorMM": 0.000360534906576504,
+            "augmentedHeadingMaxErrorRad": 7.627938281018487e-10,
+            "augmentedDriveDistanceMaxErrorMM": 5.146284820511937e-08,
+            "augmentedFrontDistanceEndErrorMM": 6.807204044889659e-08,
+            "splineEndpointQ1": [
+              20.683720926757346,
+              -0.7811871620168712
+            ],
+            "analyticEndpointQ1": [
+              20.683761818669804,
+              -0.7811870717939462
+            ],
+            "splineEndpointQ2": [
+              -281.822751541279,
+              1.3053569532081934
+            ],
+            "analyticEndpointQ2": [
+              -281.9237868117993,
+              1.3054248547808343
+            ],
+            "endpointQ1MaxError": 4.089191245881807e-05,
+            "endpointQ2MaxError": 0.10103527052029904,
+            "productionMaxPressureDeg": 37.87498810232771,
+            "productionMinUndercutMargin": 0.025728854666744017,
+            "productionReturnDeg": 47.27790180074778,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 3.643903086229489e-05,
+            "productionReturnOutlineErrorMM": 0.0011958327851930913,
+            "phaseOnlyReturnOutlineErrorMM": 0.0011921680553843895,
+            "analyticEndsReturnOutlineErrorMM": 1.29500177129435e-09,
+            "analyticAllOutlineErrorMM": 1.8235039256919738e-06,
+            "productionCommonMaxPressureDeg": 37.8753149614774,
+            "productionCommonMinUndercutMargin": 0.025808088102328597,
+            "analyticMaxPressureDeg": 37.875320694709714,
+            "analyticMinUndercutMargin": 0.025768673717659007,
+            "productionSeamJetResidual": [
+              0,
+              3.552713678800501e-15,
+              5.684341886080802e-14
+            ],
+            "analyticSeamJetResidual": [
+              0,
+              8.171241461241152e-14,
+              5.684341886080802e-14
+            ],
+            "productionIntersectionCount": 0,
+            "analyticIntersectionCount": 0
+          },
+          {
+            "routeSamples": 9601,
+            "camSamples": 11521,
+            "headingMaxErrorRad": 5.587308393728563e-11,
+            "driveDistanceMaxErrorMM": 0.0005459773865368334,
+            "driveDistanceEndErrorMM": 5.4831318266224116e-05,
+            "frontDistanceEndErrorMM": 9.018478522193618e-05,
+            "augmentedHeadingMaxErrorRad": 5.587308393728563e-11,
+            "augmentedDriveDistanceMaxErrorMM": 7.177186489570886e-08,
+            "augmentedFrontDistanceEndErrorMM": 6.834125088062137e-08,
+            "splineEndpointQ1": [
+              20.683755128848365,
+              -0.7811870906145068
+            ],
+            "analyticEndpointQ1": [
+              20.683761818669804,
+              -0.7811870717939462
+            ],
+            "splineEndpointQ2": [
+              -281.8981548873936,
+              1.3054077297689297
+            ],
+            "analyticEndpointQ2": [
+              -281.9237868117993,
+              1.3054248547808343
+            ],
+            "endpointQ1MaxError": 6.689821439920252e-06,
+            "endpointQ2MaxError": 0.025631924405672635,
+            "productionMaxPressureDeg": 37.87518137762281,
+            "productionMinUndercutMargin": 0.025750098766777474,
+            "productionReturnDeg": 47.277905931320454,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 9.095108937191748e-06,
+            "productionReturnOutlineErrorMM": 0.0003027933669144812,
+            "phaseOnlyReturnOutlineErrorMM": 0.00030187876206911224,
+            "analyticEndsReturnOutlineErrorMM": 6.609920855663618e-10,
+            "analyticAllOutlineErrorMM": 5.457462168432113e-07,
+            "productionCommonMaxPressureDeg": 37.875319608030146,
+            "productionCommonMinUndercutMargin": 0.02576824116551435,
+            "analyticMaxPressureDeg": 37.87532068929329,
+            "analyticMinUndercutMargin": 0.02576864467078188,
+            "productionSeamJetResidual": [
+              0,
+              8.171241461241152e-14,
+              5.684341886080802e-14
+            ],
+            "analyticSeamJetResidual": [
+              0,
+              3.552713678800501e-14,
+              3.410605131648481e-13
+            ],
+            "productionIntersectionCount": 0,
+            "analyticIntersectionCount": 0
+          },
+          {
+            "routeSamples": 19201,
+            "camSamples": 20001,
+            "headingMaxErrorRad": 2.5080826304701986e-11,
+            "driveDistanceMaxErrorMM": 0.00013649506581714377,
+            "driveDistanceEndErrorMM": 1.376381806039717e-05,
+            "frontDistanceEndErrorMM": 2.259752909594681e-05,
+            "augmentedHeadingMaxErrorRad": 2.5080826304701986e-11,
+            "augmentedDriveDistanceMaxErrorMM": 7.305789040401578e-08,
+            "augmentedFrontDistanceEndErrorMM": 6.836671673227102e-08,
+            "splineEndpointQ1": [
+              20.683760598660502,
+              -0.7811870760854537
+            ],
+            "analyticEndpointQ1": [
+              20.683761818669804,
+              -0.7811870717939462
+            ],
+            "splineEndpointQ2": [
+              -281.9173319017898,
+              1.305420502832895
+            ],
+            "analyticEndpointQ2": [
+              -281.9237868117993,
+              1.3054248547808343
+            ],
+            "endpointQ1MaxError": 1.2200093024716807e-06,
+            "endpointQ2MaxError": 0.006454910009495052,
+            "productionMaxPressureDeg": 37.87532118862975,
+            "productionMinUndercutMargin": 0.02574032222615541,
+            "productionReturnDeg": 47.277906965603705,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 2.272106315746551e-06,
+            "productionReturnOutlineErrorMM": 7.61792988150244e-05,
+            "phaseOnlyReturnOutlineErrorMM": 7.595068201937984e-05,
+            "analyticEndsReturnOutlineErrorMM": 6.226882577383113e-10,
+            "analyticAllOutlineErrorMM": 3.768788884426827e-08,
+            "productionCommonMaxPressureDeg": 37.875320489569326,
+            "productionCommonMinUndercutMargin": 0.025771371884540595,
+            "analyticMaxPressureDeg": 37.87532068992453,
+            "analyticMinUndercutMargin": 0.025768677940934737,
+            "productionSeamJetResidual": [
+              0,
+              3.197442310920451e-14,
+              5.115907697472721e-13
+            ],
+            "analyticSeamJetResidual": [
+              0,
+              1.0302869668521453e-13,
+              1.0231815394945443e-12
+            ],
+            "productionIntersectionCount": null,
+            "analyticIntersectionCount": null
+          }
+        ],
+        "reference": {
+          "integrator": "ode113 independent de Casteljau curve, RelTol 2e-13, AbsTol theta2e-14/distance2e-10, MaxStep parameterLength/200",
+          "toleranceRefinementMaxHeadingDifferenceRad": 1.7255885609301913e-10,
+          "toleranceRefinementMaxDriveDistanceDifferenceMM": 1.7149068298749626e-07,
+          "toleranceRefinementMaxFrontDistanceDifferenceMM": 1.5929617802612484e-07,
+          "workEndDeg": 312.7220926877551,
+          "returnDeg": 47.27790731224488,
+          "maxPressureDeg": 37.875320689878095,
+          "minUndercutMargin": 0.02576867794066895,
+          "endpointQ1": [
+            20.683761818669804,
+            -0.7811870717939462
+          ],
+          "endpointQ2": [
+            -281.9237868117993,
+            1.3054248547808343
+          ],
+          "seamJetResidual": [
+            0,
+            2.842170943040401e-14,
+            5.684341886080801e-13
+          ]
+        },
+        "savedProjectUnchanged": true
+      },
+      {
+        "label": "paired_seed1_bezier5",
+        "source": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\path_comparison_20261031\\seed1_bezier5.mat",
+        "degree": 5,
+        "controlCount": 35,
+        "parameterLengthMM": 12231.165673855725,
+        "gearRatio": 35,
+        "derivativeAudit": {
+          "positionMaxMM": 6.402063074594813e-11,
+          "velocityMax": 4.771816181827151e-13,
+          "accelerationMax": 3.0637824837377044e-15,
+          "thirdDerivativeFiniteDifferenceMax": 1.137546661727189e-13
+        },
+        "endpointAudit": {
+          "startPositionErrorMM": 0,
+          "endPositionErrorMM": 0,
+          "startVelocityError": 0,
+          "endSavedChordVelocityError": 0,
+          "endVelocity": [
+            [
+              0,
+              1
+            ],
+            [
+              -0.987495842715075,
+              -0.15764504629211484
+            ]
+          ],
+          "endAcceleration": [
+            [
+              -0.00015349465795185414,
+              -0.0013394883774962632
+            ],
+            [
+              0.012948946176154757,
+              0.0018910998608729327
+            ]
+          ],
+          "scope": "Start position/tangent and end position/last-control-chord derivative; no extra terminal heading imposed."
+        },
+        "grids": [
+          {
+            "routeSamples": 601,
+            "camSamples": 721,
+            "headingMaxErrorRad": 2.7650060308026525e-06,
+            "driveDistanceMaxErrorMM": 0.40972010575387685,
+            "driveDistanceEndErrorMM": -0.40972010575387685,
+            "frontDistanceEndErrorMM": -0.4068271967553301,
+            "augmentedHeadingMaxErrorRad": 2.7650060308026525e-06,
+            "augmentedDriveDistanceMaxErrorMM": 0.00021311779164534528,
+            "augmentedFrontDistanceEndErrorMM": 2.9621838621096686e-05,
+            "splineEndpointQ1": [
+              8.721701069654866,
+              6.426976356038077
+            ],
+            "analyticEndpointQ1": [
+              8.730008671011724,
+              7.318607695372362
+            ],
+            "splineEndpointQ2": [
+              319.46963898865897,
+              403.5545109003245
+            ],
+            "analyticEndpointQ2": [
+              316.8509019899771,
+              840.071689990602
+            ],
+            "endpointQ1MaxError": 0.8916313393342854,
+            "endpointQ2MaxError": 436.51717909027747,
+            "productionMaxPressureDeg": 35.60258897029311,
+            "productionMinUndercutMargin": -0.032290047100816954,
+            "productionReturnDeg": 58.470035934424615,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 0.02716316596108967,
+            "productionReturnOutlineErrorMM": 7.983812212178801,
+            "phaseOnlyReturnOutlineErrorMM": 8.027947913676455,
+            "analyticEndsReturnOutlineErrorMM": 3.35871291723164e-06,
+            "analyticAllOutlineErrorMM": 0.0010666255908233673,
+            "productionCommonMaxPressureDeg": 35.92823514336612,
+            "productionCommonMinUndercutMargin": -0.9860201209183517,
+            "analyticMaxPressureDeg": 50.05280294067165,
+            "analyticMinUndercutMargin": -0.9959071362243446,
+            "productionSeamJetResidual": [
+              5.684341886080802e-14,
+              1.9895196601282805e-13,
+              5.684341886080801e-13
+            ],
+            "analyticSeamJetResidual": [
+              5.684341886080802e-14,
+              1.0302869668521453e-13,
+              2.2737367544323206e-13
+            ],
+            "productionIntersectionCount": 2,
+            "analyticIntersectionCount": 2
+          },
+          {
+            "routeSamples": 1201,
+            "camSamples": 1441,
+            "headingMaxErrorRad": 1.599821208841945e-07,
+            "driveDistanceMaxErrorMM": 0.10226941773726139,
+            "driveDistanceEndErrorMM": -0.10226941773726139,
+            "frontDistanceEndErrorMM": -0.10168458282350912,
+            "augmentedHeadingMaxErrorRad": 1.599821208841945e-07,
+            "augmentedDriveDistanceMaxErrorMM": 1.28406045405427e-05,
+            "augmentedFrontDistanceEndErrorMM": -1.1712654668372124e-06,
+            "splineEndpointQ1": [
+              8.728888426261395,
+              7.087322035071041
+            ],
+            "analyticEndpointQ1": [
+              8.730008671011724,
+              7.318607695372362
+            ],
+            "splineEndpointQ2": [
+              317.3833054463855,
+              626.1431482563032
+            ],
+            "analyticEndpointQ2": [
+              316.8509019899771,
+              840.071689990602
+            ],
+            "endpointQ1MaxError": 0.2312856603013218,
+            "endpointQ2MaxError": 213.92854173429873,
+            "productionMaxPressureDeg": 43.751843583819955,
+            "productionMinUndercutMargin": -0.9790173250075771,
+            "productionReturnDeg": 58.4622928017513,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 0.005644478399224802,
+            "productionReturnOutlineErrorMM": 3.8832059242795767,
+            "phaseOnlyReturnOutlineErrorMM": 3.9018900202327664,
+            "analyticEndsReturnOutlineErrorMM": 2.810793254031822e-07,
+            "analyticAllOutlineErrorMM": 0.000215096578263318,
+            "productionCommonMaxPressureDeg": 43.753273846232915,
+            "productionCommonMinUndercutMargin": -0.9923187073780884,
+            "analyticMaxPressureDeg": 50.052805338159196,
+            "analyticMinUndercutMargin": -0.9959424333514018,
+            "productionSeamJetResidual": [
+              5.684341886080802e-14,
+              4.085620730620576e-13,
+              6.252776074688882e-13
+            ],
+            "analyticSeamJetResidual": [
+              0,
+              2.842170943040401e-14,
+              1.7053025658242404e-13
+            ],
+            "productionIntersectionCount": null,
+            "analyticIntersectionCount": null
+          },
+          {
+            "routeSamples": 2401,
+            "camSamples": 2881,
+            "headingMaxErrorRad": 9.613236873207143e-09,
+            "driveDistanceMaxErrorMM": 0.025561109272530302,
+            "driveDistanceEndErrorMM": -0.025561109272530302,
+            "frontDistanceEndErrorMM": -0.02542202417862427,
+            "augmentedHeadingMaxErrorRad": 9.613236873207143e-09,
+            "augmentedDriveDistanceMaxErrorMM": 7.529324648203328e-07,
+            "augmentedFrontDistanceEndErrorMM": -7.843482308089733e-09,
+            "splineEndpointQ1": [
+              8.729821137256948,
+              7.27446810853984
+            ],
+            "analyticEndpointQ1": [
+              8.730008671011724,
+              7.318607695372362
+            ],
+            "splineEndpointQ2": [
+              316.96726818317075,
+              759.6764346238222
+            ],
+            "analyticEndpointQ2": [
+              316.8509019899771,
+              840.071689990602
+            ],
+            "endpointQ1MaxError": 0.044139586832522504,
+            "endpointQ2MaxError": 80.39525536677979,
+            "productionMaxPressureDeg": 47.89847426221492,
+            "productionMinUndercutMargin": -0.9841433793480932,
+            "productionReturnDeg": 58.46036090622224,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 0.0008533208593695603,
+            "productionReturnOutlineErrorMM": 1.4522537392360675,
+            "phaseOnlyReturnOutlineErrorMM": 1.4581990694127869,
+            "analyticEndsReturnOutlineErrorMM": 1.4971878424985928e-08,
+            "analyticAllOutlineErrorMM": 5.2824243627788456e-05,
+            "productionCommonMaxPressureDeg": 47.898638922857735,
+            "productionCommonMinUndercutMargin": -0.9949558852665283,
+            "analyticMaxPressureDeg": 50.05280547566126,
+            "analyticMinUndercutMargin": -0.9959433993519362,
+            "productionSeamJetResidual": [
+              5.684341886080802e-14,
+              3.4994229736184934e-13,
+              8.526512829121202e-13
+            ],
+            "analyticSeamJetResidual": [
+              5.684341886080802e-14,
+              2.149391775674303e-13,
+              4.547473508864641e-13
+            ],
+            "productionIntersectionCount": null,
+            "analyticIntersectionCount": null
+          },
+          {
+            "routeSamples": 4801,
+            "camSamples": 5761,
+            "headingMaxErrorRad": 5.884852605220203e-10,
+            "driveDistanceMaxErrorMM": 0.006389851005224045,
+            "driveDistanceEndErrorMM": -0.006389851005224045,
+            "frontDistanceEndErrorMM": -0.006355511924994062,
+            "augmentedHeadingMaxErrorRad": 5.884852605220203e-10,
+            "augmentedDriveDistanceMaxErrorMM": 1.5268778952304274e-07,
+            "augmentedFrontDistanceEndErrorMM": -3.440982254687697e-08,
+            "splineEndpointQ1": [
+              8.729971435614678,
+              7.3117502947954
+            ],
+            "analyticEndpointQ1": [
+              8.730008671011724,
+              7.318607695372362
+            ],
+            "splineEndpointQ2": [
+              316.8778178316903,
+              814.8834131418512
+            ],
+            "analyticEndpointQ2": [
+              316.8509019899771,
+              840.071689990602
+            ],
+            "endpointQ1MaxError": 0.006857400576962824,
+            "endpointQ2MaxError": 25.188276848750775,
+            "productionMaxPressureDeg": 49.4029684613846,
+            "productionMinUndercutMargin": -0.9835117778571891,
+            "productionReturnDeg": 58.45987807888743,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 0.00017187190317842052,
+            "productionReturnOutlineErrorMM": 0.45379363407264717,
+            "phaseOnlyReturnOutlineErrorMM": 0.4554201856250382,
+            "analyticEndsReturnOutlineErrorMM": 2.029761059772663e-09,
+            "analyticAllOutlineErrorMM": 5.5655070675944645e-06,
+            "productionCommonMaxPressureDeg": 49.40304191358829,
+            "productionCommonMinUndercutMargin": -0.9957615944763092,
+            "analyticMaxPressureDeg": 50.052805485613355,
+            "analyticMinUndercutMargin": -0.9959436168673159,
+            "productionSeamJetResidual": [
+              0,
+              7.105427357601002e-14,
+              1.7053025658242404e-13
+            ],
+            "analyticSeamJetResidual": [
+              5.684341886080802e-14,
+              7.105427357601002e-15,
+              1.1368683772161603e-13
+            ],
+            "productionIntersectionCount": 6,
+            "analyticIntersectionCount": 6
+          },
+          {
+            "routeSamples": 9601,
+            "camSamples": 11521,
+            "headingMaxErrorRad": 3.5852210089615255e-11,
+            "driveDistanceMaxErrorMM": 0.001597462334757438,
+            "driveDistanceEndErrorMM": -0.001597462334757438,
+            "frontDistanceEndErrorMM": -0.0015889037767919945,
+            "augmentedHeadingMaxErrorRad": 3.5852210089615255e-11,
+            "augmentedDriveDistanceMaxErrorMM": 1.198459358420223e-07,
+            "augmentedFrontDistanceEndErrorMM": -2.8059730539098382e-08,
+            "splineEndpointQ1": [
+              8.730000441588668,
+              7.317673753037598
+            ],
+            "analyticEndpointQ1": [
+              8.730008671011724,
+              7.318607695372362
+            ],
+            "splineEndpointQ2": [
+              316.85735397591986,
+              832.9800236973578
+            ],
+            "analyticEndpointQ2": [
+              316.8509019899771,
+              840.071689990602
+            ],
+            "endpointQ1MaxError": 0.0009339423347647369,
+            "endpointQ2MaxError": 7.091666293244202,
+            "productionMaxPressureDeg": 49.87217380594016,
+            "productionMinUndercutMargin": -0.995870419625311,
+            "productionReturnDeg": 58.45975738277992,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 3.381652609414137e-05,
+            "productionReturnOutlineErrorMM": 0.12758841415259947,
+            "phaseOnlyReturnOutlineErrorMM": 0.1280069658830463,
+            "analyticEndsReturnOutlineErrorMM": 1.0525059760892977e-09,
+            "analyticAllOutlineErrorMM": 1.8534216277519526e-07,
+            "productionCommonMaxPressureDeg": 49.872173805940136,
+            "productionCommonMinUndercutMargin": -0.995870419625311,
+            "analyticMaxPressureDeg": 50.052805486178244,
+            "analyticMinUndercutMargin": -0.9959436609912251,
+            "productionSeamJetResidual": [
+              5.684341886080802e-14,
+              2.3447910280083306e-13,
+              1.0231815394945443e-12
+            ],
+            "analyticSeamJetResidual": [
+              5.684341886080802e-14,
+              1.3677947663381929e-13,
+              1.7053025658242404e-13
+            ],
+            "productionIntersectionCount": 23,
+            "analyticIntersectionCount": 23
+          },
+          {
+            "routeSamples": 19201,
+            "camSamples": 20001,
+            "headingMaxErrorRad": 2.248956576522687e-11,
+            "driveDistanceMaxErrorMM": 0.0003993849277321715,
+            "driveDistanceEndErrorMM": -0.0003993849277321715,
+            "frontDistanceEndErrorMM": -0.0003972471022279933,
+            "augmentedHeadingMaxErrorRad": 2.248956576522687e-11,
+            "augmentedDriveDistanceMaxErrorMM": 1.184216671390459e-07,
+            "augmentedFrontDistanceEndErrorMM": -2.8514477889984846e-08,
+            "splineEndpointQ1": [
+              8.730006740586091,
+              7.318492800840963
+            ],
+            "analyticEndpointQ1": [
+              8.730008671011724,
+              7.318607695372362
+            ],
+            "splineEndpointQ2": [
+              316.852479233649,
+              838.1873293912657
+            ],
+            "analyticEndpointQ2": [
+              316.8509019899771,
+              840.071689990602
+            ],
+            "endpointQ1MaxError": 0.00011489453139912342,
+            "endpointQ2MaxError": 1.884360599336219,
+            "productionMaxPressureDeg": 50.004994001502666,
+            "productionMinUndercutMargin": -0.9983016040833292,
+            "productionReturnDeg": 58.45972720925072,
+            "returnSatisfied": false,
+            "productionWorkOutlineErrorMM": 7.767534558646651e-06,
+            "productionReturnOutlineErrorMM": 0.03387847618702525,
+            "phaseOnlyReturnOutlineErrorMM": 0.03398398349157888,
+            "analyticEndsReturnOutlineErrorMM": 1.0272481838038747e-09,
+            "analyticAllOutlineErrorMM": 1.8529923129372428e-07,
+            "productionCommonMaxPressureDeg": 50.004985040379246,
+            "productionCommonMinUndercutMargin": -0.9959456689049739,
+            "analyticMaxPressureDeg": 50.05280548622128,
+            "analyticMinUndercutMargin": -0.9959433944318294,
+            "productionSeamJetResidual": [
+              1.1368683772161603e-13,
+              2.8954616482224083e-13,
+              1.7053025658242404e-13
+            ],
+            "analyticSeamJetResidual": [
+              0,
+              3.3928415632544784e-13,
+              1.1368683772161603e-13
+            ],
+            "productionIntersectionCount": null,
+            "analyticIntersectionCount": null
+          }
+        ],
+        "reference": {
+          "integrator": "ode113 independent de Casteljau curve, RelTol 2e-13, AbsTol theta2e-14/distance2e-10, MaxStep parameterLength/200",
+          "toleranceRefinementMaxHeadingDifferenceRad": 2.2550983302949135e-10,
+          "toleranceRefinementMaxDriveDistanceDifferenceMM": 3.207478584954515e-07,
+          "toleranceRefinementMaxFrontDistanceDifferenceMM": 3.1367198971565813e-07,
+          "workEndDeg": 301.540282849242,
+          "returnDeg": 58.45971715075804,
+          "maxPressureDeg": 50.052805485704745,
+          "minUndercutMargin": -0.9959433624872622,
+          "endpointQ1": [
+            8.730008671011724,
+            7.318607695372362
+          ],
+          "endpointQ2": [
+            316.8509019899771,
+            840.071689990602
+          ],
+          "seamJetResidual": [
+            5.684341886080802e-14,
+            4.227729277772596e-13,
+            7.389644451905042e-13
+          ]
+        },
+        "savedProjectUnchanged": true
+      }
+    ],
+    "trainingRuns": 0,
+    "productionCodeChanged": false,
+    "units": "Position and distance: mm; q1: mm/rad; q2: mm/rad^2; curve derivatives use the saved parameterLength in mm.",
+    "ablation": "phaseOnly=RK4 drive integral plus old working spline/return jets; analyticEnds=RK4 drive plus old work spline and analytic return jets; analyticAll=RK4 drive plus quintic Hermite work and analytic return jets. All compared on the same physical phase grid.",
+    "scope": "Fixed saved Bezier curves and unchanged physical parameters; independent analytical D0-D3, adaptive integration and sampled cam diagnostics. No optimized candidate, real-car certification or continuous global extrema claim."
+  },
+  "contracts": {
+    "core/verification.json": {
+      "release": "2025b",
+      "baseline": "100c44d",
+      "checksPassed": 9,
+      "checks": [
+        "cubic, B3 and B5 route/cam/theoretical simulation bitwise unchanged",
+        "saved Bezier D0-D2 bitwise preserved; D0-D3 independent de Casteljau jets",
+        "D3 partition/linear reproduction, degree3-49, scalar/endpoints and cache",
+        "exact quintic Hermite polynomial and explicit unresolved phase/sample cap rejection",
+        "flat and rack analytic constant steering chain rules",
+        "two unchanged saved curves: native/4x/8x/16x, independent integration, work/return outline, C2 seam",
+        "flat and rack variable motion against independent physical-phase finite differences",
+        "saved workPP controls theoretical simulation; legacy radius poisoning and explicit ratio scaling",
+        "actual-contact simulation ignores poisoned workPP and all theoretical radius fields"
+      ],
+      "independentCurveJetErrors": [
+        [
+          5.413852232058032e-11,
+          3.4571717494773394e-13,
+          2.3646009035633443e-15,
+          9.674879623963613e-18
+        ],
+        [
+          6.402063074594813e-11,
+          4.771816181827151e-13,
+          3.0637824837377044e-15,
+          2.005393947251982e-17
+        ]
+      ],
+      "exactQuinticMaxErrorMM": 7.105427357601002e-15,
+      "flatRackVariableChainErrors": [
+        [
+          1.848774644486184e-08,
+          0.00015131656115840997
+        ],
+        [
+          1.8401195234218903e-08,
+          0.000144549345762357
+        ]
+      ],
+      "invalidCases": {
+        "tinyPhase": "cam:ConstraintNonfinite",
+        "duplicatePhase": "cam:ConstraintNonfinite",
+        "sampleCap": "cam:ConstraintNonfinite"
+      },
+      "fixedCurves": [
+        {
+          "label": "quality_bezier",
+          "reference": {
+            "integrator": "ode113 independent de Casteljau curve, RelTol 2e-13, AbsTol theta2e-14/distance2e-10, MaxStep parameterLength/200",
+            "toleranceRefinementMaxHeadingDifferenceRad": 1.7255885609301913e-10,
+            "toleranceRefinementMaxDriveDistanceDifferenceMM": 1.7149068298749626e-07,
+            "toleranceRefinementMaxFrontDistanceDifferenceMM": 1.5929617802612484e-07,
+            "workEndDeg": 312.7220926877551,
+            "returnDeg": 47.27790731224488,
+            "maxPressureDeg": 37.875320689878095,
+            "minUndercutMargin": 0.02576867794066895,
+            "endpointQ1": [
+              20.683761818669804,
+              -0.7811870717939462
+            ],
+            "endpointQ2": [
+              -281.9237868117993,
+              1.3054248547808343
+            ],
+            "seamJetResidual": [
+              0,
+              2.842170943040401e-14,
+              5.684341886080801e-13
+            ]
+          },
+          "grids": [
+            {
+              "routeSamples": 601,
+              "camSamples": 721,
+              "oldDriveDistanceMaxErrorMM": 0.1401843593139347,
+              "newDriveDistanceMaxErrorMM": 0.0002366673807046027,
+              "oldReturnOutlineErrorMM": 0.06405786208310094,
+              "newReturnOutlineErrorMM": 3.1854706247099157e-06,
+              "newAllOutlineErrorMM": 0.00014128598046030143,
+              "oldCommonMaxPressureDeg": 37.87459583586163,
+              "newCommonMaxPressureDeg": 37.875326327447105,
+              "oldCommonMinUndercutMargin": 0.022578905147816353,
+              "newCommonMinUndercutMargin": 0.0257676123596563,
+              "oldReturnDeg": 47.27760215262759,
+              "newReturnDeg": 47.277910277781956,
+              "q1EndpointMaxError": 4.06717094645348e-05,
+              "q2EndpointMaxError": 0.0007724161836637489,
+              "seamJetResidual": [
+                1.1368683772161603e-13,
+                1.1368683772161603e-13,
+                1.7053025658242404e-13
+              ],
+              "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1"
+            },
+            {
+              "routeSamples": 2401,
+              "camSamples": 2881,
+              "oldDriveDistanceMaxErrorMM": 0.008737634901081037,
+              "newDriveDistanceMaxErrorMM": 7.951002771733329e-07,
+              "oldReturnOutlineErrorMM": 0.004663018181442056,
+              "newReturnOutlineErrorMM": 1.1724385993087302e-08,
+              "newAllOutlineErrorMM": 7.815128872865464e-06,
+              "oldCommonMaxPressureDeg": 37.87529426527936,
+              "newCommonMaxPressureDeg": 37.87532090403697,
+              "oldCommonMinUndercutMargin": 0.025735496095796395,
+              "newCommonMinUndercutMargin": 0.02576873036206695,
+              "oldReturnDeg": 47.27788538692045,
+              "newReturnDeg": 47.27790732144152,
+              "q1EndpointMaxError": 1.439261846369888e-07,
+              "q2EndpointMaxError": 2.733372554075686e-06,
+              "seamJetResidual": [
+                1.1368683772161603e-13,
+                2.5224267119483557e-13,
+                1.7053025658242404e-13
+              ],
+              "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1"
+            },
+            {
+              "routeSamples": 4801,
+              "camSamples": 5761,
+              "oldDriveDistanceMaxErrorMM": 0.002184000213674153,
+              "newDriveDistanceMaxErrorMM": 5.146284820511937e-08,
+              "oldReturnOutlineErrorMM": 0.0011958327851930913,
+              "newReturnOutlineErrorMM": 1.2950147150902275e-09,
+              "newAllOutlineErrorMM": 1.8234864902101666e-06,
+              "oldCommonMaxPressureDeg": 37.8753149614774,
+              "newCommonMaxPressureDeg": 37.87532069467119,
+              "oldCommonMinUndercutMargin": 0.025808088102328597,
+              "newCommonMinUndercutMargin": 0.025768664375390715,
+              "oldReturnDeg": 47.27790180074778,
+              "newReturnDeg": 47.277907311178296,
+              "q1EndpointMaxError": 8.850613131272667e-09,
+              "q2EndpointMaxError": 1.6808648917177038e-07,
+              "seamJetResidual": [
+                5.684341886080802e-14,
+                7.105427357601002e-14,
+                2.2737367544323206e-13
+              ],
+              "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1"
+            },
+            {
+              "routeSamples": 9601,
+              "camSamples": 11521,
+              "oldDriveDistanceMaxErrorMM": 0.0005459773865368334,
+              "newDriveDistanceMaxErrorMM": 7.177186489570886e-08,
+              "oldReturnOutlineErrorMM": 0.0003027933669144812,
+              "newReturnOutlineErrorMM": 6.610000287484787e-10,
+              "newAllOutlineErrorMM": 5.457203972675973e-07,
+              "oldCommonMaxPressureDeg": 37.875319608030146,
+              "newCommonMaxPressureDeg": 37.87532068929297,
+              "oldCommonMinUndercutMargin": 0.02576824116551435,
+              "newCommonMinUndercutMargin": 0.025768659626303814,
+              "oldReturnDeg": 47.277905931320454,
+              "newReturnDeg": 47.27790731054982,
+              "q1EndpointMaxError": 5.531535229863493e-10,
+              "q2EndpointMaxError": 1.0505382341818859e-08,
+              "seamJetResidual": [
+                2.842170943040401e-14,
+                1.1368683772161603e-13,
+                6.252776074688882e-13
+              ],
+              "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1"
+            }
+          ]
+        },
+        {
+          "label": "paired_seed1_bezier5",
+          "reference": {
+            "integrator": "ode113 independent de Casteljau curve, RelTol 2e-13, AbsTol theta2e-14/distance2e-10, MaxStep parameterLength/200",
+            "toleranceRefinementMaxHeadingDifferenceRad": 2.2550983302949135e-10,
+            "toleranceRefinementMaxDriveDistanceDifferenceMM": 3.207478584954515e-07,
+            "toleranceRefinementMaxFrontDistanceDifferenceMM": 3.1367198971565813e-07,
+            "workEndDeg": 301.540282849242,
+            "returnDeg": 58.45971715075804,
+            "maxPressureDeg": 50.052805485704745,
+            "minUndercutMargin": -0.9959433624872622,
+            "endpointQ1": [
+              8.730008671011724,
+              7.318607695372362
+            ],
+            "endpointQ2": [
+              316.8509019899771,
+              840.071689990602
+            ],
+            "seamJetResidual": [
+              5.684341886080802e-14,
+              4.227729277772596e-13,
+              7.389644451905042e-13
+            ]
+          },
+          "grids": [
+            {
+              "routeSamples": 601,
+              "camSamples": 721,
+              "oldDriveDistanceMaxErrorMM": 0.40972010575387685,
+              "newDriveDistanceMaxErrorMM": 0.00021311779164534528,
+              "oldReturnOutlineErrorMM": 7.983812212178801,
+              "newReturnOutlineErrorMM": 3.3587129372049192e-06,
+              "newAllOutlineErrorMM": 0.0010666255880098095,
+              "oldCommonMaxPressureDeg": 35.92823514336612,
+              "newCommonMaxPressureDeg": 50.0528029406717,
+              "oldCommonMinUndercutMargin": -0.9860201209183517,
+              "newCommonMinUndercutMargin": -0.9959071358512017,
+              "oldReturnDeg": 58.470035934424615,
+              "newReturnDeg": 58.45972051858495,
+              "q1EndpointMaxError": 2.4568194437080138e-05,
+              "q2EndpointMaxError": 0.0004129246634647643,
+              "seamJetResidual": [
+                0,
+                2.9309887850104133e-13,
+                1.1368683772161603e-13
+              ],
+              "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1"
+            },
+            {
+              "routeSamples": 2401,
+              "camSamples": 2881,
+              "oldDriveDistanceMaxErrorMM": 0.025561109272530302,
+              "newDriveDistanceMaxErrorMM": 7.529324648203328e-07,
+              "oldReturnOutlineErrorMM": 1.4522537392360675,
+              "newReturnOutlineErrorMM": 1.4971912833681936e-08,
+              "newAllOutlineErrorMM": 5.282424962398654e-05,
+              "oldCommonMaxPressureDeg": 47.898638922857735,
+              "newCommonMaxPressureDeg": 50.05280547566139,
+              "oldCommonMinUndercutMargin": -0.9949558852665283,
+              "newCommonMinUndercutMargin": -0.995943398154961,
+              "oldReturnDeg": 58.46036090622224,
+              "newReturnDeg": 58.45971716555968,
+              "q1EndpointMaxError": 1.0046263465568472e-07,
+              "q2EndpointMaxError": 1.6885001059563365e-06,
+              "seamJetResidual": [
+                1.1368683772161603e-13,
+                5.861977570020827e-14,
+                5.684341886080801e-13
+              ],
+              "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1"
+            },
+            {
+              "routeSamples": 4801,
+              "camSamples": 5761,
+              "oldDriveDistanceMaxErrorMM": 0.006389851005224045,
+              "newDriveDistanceMaxErrorMM": 1.5268778952304274e-07,
+              "oldReturnOutlineErrorMM": 0.45379363407264717,
+              "newReturnOutlineErrorMM": 2.029801095036588e-09,
+              "newAllOutlineErrorMM": 5.5655104327595455e-06,
+              "oldCommonMaxPressureDeg": 49.40304191358829,
+              "newCommonMaxPressureDeg": 50.052805485613476,
+              "oldCommonMinUndercutMargin": -0.9957615944763092,
+              "newCommonMinUndercutMargin": -0.9959436314160988,
+              "oldReturnDeg": 58.45987807888743,
+              "newReturnDeg": 58.459717152526274,
+              "q1EndpointMaxError": 4.70717775868934e-09,
+              "q2EndpointMaxError": 7.911069133115234e-08,
+              "seamJetResidual": [
+                1.1368683772161603e-13,
+                4.263256414560601e-14,
+                1.5347723092418164e-12
+              ],
+              "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1"
+            },
+            {
+              "routeSamples": 9601,
+              "camSamples": 11521,
+              "oldDriveDistanceMaxErrorMM": 0.001597462334757438,
+              "newDriveDistanceMaxErrorMM": 1.198459358420223e-07,
+              "oldReturnOutlineErrorMM": 0.12758841415259947,
+              "newReturnOutlineErrorMM": 1.052559522718125e-09,
+              "newAllOutlineErrorMM": 1.8536535495927324e-07,
+              "oldCommonMaxPressureDeg": 49.872173805940136,
+              "newCommonMaxPressureDeg": 50.05280548617834,
+              "oldCommonMinUndercutMargin": -0.995870419625311,
+              "newCommonMinUndercutMargin": -0.9959436238203745,
+              "oldReturnDeg": 58.45975738277992,
+              "newReturnDeg": 58.45971715152285,
+              "q1EndpointMaxError": 1.3400098808347138e-09,
+              "q2EndpointMaxError": 2.2526137399836443e-08,
+              "seamJetResidual": [
+                2.2737367544323206e-13,
+                5.808686864838819e-13,
+                5.684341886080802e-14
+              ],
+              "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1"
+            }
+          ]
+        }
+      ],
+      "inverseSensorErrorsMM": [
+        [
+          0.11984217270048186,
+          0.0003932298043908788,
+          2.3860727339561716e-05,
+          1.469948005446777e-06
+        ],
+        [
+          0.047704025020150094,
+          0.00016218640840550568,
+          9.91681395885017e-06,
+          6.134931459974113e-07
+        ]
+      ],
+      "theoreticalPoisonIsolationExact": true,
+      "actualPoisonIsolationExact": true,
+      "trainingRuns": 0,
+      "scope": "Independent finite tolerance numerical reference and sampled fixed curves only; no continuous global extrema, machining, vehicle or optimized-quality certification."
+    },
+    "actual_density/verification.json": {
+      "release": "2025b",
+      "source": "quality_bezier saved fixed35 flat curve",
+      "routeAndPhysicalParametersUnchanged": true,
+      "driveRatio": 35,
+      "trainingRuns": 0,
+      "grids": [
+        {
+          "outlineSamples": 5761,
+          "referenceRouteSamples": 9601,
+          "inverseIntegrationSamples": [
+            2401,
+            4801
+          ],
+          "phaseEnd": 5.458030161157795,
+          "maxSensorDeviationMM": 0.07450371470631946,
+          "rmsSensorDeviationMM": 0.04256394929819363,
+          "maxFrontDeviationMM": 0.07456772489075561,
+          "maxSteeringDeviationDeg": 0.0008218765728248068,
+          "integrationMaxSensorDifferenceMM": 0.0007023049525089326,
+          "maxContactResidualMM": 1.509903313490213e-14,
+          "maxPenetrationMM": 1.509903313490213e-14,
+          "sampledActualMaxPressureDeg": 37.89024408645615,
+          "actualReturnDeg": 47.27790731054982,
+          "pressureSatisfied": false,
+          "returnAngleSatisfied": false,
+          "contactValid": true,
+          "closurePassed": true,
+          "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1",
+          "geometryFeasible": false
+        },
+        {
+          "outlineSamples": 11521,
+          "referenceRouteSamples": 9601,
+          "inverseIntegrationSamples": [
+            2401,
+            4801
+          ],
+          "phaseEnd": 5.458030161157795,
+          "maxSensorDeviationMM": 0.018665845974716138,
+          "rmsSensorDeviationMM": 0.010662674235506526,
+          "maxFrontDeviationMM": 0.018682625938744046,
+          "maxSteeringDeviationDeg": 0.0002304742631949989,
+          "integrationMaxSensorDifferenceMM": 3.5795191241379305e-05,
+          "maxContactResidualMM": 1.2434497875801753e-14,
+          "maxPenetrationMM": 1.2434497875801753e-14,
+          "sampledActualMaxPressureDeg": 37.88462223376529,
+          "actualReturnDeg": 47.27790731054982,
+          "pressureSatisfied": false,
+          "returnAngleSatisfied": false,
+          "contactValid": true,
+          "closurePassed": true,
+          "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1",
+          "geometryFeasible": false
+        },
+        {
+          "outlineSamples": 20001,
+          "referenceRouteSamples": 9601,
+          "inverseIntegrationSamples": [
+            2401,
+            4801
+          ],
+          "phaseEnd": 5.458030161157795,
+          "maxSensorDeviationMM": 0.0061779566926670835,
+          "rmsSensorDeviationMM": 0.0035296894821800597,
+          "maxFrontDeviationMM": 0.006218319896289196,
+          "maxSteeringDeviationDeg": 7.504837184193715e-05,
+          "integrationMaxSensorDifferenceMM": 1.0551832792477072e-05,
+          "maxContactResidualMM": 1.7541523789077473e-14,
+          "maxPenetrationMM": 1.7541523789077473e-14,
+          "sampledActualMaxPressureDeg": 37.87812109903488,
+          "actualReturnDeg": 47.27790731054982,
+          "pressureSatisfied": false,
+          "returnAngleSatisfied": false,
+          "contactValid": true,
+          "closurePassed": true,
+          "numericalMethod": "bezier-analytic-d3-coupled-rk4-quintic-hermite-v1",
+          "geometryFeasible": false
+        }
+      ],
+      "details": [
+        {
+          "valid": true,
+          "passed": false,
+          "contactValid": true,
+          "closurePassed": true,
+          "integrationConverged": true,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": 0.07450371470631946,
+          "rmsSensorDeviationMM": 0.04256394929819363,
+          "maxFrontDeviationMM": 0.07456772489075561,
+          "maxSteeringDeviationDeg": 0.0008218765728248068,
+          "integrationMaxSensorDifferenceMM": 0.0007023049525089326,
+          "integrationMaxFrontDifferenceMM": 0.000701872786811006,
+          "maxContactResidualMM": 1.509903313490213e-14,
+          "maxPenetrationMM": 1.509903313490213e-14,
+          "maxHitErrorMM": 0.858317880810899,
+          "visitOrderSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "maxPressureDeg": 37.89024408645615,
+          "maxWorkPressureDeg": 37.89024408645615,
+          "maxSteeringDeg": 17.91780857515541,
+          "maxFullCycleSteeringDeg": 17.91780857515541,
+          "pressureSatisfied": false,
+          "steeringSatisfied": true,
+          "hitSatisfied": true,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": 47.27790731054982,
+          "phaseCoverageSatisfied": true,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            2401,
+            4801
+          ],
+          "outlineVertexCount": 5761,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        },
+        {
+          "valid": true,
+          "passed": false,
+          "contactValid": true,
+          "closurePassed": true,
+          "integrationConverged": true,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": 0.018665845974716138,
+          "rmsSensorDeviationMM": 0.010662674235506526,
+          "maxFrontDeviationMM": 0.018682625938744046,
+          "maxSteeringDeviationDeg": 0.0002304742631949989,
+          "integrationMaxSensorDifferenceMM": 3.5795191241379305e-05,
+          "integrationMaxFrontDifferenceMM": 3.5831337209173693e-05,
+          "maxContactResidualMM": 1.2434497875801753e-14,
+          "maxPenetrationMM": 1.2434497875801753e-14,
+          "maxHitErrorMM": 0.8466322752969321,
+          "visitOrderSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "maxPressureDeg": 37.88462223376529,
+          "maxWorkPressureDeg": 37.8742234152878,
+          "maxSteeringDeg": 17.918319652639234,
+          "maxFullCycleSteeringDeg": 17.918319652639234,
+          "pressureSatisfied": false,
+          "steeringSatisfied": true,
+          "hitSatisfied": true,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": 47.27790731054982,
+          "phaseCoverageSatisfied": true,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            2401,
+            4801
+          ],
+          "outlineVertexCount": 11521,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        },
+        {
+          "valid": true,
+          "passed": false,
+          "contactValid": true,
+          "closurePassed": true,
+          "integrationConverged": true,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": 0.0061779566926670835,
+          "rmsSensorDeviationMM": 0.0035296894821800597,
+          "maxFrontDeviationMM": 0.006218319896289196,
+          "maxSteeringDeviationDeg": 7.504837184193715e-05,
+          "integrationMaxSensorDifferenceMM": 1.0551832792477072e-05,
+          "integrationMaxFrontDifferenceMM": 1.0522259655674119e-05,
+          "maxContactResidualMM": 1.7541523789077473e-14,
+          "maxPenetrationMM": 1.7541523789077473e-14,
+          "maxHitErrorMM": 0.8440223307767951,
+          "visitOrderSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "maxPressureDeg": 37.87812109903488,
+          "maxWorkPressureDeg": 37.87812109903488,
+          "maxSteeringDeg": 17.918454111623028,
+          "maxFullCycleSteeringDeg": 17.918454111623028,
+          "pressureSatisfied": false,
+          "steeringSatisfied": true,
+          "hitSatisfied": true,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": 47.27790731054982,
+          "phaseCoverageSatisfied": true,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            2401,
+            4801
+          ],
+          "outlineVertexCount": 20001,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      ],
+      "scope": "Independent outline-density study: same saved curve, same 9601-point design reference and same 2401/4801 integration phases; each actual polygon is separately frozen during integration. Numerical and sampled rigid-contact model only, not a continuous or physical accuracy certificate."
+    },
+    "actual_core/core_verification.json": {
+      "release": "2025b",
+      "groupsPassed": 8,
+      "groups": [
+        "analytic segment-interior contact and pressure",
+        "noncircle independent bisection oracle and winding invariance",
+        "analytic straight and signed constant-turn car with polygon refinement",
+        "actual mutation, poisoned/deleted theoretical fields and physical ratio",
+        "explicit rejection of unsupported geometry, zero radius, phase and rotation",
+        "frozen solar fine outline, full-cycle physical gates and report isolation",
+        "real solar self-intersecting actual outline rejected",
+        "return-phase pressure is distinct from working-phase pressure"
+      ],
+      "segmentInteriorMaxErrorMM": 1.7763568394002505e-15,
+      "independentNoncircleOracleMaxErrorMM": 1.4210854715202004e-14,
+      "windingMaxRadiusErrorMM": 1.4210854715202004e-14,
+      "windingMaxPressureErrorRad": 4.996003610813204e-16,
+      "pressureDerivativeMaxErrorRad": 1.3761108919041476e-10,
+      "analyticCircleSteeringRad": [
+        0,
+        0.1,
+        -0.1
+      ],
+      "analyticCircleVertexCounts": [
+        721,
+        5761
+      ],
+      "analyticCircleMaxPathErrorMM": [
+        [
+          0.18711599289236963,
+          0.0029329827625846953
+        ],
+        [
+          0.15747433404654643,
+          0.0024684210462098876
+        ],
+        [
+          0.19452665593804164,
+          0.003049173165697065
+        ]
+      ],
+      "analyticCircleMaxRadiusErrorMM": [
+        [
+          0.0004569251079473702,
+          7.139465964201008e-06
+        ],
+        [
+          0.00048080293714747313,
+          7.512557623101657e-06
+        ],
+        [
+          0.00043304727874726723,
+          6.766374298194933e-06
+        ]
+      ],
+      "analyticCircleMaxHeadingErrorRad": [
+        [
+          0.00018127980463549786,
+          2.840772295466219e-06
+        ],
+        [
+          0.0001678780563254545,
+          2.6308385547846314e-06
+        ],
+        [
+          0.0001969330640640976,
+          3.085957986037613e-06
+        ]
+      ],
+      "actualMutationMaxSensorDifferenceMM": 588.3008840277972,
+      "theoreticalFieldsIsolationExact": true,
+      "projectAndOutlineUnchanged": true,
+      "invalidInputs": {
+        "open": "cam:ActualOutlineOpen",
+        "nonfinite": "cam:ActualOutlineInvalid",
+        "zeroEdge": "cam:ActualOutlineDegenerate",
+        "zeroArea": "cam:ActualOutlineDegenerate",
+        "selfIntersection": "cam:ActualOutlineSelfIntersection",
+        "originOutside": "cam:ActualOutlineOrigin",
+        "zeroRoller": "cam:ActualContactRadius",
+        "rotation": "cam:ActualRotationConvention",
+        "missingPhase": "cam:ActualPhase",
+        "phaseConflict": "cam:ActualPhase"
+      },
+      "solarActualClosure": {
+        "valid": true,
+        "passed": false,
+        "contactValid": true,
+        "closurePassed": true,
+        "integrationConverged": true,
+        "geometryFeasible": false,
+        "maxSensorDeviationMM": 0.07519321895048946,
+        "rmsSensorDeviationMM": 0.04293649908189992,
+        "maxFrontDeviationMM": 0.07526844012134257,
+        "maxSteeringDeviationDeg": 0.0008165178076109674,
+        "integrationMaxSensorDifferenceMM": 0.000130274297909054,
+        "integrationMaxFrontDifferenceMM": 0.00013059088135095685,
+        "maxContactResidualMM": 1.3988810110276972e-14,
+        "maxPenetrationMM": 1.3988810110276972e-14,
+        "maxHitErrorMM": 0.8603639612781242,
+        "visitOrderSatisfied": true,
+        "trajectoryBoundsSatisfied": true,
+        "maxTrajectoryOutsideMM": 0,
+        "maxPressureDeg": 37.87560573273287,
+        "maxWorkPressureDeg": 37.870915875695594,
+        "maxSteeringDeg": 17.91780857451373,
+        "maxFullCycleSteeringDeg": 17.91780857451373,
+        "pressureSatisfied": false,
+        "steeringSatisfied": true,
+        "hitSatisfied": true,
+        "returnAngleSatisfied": false,
+        "actualReturnDeg": 47.277907311178296,
+        "phaseCoverageSatisfied": true,
+        "designGateAvailable": true,
+        "designGeometryFeasible": false,
+        "designMinUndercutMargin": 0.025741012576625755,
+        "designIntersectionCount": 0,
+        "tolerances": {
+          "closureMM": 2,
+          "integrationMM": 0.05,
+          "contactResidualMM": 1e-07,
+          "maxPressureDeg": 35,
+          "maxSteeringDeg": 65,
+          "maxHitErrorMM": 30,
+          "minimumReturnDeg": 60,
+          "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+        },
+        "integrationSamples": [
+          1201,
+          2401
+        ],
+        "outlineVertexCount": 5761,
+        "outlineUnchanged": true,
+        "physicalGearRatio": 35,
+        "errorIdentifier": "",
+        "errorMessage": "",
+        "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+        "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+      },
+      "solarDesignMetrics": {
+        "maxHitError": 0.8424114284544485,
+        "rmsHitError": 0.3412571778898175,
+        "routeLength": 12874.877583027403,
+        "driveLength": 12417.018616609028,
+        "maxSteeringDeg": 17.918532039811303,
+        "maxPressureDeg": 37.874991028720814,
+        "maxWorkPressureDeg": 37.874991028720814,
+        "maxReturnPressureDeg": 33.89018643284102,
+        "minUndercutMargin": 0.025741012576625755,
+        "intersectionCount": 0,
+        "actualReturnDeg": 47.277907311178296,
+        "returnAngleSatisfied": false,
+        "score": 1.3894027057638505,
+        "terms": [
+          0.0009179038625022079,
+          1.0519321285190102,
+          0.007380229518407112,
+          0.08549759622055557,
+          0,
+          0.005520248319633278
+        ],
+        "objectiveVersion": "peak-v2",
+        "legacyScore": 1.0642666234889235,
+        "legacyTerms": [
+          0.00012939606829035841,
+          1.0519321285190102,
+          0.001098822440316772,
+          0.002841862068303702,
+          0,
+          5.851106488423628e-06
+        ],
+        "geometryChecked": true,
+        "visitOrderChecked": true,
+        "visitOrderSatisfied": true,
+        "trajectoryBoundsChecked": true,
+        "trajectoryBoundsSatisfied": true,
+        "maxTrajectoryOutsideMM": 0
+      },
+      "rawCubicIntersectionCount": 4,
+      "rawCubicRejectedIdentifier": "cam:ActualOutlineSelfIntersection",
+      "separatePressureTestWorkDeg": 0.11984513366888791,
+      "separatePressureTestFullCycleDeg": 14.7577683534588,
+      "scope": "Frozen closed polygon plus rigid disk, sampled direct contact and no-slip vehicle only; not continuous-extrema, outline-discretization, original-software or hardware validation."
+    },
+    "actual_ui/verification.json": {
+      "release": "2025b",
+      "checks": [
+        "default actual mode enters through toolbar and freezes actual geometry with editable contact radius",
+        "contact radius changes trajectory without changing cam, exit restores design",
+        "actual closure button reports independent contact/integration metrics and overlays route",
+        "edits invalidate closure evidence and self-crossing outline cannot enter normal actual simulation",
+        "real closure button rejects crossing solar outline with clear reason and intact project",
+        "theoretical reference remains explicitly selectable",
+        "solar flat fixed35 actual closure displayed separately from failed physical gates"
+      ],
+      "passed": 7
+    },
+    "mapping/model_mapping.json": {
+      "release": "2025b",
+      "checks": [
+        "exact clamped cubic refinement and cubic-to-standard-B3/B5 space embeddings, with independent roundtrip geometry checks",
+        "Bezier degree/count and Bezier-to-cubic use actual curve fits; no false exact-preservation claim and launch point remains bitwise fixed",
+        "formal solar model/degree conversions either meet max/RMS/full-tangent gates or explicitly reject without returning an altered source",
+        "insufficient-cap mapping rejects atomically; application returns measured fitInfo and truthful automatic control count"
+      ],
+      "fits": [
+        {
+          "positionMaxMM": 3.457650183405701e-13,
+          "positionRMSMM": 1.251794352309941e-13,
+          "maxTangentErrorDeg": 2.1174046581134061e-13,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            1.7763568394002505e-15,
+            6.994722564282379e-16
+          ],
+          "endpointTangentErrorDeg": [
+            0,
+            1.3589532915482163e-14
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": true,
+          "mathematicallyExactSpace": true,
+          "method": "polynomial-space-embedding",
+          "validationSamples": 12016,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bspline-v1",
+          "sourceDegree": 3,
+          "targetDegree": 3,
+          "oldControlPointCount": 3,
+          "requestedControlPointCount": 8,
+          "actualControlPointCount": 8,
+          "controlPointCount": 8,
+          "automaticallyIncreasedCount": false,
+          "attempts": {
+            "count": 8,
+            "positionMaxMM": 3.457650183405701e-13,
+            "positionRMSMM": 1.251794352309941e-13
+          },
+          "parameterLength": 500,
+          "targetOrderUnchanged": true
+        },
+        {
+          "positionMaxMM": 3.694822225952521e-13,
+          "positionRMSMM": 1.2234637770064664e-13,
+          "maxTangentErrorDeg": 8.554649795960035e-14,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            4.440892098500626e-16,
+            1.1305407302409863e-15
+          ],
+          "endpointTangentErrorDeg": [
+            2.5444437451708134e-14,
+            1.2428034375697386e-14
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": true,
+          "mathematicallyExactSpace": true,
+          "method": "polynomial-space-embedding",
+          "validationSamples": 12007,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bspline-v1",
+          "sourceDegree": 3,
+          "targetDegree": 5,
+          "oldControlPointCount": 3,
+          "requestedControlPointCount": 8,
+          "actualControlPointCount": 9,
+          "controlPointCount": 9,
+          "automaticallyIncreasedCount": true,
+          "attempts": {
+            "count": 9,
+            "positionMaxMM": 3.694822225952521e-13,
+            "positionRMSMM": 1.2234637770064664e-13
+          },
+          "parameterLength": 500,
+          "targetOrderUnchanged": true
+        },
+        {
+          "positionMaxMM": 0.00041258475246763737,
+          "positionRMSMM": 0.00018462038866612685,
+          "maxTangentErrorDeg": 0.0016650819127400514,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            1.037815236043218e-15,
+            1.604435745475906e-15
+          ],
+          "endpointTangentErrorDeg": [
+            4.5597009631401137e-14,
+            2.2798215956730374e-14
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": false,
+          "mathematicallyExactSpace": false,
+          "method": "constrained-fit",
+          "validationSamples": 12023,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "bezier-blend-independent-v1",
+          "targetModel": "bezier-blend-independent-v1",
+          "sourceDegree": 5,
+          "targetDegree": 3,
+          "oldControlPointCount": 8,
+          "requestedControlPointCount": 8,
+          "actualControlPointCount": 8,
+          "controlPointCount": 8,
+          "automaticallyIncreasedCount": false,
+          "attempts": {
+            "count": 8,
+            "positionMaxMM": 0.00041258475246763737,
+            "positionRMSMM": 0.00018462038866612685
+          },
+          "parameterLength": 500,
+          "targetOrderUnchanged": true
+        },
+        {
+          "positionMaxMM": 0.0005939024465249076,
+          "positionRMSMM": 0.00020486515466889763,
+          "maxTangentErrorDeg": 0.0016439878235630634,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            0,
+            5.0415401020493126e-21
+          ],
+          "endpointTangentErrorDeg": [
+            0,
+            2.8885897009337895e-19
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": false,
+          "mathematicallyExactSpace": false,
+          "method": "constrained-fit",
+          "validationSamples": 12023,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "bezier-blend-independent-v1",
+          "targetModel": "cubic",
+          "sourceDegree": 5,
+          "targetDegree": 3,
+          "oldControlPointCount": 8,
+          "requestedControlPointCount": 8,
+          "actualControlPointCount": 8,
+          "controlPointCount": 8,
+          "automaticallyIncreasedCount": false,
+          "attempts": {
+            "count": 8,
+            "positionMaxMM": 0.0005939024465249076,
+            "positionRMSMM": 0.00020486515466889763
+          },
+          "parameterLength": 500,
+          "targetOrderUnchanged": true
+        },
+        {
+          "positionMaxMM": 4.637531231849411e-12,
+          "positionRMSMM": 9.047826657429758e-13,
+          "maxTangentErrorDeg": 6.231522506462465e-13,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            0,
+            4.335559509131367e-16
+          ],
+          "endpointTangentErrorDeg": [
+            0,
+            1.272221872585407e-14
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": true,
+          "mathematicallyExactSpace": true,
+          "method": "polynomial-space-embedding",
+          "validationSamples": 12101,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bspline-v1",
+          "sourceDegree": 3,
+          "targetDegree": 3,
+          "oldControlPointCount": 34,
+          "requestedControlPointCount": 34,
+          "actualControlPointCount": 36,
+          "controlPointCount": 36,
+          "automaticallyIncreasedCount": true,
+          "attempts": {
+            "count": 36,
+            "positionMaxMM": 4.637531231849411e-12,
+            "positionRMSMM": 9.047826657429758e-13
+          },
+          "parameterLength": 12231.165673855725,
+          "targetOrderUnchanged": true
+        },
+        {
+          "positionMaxMM": 4.582862941503293e-12,
+          "positionRMSMM": 1.00867819523688e-12,
+          "maxTangentErrorDeg": 2.6836368867360622e-12,
+          "firstPointErrorMM": 0,
+          "endpointPositionErrorMM": [
+            0,
+            0
+          ],
+          "endpointDerivativeError": [
+            8.881784197001252e-16,
+            2.0014830212433605e-16
+          ],
+          "endpointTangentErrorDeg": [
+            5.088887490341627e-14,
+            9.541664044390549e-15
+          ],
+          "withinTolerance": true,
+          "shapePreservationGuaranteed": true,
+          "mathematicallyExactSpace": true,
+          "method": "polynomial-space-embedding",
+          "validationSamples": 12101,
+          "tolerances": {
+            "positionMaxMM": 0.05,
+            "positionRMSMM": 0.01,
+            "maxTangentDeg": 0.05,
+            "endpointPositionMM": 1e-07,
+            "endpointDerivative": 1e-07,
+            "endpointTangentDeg": 1e-05
+          },
+          "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+          "version": "route-geometry-mapping-v1",
+          "sourceModel": "cubic",
+          "targetModel": "bspline-v1",
+          "sourceDegree": 3,
+          "targetDegree": 5,
+          "oldControlPointCount": 34,
+          "requestedControlPointCount": 34,
+          "actualControlPointCount": 102,
+          "controlPointCount": 102,
+          "automaticallyIncreasedCount": true,
+          "attempts": {
+            "count": 102,
+            "positionMaxMM": 4.582862941503293e-12,
+            "positionRMSMM": 1.00867819523688e-12
+          },
+          "parameterLength": 12231.165673855725,
+          "targetOrderUnchanged": true
+        }
+      ],
+      "solarOutcomes": [
+        {
+          "accepted": false,
+          "identifier": "cam:RouteMappingTolerance",
+          "message": "路线映射被拒绝：cubic → bezier-blend-independent-v1，250控制点，最大误差 0.0114368 mm / 容差 0.05，RMS 0.00229581 mm / 容差 0.01，全程切向 0.11637° / 容差 0.05°；原方案保留。"
+        },
+        {
+          "accepted": true,
+          "fitInfo": {
+            "positionMaxMM": 4.637531231849411e-12,
+            "positionRMSMM": 9.047826657429758e-13,
+            "maxTangentErrorDeg": 6.231522506462465e-13,
+            "firstPointErrorMM": 0,
+            "endpointPositionErrorMM": [
+              0,
+              0
+            ],
+            "endpointDerivativeError": [
+              0,
+              4.335559509131367e-16
+            ],
+            "endpointTangentErrorDeg": [
+              0,
+              1.272221872585407e-14
+            ],
+            "withinTolerance": true,
+            "shapePreservationGuaranteed": true,
+            "mathematicallyExactSpace": true,
+            "method": "polynomial-space-embedding",
+            "validationSamples": 12101,
+            "tolerances": {
+              "positionMaxMM": 0.05,
+              "positionRMSMM": 0.01,
+              "maxTangentDeg": 0.05,
+              "endpointPositionMM": 1e-07,
+              "endpointDerivative": 1e-07,
+              "endpointTangentDeg": 1e-05
+            },
+            "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+            "version": "route-geometry-mapping-v1",
+            "sourceModel": "cubic",
+            "targetModel": "bspline-v1",
+            "sourceDegree": 3,
+            "targetDegree": 3,
+            "oldControlPointCount": 34,
+            "requestedControlPointCount": 34,
+            "actualControlPointCount": 36,
+            "controlPointCount": 36,
+            "automaticallyIncreasedCount": true,
+            "attempts": {
+              "count": 36,
+              "positionMaxMM": 4.637531231849411e-12,
+              "positionRMSMM": 9.047826657429758e-13
+            },
+            "parameterLength": 12231.165673855725,
+            "targetOrderUnchanged": true
+          }
+        },
+        {
+          "accepted": true,
+          "fitInfo": {
+            "positionMaxMM": 4.582862941503293e-12,
+            "positionRMSMM": 1.00867819523688e-12,
+            "maxTangentErrorDeg": 2.6836368867360622e-12,
+            "firstPointErrorMM": 0,
+            "endpointPositionErrorMM": [
+              0,
+              0
+            ],
+            "endpointDerivativeError": [
+              8.881784197001252e-16,
+              2.0014830212433605e-16
+            ],
+            "endpointTangentErrorDeg": [
+              5.088887490341627e-14,
+              9.541664044390549e-15
+            ],
+            "withinTolerance": true,
+            "shapePreservationGuaranteed": true,
+            "mathematicallyExactSpace": true,
+            "method": "polynomial-space-embedding",
+            "validationSamples": 12101,
+            "tolerances": {
+              "positionMaxMM": 0.05,
+              "positionRMSMM": 0.01,
+              "maxTangentDeg": 0.05,
+              "endpointPositionMM": 1e-07,
+              "endpointDerivative": 1e-07,
+              "endpointTangentDeg": 1e-05
+            },
+            "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+            "version": "route-geometry-mapping-v1",
+            "sourceModel": "cubic",
+            "targetModel": "bspline-v1",
+            "sourceDegree": 3,
+            "targetDegree": 5,
+            "oldControlPointCount": 34,
+            "requestedControlPointCount": 34,
+            "actualControlPointCount": 102,
+            "controlPointCount": 102,
+            "automaticallyIncreasedCount": true,
+            "attempts": {
+              "count": 102,
+              "positionMaxMM": 4.582862941503293e-12,
+              "positionRMSMM": 1.00867819523688e-12
+            },
+            "parameterLength": 12231.165673855725,
+            "targetOrderUnchanged": true
+          }
+        }
+      ],
+      "historicalBezierDegreeChange": {
+        "accepted": false,
+        "identifier": "cam:RouteMappingTolerance",
+        "message": "路线映射被拒绝：bezier-blend-independent-v1 → bezier-blend-independent-v1，250控制点，最大误差 0.0744906 mm / 容差 0.05，RMS 0.0156475 mm / 容差 0.01，全程切向 0.391576° / 容差 0.05°；原方案保留。"
+      },
+      "scope": "Geometry and product-adapter contracts; no cam, RFID, convergence or real-car acceptance."
+    }
+  },
+  "quality": [
+    {
+      "protocol": {
+        "variant": "baseline",
+        "label": "quality34",
+        "sourceFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\model_mapping_20261031\\quality_bezier\\result.mat",
+        "requestedIterations": 600,
+        "maxFunctionEvaluations": 80000,
+        "maxSeconds": 3600,
+        "differenceStepMM": 0.1,
+        "regularizationWeight": 0,
+        "grid": [
+          601,
+          721
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "degree": 5,
+        "nodes": 34,
+        "physicalGearRatio": 35,
+        "productionPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\bezier_precision_baseline\\+camdesign\\route.m",
+        "scope": "Same initial saved Bezier geometry and physical parameters, only numerical-chain version differs; two local cases, not a general algorithm ranking.",
+        "stage": "primary"
+      },
+      "iterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41152,
+      "solverFunctions": 40878,
+      "solverSeconds": 118.555871,
+      "before": {
+        "metrics": {
+          "maxHitError": 0.8424114284544485,
+          "rmsHitError": 0.3412571778898175,
+          "routeLength": 12874.877943494237,
+          "driveLength": 12417.018835407507,
+          "maxSteeringDeg": 17.918532039811303,
+          "maxPressureDeg": 37.87498810232771,
+          "maxWorkPressureDeg": 37.87498810232771,
+          "maxReturnPressureDeg": 33.885487788289,
+          "minUndercutMargin": 0.025728854666744017,
+          "intersectionCount": 0,
+          "actualReturnDeg": 47.27790180074778,
+          "returnAngleSatisfied": false,
+          "score": 1.3894200339990996,
+          "terms": [
+            0.0009179038625022079,
+            1.05193215797068,
+            0.007380202119112319,
+            0.08549736295200563,
+            0,
+            0.005522053658415164
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 1.0642664512858646,
+          "legacyTerms": [
+            0.00012939606829035841,
+            1.05193215797068,
+            0.0010988215012227738,
+            0.0028417970667464617,
+            0,
+            5.85062930153116e-06
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": true,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 2.6411186425434607e-05,
+          "hitMM": 0.0017521509488369613,
+          "steeringDeg": 1.1093522545024825e-08,
+          "returnDeg": 1.641382732486818e-05,
+          "lengthMM": 0.0010814228626259137
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 0.003467120491955912,
+          "inverseFrontMaxErrorMM": 0.030453659756134874,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": true,
+          "passed": false,
+          "contactValid": true,
+          "closurePassed": true,
+          "integrationConverged": true,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": 0.0676473257664782,
+          "rmsSensorDeviationMM": 0.03822327551049087,
+          "maxFrontDeviationMM": 0.0677205963096002,
+          "maxSteeringDeviationDeg": 0.0009331658811197898,
+          "integrationMaxSensorDifferenceMM": 9.750430261256183e-05,
+          "integrationMaxFrontDifferenceMM": 9.806131368272928e-05,
+          "maxContactResidualMM": 1.6209256159527285e-14,
+          "maxPenetrationMM": 1.6209256159527285e-14,
+          "maxHitErrorMM": 0.8569557967729305,
+          "visitOrderSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "maxPressureDeg": 37.90170439704111,
+          "maxWorkPressureDeg": 37.90170439704111,
+          "maxSteeringDeg": 17.917808600673048,
+          "maxFullCycleSteeringDeg": 17.917808600673048,
+          "pressureSatisfied": false,
+          "steeringSatisfied": true,
+          "hitSatisfied": true,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": 47.27790180074778,
+          "phaseCoverageSatisfied": true,
+          "designGateAvailable": true,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": 0.025728854666744017,
+          "designIntersectionCount": 0,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": 5761,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "after": {
+        "metrics": {
+          "maxHitError": 30.71165525045034,
+          "rmsHitError": 28.86681098193373,
+          "routeLength": 12486.143979453358,
+          "driveLength": 11996.947952262517,
+          "maxSteeringDeg": 18.9232322338497,
+          "maxPressureDeg": 35.656290021934396,
+          "maxWorkPressureDeg": 35.656290021934396,
+          "maxReturnPressureDeg": 29.0436506676864,
+          "minUndercutMargin": -0.08419462646496956,
+          "intersectionCount": 2,
+          "actualReturnDeg": 57.85736936142523,
+          "returnAngleSatisfied": false,
+          "score": 25.072664572842214,
+          "terms": [
+            1.9738872716546707,
+            1.0201709436535649,
+            0.006627475912578435,
+            0.004316860904276072,
+            0,
+            0.03396408347946156
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.133866931534591,
+          "legacyTerms": [
+            0.9258808625185443,
+            1.0201709436535649,
+            0.0013661610617337876,
+            9.694975369530074e-06,
+            0,
+            3.642306089189329e-05
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 0.00021748412723354704,
+          "hitMM": 5.571006767013387e-09,
+          "steeringDeg": 8.902844683689182e-09,
+          "returnDeg": 0.00010561057871427693,
+          "lengthMM": 0.004758534887514543
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 0.004632853096126119,
+          "inverseFrontMaxErrorMM": 0.040804680649264555,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "tailRetainedViolation": [
+        0.08128394246975623,
+        0.048006300841295424
+      ],
+      "tailRawViolation": [
+        0.08923678284109293,
+        0.08917537713404222
+      ],
+      "parametersUnchanged": true
+    },
+    {
+      "protocol": {
+        "variant": "baseline",
+        "label": "paired35",
+        "sourceFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\path_comparison_20261031\\seed1_bezier5.mat",
+        "requestedIterations": 600,
+        "maxFunctionEvaluations": 80000,
+        "maxSeconds": 3600,
+        "differenceStepMM": 0.1,
+        "regularizationWeight": 0,
+        "grid": [
+          601,
+          721
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "degree": 5,
+        "nodes": 35,
+        "physicalGearRatio": 35,
+        "productionPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\bezier_precision_baseline\\+camdesign\\route.m",
+        "scope": "Same initial saved Bezier geometry and physical parameters, only numerical-chain version differs; two local cases, not a general algorithm ranking.",
+        "stage": "primary"
+      },
+      "iterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 44303,
+      "solverFunctions": 44028,
+      "solverSeconds": 129.8208026,
+      "before": {
+        "metrics": {
+          "maxHitError": 31.663031542614426,
+          "rmsHitError": 29.3245733285174,
+          "routeLength": 12441.154230581646,
+          "driveLength": 11973.024596233936,
+          "maxSteeringDeg": 18.145250240679815,
+          "maxPressureDeg": 49.4029684613846,
+          "maxWorkPressureDeg": 35.947465358973474,
+          "maxReturnPressureDeg": 49.4029684613846,
+          "minUndercutMargin": -0.9835117778571891,
+          "intersectionCount": 6,
+          "actualReturnDeg": 58.45987807888743,
+          "returnAngleSatisfied": false,
+          "score": 44.03511835813461,
+          "terms": [
+            2.0694201859646557,
+            1.016495090272672,
+            0.006927160371554319,
+            2.1410038984407267,
+            0,
+            1.174871502022079
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.66668838961459,
+          "legacyTerms": [
+            0.9554784454439934,
+            1.016495090272672,
+            0.0014993496031623166,
+            0.05757198737978397,
+            0,
+            0.0008737292668322226
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": false,
+        "convergenceDelta": {
+          "pressureDeg": 1.5044941991696845,
+          "hitMM": 2.5853097440631245e-11,
+          "steeringDeg": 0.00018118407884415433,
+          "returnDeg": 0.00048282733484938944,
+          "lengthMM": 0.019066512253630208
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 0.9984607020129713,
+          "inverseFrontMaxErrorMM": 0.033160270457967406,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": false,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "after": {
+        "metrics": {
+          "maxHitError": 31.663031542614426,
+          "rmsHitError": 29.3245733285174,
+          "routeLength": 12441.154230581646,
+          "driveLength": 11973.024596233936,
+          "maxSteeringDeg": 18.145250240679815,
+          "maxPressureDeg": 49.4029684613846,
+          "maxWorkPressureDeg": 35.947465358973474,
+          "maxReturnPressureDeg": 49.4029684613846,
+          "minUndercutMargin": -0.9835117778571891,
+          "intersectionCount": 6,
+          "actualReturnDeg": 58.45987807888743,
+          "returnAngleSatisfied": false,
+          "score": 44.03511835813461,
+          "terms": [
+            2.0694201859646557,
+            1.016495090272672,
+            0.006927160371554319,
+            2.1410038984407267,
+            0,
+            1.174871502022079
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.66668838961459,
+          "legacyTerms": [
+            0.9554784454439934,
+            1.016495090272672,
+            0.0014993496031623166,
+            0.05757198737978397,
+            0,
+            0.0008737292668322226
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": false,
+        "convergenceDelta": {
+          "pressureDeg": 1.5044941991696845,
+          "hitMM": 2.5853097440631245e-11,
+          "steeringDeg": 0.00018118407884415433,
+          "returnDeg": 0.00048282733484938944,
+          "lengthMM": 0.019066512253630208
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 0.9984607020129713,
+          "inverseFrontMaxErrorMM": 0.033160270457967406,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": false,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "tailRetainedViolation": [
+        0.11394174005439983,
+        0.11394174005439983
+      ],
+      "tailRawViolation": [
+        0.8910002118859413,
+        0.6485320046858938
+      ],
+      "parametersUnchanged": true
+    },
+    {
+      "protocol": {
+        "variant": "baseline",
+        "stage": "continuation",
+        "label": "quality34",
+        "sourceFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\bezier_precision_20261031\\quality\\baseline\\quality34.mat",
+        "requestedIterations": 600,
+        "maxFunctionEvaluations": 80000,
+        "maxSeconds": 3600,
+        "differenceStepMM": 0.1,
+        "regularizationWeight": 0,
+        "grid": [
+          1201,
+          1441
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "degree": 5,
+        "nodes": 34,
+        "physicalGearRatio": 35,
+        "productionPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\bezier_precision_baseline\\+camdesign\\route.m",
+        "scope": "Same initial saved Bezier geometry and physical parameters, only numerical-chain version differs; two local cases, not a general algorithm ranking."
+      },
+      "iterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41069,
+      "solverFunctions": 40796,
+      "solverSeconds": 247.4669925,
+      "before": {
+        "metrics": {
+          "maxHitError": 30.71165525045034,
+          "rmsHitError": 28.86681098193373,
+          "routeLength": 12486.143979453358,
+          "driveLength": 11996.947952262517,
+          "maxSteeringDeg": 18.9232322338497,
+          "maxPressureDeg": 35.656290021934396,
+          "maxWorkPressureDeg": 35.656290021934396,
+          "maxReturnPressureDeg": 29.0436506676864,
+          "minUndercutMargin": -0.08419462646496956,
+          "intersectionCount": 2,
+          "actualReturnDeg": 57.85736936142523,
+          "returnAngleSatisfied": false,
+          "score": 25.072664572842214,
+          "terms": [
+            1.9738872716546707,
+            1.0201709436535649,
+            0.006627475912578435,
+            0.004316860904276072,
+            0,
+            0.03396408347946156
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.133866931534591,
+          "legacyTerms": [
+            0.9258808625185443,
+            1.0201709436535649,
+            0.0013661610617337876,
+            9.694975369530074e-06,
+            0,
+            3.642306089189329e-05
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 0.00021748412723354704,
+          "hitMM": 5.571006767013387e-09,
+          "steeringDeg": 8.902844683689182e-09,
+          "returnDeg": 0.00010561057871427693,
+          "lengthMM": 0.004758534887514543
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 0.004632853096126119,
+          "inverseFrontMaxErrorMM": 0.040804680649264555,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "after": {
+        "metrics": {
+          "maxHitError": 30.71165525045034,
+          "rmsHitError": 28.86681098193373,
+          "routeLength": 12486.143979453358,
+          "driveLength": 11996.947952262517,
+          "maxSteeringDeg": 18.9232322338497,
+          "maxPressureDeg": 35.656290021934396,
+          "maxWorkPressureDeg": 35.656290021934396,
+          "maxReturnPressureDeg": 29.0436506676864,
+          "minUndercutMargin": -0.08419462646496956,
+          "intersectionCount": 2,
+          "actualReturnDeg": 57.85736936142523,
+          "returnAngleSatisfied": false,
+          "score": 25.072664572842214,
+          "terms": [
+            1.9738872716546707,
+            1.0201709436535649,
+            0.006627475912578435,
+            0.004316860904276072,
+            0,
+            0.03396408347946156
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.133866931534591,
+          "legacyTerms": [
+            0.9258808625185443,
+            1.0201709436535649,
+            0.0013661610617337876,
+            9.694975369530074e-06,
+            0,
+            3.642306089189329e-05
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 0.00021748412723354704,
+          "hitMM": 5.571006767013387e-09,
+          "steeringDeg": 8.902844683689182e-09,
+          "returnDeg": 0.00010561057871427693,
+          "lengthMM": 0.004758534887514543
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 0.004632853096126119,
+          "inverseFrontMaxErrorMM": 0.040804680649264555,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "tailRetainedViolation": [
+        0.08254441504201634,
+        0.08254441504201634
+      ],
+      "tailRawViolation": [
+        0.11231486068280705,
+        0.10164947640392841
+      ],
+      "parametersUnchanged": true
+    },
+    {
+      "protocol": {
+        "variant": "baseline",
+        "stage": "continuation",
+        "label": "paired35",
+        "sourceFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\bezier_precision_20261031\\quality\\baseline\\paired35.mat",
+        "requestedIterations": 600,
+        "maxFunctionEvaluations": 80000,
+        "maxSeconds": 3600,
+        "differenceStepMM": 0.1,
+        "regularizationWeight": 0,
+        "grid": [
+          1201,
+          1441
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "degree": 5,
+        "nodes": 35,
+        "physicalGearRatio": 35,
+        "productionPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\local\\bezier_precision_baseline\\+camdesign\\route.m",
+        "scope": "Same initial saved Bezier geometry and physical parameters, only numerical-chain version differs; two local cases, not a general algorithm ranking."
+      },
+      "iterations": 427,
+      "reason": "constrained_infeasible",
+      "modelAttempts": 31426,
+      "solverFunctions": 31236,
+      "solverSeconds": 200.4763689,
+      "before": {
+        "metrics": {
+          "maxHitError": 31.663031542614426,
+          "rmsHitError": 29.3245733285174,
+          "routeLength": 12441.154230581646,
+          "driveLength": 11973.024596233936,
+          "maxSteeringDeg": 18.145250240679815,
+          "maxPressureDeg": 49.4029684613846,
+          "maxWorkPressureDeg": 35.947465358973474,
+          "maxReturnPressureDeg": 49.4029684613846,
+          "minUndercutMargin": -0.9835117778571891,
+          "intersectionCount": 6,
+          "actualReturnDeg": 58.45987807888743,
+          "returnAngleSatisfied": false,
+          "score": 44.03511835813461,
+          "terms": [
+            2.0694201859646557,
+            1.016495090272672,
+            0.006927160371554319,
+            2.1410038984407267,
+            0,
+            1.174871502022079
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.66668838961459,
+          "legacyTerms": [
+            0.9554784454439934,
+            1.016495090272672,
+            0.0014993496031623166,
+            0.05757198737978397,
+            0,
+            0.0008737292668322226
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": false,
+        "convergenceDelta": {
+          "pressureDeg": 1.5044941991696845,
+          "hitMM": 2.5853097440631245e-11,
+          "steeringDeg": 0.00018118407884415433,
+          "returnDeg": 0.00048282733484938944,
+          "lengthMM": 0.019066512253630208
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 0.9984607020129713,
+          "inverseFrontMaxErrorMM": 0.033160270457967406,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": false,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "after": {
+        "metrics": {
+          "maxHitError": 31.14248533560365,
+          "rmsHitError": 28.302381233778306,
+          "routeLength": 12480.5372734991,
+          "driveLength": 12017.47282866189,
+          "maxSteeringDeg": 17.75952384627241,
+          "maxPressureDeg": 34.747942759980084,
+          "maxWorkPressureDeg": 34.747942759980084,
+          "maxReturnPressureDeg": 17.3363813644852,
+          "minUndercutMargin": -0.9203973875905829,
+          "intersectionCount": 2,
+          "actualReturnDeg": 57.34045121078266,
+          "returnAngleSatisfied": false,
+          "score": 35.06036771589327,
+          "terms": [
+            1.9676435293115715,
+            1.01971285198703,
+            0.005659350500797933,
+            0,
+            0,
+            1.0417613811165785
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 11.708119560040444,
+          "legacyTerms": [
+            0.8900275372245847,
+            1.01971285198703,
+            0.0012853681047373,
+            0,
+            0,
+            0.0005505525148922115
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 0.01171127989938725,
+          "hitMM": 0.0038021926229916403,
+          "steeringDeg": 2.3089850031965398e-08,
+          "returnDeg": 0.00020695000245041228,
+          "lengthMM": 0.00817264806755702
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 0.010441201924985384,
+          "inverseFrontMaxErrorMM": 0.02838830231683697,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "tailRetainedViolation": [
+        0.6228243731750599,
+        0.6228243731750599
+      ],
+      "tailRawViolation": [
+        2.3893142320702503,
+        2.346222884528383
+      ],
+      "parametersUnchanged": true
+    },
+    {
+      "protocol": {
+        "variant": "improved",
+        "stage": "primary",
+        "label": "quality34",
+        "sourceFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\model_mapping_20261031\\quality_bezier\\result.mat",
+        "requestedIterations": 600,
+        "maxFunctionEvaluations": 80000,
+        "maxSeconds": 3600,
+        "differenceStepMM": 0.1,
+        "regularizationWeight": 0,
+        "grid": [
+          601,
+          721
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "degree": 5,
+        "nodes": 34,
+        "physicalGearRatio": 35,
+        "productionPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\+camdesign\\route.m",
+        "scope": "Same initial saved Bezier geometry and physical parameters, only numerical-chain version differs; two local cases, not a general algorithm ranking."
+      },
+      "iterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41280,
+      "solverFunctions": 41009,
+      "solverSeconds": 149.0845332,
+      "before": {
+        "metrics": {
+          "maxHitError": 0.8424114284544485,
+          "rmsHitError": 0.3412571778898175,
+          "routeLength": 12874.877583027403,
+          "driveLength": 12417.018616609028,
+          "maxSteeringDeg": 17.918532039811303,
+          "maxPressureDeg": 37.874991028720814,
+          "maxWorkPressureDeg": 37.874991028720814,
+          "maxReturnPressureDeg": 33.89018643284102,
+          "minUndercutMargin": 0.025741012576625755,
+          "intersectionCount": 0,
+          "actualReturnDeg": 47.277907311178296,
+          "returnAngleSatisfied": false,
+          "score": 1.3894027057638505,
+          "terms": [
+            0.0009179038625022079,
+            1.0519321285190102,
+            0.007380229518407112,
+            0.08549759622055557,
+            0,
+            0.005520248319633278
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 1.0642666234889235,
+          "legacyTerms": [
+            0.00012939606829035841,
+            1.0519321285190102,
+            0.001098822440316772,
+            0.002841862068303702,
+            0,
+            5.851106488423628e-06
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": true,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 2.9871330298192333e-08,
+          "hitMM": 0.0017521509488369613,
+          "steeringDeg": 1.1093522545024825e-08,
+          "returnDeg": 1.026324980557547e-08,
+          "lengthMM": 7.452399586327374e-09
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 2.6636294660491603e-06,
+          "inverseFrontMaxErrorMM": 2.394771081785689e-05,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": true,
+          "passed": false,
+          "contactValid": true,
+          "closurePassed": true,
+          "integrationConverged": true,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": 0.07458156757188453,
+          "rmsSensorDeviationMM": 0.04257922750530667,
+          "maxFrontDeviationMM": 0.07467326890507411,
+          "maxSteeringDeviationDeg": 0.0009332081823507477,
+          "integrationMaxSensorDifferenceMM": 9.767885361060749e-05,
+          "integrationMaxFrontDifferenceMM": 9.823627101536427e-05,
+          "maxContactResidualMM": 1.709743457922741e-14,
+          "maxPenetrationMM": 1.709743457922741e-14,
+          "maxHitErrorMM": 0.8575526444692045,
+          "visitOrderSatisfied": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0,
+          "maxPressureDeg": 37.901707731340295,
+          "maxWorkPressureDeg": 37.901707731340295,
+          "maxSteeringDeg": 17.91780857451373,
+          "maxFullCycleSteeringDeg": 17.91780857451373,
+          "pressureSatisfied": false,
+          "steeringSatisfied": true,
+          "hitSatisfied": true,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": 47.277907311178296,
+          "phaseCoverageSatisfied": true,
+          "designGateAvailable": true,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": 0.025741012576625755,
+          "designIntersectionCount": 0,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": 5761,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "after": {
+        "metrics": {
+          "maxHitError": 30.743810953629247,
+          "rmsHitError": 28.808741521291896,
+          "routeLength": 12481.317642000988,
+          "driveLength": 11984.291973987478,
+          "maxSteeringDeg": 18.942425302197073,
+          "maxPressureDeg": 35.56964155164064,
+          "maxWorkPressureDeg": 35.56964155164064,
+          "maxReturnPressureDeg": 34.05238908410728,
+          "minUndercutMargin": -0.09579705977571429,
+          "intersectionCount": 8,
+          "actualReturnDeg": 58.1761096430819,
+          "returnAngleSatisfied": false,
+          "score": 25.095554217402565,
+          "terms": [
+            1.9723616666590018,
+            1.0197766114048517,
+            0.006759236506096068,
+            0.003252002114396671,
+            0,
+            0.038416312673431464
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.089549914053315,
+          "legacyTerms": [
+            0.9221595422673421,
+            1.0197766114048517,
+            0.0015196467258331656,
+            7.087140841028227e-06,
+            0,
+            7.982405661683118e-05
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 1.247949512617197e-07,
+          "hitMM": 1.0931067606634315e-08,
+          "steeringDeg": 8.94182861088666e-09,
+          "returnDeg": 2.1153937268536538e-08,
+          "lengthMM": 2.5911504053510725e-08
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 1.6379168320984924e-05,
+          "inverseFrontMaxErrorMM": 1.6382691981858587e-05,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "tailRetainedViolation": [
+        0.054161296157993144,
+        0.050201907240659205
+      ],
+      "tailRawViolation": [
+        0.05692139419588793,
+        0.05235187357180826
+      ],
+      "parametersUnchanged": true
+    },
+    {
+      "protocol": {
+        "variant": "improved",
+        "stage": "primary",
+        "label": "paired35",
+        "sourceFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\path_comparison_20261031\\seed1_bezier5.mat",
+        "requestedIterations": 600,
+        "maxFunctionEvaluations": 80000,
+        "maxSeconds": 3600,
+        "differenceStepMM": 0.1,
+        "regularizationWeight": 0,
+        "grid": [
+          601,
+          721
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "degree": 5,
+        "nodes": 35,
+        "physicalGearRatio": 35,
+        "productionPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\+camdesign\\route.m",
+        "scope": "Same initial saved Bezier geometry and physical parameters, only numerical-chain version differs; two local cases, not a general algorithm ranking."
+      },
+      "iterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 44231,
+      "solverFunctions": 43958,
+      "solverSeconds": 168.3854513,
+      "before": {
+        "metrics": {
+          "maxHitError": 31.663031542614426,
+          "rmsHitError": 29.3245733285174,
+          "routeLength": 12441.160586059163,
+          "driveLength": 11973.030986014732,
+          "maxSteeringDeg": 18.145250240679815,
+          "maxPressureDeg": 50.052753957231026,
+          "maxWorkPressureDeg": 35.94778794956679,
+          "maxReturnPressureDeg": 50.052753957231026,
+          "minUndercutMargin": -0.9835136067258758,
+          "intersectionCount": 6,
+          "actualReturnDeg": 58.459717152526274,
+          "returnAngleSatisfied": false,
+          "score": 44.63143871531809,
+          "terms": [
+            2.0694201859646557,
+            1.0164956095421522,
+            0.006927179149302973,
+            2.3397636866776765,
+            0,
+            1.1748755455868443
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.688753706280114,
+          "legacyTerms": [
+            0.9554784454439934,
+            1.0164956095421522,
+            0.0014993529690406249,
+            0.06492664973489243,
+            0,
+            0.0008738096267282019
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 1.0136538719507371e-08,
+          "hitMM": 2.5853097440631245e-11,
+          "steeringDeg": 0.00018118407884415433,
+          "returnDeg": 1.3033456980338087e-08,
+          "lengthMM": 2.6564521249383688e-08
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 2.804953171003807e-06,
+          "inverseFrontMaxErrorMM": 9.954105494294501e-06,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "after": {
+        "metrics": {
+          "maxHitError": 39.35522169636893,
+          "rmsHitError": 29.835899799048644,
+          "routeLength": 12477.631078863482,
+          "driveLength": 12017.486287204394,
+          "maxSteeringDeg": 17.791155089054527,
+          "maxPressureDeg": 36.30026115564054,
+          "maxWorkPressureDeg": 36.30026115564054,
+          "maxReturnPressureDeg": 16.474166347840203,
+          "minUndercutMargin": -21.595572394122243,
+          "intersectionCount": 2,
+          "actualReturnDeg": 57.340112257954615,
+          "returnAngleSatisfied": false,
+          "score": 4741.6737910876345,
+          "terms": [
+            2.7100159906546875,
+            1.0194754035538918,
+            0.005216268531832961,
+            0.016909725425904465,
+            0,
+            470.80729620828834
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 13.984840551804423,
+          "legacyTerms": [
+            0.9890899075765234,
+            1.0194754035538918,
+            0.0009652281745346682,
+            2.934697227682136e-06,
+            0,
+            0.10943469968914975
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 1.3423220934782876e-07,
+          "hitMM": 8.965912456915248e-10,
+          "steeringDeg": 3.6219027776951407e-09,
+          "returnDeg": 9.613643214834156e-09,
+          "lengthMM": 4.355752025730908e-08
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 4.11262440240968e-06,
+          "inverseFrontMaxErrorMM": 6.640801411025875e-06,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "tailRetainedViolation": [
+        0.7828714224363444,
+        0.7209261066492514
+      ],
+      "tailRawViolation": [
+        0.7828714224363444,
+        0.7209261066492514
+      ],
+      "parametersUnchanged": true
+    },
+    {
+      "protocol": {
+        "variant": "improved",
+        "stage": "continuation",
+        "label": "quality34",
+        "sourceFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\bezier_precision_20261031\\quality\\improved\\quality34.mat",
+        "requestedIterations": 600,
+        "maxFunctionEvaluations": 80000,
+        "maxSeconds": 3600,
+        "differenceStepMM": 0.1,
+        "regularizationWeight": 0,
+        "grid": [
+          1201,
+          1441
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "degree": 5,
+        "nodes": 34,
+        "physicalGearRatio": 35,
+        "productionPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\+camdesign\\route.m",
+        "scope": "Same initial saved Bezier geometry and physical parameters, only numerical-chain version differs; two local cases, not a general algorithm ranking."
+      },
+      "iterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 41258,
+      "solverFunctions": 40985,
+      "solverSeconds": 276.6663991,
+      "before": {
+        "metrics": {
+          "maxHitError": 30.743810953629247,
+          "rmsHitError": 28.808741521291896,
+          "routeLength": 12481.317642000988,
+          "driveLength": 11984.291973987478,
+          "maxSteeringDeg": 18.942425302197073,
+          "maxPressureDeg": 35.56964155164064,
+          "maxWorkPressureDeg": 35.56964155164064,
+          "maxReturnPressureDeg": 34.05238908410728,
+          "minUndercutMargin": -0.09579705977571429,
+          "intersectionCount": 8,
+          "actualReturnDeg": 58.1761096430819,
+          "returnAngleSatisfied": false,
+          "score": 25.095554217402565,
+          "terms": [
+            1.9723616666590018,
+            1.0197766114048517,
+            0.006759236506096068,
+            0.003252002114396671,
+            0,
+            0.038416312673431464
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.089549914053315,
+          "legacyTerms": [
+            0.9221595422673421,
+            1.0197766114048517,
+            0.0015196467258331656,
+            7.087140841028227e-06,
+            0,
+            7.982405661683118e-05
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 1.247949512617197e-07,
+          "hitMM": 1.0931067606634315e-08,
+          "steeringDeg": 8.94182861088666e-09,
+          "returnDeg": 2.1153937268536538e-08,
+          "lengthMM": 2.5911504053510725e-08
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 1.6379168320984924e-05,
+          "inverseFrontMaxErrorMM": 1.6382691981858587e-05,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "after": {
+        "metrics": {
+          "maxHitError": 31.16530600789345,
+          "rmsHitError": 28.81228235934816,
+          "routeLength": 12482.361118241366,
+          "driveLength": 11986.320478734278,
+          "maxSteeringDeg": 18.884451514729346,
+          "maxPressureDeg": 35.153449252221826,
+          "maxWorkPressureDeg": 35.153449252221826,
+          "maxReturnPressureDeg": 28.104838697256103,
+          "minUndercutMargin": -0.05841810629638444,
+          "intersectionCount": 1,
+          "actualReturnDeg": 58.125021836174675,
+          "returnAngleSatisfied": false,
+          "score": 25.30394370016103,
+          "terms": [
+            2.001582125911605,
+            1.0198618678413127,
+            0.006608399232777523,
+            0.00023584536609067773,
+            0,
+            0.02511719868166298
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 12.09168677078393,
+          "legacyTerms": [
+            0.9223862386164502,
+            1.0198618678413127,
+            0.001489940422931317,
+            3.786360162870215e-07,
+            0,
+            2.0902279130417935e-05
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 1.872409498560046e-07,
+          "hitMM": 8.1717530520109e-09,
+          "steeringDeg": 0.0006733195964407912,
+          "returnDeg": 2.1319692677934654e-08,
+          "lengthMM": 2.382876118645072e-08
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 1.290447170998785e-05,
+          "inverseFrontMaxErrorMM": 1.975595669427172e-05,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "tailRetainedViolation": [
+        0.0957988276795215,
+        0.07919587744786893
+      ],
+      "tailRawViolation": [
+        0.1544173602427088,
+        0.11382224671416719
+      ],
+      "parametersUnchanged": true
+    },
+    {
+      "protocol": {
+        "variant": "improved",
+        "stage": "continuation",
+        "label": "paired35",
+        "sourceFile": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\bezier_precision_20261031\\quality\\improved\\paired35.mat",
+        "requestedIterations": 600,
+        "maxFunctionEvaluations": 80000,
+        "maxSeconds": 3600,
+        "differenceStepMM": 0.1,
+        "regularizationWeight": 0,
+        "grid": [
+          1201,
+          1441
+        ],
+        "routeModel": "bezier-blend-independent-v1",
+        "degree": 5,
+        "nodes": 35,
+        "physicalGearRatio": 35,
+        "productionPath": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\+camdesign\\route.m",
+        "scope": "Same initial saved Bezier geometry and physical parameters, only numerical-chain version differs; two local cases, not a general algorithm ranking."
+      },
+      "iterations": 600,
+      "reason": "iteration_limit",
+      "modelAttempts": 44341,
+      "solverFunctions": 44065,
+      "solverSeconds": 300.7110451,
+      "before": {
+        "metrics": {
+          "maxHitError": 39.35522169636893,
+          "rmsHitError": 29.835899799048644,
+          "routeLength": 12477.631078863482,
+          "driveLength": 12017.486287204394,
+          "maxSteeringDeg": 17.791155089054527,
+          "maxPressureDeg": 36.30026115564054,
+          "maxWorkPressureDeg": 36.30026115564054,
+          "maxReturnPressureDeg": 16.474166347840203,
+          "minUndercutMargin": -21.595572394122243,
+          "intersectionCount": 2,
+          "actualReturnDeg": 57.340112257954615,
+          "returnAngleSatisfied": false,
+          "score": 4741.6737910876345,
+          "terms": [
+            2.7100159906546875,
+            1.0194754035538918,
+            0.005216268531832961,
+            0.016909725425904465,
+            0,
+            470.80729620828834
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 13.984840551804423,
+          "legacyTerms": [
+            0.9890899075765234,
+            1.0194754035538918,
+            0.0009652281745346682,
+            2.934697227682136e-06,
+            0,
+            0.10943469968914975
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 1.3423220934782876e-07,
+          "hitMM": 8.965912456915248e-10,
+          "steeringDeg": 3.6219027776951407e-09,
+          "returnDeg": 9.613643214834156e-09,
+          "lengthMM": 4.355752025730908e-08
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 4.11262440240968e-06,
+          "inverseFrontMaxErrorMM": 6.640801411025875e-06,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "after": {
+        "metrics": {
+          "maxHitError": 56.32488899188838,
+          "rmsHitError": 34.32834951115883,
+          "routeLength": 12426.130887589034,
+          "driveLength": 11948.348362484026,
+          "maxSteeringDeg": 17.881145099314754,
+          "maxPressureDeg": 36.46139063336827,
+          "maxWorkPressureDeg": 36.46139063336827,
+          "maxReturnPressureDeg": 29.560681568984872,
+          "minUndercutMargin": -13.253006305844778,
+          "intersectionCount": 6,
+          "actualReturnDeg": 59.081347990161326,
+          "returnAngleSatisfied": false,
+          "score": 1842.604272551249,
+          "terms": [
+            4.834365222343141,
+            1.0152676194039374,
+            0.00687483056005798,
+            0.021498401040216008,
+            0,
+            178.34983773994867
+          ],
+          "objectiveVersion": "peak-v2",
+          "legacyScore": 17.201554919285638,
+          "legacyTerms": [
+            1.3093728668447537,
+            1.0152676194039374,
+            0.0013921059701160051,
+            0.00014177520725080407,
+            0,
+            0.047060336018267396
+          ],
+          "geometryChecked": true,
+          "visitOrderChecked": true,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsChecked": true,
+          "trajectoryBoundsSatisfied": true,
+          "maxTrajectoryOutsideMM": 0
+        },
+        "assessmentPassed": false,
+        "convergencePassed": true,
+        "convergenceDelta": {
+          "pressureDeg": 0.004504614827673947,
+          "hitMM": 4.0105994969508174e-08,
+          "steeringDeg": 2.877566984693658e-08,
+          "returnDeg": 4.394951247377321e-08,
+          "lengthMM": 1.1275915312580764e-08
+        },
+        "numericalChecks": {
+          "camMaxDifferenceMM": 3.5803075672981436e-06,
+          "inverseFrontMaxErrorMM": 9.518028177149766e-06,
+          "camToleranceMM": 0.05,
+          "inverseToleranceMM": 2,
+          "passed": true,
+          "physicalEvaluationAttempts": 2,
+          "errorIdentifier": "",
+          "errorMessage": "",
+          "scope": "Actual discrete envelope convergence and theoretical cam RK4 closure; no contact/slip/manufacturing validation."
+        },
+        "actualClosure": {
+          "valid": false,
+          "passed": false,
+          "contactValid": false,
+          "closurePassed": false,
+          "integrationConverged": false,
+          "geometryFeasible": false,
+          "maxSensorDeviationMM": null,
+          "rmsSensorDeviationMM": null,
+          "maxFrontDeviationMM": null,
+          "maxSteeringDeviationDeg": null,
+          "integrationMaxSensorDifferenceMM": null,
+          "integrationMaxFrontDifferenceMM": null,
+          "maxContactResidualMM": null,
+          "maxPenetrationMM": null,
+          "maxHitErrorMM": null,
+          "visitOrderSatisfied": false,
+          "trajectoryBoundsSatisfied": false,
+          "maxTrajectoryOutsideMM": null,
+          "maxPressureDeg": null,
+          "maxWorkPressureDeg": null,
+          "maxSteeringDeg": null,
+          "maxFullCycleSteeringDeg": null,
+          "pressureSatisfied": false,
+          "steeringSatisfied": false,
+          "hitSatisfied": false,
+          "returnAngleSatisfied": false,
+          "actualReturnDeg": null,
+          "phaseCoverageSatisfied": false,
+          "designGateAvailable": false,
+          "designGeometryFeasible": false,
+          "designMinUndercutMargin": null,
+          "designIntersectionCount": null,
+          "tolerances": {
+            "closureMM": 2,
+            "integrationMM": 0.05,
+            "contactResidualMM": 1e-07,
+            "maxPressureDeg": 35,
+            "maxSteeringDeg": 65,
+            "maxHitErrorMM": 30,
+            "minimumReturnDeg": 60,
+            "source": "Closure 2mm default follows existing theoretical inverse numerical check; integration 0.05mm and contact 1e-7mm are explicit internal numerical diagnostics, not measured vehicle/manufacturing tolerances. Physical gates use user input unchanged."
+          },
+          "integrationSamples": [
+            4801,
+            9601
+          ],
+          "outlineVertexCount": null,
+          "outlineUnchanged": true,
+          "physicalGearRatio": 35,
+          "errorIdentifier": "cam:ActualOutlineSelfIntersection",
+          "errorMessage": "实际轮廓自交或非相邻接触，不能作为支持的实体凸轮。",
+          "rotationConvention": "clockwise-cam-fixed-positive-x-v1",
+          "scope": "Frozen actual polygon, radial rigid disk and no-slip car. Full-cycle sampled contact pressure, working-phase car/steering gates; phase integration convergence does not certify outline discretization, continuous extrema, friction, machining or real-car accuracy."
+        }
+      },
+      "tailRetainedViolation": [
+        2.563130690810727,
+        2.524992267230152
+      ],
+      "tailRawViolation": [
+        2.563130690810727,
+        2.524992267230152
+      ],
+      "parametersUnchanged": true
+    }
+  ],
+  "totalRequestedIterations": 4800,
+  "totalActualIterations": 4627,
+  "totalModelAttempts": 329060,
+  "sourceSHA256": {
+    "+camdesign/analyticCamMotion.m": "467a55381f3be0f9d2e975c9fbc099d1ecadd083db45d7a92453711a45ebcb36",
+    "+camdesign/bezierRoute.m": "422c3b5879a072ed7151ef718013b599877116fe99aa0c0eb6a20b55a22e1837",
+    "+camdesign/camProfile.m": "031e7495cce74eab350bddb9637e3f450ff31887454866f9da2b32143cc9ca87",
+    "+camdesign/independentBezierBasis.m": "2fcbf7b456663820c9e01334adfc1a647fafeb910dc3309180281d631490a52d",
+    "+camdesign/quinticHermitePP.m": "e20014e8e379cce1ddc5731bd4e2f0ab847bb4fb28620aa3fabb7214c9281dfd",
+    "+camdesign/route.m": "dd0589095197a1f84afe8e951ec3547a223b5e36746998305b76d63ac5b9272f",
+    "+camdesign/routeGeometry.m": "2e69e2aee8679a342909dc821d76a7e05d05e3f63b7ea56484b7323e6c232490",
+    "+camdesign/simulate.m": "ed3fa0145e490e2fedc0dca2f71d7f9cb9f7fb43a56db0ee92685555bd6db150",
+    "local/bezier_precision_baseline.zip": "5f363233054e1f681424cb8b62f0a4c9f525dd81b90c3f92e748de606d5e71db",
+    "local/matlab_1ba1ff000ef14f1ea759e824a342c363.log": "7fec9ec65637f5002531c0d14754f4194adc6899ea0fef02c0a5d4a7aecbeb48",
+    "local/matlab_3aecc6d7123549009076fdc1d46e97fb.log": "e0045234a870b95f1c6c1cb8c7802f5d4692f1ed0f5c8013d7e8a206c94aac34",
+    "local/matlab_508c4a030a784418a726bc80ee9d44a9.log": "e1bfae1a78d71fcb50a49f7aa177b7f0f0ea40e2b4730fe512d6c52a853ff553",
+    "local/matlab_8bf4c011b317423fbd1ff61cf9f4a7c1.log": "0ca0e1f01101da07ea9bb069a06131d50c65bde88bbeeef85daec03083823213",
+    "local/matlab_9e85ecf7188c47989d1f1d2d8bc0aa7c.log": "0db4f21cb8197339b219ecce5f6bc66a7991c9410c201b9c6640d410ebf28395",
+    "local/matlab_a44834b3a1934d43acd7d70a3ee15e63.log": "85192fe1176876c822957dd3d58f1a0ae3f56f61e93b35f3dfd8ee766b0d7bd8",
+    "local/matlab_b6b61cecf1e84c649a7c959870346d89.log": "6217cf8d3ee02e7312ba31db17f36144b218bcfc3f275ac3009a63d4d052a771",
+    "local/matlab_bd91cb5b7d244a88b5b30238bfe0be56.log": "39d5207f08cda7ce32761b443f3a799709e02b886747e9d0aba1046f479b0cbc",
+    "local/matlab_c4eb50f137c842d6ab9072cf5239629f.log": "1f5fc196dbd16bffba578daf93c39950661facf54ffecc3adf82133ecef47988",
+    "local/matlab_d7c2e562662c41b5940a5f6c402b8cd0.log": "e10a5d1a73ee3e72e4f8f41fe493b28bc72a703bf77c0a3f03b5f9f26bf47a1b",
+    "local/matlab_de52722145a34f5eaee3c2d41801c5cc.log": "cbf0ce55cbc5d8abc9013fa5ebf1741f88727336ec9cacedf5b97daf5000a370",
+    "local/matlab_e4215c9303d64c7c9698268beec3b17f.log": "c6977a7965c2e2ce983c182166f439f09d90132d794a4c5bd56c3d0b1016de36",
+    "local/matlab_f9261c6824124e6aae1aaf4c543bd1f3.log": "66ceebcf96763942de91fd36a18e81198db9f0f6b68ae754bf7e2b1dcbaaecf7",
+    "outputs/bezier_precision_20261031/actual_core/core_verification.json": "edd944c47860fa67eb87abccf4e573feb9b686cf4af993b945b0d088b2f94cf3",
+    "outputs/bezier_precision_20261031/actual_density/verification.json": "4d0d1066281424048f8f9e048ddf642786cf08232f5adcefbf42b9d2647d3439",
+    "outputs/bezier_precision_20261031/actual_ui/verification.json": "373e1db2e04568b8fa1691a90378ccfefd0a4926aac1461619ad0ce242d46ad8",
+    "outputs/bezier_precision_20261031/core/verification.json": "182bb769e13aa0e76afeff538d45fe1e5d9191c9b45a5af8a83771714f80e6dd",
+    "outputs/bezier_precision_20261031/diagnosis.json": "ec04d2a8e2d1275a00ee9a0a96cca2cabd8aa053ce1215b555252f05df57ae74",
+    "outputs/bezier_precision_20261031/mapping/model_mapping.json": "413178b9cc25855fd530f5bbc2623855aa194e74cd656409fb16c16162b16614",
+    "outputs/bezier_precision_20261031/quality/baseline/continuation/paired35.json": "c0420ab419ca95833e328c39e0589a786123326e1a94365ae49581d72f4a976a",
+    "outputs/bezier_precision_20261031/quality/baseline/continuation/paired35.mat": "8b559a838894f0e463bd95b1c9fa0735bff8490cb996a227fcae8f25852dc5ad",
+    "outputs/bezier_precision_20261031/quality/baseline/continuation/quality34.json": "f1267ca311d47491997f9a6af297f9e86100569c9d1e45a83ad11cda29e3632b",
+    "outputs/bezier_precision_20261031/quality/baseline/continuation/quality34.mat": "f1f2945b64bfb4d1ae187c7aeb03605b1bf0b19e3175efa39bf45ee44ef8567e",
+    "outputs/bezier_precision_20261031/quality/baseline/paired35.json": "151b815c7ba8d9131c4f6d4e66c94b571ef51fd66da59c627da8b2bcbabacf4e",
+    "outputs/bezier_precision_20261031/quality/baseline/paired35.mat": "f3cfb427eb3f72fa356cd5451a2676f9a4653bcbf578f11fa1cd9f27ccecd78d",
+    "outputs/bezier_precision_20261031/quality/baseline/quality34.json": "bdec40fe60950cc3eb90ff61db632c2d187336cba4c3b73254cc67e8086e0d89",
+    "outputs/bezier_precision_20261031/quality/baseline/quality34.mat": "3f0b31bb28380a20368c892b5dd54745d17df3e55391ab4103e2740fc728aef9",
+    "outputs/bezier_precision_20261031/quality/improved/continuation/paired35.json": "1ede08a86d4ad723c4255daaffa615b0953934864be561a9ab28a74b3046ceb3",
+    "outputs/bezier_precision_20261031/quality/improved/continuation/paired35.mat": "b35b532cc6ef9d63a9bc48e748e0c3130e7753486054954704d76b6999607fe0",
+    "outputs/bezier_precision_20261031/quality/improved/continuation/quality34.json": "4a171918587eeb6fb8582707a12a8593cafcc79ae05cad80e33d99c31560844f",
+    "outputs/bezier_precision_20261031/quality/improved/continuation/quality34.mat": "edd5d9198fc2804501296658b4b0c6a971cbe0fb1e0f47cfef7a3750ad5a9e7e",
+    "outputs/bezier_precision_20261031/quality/improved/paired35.json": "3230396bc1c46147993ceb4e03b6cadc9eee83b6c43ee0c79f91cdf6462756c8",
+    "outputs/bezier_precision_20261031/quality/improved/paired35.mat": "13805b0b09899c2233f6e97dd6f4e384436fa3a592746ab0cc8ff99ae2793d67",
+    "outputs/bezier_precision_20261031/quality/improved/quality34.json": "ff65bdb9cf5f7a3bea1249535c6041a9ec8c501ed8aa71bf12cf0ffc95c4767e",
+    "outputs/bezier_precision_20261031/quality/improved/quality34.mat": "274712e797b9990733dbd397b400fbe71355fdaae3fda27787e6b9a77bab7656",
+    "outputs/model_mapping_20261031/quality_bezier/result.mat": "2f9991620db6a4fa9d5bba12b928cc1007e3e0bb6f60bb8930e9fe859b680742",
+    "outputs/path_comparison_20261031/seed1_bezier5.mat": "c245faa6db9e7b5ceb4144d654e1bb2be793a7b6bdb3ab75973a1ba98180362f"
+  },
+  "scope": "Fixed-curve numerical accuracy and two paired saved solar Bezier starts with same budget. Continuations start from their own primary outputs. Does not certify original-app equivalence, globally optimal designs or real-car accuracy; concurrent wall times are not a speed ranking."
+}

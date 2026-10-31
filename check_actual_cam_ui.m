@@ -1,7 +1,8 @@
-function report=check_actual_cam_ui()
+function report=check_actual_cam_ui(folder)
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:ActualUIBatch','Run in independent batch.');
-folder=fullfile(root,'outputs','actual_cam_20261031','ui'); if ~isfolder(folder), mkdir(folder); end
+if nargin<1, folder=fullfile(root,'outputs','actual_cam_20261031','ui'); end
+if ~isfolder(folder), mkdir(folder); end
 app=CamReplicaApp('off'); cleaner=onCleanup(@()closeOwn(app)); checks={};
 p=camdesign.solarTestProject(); p.params.headingDeg=0; p.params.startSteeringDeg=0;
 p.params.samples=301; p.params.camSamples=1441;

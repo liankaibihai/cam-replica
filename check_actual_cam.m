@@ -1,7 +1,7 @@
-function report=check_actual_cam()
+function report=check_actual_cam(folder)
 % Independent contracts for frozen-polygon contact and actual-driven car.
 root=fileparts(mfilename('fullpath'));
-folder=fullfile(root,'outputs','actual_cam_20261031');
+if nargin<1, folder=fullfile(root,'outputs','actual_cam_20261031'); end
 if ~isfolder(folder), mkdir(folder); end
 project=camdesign.solarTestProject(); p=project.params;
 groups={};

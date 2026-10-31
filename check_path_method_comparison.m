@@ -184,7 +184,8 @@ audit=auditCamLaw(c,project.params);
 assert(audit.maxPressureDeg>=max(rad2deg(c.pressure))-1e-7,'cam:PressureExtrema','Analytic maximum missed a sampled value.');
 end
 function audit=auditCamLaw(c,p)
-pp=spline(c.workPhi,c.workRadius); [breaks,coefs]=unmkpp(pp);
+if isfield(c,'workPP'), pp=c.workPP; else, pp=spline(c.workPhi,c.workRadius); end
+[breaks,coefs]=unmkpp(pp);
 maxAlpha=0; peakPhi=NaN; minQ=Inf; count=0;
 for k=1:size(coefs,1)+1
     if k<=size(coefs,1)
@@ -218,9 +219,16 @@ d=auditCamLaw(c,p); t=linspace(0,1,500001)';
 q=polyval(flipud(c.returnCoefficients),t); der=polyval(polyder(flipud(c.returnCoefficients)'),t)/pi;
 oracle=rad2deg(max(atan(abs(der)./q)));
 assert(d.maxPressureDeg>=oracle-1e-10 && d.maxPressureDeg-oracle<1e-7);
+% An explicit quintic working law must override poisoned legacy samples.
+c.workPP=mkpp([0 pi],[.03 -.12 .2 .4 .5 50]); c.workRadius(:)=NaN;
+e=auditCamLaw(c,p); phase=linspace(0,pi,500001)';
+qq=ppval(c.workPP,phase); dq=ppval(camdesign.ppDerivative(c.workPP,1),phase);
+workingOracle=rad2deg(max(atan(abs(dq)./qq)));
+assert(abs(e.maxPressureDeg-max(workingOracle,oracle))<1e-7);
 report=struct('constantPressureDeg',a.maxPressureDeg,'quadraticPressureDeg',b.maxPressureDeg, ...
-    'quadraticExactDeg',exact,'returnPressureDeg',d.maxPressureDeg,'denseReturnOracleDeg',oracle);
-fprintf('PRESSURE_EXTREMA_CONTRACT_PASS constant/quadratic/quintic-return\n');
+    'quadraticExactDeg',exact,'returnPressureDeg',d.maxPressureDeg,'denseReturnOracleDeg',oracle, ...
+    'explicitWorkPPPressureDeg',e.maxPressureDeg,'explicitWorkPPOracleDeg',max(workingOracle,oracle));
+fprintf('PRESSURE_EXTREMA_CONTRACT_PASS constant/quadratic/quintic-return/explicit-work-law\n');
 end
 function c=polySubtract(a,b)
 n=max(numel(a),numel(b)); c=[zeros(1,n-numel(a)),a]-[zeros(1,n-numel(b)),b];

@@ -1,8 +1,9 @@
-function report=check_model_mapping()
+function report=check_model_mapping(folder)
 % Pure geometry contracts; never infer cam/vehicle feasibility from a fit.
 root=fileparts(mfilename('fullpath')); addpath(root);
 assert(batchStartupOptionUsed,'cam:MappingBatch','Use independent MATLAB batch.');
-folder=fullfile(root,'outputs','model_mapping_20261031','contracts'); if ~isfolder(folder), mkdir(folder); end
+if nargin<1, folder=fullfile(root,'outputs','model_mapping_20261031','contracts'); end
+if ~isfolder(folder), mkdir(folder); end
 checks={}; fits={};
 p=fixture(); s=[0;250;500]; p.nodes=[200+1e-5*s.^2,200+s-1e-7*s.^3];
 p.params.routeSpline=struct('type','fixed-clamped-cubic-v1','stations',s,'endDerivative',[.01 .925]);
