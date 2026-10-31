@@ -1,0 +1,86 @@
+{
+  "release": "2025b",
+  "sampleCounts": [
+    721,
+    1441,
+    2881,
+    5761
+  ],
+  "syntheticActualOutlineRecoveryMaxMM": [
+    0.01308578609838662,
+    0.0030461124780600812,
+    0.0006634087816266288,
+    3.7561082983472716e-05
+  ],
+  "circleRecoveryMaxMM": 4.6483579659195584e-05,
+  "circleSurfaceErrorMM": 7.105427357601002e-15,
+  "solarActualOutlineRecoveryMaxMM": 0.0002378273497285477,
+  "solarTheoreticalRoundtripMaxMM": 0.0303030159678901,
+  "solarPhysicalMetrics": {
+    "maxHitError": 0.8424114284544485,
+    "rmsHitError": 0.3412571778898175,
+    "routeLength": 12874.877943494237,
+    "driveLength": 12417.018835407507,
+    "maxSteeringDeg": 17.918532039811303,
+    "maxPressureDeg": 37.87498810232771,
+    "maxWorkPressureDeg": 37.87498810232771,
+    "maxReturnPressureDeg": 33.885487788289,
+    "minUndercutMargin": 0.025728854666744017,
+    "intersectionCount": 0,
+    "actualReturnDeg": 47.27790180074778,
+    "returnAngleSatisfied": false,
+    "score": 1.3894200339990996,
+    "terms": [
+      0.0009179038625022079,
+      1.05193215797068,
+      0.007380202119112319,
+      0.08549736295200563,
+      0,
+      0.005522053658415164
+    ],
+    "objectiveVersion": "peak-v2",
+    "legacyScore": 1.0642664512858646,
+    "legacyTerms": [
+      0.00012939606829035841,
+      1.05193215797068,
+      0.0010988215012227738,
+      0.0028417970667464617,
+      0,
+      5.85062930153116e-06
+    ],
+    "geometryChecked": true,
+    "visitOrderChecked": true,
+    "visitOrderSatisfied": true,
+    "trajectoryBoundsChecked": true,
+    "trajectoryBoundsSatisfied": true,
+    "maxTrajectoryOutsideMM": 0
+  },
+  "ratio": 35,
+  "method": "For each follower ray, intersect disks centered on actual contour vertices; select the outermost center. Dense vertex approximation to configuration-space obstacle, independent of pitch normals.",
+  "scope": "Regular radial translating roller only; finite outline vertices and sampled phases, no continuous contact certification, no actual-contact vehicle integration, no original-software equivalence or hardware validation.",
+  "baseline": "677763cefd2a23a15dd8bf4304ba362d4a051b7b",
+  "sourceSHA256": {
+    "outputs\\conversion_chain_20261031\\verification.json": "3ba10c4d14164f1a96481ae8b80bcbebf1ffbc2fd496ac386cf54d29b6851933",
+    "outputs\\model_mapping_20261031\\quality_bezier\\result.mat": "2f9991620db6a4fa9d5bba12b928cc1007e3e0bb6f60bb8930e9fe859b680742"
+  },
+  "coreRegression": {
+    "release": "2025b",
+    "passed": 12,
+    "total": 12,
+    "tests": [
+      "testStraight",
+      "testCircle",
+      "testMechanisms",
+      "testClosedCam",
+      "testRoundTrip",
+      "testFixedCamTuning",
+      "testOptimize",
+      "testSaveImport",
+      "testImportTypeSchemes",
+      "testExport",
+      "testReject",
+      "testIntersections"
+    ]
+  },
+  "log": "local/matlab_7b8678390c634869a30ad63627e291f8.log"
+}

@@ -35,6 +35,7 @@
 | [五份新增算法包](ADDITIONAL_SOURCE_PACKAGES.md) | 单Bezier源码恢复、阿克曼/共轭/通用凸轮资料分类 | BV1obN9enEtd、杨辉三角、de Casteljau |
 | [原版实操与对照](REFERENCE_COMPARISON.md) | 原版窗口功能、资料/视频证据、同输入比较进展 | 3.1.2、2.5.1、Bezier、评分、截图、时间戳 |
 | [验证记录](VALIDATION.md) | 实际执行的检查与结果、尚未验证事项 | run_tests、check_app、误差、收敛 |
+| [路线到实际凸轮专项核查](changes/2026/2026-10-31-007-conversion-chain-audit.md) | 运动学推导、实际轮廓独立接触恢复、理论反推缺口 | 平推、相位、法向补偿、0.000238mm、模型前提 |
 | [功能证据与复现进展](FEATURE_STATUS.md) | 原版实操、视频、更新日志对应的功能状态与实施次序 | F01～F15、地图编辑、太阳能、Bezier、局部最优 |
 
 ## 数据与代码入口
