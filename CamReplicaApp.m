@@ -466,8 +466,11 @@ classdef CamReplicaApp < handle
             app.Status.Text=sprintf('%s · 打卡偏差 %.2f mm；压力角 %.2f°；轮廓自交 %s\n五点中心出界 %.6g mm；欠切余量 %.4g', ...
                 data.shortLabel,m.maxHitError,m.maxPressureDeg,crossText,trajectory.maximumOutsideMM,m.minUndercutMargin);
             returnOK=isfield(m,'returnAngleSatisfied') && m.returnAngleSatisfied;
+            orderOK=isfield(m,'visitOrderSatisfied') && m.visitOrderSatisfied;
+            if orderOK, orderText='通过'; else, orderText='未通过/未检查'; end
+            app.Status.Text=[app.Status.Text,'；几何访问顺序 ',orderText];
             if isfield(m,'actualReturnDeg'), app.Status.Text=[app.Status.Text,sprintf('    回程 %.2f° / 预留 %.2f°',m.actualReturnDeg,p.returnAngleDeg)]; end
-            if m.maxPressureDeg>p.maxPressureDeg || m.minUndercutMargin<=0 || m.maxHitError>p.hitTolerance || m.intersectionCount>0 || ~trajectory.satisfied || ~returnOK
+            if m.maxPressureDeg>p.maxPressureDeg || m.minUndercutMargin<=0 || m.maxHitError>p.hitTolerance || m.intersectionCount>0 || ~trajectory.satisfied || ~returnOK || ~orderOK
                 app.Status.Text=[app.Status.Text,'    有指标超限，需改进'];
                 app.Status.FontColor=[.65 .28 .08];
             else
@@ -689,7 +692,8 @@ classdef CamReplicaApp < handle
                 app.message(['节点未确认：',ex.message]); return;
             end
             k=app.MapEditSelection;
-            app.Project=candidate; app.Result=result; app.History=[];
+            app.Project=candidate; app.Result=result; app.History=[]; app.HistoryProject=[];
+            app.OptimizationInfo=[]; app.OptimizationDirection=[];
             app.syncInputs(); app.render(); app.finishRouteEditing();
             app.message(sprintf('节点 %d 已确认并重算轨迹/凸轮；项目尚未保存。',k));
         end
@@ -712,6 +716,7 @@ classdef CamReplicaApp < handle
             app.RouteAxes.XLim=ref.xlim; app.RouteAxes.YLim=ref.ylim;
             app.MapEditMode=false; app.MapEditSelection=0; app.MapEditNodes=[]; app.MapEditReference=[];
             app.MapEditHelp.Text='独立三次样条路线节点'; app.updateNodeInfo(); app.refreshControls();
+            app.updateDiagnostics();
         end
         function routeEditorKey(app,event)
             if ~app.MapEditMode, return; end
@@ -983,23 +988,28 @@ classdef CamReplicaApp < handle
                 switch name
                     case 'calculate', app.calculate();
                     case 'seed'
-                        app.readInputs();
-                        wasBezier=strcmp(camdesign.routeModel(app.Project.params),'bezier-blend-independent-v1');
-                        wasBSpline=strcmp(camdesign.routeModel(app.Project.params),'bspline-v1');
-                        trained=isfield(app.Project.params,'training'); settings=camdesign.trainingSettings(app.Project);
-                        mode=camdesign.routeModel(app.Project.params);
+                        % Build and evaluate a local candidate. Errors must not
+                        % alter the live model, its coefficients or input tables.
+                        candidate=app.inputProject();
+                        wasBezier=strcmp(camdesign.routeModel(candidate.params),'bezier-blend-independent-v1');
+                        wasBSpline=strcmp(camdesign.routeModel(candidate.params),'bspline-v1');
+                        trained=isfield(candidate.params,'training'); settings=camdesign.trainingSettings(candidate);
+                        mode=camdesign.routeModel(candidate.params);
                         if wasBSpline
-                            mode=sprintf('bspline-%d',app.Project.params.bspline.degree);
-                            app.Project.params=rmfield(app.Project.params,'bspline'); app.Project.params.routeModel='cubic';
+                            mode=sprintf('bspline-%d',candidate.params.bspline.degree);
+                            candidate.params=rmfield(candidate.params,'bspline'); candidate.params.routeModel='cubic';
                         end
-                        if isfield(app.Project.params,'routeSpline'), app.Project.params=rmfield(app.Project.params,'routeSpline'); end
-                        if wasBezier, app.Project.params=rmfield(app.Project.params,'bezier'); app.Project.params.routeModel='cubic'; end
-                        app.Project.nodes=camdesign.seedNodes(app.Project.targets,app.Project.params);
+                        if isfield(candidate.params,'routeSpline'), candidate.params=rmfield(candidate.params,'routeSpline'); end
+                        if wasBezier, candidate.params=rmfield(candidate.params,'bezier'); candidate.params.routeModel='cubic'; end
+                        candidate.nodes=camdesign.seedNodes(candidate.targets,candidate.params);
                         if trained || wasBezier || wasBSpline
-                            app.Project=camdesign.applyTrainingSettings(app.Project,struct('routeModel',mode, ...
+                            candidate=camdesign.applyTrainingSettings(candidate,struct('routeModel',mode, ...
                                 'controlPointCount',settings.controlPointCount,'bezierDegree',settings.bezierDegree),app.AlgorithmSelector.Value);
                         end
-                        app.syncInputs(); app.calculate();
+                        result=camdesign.evaluate(candidate,true);
+                        app.Project=candidate; app.Result=result; app.History=[]; app.HistoryProject=[];
+                        app.OptimizationInfo=[]; app.OptimizationDirection=[];
+                        app.syncInputs(); app.render(); app.message('路线已重建并完成计算；项目尚未保存。');
                     case 'import'
                         if isempty(filename)
                             [f,d]=uigetfile('*.mat','导入本项目或原软件 MAT'); if isequal(f,0), return; end
@@ -1064,7 +1074,8 @@ classdef CamReplicaApp < handle
             verdict='本模型检查通过，仍待外部验证';
             if m.maxHitError>p.hitTolerance || m.maxPressureDeg>p.maxPressureDeg || m.maxSteeringDeg>p.maxSteeringDeg ...
                     || m.minUndercutMargin<=0 || m.intersectionCount>0 || ~trajectory.satisfied ...
-                    || ~isfield(m,'returnAngleSatisfied') || ~m.returnAngleSatisfied, verdict='未达标候选'; end
+                    || ~isfield(m,'returnAngleSatisfied') || ~m.returnAngleSatisfied ...
+                    || ~isfield(m,'visitOrderSatisfied') || ~m.visitOrderSatisfied, verdict='未达标候选'; end
             if isfield(info,'verifiedFeasible')
                 if info.verifiedFeasible, verdict='加密离散模型检查通过，仍待外部验证';
                 else, verdict='加密验收未通过或未完成；未达标候选'; end

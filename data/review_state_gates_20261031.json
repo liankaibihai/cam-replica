@@ -1,0 +1,99 @@
+{
+  "baseline": "6d4c198",
+  "release": "R2025b",
+  "date": "2026-10-31",
+  "ui": {
+    "release": "2025b",
+    "checks": [
+      "map confirmation refreshes diagnostics and enables refinement",
+      "map cancellation restores project and diagnostics",
+      "failed rebuild preserves model, coefficients, result, tables and save/import semantics",
+      "successful rebuild publishes one matching project/result and clears previous optimization"
+    ],
+    "passed": 4
+  },
+  "gates": {
+    "release": "2025b",
+    "checks": [
+      "continuous segment entries agree with independent audit; early/repeated visits fail, dwell counted once",
+      "closing target requires a separate visit; simultaneous ambiguous entries rejected",
+      "export recomputes and records boundary violation, visit order, grid and unperformed refinement",
+      "both-grid verifier gates visit order, retaining valid straight pass and rejecting repeated circuit"
+    ],
+    "passed": 4,
+    "outsideMM": 19.85,
+    "repeatedCircuitVisitOrder": {
+      "geometricRadiusMM": 30,
+      "expectedLocationIDs": [
+        1,
+        2,
+        3,
+        1
+      ],
+      "observedLocationIDs": [
+        1,
+        3,
+        2,
+        1,
+        3,
+        2,
+        1
+      ],
+      "eventEntryExitDistanceMM": [
+        [
+          0,
+          30.00451728363144
+        ],
+        [
+          786.8055441124999,
+          846.814578414275
+        ],
+        [
+          1540.7840737789877,
+          1600.7931080807596
+        ],
+        [
+          3111.5726772508006,
+          3171.581711552572
+        ],
+        [
+          3928.3827510561437,
+          3988.391785357916
+        ],
+        [
+          4682.361280722623,
+          4742.370315024397
+        ],
+        [
+          6253.149871519762,
+          6283.154388803393
+        ]
+      ],
+      "matchesRequiredOrderAndVisitCount": false,
+      "ambiguousSimultaneousEntries": false,
+      "notSensorReadGuarantee": true,
+      "scope": "Polyline/disk entries; continuous dwell once, re-entry counted; repeated start/end remain separate required visits.",
+      "radiusSource": "params.hitTolerance (geometric tolerance, not measured RFID range)"
+    },
+    "radiusPolicy": "uses existing hitTolerance as explicit geometric radius, not RFID measurement"
+  },
+  "core": {
+    "release": "2025b",
+    "passed": 12,
+    "total": 12,
+    "tests": [
+      "testStraight",
+      "testCircle",
+      "testMechanisms",
+      "testClosedCam",
+      "testRoundTrip",
+      "testFixedCamTuning",
+      "testOptimize",
+      "testSaveImport",
+      "testImportTypeSchemes",
+      "testExport",
+      "testReject",
+      "testIntersections"
+    ]
+  }
+}
