@@ -292,13 +292,13 @@ classdef CamReplicaApp < handle
             app.TrainingInfo.Layout.Row=10; app.TrainingInfo.Layout.Column=[1 2];
             trainingActions=uigridlayout(trainingRoot,[2 2],'RowHeight',{28,28},'ColumnWidth',{'1x',84},'Padding',[2 0 2 0],'RowSpacing',3,'ColumnSpacing',4);
             trainingActions.Layout.Row=3;
-            app.TrainingApplyButton=uibutton(trainingActions,'Text','应用训练设置','FontSize',11, ...
+            app.TrainingApplyButton=uibutton(trainingActions,'Text','保形应用','FontSize',11, ...
                 'ButtonPushedFcn',cam_app_ui_callback(app,'applyTraining'));
             app.TrainingResetButton=uibutton(trainingActions,'Text','还原','FontSize',11, ...
                 'ButtonPushedFcn',cam_app_ui_callback(app,'syncTrainingInputs'));
-            app.TrainingApplyButton.Tooltip='严格保形映射；最大位置、RMS及切向超限则拒绝，原方案和待应用输入保留。';
-            app.ForceModelSwitchButton=uibutton(trainingActions,'Text','强制切换（允许改形）','FontSize',10, ...
-                'Tooltip','仅手动使用：先备份完整项目、结果与所有待应用输入，再接受端点约束合格的有限真实曲线拟合。超出保形门限会明确标示；物理计算失败仍保留新路线供编辑。', ...
+            app.TrainingApplyButton.Tooltip='严格保形，必要时自动增点；请求数量与实际数量会显示。若要按指定数量改形，请用“强制调整”。超限则保留原方案和待应用输入。';
+            app.ForceModelSwitchButton=uibutton(trainingActions,'Text','强制调整（允许改形）','FontSize',10, ...
+                'Tooltip','仅手动使用：先备份完整状态，再按请求的合法数量拟合，不自动增点。保留有限性和首末约束并报告改形误差；凸轮计算失败仍保留新路线供编辑。', ...
                 'ButtonPushedFcn',cam_app_ui_callback(app,'force-model-switch'));
             app.ForceModelSwitchButton.Layout.Row=2; app.ForceModelSwitchButton.Layout.Column=1;
             app.RestoreModelSwitchButton=uibutton(trainingActions,'Text','恢复备份','FontSize',10, ...
@@ -619,7 +619,7 @@ classdef CamReplicaApp < handle
         function candidate=inputProject(app,allowPendingTraining,forRebuild)
             if nargin<2, allowPendingTraining=false; end
             if nargin<3, forRebuild=false; end
-            assert(~app.TrainingDirty || allowPendingTraining,'cam:TrainingPending','请先应用或还原训练设置，当前图像仍是上次结果。');
+            assert(~app.hasPendingTrainingInputs() || allowPendingTraining,'cam:TrainingPending','请先应用或还原训练设置，当前图像仍是上次结果。');
             p=app.Project.params;
             for k=1:numel(app.DisplayedParameterFields)
                 value=app.ParamsTable.Data{k,2};
@@ -658,6 +658,9 @@ classdef CamReplicaApp < handle
         function calculate(app)
             if app.MapEditMode, app.message('请先确认或取消地图编辑。'); return; end
             if app.SimulationMode, app.runFixedCamSimulation(); return; end
+            % Reject before the calculation catch can clear a valid Result.
+            assert(~app.hasPendingTrainingInputs(),'cam:TrainingPending', ...
+                '训练设置尚未应用；请先点“保形应用”或“还原”。待应用输入和原结果已保留。');
             try
                 candidate=app.inputProject(); result=camdesign.evaluate(candidate,true);
             catch ex
@@ -1239,12 +1242,21 @@ classdef CamReplicaApp < handle
         function routeModelChanged(app)
             if startsWith(app.TrainingModel.Value,'bspline-')
                 app.AlgorithmSelector.Value='fmincon-interior-point-experimental-v1';
-                app.message('标准B样条已选内点法；请应用训练设置进行受约束拟合。');
+                app.message('标准B样条已选内点法；请点击“保形应用”进行受约束拟合。');
             end
             app.markTrainingDirty();
         end
         function markTrainingDirty(app)
             app.TrainingDirty=true; app.clearContestGeometry('比赛几何：训练设置待应用，原检查失效。'); app.refreshTrainingControls();
+        end
+        function pending=hasPendingTrainingInputs(app)
+            % A programmatic/uncommitted value edit may not fire ValueChanged.
+            pending=app.TrainingDirty;
+            if isempty(app.TrainingFields) || isempty(app.TrainingModel), return; end
+            settings=camdesign.trainingSettings(app.Project);
+            expected=cellfun(@(name)settings.(name),app.TrainingFieldNames);
+            pending=pending || ~isequaln([app.TrainingFields.Value],expected) ...
+                || ~strcmp(app.TrainingModel.Value,app.trainingModelValue(app.Project.params));
         end
         function dynamicWeightsChanged(app)
             app.refreshDynamicWeightControls(); app.invalidate();
@@ -1263,7 +1275,6 @@ classdef CamReplicaApp < handle
             app.WeightsTable.ColumnEditable=[false editable false];
             app.DynamicWeightsEnabled.Enable=editable && ~automatic && (~constrained || enabled) && (~feasibility || enabled);
             for k=1:4, app.DynamicWeightFields(k).Enable=editable && enabled && ~constrained && ~automatic && ~feasibility; end
-            app.Buttons(5).Enable=editable && ~((constrained || feasibility) && enabled) && ~(automatic && app.TrainingDirty);
             app.Buttons(5).Tooltip='使用当前画法和优化方法训练';
             if automatic
                 app.DynamicWeightInfo.Text='全自动调优独立选择六项权重，此按违规调权开关不叠加，原配置保留。实际获选值与验收结论见全自动页。';
@@ -1280,17 +1291,43 @@ classdef CamReplicaApp < handle
             else
                 app.DynamicWeightInfo.Text='静态评分：使用基础权重。训练实际权重有记录后才显示；缺记录不从当前输入推测。';
             end
-            if strcmp(camdesign.routeModel(app.Project.params),'bspline-v1') && ~strcmp(app.AlgorithmSelector.Value,'fmincon-interior-point-experimental-v1')
-                app.Buttons(5).Enable='off'; app.Buttons(5).Tooltip='标准B样条目前仅支持约束优化（内点法），请切换优化方法。';
+            reason=app.optimizationBlockedReason(); app.Buttons(5).Enable=isempty(reason);
+            if ~isempty(app.MethodSummary)
+                app.MethodSummary.Text=sprintf('画法决定连线，优化方法负责改点；传动比 %.6g 固定执行，只能用户手改。',app.Project.params.gearRatio);
+                if automatic, app.MethodSummary.Text='全自动锁定当前画法及阶数；只调六项权重与适用训练设置，车体、传动比、阈值及目标不变。'; end
+                app.MethodSummary.FontColor=[.12 .20 .30];
+                if ~isempty(reason)
+                    app.MethodSummary.Text=['优化不可用：',reason]; app.MethodSummary.FontColor=[.65 .28 .08];
+                end
+            end
+            if ~isempty(reason), app.Buttons(5).Tooltip=reason; end
+        end
+        function reason=optimizationBlockedReason(app)
+            reason='';
+            if app.Busy, reason='正在运行；可点击“停止”，结束后再改设置。';
+            elseif app.SimulationMode, reason='请先退出固定凸轮反推，恢复设计模式。';
+            elseif app.MapEditMode, reason='请先确认或取消地图编辑。';
+            elseif strcmp(camdesign.routeModel(app.Project.params),'bspline-v1') && ~strcmp(app.AlgorithmSelector.Value,'fmincon-interior-point-experimental-v1')
+                reason='标准B样条仅支持内点法；请切换优化方法。';
+            elseif app.DynamicWeightsEnabled.Value && (startsWith(app.AlgorithmSelector.Value,'fmincon') ...
+                    || ismember(app.AlgorithmSelector.Value,{'feasibility-four-direction-v1','relay-sqp-v1','multistart-relay-sqp-v1'}))
+                reason='动态权重与此方法冲突；请到左侧“权重”页取消勾选。';
+            elseif app.hasPendingTrainingInputs()
+                reason='训练设置待应用；请先点“保形应用”或“还原”。';
             end
         end
         function refreshTrainingControls(app)
             if isempty(app.TrainingFields), return; end
+            pendingTraining=app.hasPendingTrainingInputs();
             editable=~app.Busy && ~app.SimulationMode && ~app.MapEditMode;
             automatic=strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'); manual=editable && ~automatic;
             for k=1:9, app.TrainingFields(k).Enable=manual; end
             app.TrainingModel.Enable=manual; app.TrainingApplyButton.Enable=manual; app.TrainingResetButton.Enable=manual;
             app.ForceModelSwitchButton.Enable=manual;
+            % Refresh existing windows too; callback identities are unchanged.
+            app.TrainingApplyButton.Text='保形应用'; app.ForceModelSwitchButton.Text='强制调整（允许改形）';
+            app.TrainingApplyButton.Tooltip='严格保形，必要时自动增点；请求数量与实际数量会显示。若要按指定数量改形，请用“强制调整”。';
+            app.ForceModelSwitchButton.Tooltip='备份完整状态后按请求的合法数量拟合，不自动增点；有限性和首末约束不放宽，并报告改形误差。';
             app.RestoreModelSwitchButton.Enable=editable && isfile(app.ModelSwitchBackupPath);
             if ~isempty(app.ModelSwitchBackupPath)
                 app.ModelSwitchBackupInfo.Text=['完整备份：',app.ModelSwitchBackupPath];
@@ -1304,7 +1341,7 @@ classdef CamReplicaApp < handle
             if strcmp(camdesign.routeModel(app.Project.params),'bspline-v1'), model=sprintf('标准%d次B样条（系数控制点）',app.Project.params.bspline.degree); end
             pending='已应用';
             if ~isfield(app.Project.params,'training'), pending='旧模式；本版默认未启用'; end
-            if app.TrainingDirty, pending='待应用；旧图保留'; end
+            if pendingTraining, pending='待应用；旧图保留'; end
             description='切换画法/阶数会映射现有曲线，必要时自动增点；超出误差门限则保留原方案。';
             if strcmp(camdesign.routeModel(app.Project.params),'bspline-v1')
                 description=sprintf('标准B样条仅支持内点法；有效自由度%d。模型映射保留首末位置及切向，区分精确转换与容差内拟合。',2*size(app.Project.nodes,1)-6);
@@ -1314,8 +1351,20 @@ classdef CamReplicaApp < handle
                 nominalMM=max(.001,min(1,inputMM));
                 description=[description,newline,sprintf('内点默认差分：输入 %.6g → 名义 %.6g mm（限0.001～1 mm，之后按TypicalX缩放）。学习、平滑与调节项禁用。',inputMM,nominalMM)];
             else, description=[description,newline,'梯度力=差分距离；步幅×学习率×阶梯衰减；平滑仅接受改善。']; end
-            app.TrainingInfo.Text=sprintf('实际：%d 控制点 / %d 路线采样\n当前：%s；%s\n%s', ...
-                size(app.Project.nodes,1),app.Project.params.samples,model,pending,description);
+            countFeedback='';
+            if pendingTraining
+                countFeedback=sprintf('待应用：请求 %g 控制点 → 当前实际 %d；请应用或还原。',app.TrainingFields(2).Value,size(app.Project.nodes,1));
+            elseif isfield(app.Project,'routeMapping') && all(isfield(app.Project.routeMapping,{'requestedControlPointCount','actualControlPointCount'}))
+                fit=app.Project.routeMapping;
+                countFeedback=sprintf('上次应用：请求 %d → 实际 %d 控制点。',fit.requestedControlPointCount,fit.actualControlPointCount);
+                if fit.actualControlPointCount>fit.requestedControlPointCount
+                    explanation='保形需要自动增点；按指定数量改形请点“强制调整”。';
+                    if isfield(fit,'oldControlPointCount') && fit.actualControlPointCount==fit.oldControlPointCount, explanation='未减点：保形保留原数量；按指定数量改形请点“强制调整”。'; end
+                    countFeedback=[countFeedback,newline,explanation];
+                end
+            end
+            app.TrainingInfo.Text=sprintf('实际：%d 控制点 / %d 路线采样\n当前：%s；%s\n%s\n%s', ...
+                size(app.Project.nodes,1),app.Project.params.samples,model,pending,countFeedback,description);
             if strcmp(app.AlgorithmSelector.Value,'feasibility-four-direction-v1')
                 app.TrainingInfo.Text=[app.TrainingInfo.Text,newline,'独立排序：先降归一化违规；完整可行后按小偏差、长度及至多0.5°压力余量偏好折中（不改变正式门限）。六项分引导辅助提案，需另看4/8倍验收。'];
             end
@@ -1340,21 +1389,16 @@ classdef CamReplicaApp < handle
             if automatic
                 app.TrainingShortcut.Text='打开全自动设置（预算）';
                 app.TrainingInfo.Text=['全自动锁定已应用画法：',model,'，不切换模型或阶数；只比较权重与适用训练配置。未应用输入须先处理。'];
-                if app.TrainingDirty
+                if pendingTraining
                     app.TrainingShortcut.Text='处理待应用训练设置';
                     app.TrainingResetButton.Enable=editable;
                     app.TrainingInfo.Text='尚有待应用手动训练输入。请明确还原，或切回原方法应用后再启动全自动；这些输入不会自动丢弃。';
                 end
             end
-            if ~isempty(app.MethodSummary)
-                app.MethodSummary.Text=sprintf('画法决定连线，优化方法负责改点；传动比 %.6g 固定执行，只能用户手改。',app.Project.params.gearRatio);
-                if automatic, app.MethodSummary.Text='全自动锁定当前画法及阶数；只调六项权重与适用训练设置，车体、传动比、阈值及目标不变。'; end
-            end
             app.refreshTrainingRuntime();
             app.refreshDynamicWeightControls();
-            if strcmp(camdesign.routeModel(app.Project.params),'bspline-v1') && ~strcmp(app.AlgorithmSelector.Value,'fmincon-interior-point-experimental-v1')
-                app.Buttons(5).Enable='off'; app.Buttons(5).Tooltip='标准B样条目前仅支持约束优化（内点法），请切换优化方法。';
-            end
+            reason=app.optimizationBlockedReason();
+            if ~isempty(reason), app.TrainingInfo.Text=[app.TrainingInfo.Text,newline,'优化不可用：',reason]; end
         end
         function applied=applyTraining(app,allowApproximate)
             if nargin<2, allowApproximate=false; end
@@ -1364,7 +1408,8 @@ classdef CamReplicaApp < handle
                 if allowApproximate, app.backupModelSwitch('force'); end
                 app.TrainingDirty=true;
                 candidate=app.inputProject(true); changes=app.pendingTrainingChanges();
-                [candidate,info]=camdesign.applyTrainingSettings(candidate,changes,app.AlgorithmSelector.Value,struct('AllowApproximate',logical(allowApproximate)));
+                [candidate,info]=camdesign.applyTrainingSettings(candidate,changes,app.AlgorithmSelector.Value, ...
+                    struct('AllowApproximate',logical(allowApproximate),'AllowControlPointIncrease',~logical(allowApproximate)));
                 if isfield(candidate,'routeRebuild'), candidate=rmfield(candidate,'routeRebuild'); end
                 candidate.routeMapping=info.fitInfo;
                 if allowApproximate
@@ -1384,12 +1429,21 @@ classdef CamReplicaApp < handle
                 mappingText,size(candidate.nodes,1),info.actualSamples));
             if isfield(info,'fitInfo')
                 fit=info.fitInfo;
+                countMessage=sprintf('控制点请求 %d → 实际 %d。',fit.requestedControlPointCount,fit.actualControlPointCount);
+                if fit.actualControlPointCount>fit.requestedControlPointCount
+                    explanation='保形自动增点；按指定数量改形请点“强制调整”。';
+                    if fit.actualControlPointCount==fit.oldControlPointCount
+                        explanation='未减点：保形保留原数；需改形请点“强制调整”。';
+                    end
+                    countMessage=[countMessage,explanation];
+                end
+                if info.forced
+                    countMessage=[countMessage,sprintf('强制改形（保形未通过）：最大 %.4g / RMS %.4g mm，切向 %.4g°；可恢复备份。', ...
+                        fit.positionMaxMM,fit.positionRMSMM,fit.maxTangentErrorDeg)];
+                end
+                app.Status.Text=[countMessage,newline,app.Status.Text];
                 app.message(sprintf('映射独立检查：最大位置误差 %.6g mm，RMS %.6g mm，全程切向差 %.6g°；控制点请求 %d → 实际 %d。这不是凸轮/实车精度验收。', ...
                     fit.positionMaxMM,fit.positionRMSMM,fit.maxTangentErrorDeg,fit.requestedControlPointCount,fit.actualControlPointCount));
-            end
-            if info.forced
-                app.Status.Text=[app.Status.Text,newline,sprintf('强制近似改形：最大 %.6g mm / RMS %.6g mm / 切向 %.6g°；保形未通过，可从训练栏恢复备份。', ...
-                    info.fitInfo.positionMaxMM,info.fitInfo.positionRMSMM,info.fitInfo.maxTangentErrorDeg)];
             end
         end
         function changes=pendingTrainingChanges(app)
@@ -1645,12 +1699,18 @@ classdef CamReplicaApp < handle
                         app.message(['候选点集与参数报告已导出：',destination]);
                 end
             catch ex
+                if ismember(ex.identifier,{'cam:TrainingPending','cam:OptimizationBlocked'})
+                    app.Status.Text=['操作未启动：',ex.message]; app.Status.FontColor=[.65 .28 .08];
+                    app.refreshTrainingControls();
+                end
                 app.message(['错误：',ex.message]);
                 if isvalid(app.Figure) && strcmp(app.Figure.Visible,'on'), uialert(app.Figure,ex.message,'操作未完成'); end
             end
         end
         function runOptimization(app)
             if app.Busy || app.SimulationMode || app.MapEditMode, return; end
+            reason=app.optimizationBlockedReason();
+            assert(isempty(reason),'cam:OptimizationBlocked','迭代优化未启动：%s',reason);
             app.readInputs(); app.Busy=true; app.StopRequested=false; app.setBusy(true);
             if strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), app.ControlsTabs.SelectedTab=app.AutoTuneTab; end
             cleanup=onCleanup(@()app.finishBusy());
@@ -2156,7 +2216,7 @@ classdef CamReplicaApp < handle
         function refreshTrainingRuntime(app)
             if isempty(app.TrainingRuntime) || ~isvalid(app.TrainingRuntime), return; end
             if isempty(app.History)
-                app.TrainingRuntime.Text='尚未开始训练；编辑初始设置后点击“应用训练设置”。';
+                app.TrainingRuntime.Text='尚未开始训练；编辑初始设置后点击“保形应用”。';
                 if strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), app.TrainingRuntime.Text='全自动尚未开始；在全自动页设置预算后点击“迭代优化”。'; end
                 return;
             end

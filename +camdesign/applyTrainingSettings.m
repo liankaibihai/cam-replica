@@ -3,7 +3,8 @@ function [project,info]=applyTrainingSettings(project,changes,algorithm,mappingO
 % independently refined verification grid always takes precedence.
 if nargin<3, algorithm='peak-gradient-v2'; end
 if nargin<4, mappingOptions=struct(); end
-if isfield(mappingOptions,'AllowApproximate') && mappingOptions.AllowApproximate
+if (isfield(mappingOptions,'AllowApproximate') && mappingOptions.AllowApproximate) ...
+        || (isfield(mappingOptions,'AllowControlPointIncrease') && ~mappingOptions.AllowControlPointIncrease)
     assert(~strcmp(algorithm,'auto-tune-v1'),'cam:ForceManualOnly','强制改形仅用于显式手动应用，不能由全自动使用。');
 end
 camdesign.validateProject(project); original=project;

@@ -1,0 +1,821 @@
+{
+  "change": "CHG-2026-10-31-018",
+  "baseline": "9d96c0664d9b50cda36f8659c3134a2d37534cab",
+  "status": "Accepted: synthetic business flow and current-window presentation; no competition calculation or optimization; local Git only",
+  "userRequest": "Disabled optimization and control-point changes returning to the previous count; preserve existing work, local Git/docs, no GitHub push or competition data tests.",
+  "initialLiveEvidence": {
+    "actualControlCount": 170,
+    "trainingInputs": [
+      300,
+      170,
+      67,
+      17,
+      10,
+      1,
+      0.3,
+      10,
+      0
+    ],
+    "trainingDirty": false,
+    "model": "bezier-blend-independent-v1",
+    "algorithm": "feasibility-four-direction-v1",
+    "dynamicWeightsEnabled": true,
+    "optimizeEnabled": "off",
+    "optimizeTooltip": "此后端不支持动态权重；请先关闭动态开关，程序不会静默忽略。",
+    "calculateEnabled": "on",
+    "stateUnchanged": true
+  },
+  "observedRetainedCountLogs": [
+    "映射独立检查：最大位置误差 0.00569053 mm，RMS 0.00152585 mm，全程切向差 0.0175846°；控制点请求 50 → 实际 170。这不是凸轮/实车精度验收。",
+    "映射独立检查：最大位置误差 0 mm，RMS 0 mm，全程切向差 0°；控制点请求 50 → 实际 170。这不是凸轮/实车精度验收。",
+    "映射独立检查：最大位置误差 0 mm，RMS 0 mm，全程切向差 0°；控制点请求 50 → 实际 170。这不是凸轮/实车精度验收。"
+  ],
+  "initialBackup": {
+    "path": "outputs/ui_training_feedback_20261031/parent_independent/before.mat",
+    "sha256": "3d194992c7d4d8d4100e03114e5c5865f9f287c154447eb0c563a78baa972396"
+  },
+  "syntheticBusinessFlow": {
+    "release": "2025b",
+    "baseline": "9d96c0664d9b50cda36f8659c3134a2d37534cab",
+    "checksPassed": 8,
+    "checks": [
+      "ordinary strict and legacy approximate defaults still grow back to the original exact representation without changing the source",
+      "explicit same-model fixed-count reshape returns exactly six controls on the first fit, with truthful errors and unchanged endpoint/physical constraints",
+      "cross-model force honors requested count; B-spline exact embedding cannot bypass the fixed-count policy while the strict default still embeds exactly",
+      "illegal degree/count, count cap, density, endpoints, nonfinite data and relaxed thresholds refuse; automatic caller retains its model/degree and cannot use manual override",
+      "real synthetic UI shows persistent actionable dynamic-weight conflict and preflight matches disabled optimization; only explicit user checkbox edit resolves it",
+      "calculate/optimize reject pending field or model input before clearing result/history; raw value changes without ValueChanged are caught and preserved",
+      "real ordinary apply retains strict preservation and visibly states requested six, actual twelve and why reduction was not achieved",
+      "real force button applies exactly requested six controls with truthful error report, backs up full pending state and restores project/result/history/raw inputs exactly"
+    ],
+    "strictFit": {
+      "positionMaxMM": 0,
+      "positionRMSMM": 0,
+      "maxTangentErrorDeg": 0,
+      "firstPointErrorMM": 0,
+      "endpointPositionErrorMM": [
+        0,
+        0
+      ],
+      "endpointDerivativeError": [
+        0,
+        0
+      ],
+      "endpointTangentErrorDeg": [
+        0,
+        0
+      ],
+      "withinTolerance": true,
+      "shapePreservationGuaranteed": true,
+      "finiteGeometry": true,
+      "endpointConstraintsSatisfied": true,
+      "mathematicallyExactSpace": true,
+      "method": "existing-exact-representation",
+      "validationSamples": 12035,
+      "tolerances": {
+        "positionMaxMM": 0.05,
+        "positionRMSMM": 0.01,
+        "maxTangentDeg": 0.05,
+        "endpointPositionMM": 1e-07,
+        "endpointDerivative": 1e-07,
+        "endpointTangentDeg": 1e-05
+      },
+      "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+      "version": "route-geometry-mapping-v1",
+      "sourceModel": "bezier-blend-independent-v1",
+      "targetModel": "bezier-blend-independent-v1",
+      "sourceDegree": 3,
+      "targetDegree": 3,
+      "oldControlPointCount": 12,
+      "requestedControlPointCount": 6,
+      "actualControlPointCount": 12,
+      "controlPointCount": 12,
+      "automaticallyIncreasedCount": true,
+      "attempts": [
+        {
+          "count": 6,
+          "positionMaxMM": 2.733561622214616,
+          "positionRMSMM": 1.5266191659644281
+        },
+        {
+          "count": 10,
+          "positionMaxMM": 0.22116521075161075,
+          "positionRMSMM": 0.08532913808406802
+        },
+        {
+          "count": 12,
+          "positionMaxMM": 0,
+          "positionRMSMM": 0
+        }
+      ],
+      "parameterLength": 320,
+      "targetOrderUnchanged": true,
+      "allowApproximate": false,
+      "allowControlPointIncrease": true,
+      "forced": false,
+      "approximate": false,
+      "acceptance": "exact"
+    },
+    "fixedFit": {
+      "positionMaxMM": 2.733561622214616,
+      "positionRMSMM": 1.5266191659644281,
+      "maxTangentErrorDeg": 10.04090591264042,
+      "firstPointErrorMM": 0,
+      "endpointPositionErrorMM": [
+        0,
+        0
+      ],
+      "endpointDerivativeError": [
+        1.4936523181711914e-15,
+        3.510833468576701e-16
+      ],
+      "endpointTangentErrorDeg": [
+        5.724998426634312e-14,
+        2.040422099076748e-14
+      ],
+      "withinTolerance": false,
+      "shapePreservationGuaranteed": false,
+      "finiteGeometry": true,
+      "endpointConstraintsSatisfied": true,
+      "mathematicallyExactSpace": false,
+      "method": "constrained-fit",
+      "validationSamples": 12047,
+      "tolerances": {
+        "positionMaxMM": 0.05,
+        "positionRMSMM": 0.01,
+        "maxTangentDeg": 0.05,
+        "endpointPositionMM": 1e-07,
+        "endpointDerivative": 1e-07,
+        "endpointTangentDeg": 1e-05
+      },
+      "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+      "version": "route-geometry-mapping-v1",
+      "sourceModel": "bezier-blend-independent-v1",
+      "targetModel": "bezier-blend-independent-v1",
+      "sourceDegree": 3,
+      "targetDegree": 3,
+      "oldControlPointCount": 12,
+      "requestedControlPointCount": 6,
+      "actualControlPointCount": 6,
+      "controlPointCount": 6,
+      "automaticallyIncreasedCount": false,
+      "attempts": {
+        "count": 6,
+        "positionMaxMM": 2.733561622214616,
+        "positionRMSMM": 1.5266191659644281
+      },
+      "parameterLength": 320,
+      "targetOrderUnchanged": true,
+      "allowApproximate": true,
+      "allowControlPointIncrease": false,
+      "forced": true,
+      "approximate": true,
+      "acceptance": "forced-approximate"
+    },
+    "differentModelFit": {
+      "positionMaxMM": 0.2743304730157447,
+      "positionRMSMM": 0.12609967042688333,
+      "maxTangentErrorDeg": 1.9315321863949053,
+      "firstPointErrorMM": 0,
+      "endpointPositionErrorMM": [
+        0,
+        0
+      ],
+      "endpointDerivativeError": [
+        1.2858502468236501e-15,
+        1.2412670766236366e-16
+      ],
+      "endpointTangentErrorDeg": [
+        5.327429091451386e-14,
+        1.5902773407317584e-15
+      ],
+      "withinTolerance": false,
+      "shapePreservationGuaranteed": false,
+      "finiteGeometry": true,
+      "endpointConstraintsSatisfied": true,
+      "mathematicallyExactSpace": false,
+      "method": "constrained-fit",
+      "validationSamples": 12019,
+      "tolerances": {
+        "positionMaxMM": 0.05,
+        "positionRMSMM": 0.01,
+        "maxTangentDeg": 0.05,
+        "endpointPositionMM": 1e-07,
+        "endpointDerivative": 1e-07,
+        "endpointTangentDeg": 1e-05
+      },
+      "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+      "version": "route-geometry-mapping-v1",
+      "sourceModel": "cubic",
+      "targetModel": "bezier-blend-independent-v1",
+      "sourceDegree": 3,
+      "targetDegree": 3,
+      "oldControlPointCount": 3,
+      "requestedControlPointCount": 6,
+      "actualControlPointCount": 6,
+      "controlPointCount": 6,
+      "automaticallyIncreasedCount": false,
+      "attempts": {
+        "count": 6,
+        "positionMaxMM": 0.2743304730157447,
+        "positionRMSMM": 0.12609967042688333
+      },
+      "parameterLength": 304.138126514911,
+      "targetOrderUnchanged": true,
+      "allowApproximate": true,
+      "allowControlPointIncrease": false,
+      "forced": true,
+      "approximate": true,
+      "acceptance": "forced-approximate"
+    },
+    "bsplineDefaultFit": {
+      "positionMaxMM": 2.3437142008433856e-13,
+      "positionRMSMM": 6.86812845168056e-14,
+      "maxTangentErrorDeg": 7.713821778536365e-14,
+      "firstPointErrorMM": 0,
+      "endpointPositionErrorMM": [
+        0,
+        0
+      ],
+      "endpointDerivativeError": [
+        8.881784197001252e-16,
+        1.0057327710640516e-15
+      ],
+      "endpointTangentErrorDeg": [
+        0,
+        1.9083328088781116e-14
+      ],
+      "withinTolerance": true,
+      "shapePreservationGuaranteed": true,
+      "finiteGeometry": true,
+      "endpointConstraintsSatisfied": true,
+      "mathematicallyExactSpace": true,
+      "method": "polynomial-space-embedding",
+      "validationSamples": 12007,
+      "tolerances": {
+        "positionMaxMM": 0.05,
+        "positionRMSMM": 0.01,
+        "maxTangentDeg": 0.05,
+        "endpointPositionMM": 1e-07,
+        "endpointDerivative": 1e-07,
+        "endpointTangentDeg": 1e-05
+      },
+      "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+      "version": "route-geometry-mapping-v1",
+      "sourceModel": "cubic",
+      "targetModel": "bspline-v1",
+      "sourceDegree": 3,
+      "targetDegree": 3,
+      "oldControlPointCount": 3,
+      "requestedControlPointCount": 4,
+      "actualControlPointCount": 5,
+      "controlPointCount": 5,
+      "automaticallyIncreasedCount": true,
+      "attempts": {
+        "count": 5,
+        "positionMaxMM": 2.3437142008433856e-13,
+        "positionRMSMM": 6.86812845168056e-14
+      },
+      "parameterLength": 304.138126514911,
+      "targetOrderUnchanged": true,
+      "allowApproximate": false,
+      "allowControlPointIncrease": true,
+      "forced": false,
+      "approximate": false,
+      "acceptance": "exact"
+    },
+    "bsplineFixedFit": {
+      "positionMaxMM": 18.757133680888174,
+      "positionRMSMM": 11.431230922798816,
+      "maxTangentErrorDeg": 10.533504518903765,
+      "firstPointErrorMM": 0,
+      "endpointPositionErrorMM": [
+        0,
+        0
+      ],
+      "endpointDerivativeError": [
+        4.440892098500626e-16,
+        2.7755575615628914e-17
+      ],
+      "endpointTangentErrorDeg": [
+        0,
+        1.5902773407317584e-15
+      ],
+      "withinTolerance": false,
+      "shapePreservationGuaranteed": false,
+      "finiteGeometry": true,
+      "endpointConstraintsSatisfied": true,
+      "mathematicallyExactSpace": false,
+      "method": "constrained-fit",
+      "validationSamples": 12007,
+      "tolerances": {
+        "positionMaxMM": 0.05,
+        "positionRMSMM": 0.01,
+        "maxTangentDeg": 0.05,
+        "endpointPositionMM": 1e-07,
+        "endpointDerivative": 1e-07,
+        "endpointTangentDeg": 1e-05
+      },
+      "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+      "version": "route-geometry-mapping-v1",
+      "sourceModel": "cubic",
+      "targetModel": "bspline-v1",
+      "sourceDegree": 3,
+      "targetDegree": 3,
+      "oldControlPointCount": 3,
+      "requestedControlPointCount": 4,
+      "actualControlPointCount": 4,
+      "controlPointCount": 4,
+      "automaticallyIncreasedCount": false,
+      "attempts": {
+        "count": 4,
+        "positionMaxMM": 18.757133680888174,
+        "positionRMSMM": 11.431230922798816
+      },
+      "parameterLength": 304.138126514911,
+      "targetOrderUnchanged": true,
+      "allowApproximate": true,
+      "allowControlPointIncrease": false,
+      "forced": true,
+      "approximate": true,
+      "acceptance": "forced-approximate"
+    },
+    "uiFit": {
+      "positionMaxMM": 2.733561622214616,
+      "positionRMSMM": 1.5266191659644281,
+      "maxTangentErrorDeg": 10.04090591264042,
+      "firstPointErrorMM": 0,
+      "endpointPositionErrorMM": [
+        0,
+        0
+      ],
+      "endpointDerivativeError": [
+        1.4936523181711914e-15,
+        3.510833468576701e-16
+      ],
+      "endpointTangentErrorDeg": [
+        5.724998426634312e-14,
+        2.040422099076748e-14
+      ],
+      "withinTolerance": false,
+      "shapePreservationGuaranteed": false,
+      "finiteGeometry": true,
+      "endpointConstraintsSatisfied": true,
+      "mathematicallyExactSpace": false,
+      "method": "constrained-fit",
+      "validationSamples": 12047,
+      "tolerances": {
+        "positionMaxMM": 0.05,
+        "positionRMSMM": 0.01,
+        "maxTangentDeg": 0.05,
+        "endpointPositionMM": 1e-07,
+        "endpointDerivative": 1e-07,
+        "endpointTangentDeg": 1e-05
+      },
+      "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+      "version": "route-geometry-mapping-v1",
+      "sourceModel": "bezier-blend-independent-v1",
+      "targetModel": "bezier-blend-independent-v1",
+      "sourceDegree": 3,
+      "targetDegree": 3,
+      "oldControlPointCount": 12,
+      "requestedControlPointCount": 6,
+      "actualControlPointCount": 6,
+      "controlPointCount": 6,
+      "automaticallyIncreasedCount": false,
+      "attempts": {
+        "count": 6,
+        "positionMaxMM": 2.733561622214616,
+        "positionRMSMM": 1.5266191659644281
+      },
+      "parameterLength": 320,
+      "targetOrderUnchanged": true,
+      "allowApproximate": true,
+      "allowControlPointIncrease": false,
+      "forced": true,
+      "approximate": true,
+      "acceptance": "forced-approximate"
+    },
+    "independentPositionMaxMM": 2.7335604931985045,
+    "profilerCounts": {
+      "defaultProject": 0,
+      "teamSolarProject": 0,
+      "solarTestProject": 0,
+      "optimize": 0,
+      "optimizeSearch": 0,
+      "optimizeFeasibilityFour": 0,
+      "optimizeRelay": 0,
+      "optimizeMultistartRelay": 0,
+      "optimizeFmincon": 0,
+      "optimizeAuto": 0,
+      "evaluate": 4
+    },
+    "scope": "Handwritten small synthetic inputs, geometry mapping and real UI application/restore. All optimization and course factories have zero calls. No competition data, user window, quality comparison or native mouse gesture claim."
+  },
+  "finalDisplayCheck": {
+    "sourceSyntheticInput": "F:\\许昊阳\\竞赛\\2027工创\\.codex\\cam-replica\\outputs\\ui_training_feedback_20261031\\check_1\\synthetic_results.mat",
+    "status": "控制点请求 6 → 实际 6。强制改形（保形未通过）：最大 2.734 / RMS 1.527 mm，切向 10.04°；可恢复备份。\n当前网格 · 凸轮181点 · 打卡偏差 9.44 mm；压力角 35.25°；轮廓自交 0\n五点中心出界 0 mm；欠切余量 0.8833；几何访问顺序 通过    回程 189.23° / 预留 60.00°    有指标超限，需改进",
+    "fit": {
+      "positionMaxMM": 2.733561622214616,
+      "positionRMSMM": 1.5266191659644281,
+      "maxTangentErrorDeg": 10.04090591264042,
+      "firstPointErrorMM": 0,
+      "endpointPositionErrorMM": [
+        0,
+        0
+      ],
+      "endpointDerivativeError": [
+        1.4936523181711914e-15,
+        3.510833468576701e-16
+      ],
+      "endpointTangentErrorDeg": [
+        5.724998426634312e-14,
+        2.040422099076748e-14
+      ],
+      "withinTolerance": false,
+      "shapePreservationGuaranteed": false,
+      "finiteGeometry": true,
+      "endpointConstraintsSatisfied": true,
+      "mathematicallyExactSpace": false,
+      "method": "constrained-fit",
+      "validationSamples": 12047,
+      "tolerances": {
+        "positionMaxMM": 0.05,
+        "positionRMSMM": 0.01,
+        "maxTangentDeg": 0.05,
+        "endpointPositionMM": 1e-07,
+        "endpointDerivative": 1e-07,
+        "endpointTangentDeg": 1e-05
+      },
+      "scope": "Same-parameter front geometry on independent offset grid and span boundaries; fitted mappings are not exact identities or cam/vehicle acceptance.",
+      "version": "route-geometry-mapping-v1",
+      "sourceModel": "bezier-blend-independent-v1",
+      "targetModel": "bezier-blend-independent-v1",
+      "sourceDegree": 3,
+      "targetDegree": 3,
+      "oldControlPointCount": 12,
+      "requestedControlPointCount": 6,
+      "actualControlPointCount": 6,
+      "controlPointCount": 6,
+      "automaticallyIncreasedCount": false,
+      "attempts": {
+        "count": 6,
+        "positionMaxMM": 2.733561622214616,
+        "positionRMSMM": 1.5266191659644281
+      },
+      "parameterLength": 320,
+      "targetOrderUnchanged": true,
+      "allowApproximate": true,
+      "allowControlPointIncrease": false,
+      "forced": true,
+      "approximate": true,
+      "acceptance": "forced-approximate"
+    },
+    "trainingRuntime": "尚未开始训练；编辑初始设置后点击“保形应用”。",
+    "profilerCounts": {
+      "defaultProject": 0,
+      "teamSolarProject": 0,
+      "solarTestProject": 0,
+      "optimize": 0,
+      "optimizeFeasibilityFour": 0,
+      "optimizeRelay": 0,
+      "optimizeFmincon": 0,
+      "optimizeAuto": 0,
+      "evaluate": 1
+    },
+    "scope": "Targeted final status ordering and button wording only; prior complete eight groups are not rerun. One synthetic evaluation, no course data/optimization/user window."
+  },
+  "independentLiveRefresh": {
+    "immediateStatePreserved": true,
+    "initialCaptureStillMatches": false,
+    "model": "bezier-blend-independent-v1",
+    "algorithm": "feasibility-four-direction-v1",
+    "dynamicWeightsPreserved": true,
+    "optimizeEnable": "off",
+    "visibleReason": "优化不可用：动态权重与此方法冲突；请到左侧“权重”页取消勾选。",
+    "preserveAction": "保形应用",
+    "reshapeAction": "强制调整（允许改形）",
+    "controlCount": 170,
+    "pendingFields": [
+      300,
+      170,
+      67,
+      17,
+      10,
+      1,
+      0.3,
+      10,
+      0
+    ],
+    "scope": "Current window refreshed only; no apply, calculation, mapping, optimize, import, export, reset, or dynamic-weight modification."
+  },
+  "initialVersusBeforeRefresh": {
+    "initialToBeforeRefreshChangedFields": [
+      "axesLimits"
+    ],
+    "stateChangedFields": [],
+    "inputChangedFields": [],
+    "initialAxesLimits": [
+      [
+        -240,
+        6240,
+        -80,
+        2080
+      ],
+      [
+        -205.0174778035654,
+        205.0174778035654,
+        -205.0174778035654,
+        205.0174778035654
+      ],
+      [
+        0,
+        12000,
+        -80,
+        80
+      ]
+    ],
+    "beforeRefreshAxesLimits": [
+      [
+        -240,
+        6240,
+        -80,
+        2080
+      ],
+      [
+        -205.0174778035654,
+        205.0174778035654,
+        -205.0174778035654,
+        205.0174778035654
+      ],
+      [
+        0,
+        12000,
+        -65,
+        65
+      ]
+    ],
+    "scope": "Read-only comparison of two already saved snapshots; separates changes before refresh from the exact immediate before/after preservation check."
+  },
+  "sourceFreeze": {
+    "baseline": "9d96c0664d9b50cda36f8659c3134a2d37534cab",
+    "frozen": true,
+    "files": [
+      {
+        "file": "CamReplicaApp.m",
+        "sha256": "18d6a1c643e987eca7d54eb33319ed24e0f5235cbe61002c19563de27f61588f"
+      },
+      {
+        "file": "+camdesign/mapRouteModel.m",
+        "sha256": "38d5331dfceda2bda60adc22b1d2eff5874e4ffdf7151db7be2a956fc8b29fc1"
+      },
+      {
+        "file": "+camdesign/applyTrainingSettings.m",
+        "sha256": "20dc9e2c637a15272e2dff02673457ac313a46a030f323ff0a72f8ce1afc1e0e"
+      },
+      {
+        "file": "check_ui_training_feedback.m",
+        "sha256": "2537507c842b4c7df19e6935c6df0b529c7134e1cd3eb03e3c4dc71472457bb0"
+      },
+      {
+        "file": "outputs/ui_training_feedback_20261031/check_training_force_view_018.m",
+        "sha256": "905128918ae03cade9d8b2d24d6f9f8cf2c8a9c8d23b838dd97ed9611a603a28"
+      }
+    ]
+  },
+  "sourceHashNote": "Raw working-file SHA256, not Git blob hashes. First full-suite source was reconstructed after the run; that provenance is retained, not described as a runtime snapshot.",
+  "executorDelivery": {
+    "change": "CHG-2026-10-31-018",
+    "baseline": "9d96c0664d9b50cda36f8659c3134a2d37534cab",
+    "productionFrozen": true,
+    "productionFiles": [
+      "CamReplicaApp.m",
+      "+camdesign/mapRouteModel.m",
+      "+camdesign/applyTrainingSettings.m"
+    ],
+    "checkFiles": [
+      "check_ui_training_feedback.m"
+    ],
+    "targetedCheckArtifact": "outputs/ui_training_feedback_20261031/check_training_force_view_018.m",
+    "implementation": [
+      "Existing MethodSummary permanently explains the optimization block and directs the user to the weights tab; checkbox/backend are never silently changed.",
+      "Ordinary shape-preserving apply retains automatic count growth and reports requested/actual counts and retained original count.",
+      "Manual force uses AllowApproximate=true and AllowControlPointIncrease=false; exactly requested valid count, including cross-model and B-spline branches. Strict/default and automatic callers keep growth=true.",
+      "Training edits are detected by both TrainingDirty and comparison against applied values/model; calculate preflight precedes Result clearing, optimization preflight precedes project/history mutation.",
+      "Button labels are 保形应用 and 强制调整（允许改形）, existing callback identities remain. No new App/control properties or UI callback slots."
+    ],
+    "executed": [
+      {
+        "command": "check_ui_training_feedback;",
+        "output": "outputs/ui_training_feedback_20261031/check_1",
+        "log": "local/matlab_da17afdb049b4d488bcae89b7f2d1f78.log",
+        "passedGroups": 8,
+        "profilerCounts": {
+          "defaultProject": 0,
+          "teamSolarProject": 0,
+          "solarTestProject": 0,
+          "optimize": 0,
+          "optimizeSearch": 0,
+          "optimizeFeasibilityFour": 0,
+          "optimizeRelay": 0,
+          "optimizeMultistartRelay": 0,
+          "optimizeFmincon": 0,
+          "optimizeAuto": 0,
+          "evaluate": 4
+        }
+      },
+      {
+        "command": "addpath(fullfile(pwd,'outputs','ui_training_feedback_20261031')); check_training_force_view_018;",
+        "output": "outputs/ui_training_feedback_20261031/force_view_2",
+        "log": "local/matlab_294a2a88c54c460598a40b9423eedc37.log",
+        "result": "PASS targeted final status/text ordering and screenshot",
+        "profilerCounts": {
+          "defaultProject": 0,
+          "teamSolarProject": 0,
+          "solarTestProject": 0,
+          "optimize": 0,
+          "optimizeFeasibilityFour": 0,
+          "optimizeRelay": 0,
+          "optimizeFmincon": 0,
+          "optimizeAuto": 0,
+          "evaluate": 1
+        }
+      }
+    ],
+    "postFullSuiteEdits": [
+      "Moved forced-reshape preservation failure and max/RMS/tangent errors from clipped Status tail to the front, next to requested/actual counts.",
+      "Shortened strict count-retention reason without changing its meaning.",
+      "Changed two stale button-name references in route-model log and TrainingRuntime to 保形应用."
+    ],
+    "postSuiteEvidence": "outputs/ui_training_feedback_20261031/post_suite_display_changes.patch; source reconstructed after run is explicitly labelled, not a runtime snapshot. Final display checked separately; eight-group suite not rerun.",
+    "visualReview": "Viewed all three first-suite PNGs and the final targeted PNG. Dynamic conflict visible beside buttons; final forced-change errors visible at1120x860. TrainingInfo remains in its existing scroll area; no layout redesign.",
+    "finalScreenshot": "outputs/ui_training_feedback_20261031/force_view_2/forced_requested_count_final.png",
+    "sourceFreeze": "outputs/ui_training_feedback_20261031/source_freeze.json",
+    "scope": "Only handwritten small synthetic inputs. Four evaluations in eight groups plus one targeted final-display evaluation. All monitored optimization/backend and default/team/solar factories zero. No competition MAT/data loaded, no optimization budget or algorithm quality experiment, no user-window action, docs edits, commit or push by executor. 017 evidence preserved.",
+    "liveRefresh": "Parent may now use existing app.refreshTrainingControls() to update texts/enable state, independently compare state/inputs; do not sync/reset or calculate the user project. Parent owns live acceptance and docs/Git."
+  },
+  "postSuiteDisplayPatch": "--- first_full_suite_reconstructed/CamReplicaApp.m\n+++ final_frozen/CamReplicaApp.m\n@@ -1242,7 +1242,7 @@\n         function routeModelChanged(app)\n             if startsWith(app.TrainingModel.Value,'bspline-')\n                 app.AlgorithmSelector.Value='fmincon-interior-point-experimental-v1';\n-                app.message('标准B样条已选内点法；请应用训练设置进行受约束拟合。');\n+                app.message('标准B样条已选内点法；请点击“保形应用”进行受约束拟合。');\n             end\n             app.markTrainingDirty();\n         end\n@@ -1431,18 +1431,19 @@\n                 fit=info.fitInfo;\n                 countMessage=sprintf('控制点请求 %d → 实际 %d。',fit.requestedControlPointCount,fit.actualControlPointCount);\n                 if fit.actualControlPointCount>fit.requestedControlPointCount\n-                    countMessage=[countMessage,'保形需要更多控制点；按指定数量改形请用“强制调整”。'];\n+                    explanation='保形自动增点；按指定数量改形请点“强制调整”。';\n                     if fit.actualControlPointCount==fit.oldControlPointCount\n-                        countMessage=[countMessage,'本次未减点，保留原数量。'];\n+                        explanation='未减点：保形保留原数；需改形请点“强制调整”。';\n                     end\n+                    countMessage=[countMessage,explanation];\n+                end\n+                if info.forced\n+                    countMessage=[countMessage,sprintf('强制改形（保形未通过）：最大 %.4g / RMS %.4g mm，切向 %.4g°；可恢复备份。', ...\n+                        fit.positionMaxMM,fit.positionRMSMM,fit.maxTangentErrorDeg)];\n                 end\n                 app.Status.Text=[countMessage,newline,app.Status.Text];\n                 app.message(sprintf('映射独立检查：最大位置误差 %.6g mm，RMS %.6g mm，全程切向差 %.6g°；控制点请求 %d → 实际 %d。这不是凸轮/实车精度验收。', ...\n                     fit.positionMaxMM,fit.positionRMSMM,fit.maxTangentErrorDeg,fit.requestedControlPointCount,fit.actualControlPointCount));\n-            end\n-            if info.forced\n-                app.Status.Text=[app.Status.Text,newline,sprintf('强制近似改形：最大 %.6g mm / RMS %.6g mm / 切向 %.6g°；保形未通过，可从训练栏恢复备份。', ...\n-                    info.fitInfo.positionMaxMM,info.fitInfo.positionRMSMM,info.fitInfo.maxTangentErrorDeg)];\n             end\n         end\n         function changes=pendingTrainingChanges(app)\n@@ -2215,7 +2216,7 @@\n         function refreshTrainingRuntime(app)\n             if isempty(app.TrainingRuntime) || ~isvalid(app.TrainingRuntime), return; end\n             if isempty(app.History)\n-                app.TrainingRuntime.Text='尚未开始训练；编辑初始设置后点击“应用训练设置”。';\n+                app.TrainingRuntime.Text='尚未开始训练；编辑初始设置后点击“保形应用”。';\n                 if strcmp(app.AlgorithmSelector.Value,'auto-tune-v1'), app.TrainingRuntime.Text='全自动尚未开始；在全自动页设置预算后点击“迭代优化”。'; end\n                 return;\n             end\n",
+  "staticReview": {
+    "onlyChangedCoreFiles": [
+      "+camdesign/applyTrainingSettings.m",
+      "+camdesign/mapRouteModel.m"
+    ],
+    "physicalEvaluationAndOptimizationImplementationsChanged": false,
+    "newCallbackSlots": false
+  },
+  "logs": [
+    {
+      "path": "local/matlab_da17afdb049b4d488bcae89b7f2d1f78.log",
+      "sha256": "f72401ed59a56861ae899c991b9cfddeee892d9f9fa040b9e6b74717d1fe2f7e",
+      "text": "UI_TRAINING_FEEDBACK_PASS checks=8 strict=6->12 fixed=6 ui=6 optimizerCalls=0 courseFactories=0 syntheticEvaluateCalls=4\n"
+    },
+    {
+      "path": "local/matlab_294a2a88c54c460598a40b9423eedc37.log",
+      "sha256": "60aef35e414400ec30dba80b0634760116972cd495d036299e0e7036a5ecf6ff",
+      "text": "TRAINING_FORCE_VIEW_PASS controls=6 forced=1 syntheticEvaluateCalls=1 optimizerCalls=0 courseFactories=0\n"
+    }
+  ],
+  "parentAuditScripts": [
+    {
+      "path": "local/capture_training_issue_018.m",
+      "sha256": "d0d6337161678cb3189e128a3bd70436edf277f33165ddd0fb2382429f6d53ef",
+      "source": "function report=capture_training_issue_018(app,phase)\nassert(isa(app,'CamReplicaApp') && isvalid(app) && isgraphics(app.Figure));\nassert(~app.Busy && ~app.SimulationMode && ~app.MapEditMode);\nfolder=fullfile(fileparts(fileparts(mfilename('fullpath'))),'outputs','ui_training_feedback_20261031','parent_independent');\nif ~isfolder(folder), mkdir(folder); end\nfile=fullfile(folder,[phase '.json']); backupFile=fullfile(folder,[phase '.mat']);\nassert(~isfile(file) && ~isfile(backupFile));\nbackup=app.snapshotModelSwitchState(); extra=cam_app_ui_value_snapshot(app);\nsave(backupFile,'backup','extra','-v7'); saved=load(backupFile);\nassert(isequaln(saved.backup,backup) && isequaln(saved.extra,extra));\nreport=struct('phase',phase,'actualControlCount',size(app.Project.nodes,1),'trainingInputs',[app.TrainingFields.Value], ...\n    'trainingDirty',app.TrainingDirty,'model',app.TrainingModel.Value,'algorithm',app.AlgorithmSelector.Value, ...\n    'dynamicWeightsEnabled',app.DynamicWeightsEnabled.Value,'optimizeEnabled',char(app.Buttons(5).Enable), ...\n    'optimizeTooltip',app.Buttons(5).Tooltip,'calculateEnabled',char(app.Buttons(4).Enable), ...\n    'status',app.Status.Text,'trainingInfo',app.TrainingInfo.Text,'methodSummary',app.MethodSummary.Text, ...\n    'log',{app.FullLog},'backupFile',backupFile,'stateUnchanged',isequaln(backup,app.snapshotModelSwitchState()));\nif isfield(app.Project,'routeMapping'), report.mapping=app.Project.routeMapping; end\nfid=fopen(file,'w','n','UTF-8'); assert(fid>=0); cleaner=onCleanup(@()fclose(fid));\nfprintf(fid,'%s',jsonencode(report,PrettyPrint=true));\ndisp('TRAINING_ISSUE_CAPTURED_READ_ONLY');\nend\n"
+    },
+    {
+      "path": "local/refresh_training_feedback_018.m",
+      "sha256": "e25d22dfc1a209888929a3503344f790024a6ae44138a542f81b4f8545341d33",
+      "source": "function report=refresh_training_feedback_018(app)\n% Parent-side presentation refresh only; never apply or compute user input.\nfolder=fullfile(fileparts(fileparts(mfilename('fullpath'))),'outputs','ui_training_feedback_20261031','parent_independent');\nfile=fullfile(folder,'verification.json'); assert(~isfile(file));\ncapture_training_issue_018(app,'before_refresh');\nbefore=app.snapshotModelSwitchState();\napp.refreshControls();\nafter=app.snapshotModelSwitchState();\ncapture_training_issue_018(app,'after_refresh');\nassert(isequaln(before,after),'cam:LiveRefreshStateChanged','Display refresh changed saved model/input state.');\nconflict=before.inputs.DynamicWeightsEnabled && ismember(before.inputs.AlgorithmSelector, ...\n    {'feasibility-four-direction-v1','relay-sqp-v1','multistart-relay-sqp-v1'});\nif conflict\n    assert(contains(app.MethodSummary.Text,'动态权重') && contains(app.MethodSummary.Text,'权重'), ...\n        'cam:LiveFeedback','Current dynamic-weight conflict must be visible.');\n    assert(strcmp(app.Buttons(5).Enable,'off'));\nend\nassert(isequal(before.inputs.DynamicWeightsEnabled,app.DynamicWeightsEnabled.Value));\nassert(contains(app.TrainingApplyButton.Text,'保形') && contains(app.ForceModelSwitchButton.Text,'强制调整'));\ninitial=load(fullfile(folder,'before.mat'),'backup');\nreport=struct('immediateStatePreserved',isequaln(before,after),'initialCaptureStillMatches',isequaln(initial.backup,before), ...\n    'model',app.TrainingModel.Value,'algorithm',app.AlgorithmSelector.Value, ...\n    'dynamicWeightsPreserved',app.DynamicWeightsEnabled.Value,'optimizeEnable',char(app.Buttons(5).Enable), ...\n    'visibleReason',app.MethodSummary.Text,'preserveAction',app.TrainingApplyButton.Text,'reshapeAction',app.ForceModelSwitchButton.Text, ...\n    'controlCount',size(app.Project.nodes,1),'pendingFields',[app.TrainingFields.Value], ...\n    'scope','Current window refreshed only; no apply, calculation, mapping, optimize, import, export, reset, or dynamic-weight modification.');\nfid=fopen(file,'w','n','UTF-8'); assert(fid>=0); cleaner=onCleanup(@()fclose(fid)); fprintf(fid,'%s',jsonencode(report,PrettyPrint=true));\ndisp('TRAINING_FEEDBACK_LIVE_REFRESH_PASS');\nend\n"
+    },
+    {
+      "path": "local/compare_training_captures_018.m",
+      "sha256": "469d5601184ee7d328886e6b6a8da9cd87f282cf1e930122cbda8945c6f0747e",
+      "source": "function report=compare_training_captures_018()\nfolder=fullfile(fileparts(fileparts(mfilename('fullpath'))),'outputs','ui_training_feedback_20261031','parent_independent');\nfile=fullfile(folder,'initial_comparison.json'); assert(~isfile(file));\nfirst=load(fullfile(folder,'before.mat'),'backup'); next=load(fullfile(folder,'before_refresh.mat'),'backup');\na=first.backup; b=next.backup; changed={}; names=fieldnames(a);\nfor k=1:numel(names), if ~isequaln(a.(names{k}),b.(names{k})), changed{end+1}=names{k}; end, end\nstateChanged={}; names=fieldnames(a.state);\nfor k=1:numel(names), if ~isequaln(a.state.(names{k}),b.state.(names{k})), stateChanged{end+1}=names{k}; end, end\ninputChanged={}; names=fieldnames(a.inputs);\nfor k=1:numel(names), if ~isequaln(a.inputs.(names{k}),b.inputs.(names{k})), inputChanged{end+1}=names{k}; end, end\nreport=struct('initialToBeforeRefreshChangedFields',{changed},'stateChangedFields',{stateChanged}, ...\n    'inputChangedFields',{inputChanged},'initialAxesLimits',a.axesLimits,'beforeRefreshAxesLimits',b.axesLimits, ...\n    'scope','Read-only comparison of two already saved snapshots; separates changes before refresh from the exact immediate before/after preservation check.');\nfid=fopen(file,'w','n','UTF-8'); assert(fid>=0); cleaner=onCleanup(@()fclose(fid)); fprintf(fid,'%s',jsonencode(report,PrettyPrint=true));\ndisp('TRAINING_CAPTURE_COMPARISON_SAVED');\nend\n"
+    }
+  ],
+  "limitations": [
+    "Eight-group business suite used handwritten small inputs; final textual ordering was checked separately, not a repeated full suite.",
+    "Five synthetic evaluations total; monitored course factories and optimization backends zero. This is not an optimization quality or precision experiment.",
+    "No calculation, application, point reduction, optimization or export on the actual user project; only read-only backup and refreshControls.",
+    "Dynamic-weight checkbox and backend remain user-owned. The current conflict remains blocked until explicitly resolved.",
+    "Only axesLimits differed between the initial capture and the pre-refresh backup; model/input states did not. The immediate refresh preserved the complete snapshot.",
+    "Current user 170-point route was not fitted to 50 here; its reshape error is not predicted from the synthetic fixture.",
+    "MAT backups and outputs stay ignored locally; no GitHub push."
+  ],
+  "artifacts": [
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_1/blocked_dynamic_weights.png",
+      "sha256": "90f5d634722b63ec0b135d55595cc103ac238082a5fde88cb2f55bcabf529731",
+      "bytes": 202650
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_1/forced_requested_count.png",
+      "sha256": "9c8dcd00dc5738b0e2af7091b8a42277ab81ef5c450f2e0d4fa865c4f7bd9551",
+      "bytes": 207714
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_1/source_reconstructed_after_run/CamReplicaApp.m",
+      "sha256": "c26d416fe71ce6668568304e87038e2886399bcaa375edde4007c079f1427a9b",
+      "bytes": 173525
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_1/source_reconstructed_after_run/README.txt",
+      "sha256": "c7898f1e3394c23251572ba992a5c9307d09dd133348443746c216b44f642a00",
+      "bytes": 218
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_1/strict_count_retained.png",
+      "sha256": "148dd4ce6094c2646e246e0763131990158a2d5749392223651e1c488950db6f",
+      "bytes": 204347
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_1/synthetic_full_backup.mat",
+      "sha256": "2242c20cd6141fa94181e60fdd80902a7fc7c2203b7beccf623a5378fe6e65e3",
+      "bytes": 284553
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_1/synthetic_results.mat",
+      "sha256": "e9bc5bfba8389f4e168a42c9621070a75a6abe8ed4dc6282a7dc04a6fa0130da",
+      "bytes": 8446
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_1/verification.json",
+      "sha256": "e8166292133c7d52f212932793d61601765058b79236d6156485c0e9c3d95611",
+      "bytes": 12602
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/check_training_force_view_018.m",
+      "sha256": "905128918ae03cade9d8b2d24d6f9f8cf2c8a9c8d23b838dd97ed9611a603a28",
+      "bytes": 2873
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/diagnosis.json",
+      "sha256": "2ccfead96f2d53d48f2378c4a4140837d2c434c57bcca578340ff966cd596ecc",
+      "bytes": 9555
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/executor_delivery.json",
+      "sha256": "c1c3ff4f974915cb6a4acb68bab67eac6d2a4b2a316034911b055b642ed8391a",
+      "bytes": 4255
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/force_view_2/forced_requested_count_final.png",
+      "sha256": "c6c4ad3f26af7deaf5a8099f02854fd29c554ac3cdf3b622b0b9bcefb22be743",
+      "bytes": 207288
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/force_view_2/verification.json",
+      "sha256": "d3bdc5c8d0f26b5af0b29dcf15ed0faad5830ed695224ee1c150ede7313f70da",
+      "bytes": 2823
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/parent_independent/after_refresh.json",
+      "sha256": "42671c56875be68718e2f982db04cacf340f6569f8dccbe8a1e34c8cf88f08df",
+      "bytes": 17676
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/parent_independent/after_refresh.mat",
+      "sha256": "2f2f303026c0c3df27e1b01eb34d2fe78251ec606172ad8f0a33007d0012a3c3",
+      "bytes": 21992045
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/parent_independent/before.json",
+      "sha256": "93c6a9dd7385ff320e9a755bbdea69f0c9c9a5ba4df8c43485d6b24d6823ecb1",
+      "bytes": 17581
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/parent_independent/before.mat",
+      "sha256": "3d194992c7d4d8d4100e03114e5c5865f9f287c154447eb0c563a78baa972396",
+      "bytes": 21992164
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/parent_independent/before_refresh.json",
+      "sha256": "b8e4f84788ada10a5e5b78c4471d0e4897dbb65f4025938ec55f66a027ae6990",
+      "bytes": 17597
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/parent_independent/before_refresh.mat",
+      "sha256": "0fc0a002b61b29f0156b42ae4866abdd9d96a81a8bd1537c807018680b9ac07f",
+      "bytes": 21992031
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/parent_independent/initial_comparison.json",
+      "sha256": "ee1a2cb1ad1da4259b6bccadd60dab2ad3449b583bd9ead6a6e796de4f845f49",
+      "bytes": 809
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/parent_independent/verification.json",
+      "sha256": "332108b72736560094d0e5f9ac006c658b29f7ce2443c16a52dd6d646c4ded85",
+      "bytes": 696
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/post_suite_display_changes.patch",
+      "sha256": "37eb4dfeb6a75913ad6f01733f97a5e497a384106c6d833d0fa9d44634102607",
+      "bytes": 3304
+    },
+    {
+      "path": "outputs/ui_training_feedback_20261031/source_freeze.json",
+      "sha256": "9b29278caa000ad6948975335f0a3a670aaa478f241963306ca3078dfb50929b",
+      "bytes": 864
+    }
+  ]
+}

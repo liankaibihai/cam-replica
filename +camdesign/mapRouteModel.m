@@ -12,6 +12,7 @@ arguments
     options.PositionRMSToleranceMM (1,1) double {mustBeFinite,mustBePositive}=.01
     options.TangentMaxToleranceDeg (1,1) double {mustBeFinite,mustBePositive}=.05
     options.AllowApproximate (1,1) logical=false
+    options.AllowControlPointIncrease (1,1) logical=true
 end
 camdesign.validateProject(source);
 assert(options.PositionMaxToleranceMM<=.05 && options.PositionRMSToleranceMM<=.01 ...
@@ -29,6 +30,8 @@ elseif strcmp(mode,'bspline-v1')
 else
     assert(degree>=3 && degree<=49,'cam:BezierDegree','独立贝塞尔阶数范围为3至49。'); minimum=degree+1;
 end
+assert(options.AllowControlPointIncrease || count>=minimum,'cam:RouteMappingCount', ...
+    '指定%d个控制点不足以表示%d阶目标路线，至少需要%d个；请调整请求数量或阶数。',count,degree,minimum);
 count=max(count,minimum);
 assert(count<=options.MaxControlPoints,'cam:RouteMappingCount','控制点上限小于目标次数所需数量。');
 [T,sourceBreaks,sourceKnots]=domain(source);
@@ -49,7 +52,7 @@ elseif strcmp(mode,'bspline-v1') && ~isempty(sourceKnots) && degree>=sourceDegre
     end
     exactKnots=[zeros(1,degree+1),inner,T*ones(1,degree+1)];
     exactCount=numel(exactKnots)-degree-1;
-    if exactCount<=options.MaxControlPoints
+    if exactCount<=options.MaxControlPoints && (options.AllowControlPointIncrease || exactCount<=count)
         exactKnots=insertKnots(exactKnots,max(count,exactCount),degree);
         count=numel(exactKnots)-degree-1; exact=true; method='polynomial-space-embedding';
         candidate=fitCandidate(source,mode,degree,count,T,exactKnots,ends,endD);
@@ -68,7 +71,7 @@ while true
     attempts(end+1)=struct('count',size(candidate.nodes,1),'positionMaxMM',fitInfo.positionMaxMM, ...
         'positionRMSMM',fitInfo.positionRMSMM); %#ok<AGROW>
     if fitInfo.withinTolerance, break; end
-    if exact || size(candidate.nodes,1)>=options.MaxControlPoints
+    if ~options.AllowControlPointIncrease || exact || size(candidate.nodes,1)>=options.MaxControlPoints
         if options.AllowApproximate
             assert(fitInfo.finiteGeometry,'cam:RouteMappingNonfinite','强制切换仍要求有限曲线、导数和非退化切向；原方案保留。');
             assert(fitInfo.endpointConstraintsSatisfied,'cam:RouteMappingEndpoint','强制切换不能放宽首末位置和参数导数约束；原方案保留。');
@@ -104,6 +107,7 @@ fitInfo.automaticallyIncreasedCount=fitInfo.actualControlPointCount>fitInfo.requ
 fitInfo.attempts=attempts; fitInfo.parameterLength=T;
 fitInfo.targetOrderUnchanged=isequaln(source.targets,mapped.targets);
 fitInfo.allowApproximate=options.AllowApproximate;
+fitInfo.allowControlPointIncrease=options.AllowControlPointIncrease;
 fitInfo.forced=options.AllowApproximate && ~fitInfo.withinTolerance;
 if fitInfo.forced, fitInfo.shapePreservationGuaranteed=false; end
 fitInfo.approximate=~fitInfo.shapePreservationGuaranteed;
