@@ -93,3 +93,7 @@ git log --oneline -- docs/changes
 当前赛项、评分与规则适配见[赛项理解与资料核对](CONTEST_CONTEXT_2027.md)，包含本地规则来源、阅读覆盖以及几何验收与比赛判定的差异。
 
 整车外廓压线、UID覆盖和本队设计配置见[比赛几何](CONTEST_GEOMETRY.md)。
+
+## 开源发行
+
+[main 发行整理](changes/2026/2026-11-01-001-public-release.md) · [公开版说明模板](../packaging/public/README.md) · [白名单构建](../scripts/build_public_release.py)。

@@ -1,3 +1,4 @@
+<!-- 本页为开发档案；普通使用者请切换 main 分支阅读整理后的发行说明。 -->
 # 工创赛凸轮设计复现
 
 面向 MATLAB R2025b 的可读源码项目。第一版支持平推、齿条，目标是跑通“打卡点 → 路线 → 转向 → 凸轮 → 反推路线 → 评价/导出”。
@@ -73,6 +74,6 @@
 
 ## GitHub 仓库
 
-私有仓库：[liankaibihai/cam-replica](https://github.com/liankaibihai/cam-replica)。当前开发分支为 `feature/reference-comparison`，保留完整提交历史。
+仓库：[liankaibihai/cam-replica](https://github.com/liankaibihai/cam-replica)。当前开发分支为 `feature/reference-comparison`，保留完整提交历史。
 
 仓库包含源码、检查脚本、整理后的证据与文档；`local/`、运行输出、原视频与原软件不随仓库分发。部分来源核对脚本依赖本机原始资料路径，克隆后不会自动获得这些资料。运行入口见上方“运行”，功能边界见 [验证记录](docs/VALIDATION.md)。

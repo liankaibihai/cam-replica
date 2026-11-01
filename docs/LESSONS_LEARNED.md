@@ -482,3 +482,9 @@ EXP-038补充（CHG-017）：父侧在存活窗口只调用布局回调，复现
 - cleanup_2实际出现onCleanup警告：nested函数捕获的futures已先于清理被销毁。虽然业务断言通过且批次已排空，仍不能宣称异常清理通过。父侧指出[MathWorks onCleanup Tips](https://www.mathworks.com/help/matlab/ref/oncleanup.html)提醒避免这种nested清理引用。
 - 改为专属handle容器，onCleanup持有绑定方法；容器持续记录当批future。cleanup_3无警告，独立owned_future_4进一步通过受控异常确认running自有future确实被取消并等待，无关future返回正常。没有声称实际按Ctrl+C或worker硬崩溃已测。
 - 资源/配置预检必须在清结果历史前；旧窗迁移必须先保全且空闲，用户已关窗口不重开。详见[CHG-021](changes/2026/2026-10-31-021-foreground-default-parallel.md)。
+
+## EXP-044 公开分支不能隔离仓库历史
+
+- GitHub 可见性按仓库设置，清理 main 不能隐藏开发分支或旧提交；发布前应明确用户选择的公开范围。
+- 本次确认全仓库公开后，用白名单整理 main、保留原开发档案和历史。发行许可证仅覆盖有权许可的发行内容，不为第三方移植自动赋权。
+- gh 直连出现 EOF，使用系统已经启用的代理后成功读取仓库；不能把网络失败直接当作令牌失效，也不要输出凭据排障。
