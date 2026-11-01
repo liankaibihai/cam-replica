@@ -77,3 +77,5 @@
 仓库：[liankaibihai/cam-replica](https://github.com/liankaibihai/cam-replica)。当前开发分支为 `feature/reference-comparison`，保留完整提交历史。
 
 仓库包含源码、检查脚本、整理后的证据与文档；`local/`、运行输出、原视频与原软件不随仓库分发。部分来源核对脚本依赖本机原始资料路径，克隆后不会自动获得这些资料。运行入口见上方“运行”，功能边界见 [验证记录](docs/VALIDATION.md)。
+
+当前公开发行位于 main，最新整理发行 [v0.2.1](https://github.com/liankaibihai/cam-replica/releases/tag/v0.2.1)。本开发分支保留研究档案，历史兼容模块不因 main 的 MIT 许可自动获得再许可；详见 main 的 THIRD_PARTY_NOTICES.md。
