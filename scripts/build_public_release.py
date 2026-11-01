@@ -37,7 +37,7 @@ def build(destination):
     for name in sources:
         target = destination / name
         target.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(ROOT / name, target)
+        target.write_bytes((ROOT / name).read_bytes().replace(b"\r\n", b"\n"))
     for name in sorted(DATA):
         obj = json.loads((ROOT / "data" / name).read_text(encoding="utf-8-sig"))
         if name.startswith("team_"):
@@ -45,7 +45,7 @@ def build(destination):
                    "sha256": obj["sha256"], "params": obj["params"], "asBuiltMeasured": False}
         target = destination / "data" / name
         target.parent.mkdir(exist_ok=True)
-        target.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+        target.write_text(json.dumps(obj, ensure_ascii=False, indent=2) + "\n", encoding="utf-8", newline="\n")
     template = ROOT / "packaging" / "public"
     for source in template.rglob("*"):
         if source.is_file():
@@ -53,7 +53,7 @@ def build(destination):
             if target.exists():
                 raise ValueError(f"Template overwrites production source: {target.name}")
             target.parent.mkdir(parents=True, exist_ok=True)
-            shutil.copyfile(source, target)
+            target.write_bytes(source.read_bytes().replace(b"\r\n", b"\n"))
     required = ["README.md", "LICENSE", "THIRD_PARTY_NOTICES.md", "tests/smoke_test.m"]
     assert all((destination / x).is_file() for x in required), "Incomplete public templates"
     # Verify every literal package call resolves inside the distributed tree.
@@ -75,7 +75,7 @@ def build(destination):
              for p in sorted(destination.rglob("*")) if p.is_file()}
     manifest = {"sourceCommit": subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT).decode().strip(),
                 "excludedCompatibilityModules": sorted(EXCLUDED), "files": files}
-    (destination / "RELEASE_MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8")
+    (destination / "RELEASE_MANIFEST.json").write_text(json.dumps(manifest, indent=2) + "\n", encoding="utf-8", newline="\n")
     print(json.dumps({"files": len(files), "packageDependenciesResolved": True,
                       "privatePatternScanPassed": True, "destination": str(destination)}))
 
