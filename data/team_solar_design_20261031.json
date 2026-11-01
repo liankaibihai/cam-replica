@@ -1,0 +1,18 @@
+{
+  "source": "Maintainer-provided design example; not measured hardware",
+  "sha256": "e3640872f46a6438003716c8c78916bf73a00bf99baefa82348628700d925b65",
+  "params": {
+    "mechanism": "flat",
+    "wheelDiameter": 135,
+    "gearRatio": 35,
+    "driveX": 60,
+    "driveY": -110,
+    "drivenX": -105,
+    "drivenY": -110,
+    "sensorX": 20,
+    "sensorY": 0,
+    "lever": 20,
+    "referenceDiameter": 150
+  },
+  "asBuiltMeasured": false
+}

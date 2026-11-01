@@ -1,0 +1,62 @@
+function model=fminconModel(project,referenceNodes,result,regularizationWeight,objectiveMode)
+% Fixed-size constraints over the existing route/cam model; no geometry tuning.
+% score remains the historical peak-v2 score, NOT the constrained objective.
+if nargin<4, regularizationWeight=1e-4; end
+if nargin<5, objectiveMode='length-steering-move-v1'; end
+assert(ismember(objectiveMode,{'length-steering-move-v1','feasibility-quality-v1'}),'cam:ObjectiveMode','未知约束目标模式。');
+p=project.params; count=size(project.targets,1)+5*p.samples+2*p.camSamples+1;
+model=struct('valid',false,'objective',1e6,'objectiveParts',[NaN NaN NaN], ...
+    'constraints',1e3*ones(count,1),'maxViolation',1e3,'result',[], ...
+    'maxNonlinearViolation',1e3,'maxNodeBoundViolation',1e3, ...
+    'maxTrajectoryBoundViolation',1e3,'maxTrajectoryOutsideMM',Inf, ...
+    'trajectoryBoundsSatisfied',false,'trajectoryBounds',[], ...
+    'errorIdentifier','','errorMessage','');
+control=camdesign.controlBounds(project); model.controlBounds=control;
+model.maxNodeBoundViolation=double(control.enforced)*control.maxScaledViolation;
+try
+    if nargin<3 || isempty(result), result=camdesign.evaluate(project,false); end
+    rate=diff(result.route.steering)./max(diff(result.route.frontDistance),1e-9);
+    directLength=max(1,sum(vecnorm(diff(project.targets),2,2)));
+    parts=[result.route.frontDistance(end)/directLength,mean((100*rate).^2), ...
+        mean(((project.nodes-referenceNodes)/1000).^2,'all')];
+    objective=[p.weights(2),p.weights(3),regularizationWeight]*parts';
+    if strcmp(objectiveMode,'feasibility-quality-v1')
+        quality=camdesign.feasibilityFourState(project,result);
+        objective=quality.qualityObjective; parts=quality.qualityParts;
+    end
+    [trajectoryConstraints,trajectory]=camdesign.trajectoryBounds(result.route,p.bounds);
+    % Every sample is retained. The number of work/return samples may change.
+    constraints=[(result.hits.errors/p.hitTolerance).^2-1; ...
+        (result.route.steering/deg2rad(p.maxSteeringDeg)).^2-1; ...
+        (result.cam.pressure/deg2rad(p.maxPressureDeg)).^2-1; ...
+        double(strcmp(objectiveMode,'length-steering-move-v1'))*1e-6-result.cam.undercutMargin;trajectoryConstraints; ...
+        result.cam.workEnd/(2*pi-deg2rad(p.returnAngleDeg))-1];
+    assert(numel(constraints)==count,'cam:ConstraintDimension','约束维数发生变化。');
+    assert(isreal(objective) && isfinite(objective) && isreal(constraints) ...
+        && all(isfinite(constraints)) && isfinite(result.metrics.score), ...
+        'cam:ConstraintNonfinite','候选计算出现非有限或复数结果。');
+    model.valid=true; model.objective=objective; model.objectiveParts=parts;
+    model.objectiveMode=objectiveMode;
+    model.maxTrajectoryBoundViolation=trajectory.maxScaledViolation;
+    model.maxTrajectoryOutsideMM=trajectory.maximumOutsideMM;
+    model.trajectoryBoundsSatisfied=trajectory.satisfied; model.trajectoryBounds=trajectory;
+    model.constraints=constraints; model.maxNonlinearViolation=max([0;constraints]);
+    model.maxViolation=max(model.maxNonlinearViolation,model.maxNodeBoundViolation); model.result=result;
+catch ex
+    expected={'cam:Duplicate','cam:RouteSingularity','cam:ReverseWheel', ...
+        'cam:ExtremeSteering','cam:GearRatio','cam:NegativeRadius','cam:ConstraintNonfinite','cam:EndpointConstraint'};
+    if ismember(ex.identifier,expected)
+        % Invalid candidates never appear feasible and never change dimension.
+        model.errorIdentifier=ex.identifier; model.errorMessage=ex.message;
+        displacement=norm((project.nodes-referenceNodes)/1000,'fro');
+        if isfinite(displacement)
+            model.objective=1e6+min(displacement^2,1e6);
+            model.constraints(:)=1e3+min(displacement,1e3);
+            model.maxViolation=max(model.constraints);
+            model.maxNonlinearViolation=model.maxViolation;
+        end
+    else
+        rethrow(ex);
+    end
+end
+end

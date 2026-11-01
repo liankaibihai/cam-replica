@@ -1,8 +1,7 @@
-*.asv
-*.mexw64
-outputs/*
-!outputs/.gitkeep
 local/
+outputs/
+*.asv
 *.log
-*.slxc
+*.mexw64
 *.mlappinstall
+__pycache__/
