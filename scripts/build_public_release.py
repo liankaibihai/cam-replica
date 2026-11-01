@@ -63,7 +63,7 @@ def build(destination):
         if not source.is_file():
             continue
         content = source.read_text(encoding="utf-8-sig")
-        if re.search(r"[A-Za-z]:[/\\]|许昊阳|22416|01a18[0-9a-f-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|-----BEGIN .*PRIVATE KEY", content):
+        if re.search(r"(?<![A-Za-z0-9])[A-Za-z]:[/\\]|许昊阳|22416|01a18[0-9a-f-]{20,}|gh[pousr]_[A-Za-z0-9]{20,}|-----BEGIN .*PRIVATE KEY", content):
             private.append(str(source.relative_to(destination)))
         if source.suffix == ".m":
             for function in re.findall(r"camdesign\.([A-Za-z]\w*)", content):
